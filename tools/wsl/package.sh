@@ -28,6 +28,12 @@ rm -f "$DIST/xash.js" "$DIST/xash.wasm"
 cp "$WEB/index.html" "$WEB/loader.js" "$WEB/postfx.js" "$WEB/gpustats.js" "$WEB/debug.js" "$WEB/sw.js" "$DIST/"
 rm -rf "$DIST/shaders" && cp -r "$WEB/shaders" "$DIST/shaders"
 
+# GPL-3.0: quien recibe los binarios debe poder llegar al código. La página enlaza la licencia y
+# el repositorio público (COF_SOURCE_URL; un fork debe apuntarlo a su propio repositorio).
+cp "$WEB/../../LICENSE" "$DIST/LICENSE.txt"
+SOURCE_URL="${COF_SOURCE_URL:-https://github.com/Putrefacto669/Cry-Of-Fear-Port-Web}"
+sed -i "s#__SOURCE_URL__#$SOURCE_URL#" "$DIST/index.html"
+
 # Nombres que espera el motor: dlopen("filesystem_stdio.wasm") y "libref_<nombre>.wasm"
 # se resuelven con LD_LIBRARY_PATH=/lib; los del juego se pasan con -dll/-clientlib/-menulib.
 cp "$B/engine/filesystem/filesystem_stdio.wasm"   "$STAGE/lib/"
@@ -62,10 +68,10 @@ printf '%s\n' "${maps[@]}" | python3 -c 'import json,sys; print(json.dumps([l.st
 # de lo pesado. Los hostings no comprimen application/octet-stream (los .data bajan al 22-42 %
 # con gzip): el SW descarga el .gz y lo descomprime con DecompressionStream. Los originales se
 # quedan para navegadores sin SW o ?sw=0.
-python3 - "$DIST" "${COF_SW_COI:-0}" <<'EOF'
+python3 - "$DIST" "${COF_SW_COI:-0}" "${COF_SW_GZ:-1}" <<'EOF'
 import gzip, hashlib, json, sys
 from pathlib import Path
-dist, coi = Path(sys.argv[1]), sys.argv[2] == "1"
+dist, coi, use_gz = Path(sys.argv[1]), sys.argv[2] == "1", sys.argv[3] == "1"
 for old in dist.rglob("*.gz"):
     old.unlink()
 files, gz = {}, {}
@@ -75,7 +81,7 @@ for p in sorted(dist.rglob("*")):
         continue
     data = p.read_bytes()
     files[rel] = hashlib.sha256(data).hexdigest()[:12]
-    if rel.endswith((".wasm", ".data")):
+    if use_gz and rel.endswith((".wasm", ".data")):
         packed = gzip.compress(data, 9, mtime=0)
         if len(packed) < 0.9 * len(data):
             Path(f"{p}.gz").write_bytes(packed)

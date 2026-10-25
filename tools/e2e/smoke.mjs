@@ -39,6 +39,7 @@ const visit = async (name) => {
   const t0 = Date.now();
   await page.goto(url, { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() => {
+    if (!window.CoFRuntimeReady) return false; // FS solo es fiable con el runtime inicializado
     try { return FS.readFile("/rwdir/engine.log", { encoding: "utf8" }).includes("client connected"); }
     catch (_) { return false; }
   }, null, { timeout: TIMEOUT, polling: 500 });

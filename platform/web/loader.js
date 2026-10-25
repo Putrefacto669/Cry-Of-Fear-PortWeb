@@ -101,6 +101,9 @@
       "-dll", `${libDir}/server.wasm`,
       "-clientlib", `${libDir}/client.wasm`,
       "-menulib", `${libDir}/menu.wasm`,
+      // en ventana: el "fullscreen desktop" de SDL usa el soft fullscreen de Emscripten, que oculta
+      // el resto de la página (créditos incluidos). La pantalla completa la pide el botón.
+      "-windowed",
       "-dev", params.get("dev") || "1",
       "-log",
     ];
@@ -137,6 +140,8 @@
       setStatus: (t) => t && setStatus(t),
       onAbort: (what) => { setStatus(`Abortado: ${what}`); log(`abort: ${what}`, "err"); },
       onRuntimeInitialized: () => {
+        // señal para herramientas externas (debug.js, pruebas e2e): FS ya está inicializado
+        window.CoFRuntimeReady = true;
         if (params.get("timer") === "1") MainLoop.requestAnimationFrame = MainLoop.fakeRequestAnimationFrame;
         if (params.get("fx") !== "0" && window.CoFPostFX) CoFPostFX.attach().catch((e) => log(`postfx: ${e.message}`, "err"));
         setStatus(`Ejecutando${map ? ` · ${map}` : ""}`);
@@ -201,6 +206,11 @@
   });
   document.addEventListener("pointerlockerror", () => {
     pointerHint.textContent = "Haz clic en el juego para capturar el ratón";
+  });
+
+  // Pantalla completa real del navegador (requiere el clic del usuario); Esc vuelve a la página
+  document.getElementById("fullscreen").addEventListener("click", () => {
+    canvas.parentElement.requestFullscreen({ navigationUI: "hide" }).then(() => canvas.focus()).catch(() => {});
   });
 
   canvas.addEventListener("webglcontextlost", (e) => {

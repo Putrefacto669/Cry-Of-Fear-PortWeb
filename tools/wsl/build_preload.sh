@@ -58,6 +58,8 @@ print("cd " + shlex.quote(sys.argv[1]) + " && \\\n  " + shlex.join(ast.literal_e
 rm -rf "$DIST" && mkdir -p "$DIST/packs"
 cp "$B/engine/engine/xash3d."{html,js,wasm,data} "$WEB/index.html" "$WEB/loader.js" "$WEB/postfx.js" "$WEB/gpustats.js" "$DIST/"
 cp -r "$WEB/shaders" "$DIST/shaders"
+cp "$WEB/../../LICENSE" "$DIST/LICENSE.txt"
+sed -i "s#__SOURCE_URL__#${COF_SOURCE_URL:-https://github.com/Putrefacto669/Cry-Of-Fear-Port-Web}#" "$DIST/index.html"
 printf '{"preloaded": true, "maps": [%s]}\n' "$(printf '"%s",' "${maps[@]}" | sed 's/,$//')" > "$DIST/packs/maps.json"
 find "$DIST" -maxdepth 1 -type f -printf '   %-14f %10s bytes\n' | sort
 

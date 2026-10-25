@@ -11,6 +11,7 @@
   "use strict";
 
   const engineLog = () => {
+    if (!window.CoFRuntimeReady) return ""; // FS solo es fiable con el runtime inicializado
     try { return FS.readFile("/rwdir/engine.log", { encoding: "utf8" }); } catch (_) { return ""; }
   };
   const count = (text, re) => (text.match(re) || []).length;
