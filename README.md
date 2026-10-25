@@ -3,10 +3,15 @@
 Port no oficial de **Cry of Fear** al navegador (WebAssembly + WebGL 2) sobre el motor de código
 abierto [Xash3D FWGS](https://github.com/FWGS/xash3d-fwgs).
 
-> **Estado: demo técnica.** El motor, el renderizado, el audio 3D y la carga de mapas funcionan en el
-> navegador, pero todavía se ejecuta la lógica de juego de Half-Life (hlsdk-portable). Los mapas de
-> Cry of Fear se pueden recorrer; los enemigos, los objetos y las mecánicas propias del juego llegarán
-> cuando se reimplemente su lógica en `game/cof-logic/`.
+> **Estado: alfa.** El motor, el renderizado, el audio 3D y la carga de mapas funcionan en el
+> navegador. Sobre la lógica de Half-Life (hlsdk-portable) ya hay parte de la de Cry of Fear
+> (`game/cof-logic/cof/`): menú principal original, puertas `inter_door` con llaves, sprint con
+> energía, barras de salud y energía, bolso (TAB), música, títulos de capítulo, objetivos y ayudas.
+> Se empaquetan el Prólogo, el Preludio y el Capítulo 1 ("Lost in a city"). Faltan los enemigos,
+> las armas de CoF y el resto de mecánicas.
+
+**Controles** (los del juego original, `platform/game/cof_web.cfg`): **WASD** moverse, **SHIFT**
+correr, **CTRL** o **C** agacharse, **E** usar, **TAB** bolso, **F** linterna, **Esc** menú.
 
 ## Créditos
 

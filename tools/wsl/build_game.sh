@@ -9,7 +9,14 @@ set -euo pipefail
 
 WORK="${COF_WORK:-$HOME/cof-web}"
 SDK_DIR="${SDK_DIR:-$WORK/game/hlsdk-portable}"
+REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 MODE="${1:-all}"
+
+# El SDK vive fuera del repo (solo en WSL); game/cof-logic es la fuente de verdad.
+if [ -d "$REPO_ROOT/game/cof-logic" ]; then
+    mkdir -p "$WORK/game/cof-logic"
+    cp -a "$REPO_ROOT/game/cof-logic/." "$WORK/game/cof-logic/"
+fi
 BUILD="${BUILD:-release}"
 
 # shellcheck disable=SC1091

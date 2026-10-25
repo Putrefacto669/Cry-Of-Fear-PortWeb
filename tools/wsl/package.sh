@@ -25,7 +25,8 @@ mkdir -p "$DIST/packs" "$STAGE/lib"
 # xash3d.html es la página por defecto de emcc (sin paquetes ni argumentos); index.html es la buena
 cp "$B/engine/engine/xash3d.html" "$B/engine/engine/xash3d.js" "$B/engine/engine/xash3d.wasm" "$DIST/"
 rm -f "$DIST/xash.js" "$DIST/xash.wasm"
-cp "$WEB/index.html" "$WEB/loader.js" "$WEB/postfx.js" "$WEB/gpustats.js" "$WEB/debug.js" "$WEB/sw.js" "$DIST/"
+cp "$WEB/index.html" "$WEB/loader.js" "$WEB/postfx.js" "$WEB/hud.js" "$WEB/gpustats.js" "$WEB/debug.js" "$WEB/sw.js" "$DIST/"
+cp "$WEB/transitions.json" "$DIST/packs/"
 rm -rf "$DIST/shaders" && cp -r "$WEB/shaders" "$DIST/shaders"
 
 # Lanzador para probar en Windows con doble clic (no forma parte de la web publicada)
@@ -53,8 +54,14 @@ pack() {  # pack <nombre> <dir_origen> <punto_de_montaje>
 }
 
 # extras.pk3 de Xash (fuentes, gráficos del menú y defaults): el motor lo busca en el gamedir base
+# controles del CoF original; loader.js lo ejecuta con +exec
+cp "$WEB/../game/cof_web.cfg" "$STAGE/boot/cryoffear/"
 mkdir -p "$STAGE/boot/valve"
 cp "$B/engine/3rdparty/extras/extras.pk3" "$STAGE/boot/valve/"
+
+# música: archivos sueltos que hud.js reproduce en streaming con <audio> (no entran en memoria)
+rm -rf "$DIST/mp3" && mkdir -p "$DIST/mp3"
+[ -d "$STAGE/mp3" ] && cp "$STAGE/mp3/"*.mp3 "$DIST/mp3/" 2>/dev/null || true
 
 pack engine "$STAGE/lib" /lib
 pack boot "$STAGE/boot" /rodir
@@ -89,7 +96,7 @@ for p in sorted(dist.rglob("*")):
         if len(packed) < 0.9 * len(data):
             Path(f"{p}.gz").write_bytes(packed)
             gz[rel] = {"size": len(data), "gzSize": len(packed)}
-precache = [f for f in files if not f.endswith((".wasm", ".data")) and f != "xash3d.html"]
+precache = [f for f in files if not f.endswith((".wasm", ".data", ".mp3")) and f != "xash3d.html"]
 version = hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()[:12]
 manifest = {"version": version, "coi": coi, "precache": precache, "files": files, "gz": gz}
 (dist / "sw-manifest.js").write_text("self.COF_MANIFEST = " + json.dumps(manifest, indent=1) + ";\n")

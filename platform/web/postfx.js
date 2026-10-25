@@ -22,6 +22,7 @@
     black: false,
     grain: 0.06,              // cl_noiseeffect 1 en autoexec.cfg
     vignette: 0.35,
+    blur: 0,                  // radio en píxeles; CoF "cof_blur" (gl_screenblur)
   };
 
   let gl = null;
@@ -90,7 +91,7 @@
     gl.linkProgram(prog);
     if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
     for (const n of ["uScene", "uCookie", "uTime", "uResolution", "uFlashlight", "uFlashlightSway",
-      "uFlashlightGain", "uFlashlightSize", "uFlashlightTint", "uBlack", "uGrain", "uVignette"]) {
+      "uFlashlightGain", "uFlashlightSize", "uFlashlightTint", "uBlack", "uGrain", "uVignette", "uBlur"]) {
       loc[n] = gl.getUniformLocation(prog, n);
     }
     vao = gl.createVertexArray(); // vacío: los vértices salen de gl_VertexID
@@ -136,7 +137,7 @@
     gl.pixelStorei(gl.UNPACK_ALIGNMENT, s.unpackAlign);
   };
 
-  const active = () => settings.flashlight || flashlightLevel > 0 || settings.black || settings.grain > 0 || settings.vignette > 0;
+  const active = () => settings.flashlight || flashlightLevel > 0 || settings.black || settings.blur > 0 || settings.grain > 0 || settings.vignette > 0;
 
   const frame = () => {
     if (!gl || !active()) return;
@@ -189,6 +190,7 @@
     gl.uniform1f(loc.uBlack, settings.black ? 1 : 0);
     gl.uniform1f(loc.uGrain, settings.grain);
     gl.uniform1f(loc.uVignette, settings.vignette);
+    gl.uniform1f(loc.uBlur, settings.blur);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 
     restore(s);

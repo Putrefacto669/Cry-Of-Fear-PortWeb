@@ -24,7 +24,11 @@ const page = await context.newPage();
 
 const errors = [];
 page.on("pageerror", (e) => errors.push(`pageerror: ${e.message}`));
-page.on("console", (m) => { if (m.type() === "error" && !/Could not load|404/.test(m.text())) errors.push(m.text()); });
+// El runner headless de CI no tiene dispositivo de audio: AudioContext falla ahí.
+page.on("console", (m) => {
+  const expected = /Could not load|404|AudioContext encountered an error/;
+  if (m.type() === "error" && !expected.test(m.text())) errors.push(m.text());
+});
 
 const visit = async (name) => {
   // en el contexto (no en la página) para ver también lo que descarga el propio Service Worker
@@ -58,7 +62,8 @@ const visit = async (name) => {
       isolated: crossOriginIsolated,
     };
   });
-  await page.screenshot({ path: `smoke-${name}.png` });
+  // SwiftShader tarda mucho con mapas con cientos de modelos (CoF: env_model).
+  await page.screenshot({ path: `smoke-${name}.png`, timeout: 180_000 });
   return { name, loadMs, ...net, networkMiB: +(net.networkBytes / 2 ** 20).toFixed(1), ...state };
 };
 

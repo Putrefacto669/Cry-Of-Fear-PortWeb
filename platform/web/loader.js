@@ -14,6 +14,7 @@
 //   &fx=0                desactiva el post-proceso (postfx.js: linterna, grano, viñeta)
 //   &timer=1             mueve el bucle con temporizadores en vez de requestAnimationFrame
 //                        (pestañas ocultas, pruebas automáticas); el motor fija rAF vía vsync
+//   &prefetch=0          no precarga en segundo plano el siguiente mapa
 (() => {
   "use strict";
 
@@ -88,11 +89,91 @@
     const manifest = await fetch("packs/maps.json").then((r) => r.json()).catch(() => []);
     const preloaded = !Array.isArray(manifest) && manifest.preloaded === true;
     const maps = Array.isArray(manifest) ? manifest : manifest.maps || [];
-    const map = params.get("map") || maps[0];
+    // sin ?map= arranca en el menú original (c_game_menu1, hud.js) si está empaquetado
+    const map = params.get("map") || (maps.includes("c_game_menu1") ? "c_game_menu1" : maps[0]);
     if (map && !maps.includes(map)) throw new Error(`mapa ${map} no empaquetado`);
     const libDir = preloaded ? "/rodir/lib" : "/lib";
     // la variante precargada (build_preload.sh) se cachea con --use-preload-cache, sin SW
     if (!preloaded) await setupServiceWorker();
+
+    // Siguiente mapa por mapa (trigger_changelevel de los BSP, tools/gen_transitions.py). El pack
+    // se monta en /rodir en segundo plano: al cambiar de nivel el motor ya encuentra el BSP.
+    const packaged = new Set(maps.map((m) => m.toLowerCase()));
+    const transitionsPromise = preloaded ? Promise.resolve({}) :
+      fetch("packs/transitions.json").then((r) => r.json()).catch(() => ({}));
+    const prefetchEnabled = !preloaded && params.get("prefetch") !== "0";
+    let currentMap = (map || "").toLowerCase();
+    let prefetchTimer = 0;
+    let baseStatus = "";
+    const prefetched = new Set();
+    const prefetching = new Set();
+
+    const packMounted = (name) => {
+      try { return FS.analyzePath(`/rodir/cryoffear/maps/${name}.bsp`).exists; } catch (_) { return false; }
+    };
+    const refreshStatus = () => {
+      if (!baseStatus) return;
+      const pending = [...prefetching];
+      setStatus(baseStatus + (pending.length ? ` · precargando ${pending.join(", ")}…` : ""));
+    };
+    // Los paquetes de mapas comparten archivos (modelos, sonidos): file_packager falla con EEXIST
+    // en el primero repetido y deja sin montar el resto del paquete. Se sustituye el existente.
+    const allowOverlappingPacks = () => {
+      const create = Module.FS_createDataFile;
+      if (!create || create.cofOverlap) return;
+      const wrapped = function (parent, name, ...rest) {
+        // file_packager llama (rutaCompleta, null, datos, ...)
+        const dir = typeof parent === "string" ? parent : parent && FS.getPath(parent);
+        const path = name == null ? dir : dir ? `${dir}/${name}` : name;
+        try { if (FS.analyzePath(path).exists) FS.unlink(path); } catch (_) { /* lo crea igual */ }
+        return create.call(this, parent, name, ...rest);
+      };
+      wrapped.cofOverlap = true;
+      Module.FS_createDataFile = wrapped;
+    };
+
+    async function prefetchMap(name) {
+      name = name.toLowerCase();
+      if (!packaged.has(name) || prefetched.has(name) || prefetching.has(name)) return false;
+      if (!window.CoFRuntimeReady) throw new Error("runtime no listo");
+      if (packMounted(name)) { prefetched.add(name); return true; }
+      prefetching.add(name);
+      refreshStatus();
+      try {
+        allowOverlappingPacks();
+        await loadScript(`packs/map_${name}.js`);
+        const t0 = performance.now();
+        while (!packMounted(name)) {
+          if (performance.now() - t0 > 180000) throw new Error("tiempo de espera agotado");
+          await sleep(250);
+        }
+        prefetched.add(name);
+        log(`precargado: ${name}`);
+        return true;
+      } catch (e) {
+        log(`no se pudo precargar ${name}: ${e.message}`, "err");
+        return false;
+      } finally {
+        prefetching.delete(name);
+        refreshStatus();
+      }
+    }
+    async function prefetchFrom(name) {
+      const all = await transitionsPromise;
+      for (const next of all[name] || []) {
+        if (next !== name) await prefetchMap(next);
+      }
+    }
+    const schedulePrefetch = () => {
+      if (!prefetchEnabled) return;
+      clearTimeout(prefetchTimer);
+      prefetchTimer = setTimeout(() => {
+        prefetchFrom(currentMap).catch((e) => log(`precarga: ${e.message}`, "err"));
+      }, 5000);
+    };
+    window.CoFPreload = prefetchMap;
+    window.CoFPreloadFrom = prefetchFrom;
+    window.CoFCurrentMap = () => currentMap;
 
     const args = [
       "-game", "cryoffear",
@@ -107,6 +188,8 @@
       "-dev", params.get("dev") || "1",
       "-log",
     ];
+    // controles del CoF original (platform/game/cof_web.cfg): TAB bolso, SHIFT correr, CTRL/C agacharse
+    args.push("+exec", "cof_web.cfg");
     // &mat=0: sin texturas DDS de materials/ (para comparar VRAM con las del BSP/WAD sin comprimir)
     if (params.get("mat") === "0") args.push("+host_allow_materials", "0");
     if (map) args.push("+map", map);
@@ -135,7 +218,29 @@
         });
       }],
       // con ?debug=1 también a la consola del navegador: sigue legible si el hilo se bloquea
-      print: (t) => { log(t); if (debug) console.log(t); },
+      print: (t) => {
+        // marcadores HUD del servidor (game/cof-logic/cof/hud.cpp -> hud.js)
+        // con -log el motor antepone la hora ("[13:47:06] ") a cada línea
+        const line = t.replace(/^\[\d\d:\d\d:\d\d\]\s*/, "");
+        const hud = /^\s*COF\/HUD\s+(.+?)\s*$/.exec(line);
+        if (hud) {
+          if (window.CoFHUD) CoFHUD.handle(hud[1]);
+          if (debug) console.log(t);
+          return;
+        }
+        log(t);
+        if (debug) console.log(t);
+        const spawn = /^Spawn Server:\s*(\S+)/.exec(line);
+        if (spawn) {
+          currentMap = spawn[1].toLowerCase();
+          if (window.CoFHUD) CoFHUD.onMap(currentMap);
+          baseStatus = `Ejecutando${currentMap ? ` · ${currentMap}` : ""}`;
+          refreshStatus();
+        } else if (t.includes("client connected")) {
+          // ya está en juego: precargar el siguiente sin competir con la carga inicial
+          schedulePrefetch();
+        }
+      },
       printErr: (t) => { log(t, "err"); if (debug) console.error(t); for (const fn of stderrHooks) fn(t); },
       setStatus: (t) => t && setStatus(t),
       onAbort: (what) => { setStatus(`Abortado: ${what}`); log(`abort: ${what}`, "err"); },
@@ -144,7 +249,12 @@
         window.CoFRuntimeReady = true;
         if (params.get("timer") === "1") MainLoop.requestAnimationFrame = MainLoop.fakeRequestAnimationFrame;
         if (params.get("fx") !== "0" && window.CoFPostFX) CoFPostFX.attach().catch((e) => log(`postfx: ${e.message}`, "err"));
-        setStatus(`Ejecutando${map ? ` · ${map}` : ""}`);
+        baseStatus = `Ejecutando${currentMap ? ` · ${currentMap}` : ""}`;
+        refreshStatus();
+        // si el motor no imprime "client connected", precargar igualmente tras el arranque
+        if (prefetchEnabled) prefetchTimer = setTimeout(() => {
+          prefetchFrom(currentMap).catch((e) => log(`precarga: ${e.message}`, "err"));
+        }, 15000);
       },
     };
 

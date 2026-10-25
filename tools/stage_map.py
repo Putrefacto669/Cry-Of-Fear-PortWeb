@@ -14,6 +14,8 @@ El directorio resultante se empaqueta con file_packager de Emscripten (ver tools
 Estructura de salida:
     <stage_dir>/boot/cryoffear/...      archivos comunes (liblist.gam, gfx.wad, resource/...)
     <stage_dir>/maps/<map>/cryoffear/... dependencias exclusivas del mapa
+    <stage_dir>/mp3/...                 música (ambient_fmodstream): va suelta en dist/mp3/ y el
+                                        navegador la reproduce en streaming, fuera de los paquetes
 """
 from __future__ import annotations
 
@@ -38,9 +40,32 @@ BOOT_FILES = ["liblist.gam", "valve.rc", "delta.lst","titles.txt", "skill.cfg", 
               "640_textscheme.txt", "800_textscheme.txt", "1024_textscheme.txt",
               "1152_textscheme.txt", "1280_textscheme.txt", "1600_textscheme.txt",
               "gfx.wad", "decals.wad", "tempdecal.wad", "cached.wad",
+              # HUD/cinematics (platform/web/hud.js): cof_logo/cof_introduction messages
+              "gfx/vgui/640_logo_logo.tga", "gfx/vgui/640_logo_andreas.tga",
+              "gfx/vgui/640_logo_james.tga", "gfx/vgui/640_logo_jordy.tga",
+              "gfx/vgui/640_logo_stig.tga", "gfx/vgui/640_logo_lasse.tga",
+              "gfx/vgui/640_logo_aina.tga",
+              "gfx/vgui/introductions/english/english_sp.TGA",
+              "gfx/vgui/introductions/english/english_doc.TGA",
+              "gfx/vgui/introductions/english/english_coop.TGA",
+              # bolso, salud y energía (hud.js)
+              "gfx/vgui/640_inventory.tga", "gfx/vgui/640_healthbar.tga",
+              "gfx/vgui/640_healthbar_bar.tga", "gfx/vgui/640_healthbar_barempty.tga",
+              "gfx/vgui/640_staminabar.tga", "gfx/vgui/640_staminabar_bar.tga",
+              "gfx/vgui/640_staminabar_barempty.tga",
+              "sound/items/gunpickup2.wav",  # recoger armas (player_cof.cpp)
+              "txtfiles/hints.txt",  # textos de cof_hint y cof_objective (hud.js)
+              # menú principal original (hud.js)
+              "gfx/vgui/menu_logo.tga", "gfx/vgui/640_difficulty.tga",
+              "gfx/vgui/menu/newgame.TGA", "gfx/vgui/menu/newgame_mo.TGA",
+              "gfx/vgui/menu/loadgame.TGA", "gfx/vgui/menu/loadgame_mo.TGA",
+              "gfx/vgui/menu/options.TGA", "gfx/vgui/menu/options_mo.TGA",
               "gfx/palette.lmp", "gfx/palette.bmp", "gfx/colormap.lmp", "gfx/conback.lmp",
               "gfx/flashlight.tga"]  # cookie de la linterna para platform/web/postfx.js
-BOOT_DIRS = ["gfx/shell", "resource", "sprites", "events"]
+# inventoryitems/*.txt describen cada objeto del bolso (nombre, imágenes, sonido de recogida)
+BOOT_DIRS = ["gfx/shell", "resource", "sprites", "events", "inventoryitems",
+             "gfx/vgui/items", "gfx/vgui/weapons", "gfx/vgui/hints"]
+ITEM_FIELD_RE = re.compile(r'"([^"]+)"\s*\{\s*data\s+"([^"]*)"\s*\}')
 
 SKY_SUFFIXES = ("rt", "bk", "lf", "ft", "up", "dn")
 ENT_RE = re.compile(r'"([^"]*)"\s+"([^"]*)"')
@@ -62,6 +87,18 @@ def read_entities(bsp: Path) -> list[dict[str, str]]:
     return ents
 
 
+def map_music(game: Path, bsp: Path) -> set[Path]:
+    """mp3 de ambient_fmodstream; el original los busca en mp3/ y la música del menú en media/."""
+    out = set()
+    for ent in read_entities(bsp):
+        name = ent.get("message", "") if ent.get("classname") == "ambient_fmodstream" else ""
+        if name.lower().endswith(".mp3"):
+            p = find_ci(game, f"mp3/{name}") or find_ci(game, f"media/{name}")
+            if p:
+                out.add(p)
+    return out
+
+
 def map_dependencies(game: Path, bsp: Path) -> tuple[set[str], list[str]]:
     """Devuelve (rutas relativas al gamedir que existen, referencias no encontradas)."""
     deps, missing = {f"maps/{bsp.name}"}, []
@@ -75,12 +112,19 @@ def map_dependencies(game: Path, bsp: Path) -> tuple[set[str], list[str]]:
         deps.update(f"gfx/env/{sky}{s}.tga" for s in SKY_SUFFIXES)
 
     for ent in ents:
+        # armas de CoF que se recogen del suelo: el modelo no está en el BSP (player_cof.cpp)
+        cls = ent.get("classname", "")
+        if cls.startswith("weapon_"):
+            short = cls[len("weapon_"):]
+            deps.add(f"models/weapons/{short}/w_{short}.mdl")
         for value in ent.values():
             v = value.replace("\\", "/").lower()
             if v.endswith((".mdl", ".spr")):
                 deps.add(v)
             elif v.endswith(".wav"):
                 deps.add(v if v.startswith("sound/") else f"sound/{v}")
+            elif v.startswith("inventoryitems/") and v.endswith(".txt"):
+                deps.update(item_dependencies(game, v))
     # Mapas con el mismo nombre base: .res (lista de recursos) y overview
     for extra in (f"maps/{bsp.stem}.res", f"maps/{bsp.stem}.txt"):
         deps.add(extra)
@@ -93,6 +137,20 @@ def map_dependencies(game: Path, bsp: Path) -> tuple[set[str], list[str]]:
         elif not d.endswith((".res", ".txt")):
             missing.append(d)
     return found, sorted(missing)
+
+
+def item_dependencies(game: Path, rel: str) -> set[str]:
+    """Modelo y sonido de recogida de un objeto (inventoryitems/*.txt); las imágenes van en boot."""
+    p = find_ci(game, rel)
+    if not p:
+        return set()
+    fields = dict(ITEM_FIELD_RE.findall(p.read_text(encoding="latin-1")))
+    out = set()
+    if fields.get("3dmdl"):
+        out.add(fields["3dmdl"].lower())
+    if fields.get("pickup_sound"):
+        out.add(f"sound/{fields['pickup_sound'].lower()}")
+    return out
 
 
 _ci_cache: dict[Path, dict[str, str]] = {}
@@ -129,7 +187,7 @@ def compress_textures(texcomp: Path, game: Path, bsp_rel: str, dest: Path) -> se
     """Escribe los DDS en dest/cryoffear/materials/ y devuelve los WADs (en minúsculas) que el
     motor sigue necesitando. None si alguna textura no se encontró: entonces hay que dejar los WADs."""
     out = subprocess.run([str(texcomp), str(game), bsp_rel, str(dest / GAMEDIR)],
-                         capture_output=True, text=True)
+                         capture_output=True, text=True, encoding="latin-1")  # nombres de textura de los WAD
     for line in out.stderr.splitlines():
         print(f"  {line}")
     if out.returncode not in (0, 3):
@@ -188,6 +246,14 @@ def main() -> int:
 
     size = copy_set(game, deps, map_stage)
     print(f"{args.map}: {len(deps)} archivos, {size / 2**20:.1f} MiB")
+    music = map_music(game, bsp)
+    (args.stage / "mp3").mkdir(parents=True, exist_ok=True)
+    for src in music:
+        dst = args.stage / "mp3" / src.name.lower()
+        if not dst.exists() or dst.stat().st_size != src.stat().st_size:
+            shutil.copy2(src, dst)
+    if music:
+        print(f"  música: {len(music)} mp3, {sum(p.stat().st_size for p in music) / 2**20:.1f} MiB")
     for m in missing:
         print(f"  ! referencia no encontrada: {m}")
     return 0

@@ -33,3 +33,75 @@ index ffa101fc..71ca7b6f 100644
  
  	// root->getSurfaceBase()->setEmulatedCursorVisible( true );
  
+diff --git a/dlls/client.cpp b/dlls/client.cpp
+index da2e9e1d..33dda9d8 100644
+--- a/dlls/client.cpp
++++ b/dlls/client.cpp
+@@ -465,6 +465,9 @@ called each time a player uses a "cmd" command
+ */
+ extern cvar_t *g_enable_cheats;
+ 
++// Cry of Fear commands: +sprint, +inventory... (game/cof-logic/cof/player_cof.cpp)
++bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd );
++
+ // Use CMD_ARGV,  CMD_ARGV, and CMD_ARGC to get pointers the character string command.
+ void ClientCommand( edict_t *pEntity )
+ {
+@@ -477,6 +480,9 @@ void ClientCommand( edict_t *pEntity )
+ 
+ 	entvars_t *pev = &pEntity->v;
+ 
++	if( CoF_ClientCommand( GetClassPtr( (CBasePlayer *)pev ), pcmd ) )
++		return;
++
+ 	if( FStrEq( pcmd, "say" ) )
+ 	{
+ 		Host_Say( pEntity, 0 );
+diff --git a/dlls/player.cpp b/dlls/player.cpp
+index bbb68ea6..7c58cff6 100644
+--- a/dlls/player.cpp
++++ b/dlls/player.cpp
+@@ -40,6 +40,10 @@
+ // #define DUCKFIX
+ 
+ extern DLL_GLOBAL ULONG g_ulModelIndexPlayer;
++
++// Cry of Fear: stamina, sprint and inventory (game/cof-logic/cof/player_cof.cpp)
++void CoF_PlayerSpawn( CBasePlayer *pPlayer );
++void CoF_PlayerPreThink( CBasePlayer *pPlayer );
+ extern DLL_GLOBAL BOOL g_fGameOver;
+ extern DLL_GLOBAL BOOL g_fDrawLines;
+ int gEvilImpulse101;
+@@ -1891,6 +1895,8 @@ void CBasePlayer::PreThink( void )
+ 
+ 	UTIL_MakeVectors( pev->v_angle );             // is this still used?
+ 
++	CoF_PlayerPreThink( this );
++
+ 	ItemPreFrame();
+ 	WaterMove();
+ 
+@@ -2998,6 +3004,7 @@ void CBasePlayer::Spawn( void )
+ 
+ 	SET_VIEW(edict(), edict());
+ 
++	CoF_PlayerSpawn( this );
+ 	g_pGameRules->PlayerSpawn( this );
+ }
+ 
+diff --git a/dlls/wscript b/dlls/wscript
+index 3f2758cd..a08a02d2 100644
+--- a/dlls/wscript
++++ b/dlls/wscript
+@@ -23,6 +23,11 @@ def build(bld):
+ 	excluded_files = ['mpstubb.cpp', 'stats.cpp', 'Wxdebug.cpp']
+ 
+ 	source = bld.path.ant_glob('**/*.cpp', excl=excluded_files)
++
++	# Cry of Fear logic lives in game/cof-logic, outside the SDK tree.
++	cof_logic = bld.path.parent.parent.find_node('cof-logic/cof')
++	if cof_logic is not None:
++		source += cof_logic.ant_glob('*.cpp')
+ 	source += bld.path.parent.ant_glob([
+ 					'pm_shared/*.c',
+ 					'public/safe_snprintf.c',

@@ -27,6 +27,7 @@ uniform vec3  uFlashlightTint;
 uniform float uBlack;           // 0 or 1: the black_fp effect
 uniform float uGrain;           // grain amplitude, 0 disables
 uniform float uVignette;        // 0 disables
+uniform float uBlur;            // screen blur radius in pixels, 0 disables
 
 in vec2 vUV;
 out vec4 fragColor;
@@ -51,6 +52,17 @@ vec3 Black( vec3 color )
 void main()
 {
 	vec3 color = texture( uScene, vUV ).rgb;
+
+	if( uBlur > 0.0 )
+	{
+		vec2 px = uBlur / uResolution;
+		vec3 b = color * 4.0;
+		b += texture( uScene, vUV + vec2( px.x, 0.0 )).rgb;
+		b += texture( uScene, vUV - vec2( px.x, 0.0 )).rgb;
+		b += texture( uScene, vUV + vec2( 0.0, px.y )).rgb;
+		b += texture( uScene, vUV - vec2( 0.0, px.y )).rgb;
+		color = b / 8.0;
+	}
 
 	if( uFlashlight > 0.0 )
 	{
