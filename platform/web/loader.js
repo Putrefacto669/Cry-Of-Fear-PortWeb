@@ -7,6 +7,8 @@
 // Parámetros de URL:
 //   ?map=c_cof_forest1   mapa a cargar (debe estar en packs/maps.json)
 //   &dev=2               nivel de -dev del motor
+//   &sw=0                sin Service Worker (sin caché entre visitas)
+//   &debug=1             carga debug.js: CoFDebug.cmd(), leakCheck(), leakTest() (ASan: dist-asan)
 //   &mat=0               no usa las texturas DDS de materials/ (comparar VRAM)
 //   &vram=1              panel con la VRAM estimada (gpustats.js)
 //   &fx=0                desactiva el post-proceso (postfx.js: linterna, grano, viñeta)
@@ -16,6 +18,7 @@
   "use strict";
 
   const params = new URLSearchParams(location.search);
+  const debug = params.get("debug") === "1";
   const statusEl = document.getElementById("status");
   const logEl = document.getElementById("log");
   const canvas = document.getElementById("canvas");
@@ -30,6 +33,46 @@
     logEl.scrollTop = logEl.scrollHeight;
   };
   const setStatus = (text) => { statusEl.textContent = text; };
+
+  // Suscriptores de stderr (informes de ASan para debug.js). Emscripten guarda Module.printErr al
+  // arrancar, así que el reparto se hace aquí en vez de sustituir printErr después.
+  const stderrHooks = new Set();
+  window.CoFStderr = { add: (fn) => stderrHooks.add(fn), remove: (fn) => stderrHooks.delete(fn) };
+
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  // Service Worker (sw.js): caché por revisión entre visitas. En la primera visita se espera a que
+  // controle la página antes de pedir .wasm y .data, así se guardan mientras se descargan (una sola
+  // descarga). Una versión nueva no se activa sola con el juego abierto: se ofrece un botón.
+  async function setupServiceWorker() {
+    if (!("serviceWorker" in navigator) || params.get("sw") === "0") return;
+    const sw = navigator.serviceWorker;
+    let updating = false;
+    const offerUpdate = (worker) => {
+      const btn = document.getElementById("update");
+      btn.hidden = false;
+      btn.onclick = () => { updating = true; btn.disabled = true; worker.postMessage("skip-waiting"); };
+    };
+    try {
+      const reg = await sw.register("sw.js");
+      if (reg.waiting && sw.controller) offerUpdate(reg.waiting);
+      reg.addEventListener("updatefound", () => {
+        const w = reg.installing;
+        w.addEventListener("statechange", () => {
+          if (w.state === "installed" && sw.controller) offerUpdate(w);
+        });
+      });
+      sw.addEventListener("controllerchange", () => { if (updating) location.reload(); });
+      if (!sw.controller) {
+        setStatus("Preparando caché…");
+        await Promise.race([new Promise((r) => sw.addEventListener("controllerchange", r, { once: true })), sleep(5000)]);
+      }
+      // sin esto el navegador puede vaciar la caché cuando le falta espacio
+      if (navigator.storage && navigator.storage.persist) navigator.storage.persist();
+    } catch (e) {
+      log(`service worker: ${e.message}`, "err");
+    }
+  }
 
   const loadScript = (src) => new Promise((resolve, reject) => {
     const s = document.createElement("script");
@@ -48,6 +91,8 @@
     const map = params.get("map") || maps[0];
     if (map && !maps.includes(map)) throw new Error(`mapa ${map} no empaquetado`);
     const libDir = preloaded ? "/rodir/lib" : "/lib";
+    // la variante precargada (build_preload.sh) se cachea con --use-preload-cache, sin SW
+    if (!preloaded) await setupServiceWorker();
 
     const args = [
       "-game", "cryoffear",
@@ -66,6 +111,12 @@
     window.Module = {
       canvas,
       arguments: args,
+      // build ASan (Emscripten lee las opciones de Module, no del entorno). Sin ASan se ignora.
+      //   leak_check_at_exit=0: la página no termina nunca y, si el motor sale por un error, el
+      //     informe de fugas de salida taparía el error real; se piden con CoFDebug.leakCheck()
+      //   symbolize=0: simbolizar en el navegador recorriendo SIDE_MODULEs provoca un "nested bug"
+      //     que se come el informe; las direcciones se traducen con tools/wsl/asan_symbolize.sh
+      ASAN_OPTIONS: "leak_check_at_exit=0:symbolize=0",
       // .data de los paquetes viven en packs/; xash3d.data (--preload-file) junto a index.html
       locateFile: (path) => (path.endsWith(".data") && path !== "xash3d.data" ? `packs/${path}` : path),
       preRun: [() => {
@@ -80,8 +131,9 @@
           removeRunDependency("idbfs");
         });
       }],
-      print: (t) => log(t),
-      printErr: (t) => log(t, "err"),
+      // con ?debug=1 también a la consola del navegador: sigue legible si el hilo se bloquea
+      print: (t) => { log(t); if (debug) console.log(t); },
+      printErr: (t) => { log(t, "err"); if (debug) console.error(t); for (const fn of stderrHooks) fn(t); },
       setStatus: (t) => t && setStatus(t),
       onAbort: (what) => { setStatus(`Abortado: ${what}`); log(`abort: ${what}`, "err"); },
       onRuntimeInitialized: () => {
@@ -96,6 +148,7 @@
 
     setStatus("Descargando paquetes…");
     const packs = preloaded ? [] : ["engine", "boot", ...(map ? [`map_${map}`] : [])];
+    if (debug) await loadScript("debug.js");
     for (const p of packs) await loadScript(`packs/${p}.js`);
     await loadScript("xash3d.js");
   }

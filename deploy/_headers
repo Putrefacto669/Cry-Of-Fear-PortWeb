@@ -1,0 +1,16 @@
+# _headers - Cloudflare Pages y Netlify (copiar a la raíz de dist/ antes de publicar)
+# COOP/COEP solo son necesarios si se activan hilos (SharedArrayBuffer); se envían ya para no cambiar luego.
+/*
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: require-corp
+  Cross-Origin-Resource-Policy: same-origin
+  Cache-Control: no-cache
+
+# El Service Worker y su manifiesto deben revalidarse siempre para detectar versiones nuevas
+/sw.js
+  Cache-Control: no-cache, no-store
+/sw-manifest.js
+  Cache-Control: no-cache, no-store
+
+/*.wasm
+  Content-Type: application/wasm

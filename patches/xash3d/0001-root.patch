@@ -565,6 +565,103 @@ index d1fe48e2..83f655b8 100644
  	}
  
  	Mod_TextureReplacementReport( modelname, texname, type, -1, "not found" );
+diff --git a/engine/common/web_api.c b/engine/common/web_api.c
+new file mode 100755
+index 00000000..fbf9a8dc
+--- /dev/null
++++ b/engine/common/web_api.c
+@@ -0,0 +1,63 @@
++/*
++web_api.c - functions the page can call into the engine (Emscripten only)
++Copyright (C) 2026 Xash3D FWGS contributors
++
++This program is free software: you can redistribute it and/or modify
++it under the terms of the GNU General Public License as published by
++the Free Software Foundation, either version 3 of the License, or
++(at your option) any later version.
++
++This program is distributed in the hope that it will be useful,
++but WITHOUT ANY WARRANTY; without even the implied warranty of
++MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++GNU General Public License for more details.
++*/
++
++#include "common.h"
++
++#if XASH_EMSCRIPTEN
++#include <emscripten/emscripten.h>
++
++#if defined( __has_feature )
++#if __has_feature( address_sanitizer )
++#include <sanitizer/lsan_interface.h>
++#define XASH_WEB_LSAN 1
++#endif
++#endif
++
++/*
++=================
++Xash_Cmd
++
++queue a console command, it runs on the next engine frame
++JS: Module.ccall( "Xash_Cmd", null, [ "string" ], [ "map c_cof_forest1" ])
++=================
++*/
++EMSCRIPTEN_KEEPALIVE void Xash_Cmd( const char *text )
++{
++	if( !text )
++		return;
++
++	Cbuf_AddText( text );
++	Cbuf_AddText( "\n" );
++}
++
++/*
++=================
++Xash_LeakCheck
++
++The page never exits, so LeakSanitizer never gets its at-exit pass. This runs it on demand:
++unreachable blocks are printed to stderr, reachable ones (live engine state) are not.
++Returns 1 if leaks were found, 0 if not, -1 when the build has no sanitizer.
++=================
++*/
++EMSCRIPTEN_KEEPALIVE int Xash_LeakCheck( void )
++{
++#if XASH_WEB_LSAN
++	return __lsan_do_recoverable_leak_check();
++#else
++	return -1;
++#endif
++}
++
++#endif // XASH_EMSCRIPTEN
+diff --git a/engine/platform/posix/lib_posix.c b/engine/platform/posix/lib_posix.c
+index 3698d2e4..27c76aa9 100644
+--- a/engine/platform/posix/lib_posix.c
++++ b/engine/platform/posix/lib_posix.c
+@@ -329,9 +329,22 @@ void *COM_LoadLibrary( const char *dllname, int build_ordinals_table, qboolean d
+ 	return pHandle;
+ }
+ 
++// LeakSanitizer reports at exit, after the engine has unloaded the game libraries: their frames
++// would show up unsymbolized and leaks get blamed on the engine function that called into them.
++// Sanitized builds keep libraries mapped (the OS releases them at exit anyway).
++#if defined( __SANITIZE_ADDRESS__ )
++#define XASH_KEEP_LIBRARIES_LOADED 1
++#elif defined( __has_feature )
++#if __has_feature( address_sanitizer )
++#define XASH_KEEP_LIBRARIES_LOADED 1
++#endif
++#endif
++
+ void COM_FreeLibrary( void *hInstance )
+ {
+-#ifdef Platform_POSIX_FreeLibrary
++#if XASH_KEEP_LIBRARIES_LOADED
++	(void)hInstance;
++#elif defined( Platform_POSIX_FreeLibrary )
+ 	Platform_POSIX_FreeLibrary( hInstance );
+ #else
+ 	dlclose( hInstance );
 diff --git a/engine/platform/sdl2/in_sdl2.c b/engine/platform/sdl2/in_sdl2.c
 index 6d66e098..2a0c9961 100644
 --- a/engine/platform/sdl2/in_sdl2.c
@@ -619,7 +716,7 @@ index ac3a43c2..07828e8f 100644
  #endif // XASH_TIMER == TIMER_SDL
  
 diff --git a/engine/wscript b/engine/wscript
-index 9bb46271..9b0ea04a 100644
+index 9bb46271..2b7a6007 100644
 --- a/engine/wscript
 +++ b/engine/wscript
 @@ -306,17 +306,31 @@ def build(bld):
@@ -645,7 +742,7 @@ index 9bb46271..9b0ea04a 100644
 +
 +			# game data may be mounted at runtime by the page (fetch + FS.writeFile / IDBFS),
 +			# so the filesystem runtime must be exported even when nothing is preloaded
-+			linkflags += ['-sFORCE_FILESYSTEM=1', '-lidbfs.js', '-sEXPORTED_RUNTIME_METHODS=FS,ENV,callMain']
++			linkflags += ['-sFORCE_FILESYSTEM=1', '-lidbfs.js', '-sEXPORTED_RUNTIME_METHODS=FS,ENV,callMain,ccall']
 +
 +			# rodir/ in the source root is packed into xash3d.data and mounted at /rodir before main();
 +			# --use-preload-cache keeps that package in IndexedDB so the next visit skips the download
@@ -662,6 +759,28 @@ index 9bb46271..9b0ea04a 100644
  			includes = includes,
  			features = 'cxx c',
  			use = libs,
+diff --git a/public/crtlib.h b/public/crtlib.h
+index 5c37607d..0308d7c5 100644
+--- a/public/crtlib.h
++++ b/public/crtlib.h
+@@ -221,6 +221,17 @@ static inline char *Q_strstr( const char *s1, const char *s2 )
+ }
+ 
+ // libc extensions, be careful what to enable or what not
++
++// musl (Emscripten's libc) copies strlcpy/strlcat a word at a time and the last aligned word may
++// extend past the terminator: harmless on hardware, but AddressSanitizer reports it as
++// global-buffer-overflow and aborts. Sanitized builds use the plain C versions below instead.
++#if defined( __has_feature )
++#if __has_feature( address_sanitizer )
++#undef HAVE_STRLCPY
++#undef HAVE_STRLCAT
++#endif
++#endif
++
+ static inline size_t Q_strnlen( const char *str, size_t size )
+ {
+ #if HAVE_STRNLEN
 diff --git a/ref/gl/gl2_shim/gl2_shim.c b/ref/gl/gl2_shim/gl2_shim.c
 index 91541c9b..eb343d15 100644
 --- a/ref/gl/gl2_shim/gl2_shim.c

@@ -1,0 +1,26 @@
+# netlify.toml - publicar ~/cof-web/dist ya empaquetado (no hay build en Netlify: faltan los assets)
+[build]
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Embedder-Policy = "require-corp"
+    Cross-Origin-Resource-Policy = "same-origin"
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store"
+
+[[headers]]
+  for = "/sw-manifest.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store"
+
+[[headers]]
+  for = "/*.wasm"
+  [headers.values]
+    Content-Type = "application/wasm"

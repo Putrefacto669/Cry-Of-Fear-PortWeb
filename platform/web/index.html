@@ -11,13 +11,14 @@
     body { display: grid; grid-template-rows: auto 1fr 28vh; }
     header { padding: 6px 12px; color: var(--dim); border-bottom: 1px solid #222; }
     #pointer { float: right; color: var(--fg); }
+    #update { margin-left: 8px; font: inherit; color: var(--bg); background: var(--fg); border: 0; padding: 1px 8px; cursor: pointer; }
     #canvas { width: 100%; height: 100%; display: block; background: #000; outline: none; }
     #log { overflow-y: auto; padding: 6px 12px; border-top: 1px solid #222; white-space: pre-wrap; }
     #log .err { color: var(--err); }
   </style>
 </head>
 <body>
-  <header>Cry of Fear · Xash3D FWGS / WebAssembly — <span id="status">Iniciando…</span> <span id="pointer"></span></header>
+  <header>Cry of Fear · Xash3D FWGS / WebAssembly — <span id="status">Iniciando…</span> <button id="update" hidden>Nueva versión · recargar</button> <span id="pointer"></span></header>
   <canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas>
   <div id="log"></div>
   <script src="gpustats.js"></script>

@@ -1,0 +1,8 @@
+# lsan.supp - fugas de librerías del sistema que no son del port (LSAN_OPTIONS=suppressions=...)
+# Formato: leak:<función o librería>. Añadir solo lo que no se puede arreglar en nuestro código.
+
+# SDL y sus drivers dummy mantienen cachés globales hasta que el proceso termina
+leak:libSDL2
+# fontconfig/freetype (menú) guardan su configuración en estructuras globales
+leak:libfontconfig
+leak:libfreetype

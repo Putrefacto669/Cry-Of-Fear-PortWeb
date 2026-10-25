@@ -1,0 +1,35 @@
+diff --git a/cl_dll/hud.h b/cl_dll/hud.h
+index d712965c..feaaccc9 100644
+--- a/cl_dll/hud.h
++++ b/cl_dll/hud.h
+@@ -586,6 +586,14 @@ public:
+ 
+ 	wrect_t& GetSpriteRect( int index )
+ 	{
++		// same guard as GetSprite: GetSpriteIndex returns -1 for sprites missing from hud.txt
++		// (e.g. "bucket1" with Cry of Fear's data) and rects[-1] is a heap underflow
++		static wrect_t empty;
++		if( index < 0 )
++		{
++			empty = wrect_t();
++			return empty;
++		}
+ 		return m_rgrcRects[index];
+ 	}
+ 
+diff --git a/cl_dll/vgui_int.cpp b/cl_dll/vgui_int.cpp
+index ffa101fc..71ca7b6f 100644
+--- a/cl_dll/vgui_int.cpp
++++ b/cl_dll/vgui_int.cpp
+@@ -87,7 +87,10 @@ void VGui_Startup()
+ 	root->setBgColor( 128, 128, 0, 0 );
+ 	// root->setNonPainted( false );
+ 	// root->setBorder( new LineBorder() );
+-	root->setLayout( new BorderLayout( 0 ) );
++	// VGui_Startup runs on every map load (HUD_VidInit) and setLayout does not take ownership:
++	// a new layout per call leaked one BorderLayout per map (found with LeakSanitizer)
++	static BorderLayout *rootLayout = new BorderLayout( 0 );
++	root->setLayout( rootLayout );
+ 
+ 	// root->getSurfaceBase()->setEmulatedCursorVisible( true );
+ 
