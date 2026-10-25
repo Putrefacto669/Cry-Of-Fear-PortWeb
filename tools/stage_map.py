@@ -7,6 +7,9 @@ El directorio resultante se empaqueta con file_packager de Emscripten (ver tools
 
     python3 stage_map.py <cof_root> <map> <stage_dir>          # boot + mapa
     python3 stage_map.py <cof_root> --boot-only <stage_dir>    # solo arranque
+    python3 stage_map.py <cof_root> <map> <stage_dir> --texcomp ~/cof-web/build/tools/texcomp
+        # además: texturas del mapa como DDS BC1/BC3 en materials/ y solo los WADs que sigan
+        # haciendo falta (agua/cielo o texturas que no se pudieron convertir)
 
 Estructura de salida:
     <stage_dir>/boot/cryoffear/...      archivos comunes (liblist.gam, gfx.wad, resource/...)
@@ -18,6 +21,7 @@ import argparse
 import re
 import shutil
 import struct
+import subprocess
 import sys
 from pathlib import Path, PureWindowsPath
 
@@ -34,7 +38,8 @@ BOOT_FILES = ["liblist.gam", "valve.rc", "delta.lst","titles.txt", "skill.cfg", 
               "640_textscheme.txt", "800_textscheme.txt", "1024_textscheme.txt",
               "1152_textscheme.txt", "1280_textscheme.txt", "1600_textscheme.txt",
               "gfx.wad", "decals.wad", "tempdecal.wad", "cached.wad",
-              "gfx/palette.lmp", "gfx/palette.bmp", "gfx/colormap.lmp", "gfx/conback.lmp"]
+              "gfx/palette.lmp", "gfx/palette.bmp", "gfx/colormap.lmp", "gfx/conback.lmp",
+              "gfx/flashlight.tga"]  # cookie de la linterna para platform/web/postfx.js
 BOOT_DIRS = ["gfx/shell", "resource", "sprites", "events"]
 
 SKY_SUFFIXES = ("rt", "bk", "lf", "ft", "up", "dn")
@@ -120,6 +125,23 @@ def copy_set(game: Path, rels: set[str], dest: Path) -> int:
     return total
 
 
+def compress_textures(texcomp: Path, game: Path, bsp_rel: str, dest: Path) -> set[str] | None:
+    """Escribe los DDS en dest/cryoffear/materials/ y devuelve los WADs (en minúsculas) que el
+    motor sigue necesitando. None si alguna textura no se encontró: entonces hay que dejar los WADs."""
+    out = subprocess.run([str(texcomp), str(game), bsp_rel, str(dest / GAMEDIR)],
+                         capture_output=True, text=True)
+    for line in out.stderr.splitlines():
+        print(f"  {line}")
+    if out.returncode not in (0, 3):
+        raise RuntimeError(f"texcomp falló ({out.returncode})")
+    stats = dict(kv.split("=", 1) for kv in out.stdout.split())
+    print(f"  texturas: {stats['converted']} a DDS, VRAM {stats['rgba_mib']} MiB RGBA -> {stats['dds_mib']} MiB"
+          f" ({stats['skipped']} agua/cielo, {stats['missing']} sin encontrar)")
+    if out.returncode == 3:
+        return None
+    return {w.lower() for w in stats["wads_needed"].split(",") if w}
+
+
 def boot_set(game: Path) -> set[str]:
     rels = {f for f in BOOT_FILES if (game / f).is_file()}
     for d in BOOT_DIRS:
@@ -133,6 +155,7 @@ def main() -> int:
     ap.add_argument("map", nargs="?", help="Nombre del mapa sin .bsp")
     ap.add_argument("stage", type=Path)
     ap.add_argument("--boot-only", action="store_true")
+    ap.add_argument("--texcomp", type=Path, help="binario de tools/texcomp: convierte texturas a DDS")
     args = ap.parse_args()
 
     game = args.root / GAMEDIR
@@ -150,7 +173,20 @@ def main() -> int:
         return 2
     deps, missing = map_dependencies(game, bsp)
     deps -= boot
-    size = copy_set(game, deps, args.stage / "maps" / args.map)
+    map_stage = args.stage / "maps" / args.map
+    if map_stage.exists():
+        shutil.rmtree(map_stage)  # que no queden WADs o DDS de una pasada anterior
+
+    if args.texcomp:
+        needed = compress_textures(args.texcomp, game, bsp.relative_to(game).as_posix(), map_stage)
+        if needed is not None:
+            wads = {d for d in deps if d.endswith(".wad")}
+            dropped = {w for w in wads if Path(w).name.lower() not in needed}
+            deps -= dropped
+            mib = sum((game / w).stat().st_size for w in dropped) / 2**20
+            print(f"  WADs fuera del paquete: {len(dropped)} ({mib:.1f} MiB)")
+
+    size = copy_set(game, deps, map_stage)
     print(f"{args.map}: {len(deps)} archivos, {size / 2**20:.1f} MiB")
     for m in missing:
         print(f"  ! referencia no encontrada: {m}")

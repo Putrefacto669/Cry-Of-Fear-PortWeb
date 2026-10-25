@@ -7,6 +7,9 @@
 // Parámetros de URL:
 //   ?map=c_cof_forest1   mapa a cargar (debe estar en packs/maps.json)
 //   &dev=2               nivel de -dev del motor
+//   &mat=0               no usa las texturas DDS de materials/ (comparar VRAM)
+//   &vram=1              panel con la VRAM estimada (gpustats.js)
+//   &fx=0                desactiva el post-proceso (postfx.js: linterna, grano, viñeta)
 //   &timer=1             mueve el bucle con temporizadores en vez de requestAnimationFrame
 //                        (pestañas ocultas, pruebas automáticas); el motor fija rAF vía vsync
 (() => {
@@ -56,6 +59,8 @@
       "-dev", params.get("dev") || "1",
       "-log",
     ];
+    // &mat=0: sin texturas DDS de materials/ (para comparar VRAM con las del BSP/WAD sin comprimir)
+    if (params.get("mat") === "0") args.push("+host_allow_materials", "0");
     if (map) args.push("+map", map);
 
     window.Module = {
@@ -81,6 +86,7 @@
       onAbort: (what) => { setStatus(`Abortado: ${what}`); log(`abort: ${what}`, "err"); },
       onRuntimeInitialized: () => {
         if (params.get("timer") === "1") MainLoop.requestAnimationFrame = MainLoop.fakeRequestAnimationFrame;
+        if (params.get("fx") !== "0" && window.CoFPostFX) CoFPostFX.attach().catch((e) => log(`postfx: ${e.message}`, "err"));
         setStatus(`Ejecutando${map ? ` · ${map}` : ""}`);
       },
     };

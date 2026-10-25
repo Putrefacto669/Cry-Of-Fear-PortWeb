@@ -12,8 +12,462 @@ index 61c764d9..aff3436c 100644
  #elif XASH_POSIX
  	#define OS_LIB_EXT    "so"
  	#define OPEN_COMMAND  "xdg-open"
+diff --git a/engine/client/sound.h b/engine/client/sound.h
+index d14664ee..3c2060f8 100644
+--- a/engine/client/sound.h
++++ b/engine/client/sound.h
+@@ -62,6 +62,17 @@ wavdata_t *S_LoadSound( sfx_t *sfx );
+ float S_GetMasterVolume( void );
+ float S_GetMusicVolume( void );
+ 
++//
++// s_webaudio.c
++//
++#if XASH_EMSCRIPTEN
++void WebAudio_Init( void );
++void WebAudio_Update( void );
++void WebAudio_ChannelUpdate( int ch_idx, const channel_t *ch );
++void WebAudio_FreeSound( const sfx_t *sfx );
++qboolean WebAudio_OwnsChannel( const channel_t *ch );
++#endif
++
+ //
+ // s_main.c
+ //
+diff --git a/engine/client/sound/s_load.c b/engine/client/sound/s_load.c
+index 25e1e885..0e38e6e2 100644
+--- a/engine/client/sound/s_load.c
++++ b/engine/client/sound/s_load.c
+@@ -228,6 +228,10 @@ void S_FreeSound( sfx_t *sfx )
+ 		prev = &hashSfx->hashNext;
+ 	}
+ 
++#if XASH_EMSCRIPTEN
++	WebAudio_FreeSound( sfx );
++#endif
++
+ 	if( clgame.soundFuncs.pfnS_FreeSound )
+ 	{
+ 		clgame.soundFuncs.pfnS_FreeSound( sfx, sfx - s_knownSfx );
+diff --git a/engine/client/sound/s_main.c b/engine/client/sound/s_main.c
+index 2cd7030b..64454129 100644
+--- a/engine/client/sound/s_main.c
++++ b/engine/client/sound/s_main.c
+@@ -168,6 +168,10 @@ S_NotifyChannelUpdate
+ */
+ static void S_NotifyChannelUpdate( int ch_idx, const channel_t *ch, sound_t handle )
+ {
++#if XASH_EMSCRIPTEN
++	WebAudio_ChannelUpdate( ch_idx, ch );
++#endif
++
+ 	if( !clgame.soundFuncs.pfnS_UpdateChannel )
+ 		return;
+ 
+@@ -1637,6 +1641,10 @@ void SND_UpdateSound( void )
+ 		SND_Spatialize( ch ); // respatialize channel
+ 	}
+ 
++#if XASH_EMSCRIPTEN
++	WebAudio_Update();
++#endif
++
+ 	S_SpatializeRawChannels();
+ 
+ 	// debugging output
+@@ -2029,6 +2037,9 @@ qboolean S_Init( void )
+ 	memset( snd.ambient_sfx, 0, sizeof( snd.ambient_sfx ));
+ 
+ 	SX_Init ();
++#if XASH_EMSCRIPTEN
++	WebAudio_Init();
++#endif
+ 	S_StopAllSounds ( true );
+ 	S_InitSounds ();
+ 	VOX_Init ();
+diff --git a/engine/client/sound/s_mix.c b/engine/client/sound/s_mix.c
+index fe5ece45..52db1a21 100644
+--- a/engine/client/sound/s_mix.c
++++ b/engine/client/sound/s_mix.c
+@@ -333,6 +333,11 @@ static int S_MixNormalChannelsToRoombuffer( portable_samplepair_t *dst, int end
+ 		if( !ch->sfx )
+ 			continue;
+ 
++#if XASH_EMSCRIPTEN
++		if( WebAudio_OwnsChannel( ch ))
++			continue; // played by Web Audio
++#endif
++
+ 		if( !cl.background )
+ 		{
+ 			if( cls.key_dest == key_console && FBitSet( ch->flags, FL_CHAN_LOCAL_SOUND ))
+diff --git a/engine/client/sound/s_webaudio.c b/engine/client/sound/s_webaudio.c
+new file mode 100755
+index 00000000..b4dc6488
+--- /dev/null
++++ b/engine/client/sound/s_webaudio.c
+@@ -0,0 +1,359 @@
++/*
++s_webaudio.c - game sound channels played through Web Audio with 3D panning (Emscripten only)
++Copyright (C) 2026 Xash3D FWGS contributors
++
++This program is free software: you can redistribute it and/or modify
++it under the terms of the GNU General Public License as published by
++the Free Software Foundation, either version 3 of the License, or
++(at your option) any later version.
++
++This program is distributed in the hope that it will be useful,
++but WITHOUT ANY WARRANTY; without even the implied warranty of
++MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++GNU General Public License for more details.
++*/
++
++#include "common.h"
++#include "client.h"
++#include "sound.h"
++
++#if XASH_EMSCRIPTEN
++#include <emscripten/emscripten.h>
++
++/*
++Every regular game channel becomes a Web Audio voice:
++
++	AudioBufferSourceNode -> GainNode (channel volume) -> PannerNode (world sounds only) -> bus -> master
++
++The engine mixer skips these channels (WebAudio_OwnsChannel) and keeps everything Web Audio
++cannot take over cleanly: sentences (VOX words are loaded one by one while mixing), CHAN_VOICE
++(the mixer drives lip sync from the samples it reads) and raw streams (music, voice chat, movies).
++
++The PCM data is uploaded once per wavdata_t and shared by every voice playing it.
++GoldSrc attenuation, gain = 1 - distance * (attn / SND_CLIP_DISTANCE), is exactly the Web Audio
++"linear" distance model with refDistance 0 and maxDistance SND_CLIP_DISTANCE / attn.
++Quake coordinates (x forward, y left, z up) are right-handed like Web Audio, so positions and
++the listener basis are passed unchanged.
++*/
++
++static CVAR_DEFINE_AUTO( snd_webaudio, "1", FCVAR_ARCHIVE, "play game sounds through Web Audio with 3D panning (0 = engine mixer)" );
++static CVAR_DEFINE_AUTO( snd_webaudio_hrtf, "1", FCVAR_ARCHIVE, "use HRTF panning for world sounds (0 = equal power, cheaper)" );
++
++// Web Audio voice id + 1 per channel. Kept outside channel_t on purpose: S_StartSound memsets
++// a reused channel before notifying, which would lose the id and leave the voice playing.
++static int wa_voice[MAX_CHANNELS];
++#define WA_VOICE( ch ) ( wa_voice[( ch ) - snd.channels] )
++
++static qboolean wa_initialized;
++
++EM_JS( int, WA_JS_Init, ( int hrtf ), {
++	const AC = globalThis.AudioContext || globalThis.webkitAudioContext;
++	if( !AC ) return 0;
++	const ctx = new AC({ latencyHint: "interactive" });
++	const master = ctx.createGain();
++	const world = ctx.createGain(); // paused together with the game
++	const ui = ctx.createGain();    // menu and local sounds keep playing
++	world.connect( master );
++	ui.connect( master );
++	master.connect( ctx.destination );
++	const resume = () => { if( ctx.state !== "running" ) ctx.resume(); };
++	for( const ev of [ "pointerdown", "keydown", "touchstart" ] )
++		addEventListener( ev, resume, { capture: true });
++	Module.cofAudio = { ctx, master, world, ui, hrtf: !!hrtf, buffers: new Map(), voices: new Map(), nextId: 1 };
++	return 1;
++});
++
++EM_JS( int, WA_JS_HasBuffer, ( int key ), {
++	return Module.cofAudio.buffers.has( key ) ? 1 : 0;
++});
++
++// data: interleaved signed PCM, 8 or 16 bit
++EM_JS( void, WA_JS_UploadBuffer, ( int key, const void *data, int frames, int rate, int width, int channels ), {
++	const a = Module.cofAudio;
++	const buf = a.ctx.createBuffer( channels, frames, rate );
++	const src = width === 1 ? HEAP8.subarray( data, data + frames * channels )
++		: HEAP16.subarray( data >> 1, ( data >> 1 ) + frames * channels );
++	const scale = width === 1 ? 1 / 128 : 1 / 32768;
++	for( let c = 0; c < channels; c++ )
++	{
++		const out = buf.getChannelData( c );
++		for( let i = 0, j = c; i < frames; i++, j += channels )
++			out[i] = src[j] * scale;
++	}
++	a.buffers.set( key, buf );
++});
++
++EM_JS( void, WA_JS_FreeBuffer, ( int key ), {
++	if( Module.cofAudio ) Module.cofAudio.buffers.delete( key );
++});
++
++EM_JS( int, WA_JS_Play, ( int key, float volume, float rate, int loop, float loop_start, float offset,
++	int positional, int ui, float x, float y, float z, float max_dist ), {
++	const a = Module.cofAudio;
++	const buffer = a.buffers.get( key );
++	if( !buffer ) return 0;
++	const src = a.ctx.createBufferSource();
++	src.buffer = buffer;
++	src.playbackRate.value = rate;
++	if( loop )
++	{
++		src.loop = true;
++		src.loopStart = loop_start;
++		src.loopEnd = buffer.duration;
++	}
++	const gain = a.ctx.createGain();
++	gain.gain.value = volume;
++	src.connect( gain );
++
++	let panner = null;
++	if( positional )
++	{
++		panner = a.ctx.createPanner();
++		panner.panningModel = a.hrtf ? "HRTF" : "equalpower";
++		panner.distanceModel = "linear";
++		panner.refDistance = 0;
++		panner.maxDistance = max_dist > 0 ? max_dist : 10000;
++		panner.rolloffFactor = max_dist > 0 ? 1 : 0;
++		panner.positionX.value = x;
++		panner.positionY.value = y;
++		panner.positionZ.value = z;
++		gain.connect( panner );
++		panner.connect( ui ? a.ui : a.world );
++	}
++	else
++	{
++		gain.connect( ui ? a.ui : a.world );
++	}
++
++	const id = a.nextId++;
++	const voice = { src, gain, panner, ended: false };
++	src.onended = () => { voice.ended = true; };
++	src.start( 0, offset );
++	a.voices.set( id, voice );
++	return id;
++});
++
++EM_JS( void, WA_JS_Update, ( int id, float volume, float rate, float x, float y, float z ), {
++	const a = Module.cofAudio;
++	const v = a.voices.get( id );
++	if( !v ) return;
++	const t = a.ctx.currentTime;
++	// short time constants: no zipper noise, still tracks fast movers
++	v.gain.gain.setTargetAtTime( volume, t, 0.015 );
++	v.src.playbackRate.setTargetAtTime( rate, t, 0.015 );
++	if( v.panner )
++	{
++		v.panner.positionX.setTargetAtTime( x, t, 0.02 );
++		v.panner.positionY.setTargetAtTime( y, t, 0.02 );
++		v.panner.positionZ.setTargetAtTime( z, t, 0.02 );
++	}
++});
++
++EM_JS( int, WA_JS_Ended, ( int id ), {
++	const v = Module.cofAudio.voices.get( id );
++	return !v || v.ended ? 1 : 0;
++});
++
++EM_JS( void, WA_JS_Stop, ( int id ), {
++	const a = Module.cofAudio;
++	const v = a.voices.get( id );
++	if( !v ) return;
++	v.src.onended = null;
++	try { v.src.stop(); } catch( e ) {}
++	v.src.disconnect();
++	v.gain.disconnect();
++	if( v.panner ) v.panner.disconnect();
++	a.voices.delete( id );
++});
++
++EM_JS( void, WA_JS_Listener, ( float ox, float oy, float oz, float fx, float fy, float fz,
++	float ux, float uy, float uz, float master, int world_paused ), {
++	const a = Module.cofAudio;
++	const l = a.ctx.listener;
++	const t = a.ctx.currentTime;
++	if( l.positionX )
++	{
++		l.positionX.setTargetAtTime( ox, t, 0.02 );
++		l.positionY.setTargetAtTime( oy, t, 0.02 );
++		l.positionZ.setTargetAtTime( oz, t, 0.02 );
++		l.forwardX.setTargetAtTime( fx, t, 0.02 );
++		l.forwardY.setTargetAtTime( fy, t, 0.02 );
++		l.forwardZ.setTargetAtTime( fz, t, 0.02 );
++		l.upX.setTargetAtTime( ux, t, 0.02 );
++		l.upY.setTargetAtTime( uy, t, 0.02 );
++		l.upZ.setTargetAtTime( uz, t, 0.02 );
++	}
++	else // Firefox < 99 / old Safari
++	{
++		l.setPosition( ox, oy, oz );
++		l.setOrientation( fx, fy, fz, ux, uy, uz );
++	}
++	a.master.gain.setTargetAtTime( master, t, 0.05 );
++	a.world.gain.setTargetAtTime( world_paused ? 0 : 1, t, 0.05 );
++});
++
++EM_JS( void, WA_JS_SetHRTF, ( int hrtf ), {
++	Module.cofAudio.hrtf = !!hrtf;
++});
++
++/*
++=================
++WebAudio_OwnsChannel
++
++the mixer skips channels played by Web Audio
++=================
++*/
++qboolean WebAudio_OwnsChannel( const channel_t *ch )
++{
++	return WA_VOICE( ch ) != 0;
++}
++
++static qboolean WebAudio_IsPositional( const channel_t *ch )
++{
++	if( FBitSet( ch->flags, FL_CHAN_LOCAL_SOUND ))
++		return false;
++
++	// the view entity hears its own sounds at full volume, see SND_Spatialize
++	return ch->entnum != snd.entnum;
++}
++
++static float WebAudio_ChannelVolume( const channel_t *ch )
++{
++	// GoldSrc channel volume is 0..255
++	return ch->master_vol / 255.0f;
++}
++
++static void WebAudio_Stop( channel_t *ch )
++{
++	if( !WA_VOICE( ch ))
++		return;
++
++	WA_JS_Stop( (int)WA_VOICE( ch ) - 1 );
++	WA_VOICE( ch ) = 0;
++}
++
++/*
++=================
++WebAudio_ChannelUpdate
++
++called whenever the engine starts (ch != NULL) or frees (ch == NULL) a channel
++=================
++*/
++void WebAudio_ChannelUpdate( int ch_idx, const channel_t *cch )
++{
++	channel_t *ch = &snd.channels[ch_idx];
++	const wavdata_t *wav;
++	qboolean positional;
++	float max_dist = 0.0f;
++	int key, voice;
++
++	if( !wa_initialized )
++		return;
++
++	WebAudio_Stop( ch );
++
++	if( !cch || !snd_webaudio.value )
++		return;
++
++	// left to the engine mixer, see the comment at the top
++	if( ch->words || ch->entchannel == CHAN_VOICE || !ch->sfx || !( wav = ch->sfx->cache ))
++		return;
++
++	if( wav->width != 1 && wav->width != 2 )
++		return;
++
++	key = (int)(uintptr_t)wav;
++	if( !WA_JS_HasBuffer( key ))
++		WA_JS_UploadBuffer( key, wav->buffer, wav->samples, wav->rate, wav->width, wav->channels );
++
++	positional = WebAudio_IsPositional( ch );
++	if( ch->dist_mult > 0.0f )
++		max_dist = 1.0f / ch->dist_mult;
++
++	voice = WA_JS_Play( key, WebAudio_ChannelVolume( ch ), ch->basePitch * 0.01f,
++		FBitSet( wav->flags, SOUND_LOOPED ) && FBitSet( ch->flags, FL_CHAN_USE_LOOP ),
++		(float)wav->loop_start / wav->rate, (float)( ch->sample / wav->rate ),
++		positional, FBitSet( ch->flags, FL_CHAN_LOCAL_SOUND ),
++		ch->origin[0], ch->origin[1], ch->origin[2], max_dist );
++
++	if( voice > 0 )
++		WA_VOICE( ch ) = voice + 1;
++}
++
++/*
++=================
++WebAudio_FreeSound
++
++the PCM is about to be freed, drop the uploaded copy
++=================
++*/
++void WebAudio_FreeSound( const sfx_t *sfx )
++{
++	if( wa_initialized && sfx && sfx->cache )
++		WA_JS_FreeBuffer( (int)(uintptr_t)sfx->cache );
++}
++
++/*
++=================
++WebAudio_Update
++
++once per frame after the engine spatialized every channel: move the listener and the voices,
++release channels whose voice finished
++=================
++*/
++void WebAudio_Update( void )
++{
++	qboolean world_paused;
++
++	if( !wa_initialized )
++		return;
++
++	if( FBitSet( snd_webaudio_hrtf.flags, FCVAR_CHANGED ))
++	{
++		WA_JS_SetHRTF( snd_webaudio_hrtf.value != 0.0f );
++		ClearBits( snd_webaudio_hrtf.flags, FCVAR_CHANGED );
++	}
++
++	// same rule as the mixer: in the menu or paused only local sounds go on
++	world_paused = !cl.background && ( cls.key_dest == key_menu || cl.paused ) && Host_IsSinglePlayerGame();
++
++	WA_JS_Listener( snd.origin[0], snd.origin[1], snd.origin[2],
++		snd.forward[0], snd.forward[1], snd.forward[2],
++		snd.up[0], snd.up[1], snd.up[2],
++		S_GetMasterVolume(), world_paused );
++
++	for( int i = 0; i < snd.total_channels; i++ )
++	{
++		channel_t *ch = &snd.channels[i];
++		int voice;
++
++		if( !WA_VOICE( ch ))
++			continue;
++
++		voice = (int)WA_VOICE( ch ) - 1;
++
++		if( !ch->sfx || WA_JS_Ended( voice ))
++		{
++			// finished one-shot: release it like the mixer does at the end of the samples
++			S_FreeChannel( ch );
++			continue;
++		}
++
++		// SND_Spatialize already refreshed ch->origin from the entity; zero volume there means
++		// the entity is gone from the client, mute the voice instead of letting it play on
++		WA_JS_Update( voice,
++			( ch->leftvol || ch->rightvol || !WebAudio_IsPositional( ch )) ? WebAudio_ChannelVolume( ch ) : 0.0f,
++			ch->basePitch * 0.01f, ch->origin[0], ch->origin[1], ch->origin[2] );
++	}
++}
++
++void WebAudio_Init( void )
++{
++	Cvar_RegisterVariable( &snd_webaudio );
++	Cvar_RegisterVariable( &snd_webaudio_hrtf );
++
++	wa_initialized = WA_JS_Init( snd_webaudio_hrtf.value != 0.0f );
++	Con_Printf( "Web Audio: %s\n", wa_initialized ? "3D channels enabled" : "not available, using the engine mixer" );
++}
++
++#endif // XASH_EMSCRIPTEN
 diff --git a/engine/common/host.c b/engine/common/host.c
-index 81ac9c38..22c152ea 100644
+index 81ac9c38..4e8fc624 100644
 --- a/engine/common/host.c
 +++ b/engine/common/host.c
 @@ -56,8 +56,33 @@ non-zero value will immediately return from it with `error_on_exit`.
@@ -50,7 +504,19 @@ index 81ac9c38..22c152ea 100644
  
  #ifdef XASH_ENGINE_TESTS
  struct tests_stats_s tests_stats;
-@@ -1337,6 +1362,11 @@ int EXPORT Host_Main( int argc, char **argv, const char *progname, int bChangeGa
+@@ -79,7 +104,11 @@ CVAR_DEFINE_AUTO( fps_override, "0", FCVAR_FILTERABLE, "unlock higher framerate
+ static CVAR_DEFINE_AUTO( host_framerate, "0", FCVAR_FILTERABLE, "locks frame timing to this value in seconds" );
+ static CVAR_DEFINE( host_sleeptime, "sleeptime", "1", FCVAR_ARCHIVE|FCVAR_FILTERABLE, "milliseconds to sleep for each frame. higher values reduce fps accuracy" );
+ static CVAR_DEFINE_AUTO( host_sleeptime_debug, "0", 0, "print sleeps between frames" );
++#if XASH_EMSCRIPTEN // web packages ship BC1/BC3 DDS replacements, see tools/texcomp
++CVAR_DEFINE_AUTO( host_allow_materials, "1", FCVAR_LATCH|FCVAR_ARCHIVE, "allow texture replacements from materials/ folder" );
++#else
+ CVAR_DEFINE_AUTO( host_allow_materials, "0", FCVAR_LATCH|FCVAR_ARCHIVE, "allow texture replacements from materials/ folder" );
++#endif
+ CVAR_DEFINE( con_gamemaps, "con_mapfilter", "1", FCVAR_ARCHIVE, "when true show only maps in game folder" );
+ CVAR_DEFINE_AUTO( cl_background, "0", FCVAR_READ_ONLY, "if set to 1, client running a background map" );
+ CVAR_DEFINE_AUTO( sv_background, "0", FCVAR_READ_ONLY, "if set to 1, server running a background map" );
+@@ -1337,6 +1366,11 @@ int EXPORT Host_Main( int argc, char **argv, const char *progname, int bChangeGa
  	// check after all configs were executed
  	HPAK_CheckIntegrity( hpk_custom_file.string );
  
@@ -62,7 +528,7 @@ index 81ac9c38..22c152ea 100644
  	// main window message loop
  	while( host.status != HOST_CRASHED )
  	{
-@@ -1344,6 +1374,7 @@ int EXPORT Host_Main( int argc, char **argv, const char *progname, int bChangeGa
+@@ -1344,6 +1378,7 @@ int EXPORT Host_Main( int argc, char **argv, const char *progname, int bChangeGa
  		COM_Frame( newtime - oldtime );
  		oldtime = newtime;
  	}
@@ -70,6 +536,35 @@ index 81ac9c38..22c152ea 100644
  
  	return 0;
  }
+diff --git a/engine/common/mod_bmodel.c b/engine/common/mod_bmodel.c
+index d1fe48e2..83f655b8 100644
+--- a/engine/common/mod_bmodel.c
++++ b/engine/common/mod_bmodel.c
+@@ -2643,14 +2643,20 @@ static void Mod_TextureReplacementReport( const char *modelname, const char *tex
+ static qboolean Mod_SearchForTextureReplacement( char *out, size_t size, const char *modelname, const char *texname, const char *type )
+ {
+ 	const char *subdirs[] = { modelname, "common" };
++	// DDS first: already block-compressed, uploaded as is when the GPU supports it (8x less VRAM
++	// than RGBA for BC1) and decompressed by imagelib otherwise
++	const char *exts[] = { "dds", "tga" };
+ 
+ 	for( int i = 0; i < ARRAYSIZE( subdirs ); i++ )
+ 	{
+-		if( Q_snprintf( out, size, "materials/%s/%s%s.tga", subdirs[i], texname, type ) < 0 )
+-			continue; // truncated name
++		for( int j = 0; j < ARRAYSIZE( exts ); j++ )
++		{
++			if( Q_snprintf( out, size, "materials/%s/%s%s.%s", subdirs[i], texname, type, exts[j] ) < 0 )
++				continue; // truncated name
+ 
+-		if( g_fsapi.FileExists( out, false ))
+-			return true; // found, load it
++			if( g_fsapi.FileExists( out, false ))
++				return true; // found, load it
++		}
+ 	}
+ 
+ 	Mod_TextureReplacementReport( modelname, texname, type, -1, "not found" );
 diff --git a/engine/platform/sdl2/in_sdl2.c b/engine/platform/sdl2/in_sdl2.c
 index 6d66e098..2a0c9961 100644
 --- a/engine/platform/sdl2/in_sdl2.c
@@ -183,11 +678,78 @@ index 91541c9b..eb343d15 100644
  	if( gEngfuncs.Sys_CheckParm( "-minshaders" ))
  		gl2wrap_config.version = 100;
  	if( gl2wrap_config.buf_storage )
+diff --git a/ref/gl/gl_image.c b/ref/gl/gl_image.c
+index fb0af14f..a97dc1d0 100644
+--- a/ref/gl/gl_image.c
++++ b/ref/gl/gl_image.c
+@@ -916,7 +916,26 @@ static void GL_TextureImageCompressed( gl_texture_t *tex, GLint side, GLint leve
+ 
+ 	Assert( tex != NULL );
+ 
+-#if !XASH_GLES
++#if XASH_EMSCRIPTEN
++	// WebGL 2 has compressed 2D/3D uploads in core (formats come from WEBGL_compressed_texture_s3tc
++	// and EXT_texture_compression_bptc); without this branch GLES renderers drop the data silently
++	// and the surface renders black. There are no 1D textures in WebGL.
++	if( tex->target == GL_TEXTURE_CUBE_MAP_ARB )
++	{
++		if( subImage ) pglCompressedTexSubImage2DARB( cubeTarget + side, level, 0, 0, width, height, tex->format, size, data );
++		else pglCompressedTexImage2DARB( cubeTarget + side, level, tex->format, width, height, 0, size, data );
++	}
++	else if( tex->target == GL_TEXTURE_3D || tex->target == GL_TEXTURE_2D_ARRAY_EXT )
++	{
++		if( subImage ) pglCompressedTexSubImage3DARB( tex->target, level, 0, 0, 0, width, height, depth, tex->format, size, data );
++		else pglCompressedTexImage3DARB( tex->target, level, tex->format, width, height, depth, 0, size, data );
++	}
++	else // 2D
++	{
++		if( subImage ) pglCompressedTexSubImage2DARB( tex->target, level, 0, 0, width, height, tex->format, size, data );
++		else pglCompressedTexImage2DARB( tex->target, level, tex->format, width, height, 0, size, data );
++	}
++#elif !XASH_GLES
+ 	if( tex->target == GL_TEXTURE_1D )
+ 	{
+ 		if( subImage ) pglCompressedTexSubImage1DARB( tex->target, level, 0, width, tex->format, size, data );
 diff --git a/ref/gl/gl_opengl.c b/ref/gl/gl_opengl.c
-index f05a3ddf..09e55836 100644
+index f05a3ddf..4f70d755 100644
 --- a/ref/gl/gl_opengl.c
 +++ b/ref/gl/gl_opengl.c
-@@ -1450,7 +1450,12 @@ void GL_SetupAttributes( int safegl )
+@@ -220,6 +220,17 @@ static const dllfunc_t texturecompressionfuncs[] MAYBE_UNUSED =
+ { GL_CALL( glGetCompressedTexImage ) },
+ };
+ 
++#if XASH_EMSCRIPTEN
++// WebGL 2 has no 1D textures and no glGetCompressedTexImage, requiring them fails the whole check
++static const dllfunc_t texturecompressionfuncs_webgl[] =
++{
++{ GL_CALL( glCompressedTexImage3DARB ) },
++{ GL_CALL( glCompressedTexImage2DARB ) },
++{ GL_CALL( glCompressedTexSubImage3DARB ) },
++{ GL_CALL( glCompressedTexSubImage2DARB ) },
++};
++#endif
++
+ static const dllfunc_t vbofuncs[] =
+ {
+ { GL_CALL( glBindBufferARB ) },
+@@ -803,6 +814,16 @@ static void GL_InitExtensionsGLES( void )
+ 	{
+ 		switch( extid )
+ 		{
++#if XASH_EMSCRIPTEN
++		// WebGL names the S3TC/BPTC extensions its own way. Without GL_TEXTURE_COMPRESSION_EXT
++		// imagelib silently rejects every compressed DDS (IL_DDS_HARDWARE is never set)
++		case GL_TEXTURE_COMPRESSION_EXT:
++			GL_CheckExtension( "GL_WEBGL_compressed_texture_s3tc", texturecompressionfuncs_webgl, ARRAYSIZE( texturecompressionfuncs_webgl ), "gl_texture_dxt_compression", extid, 0 );
++			break;
++		case GL_ARB_TEXTURE_COMPRESSION_BPTC:
++			GL_CheckExtension( "GL_EXT_texture_compression_bptc", NULL, 0, "gl_texture_bptc_compression", extid, 0 );
++			break;
++#endif
+ 		case GL_ARB_VERTEX_BUFFER_OBJECT_EXT:
+ 			GL_CheckExtension( "vertex_buffer_object", vbofuncs, ARRAYSIZE( vbofuncs ), "gl_vertex_buffer_object", extid, 1.0 );
+ 			break;
+@@ -1450,7 +1471,12 @@ void GL_SetupAttributes( int safegl )
  	int context_flags = 0; // REFTODO!!!!!
  	int samples = 0;
  

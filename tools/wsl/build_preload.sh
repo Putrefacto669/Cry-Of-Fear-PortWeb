@@ -56,7 +56,8 @@ print("cd " + shlex.quote(sys.argv[1]) + " && \\\n  " + shlex.join(ast.literal_e
 ' "$B/engine" > "$B/engine/engine/link_command.txt"
 
 rm -rf "$DIST" && mkdir -p "$DIST/packs"
-cp "$B/engine/engine/xash3d."{html,js,wasm,data} "$WEB/index.html" "$WEB/loader.js" "$DIST/"
+cp "$B/engine/engine/xash3d."{html,js,wasm,data} "$WEB/index.html" "$WEB/loader.js" "$WEB/postfx.js" "$WEB/gpustats.js" "$DIST/"
+cp -r "$WEB/shaders" "$DIST/shaders"
 printf '{"preloaded": true, "maps": [%s]}\n' "$(printf '"%s",' "${maps[@]}" | sed 's/,$//')" > "$DIST/packs/maps.json"
 find "$DIST" -maxdepth 1 -type f -printf '   %-14f %10s bytes\n' | sort
 

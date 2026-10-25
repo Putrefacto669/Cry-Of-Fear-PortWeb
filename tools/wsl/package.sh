@@ -24,7 +24,8 @@ mkdir -p "$DIST/packs" "$STAGE/lib"
 # xash3d.html es la página por defecto de emcc (sin paquetes ni argumentos); index.html es la buena
 cp "$B/engine/engine/xash3d.html" "$B/engine/engine/xash3d.js" "$B/engine/engine/xash3d.wasm" "$DIST/"
 rm -f "$DIST/xash.js" "$DIST/xash.wasm"
-cp "$WEB/index.html" "$WEB/loader.js" "$DIST/"
+cp "$WEB/index.html" "$WEB/loader.js" "$WEB/postfx.js" "$WEB/gpustats.js" "$DIST/"
+rm -rf "$DIST/shaders" && cp -r "$WEB/shaders" "$DIST/shaders"
 
 # Nombres que espera el motor: dlopen("filesystem_stdio.wasm") y "libref_<nombre>.wasm"
 # se resuelven con LD_LIBRARY_PATH=/lib; los del juego se pasan con -dll/-clientlib/-menulib.
