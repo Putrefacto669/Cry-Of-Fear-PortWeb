@@ -1,0 +1,286 @@
+diff --git a/common/port.h b/common/port.h
+index 61c764d9..aff3436c 100644
+--- a/common/port.h
++++ b/common/port.h
+@@ -31,6 +31,9 @@ GNU General Public License for more details.
+ 	#include <sys/syslimits.h>
+ 	#define OS_LIB_EXT    "dylib"
+ 	#define OPEN_COMMAND  "open"
++#elif XASH_EMSCRIPTEN
++	#define OS_LIB_EXT    "wasm"
++	#define OPEN_COMMAND  "???"
+ #elif XASH_POSIX
+ 	#define OS_LIB_EXT    "so"
+ 	#define OPEN_COMMAND  "xdg-open"
+diff --git a/engine/common/host.c b/engine/common/host.c
+index 81ac9c38..22c152ea 100644
+--- a/engine/common/host.c
++++ b/engine/common/host.c
+@@ -56,8 +56,33 @@ non-zero value will immediately return from it with `error_on_exit`.
+ */
+ void Host_ExitInMain( void )
+ {
++#if XASH_EMSCRIPTEN
++	// Host_Main has already returned to the browser, there is no frame to jump into
++	emscripten_cancel_main_loop();
++	emscripten_force_exit( 0 );
++#else
+ 	longjmp( return_from_main_buf, 1 );
++#endif
++}
++
++#if XASH_EMSCRIPTEN
++static double emscripten_oldtime;
++
++static void Host_EmscriptenFrame( void )
++{
++	double newtime;
++
++	if( host.status == HOST_CRASHED )
++	{
++		emscripten_cancel_main_loop();
++		return;
++	}
++
++	newtime = Platform_DoubleTime();
++	COM_Frame( newtime - emscripten_oldtime );
++	emscripten_oldtime = newtime;
+ }
++#endif // XASH_EMSCRIPTEN
+ 
+ #ifdef XASH_ENGINE_TESTS
+ struct tests_stats_s tests_stats;
+@@ -1337,6 +1362,11 @@ int EXPORT Host_Main( int argc, char **argv, const char *progname, int bChangeGa
+ 	// check after all configs were executed
+ 	HPAK_CheckIntegrity( hpk_custom_file.string );
+ 
++#if XASH_EMSCRIPTEN
++	// the browser owns the main loop: run one engine frame per animation frame
++	emscripten_oldtime = oldtime;
++	emscripten_set_main_loop( Host_EmscriptenFrame, 0, false );
++#else // !XASH_EMSCRIPTEN
+ 	// main window message loop
+ 	while( host.status != HOST_CRASHED )
+ 	{
+@@ -1344,6 +1374,7 @@ int EXPORT Host_Main( int argc, char **argv, const char *progname, int bChangeGa
+ 		COM_Frame( newtime - oldtime );
+ 		oldtime = newtime;
+ 	}
++#endif // !XASH_EMSCRIPTEN
+ 
+ 	return 0;
+ }
+diff --git a/engine/platform/sdl2/sys_sdl2.c b/engine/platform/sdl2/sys_sdl2.c
+index ac3a43c2..07828e8f 100644
+--- a/engine/platform/sdl2/sys_sdl2.c
++++ b/engine/platform/sdl2/sys_sdl2.c
+@@ -34,7 +34,9 @@ double Platform_DoubleTime( void )
+ 
+ void Platform_Sleep( int msec )
+ {
++#if !XASH_EMSCRIPTEN // the browser paces frames, sleeping would block its thread
+ 	SDL_Delay( msec );
++#endif
+ }
+ #endif // XASH_TIMER == TIMER_SDL
+ 
+diff --git a/engine/wscript b/engine/wscript
+index 9bb46271..a449be86 100644
+--- a/engine/wscript
++++ b/engine/wscript
+@@ -308,12 +308,21 @@ def build(bld):
+ 		if bld.env.DEST_OS == 'emscripten':
+ 			linkflags = ['-sINITIAL_MEMORY=134217728', '-sALLOW_MEMORY_GROWTH=1', '-sSTACK_SIZE=16777216']
+ 
+-			linkflags += ['-sASYNCIFY=1']
++			# no ASYNCIFY: with MAIN_MODULE it replaces SDL's HTML5 callbacks with aborting stubs
++			# (dynCall_* exports are computed before binaryen generates them); the main loop
++			# is driven by emscripten_set_main_loop instead
++			linkflags += ['-sMIN_WEBGL_VERSION=2', '-sMAX_WEBGL_VERSION=2']
++			# WebGL forbids client-side vertex arrays, which some renderer paths still use;
++			# FULL_ES3 emulates them (and glMapBufferRange) by copying into temporary buffers
++			linkflags += ['-sFULL_ES3=1']
++
++			# game data may be mounted at runtime by the page (fetch + FS.writeFile / IDBFS),
++			# so the filesystem runtime must be exported even when nothing is preloaded
++			linkflags += ['-sFORCE_FILESYSTEM=1', '-lidbfs.js', '-sEXPORTED_RUNTIME_METHODS=FS,ENV,callMain']
+ 
+ 			node = bld.srcnode.find_node('rodir')
+-			if not node:
+-				bld.fatal('Put game data into rodir folder in source tree root')
+-			linkflags += ['--preload-file', '%s@/rodir' % node.path_from(bld.bldnode)]
++			if node and node.listdir():
++				linkflags += ['--preload-file', '%s@/rodir' % node.path_from(bld.bldnode)]
+ 
+ 		f(source = source,
+ 			target = 'xash',
+diff --git a/ref/gl/gl2_shim/gl2_shim.c b/ref/gl/gl2_shim/gl2_shim.c
+index 91541c9b..eb343d15 100644
+--- a/ref/gl/gl2_shim/gl2_shim.c
++++ b/ref/gl/gl2_shim/gl2_shim.c
+@@ -604,7 +604,11 @@ int GL2_ShimInit( void )
+ 	if( gEngfuncs.Sys_CheckParm( "-noincremental" ))
+ 		gl2wrap_config.incremental = gl2wrap_config.buf_storage = false;
+ 
++#if XASH_EMSCRIPTEN
++	gl2wrap_config.version = 300; // WebGL 2 only implements GLSL ES 3.00
++#else
+ 	gl2wrap_config.version = 310;
++#endif
+ 	if( gEngfuncs.Sys_CheckParm( "-minshaders" ))
+ 		gl2wrap_config.version = 100;
+ 	if( gl2wrap_config.buf_storage )
+diff --git a/ref/gl/gl_opengl.c b/ref/gl/gl_opengl.c
+index f05a3ddf..09e55836 100644
+--- a/ref/gl/gl_opengl.c
++++ b/ref/gl/gl_opengl.c
+@@ -1450,7 +1450,12 @@ void GL_SetupAttributes( int safegl )
+ 	int context_flags = 0; // REFTODO!!!!!
+ 	int samples = 0;
+ 
+-#if XASH_GLES
++#if XASH_EMSCRIPTEN
++	// OpenGL ES 3.0 maps to a WebGL 2 context, fixed function is emulated by gl2_shim
++	gEngfuncs.GL_SetAttribute( REF_GL_CONTEXT_PROFILE_MASK, REF_GL_CONTEXT_PROFILE_ES );
++	gEngfuncs.GL_SetAttribute( REF_GL_CONTEXT_MAJOR_VERSION, 3 );
++	gEngfuncs.GL_SetAttribute( REF_GL_CONTEXT_MINOR_VERSION, 0 );
++#elif XASH_GLES
+ 	gEngfuncs.GL_SetAttribute( REF_GL_CONTEXT_PROFILE_MASK, REF_GL_CONTEXT_PROFILE_ES );
+ 	gEngfuncs.GL_SetAttribute( REF_GL_CONTEXT_EGL, 1 );
+ #if XASH_NANOGL
+diff --git a/scripts/waifulib/c_emscripten.py b/scripts/waifulib/c_emscripten.py
+new file mode 100644
+index 00000000..47e2e79b
+--- /dev/null
++++ b/scripts/waifulib/c_emscripten.py
+@@ -0,0 +1,100 @@
++#!/usr/bin/env python
++# -*- coding: utf-8 vi:ts=4:noexpandtab
++
++from waflib.Tools import ccroot, gcc, gxx
++from waflib.Configure import conf
++from waflib.TaskGen import feature, after_method
++from waflib import Utils
++
++@conf
++def get_emscripten_version(conf, cc):
++	k = conf.get_cc_version(cc, clang=True)
++
++	if '__EMSCRIPTEN__' not in k:
++		conf.fatal('Could not determine the emscripten compiler version')
++
++	conf.env.DEST_OS = 'emscripten'
++	conf.env.DEST_CPU = 'wasm'
++
++@conf
++def find_emcc(conf):
++	cc = conf.find_program(['emcc'], var='CC')
++	conf.get_emscripten_version(cc)
++	conf.env.CC_NAME = 'clang'
++
++@conf
++def find_emxx(conf):
++	cxx = conf.find_program(['em++'], var='CXX')
++	conf.get_emscripten_version(cxx)
++	conf.env.CXX_NAME = 'clang'
++
++@conf
++def gcc_modifier_emscripten(conf):
++	v = conf.env
++
++	conf.env.cshlib_PATTERN = 'lib%s.wasm'
++	conf.env.cprogram_PATTERN = '%s.html'
++
++	conf.env.CFLAGS_cshlib = ['-fPIC', '-sSIDE_MODULE=1']
++	conf.env.CFLAGS_cstlib = ['-fPIC']
++	conf.env.CFLAGS_cprogram = ['-sMAIN_MODULE=1']
++
++	conf.env.LINKFLAGS_cshlib = ['-sSIDE_MODULE=1']
++	conf.env.LINKFLAGS_cprogram = ['-sMAIN_MODULE=1']
++
++@conf
++def gxx_modifier_emscripten(conf):
++	v = conf.env
++
++	conf.env.cxxshlib_PATTERN = 'lib%s.wasm'
++	conf.env.cxxprogram_PATTERN = '%s.html'
++	conf.env.CXXFLAGS_cxxshlib = ['-fPIC', '-sSIDE_MODULE=1']
++	conf.env.CXXFLAGS_cxxstlib = ['-fPIC']
++	conf.env.CXXFLAGS_cxxprogram = ['-sMAIN_MODULE=1']
++
++	conf.env.LINKFLAGS_cxxshlib = ['-sSIDE_MODULE=1']
++	conf.env.LINKFLAGS_cxxprogram = ['-sMAIN_MODULE=1']
++
++@feature('cxxprogram', 'cprogram')
++@after_method('apply_link')
++def apply_indexhtml(self):
++	if self.env.DEST_OS != 'emscripten':
++		return
++
++	tsk = self.link_task
++	node = tsk.outputs[0]
++
++	tsk.outputs.append(node.change_ext('.js'))
++	tsk.outputs.append(node.change_ext('.wasm'))
++
++	if '--preload-file' in getattr(self, 'linkflags', []) + self.env.LINKFLAGS:
++		tsk.outputs.append(node.change_ext('.data'))
++
++	inst_to = getattr(self, 'special_install_path', None)
++	if inst_to:
++		self.add_install_as(install_to=inst_to + '/index.html',
++			install_from=tsk.outputs[0], chmod=Utils.O644, task=tsk)
++
++		self.add_install_files(install_to=inst_to,
++			install_from=tsk.outputs[1:], chmod=Utils.O644, task=tsk)
++
++def configure(conf):
++	if not conf.env.CC:
++		conf.find_emcc()
++		conf.gcc_common_flags()
++		conf.gcc_modifier_platform()
++		conf.cc_load_tools()
++		conf.cc_add_flags()
++		conf.link_add_flags()
++
++	if not conf.env.AR:
++		conf.find_program(['emar'], var='AR')
++		conf.find_ar()
++
++	if not conf.env.CXX:
++		conf.find_emxx()
++		conf.gxx_common_flags()
++		conf.gxx_modifier_platform()
++		conf.cxx_load_tools()
++		conf.cxx_add_flags()
++		conf.link_add_flags()
+diff --git a/scripts/waifulib/xcompile.py b/scripts/waifulib/xcompile.py
+index 8a7c8f19..f44edfea 100644
+--- a/scripts/waifulib/xcompile.py
++++ b/scripts/waifulib/xcompile.py
+@@ -745,6 +745,15 @@ def configure(conf):
+ 		conf.env.LIB_M = ['m']
+ 		conf.env.VRTLD = ['vrtld']
+ 		conf.env.DEST_OS = 'psvita'
++	elif conf.options.EMSCRIPTEN:
++		# Emscripten compiler is just wrapper to clang
++		# But we need to setup platform modifiers, they all are contained inside c_emscripten.py for now
++		conf.environ['CC'] = 'emcc'
++		conf.environ['CXX'] = 'em++'
++		conf.environ['AR'] = 'emar'
++		conf.environ['STRIP'] = 'emstrip'
++		conf.environ['OBJCOPY'] = 'llvm-objcopy'
++		conf.load('c_emscripten')
+ 	elif conf.options.PSP_OPTS:
+ 		values = conf.options.PSP_OPTS.split(',')
+ 		if len(values) != 3:
+@@ -814,6 +823,9 @@ def configure(conf):
+ 	for k in c_config.MACRO_TO_DESTOS:
+ 		MACRO_TO_DESTOS[k] = c_config.MACRO_TO_DESTOS[k] # ordering is important
+ 	c_config.MACRO_TO_DESTOS  = MACRO_TO_DESTOS
++	# waf does not know WebAssembly targets, DEST_CPU would be left empty
++	c_config.MACRO_TO_DEST_CPU.setdefault("__wasm32__", "wasm32")
++	c_config.MACRO_TO_DEST_CPU.setdefault("__wasm64__", "wasm64")
+ 
+ def post_compiler_cxx_configure(conf):
+ 	conf.msg('Target OS', conf.env.DEST_OS)

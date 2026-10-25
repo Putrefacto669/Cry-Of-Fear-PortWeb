@@ -1,0 +1,42 @@
+diff --git a/sdk_includes/public/build.h b/sdk_includes/public/build.h
+index b92c51e..067b745 100644
+--- a/sdk_includes/public/build.h
++++ b/sdk_includes/public/build.h
+@@ -62,6 +62,7 @@ Then you can use another oneliner to query all variables:
+ #undef XASH_BIG_ENDIAN
+ #undef XASH_DOS4GW
+ #undef XASH_E2K
++#undef XASH_EMSCRIPTEN
+ #undef XASH_FREEBSD
+ #undef XASH_HAIKU
+ #undef XASH_HURD
+@@ -142,6 +143,8 @@ Then you can use another oneliner to query all variables:
+ 		#define XASH_NSWITCH 1
+ 	#elif defined __vita__
+ 		#define XASH_PSVITA 1
++	#elif defined __EMSCRIPTEN__
++		#define XASH_EMSCRIPTEN 1
+ 	#elif defined __wasi__
+ 		#define XASH_WASI 1
+ 	#elif defined __sun__
+diff --git a/sdk_includes/public/buildenums.h b/sdk_includes/public/buildenums.h
+index c91f5e6..f9b3399 100644
+--- a/sdk_includes/public/buildenums.h
++++ b/sdk_includes/public/buildenums.h
+@@ -49,6 +49,7 @@ For more information, please refer to <http://unlicense.org/>
+ #define PLATFORM_NETBSD     6
+ #define PLATFORM_OPENBSD    7
+ // reserved
++#define PLATFORM_EMSCRIPTEN 8
+ #define PLATFORM_DOS4GW     9
+ #define PLATFORM_HAIKU      10
+ #define PLATFORM_SERENITY   11
+@@ -78,6 +79,8 @@ For more information, please refer to <http://unlicense.org/>
+ 	#define XASH_PLATFORM PLATFORM_NETBSD
+ #elif XASH_OPENBSD
+ 	#define XASH_PLATFORM PLATFORM_OPENBSD
++#elif XASH_EMSCRIPTEN
++	#define XASH_PLATFORM PLATFORM_EMSCRIPTEN
+ #elif XASH_DOS4GW
+ 	#define XASH_PLATFORM PLATFORM_DOS4GW
+ #elif XASH_HAIKU
