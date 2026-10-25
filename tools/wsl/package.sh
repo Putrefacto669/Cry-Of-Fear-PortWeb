@@ -28,6 +28,9 @@ rm -f "$DIST/xash.js" "$DIST/xash.wasm"
 cp "$WEB/index.html" "$WEB/loader.js" "$WEB/postfx.js" "$WEB/gpustats.js" "$WEB/debug.js" "$WEB/sw.js" "$DIST/"
 rm -rf "$DIST/shaders" && cp -r "$WEB/shaders" "$DIST/shaders"
 
+# Lanzador para probar en Windows con doble clic (no forma parte de la web publicada)
+cp "$WEB/../launcher/Jugar.bat" "$WEB/../../tools/serve.py" "$DIST/"
+
 # GPL-3.0: quien recibe los binarios debe poder llegar al código. La página enlaza la licencia y
 # el repositorio público (COF_SOURCE_URL; un fork debe apuntarlo a su propio repositorio).
 cp "$WEB/../../LICENSE" "$DIST/LICENSE.txt"
@@ -77,7 +80,7 @@ for old in dist.rglob("*.gz"):
 files, gz = {}, {}
 for p in sorted(dist.rglob("*")):
     rel = p.relative_to(dist).as_posix()
-    if not p.is_file() or rel in ("sw.js", "sw-manifest.js"):
+    if not p.is_file() or rel in ("sw.js", "sw-manifest.js", "Jugar.bat", "serve.py"):
         continue
     data = p.read_bytes()
     files[rel] = hashlib.sha256(data).hexdigest()[:12]

@@ -3,3 +3,5 @@
 *.py   text eol=lf
 *.patch text eol=lf
 wscript text eol=lf
+# los .bat solo funcionan bien con CRLF
+*.bat text eol=crlf

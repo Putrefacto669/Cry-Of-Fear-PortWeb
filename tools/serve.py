@@ -2,7 +2,7 @@
 """
 serve.py - Servidor local para dist/ con aislamiento de origen (COOP/COEP) y tipos MIME correctos.
 
-    python3 serve.py [dir] [--port 8080] [--host 127.0.0.1]
+    python3 serve.py [dir] [--port 8080] [--host 127.0.0.1] [--open]
 
 Cabeceras que añade a cada respuesta:
     Cross-Origin-Opener-Policy:   same-origin
@@ -21,6 +21,7 @@ import argparse
 import functools
 import http.server
 import sys
+import webbrowser
 from pathlib import Path
 
 ISOLATION_HEADERS = {
@@ -53,14 +54,25 @@ def main() -> int:
     ap.add_argument("--port", type=int, default=8080)
     ap.add_argument("--host", default="127.0.0.1",
                     help="0.0.0.0 para acceder desde otra máquina (en WSL2 no hace falta para Windows)")
+    ap.add_argument("--open", action="store_true", help="abre el navegador cuando el servidor está listo")
     args = ap.parse_args()
 
     if not (args.dir / "index.html").is_file():
         print(f"No hay index.html en {args.dir}: ejecuta antes tools/wsl/package.sh", file=sys.stderr)
         return 2
     handler = functools.partial(Handler, directory=str(args.dir))
-    with http.server.ThreadingHTTPServer((args.host, args.port), handler) as srv:
-        print(f"Sirviendo {args.dir} en http://localhost:{args.port}/  (COOP/COEP activos, Ctrl+C para salir)")
+    try:
+        srv = http.server.ThreadingHTTPServer((args.host, args.port), handler)
+    except OSError as e:
+        print(f"No se puede usar el puerto {args.port} ({e.strerror}): ¿ya hay otro servidor abierto? "
+              f"Ciérralo o usa --port 8081", file=sys.stderr)
+        return 1
+    url = f"http://localhost:{args.port}/"
+    with srv:
+        print(f"Sirviendo {args.dir} en {url}  (COOP/COEP activos, Ctrl+C para salir)")
+        if args.open:
+            # el socket ya escucha: el navegador no puede llegar antes que el servidor
+            webbrowser.open(url)
         try:
             srv.serve_forever()
         except KeyboardInterrupt:
