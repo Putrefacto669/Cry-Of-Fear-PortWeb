@@ -1,7 +1,8 @@
 // Cry of Fear: player mechanics on top of hlsdk's CBasePlayer.
 //
 // - sprint (+sprint) with stamina, walk/sprint speeds from skill.cfg
-// - inventory: keys and weapons picked up (item_key, cof_giveitems, weapon_*)
+// - inventory: keys and weapons picked up (item_key, cof_giveitems, weapon_*),
+//   quick select (1-3), equipping from the bag, ammo and syringes as counted entries
 // - HUD status for platform/web/hud.js: health/stamina bars and the bag (TAB)
 //
 // +sprint, +inventory and the other CoF binds are not client commands in
@@ -9,14 +10,16 @@
 // up in CoF_ClientCommand.
 //
 // The state lives here, indexed by player slot, and survives changelevel
-// because the server library stays loaded. It is not in the save file yet:
-// loading a save from a fresh page starts with an empty bag.
+// because the server library stays loaded. Save games carry it in a hidden
+// cof_playerstate entity (single player: slot 1).
 
 #include <stdarg.h>
 #include "extdll.h"
 #include "util.h"
 #include "cbase.h"
 #include "player.h"
+#include "weapons.h"
+#include "saverestore.h"
 #include "cof_player.h"
 
 #define COF_WALK_SPEED     150.0f
@@ -46,6 +49,11 @@ typedef struct
 	char items[COF_MAX_ITEMS][COF_ITEM_LEN];    // definition file
 	char names[COF_MAX_ITEMS][COF_ITEM_LEN];    // map_name / classname, what doors ask for
 	BOOL invDirty;
+	int counts[COF_MAX_ITEMS];          // ammo / syringes left, -1 for single items
+	char quick[3][COF_ITEM_LEN];        // names in the quick select slots
+
+	char objective[COF_ITEM_LEN];  // hints.txt key of the current objective
+	EHANDLE store;                 // cof_playerstate holding this in save games
 } cof_player_t;
 
 static cof_player_t g_cofPlayers[33];
@@ -138,10 +146,24 @@ static void CoF_SendInventory( cof_player_t *s )
 	int len = snprintf( line, sizeof( line ), "COF/HUD INV %d", s->numItems );
 
 	for( int i = 0; i < s->numItems && len < (int)sizeof( line ); i++ )
-		len += snprintf( line + len, sizeof( line ) - len, " %s", s->items[i] );
+	{
+		if( s->counts[i] >= 0 )
+			len += snprintf( line + len, sizeof( line ) - len, " %s:%d", s->items[i], s->counts[i] );
+		else
+			len += snprintf( line + len, sizeof( line ) - len, " %s", s->items[i] );
+	}
 
 	CoF_HudPrint( "%s\n", line );
+	CoF_HudPrint( "COF/HUD QUICK %s %s %s\n", s->quick[0][0] ? s->quick[0] : "-",
+		s->quick[1][0] ? s->quick[1] : "-", s->quick[2][0] ? s->quick[2] : "-" );
 	s->invDirty = FALSE;
+}
+
+// weapons of weapons_cof.cpp: the bag entry is the weapon the player carries
+static bool CoF_IsRealWeapon( const char *name )
+{
+	return !stricmp( name, "weapon_switchblade" ) || !stricmp( name, "weapon_glock" ) ||
+		!stricmp( name, "weapon_syringe" ) || !stricmp( name, "weapon_mobile" );
 }
 
 static int CoF_FindItem( cof_player_t *s, const char *name )
@@ -154,6 +176,24 @@ static int CoF_FindItem( cof_player_t *s, const char *name )
 }
 
 bool CoF_GiveItem( CBaseEntity *pActivator, const char *item )
+{
+	CBaseEntity *pPlayer = CoF_Recipient( pActivator );
+
+	if( !pPlayer || !item || !item[0] )
+		return false;
+
+	// a real weapon enters the bag through its AddToPlayer (CoF_AddBagEntry)
+	if( CoF_IsRealWeapon( item ))
+	{
+		// GiveNamedItem keeps the pointer as the classname (MAKE_STRING): it must outlive the
+		// console command buffer that "item" may point into
+		( (CBasePlayer *)pPlayer )->GiveNamedItem( STRING( ALLOC_STRING( item )));
+		return CoF_HasItem( pPlayer, item );
+	}
+	return CoF_AddBagEntry( pPlayer, item );
+}
+
+bool CoF_AddBagEntry( CBaseEntity *pActivator, const char *item )
 {
 	CBaseEntity *pPlayer = CoF_Recipient( pActivator );
 	cof_player_t *s = CoF_State( pPlayer );
@@ -178,13 +218,34 @@ bool CoF_GiveItem( CBaseEntity *pActivator, const char *item )
 
 	snprintf( s->items[s->numItems], COF_ITEM_LEN, "%s", def );
 	snprintf( s->names[s->numItems], COF_ITEM_LEN, "%s", name );
+	s->counts[s->numItems] = -1;
 	s->numItems++;
 	s->invDirty = TRUE;
+
+	// the first weapons fill the free quick select slots
+	if( !strncmp( name, "weapon_", 7 ) && stricmp( name, "weapon_syringe" ))
+	{
+		for( int q = 0; q < 3; q++ )
+		{
+			if( !s->quick[q][0] )
+			{
+				snprintf( s->quick[q], COF_ITEM_LEN, "%s", name );
+				break;
+			}
+		}
+	}
 
 	if( CoF_ReadItemField( def, "nice_name", nice, sizeof( nice )))
 		CoF_HudPrint( "COF/HUD PICKUP %s\n", def );
 
 	return true;
+}
+
+void CoF_SetObjective( const char *key )
+{
+	cof_player_t *s = &g_cofPlayers[1];
+	snprintf( s->objective, sizeof( s->objective ), "%s", key ? key : "" );
+	CoF_HudPrint( "COF/HUD OBJECTIVE %s\n", s->objective );
 }
 
 bool CoF_HasItem( CBaseEntity *pActivator, const char *mapName )
@@ -205,9 +266,14 @@ void CoF_RemoveItem( CBaseEntity *pActivator, const char *mapName )
 	{
 		memcpy( s->items[i], s->items[i + 1], COF_ITEM_LEN );
 		memcpy( s->names[i], s->names[i + 1], COF_ITEM_LEN );
+		s->counts[i] = s->counts[i + 1];
 	}
 	s->numItems--;
 	s->invDirty = TRUE;
+
+	for( int q = 0; q < 3; q++ )
+		if( !stricmp( s->quick[q], mapName ))
+			s->quick[q][0] = 0;
 }
 
 void CoF_ClearItem( CBaseEntity *pActivator, const char *classname )
@@ -230,6 +296,50 @@ void CoF_PlayerSpawn( CBasePlayer *pPlayer )
 	s->stamina = COF_STAMINA_MAX;
 	s->sentHealth = s->sentStamina = s->sentSprint = -1;
 	s->invDirty = TRUE;
+}
+
+// glock magazines and syringes take a bag slot while there are any left
+static void CoF_SyncCount( CBasePlayer *pPlayer, cof_player_t *s, const char *def, const char *name, int count )
+{
+	int i = CoF_FindItem( s, name );
+
+	if( count <= 0 )
+	{
+		if( i >= 0 )
+			CoF_RemoveItem( pPlayer, name );
+		return;
+	}
+	if( i < 0 )
+	{
+		if( !CoF_AddBagEntry( pPlayer, def ) || ( i = CoF_FindItem( s, name )) < 0 )
+			return;
+	}
+	if( s->counts[i] != count )
+	{
+		s->counts[i] = count;
+		s->invDirty = TRUE;
+	}
+}
+
+static void CoF_SyncCounts( CBasePlayer *pPlayer, cof_player_t *s )
+{
+	// registered by CoF_PrecacheWeapons when the level loads
+	int ammo9mm = CBasePlayer::GetAmmoIndex( "9mm" );
+	int ammoSyringe = CBasePlayer::GetAmmoIndex( "syringe" );
+
+	if( ammo9mm >= 0 )
+		CoF_SyncCount( pPlayer, s, "inventoryitems/ammo/ammo_glock.txt", "ammo_glock", pPlayer->m_rgAmmo[ammo9mm] );
+	if( ammoSyringe >= 0 && pPlayer->HasNamedPlayerItem( "weapon_syringe" ))
+		CoF_SyncCount( pPlayer, s, "weapon_syringe", "weapon_syringe", pPlayer->m_rgAmmo[ammoSyringe] );
+	else if( CoF_FindItem( s, "weapon_syringe" ) >= 0 )
+		CoF_RemoveItem( pPlayer, "weapon_syringe" );
+}
+
+// takes the weapon in the hands; anything else in the bag only shows its description
+static void CoF_Equip( CBasePlayer *pPlayer, const char *name )
+{
+	if( name[0] && CoF_IsRealWeapon( name ) && pPlayer->HasNamedPlayerItem( name ))
+		pPlayer->SelectItem( name );
 }
 
 void CoF_PlayerPreThink( CBasePlayer *pPlayer )
@@ -296,8 +406,125 @@ void CoF_PlayerPreThink( CBasePlayer *pPlayer )
 		s->forceStatus = now + 2.0f;
 	}
 
+	CoF_SyncCounts( pPlayer, s );
+
 	if( s->invDirty )
+	{
 		CoF_SendInventory( s );
+		CoF_HudPrint( "COF/HUD OBJECTIVE %s\n", s->objective );
+	}
+
+	// one cof_playerstate per level, so the next save game carries the bag
+	if( !s->store )
+	{
+		CBaseEntity *pStore = UTIL_FindEntityByClassname( NULL, "cof_playerstate" );
+		s->store = pStore ? pStore : CBaseEntity::Create( "cof_playerstate", g_vecZero, g_vecZero, NULL );
+	}
+}
+
+/*
+=====================================================================
+debug commands (sv_cheats 1), for testing map logic from the console:
+	cof_give inventoryitems/apartmentkey.txt | weapon_axe
+	cof_fire <targetname>        fires it like a trigger, the player as activator
+	cof_usemodel *78             uses the brush entity with that model
+	cof_goto <targetname|*N>     moves the player next to that entity
+	cof_spawn monster_slower     creates it 150 units in front of the player
+=====================================================================
+*/
+static CBaseEntity *CoF_FindDebugTarget( const char *name )
+{
+	if( name[0] != '*' )
+		return UTIL_FindEntityByTargetname( NULL, name );
+
+	return UTIL_FindEntityByString( NULL, "model", name );
+}
+
+static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
+{
+	if( strncmp( pcmd, "cof_", 4 ) || CVAR_GET_FLOAT( "sv_cheats" ) == 0.0f )
+		return false;
+
+	if( FStrEq( pcmd, "cof_dump" ))
+	{
+		cof_player_t *s = CoF_State( pPlayer );
+		for( int i = 0; s && i < s->numItems; i++ )
+			ALERT( at_console, "bag %d: %s (%s) count %d\n", i, s->names[i], s->items[i], s->counts[i] );
+		for( int slot = 0; slot < MAX_ITEM_TYPES; slot++ )
+			for( CBasePlayerItem *pItem = pPlayer->m_rgpPlayerItems[slot]; pItem; pItem = pItem->m_pNext )
+				ALERT( at_console, "carried %d: %s\n", slot, STRING( pItem->pev->classname ));
+		CBaseEntity *pNear = NULL;
+		while(( pNear = UTIL_FindEntityInSphere( pNear, pPlayer->pev->origin, 512 )))
+			if( pNear->MyMonsterPointer() && !pNear->IsPlayer())
+				ALERT( at_console, "monster %s health %.0f dead %d dist %.0f\n", STRING( pNear->pev->classname ),
+					pNear->pev->health, pNear->pev->deadflag, ( pNear->pev->origin - pPlayer->pev->origin ).Length());
+		return true;
+	}
+	if( FStrEq( pcmd, "cof_face" ))
+	{
+		// turns to the nearest living monster, eyes on its chest
+		CBaseEntity *pNear = NULL, *pBest = NULL;
+		float best = 1e9f;
+		while(( pNear = UTIL_FindEntityInSphere( pNear, pPlayer->pev->origin, 1024 )))
+		{
+			float d = ( pNear->pev->origin - pPlayer->pev->origin ).Length();
+			if( pNear->MyMonsterPointer() && !pNear->IsPlayer() && pNear->IsAlive() && pNear->pev->takedamage && d < best )
+			{
+				best = d;
+				pBest = pNear;
+			}
+		}
+		if( pBest )
+		{
+			Vector dir = pBest->Center() - ( pPlayer->pev->origin + pPlayer->pev->view_ofs );
+			Vector ang = UTIL_VecToAngles( dir );
+			ang.x = -ang.x;
+			pPlayer->pev->angles = pPlayer->pev->v_angle = ang;
+			pPlayer->pev->fixangle = TRUE;
+		}
+		return true;
+	}
+	if( CMD_ARGC() < 2 )
+		return false;
+
+	const char *arg = CMD_ARGV( 1 );
+
+	if( FStrEq( pcmd, "cof_give" ))
+		CoF_GiveItem( pPlayer, arg );
+	else if( FStrEq( pcmd, "cof_sethealth" ))
+		pPlayer->pev->health = atoi( arg ) > 0 ? atoi( arg ) : 1;
+	else if( FStrEq( pcmd, "cof_fire" ))
+		FireTargets( arg, pPlayer, pPlayer, USE_TOGGLE, 0 );
+	else if( FStrEq( pcmd, "cof_spawn" ))
+	{
+		UTIL_MakeVectors( Vector( 0, pPlayer->pev->v_angle.y, 0 ));
+		Vector pos = pPlayer->pev->origin + gpGlobals->v_forward * 150;
+		// Create keeps the name as the classname: not the console buffer
+		CBaseEntity *pNew = CBaseEntity::Create( (char *)STRING( ALLOC_STRING( arg )), pos, Vector( 0, pPlayer->pev->v_angle.y + 180, 0 ), NULL );
+		if( pNew )
+			DROP_TO_FLOOR( pNew->edict());
+	}
+	else if( FStrEq( pcmd, "cof_usemodel" ) || FStrEq( pcmd, "cof_goto" ))
+	{
+		CBaseEntity *pTarget = CoF_FindDebugTarget( arg );
+		if( !pTarget )
+		{
+			ALERT( at_console, "%s: nothing named %s\n", pcmd, arg );
+			return true;
+		}
+		if( FStrEq( pcmd, "cof_usemodel" ))
+			pTarget->Use( pPlayer, pPlayer, USE_TOGGLE, 0 );
+		else
+		{
+			Vector center = ( pTarget->pev->absmin + pTarget->pev->absmax ) * 0.5f;
+			UTIL_SetOrigin( pPlayer->pev, center + Vector( 0, 0, 8 ));
+			pPlayer->pev->velocity = g_vecZero;
+		}
+	}
+	else
+		return false;
+
+	return true;
 }
 
 bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd )
@@ -317,10 +544,37 @@ bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd )
 	}
 	else if( FStrEq( pcmd, "-inventory" ) || FStrEq( pcmd, "-objectives" ))
 		;
+	else if( FStrEq( pcmd, "quicksel" ))
+	{
+		int q = atoi( CMD_ARGV( 1 )) - 1;
+		if( q >= 0 && q < 3 )
+			CoF_Equip( pPlayer, s->quick[q] );
+	}
+	// from the bag (hud.js): double click equips, click on a quick slot assigns
+	else if( FStrEq( pcmd, "cof_equip" ))
+	{
+		int i = atoi( CMD_ARGV( 1 ));
+		if( i >= 0 && i < s->numItems )
+			CoF_Equip( pPlayer, s->names[i] );
+	}
+	else if( FStrEq( pcmd, "cof_quickset" ))
+	{
+		int q = atoi( CMD_ARGV( 1 )) - 1, i = atoi( CMD_ARGV( 2 ));
+		if( q >= 0 && q < 3 && i >= 0 && i < s->numItems && CoF_IsRealWeapon( s->names[i] ))
+		{
+			for( int other = 0; other < 3; other++ )
+				if( !stricmp( s->quick[other], s->names[i] ))
+					s->quick[other][0] = 0;
+			snprintf( s->quick[q], COF_ITEM_LEN, "%s", s->names[i] );
+			s->invDirty = TRUE;
+		}
+	}
 	// binds of the original config.cfg that do nothing yet: keep them out of the console
 	else if( FStrEq( pcmd, "+dodge" ) || FStrEq( pcmd, "-dodge" ) || FStrEq( pcmd, "adlib" ) ||
-		FStrEq( pcmd, "cancelselect" ) || FStrEq( pcmd, "weapontoggle" ) || FStrEq( pcmd, "quicksel" ) ||
+		FStrEq( pcmd, "cancelselect" ) || FStrEq( pcmd, "weapontoggle" ) ||
 		FStrEq( pcmd, "+attack3" ) || FStrEq( pcmd, "-attack3" ))
+		;
+	else if( CoF_DebugCommand( pPlayer, pcmd ))
 		;
 	else
 		return false;
@@ -407,9 +661,8 @@ void CCofItemKey::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE u
 
 /*
 =====================================================================
-CoF weapons lying in the map. They go to the bag; using them is not
-implemented yet. hlsdk already defines weapon_glock, weapon_mp5 and
-weapon_shotgun, so those keep the Half-Life behaviour for now.
+CoF weapons lying in the map that only go to the bag: using them is not
+implemented yet (weapons_cof.cpp has the ones that are).
 =====================================================================
 */
 class CCofWeaponPickup : public CBaseEntity
@@ -428,9 +681,7 @@ LINK_ENTITY_TO_CLASS( weapon_axe, CCofWeaponPickup )
 LINK_ENTITY_TO_CLASS( weapon_booklaser, CCofWeaponPickup )
 LINK_ENTITY_TO_CLASS( weapon_camera, CCofWeaponPickup )
 LINK_ENTITY_TO_CLASS( weapon_famas, CCofWeaponPickup )
-LINK_ENTITY_TO_CLASS( weapon_syringe, CCofWeaponPickup )
-LINK_ENTITY_TO_CLASS( weapon_switchblade, CCofWeaponPickup )
-LINK_ENTITY_TO_CLASS( weapon_mobile, CCofWeaponPickup )
+LINK_ENTITY_TO_CLASS( weapon_mp5, CCofWeaponPickup )
 
 void CCofWeaponPickup::Precache( void )
 {
@@ -531,4 +782,94 @@ void CCofClearItems::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYP
 {
 	if( !FStringNull( pev->message ))
 		CoF_ClearItem( pActivator, STRING( pev->message ));
+}
+
+/*
+=====================================================================
+cof_playerstate: invisible, saved with the level. Save() copies the
+player state in, Restore() copies it back, so loading a save game
+brings back the bag, stamina and objective. It does not go across
+level transitions; the state is still in memory then and the next
+level gets a fresh one.
+=====================================================================
+*/
+class CCofPlayerState : public CBaseEntity
+{
+public:
+	void Spawn( void );
+	virtual int ObjectCaps( void ) { return 0; }
+	virtual int Save( CSave &save );
+	virtual int Restore( CRestore &restore );
+	static TYPEDESCRIPTION m_SaveData[];
+
+	int m_iNumItems;
+	string_t m_iszItems[COF_MAX_ITEMS];
+	string_t m_iszNames[COF_MAX_ITEMS];
+	string_t m_iszObjective;
+	string_t m_iszQuick[3];
+	float m_flStamina;
+};
+
+LINK_ENTITY_TO_CLASS( cof_playerstate, CCofPlayerState )
+
+TYPEDESCRIPTION CCofPlayerState::m_SaveData[] =
+{
+	DEFINE_FIELD( CCofPlayerState, m_iNumItems, FIELD_INTEGER ),
+	DEFINE_ARRAY( CCofPlayerState, m_iszItems, FIELD_STRING, COF_MAX_ITEMS ),
+	DEFINE_ARRAY( CCofPlayerState, m_iszNames, FIELD_STRING, COF_MAX_ITEMS ),
+	DEFINE_FIELD( CCofPlayerState, m_iszObjective, FIELD_STRING ),
+	DEFINE_ARRAY( CCofPlayerState, m_iszQuick, FIELD_STRING, 3 ),
+	DEFINE_FIELD( CCofPlayerState, m_flStamina, FIELD_FLOAT ),
+};
+
+void CCofPlayerState::Spawn( void )
+{
+	pev->solid = SOLID_NOT;
+	pev->movetype = MOVETYPE_NONE;
+	pev->effects |= EF_NODRAW;
+}
+
+int CCofPlayerState::Save( CSave &save )
+{
+	cof_player_t *s = &g_cofPlayers[1];
+
+	m_iNumItems = s->numItems;
+	for( int i = 0; i < COF_MAX_ITEMS; i++ )
+	{
+		m_iszItems[i] = i < s->numItems ? ALLOC_STRING( s->items[i] ) : iStringNull;
+		m_iszNames[i] = i < s->numItems ? ALLOC_STRING( s->names[i] ) : iStringNull;
+	}
+	m_iszObjective = s->objective[0] ? ALLOC_STRING( s->objective ) : iStringNull;
+	for( int q = 0; q < 3; q++ )
+		m_iszQuick[q] = s->quick[q][0] ? ALLOC_STRING( s->quick[q] ) : iStringNull;
+	m_flStamina = s->stamina;
+
+	if( !CBaseEntity::Save( save ))
+		return 0;
+	return save.WriteFields( "CCofPlayerState", this, m_SaveData, ARRAYSIZE( m_SaveData ));
+}
+
+int CCofPlayerState::Restore( CRestore &restore )
+{
+	if( !CBaseEntity::Restore( restore ))
+		return 0;
+	if( !restore.ReadFields( "CCofPlayerState", this, m_SaveData, ARRAYSIZE( m_SaveData )))
+		return 0;
+
+	cof_player_t *s = &g_cofPlayers[1];
+	s->numItems = m_iNumItems < 0 ? 0 : m_iNumItems > COF_MAX_ITEMS ? COF_MAX_ITEMS : m_iNumItems;
+	for( int i = 0; i < s->numItems; i++ )
+	{
+		snprintf( s->items[i], COF_ITEM_LEN, "%s", FStringNull( m_iszItems[i] ) ? "" : STRING( m_iszItems[i] ));
+		snprintf( s->names[i], COF_ITEM_LEN, "%s", FStringNull( m_iszNames[i] ) ? "" : STRING( m_iszNames[i] ));
+		s->counts[i] = -1;
+	}
+	for( int q = 0; q < 3; q++ )
+		snprintf( s->quick[q], COF_ITEM_LEN, "%s", FStringNull( m_iszQuick[q] ) ? "" : STRING( m_iszQuick[q] ));
+	snprintf( s->objective, sizeof( s->objective ), "%s", FStringNull( m_iszObjective ) ? "" : STRING( m_iszObjective ));
+	s->stamina = m_flStamina;
+	s->exhausted = FALSE;
+	s->invDirty = TRUE;
+	s->store = this;
+	return 1;
 }

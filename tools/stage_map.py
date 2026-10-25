@@ -54,6 +54,7 @@ BOOT_FILES = ["liblist.gam", "valve.rc", "delta.lst","titles.txt", "skill.cfg", 
               "gfx/vgui/640_staminabar.tga", "gfx/vgui/640_staminabar_bar.tga",
               "gfx/vgui/640_staminabar_barempty.tga",
               "sound/items/gunpickup2.wav",  # recoger armas (player_cof.cpp)
+              "models/ammo/clip.mdl",  # ammo_glock (weapons_cof.cpp)
               "txtfiles/hints.txt",  # textos de cof_hint y cof_objective (hud.js)
               # menú principal original (hud.js)
               "gfx/vgui/menu_logo.tga", "gfx/vgui/640_difficulty.tga",
@@ -64,7 +65,22 @@ BOOT_FILES = ["liblist.gam", "valve.rc", "delta.lst","titles.txt", "skill.cfg", 
               "gfx/flashlight.tga"]  # cookie de la linterna para platform/web/postfx.js
 # inventoryitems/*.txt describen cada objeto del bolso (nombre, imágenes, sonido de recogida)
 BOOT_DIRS = ["gfx/shell", "resource", "sprites", "events", "inventoryitems",
-             "gfx/vgui/items", "gfx/vgui/weapons", "gfx/vgui/hints"]
+             "gfx/vgui/items", "gfx/vgui/weapons", "gfx/vgui/hints",
+             # armas de weapons_cof.cpp: el jugador las lleva de un mapa a otro
+             "models/weapons/switchblade", "models/weapons/glock", "models/weapons/syringe",
+             "models/weapons/mobile", "sound/weapons/switchblade", "sound/weapons/glock",
+             "sound/weapons/syringe", "sound/weapons/mobile"]
+# Enemigos de game/cof-logic/cof/monsters.cpp: el modelo y los sonidos los pone el código, no el BSP.
+# Se buscan por classname y por la "monstertype" de los monstermaker.
+MONSTER_ASSETS = {
+    "monster_slower": ["models/slower.mdl", "sound/slower"],
+    "monster_slower3": ["models/slower3.mdl", "sound/slower3", "sound/slower"],
+    "monster_faster": ["models/faster.mdl", "sound/faster"],
+    "monster_child": ["models/children.mdl", "sound/children"],
+    "monster_baby": ["models/baby.mdl", "sound/baby"],
+    "monster_crazybitch": ["models/crazywoman.mdl", "sound/crazylady"],
+    "monster_bosschainsaw": ["models/chainsawguy.mdl", "sound/boss/sawer"],
+}
 ITEM_FIELD_RE = re.compile(r'"([^"]+)"\s*\{\s*data\s+"([^"]*)"\s*\}')
 
 SKY_SUFFIXES = ("rt", "bk", "lf", "ft", "up", "dn")
@@ -88,11 +104,16 @@ def read_entities(bsp: Path) -> list[dict[str, str]]:
 
 
 def map_music(game: Path, bsp: Path) -> set[Path]:
-    """mp3 de ambient_fmodstream; el original los busca en mp3/ y la música del menú en media/."""
+    """mp3 de ambient_fmodstream y de la clave "music" de inter_door; el original los busca en mp3/
+    y la música del menú en media/."""
     out = set()
     for ent in read_entities(bsp):
-        name = ent.get("message", "") if ent.get("classname") == "ambient_fmodstream" else ""
-        if name.lower().endswith(".mp3"):
+        names = [ent.get("music", "")]
+        if ent.get("classname") == "ambient_fmodstream":
+            names.append(ent.get("message", ""))
+        for name in names:
+            if not name.lower().endswith(".mp3"):
+                continue
             p = find_ci(game, f"mp3/{name}") or find_ci(game, f"media/{name}")
             if p:
                 out.add(p)
@@ -114,6 +135,15 @@ def map_dependencies(game: Path, bsp: Path) -> tuple[set[str], list[str]]:
     for ent in ents:
         # armas de CoF que se recogen del suelo: el modelo no está en el BSP (player_cof.cpp)
         cls = ent.get("classname", "")
+        for monster in (cls, ent.get("monstertype", "")):
+            for rel in MONSTER_ASSETS.get(monster, []):
+                d = game / rel
+                if d.is_dir():
+                    deps.update(f.relative_to(game).as_posix() for f in d.iterdir() if f.is_file())
+                else:
+                    deps.add(rel)
+            if monster in MONSTER_ASSETS:
+                deps.update(f"sound/common/npc_step{i}.wav" for i in range(1, 5))
         if cls.startswith("weapon_"):
             short = cls[len("weapon_"):]
             deps.add(f"models/weapons/{short}/w_{short}.mdl")

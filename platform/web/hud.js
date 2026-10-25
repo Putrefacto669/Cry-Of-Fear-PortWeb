@@ -226,7 +226,8 @@
   const OBJECTIVE_BOX = [404, 354, 301, 97];
   const ITEM_RE = /"([^"]+)"\s*\{\s*data\s+"([^"]*)"\s*\}/g;
 
-  const bag = { open: false, el: null, items: [], selected: -1, objective: "" };
+  // items: "inventoryitems/...txt" or "...txt:count" (ammo, syringes); quick: names per slot
+  const bag = { open: false, el: null, items: [], counts: [], quick: ["-", "-", "-"], selected: -1, objective: "" };
   const itemCache = new Map();
 
   const readItem = (def) => {
@@ -260,6 +261,11 @@
       #cof-bag .slot[data-item] { cursor:pointer; }
       #cof-bag .slot img { width:100%; height:100%; object-fit:contain; }
       #cof-bag .slot.sel { outline:2px solid rgba(255,255,255,.75); outline-offset:-2px; }
+      #cof-bag .slot .count { position:absolute; right:6%; bottom:4%; color:#eee; font:bold clamp(10px, 1.8vh, 18px) Arial, sans-serif;
+                              text-shadow:0 0 3px #000, 0 0 2px #000; }
+      #cof-bag .slot .name { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:4%;
+                             color:#ddd; font:clamp(9px, 1.4vh, 14px)/1.2 Arial, sans-serif; text-align:center; }
+      #cof-bag .slot.quick.armed { box-shadow:0 0 0 2px rgba(255,80,80,.6) inset; cursor:pointer; }
       #cof-bag .desc, #cof-bag .objective { position:absolute; display:flex; align-items:center; justify-content:center;
                         color:#ddd; font:clamp(10px, 1.7vh, 16px)/1.35 Arial, sans-serif; text-align:center; }
       #cof-bag .desc img { max-width:100%; max-height:100%; }
@@ -284,9 +290,19 @@
     sheet.append(desc, objective);
     sheet.addEventListener("click", (e) => {
       const slot = e.target.closest(".slot");
-      if (!slot || slot.dataset.item === undefined) return;
+      if (!slot) return;
+      if (slot.dataset.quick !== undefined) {
+        // with an item selected, a quick slot takes it (only weapons; the server checks)
+        if (bag.selected >= 0) engineCmd(`cof_quickset ${+slot.dataset.quick + 1} ${bag.selected}`);
+        return;
+      }
+      if (slot.dataset.item === undefined) return;
       bag.selected = +slot.dataset.item;
       renderBag();
+    });
+    sheet.addEventListener("dblclick", (e) => {
+      const slot = e.target.closest(".slot");
+      if (slot && slot.dataset.item !== undefined) engineCmd(`cof_equip ${slot.dataset.item}`);
     });
     loadTga(`${VGUI}/640_inventory.tga`).then((url) => { sheet.querySelector(".bg").src = url; })
       .catch((e) => console.warn("cof bag:", e.message));
@@ -294,14 +310,35 @@
     document.querySelector("main").appendChild(el);
   };
 
-  const setPicture = (img, path) => {
-    if (path) loadTga(`${GAME}/${path}`).then((url) => { img.src = url; }).catch((e) => console.warn("cof item:", e.message));
+  // the picture, or the item's name when the game has none (Glock ammo)
+  const setPicture = (img, path, fallback) => {
+    const showName = () => {
+      if (!fallback) return;
+      const name = document.createElement("div");
+      name.className = "name";
+      name.textContent = fallback;
+      img.replaceWith(name);
+    };
+    if (!path) { showName(); return; }
+    loadTga(`${GAME}/${path}`).then((url) => { img.src = url; }).catch(showName);
   };
 
   const renderBag = () => {
     if (!bag.el) return;
     const slots = [...bag.el.querySelectorAll(".slot")];
     for (const slot of slots) { slot.replaceChildren(); delete slot.dataset.item; slot.classList.remove("sel"); }
+    slots.slice(6).forEach((slot, q) => {
+      slot.dataset.quick = q;
+      slot.classList.add("quick");
+      slot.classList.toggle("armed", bag.selected >= 0);
+      const name = bag.quick[q];
+      const i = bag.items.findIndex((def) => (readItem(def).classname || "").toLowerCase() === name.toLowerCase());
+      if (i < 0) return;
+      const img = document.createElement("img");
+      img.alt = "";
+      setPicture(img, readItem(bag.items[i]).quick_picture || readItem(bag.items[i]).inventory_picture);
+      slot.appendChild(img);
+    });
     // weapons to the bag, keys and the rest to the pockets; when one side is full, the other
     const free = [0, 1, 2, 3, 4, 5];
     const take = (preferred) => {
@@ -314,8 +351,14 @@
       if (at === undefined) return;
       const img = document.createElement("img");
       img.alt = readItem(def).nice_name || "";
-      setPicture(img, readItem(def).inventory_picture);
       slots[at].appendChild(img);
+      setPicture(img, readItem(def).inventory_picture, readItem(def).nice_name);
+      if (bag.counts[i] >= 0) {
+        const count = document.createElement("span");
+        count.className = "count";
+        count.textContent = bag.counts[i];
+        slots[at].appendChild(count);
+      }
       slots[at].dataset.item = i;
       slots[at].classList.toggle("sel", i === bag.selected);
     });
@@ -398,8 +441,8 @@
     step();
   };
 
-  const playMusic = (channel, loop, file) => {
-    stopMusic(channel);
+  const playMusic = (channel, loop, file, fadeSeconds) => {
+    stopMusic(channel, fadeSeconds);
     const audio = new Audio(`mp3/${file.toLowerCase()}`);
     audio.loop = loop;
     audio.volume = MUSIC_VOLUME;
@@ -413,9 +456,9 @@
     });
   };
 
-  const stopMusic = (channel) => {
+  const stopMusic = (channel, fadeSeconds) => {
     const audio = music.get(channel);
-    if (audio) { music.delete(channel); fadeOut(audio); }
+    if (audio) { music.delete(channel); fadeOut(audio, fadeSeconds > 0 ? fadeSeconds * 1000 : 600); }
   };
 
   const stopAllMusic = () => { for (const ch of [...music.keys()]) stopMusic(ch); };
@@ -643,16 +686,23 @@
         case "STAT":
           updateStatus(+args[0] || 0, +args[1] || 0, +args[2] || 0);
           break;
-        case "INV":
-          bag.items = args.slice(1, 1 + (parseInt(args[0], 10) || 0));
+        case "INV": {
+          const entries = args.slice(1, 1 + (parseInt(args[0], 10) || 0));
+          bag.items = entries.map((e) => e.replace(/:\d+$/, ""));
+          bag.counts = entries.map((e) => (/:(\d+)$/.exec(e) ? +RegExp.$1 : -1));
           if (bag.selected >= bag.items.length) bag.selected = -1;
+          renderBag();
+          break;
+        }
+        case "QUICK":
+          bag.quick = [args[0] || "-", args[1] || "-", args[2] || "-"];
           renderBag();
           break;
         case "INVTOGGLE":
           toggleBag();
           break;
         case "MUSIC":
-          if (args[2]) playMusic(parseInt(args[0], 10) || 0, args[1] === "1", args[2]);
+          if (args[2]) playMusic(parseInt(args[0], 10) || 0, args[1] === "1", args[2], parseFloat(args[3]) || 0);
           break;
         case "MUSICSTOP":
           stopMusic(parseInt(args[0], 10) || 0);

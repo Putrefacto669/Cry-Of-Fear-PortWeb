@@ -17,9 +17,16 @@ bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd ); // true if han
 
 // inventory: entries are the item definition files (inventoryitems/*.txt)
 bool CoF_GiveItem( CBaseEntity *pActivator, const char *def );
+bool CoF_AddBagEntry( CBaseEntity *pActivator, const char *def ); // without giving the weapon
 bool CoF_HasItem( CBaseEntity *pActivator, const char *mapName );
 void CoF_RemoveItem( CBaseEntity *pActivator, const char *mapName );
 void CoF_ClearItem( CBaseEntity *pActivator, const char *classname );
+
+// current objective (hints.txt key), shown in the bag and kept in save games
+void CoF_SetObjective( const char *key );
+
+// weapons_cof.cpp, called from hlsdk's W_Precache
+void CoF_PrecacheWeapons( void );
 
 // one-line markers for platform/web/hud.js ("COF/HUD ..." on the server console)
 void CoF_HudPrint( const char *fmt, ... );

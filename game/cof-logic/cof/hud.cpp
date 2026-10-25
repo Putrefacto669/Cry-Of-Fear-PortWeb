@@ -420,7 +420,7 @@ LINK_ENTITY_TO_CLASS( cof_objective, CCofObjective )
 void CCofObjective::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
 {
 	// no message clears the objective
-	CoF_HudPrint( "COF/HUD OBJECTIVE %s\n", FStringNull( pev->message ) ? "" : STRING( pev->message ));
+	CoF_SetObjective( FStringNull( pev->message ) ? "" : STRING( pev->message ));
 }
 
 class CCofHint : public CPointEntity

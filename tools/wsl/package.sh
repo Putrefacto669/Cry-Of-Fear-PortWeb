@@ -63,6 +63,19 @@ cp "$B/engine/3rdparty/extras/extras.pk3" "$STAGE/boot/valve/"
 rm -rf "$DIST/mp3" && mkdir -p "$DIST/mp3"
 [ -d "$STAGE/mp3" ] && cp "$STAGE/mp3/"*.mp3 "$DIST/mp3/" 2>/dev/null || true
 
+# Lo que ya va en boot sobra en los mapas (preparados quizá antes de que boot creciera): el paquete
+# inicial de un mapa se monta junto a boot y file_packager falla con EEXIST si un archivo se repite
+python3 - "$STAGE" <<'EOF'
+import sys
+from pathlib import Path
+stage = Path(sys.argv[1])
+boot = {p.relative_to(stage / "boot").as_posix().lower() for p in (stage / "boot").rglob("*") if p.is_file()}
+for m in (stage / "maps").iterdir() if (stage / "maps").is_dir() else []:
+    for p in list(m.rglob("*")):
+        if p.is_file() and p.relative_to(m).as_posix().lower() in boot:
+            p.unlink()
+EOF
+
 pack engine "$STAGE/lib" /lib
 pack boot "$STAGE/boot" /rodir
 maps=("$@")

@@ -45,6 +45,8 @@ public:
 	string_t m_sLockedMsg;
 	string_t m_sUnlockedMsg;
 	string_t m_sMaster;
+	string_t m_sMusic;          // track of the area behind the door (mp3/)
+	float m_flMusicFadeOut;
 	EHANDLE m_hUser;
 	float m_flNextUse;
 };
@@ -62,6 +64,8 @@ TYPEDESCRIPTION CInterDoor::m_SaveData[] =
 	DEFINE_FIELD( CInterDoor, m_sLockedMsg, FIELD_STRING ),
 	DEFINE_FIELD( CInterDoor, m_sUnlockedMsg, FIELD_STRING ),
 	DEFINE_FIELD( CInterDoor, m_sMaster, FIELD_STRING ),
+	DEFINE_FIELD( CInterDoor, m_sMusic, FIELD_STRING ),
+	DEFINE_FIELD( CInterDoor, m_flMusicFadeOut, FIELD_FLOAT ),
 	DEFINE_FIELD( CInterDoor, m_hUser, FIELD_EHANDLE ),
 	DEFINE_FIELD( CInterDoor, m_flNextUse, FIELD_TIME ),
 };
@@ -80,6 +84,7 @@ void CInterDoor::KeyValue( KeyValueData *pkvd )
 		{ "lockedmsg", &CInterDoor::m_sLockedMsg },
 		{ "unlockedmsg", &CInterDoor::m_sUnlockedMsg },
 		{ "master", &CInterDoor::m_sMaster },
+		{ "music", &CInterDoor::m_sMusic },
 	};
 
 	for( size_t i = 0; i < sizeof( strings ) / sizeof( strings[0] ); i++ )
@@ -93,8 +98,12 @@ void CInterDoor::KeyValue( KeyValueData *pkvd )
 	}
 
 	// music, silentroom, doortype...: presentation the port does not do yet
-	if( FStrEq( pkvd->szKeyName, "doortype" ) || FStrEq( pkvd->szKeyName, "music" ) ||
-		FStrEq( pkvd->szKeyName, "musicfadein" ) || FStrEq( pkvd->szKeyName, "musicfadeout" ) ||
+	if( FStrEq( pkvd->szKeyName, "musicfadeout" ))
+	{
+		m_flMusicFadeOut = atof( pkvd->szValue );
+		pkvd->fHandled = TRUE;
+	}
+	else if( FStrEq( pkvd->szKeyName, "doortype" ) || FStrEq( pkvd->szKeyName, "musicfadein" ) ||
 		FStrEq( pkvd->szKeyName, "silentroom" ) || FStrEq( pkvd->szKeyName, "newlevelsnd" ) ||
 		FStrEq( pkvd->szKeyName, "propertarget" ) || FStrEq( pkvd->szKeyName, "movewith" ) ||
 		FStrEq( pkvd->szKeyName, "useunlock" ) || FStrEq( pkvd->szKeyName, "usesound" ) ||
@@ -219,6 +228,10 @@ void CInterDoor::PassThink( void )
 
 	if( !FStringNull( m_sCloseSound ))
 		EMIT_SOUND( ENT( pPlayer->pev ), CHAN_ITEM, STRING( m_sCloseSound ), 1.0f, ATTN_NORM );
+
+	// the area behind the door has its own track: replaces what is playing on channel 0
+	if( !FStringNull( m_sMusic ) && !strchr( STRING( m_sMusic ), ' ' ))
+		CoF_HudPrint( "COF/HUD MUSIC 0 0 %s %g\n", STRING( m_sMusic ), m_flMusicFadeOut );
 	UTIL_ScreenFade( pPlayer, Vector( 0, 0, 0 ), INTER_DOOR_FADE, 0, 255, FFADE_IN );
 }
 

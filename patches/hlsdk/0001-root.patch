@@ -1,3 +1,18 @@
+diff --git a/cl_dll/cl_util.h b/cl_dll/cl_util.h
+index 80f4cdae..1fda8f1e 100644
+--- a/cl_dll/cl_util.h
++++ b/cl_dll/cl_util.h
+@@ -158,6 +158,10 @@ inline void PlaySound( int iSound, float vol ) { gEngfuncs.pfnPlaySoundByIndex(
+ 
+ inline int GetSpriteRes( int width, int height )
+ {
++	// Cry of Fear: sprites/hud.txt only lists 640 sprites; with a narrow window (a
++	// browser pane under 640 px) the 320 set would be empty and the HUD quits the game
++	return 640;
++
+ 	int i;
+ 
+ 	if( width < 640 )
 diff --git a/cl_dll/hud.h b/cl_dll/hud.h
 index d712965c..feaaccc9 100644
 --- a/cl_dll/hud.h
@@ -57,6 +72,34 @@ index da2e9e1d..33dda9d8 100644
  	if( FStrEq( pcmd, "say" ) )
  	{
  		Host_Say( pEntity, 0 );
+diff --git a/dlls/glock.cpp b/dlls/glock.cpp
+index d9411d66..8c146245 100644
+--- a/dlls/glock.cpp
++++ b/dlls/glock.cpp
+@@ -35,7 +35,8 @@ enum glock_e
+ 	GLOCK_ADD_SILENCER
+ };
+ 
+-LINK_ENTITY_TO_CLASS( weapon_glock, CGlock )
++// Cry of Fear uses this name for its own weapon (game/cof-logic/cof)
++// LINK_ENTITY_TO_CLASS( weapon_glock, CGlock )
+ LINK_ENTITY_TO_CLASS( weapon_9mmhandgun, CGlock )
+ 
+ void CGlock::Spawn()
+diff --git a/dlls/mp5.cpp b/dlls/mp5.cpp
+index 53323a74..2a7e7083 100644
+--- a/dlls/mp5.cpp
++++ b/dlls/mp5.cpp
+@@ -35,7 +35,8 @@ enum mp5_e
+ 	MP5_FIRE3
+ };
+ 
+-LINK_ENTITY_TO_CLASS( weapon_mp5, CMP5 )
++// Cry of Fear uses this name for its own weapon (game/cof-logic/cof)
++// LINK_ENTITY_TO_CLASS( weapon_mp5, CMP5 )
+ LINK_ENTITY_TO_CLASS( weapon_9mmAR, CMP5 )
+ 
+ //=========================================================
 diff --git a/dlls/player.cpp b/dlls/player.cpp
 index bbb68ea6..7c58cff6 100644
 --- a/dlls/player.cpp
@@ -89,6 +132,29 @@ index bbb68ea6..7c58cff6 100644
  	g_pGameRules->PlayerSpawn( this );
  }
  
+diff --git a/dlls/weapons.cpp b/dlls/weapons.cpp
+index 3ff1a15f..4509abb6 100644
+--- a/dlls/weapons.cpp
++++ b/dlls/weapons.cpp
+@@ -285,6 +285,8 @@ void UTIL_PrecacheOtherWeapon( const char *szClassname )
+ }
+ 
+ // called by worldspawn
++void CoF_PrecacheWeapons( void );
++
+ void W_Precache( void )
+ {
+ 	memset( CBasePlayerItem::ItemInfoArray, 0, sizeof(CBasePlayerItem::ItemInfoArray) );
+@@ -386,6 +388,9 @@ void W_Precache( void )
+ 	PRECACHE_SOUND( "weapons/bullet_hit2.wav" );	// hit by bullet
+ 
+ 	PRECACHE_SOUND( "items/weapondrop1.wav" );// weapon falls to the ground
++
++	// Cry of Fear weapons (game/cof-logic/cof/weapons_cof.cpp)
++	CoF_PrecacheWeapons();
+ }
+ 
+ TYPEDESCRIPTION	CBasePlayerItem::m_SaveData[] =
 diff --git a/dlls/wscript b/dlls/wscript
 index 3f2758cd..a08a02d2 100644
 --- a/dlls/wscript
