@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cry of Fear Web</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0b0b0c; --fg: #c9c9c9; --dim: #6b6b6b; --err: #e06c6c; }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg);
+                 font: 13px/1.4 ui-monospace, Consolas, monospace; }
+    /* minmax(0, 1fr): sin él, el tamaño que SDL pone al canvas estira la fila y tapa log y pie */
+    body { display: grid; grid-template-rows: auto minmax(0, 1fr) 28vh auto; }
+    main { position: relative; overflow: hidden; min-height: 0; }
+    header { padding: 6px 12px; color: var(--dim); border-bottom: 1px solid #222; }
+    #pointer { float: right; color: var(--fg); }
+    #update, #fullscreen { margin-left: 8px; font: inherit; color: var(--bg); background: var(--fg); border: 0; padding: 1px 8px; cursor: pointer; }
+    #fullscreen { background: transparent; color: var(--fg); border: 1px solid #333; }
+    /* !important: SDL escribe width/height en el style del canvas al cambiar el modo de vídeo */
+    #canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important;
+              display: block; background: #000; outline: none; }
+    #log { overflow-y: auto; padding: 6px 12px; border-top: 1px solid #222; white-space: pre-wrap; }
+    #log .err { color: var(--err); }
+    footer { padding: 6px 12px; color: var(--dim); border-top: 1px solid #222; }
+    footer a { color: var(--fg); }
+    footer details { display: inline; }
+    footer summary { display: inline; cursor: pointer; color: var(--fg); text-decoration: underline; }
+    #about { max-width: 72ch; margin: 8px 0 2px; color: var(--fg); }
+    #about p { margin: 0 0 6px; }
+  </style>
+</head>
+<body>
+  <header>Cry of Fear · Xash3D FWGS / WebAssembly — <span id="status">Iniciando…</span> <button id="update" hidden>Nueva versión · recargar</button> <button id="fullscreen">Pantalla completa</button> <span id="pointer"></span></header>
+  <main><canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas></main>
+  <div id="log"></div>
+  <footer>
+    <strong>Cry of Fear</strong> © Team Psykskallar ·
+    <a href="http://www.cry-of-fear.com" target="_blank" rel="noopener">cry-of-fear.com</a> ·
+    port web no oficial, sin fines de lucro y de código abierto ·
+    <details>
+      <summary>Acerca de</summary>
+      <div id="about">
+        <p><strong>Cry of Fear</strong> es obra de <strong>Team Psykskallar</strong> (Andreas Rönnberg y equipo).
+          Este port se publica con permiso de su autor y no es un producto oficial de Team Psykskallar.</p>
+        <p><strong>Sin fines de lucro:</strong> sin anuncios, sin donaciones y sin pagos de ningún tipo.
+          Si te gusta, juega al original en
+          <a href="http://www.cry-of-fear.com" target="_blank" rel="noopener">cry-of-fear.com</a>.</p>
+        <p><strong>Assets del juego</strong> (mapas, modelos, texturas, sonidos y música): © Team Psykskallar,
+          distribuidos aquí con su permiso. No están bajo la licencia del código.</p>
+        <p><strong>Código del port</strong>: GPL-3.0 (<a href="LICENSE.txt">licencia</a>,
+          <a href="https://github.com/Putrefacto669/Cry-Of-Fear-Port-Web" target="_blank" rel="noopener">código fuente</a>).
+          Motor: <a href="https://github.com/FWGS/xash3d-fwgs" target="_blank" rel="noopener">Xash3D FWGS</a> (GPL-3.0).
+          Lógica de juego provisional: <a href="https://github.com/FWGS/hlsdk-portable" target="_blank" rel="noopener">hlsdk-portable</a>
+          (licencia del Half-Life 1 SDK de Valve).</p>
+        <p><strong>Estado:</strong> demo técnica. Se ejecuta la lógica de Half-Life mientras se reimplementa
+          la de Cry of Fear: el mapa se recorre, pero aún faltan enemigos, objetos y las mecánicas propias del juego.</p>
+      </div>
+    </details>
+  </footer>
+  <script src="gpustats.js"></script>
+  <script src="postfx.js"></script>
+  <script src="loader.js"></script>
+</body>
+</html>

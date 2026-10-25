@@ -1,12 +1,11 @@
 # Assets del juego: propiedad de Team Psykskallar, nunca se versionan
 assets/
-# Builds y paquetes generados
-dist/
+# Builds y paquetes generados (dist/ sí se versiona: es la web lista para servir)
 build/
 *.wasm
 *.data
-# Reportes regenerables
-reports/
+!dist/**/*.wasm
+!dist/**/*.data
 # Logs
 *.log
 __pycache__/
