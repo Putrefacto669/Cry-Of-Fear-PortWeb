@@ -37,17 +37,22 @@
   });
 
   async function start() {
-    const maps = await fetch("packs/maps.json").then((r) => r.json()).catch(() => []);
+    // packs/maps.json: lista de mapas (un .data por mapa, package.sh) o
+    // {preloaded: true, maps: [...]} cuando todo va dentro de xash3d.data (build_preload.sh)
+    const manifest = await fetch("packs/maps.json").then((r) => r.json()).catch(() => []);
+    const preloaded = !Array.isArray(manifest) && manifest.preloaded === true;
+    const maps = Array.isArray(manifest) ? manifest : manifest.maps || [];
     const map = params.get("map") || maps[0];
     if (map && !maps.includes(map)) throw new Error(`mapa ${map} no empaquetado`);
+    const libDir = preloaded ? "/rodir/lib" : "/lib";
 
     const args = [
       "-game", "cryoffear",
       "-rodir", "/rodir",
       "-ref", "gles3compat",
-      "-dll", "/lib/server.wasm",
-      "-clientlib", "/lib/client.wasm",
-      "-menulib", "/lib/menu.wasm",
+      "-dll", `${libDir}/server.wasm`,
+      "-clientlib", `${libDir}/client.wasm`,
+      "-menulib", `${libDir}/menu.wasm`,
       "-dev", params.get("dev") || "1",
       "-log",
     ];
@@ -56,14 +61,14 @@
     window.Module = {
       canvas,
       arguments: args,
-      // .data de los paquetes viven en packs/, el resto junto a index.html
-      locateFile: (path) => (path.endsWith(".data") ? `packs/${path}` : path),
+      // .data de los paquetes viven en packs/; xash3d.data (--preload-file) junto a index.html
+      locateFile: (path) => (path.endsWith(".data") && path !== "xash3d.data" ? `packs/${path}` : path),
       preRun: [() => {
         // /rwdir: configuración y partidas, persistente en IndexedDB
         FS.mkdir("/rwdir");
         FS.mount(IDBFS, {}, "/rwdir");
         ENV.XASH3D_BASEDIR = "/rwdir";
-        ENV.LD_LIBRARY_PATH = "/lib";
+        ENV.LD_LIBRARY_PATH = libDir;
         addRunDependency("idbfs");
         FS.syncfs(true, (err) => {
           if (err) log(`IDBFS: ${err}`, "err");
@@ -84,10 +89,60 @@
     addEventListener("pagehide", () => { try { FS.syncfs(false, () => {}); } catch (_) { /* runtime no listo */ } });
 
     setStatus("Descargando paquetes…");
-    const packs = ["engine", "boot", ...(map ? [`map_${map}`] : [])];
+    const packs = preloaded ? [] : ["engine", "boot", ...(map ? [`map_${map}`] : [])];
     for (const p of packs) await loadScript(`packs/${p}.js`);
     await loadScript("xash3d.js");
   }
+
+  // --- Pointer Lock -------------------------------------------------------------------------
+  // El motor activa SDL_SetRelativeMouseMode al jugar (patches/xash3d/0001) y SDL pide el lock
+  // en el siguiente gesto del usuario. Aquí solo se mejora lo que SDL no cubre.
+  const pointerHint = document.getElementById("pointer");
+  let engineReleased = false; // el motor salió del lock (menú abierto), no el usuario
+  let lastRealEscape = 0;
+
+  // Movimiento sin aceleración del SO (Chrome/Edge): mirar 360° con sensibilidad constante y sin
+  // los picos de movementX de Windows. Si no se soporta, se repite sin opciones.
+  const nativeRequestLock = Element.prototype.requestPointerLock;
+  Element.prototype.requestPointerLock = function (options) {
+    const fallback = () => nativeRequestLock.call(this);
+    try {
+      const p = nativeRequestLock.call(this, { unadjustedMovement: true, ...options });
+      if (p && typeof p.catch === "function") return p.catch(fallback);
+      return p;
+    } catch (_) {
+      return fallback();
+    }
+  };
+
+  const nativeExitLock = Document.prototype.exitPointerLock;
+  Document.prototype.exitPointerLock = function () {
+    engineReleased = true;
+    return nativeExitLock.call(this);
+  };
+
+  addEventListener("keydown", (e) => { if (e.key === "Escape" && e.isTrusted) lastRealEscape = performance.now(); }, true);
+
+  // Esc libera el lock en el navegador y no siempre llega a la página: si el lock se pierde sin que
+  // el motor lo pidiera, se le manda un Escape para que abra el menú en vez de quedarse sin ratón.
+  const sendEscape = () => {
+    for (const type of ["keydown", "keyup"]) {
+      const ev = new KeyboardEvent(type, { key: "Escape", code: "Escape", bubbles: true, cancelable: true });
+      Object.defineProperty(ev, "keyCode", { get: () => 27 });
+      Object.defineProperty(ev, "which", { get: () => 27 });
+      dispatchEvent(ev);
+    }
+  };
+
+  document.addEventListener("pointerlockchange", () => {
+    const locked = document.pointerLockElement === canvas;
+    pointerHint.textContent = locked ? "Ratón capturado · Esc para liberarlo" : "";
+    if (!locked && !engineReleased && performance.now() - lastRealEscape > 200) sendEscape();
+    engineReleased = false;
+  });
+  document.addEventListener("pointerlockerror", () => {
+    pointerHint.textContent = "Haz clic en el juego para capturar el ratón";
+  });
 
   canvas.addEventListener("webglcontextlost", (e) => {
     e.preventDefault();
