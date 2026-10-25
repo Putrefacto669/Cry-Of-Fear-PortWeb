@@ -25,6 +25,12 @@ void CoF_ClearItem( CBaseEntity *pActivator, const char *classname );
 // current objective (hints.txt key), shown in the bag and kept in save games
 void CoF_SetObjective( const char *key );
 
+// puzzles.cpp: computer password and keypad code, drawn for each new game
+void CoF_PuzzlesNewGame( void );
+int CoF_GetPuzzleState( char *code, int size );
+void CoF_SetPuzzleState( int password, const char *code );
+bool CoF_PuzzleCommand( CBasePlayer *pPlayer, const char *pcmd );
+
 // weapons_cof.cpp, called from hlsdk's W_Precache
 void CoF_PrecacheWeapons( void );
 

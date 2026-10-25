@@ -595,7 +595,7 @@
     if (hintsCache) return hintsCache;
     hintsCache = {};
     try {
-      const text = new TextDecoder("latin1").decode(FS.readFile(resolveCi(`${GAME}/txtfiles/hints.txt`)));
+      const text = readText("hints.txt");
       for (const [, name, body] of text.matchAll(/^\s*([\w-]+)\s*\{([^}]*)\}/gm)) {
         const fields = {};
         for (const [, k, v] of body.matchAll(/(\w+)\s+"([^"]*)"/g)) fields[k] = v;
@@ -660,9 +660,300 @@
     renderBag();
   };
 
+
+  // --- subtitles, phone messages, notes, password and keypad dialogs (puzzles.cpp) -------------
+  // The game ships its texts in several languages: Spanish when the browser is in Spanish.
+  const SPANISH = /^es\b/i.test(navigator.language || "");
+  const textCache = new Map();
+  const readText = (rel) => {
+    if (textCache.has(rel)) return textCache.get(rel);
+    let text = "";
+    for (const path of SPANISH ? [`${GAME}/txtfiles/languages/spanish/${rel}`, `${GAME}/txtfiles/${rel}`] : [`${GAME}/txtfiles/${rel}`]) {
+      try { text = new TextDecoder("latin1").decode(FS.readFile(resolveCi(path))); break; } catch (_) { /* next */ }
+    }
+    textCache.set(rel, text);
+    return text;
+  };
+  const lineOf = (rel, n) => (readText(rel).split(/\r?\n/)[n - 1] || "").trim();
+
+  let panel = null;
+  const ensurePanel = () => {
+    if (panel) return;
+    const style = document.createElement("style");
+    style.textContent = `
+      #cof-sub { position:absolute; left:50%; bottom:13%; transform:translateX(-50%); max-width:min(86%, 900px);
+                 z-index:11; pointer-events:none; color:#f2f2f2; text-align:center;
+                 font:clamp(13px, 2.3vh, 22px)/1.35 Arial, sans-serif; text-shadow:0 0 4px #000, 0 0 2px #000;
+                 opacity:0; transition:opacity .3s ease; }
+      #cof-sub.on { opacity:1; }
+      #cof-sms { position:absolute; right:3%; top:6%; max-width:min(40%, 360px); z-index:11; pointer-events:none;
+                 padding:.7em 1em; background:rgba(10,20,10,.85); border:1px solid rgba(160,220,160,.4);
+                 color:#cfe8cf; font:clamp(12px, 1.9vh, 17px)/1.4 "Courier New", monospace; opacity:0; transition:opacity .4s; }
+      #cof-sms.on { opacity:1; }
+      #cof-dialog { position:absolute; inset:0; z-index:14; display:none; align-items:center; justify-content:center;
+                    background:rgba(0,0,0,.6); container-type:size; }
+      #cof-dialog.on { display:flex; }
+      #cof-dialog .paper { max-width:min(80cqw, 560px); max-height:80cqh; overflow:auto; padding:1.6em 2em;
+                           background:#e9e4d6; color:#222; white-space:pre-line; font:clamp(13px, 2.2vh, 19px)/1.5 Georgia, serif;
+                           box-shadow:0 8px 30px #000; }
+      #cof-dialog .picture { max-width:90cqw; max-height:88cqh; }
+      #cof-dialog .close { position:absolute; right:3%; top:3%; color:#ddd; font:16px Arial, sans-serif; cursor:pointer; }
+      #cof-dialog form { display:flex; flex-direction:column; gap:.8em; padding:1.5em 2em; background:#101418;
+                         border:1px solid #3a4550; color:#9fd29f; font:clamp(13px, 2vh, 18px) "Courier New", monospace; }
+      #cof-dialog input { all:unset; border-bottom:1px solid #9fd29f; padding:.2em; min-width:14em; }
+      #cof-dialog .keypad { position:relative; aspect-ratio:640 / 480; width:min(86cqw, calc(86cqh * 4 / 3)); }
+      #cof-dialog .keypad img { position:absolute; inset:0; width:100%; height:100%; }
+      #cof-dialog .keypad .screen { position:absolute; left:${250 / 640 * 100}%; top:${42 / 480 * 100}%;
+                         width:${143 / 640 * 100}%; height:${26 / 480 * 100}%; display:flex; align-items:center;
+                         justify-content:center; color:#162; font:bold clamp(12px, 2.4vh, 22px) "Courier New", monospace; }
+      #cof-dialog .keypad .key { position:absolute; cursor:pointer; }
+      #cof-dialog .keypad .key:hover { background:rgba(255,255,255,.08); }
+    `;
+    document.head.appendChild(style);
+    const sub = document.createElement("div");
+    sub.id = "cof-sub";
+    const sms = document.createElement("div");
+    sms.id = "cof-sms";
+    const dialog = document.createElement("div");
+    dialog.id = "cof-dialog";
+    dialog.addEventListener("click", (e) => { if (e.target === dialog || e.target.classList.contains("close")) closeDialog(); });
+    addEventListener("keydown", (e) => {
+      if (!dialog.classList.contains("on")) return;
+      // the dialog has the keyboard: keep it from the engine (TAB, E, movement...)
+      if (e.key === "Escape") closeDialog();
+      if (!dialog.querySelector("input")) e.stopPropagation();
+    }, true);
+    panel = { sub, sms, dialog, subTimer: 0, smsTimer: 0 };
+    document.querySelector("main").append(sub, sms, dialog);
+  };
+
+  const flash = (el, key, text, ms) => {
+    ensurePanel();
+    el.textContent = text;
+    el.classList.toggle("on", !!text);
+    clearTimeout(panel[key]);
+    panel[key] = setTimeout(() => el.classList.remove("on"), ms);
+  };
+
+  // "*" at the end of a subtitle marks the long ones in the original
+  const showSubtitle = (n) => {
+    const line = lineOf("subtitles.txt", n);
+    if (line) flash(panel?.sub || (ensurePanel(), panel.sub), "subTimer", line.replace(/\*$/, ""), line.endsWith("*") ? 5000 : 3500);
+  };
+
+  const showSms = (n) => {
+    const line = lineOf("phone_messages.txt", n + 1).replace(/^"|"$/g, "");
+    if (line) flash(panel?.sms || (ensurePanel(), panel.sms), "smsTimer", line, 7000);
+  };
+
+  const openDialog = (content) => {
+    ensurePanel();
+    if (document.pointerLockElement) document.exitPointerLock();
+    const close = document.createElement("div");
+    close.className = "close";
+    close.textContent = "✕";
+    panel.dialog.replaceChildren(content, close);
+    panel.dialog.classList.add("on");
+  };
+
+  const closeDialog = () => {
+    if (!panel) return;
+    panel.dialog.classList.remove("on");
+    panel.dialog.replaceChildren();
+    try { const p = document.getElementById("canvas").requestPointerLock(); if (p && p.catch) p.catch(() => {}); } catch (_) { /* click */ }
+  };
+
+  const showNote = (file) => {
+    const paper = document.createElement("div");
+    paper.className = "paper";
+    let text = "";
+    for (const path of SPANISH ? [`${GAME}/notes/languages/spanish/${file}`, `${GAME}/notes/${file}`] : [`${GAME}/notes/${file}`]) {
+      try { text = new TextDecoder("latin1").decode(FS.readFile(resolveCi(path))); break; } catch (_) { /* next */ }
+    }
+    paper.textContent = text || file;
+    openDialog(paper);
+  };
+
+  const showNoteText = (text) => {
+    const paper = document.createElement("div");
+    paper.className = "paper";
+    paper.textContent = text;
+    openDialog(paper);
+  };
+
+  const showImage = (rel) => {
+    const img = document.createElement("img");
+    img.className = "picture";
+    img.alt = "";
+    loadTga(`${GAME}/${rel}`).then((url) => { img.src = url; }).catch((e) => console.warn("cof image:", e.message));
+    openDialog(img);
+  };
+
+  const showComputer = (ent) => {
+    const form = document.createElement("form");
+    form.innerHTML = `<div>${SPANISH ? "Contraseña" : "Password"}:</div><input type="password" autocomplete="off" spellcheck="false">`;
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const text = form.querySelector("input").value.trim().replace(/\s+/g, "");
+      if (text) engineCmd(`cof_password ${ent} ${text}`);
+    });
+    openDialog(form);
+    setTimeout(() => form.querySelector("input").focus(), 50);
+  };
+
+  // keypad3.tga: 3x3 keys, the display above them (pixels of the 640x480 image)
+  const KEYPAD_KEYS = { x: 166, y: 84, w: 103, h: 99 };
+  const showKeypad = (ent) => {
+    const pad = document.createElement("div");
+    pad.className = "keypad";
+    pad.innerHTML = `<img alt=""><div class="screen"></div>`;
+    loadTga(`${VGUI}/keypad3.tga`).then((url) => { pad.querySelector("img").src = url; }).catch(() => {});
+    const screen = pad.querySelector(".screen");
+    let digits = "";
+    for (let i = 0; i < 9; i++) {
+      const key = document.createElement("div");
+      key.className = "key";
+      Object.assign(key.style, {
+        left: pct(KEYPAD_KEYS.x + (i % 3) * KEYPAD_KEYS.w, 640), top: pct(KEYPAD_KEYS.y + Math.floor(i / 3) * KEYPAD_KEYS.h, 480),
+        width: pct(KEYPAD_KEYS.w, 640), height: pct(KEYPAD_KEYS.h, 480),
+      });
+      key.addEventListener("click", () => {
+        digits = (digits + (i + 1)).slice(-4);
+        screen.textContent = digits;
+        if (digits.length === 4) engineCmd(`cof_keypad ${ent} ${digits}`);
+      });
+      pad.appendChild(key);
+    }
+    pad.dataset.keypad = "1";
+    openDialog(pad);
+  };
+
+  const answer = (ok) => {
+    const screen = panel && panel.dialog.querySelector(".screen");
+    if (screen) screen.textContent = ok ? "OK" : "----";
+    const input = panel && panel.dialog.querySelector("input");
+    if (input) { input.value = ""; input.placeholder = ok ? "" : (SPANISH ? "incorrecta" : "wrong"); }
+    if (ok) setTimeout(closeDialog, 600);
+  };
+
+
+  // --- pause menu (Esc in game) ---------------------------------------------------------------
+  // The engine's own menu is Half-Life's; in game Esc opens this one instead, with the art of
+  // the original menu. hud.js is loaded before the engine, so this capture listener runs first.
+  const pause = { el: null, open: false, engine: false };
+
+  const ensurePause = () => {
+    if (pause.el) return;
+    const style = document.createElement("style");
+    style.textContent = `
+      #cof-pause { position:absolute; inset:0; z-index:15; display:none; background:rgba(0,0,0,.72); user-select:none; }
+      #cof-pause.on { display:block; }
+      #cof-pause .logo { position:absolute; left:4%; top:7%; width:min(46%, 640px); }
+      #cof-pause .buttons { position:absolute; left:6%; top:34%; display:flex; flex-direction:column; gap:1.2vh;
+                            width:min(30%, 380px); }
+      #cof-pause button { all:unset; cursor:pointer; position:relative; aspect-ratio:280 / 38; }
+      #cof-pause button img { position:absolute; inset:0; width:100%; height:100%; }
+      #cof-pause button img.mo { opacity:0; transition:opacity .12s; }
+      #cof-pause button:hover img.mo { opacity:1; }
+      #cof-pause button.text { display:flex; align-items:center; justify-content:center; color:#eee;
+                               font:clamp(14px, 2.6vh, 26px) Arial, sans-serif; text-shadow:0 0 8px rgba(255,255,255,.35); }
+      #cof-pause button.text:hover { color:#c00; text-shadow:none; }
+    `;
+    document.head.appendChild(style);
+    const el = document.createElement("div");
+    el.id = "cof-pause";
+    const logo = document.createElement("img");
+    logo.className = "logo";
+    logo.alt = "Cry of Fear";
+    setPictureAbs(logo, `${VGUI}/menu_logo.tga`);
+    const buttons = document.createElement("div");
+    buttons.className = "buttons";
+    const textButton = (label, action) => {
+      const b = document.createElement("button");
+      b.className = "text";
+      b.textContent = label;
+      b.dataset.action = action;
+      return b;
+    };
+    const artButton = (art, action) => {
+      const b = document.createElement("button");
+      b.dataset.action = action;
+      b.setAttribute("aria-label", art);
+      const up = document.createElement("img");
+      const mo = document.createElement("img");
+      up.alt = mo.alt = "";
+      mo.className = "mo";
+      setPictureAbs(up, `${VGUI}/menu/${art}.tga`);
+      setPictureAbs(mo, `${VGUI}/menu/${art}_mo.tga`);
+      b.append(up, mo);
+      return b;
+    };
+    buttons.append(textButton(SPANISH ? "Continuar" : "Resume", "resume"), artButton("loadgame", "load"),
+      artButton("options", "options"), textButton(SPANISH ? "Menú principal" : "Main menu", "menu"));
+    buttons.addEventListener("click", (e) => {
+      const b = e.target.closest("button");
+      if (b) pauseAction(b.dataset.action);
+    });
+    el.append(logo, buttons);
+    pause.el = el;
+    document.querySelector("main").appendChild(el);
+  };
+
+  const setPaused = (on) => {
+    ensurePause();
+    pause.open = on;
+    pause.el.classList.toggle("on", on);
+    // Xash only has "pause", a toggle: send it when the state really changes
+    if (on !== pause.engine) { engineCmd("pause"); pause.engine = on; }
+    if (on && document.pointerLockElement) document.exitPointerLock();
+  };
+
+  const pauseAction = (action) => {
+    if (action === "resume") {
+      setPaused(false);
+      try { const p = document.getElementById("canvas").requestPointerLock(); if (p && p.catch) p.catch(() => {}); } catch (_) { /* */ }
+    } else if (action === "load") {
+      setPaused(false);
+      engineCmd("menu_loadgame");
+    } else if (action === "options") {
+      setPaused(false);
+      engineCmd("menu_options");
+    } else if (action === "menu") {
+      setPaused(false);
+      stopAllMusic();
+      // started with ?map=: the menu pack may not be mounted yet
+      const load = window.CoFPreload ? window.CoFPreload(MENU_MAP).catch(() => false) : Promise.resolve();
+      load.then(() => engineCmd(`map ${MENU_MAP}`));
+    }
+  };
+
+  // the key up of an Esc taken here must not reach the engine either
+  let escapeTaken = false;
+  addEventListener("keydown", (e) => {
+    if (e.key !== "Escape" && e.keyCode !== 27) return;
+    // the main menu and the dialogs of hud.js keep Esc
+    if (menu.visible || !window.CoFRuntimeReady || !currentMapName()) return;
+    if (panel && panel.dialog.classList.contains("on")) return;
+    escapeTaken = true;
+    e.stopImmediatePropagation();
+    e.preventDefault();
+    if (e.repeat) return;
+    if (bag.open) { engineCmd("+inventory"); engineCmd("-inventory"); return; }
+    setPaused(!pause.open);
+  }, true);
+  addEventListener("keyup", (e) => {
+    if ((e.key === "Escape" || e.keyCode === 27) && escapeTaken) {
+      escapeTaken = false;
+      e.stopImmediatePropagation();
+    }
+  }, true);
+
+  const currentMapName = () => (window.CoFCurrentMap ? window.CoFCurrentMap() : "");
+
   window.CoFHUD = {
     get bagOpen() { return bag.open; },
     get menuOpen() { return menu.visible; },
+    get paused() { return pause.open; },
     onMap,
     handle(line) {
       const [cmd, ...args] = line.trim().split(/\s+/);
@@ -715,6 +1006,38 @@
           break;
         case "HINT":
           if (args[0]) showHint(args[0]);
+          break;
+        case "SUB":
+          showSubtitle(parseInt(args[0], 10) || 0);
+          break;
+        case "SMS":
+          showSms(parseInt(args[0], 10) || 0);
+          break;
+        case "NOTE":
+          if (args[0]) showNote(args[0]);
+          break;
+        case "IMAGE":
+          if (args[0]) showImage(args[0]);
+          break;
+        case "COMPUTER":
+          showComputer(parseInt(args[0], 10) || 0);
+          break;
+        case "KEYPAD":
+          showKeypad(parseInt(args[0], 10) || 0);
+          break;
+        case "GRANTED":
+        case "DENIED":
+          answer(cmd === "GRANTED");
+          break;
+        case "CODE":
+          // the code note of the original: shown on paper and kept as the objective text
+          if (args[0]) {
+            showNoteText(`${SPANISH ? "Código" : "Code"}: ${args[0]}`);
+            bag.objective = `${bag.objective ? `${bag.objective}\n` : ""}${SPANISH ? "Código" : "Code"}: ${args[0]}`;
+          }
+          break;
+        case "SAVED":
+          flash(panel?.sub || (ensurePanel(), panel.sub), "subTimer", `${SPANISH ? "Partida guardada" : "Game saved"}${rest ? ` · ${rest}` : ""}`, 3000);
           break;
         case "PICKUP":
           if (args[0]) showPickup(args[0]);

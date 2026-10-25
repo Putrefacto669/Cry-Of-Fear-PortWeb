@@ -55,7 +55,15 @@ BOOT_FILES = ["liblist.gam", "valve.rc", "delta.lst","titles.txt", "skill.cfg", 
               "gfx/vgui/640_staminabar_barempty.tga",
               "sound/items/gunpickup2.wav",  # recoger armas (player_cof.cpp)
               "models/ammo/clip.mdl",  # ammo_glock (weapons_cof.cpp)
+              "models/tape_recorder.mdl",  # grabadoras para guardar (puzzles.cpp)
               "txtfiles/hints.txt",  # textos de cof_hint y cof_objective (hud.js)
+              # subtítulos, SMS, notas, contraseñas y teclado (puzzles.cpp, hud.js)
+              "txtfiles/subtitles.txt", "txtfiles/phone_messages.txt",
+              "txtfiles/languages/spanish/subtitles.txt", "txtfiles/languages/spanish/hints.txt",
+              "txtfiles/languages/spanish/phone_messages.txt", "gfx/vgui/keypad3.tga",
+              "gfx/vgui/640_pass1.tga", "gfx/vgui/640_pass2.tga", "gfx/vgui/640_pass3.tga",
+              "gfx/vgui/640_pass4.tga", "gfx/vgui/640_pass5.tga", "gfx/vgui/640_pass6.tga",
+              "gfx/vgui/640_pass7.tga", "gfx/vgui/640_pass8.tga",
               # menú principal original (hud.js)
               "gfx/vgui/menu_logo.tga", "gfx/vgui/640_difficulty.tga",
               "gfx/vgui/menu/newgame.TGA", "gfx/vgui/menu/newgame_mo.TGA",
@@ -69,7 +77,7 @@ BOOT_DIRS = ["gfx/shell", "resource", "sprites", "events", "inventoryitems",
              # armas de weapons_cof.cpp: el jugador las lleva de un mapa a otro
              "models/weapons/switchblade", "models/weapons/glock", "models/weapons/syringe",
              "models/weapons/mobile", "sound/weapons/switchblade", "sound/weapons/glock",
-             "sound/weapons/syringe", "sound/weapons/mobile"]
+             "sound/weapons/syringe", "sound/weapons/mobile", "notes"]
 # Enemigos de game/cof-logic/cof/monsters.cpp: el modelo y los sonidos los pone el código, no el BSP.
 # Se buscan por classname y por la "monstertype" de los monstermaker.
 MONSTER_ASSETS = {
@@ -80,6 +88,8 @@ MONSTER_ASSETS = {
     "monster_baby": ["models/baby.mdl", "sound/baby"],
     "monster_crazybitch": ["models/crazywoman.mdl", "sound/crazylady"],
     "monster_bosschainsaw": ["models/chainsawguy.mdl", "sound/boss/sawer"],
+    # puzzles.cpp
+    "tape_recorder": ["models/tape_recorder.mdl"],
 }
 ITEM_FIELD_RE = re.compile(r'"([^"]+)"\s*\{\s*data\s+"([^"]*)"\s*\}')
 

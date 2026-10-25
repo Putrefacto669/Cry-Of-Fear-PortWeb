@@ -294,6 +294,7 @@ void CoF_PlayerSpawn( CBasePlayer *pPlayer )
 
 	memset( s, 0, sizeof( *s ));
 	s->stamina = COF_STAMINA_MAX;
+	CoF_PuzzlesNewGame();
 	s->sentHealth = s->sentStamina = s->sentSprint = -1;
 	s->invDirty = TRUE;
 }
@@ -574,7 +575,7 @@ bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd )
 		FStrEq( pcmd, "cancelselect" ) || FStrEq( pcmd, "weapontoggle" ) ||
 		FStrEq( pcmd, "+attack3" ) || FStrEq( pcmd, "-attack3" ))
 		;
-	else if( CoF_DebugCommand( pPlayer, pcmd ))
+	else if( CoF_PuzzleCommand( pPlayer, pcmd ) || CoF_DebugCommand( pPlayer, pcmd ))
 		;
 	else
 		return false;
@@ -808,6 +809,8 @@ public:
 	string_t m_iszObjective;
 	string_t m_iszQuick[3];
 	float m_flStamina;
+	int m_iPassword;
+	string_t m_iszCode;
 };
 
 LINK_ENTITY_TO_CLASS( cof_playerstate, CCofPlayerState )
@@ -819,6 +822,8 @@ TYPEDESCRIPTION CCofPlayerState::m_SaveData[] =
 	DEFINE_ARRAY( CCofPlayerState, m_iszNames, FIELD_STRING, COF_MAX_ITEMS ),
 	DEFINE_FIELD( CCofPlayerState, m_iszObjective, FIELD_STRING ),
 	DEFINE_ARRAY( CCofPlayerState, m_iszQuick, FIELD_STRING, 3 ),
+	DEFINE_FIELD( CCofPlayerState, m_iPassword, FIELD_INTEGER ),
+	DEFINE_FIELD( CCofPlayerState, m_iszCode, FIELD_STRING ),
 	DEFINE_FIELD( CCofPlayerState, m_flStamina, FIELD_FLOAT ),
 };
 
@@ -843,6 +848,9 @@ int CCofPlayerState::Save( CSave &save )
 	for( int q = 0; q < 3; q++ )
 		m_iszQuick[q] = s->quick[q][0] ? ALLOC_STRING( s->quick[q] ) : iStringNull;
 	m_flStamina = s->stamina;
+	char code[16];
+	m_iPassword = CoF_GetPuzzleState( code, sizeof( code ));
+	m_iszCode = ALLOC_STRING( code );
 
 	if( !CBaseEntity::Save( save ))
 		return 0;
@@ -869,6 +877,7 @@ int CCofPlayerState::Restore( CRestore &restore )
 	snprintf( s->objective, sizeof( s->objective ), "%s", FStringNull( m_iszObjective ) ? "" : STRING( m_iszObjective ));
 	s->stamina = m_flStamina;
 	s->exhausted = FALSE;
+	CoF_SetPuzzleState( m_iPassword, FStringNull( m_iszCode ) ? "" : STRING( m_iszCode ));
 	s->invDirty = TRUE;
 	s->store = this;
 	return 1;
