@@ -1,6 +1,6 @@
 // loader.js - Arranca Xash3D (WASM) con los paquetes de Cry of Fear.
 //
-// Orden: define Module -> scripts de paquetes (engine, boot, mapa) -> xash.js.
+// Orden: define Module -> scripts de paquetes (engine, boot, mapa) -> xash3d.js.
 // Los paquetes generados por file_packager se registran como dependencias de arranque,
 // así que main() no corre hasta que todos están montados en MEMFS.
 //
@@ -86,7 +86,7 @@
     setStatus("Descargando paquetes…");
     const packs = ["engine", "boot", ...(map ? [`map_${map}`] : [])];
     for (const p of packs) await loadScript(`packs/${p}.js`);
-    await loadScript("xash.js");
+    await loadScript("xash3d.js");
   }
 
   canvas.addEventListener("webglcontextlost", (e) => {

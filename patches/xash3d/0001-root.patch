@@ -85,14 +85,21 @@ index ac3a43c2..07828e8f 100644
  #endif // XASH_TIMER == TIMER_SDL
  
 diff --git a/engine/wscript b/engine/wscript
-index 9bb46271..a449be86 100644
+index 9bb46271..8e7f7f03 100644
 --- a/engine/wscript
 +++ b/engine/wscript
-@@ -308,12 +308,21 @@ def build(bld):
- 		if bld.env.DEST_OS == 'emscripten':
- 			linkflags = ['-sINITIAL_MEMORY=134217728', '-sALLOW_MEMORY_GROWTH=1', '-sSTACK_SIZE=16777216']
+@@ -306,17 +306,29 @@ def build(bld):
+ 		linkflags = []
  
+ 		if bld.env.DEST_OS == 'emscripten':
+-			linkflags = ['-sINITIAL_MEMORY=134217728', '-sALLOW_MEMORY_GROWTH=1', '-sSTACK_SIZE=16777216']
+-
 -			linkflags += ['-sASYNCIFY=1']
++			# 128 MiB to start, grow on demand up to 2 GiB: going past 2 GiB needs every pointer
++			# to be treated as unsigned, which GoldSrc-era code does not guarantee
++			linkflags = ['-sINITIAL_MEMORY=134217728', '-sALLOW_MEMORY_GROWTH=1', '-sMAXIMUM_MEMORY=2147483648', '-sSTACK_SIZE=16777216']
++			linkflags += ['-sENVIRONMENT=web']
++
 +			# no ASYNCIFY: with MAIN_MODULE it replaces SDL's HTML5 callbacks with aborting stubs
 +			# (dynCall_* exports are computed before binaryen generates them); the main loop
 +			# is driven by emscripten_set_main_loop instead
@@ -113,7 +120,11 @@ index 9bb46271..a449be86 100644
 +				linkflags += ['--preload-file', '%s@/rodir' % node.path_from(bld.bldnode)]
  
  		f(source = source,
- 			target = 'xash',
+-			target = 'xash',
++			target = 'xash3d' if bld.env.DEST_OS == 'emscripten' else 'xash',
+ 			includes = includes,
+ 			features = 'cxx c',
+ 			use = libs,
 diff --git a/ref/gl/gl2_shim/gl2_shim.c b/ref/gl/gl2_shim/gl2_shim.c
 index 91541c9b..eb343d15 100644
 --- a/ref/gl/gl2_shim/gl2_shim.c

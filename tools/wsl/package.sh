@@ -21,7 +21,9 @@ source "${EMSDK_DIR:-$HOME/emsdk}/emsdk_env.sh" > /dev/null 2>&1
 PACKAGER="$EMSDK/upstream/emscripten/tools/file_packager"
 
 mkdir -p "$DIST/packs" "$STAGE/lib"
-cp "$B/engine/engine/xash.js" "$B/engine/engine/xash.wasm" "$DIST/"
+# xash3d.html es la página por defecto de emcc (sin paquetes ni argumentos); index.html es la buena
+cp "$B/engine/engine/xash3d.html" "$B/engine/engine/xash3d.js" "$B/engine/engine/xash3d.wasm" "$DIST/"
+rm -f "$DIST/xash.js" "$DIST/xash.wasm"
 cp "$WEB/index.html" "$WEB/loader.js" "$DIST/"
 
 # Nombres que espera el motor: dlopen("filesystem_stdio.wasm") y "libref_<nombre>.wasm"
