@@ -37,5 +37,8 @@ void CoF_CameraFlash( CBasePlayer *pPlayer );
 // weapons_cof.cpp, called from hlsdk's W_Precache
 void CoF_PrecacheWeapons( void );
 
+// a message in the middle of the screen; hud.js shows it (translated when it can)
+void CoF_CenterPrint( const char *text );
+
 // one-line markers for platform/web/hud.js ("COF/HUD ..." on the server console)
 void CoF_HudPrint( const char *fmt, ... );

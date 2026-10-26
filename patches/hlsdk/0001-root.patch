@@ -13,6 +13,38 @@ index 80f4cdae..1fda8f1e 100644
  	int i;
  
  	if( width < 640 )
+diff --git a/cl_dll/hud.cpp b/cl_dll/hud.cpp
+index 45967b72..e7502ef8 100644
+--- a/cl_dll/hud.cpp
++++ b/cl_dll/hud.cpp
+@@ -97,6 +97,9 @@ cvar_t *cl_viewbob = NULL;
+ void ShutdownInput( void );
+ 
+ //DECLARE_MESSAGE( m_Logo, Logo )
++void CoF_ClientInit( void );
++void CoF_ClientVidInit( void );
++
+ int __MsgFunc_Logo( const char *pszName, int iSize, void *pbuf )
+ {
+ 	return gHUD.MsgFunc_Logo( pszName, iSize, pbuf );
+@@ -293,6 +296,8 @@ int __MsgFunc_AllowSpec( const char *pszName, int iSize, void *pbuf )
+ void CHud::Init( void )
+ {
+ 	HOOK_MESSAGE( Logo );
++	// Cry of Fear user messages (game/cof-logic/client)
++	CoF_ClientInit();
+ 	HOOK_MESSAGE( ResetHUD );
+ 	HOOK_MESSAGE( GameMode );
+ 	HOOK_MESSAGE( InitHUD );
+@@ -436,6 +441,8 @@ int CHud::GetSpriteIndex( const char *SpriteName )
+ 
+ void CHud::VidInit( void )
+ {
++	CoF_ClientVidInit(); // a new level starts without fog or emitters
++
+ 	int j;
+ 	m_scrinfo.iSize = sizeof(m_scrinfo);
+ 	GetScreenInfo( &m_scrinfo );
 diff --git a/cl_dll/hud.h b/cl_dll/hud.h
 index d712965c..feaaccc9 100644
 --- a/cl_dll/hud.h
@@ -32,6 +64,38 @@ index d712965c..feaaccc9 100644
  		return m_rgrcRects[index];
  	}
  
+diff --git a/cl_dll/tri.cpp b/cl_dll/tri.cpp
+index 0088daf3..34a5a534 100644
+--- a/cl_dll/tri.cpp
++++ b/cl_dll/tri.cpp
+@@ -93,8 +93,13 @@ HUD_DrawNormalTriangles
+ Non-transparent triangles-- add them here
+ =================
+ */
++void CoF_ClientFrame( void );
++
+ void DLLEXPORT HUD_DrawNormalTriangles( void )
+ {
++	// Cry of Fear: fog and particle emitters (game/cof-logic/client)
++	CoF_ClientFrame();
++
+ 	gHUD.m_Spectator.DrawOverview();
+ #if TEST_IT
+ //	Draw_Triangles();
+@@ -108,8 +113,13 @@ HUD_DrawTransparentTriangles
+ Render any triangles with transparent rendermode needs here
+ =================
+ */
++void CoF_ClientDrawTransparent( void );
++
+ void DLLEXPORT HUD_DrawTransparentTriangles( void )
+ {
++	// Cry of Fear: particles of env_particle (game/cof-logic/client)
++	CoF_ClientDrawTransparent();
++
+ #if TEST_IT
+ //	Draw_Triangles();
+ #endif
 diff --git a/cl_dll/vgui_int.cpp b/cl_dll/vgui_int.cpp
 index ffa101fc..71ca7b6f 100644
 --- a/cl_dll/vgui_int.cpp
@@ -48,6 +112,97 @@ index ffa101fc..71ca7b6f 100644
  
  	// root->getSurfaceBase()->setEmulatedCursorVisible( true );
  
+diff --git a/cl_dll/wscript b/cl_dll/wscript
+index 8815a3fb..6b7fc218 100644
+--- a/cl_dll/wscript
++++ b/cl_dll/wscript
+@@ -44,6 +44,11 @@ def build(bld):
+ 
+ 	source = bld.path.ant_glob('**/*.cpp', excl=excluded_files)
+ 	source += bld.path.parent.ant_glob('game_shared/*.cpp', excl=excluded_files)
++
++	# Cry of Fear client code lives in game/cof-logic, outside the SDK tree.
++	cof_client = bld.path.parent.parent.find_node('cof-logic/client')
++	if cof_client is not None:
++		source += cof_client.ant_glob('*.cpp')
+ 	source += bld.path.parent.ant_glob([
+ 		'public/safe_snprintf.c',
+ 		'pm_shared/*.c',
+diff --git a/dlls/buttons.cpp b/dlls/buttons.cpp
+index 9c7d5d39..caf3f428 100644
+--- a/dlls/buttons.cpp
++++ b/dlls/buttons.cpp
+@@ -268,6 +268,10 @@ TYPEDESCRIPTION CBaseButton::m_SaveData[] =
+ 	DEFINE_FIELD( CBaseButton, m_bUnlockedSound, FIELD_CHARACTER ),	
+ 	DEFINE_FIELD( CBaseButton, m_bUnlockedSentence, FIELD_CHARACTER ),
+ 	DEFINE_FIELD( CBaseButton, m_strChangeTarget, FIELD_STRING ),
++	DEFINE_FIELD( CBaseButton, m_iszCofLockedBy, FIELD_STRING ),
++	DEFINE_FIELD( CBaseButton, m_iszCofLockedMsg, FIELD_STRING ),
++	DEFINE_FIELD( CBaseButton, m_iszCofUnlockedMsg, FIELD_STRING ),
++	DEFINE_FIELD( CBaseButton, m_iszCofUnlockedSnd, FIELD_STRING ),
+ 	//DEFINE_FIELD( CBaseButton, m_ls, FIELD_??? ),   // This is restored in Precache()
+ };
+ 	
+@@ -277,6 +281,9 @@ void CBaseButton::Precache( void )
+ {
+ 	const char *pszSound;
+ 
++	if( !FStringNull( m_iszCofUnlockedSnd ) )
++		PRECACHE_SOUND( (char *)STRING( m_iszCofUnlockedSnd ) );
++
+ 	if( FBitSet( pev->spawnflags, SF_BUTTON_SPARK_IF_OFF ) )// this button should spark in OFF state
+ 	{
+ 		PRECACHE_SOUND( "buttons/spark1.wav" );
+@@ -372,9 +379,21 @@ void CBaseButton::Precache( void )
+ //
+ // Cache user-entity-field values until spawn is called.
+ //
++bool CoF_ButtonLock( CBaseEntity *pButton, CBaseEntity *pActivator, string_t *lockedBy, string_t lockedMsg, string_t unlockedMsg, string_t unlockedSnd );
++
+ void CBaseButton::KeyValue( KeyValueData *pkvd )
+ {
+-	if( FStrEq( pkvd->szKeyName, "changetarget" ) )
++	if( FStrEq( pkvd->szKeyName, "lockedby" ) || FStrEq( pkvd->szKeyName, "lockedmsg" ) ||
++		FStrEq( pkvd->szKeyName, "unlockedmsg" ) || FStrEq( pkvd->szKeyName, "unlockedsnd" ) )
++	{
++		string_t value = pkvd->szValue[0] ? ALLOC_STRING( pkvd->szValue ) : iStringNull;
++		if( FStrEq( pkvd->szKeyName, "lockedby" ) ) m_iszCofLockedBy = value;
++		else if( FStrEq( pkvd->szKeyName, "lockedmsg" ) ) m_iszCofLockedMsg = value;
++		else if( FStrEq( pkvd->szKeyName, "unlockedmsg" ) ) m_iszCofUnlockedMsg = value;
++		else m_iszCofUnlockedSnd = value;
++		pkvd->fHandled = TRUE;
++	}
++	else if( FStrEq( pkvd->szKeyName, "changetarget" ) )
+ 	{
+ 		m_strChangeTarget = ALLOC_STRING( pkvd->szValue );
+ 		pkvd->fHandled = TRUE;
+@@ -652,6 +671,9 @@ void CBaseButton::ButtonUse( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_
+ 	if( m_toggle_state == TS_GOING_UP || m_toggle_state == TS_GOING_DOWN )
+ 		return;
+ 
++	if( !CoF_ButtonLock( this, pActivator, &m_iszCofLockedBy, m_iszCofLockedMsg, m_iszCofUnlockedMsg, m_iszCofUnlockedSnd ) )
++		return;
++
+ 	m_hActivator = pActivator;
+ 	if( m_toggle_state == TS_AT_TOP )
+ 	{
+diff --git a/dlls/cbase.h b/dlls/cbase.h
+index d7ec85fd..e46cf4af 100644
+--- a/dlls/cbase.h
++++ b/dlls/cbase.h
+@@ -724,6 +724,12 @@ public:
+ 	BYTE m_bUnlockedSound;	
+ 	BYTE m_bUnlockedSentence;
+ 	int m_sounds;
++
++	// Cry of Fear: buttons locked by an inventory item (game/cof-logic/cof/doors.cpp)
++	string_t m_iszCofLockedBy;
++	string_t m_iszCofLockedMsg;
++	string_t m_iszCofUnlockedMsg;
++	string_t m_iszCofUnlockedSnd;
+ };
+ 
+ //
 diff --git a/dlls/client.cpp b/dlls/client.cpp
 index da2e9e1d..33dda9d8 100644
 --- a/dlls/client.cpp
@@ -101,7 +256,7 @@ index 53323a74..2a7e7083 100644
  
  //=========================================================
 diff --git a/dlls/player.cpp b/dlls/player.cpp
-index bbb68ea6..7c58cff6 100644
+index bbb68ea6..9b44de38 100644
 --- a/dlls/player.cpp
 +++ b/dlls/player.cpp
 @@ -40,6 +40,10 @@
@@ -115,7 +270,26 @@ index bbb68ea6..7c58cff6 100644
  extern DLL_GLOBAL BOOL g_fGameOver;
  extern DLL_GLOBAL BOOL g_fDrawLines;
  int gEvilImpulse101;
-@@ -1891,6 +1895,8 @@ void CBasePlayer::PreThink( void )
+@@ -185,6 +189,8 @@ int gmsgTeamNames = 0;
+ int gmsgStatusText = 0;
+ int gmsgStatusValue = 0;
+ 
++void CoF_LinkUserMessages( void );
++
+ void LinkUserMessages( void )
+ {
+ 	// Already taken care of?
+@@ -230,6 +236,9 @@ void LinkUserMessages( void )
+ 
+ 	gmsgStatusText = REG_USER_MSG( "StatusText", -1 );
+ 	gmsgStatusValue = REG_USER_MSG( "StatusValue", 3 );
++
++	// Cry of Fear (game/cof-logic/cof/effects_cof.cpp)
++	CoF_LinkUserMessages();
+ }
+ 
+ LINK_ENTITY_TO_CLASS( player, CBasePlayer )
+@@ -1891,6 +1900,8 @@ void CBasePlayer::PreThink( void )
  
  	UTIL_MakeVectors( pev->v_angle );             // is this still used?
  
@@ -124,7 +298,7 @@ index bbb68ea6..7c58cff6 100644
  	ItemPreFrame();
  	WaterMove();
  
-@@ -2998,6 +3004,7 @@ void CBasePlayer::Spawn( void )
+@@ -2998,6 +3009,7 @@ void CBasePlayer::Spawn( void )
  
  	SET_VIEW(edict(), edict());
  

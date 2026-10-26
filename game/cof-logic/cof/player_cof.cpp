@@ -58,6 +58,12 @@ typedef struct
 
 static cof_player_t g_cofPlayers[33];
 
+void CoF_CenterPrint( const char *text )
+{
+	if( text && text[0] )
+		CoF_HudPrint( "COF/HUD CENTER %s\n", text );
+}
+
 void CoF_HudPrint( const char *fmt, ... )
 {
 	char buf[512];
@@ -213,7 +219,7 @@ bool CoF_AddBagEntry( CBaseEntity *pActivator, const char *item )
 
 	if( s->numItems >= COF_MAX_ITEMS )
 	{
-		ClientPrint( pPlayer->pev, HUD_PRINTCENTER, "I can't carry any more." );
+		CoF_CenterPrint( "I can't carry any more." );
 		return false;
 	}
 
@@ -517,6 +523,12 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
 		if( pNew )
 			DROP_TO_FLOOR( pNew->edict());
 	}
+	else if( FStrEq( pcmd, "cof_goto" ) && CMD_ARGC() >= 4 )
+	{
+		// cof_goto x y z
+		UTIL_SetOrigin( pPlayer->pev, Vector( atof( CMD_ARGV( 1 )), atof( CMD_ARGV( 2 )), atof( CMD_ARGV( 3 ))));
+		pPlayer->pev->velocity = g_vecZero;
+	}
 	else if( FStrEq( pcmd, "cof_usemodel" ) || FStrEq( pcmd, "cof_goto" ))
 	{
 		CBaseEntity *pTarget = CoF_FindDebugTarget( arg );
@@ -779,7 +791,7 @@ void CCofGiveItems::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE
 		return;
 
 	if( !FStringNull( m_iszMsg ))
-		ClientPrint( pPlayer->pev, HUD_PRINTCENTER, STRING( m_iszMsg ));
+		CoF_CenterPrint( STRING( m_iszMsg ));
 }
 
 class CCofClearItems : public CPointEntity

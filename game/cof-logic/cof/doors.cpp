@@ -143,7 +143,7 @@ static void InterDoor_Sound( CBaseEntity *pEntity, string_t sound )
 static void InterDoor_Message( CBaseEntity *pPlayer, string_t msg )
 {
 	if( !FStringNull( msg ))
-		ClientPrint( pPlayer->pev, HUD_PRINTCENTER, STRING( msg ));
+		CoF_CenterPrint( STRING( msg ));
 }
 
 BOOL CInterDoor::TryUnlock( CBaseEntity *pActivator )
@@ -285,4 +285,34 @@ void CCofInterDoorOnOff::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE
 		if( FClassnameIs( pDoor->pev, "inter_door" ))
 			( (CInterDoor *)pDoor )->SetLock( m_sNewLock );
 	}
+}
+
+/*
+=====================================================================
+func_button with "lockedby": hlsdk's CBaseButton asks here before it
+is pressed. With the item, it is used up and the button goes at once
+(the videotape plays, the rope is placed).
+=====================================================================
+*/
+bool CoF_ButtonLock( CBaseEntity *pButton, CBaseEntity *pActivator, string_t *lockedBy, string_t lockedMsg, string_t unlockedMsg, string_t unlockedSnd )
+{
+	if( FStringNull( *lockedBy ))
+		return true;
+	if( !pActivator || !pActivator->IsPlayer())
+		return false;
+
+	if( !CoF_HasItem( pActivator, STRING( *lockedBy )))
+	{
+		if( !FStringNull( lockedMsg ))
+			CoF_CenterPrint( STRING( lockedMsg ));
+		return false;
+	}
+
+	CoF_RemoveItem( pActivator, STRING( *lockedBy ));
+	*lockedBy = iStringNull;
+	if( !FStringNull( unlockedSnd ))
+		EMIT_SOUND( ENT( pButton->pev ), CHAN_ITEM, STRING( unlockedSnd ), 1.0f, ATTN_NORM );
+	if( !FStringNull( unlockedMsg ))
+		CoF_CenterPrint( STRING( unlockedMsg ));
+	return true;
 }

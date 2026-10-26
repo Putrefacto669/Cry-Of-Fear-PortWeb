@@ -372,7 +372,7 @@ void CCofSyringe::PrimaryAttack( void )
 		return;
 	if( m_pPlayer->pev->health >= m_pPlayer->pev->max_health )
 	{
-		ClientPrint( m_pPlayer->pev, HUD_PRINTCENTER, "I don't need that right now." );
+		CoF_CenterPrint( "I don't need that right now." );
 		m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 1.0f;
 		return;
 	}

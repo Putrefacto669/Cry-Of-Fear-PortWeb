@@ -168,6 +168,13 @@ def map_dependencies(game: Path, bsp: Path) -> tuple[set[str], list[str]]:
                 deps.add(v if v.startswith("sound/") else f"sound/{v}")
             elif v.startswith("inventoryitems/") and v.endswith(".txt"):
                 deps.update(item_dependencies(game, v))
+            elif v.endswith(".aur"):
+                # sistema de partículas (atmosphere.cpp): el archivo y su sprite
+                deps.add(v)
+                aur = find_ci(game, v)
+                m = aur and re.search(r'"sprite"\s+"([^"]+)"', aur.read_text(encoding="latin-1"))
+                if m:
+                    deps.add(m.group(1).lower())
     # Mapas con el mismo nombre base: .res (lista de recursos) y overview
     for extra in (f"maps/{bsp.stem}.res", f"maps/{bsp.stem}.txt"):
         deps.add(extra)

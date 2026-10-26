@@ -1010,6 +1010,61 @@
     return `Capítulo ${m[1]} - ${CHAPTERS_ES[m[2].toLowerCase()] || m[2]}`;
   };
 
+
+  // --- messages in the middle of the screen (CoF_CenterPrint) ---------------------------------
+  // They come from the levels in English; these are the ones of the prologue, prelude and
+  // chapter 1. Unknown ones stay in English.
+  const CENTER_ES = {
+    "I need to check out the other door first.": "Primero tengo que revisar la otra puerta.",
+    "The door won't budge.": "La puerta no se mueve.",
+    "The door won't budge": "La puerta no se mueve.",
+    "What the... The door won't open now.": "¿Qué...? Ahora la puerta no se abre.",
+    "The doors won't budge.": "Las puertas no se mueven.",
+    "The shutter is closed. It won't budge.": "La persiana está cerrada. No se mueve.",
+    "You unlocked the door.": "Has abierto la cerradura.",
+    "This hall door is locked.": "La puerta de este pasillo está cerrada con llave.",
+    "Can't call the elevator. It must be stuck somewhere.": "No puedo llamar al ascensor. Debe de estar atascado en algún sitio.",
+    "There's a keypad next to the elevator.": "Hay un teclado junto al ascensor.",
+    "The door is locked.": "La puerta está cerrada con llave.",
+    "Seems like it's locked from the other side.": "Parece que está cerrada por el otro lado.",
+    "The lock is jammed. Can't open it.": "La cerradura está atascada. No puedo abrirla.",
+    "I can't open it. Did it jam?": "No puedo abrirla. ¿Se habrá atascado?",
+    "You got a handgun.": "Has conseguido una pistola.",
+    "I need to go to the fourth floor.": "Tengo que ir a la cuarta planta.",
+    "What? Someone locked it.": "¿Qué? Alguien la ha cerrado con llave.",
+    "The doors have been completely blocked!": "¡Han bloqueado las puertas por completo!",
+    "I can view videotapes with this.": "Con esto puedo ver cintas de vídeo.",
+    "You inserted the Videotape.": "Has metido la cinta de vídeo.",
+    "I can't open this door, they have blocked it.": "No puedo abrir esta puerta, la han bloqueado.",
+    "What the?! Somebody's blocked the door!": "¿¡Qué!? ¡Alguien ha bloqueado la puerta!",
+    "You will need a rope or something to climb down.": "Necesitaré una cuerda o algo para bajar.",
+    "You have placed the rope.": "Has colocado la cuerda.",
+    "I can't carry any more.": "No puedo llevar nada más.",
+    "I don't need that right now.": "Ahora no me hace falta.",
+  };
+
+  let centerBox = null;
+  const showCenter = (text) => {
+    if (!centerBox) {
+      const style = document.createElement("style");
+      style.textContent = `
+        #cof-center { position:absolute; left:50%; top:62%; transform:translateX(-50%); max-width:min(80%, 760px);
+                      z-index:11; pointer-events:none; color:#f0f0f0; text-align:center;
+                      font:clamp(14px, 2.4vh, 24px)/1.35 Arial, sans-serif; text-shadow:0 0 6px #000, 0 0 2px #000;
+                      opacity:0; transition:opacity .25s ease; }
+        #cof-center.on { opacity:1; }
+      `;
+      document.head.appendChild(style);
+      centerBox = { el: document.createElement("div"), timer: 0 };
+      centerBox.el.id = "cof-center";
+      document.querySelector("main").appendChild(centerBox.el);
+    }
+    centerBox.el.textContent = (SPANISH && CENTER_ES[text.trim()]) || text;
+    centerBox.el.classList.add("on");
+    clearTimeout(centerBox.timer);
+    centerBox.timer = setTimeout(() => centerBox.el.classList.remove("on"), 3500);
+  };
+
   window.CoFHUD = {
     get bagOpen() { return bag.open; },
     get menuOpen() { return menu.visible; },
@@ -1057,6 +1112,9 @@
           break;
         case "MUSICSTOP":
           stopMusic(parseInt(args[0], 10) || 0);
+          break;
+        case "CENTER":
+          if (rest) showCenter(rest);
           break;
         case "RAIN":
           setRain(+args[0] || 0, +args[1] || 0, +args[2] || 0);
