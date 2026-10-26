@@ -48,6 +48,8 @@ BOOT_FILES = ["liblist.gam", "valve.rc", "delta.lst","titles.txt", "skill.cfg", 
               "gfx/vgui/introductions/english/english_sp.TGA",
               "gfx/vgui/introductions/english/english_doc.TGA",
               "gfx/vgui/introductions/english/english_coop.TGA",
+              "gfx/vgui/introductions/spanish/spanish_sp.TGA",
+              "gfx/vgui/introductions/spanish/spanish_doc.TGA",
               # bolso, salud y energía (hud.js)
               "gfx/vgui/640_inventory.tga", "gfx/vgui/640_healthbar.tga",
               "gfx/vgui/640_healthbar_bar.tga", "gfx/vgui/640_healthbar_barempty.tga",
@@ -77,7 +79,8 @@ BOOT_DIRS = ["gfx/shell", "resource", "sprites", "events", "inventoryitems",
              # armas de weapons_cof.cpp: el jugador las lleva de un mapa a otro
              "models/weapons/switchblade", "models/weapons/glock", "models/weapons/syringe",
              "models/weapons/mobile", "sound/weapons/switchblade", "sound/weapons/glock",
-             "sound/weapons/syringe", "sound/weapons/mobile", "notes"]
+             "sound/weapons/syringe", "sound/weapons/mobile", "models/weapons/camera",
+             "sound/weapons/camera", "notes"]
 # Enemigos de game/cof-logic/cof/monsters.cpp: el modelo y los sonidos los pone el código, no el BSP.
 # Se buscan por classname y por la "monstertype" de los monstermaker.
 MONSTER_ASSETS = {

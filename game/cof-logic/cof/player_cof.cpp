@@ -163,7 +163,8 @@ static void CoF_SendInventory( cof_player_t *s )
 static bool CoF_IsRealWeapon( const char *name )
 {
 	return !stricmp( name, "weapon_switchblade" ) || !stricmp( name, "weapon_glock" ) ||
-		!stricmp( name, "weapon_syringe" ) || !stricmp( name, "weapon_mobile" );
+		!stricmp( name, "weapon_syringe" ) || !stricmp( name, "weapon_mobile" ) ||
+		!stricmp( name, "weapon_camera" );
 }
 
 static int CoF_FindItem( cof_player_t *s, const char *name )
@@ -466,6 +467,17 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
 		// turns to the nearest living monster, eyes on its chest
 		CBaseEntity *pNear = NULL, *pBest = NULL;
 		float best = 1e9f;
+		// cof_face <targetname|*N>: that entity instead (brushes: the middle of their box)
+		if( CMD_ARGC() >= 2 && ( pBest = CoF_FindDebugTarget( CMD_ARGV( 1 ))))
+		{
+			Vector center = ( pBest->pev->absmin + pBest->pev->absmax ) * 0.5f;
+			Vector ang = UTIL_VecToAngles( center - ( pPlayer->pev->origin + pPlayer->pev->view_ofs ));
+			ang.x = -ang.x;
+			pPlayer->pev->angles = pPlayer->pev->v_angle = ang;
+			pPlayer->pev->fixangle = TRUE;
+			ALERT( at_console, "facing %s at %.0f units\n", CMD_ARGV( 1 ), ( center - pPlayer->pev->origin ).Length());
+			return true;
+		}
 		while(( pNear = UTIL_FindEntityInSphere( pNear, pPlayer->pev->origin, 1024 )))
 		{
 			float d = ( pNear->pev->origin - pPlayer->pev->origin ).Length();
@@ -680,7 +692,6 @@ public:
 
 LINK_ENTITY_TO_CLASS( weapon_axe, CCofWeaponPickup )
 LINK_ENTITY_TO_CLASS( weapon_booklaser, CCofWeaponPickup )
-LINK_ENTITY_TO_CLASS( weapon_camera, CCofWeaponPickup )
 LINK_ENTITY_TO_CLASS( weapon_famas, CCofWeaponPickup )
 LINK_ENTITY_TO_CLASS( weapon_mp5, CCofWeaponPickup )
 

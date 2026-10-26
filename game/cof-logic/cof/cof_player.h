@@ -31,6 +31,9 @@ int CoF_GetPuzzleState( char *code, int size );
 void CoF_SetPuzzleState( int password, const char *code );
 bool CoF_PuzzleCommand( CBasePlayer *pPlayer, const char *pcmd );
 
+// puzzles.cpp: the camera flash fires the camera_spot_trigger in the frame
+void CoF_CameraFlash( CBasePlayer *pPlayer );
+
 // weapons_cof.cpp, called from hlsdk's W_Precache
 void CoF_PrecacheWeapons( void );
 

@@ -93,7 +93,7 @@
   };
 
   const introPath = (mode, lang) => {
-    const language = LANGS[lang] || "english";
+    const language = lang === 0 && /^es\b/i.test(navigator.language || "") ? "spanish" : LANGS[lang] || "english";
     const type = TYPES[mode] || "sp";
     return `/rodir/cryoffear/gfx/vgui/introductions/${language}/${language}_${type}.TGA`;
   };
@@ -576,6 +576,7 @@
 
   // loader.js reports every map the server spawns
   const onMap = (name) => {
+    if (typeof setRain === "function" && rain.canvas) setRain(0, 0, 0);
     const isMenu = name === MENU_MAP;
     showMenu(isMenu);
     if (isMenu) {
@@ -950,6 +951,65 @@
 
   const currentMapName = () => (window.CoFCurrentMap ? window.CoFCurrentMap() : "");
 
+
+  // --- rain (rain_settings, effects_cof.cpp) ---------------------------------------------------
+  // Streaks on a canvas over the game while the server says the player is under the sky.
+  const rain = { canvas: null, ctx: null, drops: [], target: 0, slant: 0, raf: 0 };
+
+  const ensureRain = () => {
+    if (rain.canvas) return;
+    const c = document.createElement("canvas");
+    c.id = "cof-rain";
+    Object.assign(c.style, { position: "absolute", inset: "0", width: "100%", height: "100%", pointerEvents: "none", zIndex: "9" });
+    document.querySelector("main").appendChild(c);
+    rain.canvas = c;
+    rain.ctx = c.getContext("2d");
+  };
+
+  const rainFrame = () => {
+    const { canvas, ctx } = rain;
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    // the number of drops eases towards the target: rain starts and stops softly
+    while (rain.drops.length < rain.target) rain.drops.push({ x: Math.random() * w, y: Math.random() * h, v: 0.7 + Math.random() * 0.6 });
+    if (rain.drops.length > rain.target) rain.drops.length = Math.max(rain.target, rain.drops.length - 8);
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = "rgba(190, 200, 215, 0.28)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    const len = h * 0.045, fall = h * 0.035;
+    for (const d of rain.drops) {
+      ctx.moveTo(d.x, d.y);
+      ctx.lineTo(d.x + rain.slant * len, d.y + len);
+      d.y += fall * d.v;
+      d.x += rain.slant * fall * d.v;
+      if (d.y > h) { d.y = -len; d.x = Math.random() * w; }
+      if (d.x > w) d.x -= w; else if (d.x < 0) d.x += w;
+    }
+    ctx.stroke();
+    rain.raf = rain.drops.length ? requestAnimationFrame(rainFrame) : 0;
+    if (!rain.raf) ctx.clearRect(0, 0, w, h);
+  };
+
+  const setRain = (drips, windX, windY) => {
+    ensureRain();
+    rain.target = Math.min(450, Math.round(drips / 6));
+    rain.slant = Math.max(-0.6, Math.min(0.6, (windX + windY) / 1500));
+    if (!rain.raf && (rain.target || rain.drops.length)) rain.raf = requestAnimationFrame(rainFrame);
+  };
+
+  // chapter titles come from the levels, in English
+  const CHAPTERS_ES = {
+    "lost in a city": "Perdido en una ciudad",
+    "who is that doctor?": "¿Quién es ese doctor?",
+  };
+  const translateChapter = (title) => {
+    if (!SPANISH) return title;
+    const m = /^chapter\s+(\d+)\s*-\s*(.+)$/i.exec(title.trim());
+    if (!m) return title;
+    return `Capítulo ${m[1]} - ${CHAPTERS_ES[m[2].toLowerCase()] || m[2]}`;
+  };
+
   window.CoFHUD = {
     get bagOpen() { return bag.open; },
     get menuOpen() { return menu.visible; },
@@ -998,8 +1058,11 @@
         case "MUSICSTOP":
           stopMusic(parseInt(args[0], 10) || 0);
           break;
+        case "RAIN":
+          setRain(+args[0] || 0, +args[1] || 0, +args[2] || 0);
+          break;
         case "CHAPTER":
-          showChapter(rest);
+          showChapter(translateChapter(rest));
           break;
         case "OBJECTIVE":
           setObjective(rest);

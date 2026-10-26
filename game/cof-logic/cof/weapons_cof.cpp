@@ -1,7 +1,8 @@
 // Cry of Fear: the weapons of the first chapter.
 //
 // weapon_switchblade (melee), weapon_glock (Glock 19), weapon_mobile (the
-// phone, used as a light) and weapon_syringe (morphine, heals). The view
+// phone, used as a light), weapon_syringe (morphine, heals) and
+// weapon_camera (the photos of the prelude). The view
 // models are Cry of Fear's, so the animations are their sequence numbers and
 // everything runs on the server: no client prediction (cl_lw 0 in
 // cof_web.cfg) and no hlsdk events, whose animation indices belong to the
@@ -18,12 +19,14 @@
 #include "weapons.h"
 #include "gamerules.h"
 #include "skill.h"
+#include "shake.h"
 #include "cof_player.h"
 
 #define WEAPON_COF_SWITCHBLADE  16
 #define WEAPON_COF_GLOCK        17
 #define WEAPON_COF_SYRINGE      18
 #define WEAPON_COF_MOBILE       19
+#define WEAPON_COF_CAMERA       20
 
 #define COF_GLOCK_CLIP          15  // Glock 19 magazine
 #define COF_9MM_MAX             90
@@ -486,5 +489,93 @@ void CoF_PrecacheWeapons( void )
 	UTIL_PrecacheOtherWeapon( "weapon_glock" );
 	UTIL_PrecacheOtherWeapon( "weapon_syringe" );
 	UTIL_PrecacheOtherWeapon( "weapon_mobile" );
+	UTIL_PrecacheOtherWeapon( "weapon_camera" );
 	UTIL_PrecacheOther( "ammo_glock" );
+}
+
+/*
+=====================================================================
+weapon_camera: the photo camera of the prelude. Its flash fires the
+camera_spot_trigger in the frame and dazzles the monsters in front.
+=====================================================================
+*/
+enum camera_e { CAMERA_IDLE = 0, CAMERA_DRAW_FIRST = 1, CAMERA_HOLSTER = 2, CAMERA_SHOOT = 3, CAMERA_FIDGET = 4, CAMERA_DRAW = 7 };
+
+class CCofCamera : public CCofWeapon
+{
+public:
+	void Spawn( void );
+	void Precache( void );
+	int GetItemInfo( ItemInfo *p );
+	BOOL Deploy( void ) { return DefaultDeploy( "models/weapons/camera/v_camera.mdl", "", CAMERA_DRAW, "trip" ); }
+	void Holster( int skiplocal = 0 ) { m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5f; SendWeaponAnim( CAMERA_HOLSTER, 0 ); }
+	void PrimaryAttack( void );
+	void WeaponIdle( void );
+};
+
+LINK_ENTITY_TO_CLASS( weapon_camera, CCofCamera )
+
+void CCofCamera::Spawn( void )
+{
+	Precache();
+	m_iId = WEAPON_COF_CAMERA;
+	SET_MODEL( ENT( pev ), "models/weapons/camera/w_camera.mdl" );
+	m_iClip = -1;
+	FallInit();
+}
+
+void CCofCamera::Precache( void )
+{
+	PRECACHE_MODEL( "models/weapons/camera/v_camera.mdl" );
+	PRECACHE_MODEL( "models/weapons/camera/w_camera.mdl" );
+	PRECACHE_SOUND( "weapons/camera/take_photo.wav" );
+	PRECACHE_SOUND( "weapons/camera/flash_charge.wav" );
+}
+
+int CCofCamera::GetItemInfo( ItemInfo *p )
+{
+	p->pszName = STRING( pev->classname );
+	p->pszAmmo1 = NULL;
+	p->iMaxAmmo1 = -1;
+	p->pszAmmo2 = NULL;
+	p->iMaxAmmo2 = -1;
+	p->iMaxClip = WEAPON_NOCLIP;
+	p->iSlot = 0;
+	p->iPosition = 3;
+	p->iId = m_iId = WEAPON_COF_CAMERA;
+	p->iWeight = 0;
+	p->iFlags = ITEM_FLAG_SELECTONEMPTY | ITEM_FLAG_NOAUTOSWITCHEMPTY;
+	return 1;
+}
+
+void CCofCamera::PrimaryAttack( void )
+{
+	Anim( CAMERA_SHOOT, 40.0f / 30.0f );
+	m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 2.0f; // the flash recharges
+	EMIT_SOUND( ENT( m_pPlayer->pev ), CHAN_WEAPON, "weapons/camera/take_photo.wav", 1.0f, ATTN_NORM );
+
+	// the flash: white for an instant on the screen and a light around the player
+	UTIL_ScreenFade( m_pPlayer, Vector( 255, 255, 255 ), 0.6f, 0.05f, 200, FFADE_IN );
+	Vector eye = m_pPlayer->pev->origin + m_pPlayer->pev->view_ofs;
+	MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, eye );
+		WRITE_BYTE( TE_DLIGHT );
+		WRITE_COORD( eye.x );
+		WRITE_COORD( eye.y );
+		WRITE_COORD( eye.z );
+		WRITE_BYTE( 40 );       // radius * 10
+		WRITE_BYTE( 255 );
+		WRITE_BYTE( 255 );
+		WRITE_BYTE( 255 );
+		WRITE_BYTE( 3 );        // life * 10
+		WRITE_BYTE( 60 );       // decay * 10
+	MESSAGE_END();
+
+	CoF_CameraFlash( m_pPlayer );
+}
+
+void CCofCamera::WeaponIdle( void )
+{
+	if( m_flTimeWeaponIdle > UTIL_WeaponTimeBase())
+		return;
+	Anim( RANDOM_LONG( 0, 4 ) ? CAMERA_IDLE : CAMERA_FIDGET, RANDOM_FLOAT( 4, 8 ));
 }
