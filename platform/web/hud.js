@@ -469,7 +469,7 @@
   // The mp3 files are served next to the page (package.sh -> dist/mp3/) and streamed by <audio>,
   // so they never take engine memory. One player per channel ("frags" of the entity).
   const music = new Map();
-  const MUSIC_VOLUME = 0.8;
+  let musicVolume = 0.8;   // Options panel
 
   const fadeOut = (audio, ms = 600) => {
     const start = audio.volume, t0 = performance.now();
@@ -485,7 +485,7 @@
     stopMusic(channel, fadeSeconds);
     const audio = new Audio(`mp3/${file.toLowerCase()}`);
     audio.loop = loop;
-    audio.volume = MUSIC_VOLUME;
+    audio.volume = musicVolume;
     music.set(channel, audio);
     audio.play().catch((e) => {
       if (e.name !== "NotAllowedError") { console.warn(`cof music ${file}:`, e.message); return; }
@@ -592,8 +592,8 @@
   const menuAction = (action) => {
     if (action === "new") menu.board.classList.add("on");
     // load and options are the engine's own dialogs (mainui)
-    else if (action === "load") engineCmd("menu_loadgame");
-    else if (action === "options") engineCmd("menu_options");
+    else if (action === "load") showLoadGame();
+    else if (action === "options") showOptions();
   };
 
   const startGame = async (skill) => {
@@ -617,6 +617,7 @@
 
   // loader.js reports every map the server spawns
   const onMap = (name) => {
+    if (!optionsApplied) applyOptions();
     if (typeof setRain === "function" && rain.canvas) setRain(0, 0, 0);
     const isMenu = name === MENU_MAP;
     showMenu(false);
@@ -956,11 +957,9 @@
       setPaused(false);
       try { const p = document.getElementById("canvas").requestPointerLock(); if (p && p.catch) p.catch(() => {}); } catch (_) { /* */ }
     } else if (action === "load") {
-      setPaused(false);
-      engineCmd("menu_loadgame");
+      showLoadGame();
     } else if (action === "options") {
-      setPaused(false);
-      engineCmd("menu_options");
+      showOptions();
     } else if (action === "menu") {
       setPaused(false);
       stopAllMusic();
@@ -974,13 +973,16 @@
   let escapeTaken = false;
   addEventListener("keydown", (e) => {
     if (e.key !== "Escape" && e.keyCode !== 27) return;
-    // the main menu and the dialogs of hud.js keep Esc
-    if (menu.visible || !window.CoFRuntimeReady || !currentMapName()) return;
+    // the dialogs of hud.js (notes, keypad) close themselves with their own listener
     if (panel && panel.dialog.classList.contains("on")) return;
+    // Esc never reaches the engine: its menu is Half-Life's
     escapeTaken = true;
     e.stopImmediatePropagation();
     e.preventDefault();
     if (e.repeat) return;
+    if (closeSheet()) return;
+    if (menu.visible) { menu.board.classList.remove("on"); return; }
+    if (!window.CoFRuntimeReady || !currentMapName() || loading.active) return;
     if (bag.open) { engineCmd("+inventory"); engineCmd("-inventory"); return; }
     setPaused(!pause.open);
   }, true);
@@ -1107,6 +1109,151 @@
     centerBox.timer = setTimeout(() => centerBox.el.classList.remove("on"), 3500);
   };
 
+
+  // --- Load game and Options panels: the engine's own (Half-Life's) never show ------------------
+  // The tape recorders save to one slot ("cof_last", puzzles.cpp). The page remembers which level
+  // it was, so loading can fetch that level's pack first.
+  const SAVES_KEY = "cofSaves";
+  const OPTIONS_KEY = "cofOptions";
+  const readJson = (key, def) => { try { return JSON.parse(localStorage.getItem(key)) || def; } catch (_) { return def; } };
+  const writeJson = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) { /* private mode */ } };
+
+  const rememberSave = (place) => {
+    const saves = readJson(SAVES_KEY, {});
+    saves.cof_last = { map: currentMapName(), place, time: Date.now() };
+    writeJson(SAVES_KEY, saves);
+  };
+
+  const options = Object.assign({ sensitivity: 3, volume: 0.8, music: 0.8, brightness: 1 }, readJson(OPTIONS_KEY, {}));
+  let optionsApplied = false;
+  const applyOptions = () => {
+    engineCmd(`sensitivity ${options.sensitivity}`);
+    engineCmd(`volume ${options.volume}`);
+    engineCmd(`brightness ${options.brightness}`);
+    musicVolume = options.music;
+    for (const audio of music.values()) audio.volume = musicVolume;
+    optionsApplied = true;
+  };
+
+  let sheetPanel = null;
+  const ensureSheet = () => {
+    if (sheetPanel) return;
+    const style = document.createElement("style");
+    style.textContent = `
+      #cof-sheet { position:absolute; inset:0; z-index:17; display:none; align-items:center; justify-content:center;
+                   background:rgba(0,0,0,.78); user-select:none; }
+      #cof-sheet.on { display:flex; }
+      #cof-sheet .box { min-width:min(80%, 420px); max-width:min(90%, 560px); padding:1.4em 1.8em; background:#0d0d0d;
+                        border:1px solid #333; box-shadow:0 0 40px #000; color:#ddd; font:clamp(13px, 2vh, 18px) Arial, sans-serif; }
+      #cof-sheet h2 { margin:0 0 .8em; font:clamp(16px, 2.8vh, 26px) Arial, sans-serif; letter-spacing:.08em; color:#eee; }
+      #cof-sheet .row { display:flex; align-items:center; justify-content:space-between; gap:1em; margin:.55em 0; }
+      #cof-sheet input[type=range] { width:55%; accent-color:#a00; }
+      #cof-sheet button { all:unset; cursor:pointer; padding:.35em .9em; border:1px solid #444; color:#eee; }
+      #cof-sheet button:hover { color:#c00; border-color:#700; }
+      #cof-sheet .save { padding:.6em .8em; border:1px solid #333; cursor:pointer; margin:.4em 0; }
+      #cof-sheet .save:hover { border-color:#700; color:#fff; }
+      #cof-sheet .actions { margin-top:1em; display:flex; justify-content:flex-end; gap:.6em; }
+      #cof-sheet .empty { color:#888; }
+    `;
+    document.head.appendChild(style);
+    const el = document.createElement("div");
+    el.id = "cof-sheet";
+    el.addEventListener("click", (e) => { if (e.target === el) closeSheet(); });
+    sheetPanel = { el, onClose: null };
+    document.querySelector("main").appendChild(el);
+  };
+
+  const openSheet = (title, body, onClose) => {
+    ensureSheet();
+    const box = document.createElement("div");
+    box.className = "box";
+    const h = document.createElement("h2");
+    h.textContent = title;
+    const actions = document.createElement("div");
+    actions.className = "actions";
+    const back = document.createElement("button");
+    back.textContent = SPANISH ? "Volver" : "Back";
+    back.addEventListener("click", () => closeSheet());
+    actions.appendChild(back);
+    box.append(h, body, actions);
+    sheetPanel.el.replaceChildren(box);
+    sheetPanel.el.classList.add("on");
+    sheetPanel.onClose = onClose || null;
+  };
+
+  const closeSheet = () => {
+    if (!sheetPanel || !sheetPanel.el.classList.contains("on")) return false;
+    sheetPanel.el.classList.remove("on");
+    const f = sheetPanel.onClose;
+    sheetPanel.onClose = null;
+    if (f) f();
+    return true;
+  };
+
+  const showLoadGame = (onClose) => {
+    const body = document.createElement("div");
+    const saves = readJson(SAVES_KEY, {});
+    const names = Object.keys(saves);
+    if (!names.length) {
+      const p = document.createElement("div");
+      p.className = "empty";
+      p.textContent = SPANISH ? "No hay partidas guardadas. Usa una grabadora para guardar." : "No saved games. Use a tape recorder to save.";
+      body.appendChild(p);
+    }
+    for (const name of names) {
+      const s = saves[name];
+      const row = document.createElement("div");
+      row.className = "save";
+      const when = new Date(s.time).toLocaleString(SPANISH ? "es" : "en");
+      row.textContent = `${s.place || s.map} · ${when}`;
+      row.addEventListener("click", async () => {
+        sheetPanel.onClose = null;
+        closeSheet();
+        showMenu(false);
+        if (pause.open) setPaused(false);
+        stopAllMusic();
+        loading.show();
+        if (window.CoFPreload && s.map) await window.CoFPreload(s.map).catch(() => false);
+        engineCmd(`load ${name}`);
+      });
+      body.appendChild(row);
+    }
+    openSheet(SPANISH ? "CARGAR PARTIDA" : "LOAD GAME", body, onClose);
+  };
+
+  const showOptions = (onClose) => {
+    const body = document.createElement("div");
+    const slider = (label, key, min, max, step) => {
+      const row = document.createElement("div");
+      row.className = "row";
+      const span = document.createElement("span");
+      span.textContent = label;
+      const input = document.createElement("input");
+      Object.assign(input, { type: "range", min, max, step, value: options[key] });
+      input.addEventListener("input", () => {
+        options[key] = +input.value;
+        writeJson(OPTIONS_KEY, options);
+        applyOptions();
+      });
+      row.append(span, input);
+      body.appendChild(row);
+    };
+    slider(SPANISH ? "Sensibilidad del ratón" : "Mouse sensitivity", "sensitivity", 0.5, 10, 0.1);
+    slider(SPANISH ? "Volumen" : "Volume", "volume", 0, 1, 0.05);
+    slider(SPANISH ? "Música" : "Music", "music", 0, 1, 0.05);
+    slider(SPANISH ? "Brillo" : "Brightness", "brightness", 0, 2, 0.05);
+    const row = document.createElement("div");
+    row.className = "row";
+    const span = document.createElement("span");
+    span.textContent = SPANISH ? "Pantalla completa" : "Fullscreen";
+    const fs = document.createElement("button");
+    fs.textContent = SPANISH ? "Activar" : "Enable";
+    fs.addEventListener("click", () => document.getElementById("canvas").parentElement.requestFullscreen({ navigationUI: "hide" }).catch(() => {}));
+    row.append(span, fs);
+    body.appendChild(row);
+    openSheet(SPANISH ? "OPCIONES" : "OPTIONS", body, onClose);
+  };
+
   window.CoFHUD = {
     get bagOpen() { return bag.open; },
     get menuOpen() { return menu.visible; },
@@ -1148,7 +1295,8 @@
           renderBag();
           break;
         case "INVTOGGLE":
-          toggleBag();
+          // TAB on the main menu or while a level loads: nothing (the bag is for the game)
+          if (bag.open || (!menu.visible && !loading.active && !pause.open)) toggleBag();
           break;
         case "MUSIC":
           if (args[2]) playMusic(parseInt(args[0], 10) || 0, args[1] === "1", args[2], parseFloat(args[3]) || 0);
@@ -1201,6 +1349,7 @@
           }
           break;
         case "SAVED":
+          rememberSave(rest);
           flash(panel?.sub || (ensurePanel(), panel.sub), "subTimer", `${SPANISH ? "Partida guardada" : "Game saved"}${rest ? ` · ${rest}` : ""}`, 3000);
           break;
         case "PICKUP":
