@@ -7,6 +7,46 @@
 (() => {
   "use strict";
 
+  // --- loading screen ---------------------------------------------------------------------------
+  // While a level loads the engine shows Half-Life's own loading screen (the lambda and the
+  // console). Cry of Fear's is black: this covers the game from the first frame and at every
+  // level change, until the player is in the level (the first COF/HUD STAT after the spawn).
+  const loading = (() => {
+    const style = document.createElement("style");
+    style.textContent = `
+      #cof-loading { position:absolute; inset:0; z-index:16; background:#000; display:flex; align-items:flex-end;
+                     justify-content:flex-end; padding:0 4% 4% 0; pointer-events:none; opacity:1;
+                     transition:opacity .5s ease; }
+      #cof-loading.off { opacity:0; }
+      #cof-loading span { color:#bbb; font:clamp(13px, 2vh, 20px) Arial, sans-serif; letter-spacing:.08em; }
+    `;
+    document.head.appendChild(style);
+    const el = document.createElement("div");
+    el.id = "cof-loading";
+    el.innerHTML = `<span>${/^es\b/i.test(navigator.language || "") ? "Cargando…" : "Loading…"}</span>`;
+    const attach = () => (document.querySelector("main") || document.body).appendChild(el);
+    if (document.querySelector("main")) attach(); else addEventListener("DOMContentLoaded", attach);
+    let waiting = true, timer = 0, onDone = null;
+    const hide = () => {
+      if (!waiting) return;
+      waiting = false;
+      clearTimeout(timer);
+      // a few frames so the first image of the level is on screen before it shows
+      setTimeout(() => { el.classList.add("off"); if (onDone) { const f = onDone; onDone = null; f(); } }, 400);
+    };
+    return {
+      show(then) {
+        waiting = true;
+        onDone = then || null;
+        el.classList.remove("off");
+        clearTimeout(timer);
+        timer = setTimeout(hide, 30000); // never stuck on black
+      },
+      ready: hide,
+      get active() { return waiting; },
+    };
+  })();
+
   const LOGOS = ["logo", "andreas", "james", "jordy", "stig", "lasse", "aina"];
   const LANGS = { 0: "english", 2: "dutch", 3: "french", 4: "german", 5: "norwegian", 6: "spanish", 7: "swedish" };
   const TYPES = ["sp", "doc", "coop"];
@@ -561,6 +601,7 @@
     try { const p = document.getElementById("canvas").requestPointerLock(); if (p && p.catch) p.catch(() => {}); } catch (_) { /* */ }
     showMenu(false);
     stopAllMusic();
+    loading.show();
     if (window.CoFPreload) await window.CoFPreload(FIRST_MAP).catch(() => false);
     engineCmd(`skill ${skill}`);
     engineCmd(`map ${FIRST_MAP}`);
@@ -578,7 +619,8 @@
   const onMap = (name) => {
     if (typeof setRain === "function" && rain.canvas) setRain(0, 0, 0);
     const isMenu = name === MENU_MAP;
-    showMenu(isMenu);
+    showMenu(false);
+    loading.show(() => showMenu(isMenu));
     if (isMenu) {
       // fetch the first chapter in the background while the menu is up
       setTimeout(() => { if (menu.visible && window.CoFPreload) window.CoFPreload(FIRST_MAP).catch(() => {}); }, 4000);
@@ -1090,6 +1132,7 @@
           break;
         }
         case "STAT":
+          if (loading.active) loading.ready();
           updateStatus(+args[0] || 0, +args[1] || 0, +args[2] || 0);
           break;
         case "INV": {
