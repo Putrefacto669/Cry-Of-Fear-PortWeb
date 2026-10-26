@@ -5,5 +5,3 @@
 wscript text eol=lf
 # los .bat solo funcionan bien con CRLF
 *.bat text eol=crlf
-# dist/ se guarda tal cual: sw-manifest.js lleva el hash de cada archivo
-dist/** -text

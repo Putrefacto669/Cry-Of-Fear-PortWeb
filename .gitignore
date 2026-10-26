@@ -1,11 +1,10 @@
 # Assets del juego: propiedad de Team Psykskallar, nunca se versionan
 assets/
-# Builds y paquetes generados (dist/ sí se versiona: es la web lista para servir)
+# Builds y paquetes generados: dist/ se publica como zip en las Releases de GitHub
+dist/
 build/
 *.wasm
 *.data
-!dist/**/*.wasm
-!dist/**/*.data
 # Logs
 *.log
 __pycache__/
