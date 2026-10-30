@@ -797,6 +797,25 @@ index 91541c9b..eb343d15 100644
  	if( gEngfuncs.Sys_CheckParm( "-minshaders" ))
  		gl2wrap_config.version = 100;
  	if( gl2wrap_config.buf_storage )
+diff --git a/ref/gl/gl_decals.c b/ref/gl/gl_decals.c
+index 1b3fc6df..05d2e24c 100644
+--- a/ref/gl/gl_decals.c
++++ b/ref/gl/gl_decals.c
+@@ -867,7 +867,13 @@ void DrawSingleDecal( decal_t *pDecal, msurface_t *fa )
+ 
+ 	GL_Bind( XASH_TEXTURE0, pDecal->texture );
+ 
+-	if( FBitSet( R_GetTexture( pDecal->texture )->flags, TF_PREMULTIPLIED ))
++	gl_texture_t *tex = R_GetTexture( pDecal->texture );
++
++	// Cry of Fear env_static_decal: 24-bit images where gray 128 leaves the surface
++	// as it is (2x modulate), loaded by the client from gfx/decals
++	if( !Q_strnicmp( tex->name, "gfx/decals/", 11 ))
++		pglBlendFunc( GL_DST_COLOR, GL_SRC_COLOR );
++	else if( FBitSet( tex->flags, TF_PREMULTIPLIED ))
+ 		pglBlendFunc( GL_ONE, GL_ONE_MINUS_SRC_ALPHA );
+ 	else pglBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+ 
 diff --git a/ref/gl/gl_image.c b/ref/gl/gl_image.c
 index fb0af14f..a97dc1d0 100644
 --- a/ref/gl/gl_image.c
@@ -829,6 +848,22 @@ index fb0af14f..a97dc1d0 100644
  	if( tex->target == GL_TEXTURE_1D )
  	{
  		if( subImage ) pglCompressedTexSubImage1DARB( tex->target, level, 0, width, tex->format, size, data );
+diff --git a/ref/gl/gl_local.h b/ref/gl/gl_local.h
+index 1e4d23e9..92d8d01d 100644
+--- a/ref/gl/gl_local.h
++++ b/ref/gl/gl_local.h
+@@ -824,3 +824,11 @@ extern convar_t r_scene_scale;
+ 
+ 
+ #endif // GL_LOCAL_H
++
++// Cry of Fear's marker-driven studio sky, inactive on maps without both markers.
++qboolean R_CoFSkyActive( void );
++qboolean R_CoFSkyDrawing( void );
++qboolean R_CoFSkyEntity( const cl_entity_t *e );
++void R_CoFSkyBegin( void );
++void R_CoFSkyEnd( void );
++void R_CoFSkyLight( alight_t *light );
 diff --git a/ref/gl/gl_opengl.c b/ref/gl/gl_opengl.c
 index f05a3ddf..4f70d755 100644
 --- a/ref/gl/gl_opengl.c
@@ -882,158 +917,6 @@ index f05a3ddf..4f70d755 100644
  	gEngfuncs.GL_SetAttribute( REF_GL_CONTEXT_PROFILE_MASK, REF_GL_CONTEXT_PROFILE_ES );
  	gEngfuncs.GL_SetAttribute( REF_GL_CONTEXT_EGL, 1 );
  #if XASH_NANOGL
-diff --git a/scripts/waifulib/c_emscripten.py b/scripts/waifulib/c_emscripten.py
-new file mode 100644
-index 00000000..47e2e79b
---- /dev/null
-+++ b/scripts/waifulib/c_emscripten.py
-@@ -0,0 +1,100 @@
-+#!/usr/bin/env python
-+# -*- coding: utf-8 vi:ts=4:noexpandtab
-+
-+from waflib.Tools import ccroot, gcc, gxx
-+from waflib.Configure import conf
-+from waflib.TaskGen import feature, after_method
-+from waflib import Utils
-+
-+@conf
-+def get_emscripten_version(conf, cc):
-+	k = conf.get_cc_version(cc, clang=True)
-+
-+	if '__EMSCRIPTEN__' not in k:
-+		conf.fatal('Could not determine the emscripten compiler version')
-+
-+	conf.env.DEST_OS = 'emscripten'
-+	conf.env.DEST_CPU = 'wasm'
-+
-+@conf
-+def find_emcc(conf):
-+	cc = conf.find_program(['emcc'], var='CC')
-+	conf.get_emscripten_version(cc)
-+	conf.env.CC_NAME = 'clang'
-+
-+@conf
-+def find_emxx(conf):
-+	cxx = conf.find_program(['em++'], var='CXX')
-+	conf.get_emscripten_version(cxx)
-+	conf.env.CXX_NAME = 'clang'
-+
-+@conf
-+def gcc_modifier_emscripten(conf):
-+	v = conf.env
-+
-+	conf.env.cshlib_PATTERN = 'lib%s.wasm'
-+	conf.env.cprogram_PATTERN = '%s.html'
-+
-+	conf.env.CFLAGS_cshlib = ['-fPIC', '-sSIDE_MODULE=1']
-+	conf.env.CFLAGS_cstlib = ['-fPIC']
-+	conf.env.CFLAGS_cprogram = ['-sMAIN_MODULE=1']
-+
-+	conf.env.LINKFLAGS_cshlib = ['-sSIDE_MODULE=1']
-+	conf.env.LINKFLAGS_cprogram = ['-sMAIN_MODULE=1']
-+
-+@conf
-+def gxx_modifier_emscripten(conf):
-+	v = conf.env
-+
-+	conf.env.cxxshlib_PATTERN = 'lib%s.wasm'
-+	conf.env.cxxprogram_PATTERN = '%s.html'
-+	conf.env.CXXFLAGS_cxxshlib = ['-fPIC', '-sSIDE_MODULE=1']
-+	conf.env.CXXFLAGS_cxxstlib = ['-fPIC']
-+	conf.env.CXXFLAGS_cxxprogram = ['-sMAIN_MODULE=1']
-+
-+	conf.env.LINKFLAGS_cxxshlib = ['-sSIDE_MODULE=1']
-+	conf.env.LINKFLAGS_cxxprogram = ['-sMAIN_MODULE=1']
-+
-+@feature('cxxprogram', 'cprogram')
-+@after_method('apply_link')
-+def apply_indexhtml(self):
-+	if self.env.DEST_OS != 'emscripten':
-+		return
-+
-+	tsk = self.link_task
-+	node = tsk.outputs[0]
-+
-+	tsk.outputs.append(node.change_ext('.js'))
-+	tsk.outputs.append(node.change_ext('.wasm'))
-+
-+	if '--preload-file' in getattr(self, 'linkflags', []) + self.env.LINKFLAGS:
-+		tsk.outputs.append(node.change_ext('.data'))
-+
-+	inst_to = getattr(self, 'special_install_path', None)
-+	if inst_to:
-+		self.add_install_as(install_to=inst_to + '/index.html',
-+			install_from=tsk.outputs[0], chmod=Utils.O644, task=tsk)
-+
-+		self.add_install_files(install_to=inst_to,
-+			install_from=tsk.outputs[1:], chmod=Utils.O644, task=tsk)
-+
-+def configure(conf):
-+	if not conf.env.CC:
-+		conf.find_emcc()
-+		conf.gcc_common_flags()
-+		conf.gcc_modifier_platform()
-+		conf.cc_load_tools()
-+		conf.cc_add_flags()
-+		conf.link_add_flags()
-+
-+	if not conf.env.AR:
-+		conf.find_program(['emar'], var='AR')
-+		conf.find_ar()
-+
-+	if not conf.env.CXX:
-+		conf.find_emxx()
-+		conf.gxx_common_flags()
-+		conf.gxx_modifier_platform()
-+		conf.cxx_load_tools()
-+		conf.cxx_add_flags()
-+		conf.link_add_flags()
-diff --git a/scripts/waifulib/xcompile.py b/scripts/waifulib/xcompile.py
-index 8a7c8f19..f44edfea 100644
---- a/scripts/waifulib/xcompile.py
-+++ b/scripts/waifulib/xcompile.py
-@@ -745,6 +745,15 @@ def configure(conf):
- 		conf.env.LIB_M = ['m']
- 		conf.env.VRTLD = ['vrtld']
- 		conf.env.DEST_OS = 'psvita'
-+	elif conf.options.EMSCRIPTEN:
-+		# Emscripten compiler is just wrapper to clang
-+		# But we need to setup platform modifiers, they all are contained inside c_emscripten.py for now
-+		conf.environ['CC'] = 'emcc'
-+		conf.environ['CXX'] = 'em++'
-+		conf.environ['AR'] = 'emar'
-+		conf.environ['STRIP'] = 'emstrip'
-+		conf.environ['OBJCOPY'] = 'llvm-objcopy'
-+		conf.load('c_emscripten')
- 	elif conf.options.PSP_OPTS:
- 		values = conf.options.PSP_OPTS.split(',')
- 		if len(values) != 3:
-@@ -814,6 +823,9 @@ def configure(conf):
- 	for k in c_config.MACRO_TO_DESTOS:
- 		MACRO_TO_DESTOS[k] = c_config.MACRO_TO_DESTOS[k] # ordering is important
- 	c_config.MACRO_TO_DESTOS  = MACRO_TO_DESTOS
-+	# waf does not know WebAssembly targets, DEST_CPU would be left empty
-+	c_config.MACRO_TO_DEST_CPU.setdefault("__wasm32__", "wasm32")
-+	c_config.MACRO_TO_DEST_CPU.setdefault("__wasm64__", "wasm64")
- 
- def post_compiler_cxx_configure(conf):
- 	conf.msg('Target OS', conf.env.DEST_OS)
-diff --git a/ref/gl/gl_local.h b/ref/gl/gl_local.h
-index 1e4d23e9..92d8d01d 100644
---- a/ref/gl/gl_local.h
-+++ b/ref/gl/gl_local.h
-@@ -824,3 +824,11 @@ extern convar_t r_scene_scale;
- 
- 
- #endif // GL_LOCAL_H
-+
-+// Cry of Fear's marker-driven studio sky, inactive on maps without both markers.
-+qboolean R_CoFSkyActive( void );
-+qboolean R_CoFSkyDrawing( void );
-+qboolean R_CoFSkyEntity( const cl_entity_t *e );
-+void R_CoFSkyBegin( void );
-+void R_CoFSkyEnd( void );
-+void R_CoFSkyLight( alight_t *light );
 diff --git a/ref/gl/gl_rmain.c b/ref/gl/gl_rmain.c
 index 97b12119..4ab719aa 100644
 --- a/ref/gl/gl_rmain.c
@@ -1206,3 +1089,139 @@ index a80b878d..16ce9ec3 100644
  }
  
  //==============================================================================
+diff --git a/scripts/waifulib/c_emscripten.py b/scripts/waifulib/c_emscripten.py
+new file mode 100644
+index 00000000..47e2e79b
+--- /dev/null
++++ b/scripts/waifulib/c_emscripten.py
+@@ -0,0 +1,100 @@
++#!/usr/bin/env python
++# -*- coding: utf-8 vi:ts=4:noexpandtab
++
++from waflib.Tools import ccroot, gcc, gxx
++from waflib.Configure import conf
++from waflib.TaskGen import feature, after_method
++from waflib import Utils
++
++@conf
++def get_emscripten_version(conf, cc):
++	k = conf.get_cc_version(cc, clang=True)
++
++	if '__EMSCRIPTEN__' not in k:
++		conf.fatal('Could not determine the emscripten compiler version')
++
++	conf.env.DEST_OS = 'emscripten'
++	conf.env.DEST_CPU = 'wasm'
++
++@conf
++def find_emcc(conf):
++	cc = conf.find_program(['emcc'], var='CC')
++	conf.get_emscripten_version(cc)
++	conf.env.CC_NAME = 'clang'
++
++@conf
++def find_emxx(conf):
++	cxx = conf.find_program(['em++'], var='CXX')
++	conf.get_emscripten_version(cxx)
++	conf.env.CXX_NAME = 'clang'
++
++@conf
++def gcc_modifier_emscripten(conf):
++	v = conf.env
++
++	conf.env.cshlib_PATTERN = 'lib%s.wasm'
++	conf.env.cprogram_PATTERN = '%s.html'
++
++	conf.env.CFLAGS_cshlib = ['-fPIC', '-sSIDE_MODULE=1']
++	conf.env.CFLAGS_cstlib = ['-fPIC']
++	conf.env.CFLAGS_cprogram = ['-sMAIN_MODULE=1']
++
++	conf.env.LINKFLAGS_cshlib = ['-sSIDE_MODULE=1']
++	conf.env.LINKFLAGS_cprogram = ['-sMAIN_MODULE=1']
++
++@conf
++def gxx_modifier_emscripten(conf):
++	v = conf.env
++
++	conf.env.cxxshlib_PATTERN = 'lib%s.wasm'
++	conf.env.cxxprogram_PATTERN = '%s.html'
++	conf.env.CXXFLAGS_cxxshlib = ['-fPIC', '-sSIDE_MODULE=1']
++	conf.env.CXXFLAGS_cxxstlib = ['-fPIC']
++	conf.env.CXXFLAGS_cxxprogram = ['-sMAIN_MODULE=1']
++
++	conf.env.LINKFLAGS_cxxshlib = ['-sSIDE_MODULE=1']
++	conf.env.LINKFLAGS_cxxprogram = ['-sMAIN_MODULE=1']
++
++@feature('cxxprogram', 'cprogram')
++@after_method('apply_link')
++def apply_indexhtml(self):
++	if self.env.DEST_OS != 'emscripten':
++		return
++
++	tsk = self.link_task
++	node = tsk.outputs[0]
++
++	tsk.outputs.append(node.change_ext('.js'))
++	tsk.outputs.append(node.change_ext('.wasm'))
++
++	if '--preload-file' in getattr(self, 'linkflags', []) + self.env.LINKFLAGS:
++		tsk.outputs.append(node.change_ext('.data'))
++
++	inst_to = getattr(self, 'special_install_path', None)
++	if inst_to:
++		self.add_install_as(install_to=inst_to + '/index.html',
++			install_from=tsk.outputs[0], chmod=Utils.O644, task=tsk)
++
++		self.add_install_files(install_to=inst_to,
++			install_from=tsk.outputs[1:], chmod=Utils.O644, task=tsk)
++
++def configure(conf):
++	if not conf.env.CC:
++		conf.find_emcc()
++		conf.gcc_common_flags()
++		conf.gcc_modifier_platform()
++		conf.cc_load_tools()
++		conf.cc_add_flags()
++		conf.link_add_flags()
++
++	if not conf.env.AR:
++		conf.find_program(['emar'], var='AR')
++		conf.find_ar()
++
++	if not conf.env.CXX:
++		conf.find_emxx()
++		conf.gxx_common_flags()
++		conf.gxx_modifier_platform()
++		conf.cxx_load_tools()
++		conf.cxx_add_flags()
++		conf.link_add_flags()
+diff --git a/scripts/waifulib/xcompile.py b/scripts/waifulib/xcompile.py
+index 8a7c8f19..f44edfea 100644
+--- a/scripts/waifulib/xcompile.py
++++ b/scripts/waifulib/xcompile.py
+@@ -745,6 +745,15 @@ def configure(conf):
+ 		conf.env.LIB_M = ['m']
+ 		conf.env.VRTLD = ['vrtld']
+ 		conf.env.DEST_OS = 'psvita'
++	elif conf.options.EMSCRIPTEN:
++		# Emscripten compiler is just wrapper to clang
++		# But we need to setup platform modifiers, they all are contained inside c_emscripten.py for now
++		conf.environ['CC'] = 'emcc'
++		conf.environ['CXX'] = 'em++'
++		conf.environ['AR'] = 'emar'
++		conf.environ['STRIP'] = 'emstrip'
++		conf.environ['OBJCOPY'] = 'llvm-objcopy'
++		conf.load('c_emscripten')
+ 	elif conf.options.PSP_OPTS:
+ 		values = conf.options.PSP_OPTS.split(',')
+ 		if len(values) != 3:
+@@ -814,6 +823,9 @@ def configure(conf):
+ 	for k in c_config.MACRO_TO_DESTOS:
+ 		MACRO_TO_DESTOS[k] = c_config.MACRO_TO_DESTOS[k] # ordering is important
+ 	c_config.MACRO_TO_DESTOS  = MACRO_TO_DESTOS
++	# waf does not know WebAssembly targets, DEST_CPU would be left empty
++	c_config.MACRO_TO_DEST_CPU.setdefault("__wasm32__", "wasm32")
++	c_config.MACRO_TO_DEST_CPU.setdefault("__wasm64__", "wasm64")
+ 
+ def post_compiler_cxx_configure(conf):
+ 	conf.msg('Target OS', conf.env.DEST_OS)

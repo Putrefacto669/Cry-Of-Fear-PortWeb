@@ -21,6 +21,8 @@
 static int gmsgCoFFog = 0;
 static int gmsgCoFEmit = 0;
 
+void CoF_LinkDecalMessages( void ); // static_decal.cpp
+
 // called from hlsdk's LinkUserMessages, with the messages of Half-Life
 void CoF_LinkUserMessages( void )
 {
@@ -29,6 +31,7 @@ void CoF_LinkUserMessages( void )
 		gmsgCoFFog = REG_USER_MSG( "CoFFog", -1 );
 		gmsgCoFEmit = REG_USER_MSG( "CoFEmit", -1 );
 	}
+	CoF_LinkDecalMessages();
 }
 
 /*

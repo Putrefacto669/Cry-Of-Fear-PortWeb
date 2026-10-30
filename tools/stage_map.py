@@ -73,7 +73,8 @@ BOOT_FILES = ["liblist.gam", "valve.rc", "delta.lst","titles.txt", "skill.cfg", 
               "gfx/vgui/menu/loadgame.TGA", "gfx/vgui/menu/loadgame_mo.TGA",
               "gfx/vgui/menu/options.TGA", "gfx/vgui/menu/options_mo.TGA",
               "gfx/palette.lmp", "gfx/palette.bmp", "gfx/colormap.lmp", "gfx/conback.lmp",
-              "gfx/flashlight.tga"]  # cookie de la linterna para platform/web/postfx.js
+              "gfx/flashlight.tga",  # cookie de la linterna para platform/web/postfx.js
+              "gfx/decals/decalinfo.txt"]  # grupos de env_static_decal (static_decal.cpp)
 # inventoryitems/*.txt describen cada objeto del bolso (nombre, imágenes, sonido de recogida)
 BOOT_DIRS = ["gfx/shell", "resource", "sprites", "events", "inventoryitems",
              "gfx/vgui/items", "gfx/vgui/weapons", "gfx/vgui/hints",
@@ -166,6 +167,8 @@ def map_dependencies(game: Path, bsp: Path) -> tuple[set[str], list[str]]:
                     deps.add(rel)
             if monster in MONSTER_ASSETS:
                 deps.update(f"sound/common/npc_step{i}.wav" for i in range(1, 5))
+        if cls == "env_static_decal":
+            deps.update(f"gfx/decals/{t}.tga" for t in decal_textures(game, ent.get("netname", "")))
         if cls.startswith("weapon_"):
             short = cls[len("weapon_"):]
             deps.add(f"models/weapons/{short}/w_{short}.mdl")
@@ -196,6 +199,23 @@ def map_dependencies(game: Path, bsp: Path) -> tuple[set[str], list[str]]:
         elif not d.endswith((".res", ".txt")):
             missing.append(d)
     return found, sorted(missing)
+
+
+_decal_groups: dict[str, set[str]] | None = None
+
+
+def decal_textures(game: Path, group: str) -> set[str]:
+    """Texturas de un grupo de gfx/decals/decalinfo.txt: uno o más nombres y { textura ancho alto ... }."""
+    global _decal_groups
+    if _decal_groups is None:
+        _decal_groups = {}
+        info = find_ci(game, "gfx/decals/decalinfo.txt")
+        text = re.sub(r"//[^\n]*", "", info.read_text(encoding="latin-1")) if info else ""
+        for names, body in re.findall(r"([^{}]*)\{([^{}]*)\}", text):
+            textures = {line.split()[0].lower() for line in body.splitlines() if line.split()}
+            for name in names.split():
+                _decal_groups.setdefault(name.lower(), set()).update(textures)
+    return _decal_groups.get(group.lower(), set())
 
 
 def item_dependencies(game: Path, rel: str) -> set[str]:

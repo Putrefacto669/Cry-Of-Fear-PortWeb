@@ -392,8 +392,11 @@ static void PadlockRenderStatus() {
  gEngfuncs.Con_Printf("COF/PAD_RENDER count=%d\n",count);
 }
 static int PadlockMessage(const char*,int size,void *buffer) { BEGIN_READ(buffer,size); gEngfuncs.Con_Printf("COF/HUD PADLOCK %d\n",READ_BYTE()); return 1; }
+void CoF_DecalsInit( void );    // cof_decals.cpp
+void CoF_DecalsVidInit( void );
 void CoF_ClientInit( void )
 {
+	CoF_DecalsInit();
  gEngfuncs.pfnHookUserMsg("Padlock",PadlockMessage);
  gEngfuncs.pfnAddCommand("cof_padlock_render",PadlockRenderStatus);
  gEngfuncs.pfnRegisterVariable("cof_padlock_trace","0",0);
@@ -415,6 +418,7 @@ void CoF_ClientDrawTransparent( void )
 void CoF_ClientVidInit( void )
 {
  SkyLevel();
+	CoF_DecalsVidInit();
 	for( int j = 0; j < MAX_PARTICLES; j++ )
 		g_particles[j].emitter = -1;
 	memset( &g_fog, 0, sizeof( g_fog ));

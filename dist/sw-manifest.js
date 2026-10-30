@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "70b6d5ff6e80",
+ "version": "b2fb3160c015",
  "coi": false,
  "precache": [
   "LICENSE.txt",
@@ -30,7 +30,6 @@ self.COF_MANIFEST = {
   "shaders/postfx.vert.glsl",
   "shaders/water.frag.glsl",
   "shaders/water.vert.glsl",
-  "transitions.json",
   "xash3d.js"
  ],
  "files": {
@@ -80,32 +79,32 @@ self.COF_MANIFEST = {
   "mp3/tv_noise.mp3": "3e7347b88a61",
   "mp3/unlockables.mp3": "4ce75cbcd963",
   "mp3/watercorridor.mp3": "ba8c97aa265b",
-  "packs/boot.data": "65ddf0158d7b",
-  "packs/boot.js": "99f052480fc7",
-  "packs/engine.data": "c0bdb557bd4c",
-  "packs/engine.js": "1f6bbaecf203",
+  "packs/boot.data": "3f91308bfe11",
+  "packs/boot.js": "99bb506ef63a",
+  "packs/engine.data": "0b834266ffc4",
+  "packs/engine.js": "d75794dc58dc",
   "packs/map_c_apartment1.data": "98d2f60e8b98",
-  "packs/map_c_apartment1.js": "b8b4cbb28744",
+  "packs/map_c_apartment1.js": "4a82250e6e97",
   "packs/map_c_apartment2.data": "d9c0dd5a14b5",
-  "packs/map_c_apartment2.js": "009d4d3c31a9",
+  "packs/map_c_apartment2.js": "7b7f2d22ad41",
   "packs/map_c_apartment3.data": "20c22cbe6f4c",
-  "packs/map_c_apartment3.js": "f659e27557bb",
+  "packs/map_c_apartment3.js": "d9fe38b2a98c",
   "packs/map_c_apartment4.data": "d9f0978f0ca2",
-  "packs/map_c_apartment4.js": "8124c1373e2b",
+  "packs/map_c_apartment4.js": "d91168a3788e",
   "packs/map_c_apartment5.data": "a93608703ee9",
-  "packs/map_c_apartment5.js": "48cacea3e101",
-  "packs/map_c_apartmentsick.data": "346efcc9582d",
-  "packs/map_c_apartmentsick.js": "dd2432b6fa89",
+  "packs/map_c_apartment5.js": "8c38bb6f4877",
+  "packs/map_c_apartmentsick.data": "75813d82361a",
+  "packs/map_c_apartmentsick.js": "c2435fb3a155",
   "packs/map_c_game_menu1.data": "ae0666489e26",
-  "packs/map_c_game_menu1.js": "2afec3d986b3",
-  "packs/map_c_intro.data": "147e66b571f6",
-  "packs/map_c_intro.js": "dee19ef05849",
-  "packs/map_c_nightmare.data": "6a2506423d72",
-  "packs/map_c_nightmare.js": "1cf97751a7de",
-  "packs/map_c_start.data": "18bdf51d5d36",
-  "packs/map_c_start.js": "c4c01af258ae",
-  "packs/map_c_start2.data": "bb3cb85c81ce",
-  "packs/map_c_start2.js": "f89f9e2c921d",
+  "packs/map_c_game_menu1.js": "09b8c4fe03b3",
+  "packs/map_c_intro.data": "95524a3f0d7a",
+  "packs/map_c_intro.js": "715ce526cf2e",
+  "packs/map_c_nightmare.data": "2737687a6e69",
+  "packs/map_c_nightmare.js": "5fe799a1eb10",
+  "packs/map_c_start.data": "925160ee84d8",
+  "packs/map_c_start.js": "73515ce2bfa3",
+  "packs/map_c_start2.data": "0558e5332920",
+  "packs/map_c_start2.js": "a3b3a66db52f",
   "packs/maps.json": "0e0c426dc0e3",
   "packs/transitions.json": "79671f300407",
   "postfx.js": "89643d962d8d",
@@ -115,19 +114,18 @@ self.COF_MANIFEST = {
   "shaders/postfx.vert.glsl": "67c791a629ca",
   "shaders/water.frag.glsl": "60e5c1ff01bd",
   "shaders/water.vert.glsl": "2ac21130b1b7",
-  "transitions.json": "79671f300407",
   "xash3d.html": "9c5ead998246",
   "xash3d.js": "27889352d7a2",
   "xash3d.wasm": "1536758e1209"
  },
  "gz": {
   "packs/boot.data": {
-   "size": 75718828,
-   "gzSize": 19306326
+   "size": 75720687,
+   "gzSize": 19306673
   },
   "packs/engine.data": {
-   "size": 2798682,
-   "gzSize": 930672
+   "size": 2803753,
+   "gzSize": 932260
   },
   "packs/map_c_apartment1.data": {
    "size": 51581504,
@@ -150,28 +148,28 @@ self.COF_MANIFEST = {
    "gzSize": 15951384
   },
   "packs/map_c_apartmentsick.data": {
-   "size": 25002841,
-   "gzSize": 12633846
+   "size": 25074929,
+   "gzSize": 12642828
   },
   "packs/map_c_game_menu1.data": {
    "size": 16485833,
    "gzSize": 9208931
   },
   "packs/map_c_intro.data": {
-   "size": 40760843,
-   "gzSize": 20353402
+   "size": 41940623,
+   "gzSize": 20470014
   },
   "packs/map_c_nightmare.data": {
-   "size": 32474920,
-   "gzSize": 18108387
+   "size": 32868224,
+   "gzSize": 18193168
   },
   "packs/map_c_start.data": {
-   "size": 56242130,
-   "gzSize": 28983705
+   "size": 63762914,
+   "gzSize": 29974582
   },
   "packs/map_c_start2.data": {
-   "size": 47363613,
-   "gzSize": 28156766
+   "size": 52792141,
+   "gzSize": 28846673
   },
   "xash3d.wasm": {
    "size": 4681929,
