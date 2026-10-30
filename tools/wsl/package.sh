@@ -35,7 +35,7 @@ cp "$WEB/../launcher/Jugar.bat" "$WEB/../../tools/serve.py" "$DIST/"
 # GPL-3.0: quien recibe los binarios debe poder llegar al código. La página enlaza la licencia y
 # el repositorio público (COF_SOURCE_URL; un fork debe apuntarlo a su propio repositorio).
 cp "$WEB/../../LICENSE" "$DIST/LICENSE.txt"
-SOURCE_URL="${COF_SOURCE_URL:-https://github.com/Putrefacto669/Cry-Of-Fear-Port-Web}"
+SOURCE_URL="${COF_SOURCE_URL:-https://github.com/Putrefacto669/Cry-Of-Fear-PortWeb}"
 sed -i "s#__SOURCE_URL__#$SOURCE_URL#" "$DIST/index.html"
 
 # Nombres que espera el motor: dlopen("filesystem_stdio.wasm") y "libref_<nombre>.wasm"

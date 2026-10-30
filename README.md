@@ -115,7 +115,7 @@ Después abre <http://localhost:8080/>. `<repo>` es la ruta de este repositorio 
 `package.sh` deja en `~/cof-web/dist` todo lo necesario. Antes de subirlo:
 
 - La página enlaza el código fuente desde "Acerca de", como exige la GPL. Por defecto apunta a
-  <https://github.com/Putrefacto669/Cry-Of-Fear-Port-Web>; un fork debe cambiarlo con `COF_SOURCE_URL`.
+  <https://github.com/Putrefacto669/Cry-Of-Fear-PortWeb>; un fork debe cambiarlo con `COF_SOURCE_URL`.
 - Copia la configuración de `deploy/` que corresponda al hosting (`_headers` para Cloudflare Pages y
   Netlify, `vercel.json` para Vercel).
 - Comprueba límites y cabeceras con `tools/deploy_check.py` (y `--url` una vez publicado).
