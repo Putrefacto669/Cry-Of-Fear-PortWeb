@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "3d88087fb626",
+ "version": "70b6d5ff6e80",
  "coi": false,
  "precache": [
   "LICENSE.txt",
@@ -37,9 +37,9 @@ self.COF_MANIFEST = {
   "LICENSE.txt": "230184f60bae",
   "debug.js": "40590135a97a",
   "gpustats.js": "70aaa1f28265",
-  "hud.js": "f72972810355",
+  "hud.js": "05d2fd3fe09b",
   "index.html": "a79520cdd368",
-  "loader.js": "bf276fff1616",
+  "loader.js": "33da955454e8",
   "mp3/2aphall1.mp3": "70a02fded189",
   "mp3/ap3hall1.mp3": "23be860ec5a8",
   "mp3/ap3hall1end.mp3": "6da929c405e7",
@@ -80,10 +80,10 @@ self.COF_MANIFEST = {
   "mp3/tv_noise.mp3": "3e7347b88a61",
   "mp3/unlockables.mp3": "4ce75cbcd963",
   "mp3/watercorridor.mp3": "ba8c97aa265b",
-  "packs/boot.data": "62311b51a1b1",
-  "packs/boot.js": "1317d45ecb67",
-  "packs/engine.data": "55c4b57de216",
-  "packs/engine.js": "116b8814f8a5",
+  "packs/boot.data": "65ddf0158d7b",
+  "packs/boot.js": "99f052480fc7",
+  "packs/engine.data": "c0bdb557bd4c",
+  "packs/engine.js": "1f6bbaecf203",
   "packs/map_c_apartment1.data": "98d2f60e8b98",
   "packs/map_c_apartment1.js": "b8b4cbb28744",
   "packs/map_c_apartment2.data": "d9c0dd5a14b5",
@@ -102,10 +102,10 @@ self.COF_MANIFEST = {
   "packs/map_c_intro.js": "dee19ef05849",
   "packs/map_c_nightmare.data": "6a2506423d72",
   "packs/map_c_nightmare.js": "1cf97751a7de",
-  "packs/map_c_start.data": "aee76a31e699",
-  "packs/map_c_start.js": "8a5eae3603f2",
-  "packs/map_c_start2.data": "16ebacec3f11",
-  "packs/map_c_start2.js": "b5a0585a1b1c",
+  "packs/map_c_start.data": "18bdf51d5d36",
+  "packs/map_c_start.js": "c4c01af258ae",
+  "packs/map_c_start2.data": "bb3cb85c81ce",
+  "packs/map_c_start2.js": "f89f9e2c921d",
   "packs/maps.json": "0e0c426dc0e3",
   "packs/transitions.json": "79671f300407",
   "postfx.js": "89643d962d8d",
@@ -122,12 +122,12 @@ self.COF_MANIFEST = {
  },
  "gz": {
   "packs/boot.data": {
-   "size": 75598784,
-   "gzSize": 19261193
+   "size": 75718828,
+   "gzSize": 19306326
   },
   "packs/engine.data": {
-   "size": 2750722,
-   "gzSize": 914209
+   "size": 2798682,
+   "gzSize": 930672
   },
   "packs/map_c_apartment1.data": {
    "size": 51581504,
@@ -166,12 +166,12 @@ self.COF_MANIFEST = {
    "gzSize": 18108387
   },
   "packs/map_c_start.data": {
-   "size": 55843556,
-   "gzSize": 28725355
+   "size": 56242130,
+   "gzSize": 28983705
   },
   "packs/map_c_start2.data": {
-   "size": 46879625,
-   "gzSize": 27985748
+   "size": 47363613,
+   "gzSize": 28156766
   },
   "xash3d.wasm": {
    "size": 4681929,
