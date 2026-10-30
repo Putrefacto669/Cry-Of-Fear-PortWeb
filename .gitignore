@@ -11,3 +11,5 @@ __pycache__/
 # Excepciones: dist/ y build/validation se suben completos
 !dist/**
 !build/validation/**
+# Supera el límite de 100 MB de GitHub: se sube comprimido como .json.gz
+build/validation/cinematics-audio/cof-audio-frames-trace.json
