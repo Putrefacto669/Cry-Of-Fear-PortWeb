@@ -1,0 +1,125 @@
+FACTORY item_padlock 100b66f0
+
+void item_padlock(int param_1)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  
+  if ((param_1 == 0) && (iVar1 = (*DAT_10222f9c)(), iVar1 != 0)) {
+    param_1 = iVar1 + 0x80;
+  }
+  iVar1 = *(int *)(param_1 + 0x20c);
+  if ((iVar1 == 0) || (*(int *)(iVar1 + 0x7c) == 0)) {
+    puVar2 = (undefined4 *)(*DAT_10223044)(iVar1,0x100);
+    if (puVar2 != (undefined4 *)0x0) {
+      *puVar2 = CItemPadlock::vftable;
+      puVar2[1] = param_1;
+      return;
+    }
+    iRam00000004 = param_1;
+  }
+  return;
+}
+
+
+FACTORY door_prop_view 1002f170
+
+void door_prop_view(int param_1)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  
+  if ((param_1 == 0) && (iVar1 = (*DAT_10222f9c)(), iVar1 != 0)) {
+    param_1 = iVar1 + 0x80;
+  }
+  iVar1 = *(int *)(param_1 + 0x20c);
+  if ((iVar1 == 0) || (*(int *)(iVar1 + 0x7c) == 0)) {
+    puVar2 = (undefined4 *)(*DAT_10223044)(iVar1,0x368);
+    if (puVar2 != (undefined4 *)0x0) {
+      *puVar2 = CDoorPropView::vftable;
+      puVar2[1] = param_1;
+      return;
+    }
+    iRam00000004 = param_1;
+  }
+  return;
+}
+
+
+FACTORY cof_interdooronoff 100aa360
+
+void cof_interdooronoff(int param_1)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  
+  if ((param_1 == 0) && (iVar1 = (*DAT_10222f9c)(), iVar1 != 0)) {
+    param_1 = iVar1 + 0x80;
+  }
+  iVar1 = *(int *)(param_1 + 0x20c);
+  if ((iVar1 == 0) || (*(int *)(iVar1 + 0x7c) == 0)) {
+    puVar2 = (undefined4 *)(*DAT_10223044)(iVar1,0x36c);
+    if (puVar2 != (undefined4 *)0x0) {
+      *puVar2 = CCofInterDoorOnOff::vftable;
+      puVar2[1] = param_1;
+      return;
+    }
+    iRam00000004 = param_1;
+  }
+  return;
+}
+
+
+FACTORY cof_ladder_manager 10050010
+
+void cof_ladder_manager(int param_1)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  
+  if ((param_1 == 0) && (iVar1 = (*DAT_10222f9c)(), iVar1 != 0)) {
+    param_1 = iVar1 + 0x80;
+  }
+  iVar1 = *(int *)(param_1 + 0x20c);
+  if ((iVar1 == 0) || (*(int *)(iVar1 + 0x7c) == 0)) {
+    puVar2 = (undefined4 *)(*DAT_10223044)(iVar1,0x1b4);
+    if (puVar2 != (undefined4 *)0x0) {
+      *puVar2 = CCoFLadderManager::vftable;
+      puVar2[1] = param_1;
+      return;
+    }
+    iRam00000004 = param_1;
+  }
+  return;
+}
+
+
+FACTORY cof_ladder_manager_use 10050020
+
+void cof_ladder_manager_use(int param_1)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  
+  if ((param_1 == 0) && (iVar1 = (*DAT_10222f9c)(), iVar1 != 0)) {
+    param_1 = iVar1 + 0x80;
+  }
+  iVar1 = *(int *)(param_1 + 0x20c);
+  if ((iVar1 == 0) || (*(int *)(iVar1 + 0x7c) == 0)) {
+    puVar2 = (undefined4 *)(*DAT_10223044)(iVar1,0x184);
+    if (puVar2 != (undefined4 *)0x0) {
+      *puVar2 = CCoFLadderManagerUse::vftable;
+      puVar2[1] = param_1;
+      return;
+    }
+    iRam00000004 = param_1;
+  }
+  return;
+}
+
+

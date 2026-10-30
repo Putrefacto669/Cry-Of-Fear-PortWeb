@@ -1,0 +1,43 @@
+test_boss_images_are_staged_from_real_entity_keys (__main__.CampaignMapContracts.test_boss_images_are_staged_from_real_entity_keys) ... ok
+test_c_intro_motion_manager_autostart_contract (__main__.CampaignMapContracts.test_c_intro_motion_manager_autostart_contract) ... ok
+test_c_start_changevalues_and_activation_order (__main__.CampaignMapContracts.test_c_start_changevalues_and_activation_order) ... ok
+test_triggeron_destinations_start_disabled (__main__.CampaignMapContracts.test_triggeron_destinations_start_disabled) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.038s
+
+OK
+OK bchange1: sub1.linenumber=13
+OK slower_subbchange1: sub1.linenumber=2
+OK slower_subbchange2: sub1.linenumber=3
+OK slower_subbchange3: sub1.linenumber=4
+OK cchange2: simon3.body=1
+OK slower_cam2_mm: timed subtitles 2 -> 3 -> 4
+OK multiblack: replacement precedes subtitle 13
+OK invalid values and unknown property leave model unchanged
+OK replacement does not activate its subtitle destination
+OK first matching target only, zero, wrong target type and missing target
+OK trigger_checkbrush: solid brush, use and cooldown
+OK cof_triggeron: real trigger_once remains gated until enabled
+OK func_stairs: 50 inside, normal walking speed outside
+OK inventory, game save and JavaScript runtime
+OK inter_door_disable: initial flag 4, enable frags=1, disable frags=0, actual cafe exit
+OK trigger_cofteleport: real elevator trigger and destination, standing hull adjustment
+OK cof_bosshealthbar: real boss, max health, half health, hidden on death
+OK c_intro: real unnamed manager auto-activates; empty channels have no motion
+OK position mode 0: real server state and frame-time scaling
+OK position mode 1: real server state and frame-time scaling
+OK position mode 2: real server state and frame-time scaling
+OK position mode 3: real server state and frame-time scaling
+OK facing mode 0: real server angles/angular velocity
+OK facing mode 1: real server angles/angular velocity
+OK facing mode 2: real server angles/angular velocity
+OK facing mode 3: real server angles/angular velocity
+OK zero direction preserves angles
+OK *locus selects the actual activator
+OK every targetname match receives an independent worker
+OK configuration snapshot; worker survives manager removal and stops with target
+OK locus removal disposes workers; repeated Use creates separate workers
+OK invalid/unsupported expressions, modes, flags and absent targets have no side effects
+OK save/restore: live handles, manager configuration and worker count without auto-start duplication
+OK map load clears level-local workers; no JavaScript errors

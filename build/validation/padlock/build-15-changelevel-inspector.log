@@ -1,0 +1,26 @@
+Build commands will be stored in ../../build/game/compile_commands.json
+Waf: Entering directory `/root/cof-audits/audit-D3Kl5uly/build/game'
+[ 59/253] Compiling ../cof-logic/cof/weapons_cof.cpp
+[ 70/253] Compiling ../cof-logic/cof/puzzles.cpp
+[ 82/253] Compiling ../cof-logic/cof/player_cof.cpp
+[100/253] Compiling ../cof-logic/cof/monsters.cpp
+[120/253] Compiling ../cof-logic/cof/checkbrush.cpp
+[128/253] Compiling ../cof-logic/cof/bossbar.cpp
+[144/253] Compiling ../cof-logic/cof/atmosphere.cpp
+[153/253] Compiling ../cof-logic/cof/effects_cof.cpp
+[164/253] Compiling dlls/triggers.cpp
+[185/253] Compiling ../cof-logic/cof/doors.cpp
+[197/253] Compiling ../cof-logic/cof/padlock.cpp
+[200/253] Compiling ../cof-logic/cof/hud.cpp
+../../game/hlsdk-portable/dlls/triggers.cpp:461:18: warning: first argument in call to 'memcpy' is a pointer to non-trivially copyable type 'entvars_t' (aka 'entvars_s') [-Wnontrivial-memcall]
+  461 |         memcpy( pMulti->pev, pev, sizeof(*pev) );
+      |                         ^
+../../game/hlsdk-portable/dlls/triggers.cpp:461:18: note: explicitly cast the pointer to silence this warning
+  461 |         memcpy( pMulti->pev, pev, sizeof(*pev) );
+      |                         ^
+      |                 (void*)
+1 warning generated.
+
+[253/253] Linking ../../build/game/dlls/hl_emscripten_wasm32.wasm
+Waf: Leaving directory `/root/cof-audits/audit-D3Kl5uly/build/game'
+'build' finished successfully (2.552s)

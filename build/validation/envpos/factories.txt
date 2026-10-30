@@ -1,0 +1,50 @@
+FACTORY envpos_world 100aa840
+
+void envpos_world(int param_1)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  
+  if ((param_1 == 0) && (iVar1 = (*DAT_10222f9c)(), iVar1 != 0)) {
+    param_1 = iVar1 + 0x80;
+  }
+  iVar1 = *(int *)(param_1 + 0x20c);
+  if ((iVar1 == 0) || (*(int *)(iVar1 + 0x7c) == 0)) {
+    puVar2 = (undefined4 *)(*DAT_10223044)(iVar1,0xdc);
+    if (puVar2 != (undefined4 *)0x0) {
+      *puVar2 = CEnvPos_World::vftable;
+      puVar2[1] = param_1;
+      return;
+    }
+    iRam00000004 = param_1;
+  }
+  return;
+}
+
+
+FACTORY envpos_sky 100aa830
+
+void envpos_sky(int param_1)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  
+  if ((param_1 == 0) && (iVar1 = (*DAT_10222f9c)(), iVar1 != 0)) {
+    param_1 = iVar1 + 0x80;
+  }
+  iVar1 = *(int *)(param_1 + 0x20c);
+  if ((iVar1 == 0) || (*(int *)(iVar1 + 0x7c) == 0)) {
+    puVar2 = (undefined4 *)(*DAT_10223044)(iVar1,0xdc);
+    if (puVar2 != (undefined4 *)0x0) {
+      *puVar2 = CEnvPos_Sky::vftable;
+      puVar2[1] = param_1;
+      return;
+    }
+    iRam00000004 = param_1;
+  }
+  return;
+}
+
+

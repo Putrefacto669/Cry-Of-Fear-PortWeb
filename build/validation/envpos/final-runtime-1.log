@@ -1,0 +1,20 @@
+OK c_start: original marker protocol, ambient/direct values, parallax equation and actual sky model polygons
+OK original markers and sky rendering restored during multiscene1
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'32' !== '41'
+
+    at file:///root/cof-audits/browser-1.64.1/e2e/envpos_entities.mjs:70:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '32',
+  expected: '41',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

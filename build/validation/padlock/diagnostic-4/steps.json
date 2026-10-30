@@ -1,0 +1,34 @@
+[
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render\ncof_padlock_trace 2",
+      "frame": "01-before"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render\ncof_padlock_trace 0",
+      "frame": "02-after"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "save probe_baseline"
+    }
+  },
+  {
+    "interaction": {
+      "export": true
+    }
+  },
+  {
+    "interaction": {
+      "key": "Escape"
+    }
+  },
+  {
+    "interaction": {
+      "close": true
+    }
+  }
+]

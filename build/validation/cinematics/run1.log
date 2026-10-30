@@ -1,0 +1,25 @@
+OK idle real c_start multi_manager fires model sequence after save/load
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
+    2,
+    3,
++   3,
+    4
+  ]
+
+    at file:///root/cof-audits/audit-D3Kl5uly/e2e/manager_entities.mjs:93:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [ 2, 3, 3, 4 ],
+  expected: [ 2, 3, 4 ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

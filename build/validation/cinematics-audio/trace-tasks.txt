@@ -1,0 +1,35 @@
+2.874 CrRendererMain RunTask {}
+2.865 CrRendererMain ThreadControllerImpl::RunTask {'chrome_task_annotator': {'delay_policy': 'PRECISE', 'task_delay_us': 7999}, 'src_file': 'third_party/blink/renderer/core/scheduler/dom_timer.cc', 'src_func': 'DOMTimer', 'src_line': 341}
+2.865 CrRendererMain TimerBase::run {}
+2.865 CrRendererMain TimerFire {'data': {'frame': '5F8C4661C918B2A613CDD6968B1777D9', 'timerId': 5}}
+2.865 CrRendererMain AsyncTask Run {}
+2.865 CrRendererMain v8.callFunction {}
+2.660 CrRendererMain FunctionCall {'data': {'columnNumber': 124077, 'frame': '5F8C4661C918B2A613CDD6968B1777D9', 'functionName': 'MainLoop_runner', 'isolate': 13387523802968292028, 'lineNumber': 1, 'sampleTraceId': 4904535834232132, 'scriptId': '13', 'url': 'http://127.0.0.1:8095/xash3d.js'}}
+1.237 CrRendererMain RunTask {}
+1.237 CrRendererMain ThreadControllerImpl::RunTask {'src_file': 'cc/trees/proxy_impl.cc', 'src_func': 'ScheduledActionSendBeginMainFrame', 'src_line': 777}
+1.237 CrRendererMain ProxyMain::BeginMainFrame {'begin_frame_id': 565, 'main_frame_pipeline': {'main_frame_id': 14416423343420027000, 'step': 'BEGIN_MAIN_FRAME'}}
+1.150 CrRendererMain Commit {'frameSeqId': 565, 'layerTreeId': 1}
+1.150 CrRendererMain ProxyMain::BeginMainFrame::commit {'main_frame_pipeline': {'main_frame_id': 14416423343420027000, 'step': 'COMMIT_ON_MAIN'}}
+1.150 CrRendererMain LayerTreeHost::WaitForCommitCompletion {}
+0.846 CrRendererMain RunTask {}
+0.846 CrRendererMain ThreadControllerImpl::RunTask {'chrome_task_annotator': {'delay_policy': 'PRECISE', 'task_delay_us': 15999}, 'src_file': 'third_party/blink/renderer/core/scheduler/dom_timer.cc', 'src_func': 'DOMTimer', 'src_line': 341}
+0.846 CrRendererMain TimerBase::run {}
+0.846 CrRendererMain TimerFire {'data': {'frame': '5F8C4661C918B2A613CDD6968B1777D9', 'timerId': 8}}
+0.846 CrRendererMain AsyncTask Run {}
+0.846 CrRendererMain v8.callFunction {}
+0.846 CrRendererMain FunctionCall {'data': {'columnNumber': 124077, 'frame': '5F8C4661C918B2A613CDD6968B1777D9', 'functionName': 'MainLoop_runner', 'isolate': 13387523802968292028, 'lineNumber': 1, 'sampleTraceId': 4904535834245809, 'scriptId': '13', 'url': 'http://127.0.0.1:8095/xash3d.js'}}
+0.673 CrRendererMain RunTask {}
+0.673 CrRendererMain ThreadControllerImpl::RunTask {'chrome_task_annotator': {'delay_policy': 'PRECISE', 'task_delay_us': 999}, 'src_file': 'third_party/blink/renderer/core/scheduler/dom_timer.cc', 'src_func': 'DOMTimer', 'src_line': 341}
+0.673 CrRendererMain TimerBase::run {}
+0.673 CrRendererMain TimerFire {'data': {'frame': '5F8C4661C918B2A613CDD6968B1777D9', 'timerId': 2}}
+0.673 CrRendererMain AsyncTask Run {}
+0.673 CrRendererMain v8.callFunction {}
+0.673 CrRendererMain FunctionCall {'data': {'columnNumber': 530499, 'frame': '5F8C4661C918B2A613CDD6968B1777D9', 'functionName': '', 'isolate': 13387523802968292028, 'lineNumber': 1, 'sampleTraceId': 4904535834233885, 'scriptId': '13', 'url': 'http://127.0.0.1:8095/xash3d.js'}}
+0.542 CrRendererMain RunTask {}
+0.542 CrRendererMain ThreadControllerImpl::RunTask {'chrome_task_annotator': {'delay_policy': 'PRECISE', 'task_delay_us': 3999}, 'src_file': 'third_party/blink/renderer/core/scheduler/dom_timer.cc', 'src_func': 'DOMTimer', 'src_line': 341}
+0.542 CrRendererMain TimerBase::run {}
+0.542 CrRendererMain TimerFire {'data': {'frame': '5F8C4661C918B2A613CDD6968B1777D9', 'timerId': 9}}
+0.542 CrRendererMain AsyncTask Run {}
+0.542 CrRendererMain v8.callFunction {}
+0.542 CrRendererMain FunctionCall {'data': {'columnNumber': 124077, 'frame': '5F8C4661C918B2A613CDD6968B1777D9', 'functionName': 'MainLoop_runner', 'isolate': 13387523802968292028, 'lineNumber': 1, 'sampleTraceId': 4904535834250125, 'scriptId': '13', 'url': 'http://127.0.0.1:8095/xash3d.js'}}
+0.447 CrRendererMain RunTask {}

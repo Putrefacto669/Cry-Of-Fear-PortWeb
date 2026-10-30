@@ -1,0 +1,19 @@
+OK real fokus3: in-flight callbacks, destination, local deadline, arrival and next segment survive load; kamera3 keeps its target
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+0.0266647 !== 0
+
+    at file:///root/cof-audits/browser-1.64.1/e2e/train_entities.mjs:80:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 0.0266647,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

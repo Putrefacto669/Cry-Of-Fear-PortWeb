@@ -1,0 +1,9 @@
+file:///root/cof-audits/audit-D3Kl5uly/e2e/manager_entities.mjs:17
+      if (Date.now() - start > timeout) throw new Error("timeout waiting for restored multi_manager");
+                                              ^
+
+Error: timeout waiting for restored multi_manager
+    at until (file:///root/cof-audits/audit-D3Kl5uly/e2e/manager_entities.mjs:17:47)
+    at async file:///root/cof-audits/audit-D3Kl5uly/e2e/manager_entities.mjs:65:3
+
+Node.js v24.19.0

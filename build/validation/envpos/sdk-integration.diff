@@ -1,0 +1,123 @@
+diff --git a/cl_dll/hud_msg.cpp b/cl_dll/hud_msg.cpp
+index d901ec69..ab23d601 100644
+--- a/cl_dll/hud_msg.cpp
++++ b/cl_dll/hud_msg.cpp
+@@ -31,8 +31,11 @@ extern float g_lastFOV;			// Vit_amiN
+ 
+ /// USER-DEFINED SERVER MESSAGE HANDLERS
+ 
++extern void CoF_ClientSkyReset( void );
++
+ int CHud::MsgFunc_ResetHUD( const char *pszName, int iSize, void *pbuf )
+ {
++	CoF_ClientSkyReset();
+ 	ASSERT( iSize == 0 );
+ 
+ 	// clear all hud data
+diff --git a/dlls/client.cpp b/dlls/client.cpp
+index da2e9e1d..0db5b553 100644
+--- a/dlls/client.cpp
++++ b/dlls/client.cpp
+@@ -465,6 +465,9 @@ called each time a player uses a "cmd" command
+ */
+ extern cvar_t *g_enable_cheats;
+ 
++// Cry of Fear commands: +sprint, +inventory... (game/cof-logic/cof/player_cof.cpp)
++bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd );
++
+ // Use CMD_ARGV,  CMD_ARGV, and CMD_ARGC to get pointers the character string command.
+ void ClientCommand( edict_t *pEntity )
+ {
+@@ -477,6 +480,9 @@ void ClientCommand( edict_t *pEntity )
+ 
+ 	entvars_t *pev = &pEntity->v;
+ 
++	if( CoF_ClientCommand( GetClassPtr( (CBasePlayer *)pev ), pcmd ) )
++		return;
++
+ 	if( FStrEq( pcmd, "say" ) )
+ 	{
+ 		Host_Say( pEntity, 0 );
+@@ -1143,7 +1149,8 @@ int AddToFullPack( struct entity_state_s *state, int e, edict_t *ent, edict_t *h
+ 		if( !ENGINE_CHECK_VISIBILITY( (const struct edict_s *)ent, pSet ) )
+ 		{
+ 			// env_sky is visible always
+-			if( !FClassnameIs( ent, "env_sky" ) )
++			if( !FClassnameIs( ent, "env_sky" ) &&
++				!( FClassnameIs( ent, "env_model" ) && ent->v.renderfx == 137 ))
+ 			{
+ 				return 0;
+ 			}
+diff --git a/dlls/player.cpp b/dlls/player.cpp
+index bbb68ea6..4ee578e6 100644
+--- a/dlls/player.cpp
++++ b/dlls/player.cpp
+@@ -40,6 +40,10 @@
+ // #define DUCKFIX
+ 
+ extern DLL_GLOBAL ULONG g_ulModelIndexPlayer;
++
++// Cry of Fear: stamina, sprint and inventory (game/cof-logic/cof/player_cof.cpp)
++void CoF_PlayerSpawn( CBasePlayer *pPlayer );
++void CoF_PlayerPreThink( CBasePlayer *pPlayer );
+ extern DLL_GLOBAL BOOL g_fGameOver;
+ extern DLL_GLOBAL BOOL g_fDrawLines;
+ int gEvilImpulse101;
+@@ -185,8 +189,13 @@ int gmsgTeamNames = 0;
+ int gmsgStatusText = 0;
+ int gmsgStatusValue = 0;
+ 
++void CoF_LinkUserMessages( void );
++
++extern void CoF_PrecacheEnvpos( void );
++
+ void LinkUserMessages( void )
+ {
++	CoF_PrecacheEnvpos();
+ 	// Already taken care of?
+ 	if( gmsgSelAmmo )
+ 	{
+@@ -230,6 +239,9 @@ void LinkUserMessages( void )
+ 
+ 	gmsgStatusText = REG_USER_MSG( "StatusText", -1 );
+ 	gmsgStatusValue = REG_USER_MSG( "StatusValue", 3 );
++
++	// Cry of Fear (game/cof-logic/cof/effects_cof.cpp)
++	CoF_LinkUserMessages();
+ }
+ 
+ LINK_ENTITY_TO_CLASS( player, CBasePlayer )
+@@ -1891,6 +1903,8 @@ void CBasePlayer::PreThink( void )
+ 
+ 	UTIL_MakeVectors( pev->v_angle );             // is this still used?
+ 
++	CoF_PlayerPreThink( this );
++
+ 	ItemPreFrame();
+ 	WaterMove();
+ 
+@@ -2998,6 +3012,7 @@ void CBasePlayer::Spawn( void )
+ 
+ 	SET_VIEW(edict(), edict());
+ 
++	CoF_PlayerSpawn( this );
+ 	g_pGameRules->PlayerSpawn( this );
+ }
+ 
+@@ -3997,6 +4012,8 @@ ForceClientDllUpdate to ensure the demo gets messages
+ reflecting all of the HUD state info.
+ =========================================================
+ */
++extern void CoF_SendEnvpos( CBasePlayer *player );
++
+ void CBasePlayer::UpdateClientData( void )
+ {
+ 	if( m_fInitHUD )
+@@ -4007,6 +4024,7 @@ void CBasePlayer::UpdateClientData( void )
+ 		MESSAGE_BEGIN( MSG_ONE, gmsgResetHUD, NULL, pev );
+ 			WRITE_BYTE( 0 );
+ 		MESSAGE_END();
++		CoF_SendEnvpos( this );
+ 
+ 		if( !m_fGameHUDInitialized )
+ 		{

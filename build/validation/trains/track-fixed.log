@@ -1,0 +1,21 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: tracktrain lost path: {"think":"1","path":"instopp3","next":"2.044","local":"1.544","now":"1.526","speed":"10","maxspeed":"40","start":"10","dir":"1","height":"4","length":"50","pos":"2650.52,-1547.74,-642.854","vel":"-4.03564,-2.01782,-8.92395","flags":"0"}
++ actual - expected
+
++ 'instopp3'
+- 'instopp2'
+          ^
+
+    at file:///root/cof-audits/browser-1.64.1/e2e/track_entities.mjs:61:12 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'instopp3',
+  expected: 'instopp2',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

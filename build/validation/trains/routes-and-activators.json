@@ -1,0 +1,680 @@
+{
+  "c_nightmare": [
+    {
+      "train": {
+        "model": "*103",
+        "origin": "1344 -1355 1509",
+        "volume": "0.85",
+        "speed": "40",
+        "targetname": "horafittakuk",
+        "rendermode": "2",
+        "target": "astoplolk1",
+        "rendercolor": "0 0 0",
+        "classname": "func_train"
+      },
+      "route": [
+        {
+          "origin": "1344 -1356 1509",
+          "target": "astoplolk2",
+          "targetname": "astoplolk1",
+          "angles": "0 0 0",
+          "classname": "path_corner"
+        },
+        {
+          "origin": "1344 -639 1509",
+          "targetname": "astoplolk2",
+          "angles": "0 0 0",
+          "spawnflags": "1",
+          "classname": "path_corner"
+        }
+      ],
+      "activators": [
+        {
+          "origin": "1756 -818 1630",
+          "slackljusenffs": "0",
+          "subz3": "15.3",
+          "horafittakuk": "0",
+          "ljudesh2": "35",
+          "ljudesh1": "29",
+          "kameraheh12": "35",
+          "kameraheh5": "7",
+          "kameraheh4": "0",
+          "kameraheh11": "32",
+          "kameraheh10": "28",
+          "kameraheh9": "25",
+          "kameraheh8": "20.5",
+          "kameraheh7": "18",
+          "kameraheh6": "15",
+          "targetname": "multiintro3",
+          "classname": "multi_manager"
+        },
+        {
+          "origin": "1800 -1355 1509",
+          "speed": "40",
+          "target": "horafittakuk",
+          "targetname": "kameraheh4",
+          "moveto": "stoplolt1",
+          "deceleration": "500",
+          "acceleration": "500",
+          "wait": "83.5",
+          "spawnflags": "116",
+          "classname": "trigger_camera"
+        },
+        {
+          "origin": "1782 -839 1630",
+          "lolzoom1": "15",
+          "carglow#1": "32",
+          "cartrain": "34.7",
+          "cardyn#1": "0",
+          "cardyn": "29.5",
+          "carglow": "29.5",
+          "carmove_b": "29.5",
+          "lolsec2c2": "15",
+          "lolsec2c": "18",
+          "horafittakuk#1": "0.02",
+          "horafittakuk": "0.01",
+          "nightmulti": "43",
+          "targetname": "multiintro3",
+          "classname": "multi_manager"
+        }
+      ],
+      "cameras": [
+        {
+          "origin": "1800 -1355 1509",
+          "speed": "40",
+          "target": "horafittakuk",
+          "targetname": "kameraheh4",
+          "moveto": "stoplolt1",
+          "deceleration": "500",
+          "acceleration": "500",
+          "wait": "83.5",
+          "spawnflags": "116",
+          "classname": "trigger_camera"
+        }
+      ]
+    },
+    {
+      "train": {
+        "model": "*130",
+        "origin": "1882 31 1526",
+        "angles": "0 270 0",
+        "speed": "5",
+        "target": "carstop1",
+        "renderamt": "255",
+        "rendermode": "4",
+        "dmg": "2",
+        "targetname": "cartrain",
+        "rendercolor": "0 0 0",
+        "spawnflags": "8",
+        "classname": "func_train"
+      },
+      "route": [
+        {
+          "origin": "1882 31 1526",
+          "armorvalue": "1",
+          "turnspeed": "300",
+          "speed": "20",
+          "target": "carstop2",
+          "targetname": "carstop1",
+          "angles": "0 270 0",
+          "classname": "path_corner"
+        },
+        {
+          "origin": "1877 26 1526",
+          "armorvalue": "1",
+          "turnspeed": "300",
+          "speed": "200",
+          "target": "carstop3",
+          "targetname": "carstop2",
+          "angles": "0 263 0",
+          "classname": "path_corner"
+        },
+        {
+          "origin": "1875 24 1526",
+          "armorvalue": "1",
+          "turnspeed": "300",
+          "speed": "700",
+          "target": "carstop4",
+          "targetname": "carstop3",
+          "angles": "0 253 0",
+          "classname": "path_corner"
+        },
+        {
+          "origin": "1788 -600 1526",
+          "armorvalue": "1",
+          "turnspeed": "300",
+          "speed": "300",
+          "target": "carstop5",
+          "targetname": "carstop4",
+          "angles": "0 246 0",
+          "classname": "path_corner"
+        },
+        {
+          "origin": "1760 -660 1526",
+          "armorvalue": "1",
+          "turnspeed": "300",
+          "speed": "250",
+          "targetname": "carstop5",
+          "angles": "0 235 0",
+          "classname": "path_corner"
+        }
+      ],
+      "activators": [
+        {
+          "origin": "1782 -839 1630",
+          "lolzoom1": "15",
+          "carglow#1": "32",
+          "cartrain": "34.7",
+          "cardyn#1": "0",
+          "cardyn": "29.5",
+          "carglow": "29.5",
+          "carmove_b": "29.5",
+          "lolsec2c2": "15",
+          "lolsec2c": "18",
+          "horafittakuk#1": "0.02",
+          "horafittakuk": "0.01",
+          "nightmulti": "43",
+          "targetname": "multiintro3",
+          "classname": "multi_manager"
+        }
+      ],
+      "cameras": []
+    }
+  ],
+  "c_intro": [
+    {
+      "train": {
+        "model": "*156",
+        "origin": "2661 -2934 1278",
+        "target": "tt1stop1",
+        "targetname": "trainunder",
+        "dmg": "2",
+        "speed": "350",
+        "rendercolor": "0 0 0",
+        "spawnflags": "8",
+        "classname": "func_train"
+      },
+      "route": [
+        {
+          "origin": "2660 -2934 1278",
+          "target": "tt1stop2",
+          "targetname": "tt1stop1",
+          "angles": "0 0 0",
+          "classname": "path_corner"
+        },
+        {
+          "origin": "-1119 -2934 1309",
+          "targetname": "tt1stop2",
+          "angles": "0 0 0",
+          "spawnflags": "1",
+          "classname": "path_corner"
+        }
+      ],
+      "activators": [
+        {
+          "origin": "1112 -3262 1056",
+          "kkamera2": "8",
+          "kkamera4": "23",
+          "tjenareljuset2#1": "14",
+          "tjenareljuset2": "8",
+          "bilist01": "28.3",
+          "tjenareljuset#1": "23",
+          "tjenareljuset": "14",
+          "stangavffs": "14",
+          "kkamera3": "14",
+          "bilist00": "23.1",
+          "trainunder": "18",
+          "kfokus1": "8",
+          "katt": "8",
+          "kkamera1": "0",
+          "targetname": "multikattej",
+          "classname": "multi_manager"
+        }
+      ],
+      "cameras": []
+    },
+    {
+      "train": {
+        "model": "*157",
+        "origin": "883 -3562 1007",
+        "target": "biliststop1",
+        "speed": "200",
+        "targetname": "bilist00",
+        "rendermode": "2",
+        "rendercolor": "0 0 0",
+        "classname": "func_train"
+      },
+      "route": [
+        {
+          "origin": "878 -3860 1007",
+          "armorvalue": "1",
+          "target": "biliststop2",
+          "targetname": "biliststop1",
+          "angles": "0 0 0",
+          "classname": "path_corner"
+        },
+        {
+          "origin": "883 32 1007",
+          "armorvalue": "1",
+          "target": "biliststop1",
+          "targetname": "biliststop2",
+          "angles": "0 0 0",
+          "classname": "path_corner"
+        }
+      ],
+      "activators": [
+        {
+          "origin": "1112 -3262 1056",
+          "kkamera2": "8",
+          "kkamera4": "23",
+          "tjenareljuset2#1": "14",
+          "tjenareljuset2": "8",
+          "bilist01": "28.3",
+          "tjenareljuset#1": "23",
+          "tjenareljuset": "14",
+          "stangavffs": "14",
+          "kkamera3": "14",
+          "bilist00": "23.1",
+          "trainunder": "18",
+          "kfokus1": "8",
+          "katt": "8",
+          "kkamera1": "0",
+          "targetname": "multikattej",
+          "classname": "multi_manager"
+        }
+      ],
+      "cameras": []
+    },
+    {
+      "train": {
+        "model": "*164",
+        "origin": "882 -3590 1007",
+        "target": "biliststop1",
+        "speed": "200",
+        "targetname": "bilist01",
+        "rendermode": "2",
+        "rendercolor": "0 0 0",
+        "classname": "func_train"
+      },
+      "route": [
+        {
+          "origin": "878 -3860 1007",
+          "armorvalue": "1",
+          "target": "biliststop2",
+          "targetname": "biliststop1",
+          "angles": "0 0 0",
+          "classname": "path_corner"
+        },
+        {
+          "origin": "883 32 1007",
+          "armorvalue": "1",
+          "target": "biliststop1",
+          "targetname": "biliststop2",
+          "angles": "0 0 0",
+          "classname": "path_corner"
+        }
+      ],
+      "activators": [
+        {
+          "origin": "1112 -3262 1056",
+          "kkamera2": "8",
+          "kkamera4": "23",
+          "tjenareljuset2#1": "14",
+          "tjenareljuset2": "8",
+          "bilist01": "28.3",
+          "tjenareljuset#1": "23",
+          "tjenareljuset": "14",
+          "stangavffs": "14",
+          "kkamera3": "14",
+          "bilist00": "23.1",
+          "trainunder": "18",
+          "kfokus1": "8",
+          "katt": "8",
+          "kkamera1": "0",
+          "targetname": "multikattej",
+          "classname": "multi_manager"
+        }
+      ],
+      "cameras": []
+    },
+    {
+      "train": {
+        "model": "*176",
+        "origin": "3545 2958 -1253",
+        "target": "terstop1",
+        "renderamt": "255",
+        "rendermode": "4",
+        "targetname": "tja",
+        "dmg": "-1",
+        "speed": "450",
+        "rendercolor": "0 0 0",
+        "spawnflags": "4",
+        "classname": "func_train"
+      },
+      "route": [
+        {
+          "origin": "2767 3041 -535",
+          "target": "terstop2",
+          "targetname": "terstop1",
+          "angles": "0 0 0",
+          "classname": "path_corner"
+        },
+        {
+          "origin": "2767 -2667 -535",
+          "target": "terstop1",
+          "targetname": "terstop2",
+          "angles": "0 0 0",
+          "spawnflags": "2",
+          "classname": "path_corner"
+        }
+      ],
+      "activators": [],
+      "cameras": []
+    }
+  ],
+  "c_start": [
+    {
+      "train": {
+        "model": "*135",
+        "origin": "621 -2639 -723",
+        "spawnflags": "8",
+        "angles": "0 0 0",
+        "zhlt_lightflags": "0",
+        "renderfx": "0",
+        "volume": "0.85",
+        "skin": "0",
+        "dmg": "0",
+        "speed": "6",
+        "stopsnd": "0",
+        "movesnd": "0",
+        "targetname": "fokus3",
+        "renderamt": "0",
+        "rendermode": "2",
+        "target": "1stopp1",
+        "rendercolor": "0 0 0",
+        "classname": "func_train"
+      },
+      "route": [
+        {
+          "origin": "641 -2833 -757",
+          "speed": "0",
+          "target": "1stopp2",
+          "targetname": "1stopp1",
+          "angles": "0 0 0",
+          "classname": "path_track"
+        },
+        {
+          "origin": "641 -2964 -757",
+          "target": "1stopp1",
+          "targetname": "1stopp2",
+          "angles": "0 0 0",
+          "classname": "path_track"
+        }
+      ],
+      "activators": [
+        {
+          "origin": "686 -2832 -757",
+          "spawnflags": "116",
+          "zangle": "0",
+          "moveto": "1stop1",
+          "angles": "0 180 0",
+          "speed": "6",
+          "targetname": "kamera3",
+          "delay": "0",
+          "target": "fokus3",
+          "deceleration": "500",
+          "acceleration": "500",
+          "wait": "44",
+          "classname": "trigger_camera"
+        },
+        {
+          "origin": "608 -2808 -624",
+          "angles": "0 0 0",
+          "ljudnivo": "0",
+          "cities22#1": "46",
+          "cities22": "0",
+          "subtitles3": "30",
+          "subch2": "30",
+          "subch1": "22",
+          "subtitles2": "22",
+          "subtitles1": "14",
+          "kukgeha": "0",
+          "soundme1": "46",
+          "sub1": "14",
+          "fokus3": "0",
+          "block": "0",
+          "fade3": "44",
+          "targetname": "multiscene1",
+          "classname": "multi_manager"
+        }
+      ],
+      "cameras": [
+        {
+          "origin": "686 -2832 -757",
+          "spawnflags": "116",
+          "zangle": "0",
+          "moveto": "1stop1",
+          "angles": "0 180 0",
+          "speed": "6",
+          "targetname": "kamera3",
+          "delay": "0",
+          "target": "fokus3",
+          "deceleration": "500",
+          "acceleration": "500",
+          "wait": "44",
+          "classname": "trigger_camera"
+        }
+      ]
+    }
+  ],
+  "c_game_menu1": [
+    {
+      "train": {
+        "model": "*26",
+        "origin": "-1851 1106 78",
+        "target": "stop1",
+        "targetname": "togasso",
+        "speed": "400",
+        "rendercolor": "0 0 0",
+        "classname": "func_train"
+      },
+      "route": [
+        {
+          "origin": "-1851 -3715 79",
+          "target": "stop2",
+          "targetname": "stop1",
+          "angles": "0 0 0",
+          "spawnflags": "3",
+          "classname": "path_corner"
+        },
+        {
+          "origin": "-1851 3666 79",
+          "target": "stop1",
+          "targetname": "stop2",
+          "angles": "0 0 0",
+          "spawnflags": "1",
+          "classname": "path_corner"
+        }
+      ],
+      "activators": [
+        {
+          "origin": "-3446 -447 25",
+          "menumusic": "0",
+          "menufade": "0",
+          "togasso2#2": "85",
+          "togasso2#1": "84",
+          "togasso#2": "85",
+          "togasso#1": "84",
+          "2togasso2": "32.01",
+          "2togasso": "32",
+          "kamera": "0",
+          "crow2": "17.7",
+          "crow1": "17",
+          "togasso2": "14.01",
+          "bluryao": "0",
+          "togasso": "14",
+          "targetname": "multimenu",
+          "classname": "multi_manager"
+        }
+      ],
+      "cameras": []
+    },
+    {
+      "train": {
+        "model": "*64",
+        "origin": "-1667 1107 78",
+        "target": "2stop1",
+        "targetname": "2togasso",
+        "speed": "400",
+        "rendercolor": "0 0 0",
+        "classname": "func_train"
+      },
+      "route": [
+        {
+          "origin": "-1667 3667 79",
+          "target": "2stop2",
+          "targetname": "2stop1",
+          "angles": "0 0 0",
+          "spawnflags": "3",
+          "classname": "path_corner"
+        },
+        {
+          "origin": "-1667 -3714 79",
+          "target": "2stop1",
+          "targetname": "2stop2",
+          "angles": "0 0 0",
+          "spawnflags": "1",
+          "classname": "path_corner"
+        }
+      ],
+      "activators": [
+        {
+          "origin": "-3446 -447 25",
+          "menumusic": "0",
+          "menufade": "0",
+          "togasso2#2": "85",
+          "togasso2#1": "84",
+          "togasso#2": "85",
+          "togasso#1": "84",
+          "2togasso2": "32.01",
+          "2togasso": "32",
+          "kamera": "0",
+          "crow2": "17.7",
+          "crow1": "17",
+          "togasso2": "14.01",
+          "bluryao": "0",
+          "togasso": "14",
+          "targetname": "multimenu",
+          "classname": "multi_manager"
+        }
+      ],
+      "cameras": []
+    },
+    {
+      "train": {
+        "model": "*65",
+        "origin": "-1851 1107 78",
+        "rendermode": "5",
+        "target": "stop1",
+        "targetname": "togasso2",
+        "speed": "400",
+        "renderamt": "100",
+        "rendercolor": "0 0 0",
+        "classname": "func_train"
+      },
+      "route": [
+        {
+          "origin": "-1851 -3715 79",
+          "target": "stop2",
+          "targetname": "stop1",
+          "angles": "0 0 0",
+          "spawnflags": "3",
+          "classname": "path_corner"
+        },
+        {
+          "origin": "-1851 3666 79",
+          "target": "stop1",
+          "targetname": "stop2",
+          "angles": "0 0 0",
+          "spawnflags": "1",
+          "classname": "path_corner"
+        }
+      ],
+      "activators": [
+        {
+          "origin": "-3446 -447 25",
+          "menumusic": "0",
+          "menufade": "0",
+          "togasso2#2": "85",
+          "togasso2#1": "84",
+          "togasso#2": "85",
+          "togasso#1": "84",
+          "2togasso2": "32.01",
+          "2togasso": "32",
+          "kamera": "0",
+          "crow2": "17.7",
+          "crow1": "17",
+          "togasso2": "14.01",
+          "bluryao": "0",
+          "togasso": "14",
+          "targetname": "multimenu",
+          "classname": "multi_manager"
+        }
+      ],
+      "cameras": []
+    },
+    {
+      "train": {
+        "model": "*66",
+        "origin": "-1666 1098 78",
+        "rendermode": "5",
+        "target": "2stop1",
+        "targetname": "2togasso2",
+        "speed": "400",
+        "renderamt": "100",
+        "rendercolor": "0 0 0",
+        "classname": "func_train"
+      },
+      "route": [
+        {
+          "origin": "-1667 3667 79",
+          "target": "2stop2",
+          "targetname": "2stop1",
+          "angles": "0 0 0",
+          "spawnflags": "3",
+          "classname": "path_corner"
+        },
+        {
+          "origin": "-1667 -3714 79",
+          "target": "2stop1",
+          "targetname": "2stop2",
+          "angles": "0 0 0",
+          "spawnflags": "1",
+          "classname": "path_corner"
+        }
+      ],
+      "activators": [
+        {
+          "origin": "-3446 -447 25",
+          "menumusic": "0",
+          "menufade": "0",
+          "togasso2#2": "85",
+          "togasso2#1": "84",
+          "togasso#2": "85",
+          "togasso#1": "84",
+          "2togasso2": "32.01",
+          "2togasso": "32",
+          "kamera": "0",
+          "crow2": "17.7",
+          "crow1": "17",
+          "togasso2": "14.01",
+          "bluryao": "0",
+          "togasso": "14",
+          "targetname": "multimenu",
+          "classname": "multi_manager"
+        }
+      ],
+      "cameras": []
+    }
+  ]
+}

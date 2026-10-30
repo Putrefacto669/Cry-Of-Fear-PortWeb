@@ -1,0 +1,62 @@
+[
+  {
+    "interaction": {
+      "frame": "01-normal-frame",
+      "shot": "01-normal-page",
+      "cmd": "cof_padlock_render"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "save pad3_active"
+    }
+  },
+  {
+    "interaction": {
+      "key": "Escape",
+      "wait": 250,
+      "cmd": "cof_padlock"
+    }
+  },
+  {
+    "interaction": {
+      "load": "pad3_active",
+      "wait": 500,
+      "cmd": "cof_padlock",
+      "frame": "02-restored-frame"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render\ngl_customsky 0\nr_nocull 0\nr_fullbright 0",
+      "frame": "03-sky-off"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render\nr_fullbright 1",
+      "frame": "04-fullbright-only"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render\nr_fullbright 0\nr_nocull 1",
+      "frame": "05-nocull-only"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render\ngl_customsky 1\nr_fullbright 0\nr_nocull 0"
+    }
+  },
+  {
+    "interaction": {
+      "key": "Escape"
+    }
+  },
+  {
+    "interaction": {
+      "close": true
+    }
+  }
+]

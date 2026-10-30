@@ -1,0 +1,98 @@
+100b6280
+
+void __thiscall FUN_100b6280(CItemPadlock *param_1,undefined4 param_2)
+
+{
+  int iVar1;
+  float fVar2;
+  undefined4 uVar3;
+  
+  switch(param_2) {
+  case 1:
+    *(int *)(*(int *)(param_1 + 4) + 0x248) = *(int *)(*(int *)(param_1 + 4) + 0x248) + 0x28;
+    iVar1 = *(int *)(param_1 + 4);
+    if (0x167 < *(int *)(iVar1 + 0x248)) {
+      *(undefined4 *)(iVar1 + 0x248) = 0;
+      iVar1 = *(int *)(param_1 + 4);
+    }
+    fVar2 = (float)*(int *)(iVar1 + 0x248);
+    uVar3 = 0;
+    break;
+  case 2:
+    *(int *)(*(int *)(param_1 + 4) + 0x24c) = *(int *)(*(int *)(param_1 + 4) + 0x24c) + 0x28;
+    iVar1 = *(int *)(param_1 + 4);
+    if (0x167 < *(int *)(iVar1 + 0x24c)) {
+      *(undefined4 *)(iVar1 + 0x24c) = 0;
+      iVar1 = *(int *)(param_1 + 4);
+    }
+    fVar2 = (float)*(int *)(iVar1 + 0x24c);
+    uVar3 = 1;
+    break;
+  case 3:
+    *(int *)(*(int *)(param_1 + 4) + 0x250) = *(int *)(*(int *)(param_1 + 4) + 0x250) + 0x28;
+    iVar1 = *(int *)(param_1 + 4);
+    if (0x167 < *(int *)(iVar1 + 0x250)) {
+      *(undefined4 *)(iVar1 + 0x250) = 0;
+      iVar1 = *(int *)(param_1 + 4);
+    }
+    fVar2 = (float)*(int *)(iVar1 + 0x250);
+    uVar3 = 2;
+    break;
+  case 4:
+    *(int *)(*(int *)(param_1 + 4) + 0x254) = *(int *)(*(int *)(param_1 + 4) + 0x254) + 0x28;
+    iVar1 = *(int *)(param_1 + 4);
+    if (0x167 < *(int *)(iVar1 + 0x254)) {
+      *(undefined4 *)(iVar1 + 0x254) = 0;
+      iVar1 = *(int *)(param_1 + 4);
+    }
+    fVar2 = (float)*(int *)(iVar1 + 0x254);
+    uVar3 = 3;
+    break;
+  default:
+    goto switchD_100b6293_default;
+  }
+  FUN_1000eb70(uVar3,fVar2);
+switchD_100b6293_default:
+  CItemPadlock::Check(param_1);
+  FUN_100fc9f0(*(undefined4 *)(*(int *)(param_1 + 4) + 0x20c),4,"items/padl_turn.wav",0x3f800000,
+               0x3f4ccccd,0,100);
+  return;
+}
+
+
+100b5ea0
+
+void FUN_100b5ea0(void)
+
+{
+  uint *puVar1;
+  int iVar2;
+  int iVar3;
+  undefined4 uVar4;
+  
+  iVar2 = FUN_10118460(0,"player");
+  if (iVar2 == 0) {
+    return;
+  }
+  uVar4 = 0;
+  FUN_100125e0(*(undefined4 *)(iVar2 + 4),0);
+  FUN_10017740(uVar4);
+  uVar4 = *(undefined4 *)(*(int *)(iVar2 + 4) + 0x20c);
+  FUN_10117180(uVar4,uVar4);
+  uVar4 = 1;
+  FUN_100125e0(*(undefined4 *)(iVar2 + 4),1);
+  FUN_100deff0(uVar4);
+  iVar3 = FUN_100125e0(*(undefined4 *)(iVar2 + 4));
+  *(uint *)(iVar3 + 0x2500) = *(uint *)(iVar3 + 0x2500) & 0xfffffff7;
+  iVar3 = FUN_100125e0(*(undefined4 *)(iVar2 + 4));
+  puVar1 = (uint *)(*(int *)(iVar3 + 4) + 0x1a8);
+  *puVar1 = *puVar1 & 0xffffff7f;
+  (*DAT_10223000)(1,DAT_102265d0,0,*(undefined4 *)(*(int *)(iVar2 + 4) + 0x20c));
+  (*DAT_10223008)(0);
+                    /* WARNING: Could not recover jumptable at 0x100b5f42. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (*DAT_10223004)();
+  return;
+}
+
+

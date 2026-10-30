@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: train lost think: {"think":"0","done":"0","active":"1","current":"1stopp1","target":"1stopp2","next":"22.8663","local":"1.703","now":"1.699","wait":"0","flags":"9","pos":"641,-2833.8,-757","vel":"0,-6,0","final":"0,0,0","center":"641,-2833.8,-757"}
+
+'0' !== '2'
+
+    at file:///root/cof-audits/browser-1.64.1/e2e/train_entities.mjs:63:12 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '0',
+  expected: '2',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

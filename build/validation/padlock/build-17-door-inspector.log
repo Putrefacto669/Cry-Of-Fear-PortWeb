@@ -1,0 +1,24 @@
+Build commands will be stored in ../../build/game/compile_commands.json
+Waf: Entering directory `/root/cof-audits/audit-D3Kl5uly/build/game'
+[ 57/253] Compiling ../cof-logic/cof/weapons_cof.cpp
+[ 66/253] Compiling ../cof-logic/cof/puzzles.cpp
+[ 69/253] Compiling ../cof-logic/cof/player_cof.cpp
+[ 71/253] Compiling ../cof-logic/cof/padlock.cpp
+[ 74/253] Compiling ../cof-logic/cof/monsters.cpp
+[ 78/253] Compiling ../cof-logic/cof/hud.cpp
+[ 85/253] Compiling ../cof-logic/cof/doors.cpp
+[ 92/253] Compiling ../cof-logic/cof/effects_cof.cpp
+[ 97/253] Compiling ../cof-logic/cof/bossbar.cpp
+[104/253] Compiling ../cof-logic/cof/checkbrush.cpp
+[107/253] Compiling ../cof-logic/cof/atmosphere.cpp
+../../game/cof-logic/cof/doors.cpp:62:102: warning: cast to 'const char *' from smaller integer type 'char' [-Wint-to-pointer-cast]
+   62 |  ALERT(at_console,"COF/DOOR %s locked=%d disabled=%d target=%s\n",name,!FStringNull(d->m_sLockedBy)&&STRING(d->m_sLockedBy)[0],d->m_bDisabled,STRING(d->pev->target));
+      |                                                                                                      ^~~~~~~~~~~~~~~~~~~~~~~~~
+../../game/hlsdk-portable/dlls/util.h:36:25: note: expanded from macro 'STRING'
+   36 | #define STRING(offset)          (const char *)(gpGlobals->pStringBase + (int)offset)
+      |                                 ^
+1 warning generated.
+
+[253/253] Linking ../../build/game/dlls/hl_emscripten_wasm32.wasm
+Waf: Leaving directory `/root/cof-audits/audit-D3Kl5uly/build/game'
+'build' finished successfully (3.496s)

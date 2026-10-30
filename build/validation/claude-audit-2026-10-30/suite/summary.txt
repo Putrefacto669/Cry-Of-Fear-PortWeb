@@ -1,0 +1,14 @@
+node v24.19.0, playwright 1.64.1
+entities exit=0 18s OK inventory, game save and JavaScript runtime
+campaign_entities exit=0 12s OK cof_bosshealthbar: real boss, max health, half health, hidden on death
+motion_entities exit=0 11s OK map load clears level-local workers; no JavaScript errors
+model_entities exit=0 10s OK save/restore: frame, body, skin, animation state and named configuration; playback resumes and Use works
+manager_entities exit=0 54s OK threaded clones resume independently, dispose themselves and leave source reusable
+sound_entities exit=0 86s OK c_apartment1 missing roomtype defaults to 0; new map contacts work
+camera_entities exit=0 69s OK real ckamera3: idle Use, active save/load, natural completion, control return and reuse
+train_entities exit=0 46s OK moving restore reaches next node then honors the original teleport/retrigger flags and target order
+track_entities exit=0 9s OK tracktrain stopped state remains idle and an explicit normal Use resumes the same track
+envpos_entities exit=1 140s Node.js v24.19.0
+button_entities exit=0 23s OK actual keyboard typing and Enter reach server validation
+changelevel_entities exit=0 22s OK original transition round trip 2
+OUT=/root/cof-audit-rerun-20261030-094807

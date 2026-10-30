@@ -1,0 +1,77 @@
+[
+  {
+    "interaction": {
+      "frame": "initial"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render\ngl_customsky 0"
+    }
+  },
+  {
+    "interaction": {
+      "wait": 400,
+      "frame": "sky-off"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render\ngl_customsky 1\nr_fullbright 1"
+    }
+  },
+  {
+    "interaction": {
+      "wait": 400,
+      "frame": "fullbright"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render\nr_fullbright 0\ngl_fog 0"
+    }
+  },
+  {
+    "interaction": {
+      "wait": 400,
+      "frame": "fog-off"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render\ngl_fog 1\nr_studio_builtin_renderer 1"
+    }
+  },
+  {
+    "interaction": {
+      "wait": 300,
+      "frame": "builtin"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render\nr_studio_builtin_renderer 0\nr_nocull 1"
+    }
+  },
+  {
+    "interaction": {
+      "wait": 300,
+      "frame": "nocull"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render\nr_nocull 0"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render\ngl_fog 1\nr_nocull 0\nr_fullbright 0"
+    }
+  },
+  {
+    "interaction": {
+      "close": true
+    }
+  }
+]

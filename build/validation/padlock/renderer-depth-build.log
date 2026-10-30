@@ -1,0 +1,20 @@
+Build commands will be stored in ../../build/engine/compile_commands.json
+Waf: Entering directory `/root/cof-audits/audit-D3Kl5uly/build/engine'
+[378/607] Processing ref/gl/gl_studio.c
+../../engine/xash3d-fwgs/ref/gl/gl_studio.c:435:5: warning: assigning to 'int *' from 'uint *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  435 |         *a = &r_stats.c_studio_models_drawn;
+      |            ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl_studio.c:3221:41: error: use of undeclared identifier 'GL_DEPTH_RANGE'
+ 3221 |   GLfloat depth[2],mat[16];pglGetFloatv(GL_DEPTH_RANGE,depth);pglGetFloatv(GL_MODELVIEW_MATRIX,mat);
+      |                                         ^~~~~~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl_studio.c:3246:55: error: use of undeclared identifier 'GL_DEPTH_RANGE'
+ 3246 |  if(traceDraw) {GLfloat depth[2],mat[16];pglGetFloatv(GL_DEPTH_RANGE,depth);pglGetFloatv(GL_MODELVIEW_MATRIX,mat);gEngfuncs.Con_Printf("COF/PAD_PASS %s after depth=%g,%g mat=%g,%g,%g\n",e->model->name,depth[0],depth[1],mat[12],mat[13],mat[14]);}
+      |                                                       ^~~~~~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl_studio.c:3372:10: warning: enumeration values 'mod_bad', 'mod_brush', and 'mod_sprite' not handled in switch [-Wswitch]
+ 3372 |         switch( RI.currententity->model->type )
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2 warnings and 2 errors generated.
+
+Waf: Leaving directory `/root/cof-audits/audit-D3Kl5uly/build/engine'
+Build failed
+ -> task in 'ref_gles3compat' failed with exit status 1 (run with -v to display more information)

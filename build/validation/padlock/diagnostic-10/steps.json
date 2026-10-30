@@ -1,0 +1,12 @@
+[
+  {
+    "interaction": {
+      "js": "(() => new Promise(resolve=>{const gl=GL.currentContext.GLctx,rec=[],old={};let n=0;for(const k of [\"uniformMatrix4fv\",\"useProgram\",\"drawElements\",\"drawArrays\"]){old[k]=gl[k];gl[k]=function(...args){const r=old[k].apply(this,args);try{const p=this.getParameter(this.CURRENT_PROGRAM);let data={k,p:p?.name};if(k===\"uniformMatrix4fv\"){const off=args[3]||0;data.matrix=Array.from(args[2].subarray(off,off+16));}else if(k===\"useProgram\")data.program=args[0]?.name;else if(p){data.args=args;data.src=this.getShaderSource(this.getAttachedShaders(p)[0]).slice(0,650);const loc=this.getUniformLocation(p,\"uMVP\");data.mvp=loc?[...this.getUniform(p,loc)]:null;}rec.push(data);}catch(e){rec.push({error:e.message});}return r;};}const end=()=>{MainLoop.postMainLoop.splice(MainLoop.postMainLoop.indexOf(end),1);for(const k in old)gl[k]=old[k];console.log(\"COF/GLTRACE2 \"+JSON.stringify(rec));resolve({calls:rec.length});};MainLoop.postMainLoop.push(end);}))()"
+    }
+  },
+  {
+    "interaction": {
+      "close": true
+    }
+  }
+]

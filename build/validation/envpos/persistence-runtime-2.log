@@ -1,0 +1,20 @@
+OK c_start: original marker protocol, ambient/direct values, parallax equation and actual sky model polygons
+OK original markers and sky rendering restored during multiscene1
+OK marker fields, optional-light flags, zero divisor, updates and saved field restoration
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: sky must affect rendered pixels: 0
+    at file:///root/cof-audits/browser-1.64.1/e2e/envpos_entities.mjs:98:10
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:502:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

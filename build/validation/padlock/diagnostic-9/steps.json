@@ -1,0 +1,12 @@
+[
+  {
+    "interaction": {
+      "js": "() => new Promise(resolve=>{const gl=GL.currentContext.GLctx, rec=[], old={};let n=0;for(const k of [\"drawElements\",\"drawArrays\",\"drawRangeElements\"]){old[k]=gl[k];if(!old[k])continue;gl[k]=function(...args){const r=old[k].apply(this,args);if(n++<400){const p=new Uint8Array(4);this.readPixels(320,80,1,1,this.RGBA,this.UNSIGNED_BYTE,p);const prog=this.getParameter(this.CURRENT_PROGRAM),loc=this.getUniformLocation(prog,\"uMVP\");rec.push({n,k,args,depth:[...this.getParameter(this.DEPTH_RANGE)],mask:this.getParameter(this.DEPTH_WRITEMASK),fbo:!!this.getParameter(this.FRAMEBUFFER_BINDING),pixel:[...p],mvp:loc?[...this.getUniform(prog,loc)]:null});}return r;};}const end=()=>{MainLoop.postMainLoop.splice(MainLoop.postMainLoop.indexOf(end),1);for(const k in old)gl[k]=old[k];console.log(\"COF/GLTRACE \"+JSON.stringify(rec));resolve({draws:n});};MainLoop.postMainLoop.push(end);})"
+    }
+  },
+  {
+    "interaction": {
+      "js": "(() => new Promise(resolve=>{const gl=GL.currentContext.GLctx, rec=[], old={};let n=0;for(const k of [\"drawElements\",\"drawArrays\",\"drawRangeElements\"]){old[k]=gl[k];if(!old[k])continue;gl[k]=function(...args){const r=old[k].apply(this,args);if(n++<400){const p=new Uint8Array(4);this.readPixels(320,80,1,1,this.RGBA,this.UNSIGNED_BYTE,p);const prog=this.getParameter(this.CURRENT_PROGRAM),loc=this.getUniformLocation(prog,\"uMVP\");rec.push({n,k,args,depth:[...this.getParameter(this.DEPTH_RANGE)],mask:this.getParameter(this.DEPTH_WRITEMASK),fbo:!!this.getParameter(this.FRAMEBUFFER_BINDING),pixel:[...p],mvp:loc?[...this.getUniform(prog,loc)]:null});}return r;};}const end=()=>{MainLoop.postMainLoop.splice(MainLoop.postMainLoop.indexOf(end),1);for(const k in old)gl[k]=old[k];console.log(\"COF/GLTRACE \"+JSON.stringify(rec));resolve({draws:n});};MainLoop.postMainLoop.push(end);}))()"
+    }
+  }
+]

@@ -1,0 +1,25 @@
+[
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render",
+      "wait": 1200,
+      "shot": "01-bbox-trace"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render",
+      "shot": "02-normal-render-again"
+    }
+  },
+  {
+    "interaction": {
+      "key": "Escape"
+    }
+  },
+  {
+    "interaction": {
+      "close": true
+    }
+  }
+]

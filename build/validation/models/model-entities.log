@@ -1,0 +1,2262 @@
+[22:20:11] Console initialized.
+[22:20:11] FS_LoadProgs: filesystem_stdio successfully loaded
+[22:20:11] /rwdir is working directory now
+[22:20:11] Error: game directory "cryoffear" not exist
+[22:20:11] Adding directory: /rodir/
+[22:20:11] Adding directory: ./
+[22:20:11] Program args: ./this.program -game cryoffear -rodir /rodir -ref gles3compat -dll /lib/server.wasm -clientlib /lib/client.wasm -menulib /lib/menu.wasm -windowed -dev 1 -log +exec cof_web.cfg +map c_start 
+[22:20:11] Developer level: 1
+[22:20:11] execing cryoffear/vfs.cfg
+[22:20:11] FS_AddGameHierarchy( valve )
+[22:20:11] Adding directory: /rodir/valve/
+[22:20:11] Adding directory: valve/
+[22:20:11] FS_AddGameHierarchy( cryoffear )
+[22:20:11] Adding directory: /rodir/cryoffear/
+[22:20:11] Adding directory: cryoffear_downloads/
+[22:20:11] Adding directory: cryoffear/
+[22:20:11] Adding directory: cryoffear/custom/
+[22:20:11] Touch_Init()
+[22:20:11] Warning: SV_LoadProgs: couldn't get physics API
+[22:20:11] Dll loaded for game "Half-Life"
+[22:20:11] Error: Delta_ParseField: unable to find field is_donator
+[22:20:11] execing skill.cfg
+[22:20:11] Warning: Unknown command "sk_monster_head4"
+[22:20:11] Warning: Unknown command "sk_monster_chest4"
+[22:20:11] Warning: Unknown command "sk_monster_stomach4"
+[22:20:11] Warning: Unknown command "sk_monster_arm4"
+[22:20:11] Warning: Unknown command "sk_monster_leg4"
+[22:20:11] Warning: Unknown command "sk_player_head4"
+[22:20:11] Warning: Unknown command "sk_player_chest4"
+[22:20:11] Warning: Unknown command "sk_player_stomach4"
+[22:20:11] Warning: Unknown command "sk_player_arm4"
+[22:20:11] Warning: Unknown command "sk_player_leg4"
+[22:20:11] Warning: Unknown command "sk_cof_sledgehammer1"
+[22:20:11] Warning: Unknown command "sk_cof_sledgehammer2"
+[22:20:11] Warning: Unknown command "sk_cof_sledgehammer3"
+[22:20:11] Warning: Unknown command "sk_cof_sledgehammer4"
+[22:20:11] Warning: Unknown command "sk_cof_nightstick1"
+[22:20:11] Warning: Unknown command "sk_cof_nightstick2"
+[22:20:11] Warning: Unknown command "sk_cof_nightstick3"
+[22:20:11] Warning: Unknown command "sk_cof_nightstick4"
+[22:20:11] Warning: Unknown command "sk_cof_2switchblade1"
+[22:20:11] Warning: Unknown command "sk_cof_2switchblade2"
+[22:20:11] Warning: Unknown command "sk_cof_2switchblade3"
+[22:20:11] Warning: Unknown command "sk_cof_2switchblade4"
+[22:20:11] Warning: Unknown command "sk_cof_switchblade1"
+[22:20:11] Warning: Unknown command "sk_cof_switchblade2"
+[22:20:11] Warning: Unknown command "sk_cof_switchblade3"
+[22:20:11] Warning: Unknown command "sk_cof_switchblade4"
+[22:20:11] Warning: Unknown command "sk_cof_punch1"
+[22:20:11] Warning: Unknown command "sk_cof_punch2"
+[22:20:11] Warning: Unknown command "sk_cof_punch3"
+[22:20:11] Warning: Unknown command "sk_cof_punch4"
+[22:20:11] Warning: Unknown command "sk_baby_health1"
+[22:20:11] Warning: Unknown command "sk_baby_health2"
+[22:20:11] Warning: Unknown command "sk_baby_health3"
+[22:20:11] Warning: Unknown command "sk_baby_health4"
+[22:20:11] Warning: Unknown command "sk_baby_damage1"
+[22:20:11] Warning: Unknown command "sk_baby_damage2"
+[22:20:11] Warning: Unknown command "sk_baby_damage3"
+[22:20:11] Warning: Unknown command "sk_baby_damage4"
+[22:20:11] Warning: Unknown command "sk_faster_health1"
+[22:20:11] Warning: Unknown command "sk_faster_health2"
+[22:20:11] Warning: Unknown command "sk_faster_health3"
+[22:20:11] Warning: Unknown command "sk_faster_health4"
+[22:20:11] Warning: Unknown command "sk_faster_dmg_one_slash1"
+[22:20:11] Warning: Unknown command "sk_faster_dmg_one_slash2"
+[22:20:11] Warning: Unknown command "sk_faster_dmg_one_slash3"
+[22:20:11] Warning: Unknown command "sk_faster_dmg_one_slash4"
+[22:20:11] Warning: Unknown command "sk_faster_dmg_both_slash1"
+[22:20:11] Warning: Unknown command "sk_faster_dmg_both_slash2"
+[22:20:11] Warning: Unknown command "sk_faster_dmg_both_slash3"
+[22:20:11] Warning: Unknown command "sk_faster_dmg_both_slash4"
+[22:20:11] Warning: Unknown command "sk_krypande_health1"
+[22:20:11] Warning: Unknown command "sk_krypande_health2"
+[22:20:11] Warning: Unknown command "sk_krypande_health3"
+[22:20:11] Warning: Unknown command "sk_krypande_health4"
+[22:20:11] Warning: Unknown command "sk_krypande_dmg_one_slash1"
+[22:20:11] Warning: Unknown command "sk_krypande_dmg_one_slash2"
+[22:20:11] Warning: Unknown command "sk_krypande_dmg_one_slash3"
+[22:20:11] Warning: Unknown command "sk_krypande_dmg_one_slash4"
+[22:20:11] Warning: Unknown command "sk_syringe_heal1"
+[22:20:11] Warning: Unknown command "sk_syringe_heal2"
+[22:20:11] Warning: Unknown command "sk_syringe_heal3"
+[22:20:11] Warning: Unknown command "sk_syringe_heal4"
+[22:20:11] Warning: Unknown command "sk_chainsawboss_health1"
+[22:20:11] Warning: Unknown command "sk_chainsawboss_health2"
+[22:20:11] Warning: Unknown command "sk_chainsawboss_health3"
+[22:20:11] Warning: Unknown command "sk_chainsawboss_health4"
+[22:20:11] Warning: Unknown command "sk_sewmo_health1"
+[22:20:11] Warning: Unknown command "sk_sewmo_health2"
+[22:20:11] Warning: Unknown command "sk_sewmo_health3"
+[22:20:11] Warning: Unknown command "sk_sewmo_health4"
+[22:20:11] Warning: Unknown command "sk_sewmo_dmg_one_slash1"
+[22:20:11] Warning: Unknown command "sk_sewmo_dmg_one_slash2"
+[22:20:11] Warning: Unknown command "sk_sewmo_dmg_one_slash3"
+[22:20:11] Warning: Unknown command "sk_sewmo_dmg_one_slash4"
+[22:20:11] Warning: Unknown command "sk_sewmo_dmg_both_slash1"
+[22:20:11] Warning: Unknown command "sk_sewmo_dmg_both_slash2"
+[22:20:11] Warning: Unknown command "sk_sewmo_dmg_both_slash3"
+[22:20:11] Warning: Unknown command "sk_sewmo_dmg_both_slash4"
+[22:20:11] Warning: Unknown command "sk_sawrunner_health1"
+[22:20:11] Warning: Unknown command "sk_sawrunner_health2"
+[22:20:11] Warning: Unknown command "sk_sawrunner_health3"
+[22:20:11] Warning: Unknown command "sk_sawrunner_health4"
+[22:20:11] Warning: Unknown command "sk_sawrunner_dmg_one_slash1"
+[22:20:11] Warning: Unknown command "sk_sawrunner_dmg_one_slash2"
+[22:20:11] Warning: Unknown command "sk_sawrunner_dmg_one_slash3"
+[22:20:11] Warning: Unknown command "sk_sawrunner_dmg_one_slash4"
+[22:20:11] Warning: Unknown command "sk_sawrunner_dmg_both_slash1"
+[22:20:11] Warning: Unknown command "sk_sawrunner_dmg_both_slash2"
+[22:20:11] Warning: Unknown command "sk_sawrunner_dmg_both_slash3"
+[22:20:11] Warning: Unknown command "sk_sawrunner_dmg_both_slash4"
+[22:20:11] Warning: Unknown command "sk_zombie_health4"
+[22:20:11] Warning: Unknown command "sk_zombie_dmg_one_slash4"
+[22:20:11] Warning: Unknown command "sk_zombie_dmg_both_slash4"
+[22:20:11] Warning: Unknown command "sk_child_health1"
+[22:20:11] Warning: Unknown command "sk_child_health2"
+[22:20:11] Warning: Unknown command "sk_child_health3"
+[22:20:11] Warning: Unknown command "sk_child_health4"
+[22:20:11] Warning: Unknown command "sk_child_dmg_one_slash1"
+[22:20:11] Warning: Unknown command "sk_child_dmg_one_slash2"
+[22:20:11] Warning: Unknown command "sk_child_dmg_one_slash3"
+[22:20:11] Warning: Unknown command "sk_child_dmg_one_slash4"
+[22:20:11] Warning: Unknown command "sk_child_dmg_both_slash1"
+[22:20:11] Warning: Unknown command "sk_child_dmg_both_slash2"
+[22:20:11] Warning: Unknown command "sk_child_dmg_both_slash3"
+[22:20:11] Warning: Unknown command "sk_child_dmg_both_slash4"
+[22:20:11] Warning: Unknown command "sk_sewerboss_health1"
+[22:20:11] Warning: Unknown command "sk_sewerboss_health2"
+[22:20:11] Warning: Unknown command "sk_sewerboss_health3"
+[22:20:11] Warning: Unknown command "sk_sewerboss_health4"
+[22:20:11] Warning: Unknown command "sk_sewerboss_melee1"
+[22:20:11] Warning: Unknown command "sk_sewerboss_melee2"
+[22:20:11] Warning: Unknown command "sk_sewerboss_melee3"
+[22:20:11] Warning: Unknown command "sk_sewerboss_melee4"
+[22:20:11] Warning: Unknown command "sk_slower3_health1"
+[22:20:11] Warning: Unknown command "sk_slower3_health2"
+[22:20:11] Warning: Unknown command "sk_slower3_health3"
+[22:20:11] Warning: Unknown command "sk_slower3_health4"
+[22:20:11] Warning: Unknown command "sk_slower3_dmg_one_slash1"
+[22:20:11] Warning: Unknown command "sk_slower3_dmg_one_slash2"
+[22:20:11] Warning: Unknown command "sk_slower3_dmg_one_slash3"
+[22:20:11] Warning: Unknown command "sk_slower3_dmg_one_slash4"
+[22:20:11] Warning: Unknown command "sk_slower3_dmg_both_slash1"
+[22:20:11] Warning: Unknown command "sk_slower3_dmg_both_slash2"
+[22:20:11] Warning: Unknown command "sk_slower3_dmg_both_slash3"
+[22:20:11] Warning: Unknown command "sk_slower3_dmg_both_slash4"
+[22:20:11] Warning: Unknown command "sk_flygare_health1"
+[22:20:11] Warning: Unknown command "sk_flygare_health2"
+[22:20:11] Warning: Unknown command "sk_flygare_health3"
+[22:20:11] Warning: Unknown command "sk_flygare_health4"
+[22:20:11] Warning: Unknown command "sk_flygare_acid1"
+[22:20:11] Warning: Unknown command "sk_flygare_acid2"
+[22:20:11] Warning: Unknown command "sk_flygare_acid3"
+[22:20:11] Warning: Unknown command "sk_flygare_acid4"
+[22:20:11] Warning: Unknown command "sk_flygare_melee1"
+[22:20:11] Warning: Unknown command "sk_flygare_melee2"
+[22:20:11] Warning: Unknown command "sk_flygare_melee3"
+[22:20:11] Warning: Unknown command "sk_flygare_melee4"
+[22:20:11] Warning: Unknown command "sk_plr_buckshot4"
+[22:20:11] Warning: Unknown command "sk_rcrazy_health1"
+[22:20:11] Warning: Unknown command "sk_rcrazy_health2"
+[22:20:11] Warning: Unknown command "sk_rcrazy_health3"
+[22:20:11] Warning: Unknown command "sk_rcrazy_health4"
+[22:20:11] Warning: Unknown command "sk_rcrazy_dmg_one_slash1"
+[22:20:11] Warning: Unknown command "sk_rcrazy_dmg_one_slash2"
+[22:20:11] Warning: Unknown command "sk_rcrazy_dmg_one_slash3"
+[22:20:11] Warning: Unknown command "sk_rcrazy_dmg_one_slash4"
+[22:20:11] Warning: Unknown command "sk_rcrazy_dmg_both_slash1"
+[22:20:11] Warning: Unknown command "sk_rcrazy_dmg_both_slash2"
+[22:20:11] Warning: Unknown command "sk_rcrazy_dmg_both_slash3"
+[22:20:11] Warning: Unknown command "sk_rcrazy_dmg_both_slash4"
+[22:20:11] Warning: Unknown command "sk_primary_speed1"
+[22:20:11] Warning: Unknown command "sk_primary_speed2"
+[22:20:11] Warning: Unknown command "sk_primary_speed3"
+[22:20:11] Warning: Unknown command "sk_primary_speed4"
+[22:20:11] Warning: Unknown command "sk_secondary_speed1"
+[22:20:11] Warning: Unknown command "sk_secondary_speed2"
+[22:20:11] Warning: Unknown command "sk_secondary_speed3"
+[22:20:11] Warning: Unknown command "sk_secondary_speed4"
+[22:20:11] Warning: Unknown command "sk_sprint_speed1"
+[22:20:11] Warning: Unknown command "sk_sprint_speed2"
+[22:20:11] Warning: Unknown command "sk_sprint_speed3"
+[22:20:11] Warning: Unknown command "sk_sprint_speed4"
+[22:20:11] Warning: Unknown command "sk_stair_speed1"
+[22:20:11] Warning: Unknown command "sk_stair_speed2"
+[22:20:11] Warning: Unknown command "sk_stair_speed3"
+[22:20:11] Warning: Unknown command "sk_stair_speed4"
+[22:20:11] Warning: Unknown command "bullet_punch_max"
+[22:20:11] Warning: Unknown command "bullet_punch_divide"
+[22:20:11] Warning: Unknown command "blast_punch_max"
+[22:20:11] Warning: Unknown command "blast_punch_divide"
+[22:20:11] Warning: Unknown command "sk_cof_m161"
+[22:20:11] Warning: Unknown command "sk_cof_m162"
+[22:20:11] Warning: Unknown command "sk_cof_m163"
+[22:20:11] Warning: Unknown command "sk_cof_m164"
+[22:20:11] Warning: Unknown command "sk_cof_VP701"
+[22:20:11] Warning: Unknown command "sk_cof_VP702"
+[22:20:11] Warning: Unknown command "sk_cof_VP703"
+[22:20:11] Warning: Unknown command "sk_cof_VP704"
+[22:20:11] Warning: Unknown command "sk_cof_glock1"
+[22:20:11] Warning: Unknown command "sk_cof_glock2"
+[22:20:11] Warning: Unknown command "sk_cof_glock3"
+[22:20:11] Warning: Unknown command "sk_cof_glock4"
+[22:20:11] Warning: Unknown command "sk_cof_weapon_melee1"
+[22:20:11] Warning: Unknown command "sk_cof_weapon_melee2"
+[22:20:11] Warning: Unknown command "sk_cof_weapon_melee3"
+[22:20:11] Warning: Unknown command "sk_cof_weapon_melee4"
+[22:20:11] Warning: Unknown command "sk_cof_p3451"
+[22:20:11] Warning: Unknown command "sk_cof_p3452"
+[22:20:11] Warning: Unknown command "sk_cof_p3453"
+[22:20:11] Warning: Unknown command "sk_cof_p3454"
+[22:20:11] Warning: Unknown command "sk_cof_g431"
+[22:20:11] Warning: Unknown command "sk_cof_g432"
+[22:20:11] Warning: Unknown command "sk_cof_g433"
+[22:20:11] Warning: Unknown command "sk_cof_g434"
+[22:20:11] Warning: Unknown command "sk_cof_shotgun1"
+[22:20:11] Warning: Unknown command "sk_cof_shotgun2"
+[22:20:11] Warning: Unknown command "sk_cof_shotgun3"
+[22:20:11] Warning: Unknown command "sk_cof_shotgun4"
+[22:20:11] Warning: Unknown command "sk_cof_rifle1"
+[22:20:11] Warning: Unknown command "sk_cof_rifle2"
+[22:20:11] Warning: Unknown command "sk_cof_rifle3"
+[22:20:11] Warning: Unknown command "sk_cof_rifle4"
+[22:20:11] Warning: Unknown command "sk_cof_revolver1"
+[22:20:11] Warning: Unknown command "sk_cof_revolver2"
+[22:20:11] Warning: Unknown command "sk_cof_revolver3"
+[22:20:11] Warning: Unknown command "sk_cof_revolver4"
+[22:20:11] Warning: Unknown command "sk_stranger_health1"
+[22:20:11] Warning: Unknown command "sk_stranger_health2"
+[22:20:11] Warning: Unknown command "sk_stranger_health3"
+[22:20:11] Warning: Unknown command "sk_stranger_health4"
+[22:20:11] Warning: Unknown command "sk_stranger_damage1"
+[22:20:11] Warning: Unknown command "sk_stranger_damage2"
+[22:20:11] Warning: Unknown command "sk_stranger_damage3"
+[22:20:11] Warning: Unknown command "sk_stranger_damage4"
+[22:20:11] Warning: Unknown command "sk_suicider_health1"
+[22:20:11] Warning: Unknown command "sk_suicider_health2"
+[22:20:11] Warning: Unknown command "sk_suicider_health3"
+[22:20:11] Warning: Unknown command "sk_suicider_health4"
+[22:20:11] Warning: Unknown command "sk_suicider_bullet1"
+[22:20:11] Warning: Unknown command "sk_suicider_bullet2"
+[22:20:11] Warning: Unknown command "sk_suicider_bullet3"
+[22:20:11] Warning: Unknown command "sk_suicider_bullet4"
+[22:20:11] Warning: Unknown command "sk_suicider_suicide1"
+[22:20:11] Warning: Unknown command "sk_suicider_suicide2"
+[22:20:11] Warning: Unknown command "sk_suicider_suicide3"
+[22:20:11] Warning: Unknown command "sk_suicider_suicide4"
+[22:20:11] Warning: Unknown command "sk_roofboss_health1"
+[22:20:11] Warning: Unknown command "sk_roofboss_health2"
+[22:20:11] Warning: Unknown command "sk_roofboss_health3"
+[22:20:11] Warning: Unknown command "sk_roofboss_health4"
+[22:20:11] Warning: Unknown command "sk_roofboss_headhit1"
+[22:20:11] Warning: Unknown command "sk_roofboss_headhit2"
+[22:20:11] Warning: Unknown command "sk_roofboss_headhit3"
+[22:20:11] Warning: Unknown command "sk_roofboss_headhit4"
+[22:20:11] Warning: Unknown command "sk_roofboss_headhealth1"
+[22:20:11] Warning: Unknown command "sk_roofboss_headhealth2"
+[22:20:11] Warning: Unknown command "sk_roofboss_headhealth3"
+[22:20:11] Warning: Unknown command "sk_roofboss_headhealth4"
+[22:20:11] Warning: Unknown command "sk_roofboss_attacktime1"
+[22:20:11] Warning: Unknown command "sk_roofboss_attacktime2"
+[22:20:11] Warning: Unknown command "sk_roofboss_attacktime3"
+[22:20:11] Warning: Unknown command "sk_roofboss_attacktime4"
+[22:20:11] Warning: Unknown command "sk_faceless_health1"
+[22:20:11] Warning: Unknown command "sk_faceless_health2"
+[22:20:11] Warning: Unknown command "sk_faceless_health3"
+[22:20:11] Warning: Unknown command "sk_faceless_health4"
+[22:20:11] Warning: Unknown command "sk_faceless_dmg_one_slash1"
+[22:20:11] Warning: Unknown command "sk_faceless_dmg_one_slash2"
+[22:20:11] Warning: Unknown command "sk_faceless_dmg_one_slash3"
+[22:20:11] Warning: Unknown command "sk_faceless_dmg_one_slash4"
+[22:20:11] Warning: Unknown command "sk_faceless_dmg_both_slash1"
+[22:20:11] Warning: Unknown command "sk_faceless_dmg_both_slash2"
+[22:20:11] Warning: Unknown command "sk_faceless_dmg_both_slash3"
+[22:20:11] Warning: Unknown command "sk_faceless_dmg_both_slash4"
+[22:20:11] Warning: Unknown command "sk_cof_branch1"
+[22:20:11] Warning: Unknown command "sk_cof_branch2"
+[22:20:11] Warning: Unknown command "sk_cof_branch3"
+[22:20:11] Warning: Unknown command "sk_cof_branch4"
+[22:20:11] Warning: Unknown command "sk_doctor_health1"
+[22:20:11] Warning: Unknown command "sk_doctor_health2"
+[22:20:11] Warning: Unknown command "sk_doctor_health3"
+[22:20:11] Warning: Unknown command "sk_doctor_health4"
+[22:20:11] Warning: Unknown command "sk_doctor_p3451"
+[22:20:11] Warning: Unknown command "sk_doctor_p3452"
+[22:20:11] Warning: Unknown command "sk_doctor_p3453"
+[22:20:11] Warning: Unknown command "sk_doctor_p3454"
+[22:20:11] Warning: Unknown command "sk_doctor_revolver1"
+[22:20:11] Warning: Unknown command "sk_doctor_revolver2"
+[22:20:11] Warning: Unknown command "sk_doctor_revolver3"
+[22:20:11] Warning: Unknown command "sk_doctor_revolver4"
+[22:20:11] Warning: Unknown command "sk_flare_burn_time1"
+[22:20:11] Warning: Unknown command "sk_flare_burn_time2"
+[22:20:11] Warning: Unknown command "sk_flare_burn_time3"
+[22:20:11] Warning: Unknown command "sk_flare_burn_time4"
+[22:20:11] Warning: Unknown command "sk_taller_health1"
+[22:20:11] Warning: Unknown command "sk_taller_health2"
+[22:20:11] Warning: Unknown command "sk_taller_health3"
+[22:20:11] Warning: Unknown command "sk_taller_health4"
+[22:20:11] Warning: Unknown command "sk_taller_dmg_punch1"
+[22:20:11] Warning: Unknown command "sk_taller_dmg_punch2"
+[22:20:11] Warning: Unknown command "sk_taller_dmg_punch3"
+[22:20:11] Warning: Unknown command "sk_taller_dmg_punch4"
+[22:20:11] Warning: Unknown command "sk_spitter_health1"
+[22:20:11] Warning: Unknown command "sk_spitter_health2"
+[22:20:11] Warning: Unknown command "sk_spitter_health3"
+[22:20:11] Warning: Unknown command "sk_spitter_health4"
+[22:20:11] Warning: Unknown command "sk_aom_pills1"
+[22:20:11] Warning: Unknown command "sk_aom_pills2"
+[22:20:11] Warning: Unknown command "sk_aom_pills3"
+[22:20:11] Warning: Unknown command "sk_aom_pills4"
+[22:20:11] Warning: Unknown command "sk_cof_axe1"
+[22:20:11] Warning: Unknown command "sk_cof_axe2"
+[22:20:11] Warning: Unknown command "sk_cof_axe3"
+[22:20:11] Warning: Unknown command "sk_cof_axe4"
+[22:20:11] Warning: Unknown command "sk_twitcher_health1"
+[22:20:11] Warning: Unknown command "sk_twitcher_health2"
+[22:20:11] Warning: Unknown command "sk_twitcher_health3"
+[22:20:11] Warning: Unknown command "sk_twitcher_health4"
+[22:20:11] Warning: Unknown command "sk_twitcher_dmg_one_slash1"
+[22:20:11] Warning: Unknown command "sk_twitcher_dmg_one_slash2"
+[22:20:11] Warning: Unknown command "sk_twitcher_dmg_one_slash3"
+[22:20:11] Warning: Unknown command "sk_twitcher_dmg_one_slash4"
+[22:20:11] Warning: Unknown command "sk_twitcher_dmg_both_slash1"
+[22:20:11] Warning: Unknown command "sk_twitcher_dmg_both_slash2"
+[22:20:11] Warning: Unknown command "sk_twitcher_dmg_both_slash3"
+[22:20:11] Warning: Unknown command "sk_twitcher_dmg_both_slash4"
+[22:20:11] Warning: Unknown command "sk_twitcher2_health1"
+[22:20:11] Warning: Unknown command "sk_twitcher2_health2"
+[22:20:11] Warning: Unknown command "sk_twitcher2_health3"
+[22:20:11] Warning: Unknown command "sk_twitcher2_health4"
+[22:20:11] Warning: Unknown command "sk_twitcher2_dmg_one_slash1"
+[22:20:11] Warning: Unknown command "sk_twitcher2_dmg_one_slash2"
+[22:20:11] Warning: Unknown command "sk_twitcher2_dmg_one_slash3"
+[22:20:11] Warning: Unknown command "sk_twitcher2_dmg_one_slash4"
+[22:20:11] Warning: Unknown command "sk_twitcher2_dmg_both_slash1"
+[22:20:11] Warning: Unknown command "sk_twitcher2_dmg_both_slash2"
+[22:20:11] Warning: Unknown command "sk_twitcher2_dmg_both_slash3"
+[22:20:11] Warning: Unknown command "sk_twitcher2_dmg_both_slash4"
+[22:20:11] Warning: Unknown command "sk_twitcher3_health1"
+[22:20:11] Warning: Unknown command "sk_twitcher3_health2"
+[22:20:11] Warning: Unknown command "sk_twitcher3_health3"
+[22:20:11] Warning: Unknown command "sk_twitcher3_health4"
+[22:20:11] Warning: Unknown command "sk_twitcher3_dmg_one_slash1"
+[22:20:11] Warning: Unknown command "sk_twitcher3_dmg_one_slash2"
+[22:20:11] Warning: Unknown command "sk_twitcher3_dmg_one_slash3"
+[22:20:11] Warning: Unknown command "sk_twitcher3_dmg_one_slash4"
+[22:20:11] Warning: Unknown command "sk_twitcher3_dmg_both_slash1"
+[22:20:11] Warning: Unknown command "sk_twitcher3_dmg_both_slash2"
+[22:20:11] Warning: Unknown command "sk_twitcher3_dmg_both_slash3"
+[22:20:11] Warning: Unknown command "sk_twitcher3_dmg_both_slash4"
+[22:20:11] Warning: Unknown command "sk_twitcher4_health1"
+[22:20:11] Warning: Unknown command "sk_twitcher4_health2"
+[22:20:11] Warning: Unknown command "sk_twitcher4_health3"
+[22:20:11] Warning: Unknown command "sk_twitcher4_health4"
+[22:20:11] Warning: Unknown command "sk_twitcher4_dmg_one_slash1"
+[22:20:11] Warning: Unknown command "sk_twitcher4_dmg_one_slash2"
+[22:20:11] Warning: Unknown command "sk_twitcher4_dmg_one_slash3"
+[22:20:11] Warning: Unknown command "sk_twitcher4_dmg_one_slash4"
+[22:20:11] Warning: Unknown command "sk_twitcher4_dmg_both_slash1"
+[22:20:11] Warning: Unknown command "sk_twitcher4_dmg_both_slash2"
+[22:20:11] Warning: Unknown command "sk_twitcher4_dmg_both_slash3"
+[22:20:11] Warning: Unknown command "sk_twitcher4_dmg_both_slash4"
+[22:20:11] execing video.cfg
+[22:20:11] Loading renderer: gles3compat -> libref_gles3compat.wasm
+[22:20:11] execing opengl.cfg
+[22:20:11] Trying safe opengl mode 0
+[22:20:11] bpp 24
+[22:20:11] Video: SDL
+[22:20:11] Video driver: emscripten
+[22:20:11] Window size: 640x200 (real 640x200)
+[22:20:11] Window position: 0x0
+[22:20:11] Window mode: windowed
+[22:20:11] Window bordered: true
+[22:20:11] Window resizable: true
+[22:20:11] Window maximized: false
+[22:20:11] Window display index: 0
+[22:20:11] Window display mode: 640x360@0
+WebGL: INVALID_ENUM: getParameter: invalid parameter name
+[22:20:11] Note: GL2_ShimInit: missing BufferStorage
+[22:20:11] Note: GL2_ShimInit: config: ASYNC MAP CYCLE=1 VER=300
+[22:20:11] Note: GL2_ShimInit: 1441792 bytes allocated for vertex buffer
+[22:20:11] Note: GL2_InitProgs: Pre-generating 8 progs, version 300...
+[22:20:11] Note: GL2_GetProg: Generating progs for 0x0001
+[22:20:11] Note: GL2_GetProg: Generated progs for 0x0001
+[22:20:11] Note: GL2_GetProg: Generating progs for 0x0005
+[22:20:11] Note: GL2_GetProg: Generated progs for 0x0005
+[22:20:11] Note: GL2_GetProg: Generating progs for 0x0007
+[22:20:11] Note: GL2_GetProg: Generated progs for 0x0007
+[22:20:11] Note: GL2_GetProg: Generating progs for 0x0015
+[22:20:11] Note: GL2_GetProg: Generated progs for 0x0015
+[22:20:11] Note: GL2_GetProg: Generating progs for 0x0021
+[22:20:11] Note: GL2_GetProg: Generated progs for 0x0021
+[22:20:11] Note: GL2_GetProg: Generating progs for 0x0025
+[22:20:11] Note: GL2_GetProg: Generated progs for 0x0025
+[22:20:11] Note: GL2_GetProg: Generating progs for 0x0027
+[22:20:11] Note: GL2_GetProg: Generated progs for 0x0027
+[22:20:11] Note: GL2_GetProg: Generating progs for 0x0035
+[22:20:11] Note: GL2_GetProg: Generated progs for 0x0035
+[22:20:11] 
+[22:20:11] GL_VENDOR: WebKit
+[22:20:11] GL_RENDERER: WebKit WebGL
+[22:20:11] GL_VERSION: OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))
+[22:20:11] GL_MAX_TEXTURE_SIZE: 8192
+[22:20:11] GL_MAX_TEXTURE_UNITS_ARB: 32
+[22:20:11] GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT: 16.0
+[22:20:11] 
+[22:20:11] MODE: 640x200
+[22:20:11] 
+[22:20:11] Color 24 bits, Alpha 8 bits, Depth 24 bits, Stencil 8 bits
+[22:20:11] OpenGL Error: GL_INVALID_ENUM while uploading *default [2D]
+[22:20:11] UI_ApplyCustomColors: colors.lst not found
+[22:20:11] Rendering Trebuchet MS(6, 500) took 0.012000 seconds
+[22:20:11] Rendering Trebuchet MS(5, 500) took 0.006000 seconds
+[22:20:11] Rendering Trebuchet MS(10, 500) took 0.006000 seconds
+[22:20:11] Rendering Trebuchet MS(6, 1000) took 0.004000 seconds
+[22:20:11] Rendering Trebuchet MS(6, 500) took 0.000000 seconds
+[22:20:11] Rendering Trebuchet MS(6, 500) took 0.008000 seconds
+[22:20:11] Rendering Tahoma(4, 500) took 0.005000 seconds
+[22:20:11] AVI: Not supported
+The ScriptProcessorNode is deprecated. Use AudioWorkletNode instead. (https://bit.ly/audio-worklet)
+[22:20:11] Using SDL audio driver: emscripten @ 44100 Hz
+[22:20:11] Web Audio: 3D channels enabled
+[22:20:11] execing valve.rc
+[22:20:11] Warning: Unknown command "s_refgain"
+[22:20:11] Warning: Unknown command "s_refdelay"
+[22:20:11] Warning: Unknown command "s_occfactor"
+[22:20:11] Warning: Unknown command "s_verbwet"
+[22:20:11] Warning: Unknown command "s_distance"
+[22:20:11] execing language.cfg
+[22:20:11] execing joystick.cfg
+[22:20:11] execing autoexec.cfg
+[22:20:11] Warning: Unknown command "r_dynamiclight"
+[22:20:11] Warning: Unknown command "cl_noiseeffect"
+[22:20:11] Warning: Unknown command "gl_texturemode"
+[22:20:11] Warning: Unknown command "sv_voicecodec"
+[22:20:11] execing config.cfg
+[22:20:11] execing cof_web.cfg
+[22:20:11] Time to first frame: 0.595 seconds
+[22:20:11] Error: Delta_ParseField: unable to find field is_donator
+[22:20:11] Spawn Server: c_start
+[22:20:12] execing maps/c_start_load.cfg
+[22:20:12] 
+GAME SKILL LEVEL:1
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_agrunt_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_agrunt_dmg_punch1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_apache_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_barney_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_bite1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_whip1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_spit1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_gargantua_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_slash1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_fire1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_stomp1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_hassassin_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_headcrab_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_headcrab_dmg_bite1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_kick1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_pellets1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_gspeed1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_houndeye_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_houndeye_dmg_blast1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_islave_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_claw1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_clawrake1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_zap1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_shake1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_leech_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_leech_dmg_bite1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_controller_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgzap1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_controller_speedball1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgball1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_zap1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_scientist_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_snark_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_bite1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_pop1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_turret_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_miniturret_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_sentry_health1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_plr_crowbar1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_plr_9mm_bullet1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_plr_357_bullet1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_bullet1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_grenade1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_client1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_monster1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_plr_rpg1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_plr_gauss1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_narrow1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_wide1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_plr_hand_grenade1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_plr_satchel1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_plr_tripmine1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_12mm_bullet1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_9mmAR_bullet1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_9mm_bullet1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_hornet_dmg1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_suitcharger1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_battery1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_healthcharger1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_healthkit1 **
+
+[22:20:12] 
+
+** GetSkillCVar Got a zero for sk_scientist_heal1 **
+
+[22:20:12] Error: Could not load model models/w_suit.mdl from disk
+[22:20:12] Error: Could not load model models/w_medkit.mdl from disk
+[22:20:12] Error: Could not load model models/w_battery.mdl from disk
+[22:20:12] Error: Could not load model models/w_antidote.mdl from disk
+[22:20:12] Error: Could not load model models/w_security.mdl from disk
+[22:20:12] Error: Could not load model models/w_longjump.mdl from disk
+[22:20:12] Error: Could not load model models/v_shotgun.mdl from disk
+[22:20:12] Error: Could not load model models/w_shotgun.mdl from disk
+[22:20:12] Error: Could not load model models/p_shotgun.mdl from disk
+[22:20:12] Error: Could not load model models/shotgunshell.mdl from disk
+[22:20:12] Error: Could not load model models/w_shotbox.mdl from disk
+[22:20:12] Error: Could not load model models/v_crowbar.mdl from disk
+[22:20:12] Error: Could not load model models/w_crowbar.mdl from disk
+[22:20:12] Error: Could not load model models/p_crowbar.mdl from disk
+[22:20:12] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[22:20:12] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[22:20:12] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[22:20:12] Error: Could not load model models/shell.mdl from disk
+[22:20:12] Error: Could not load model models/w_9mmclip.mdl from disk
+[22:20:12] Error: Could not load model models/v_9mmAR.mdl from disk
+[22:20:12] Error: Could not load model models/w_9mmAR.mdl from disk
+[22:20:12] Error: Could not load model models/p_9mmAR.mdl from disk
+[22:20:12] Error: Could not load model models/shell.mdl from disk
+[22:20:12] Error: Could not load model models/grenade.mdl from disk
+[22:20:12] Error: Could not load model models/w_9mmARclip.mdl from disk
+[22:20:12] Error: Could not load model models/w_9mmARclip.mdl from disk
+[22:20:12] Error: Could not load model models/w_ARgrenade.mdl from disk
+[22:20:12] Error: Could not load model models/w_chainammo.mdl from disk
+[22:20:12] Error: Could not load model models/v_357.mdl from disk
+[22:20:12] Error: Could not load model models/w_357.mdl from disk
+[22:20:12] Error: Could not load model models/p_357.mdl from disk
+[22:20:12] Error: Could not load model models/w_357ammobox.mdl from disk
+[22:20:12] Error: Could not load model models/w_357ammobox.mdl from disk
+[22:20:12] Error: Could not load model models/w_gauss.mdl from disk
+[22:20:12] Error: Could not load model models/v_gauss.mdl from disk
+[22:20:12] Error: Could not load model models/p_gauss.mdl from disk
+[22:20:12] Error: Could not load model sprites/hotglow.spr from disk
+[22:20:12] Error: Could not load model sprites/hotglow.spr from disk
+[22:20:12] Error: Could not load model sprites/smoke.spr from disk
+[22:20:12] Error: Could not load model models/w_gaussammo.mdl from disk
+[22:20:12] Error: Could not load model models/w_rpg.mdl from disk
+[22:20:12] Error: Could not load model models/v_rpg.mdl from disk
+[22:20:12] Error: Could not load model models/p_rpg.mdl from disk
+[22:20:12] Error: Could not load model sprites/laserdot.spr from disk
+[22:20:12] Error: Could not load model models/rpgrocket.mdl from disk
+[22:20:12] Error: Could not load model sprites/smoke.spr from disk
+[22:20:12] Error: Could not load model models/w_rpgammo.mdl from disk
+[22:20:12] Error: Could not load model models/w_crossbow.mdl from disk
+[22:20:12] Error: Could not load model models/v_crossbow.mdl from disk
+[22:20:12] Error: Could not load model models/p_crossbow.mdl from disk
+[22:20:12] Error: Could not load model models/crossbow_bolt.mdl from disk
+[22:20:12] Error: Could not load model sprites/streak.spr from disk
+[22:20:12] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[22:20:12] Error: Could not load model models/w_egon.mdl from disk
+[22:20:12] Error: Could not load model models/v_egon.mdl from disk
+[22:20:12] Error: Could not load model models/p_egon.mdl from disk
+[22:20:12] Error: Could not load model models/w_9mmclip.mdl from disk
+[22:20:12] Error: Could not load model sprites/xbeam1.spr from disk
+[22:20:12] Error: Could not load model models/v_tripmine.mdl from disk
+[22:20:12] Error: Could not load model models/p_tripmine.mdl from disk
+[22:20:12] Error: Could not load model models/v_tripmine.mdl from disk
+[22:20:12] Error: Could not load model models/v_satchel.mdl from disk
+[22:20:12] Error: Could not load model models/v_satchel_radio.mdl from disk
+[22:20:12] Error: Could not load model models/w_satchel.mdl from disk
+[22:20:12] Error: Could not load model models/p_satchel.mdl from disk
+[22:20:12] Error: Could not load model models/p_satchel_radio.mdl from disk
+[22:20:12] Error: Could not load model models/w_satchel.mdl from disk
+[22:20:12] Error: Could not load model models/w_grenade.mdl from disk
+[22:20:12] Error: Could not load model models/v_grenade.mdl from disk
+[22:20:12] Error: Could not load model models/p_grenade.mdl from disk
+[22:20:12] Error: Could not load model models/w_sqknest.mdl from disk
+[22:20:12] Error: Could not load model models/v_squeak.mdl from disk
+[22:20:12] Error: Could not load model models/p_squeak.mdl from disk
+[22:20:12] Error: Could not load model models/w_squeak.mdl from disk
+[22:20:12] Error: Could not load model models/v_hgun.mdl from disk
+[22:20:12] Error: Could not load model models/w_hgun.mdl from disk
+[22:20:12] Error: Could not load model models/p_hgun.mdl from disk
+[22:20:12] Error: Could not load model models/hornet.mdl from disk
+[22:20:12] Error: Could not load model sprites/muz1.spr from disk
+[22:20:12] Error: Could not load model sprites/zerogxplode.spr from disk
+[22:20:12] Error: Could not load model sprites/WXplo1.spr from disk
+[22:20:12] Error: Could not load model sprites/laserdot.spr from disk
+[22:20:12] Error: Could not load model models/grenade.mdl from disk
+[22:20:12] Error: Could not load model sprites/explode1.spr from disk
+[22:20:12] Error: Could not load model models/player.mdl from disk
+[22:20:12] Error: Could not load model models/hgibs.mdl from disk
+[22:20:12] Error: Could not load model models/agibs.mdl from disk
+[22:20:12] Error: No spawn function for "info_texlights"
+[22:20:13] env_model : unknown sequence "idle"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "envpos_world"
+[22:20:13] Error: No spawn function for "envpos_sky"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "env_static_decal"
+[22:20:13] Error: No spawn function for "cof_developer_commentary"
+[22:20:13] Error: No spawn function for "cof_developer_commentary"
+[22:20:13] Error: No spawn function for "cof_developer_commentary"
+[22:20:13] Error: No spawn function for "cof_clothesmenu"
+[22:20:13] Error: No spawn function for "cof_developer_commentary"
+[22:20:13] Error: No spawn function for "item_nightvision"
+[22:20:13] Error: No spawn function for "trigger_sound"
+[22:20:13] Error: No spawn function for "trigger_sound"
+[22:20:13] Error: No spawn function for "trigger_sound"
+[22:20:13] Error: No spawn function for "trigger_sound"
+[22:20:13] Error: No spawn function for "trigger_sound"
+[22:20:13] Error: No spawn function for "trigger_sound"
+[22:20:13] Error: No spawn function for "trigger_sound"
+[22:20:13] Error: No spawn function for "trigger_sound"
+[22:20:13] Error: No spawn function for "trigger_sound"
+[22:20:13] Error: No spawn function for "trigger_sound"
+[22:20:13] Error: No spawn function for "trigger_sound"
+[22:20:13] Error: No spawn function for "trigger_sound"
+[22:20:13] Error: No spawn function for "trigger_sound"
+[22:20:13] Error: No spawn function for "trigger_sound"
+[22:20:13] 
+0 entities inhibited
+[22:20:13] Game started
+[22:20:13] level loaded at 2.11 sec
+[22:20:13] execing spserver.cfg
+[22:20:13] Trying to connect with modern protocol
+[22:20:13] LoadBackground: found steam background in game directory
+[22:20:13] execing mainui.cfg
+[22:20:13] Localize_AddToDict( resource/mainui_english.txt ): couldn't open file. Some strings will not be localized!.
+[22:20:13] Localize_AddToDict( resource/cryoffear_english.txt ): couldn't open file. Some strings will not be localized!.
+[22:20:14] Spooling demo header.
+[22:20:14] 
+BUILD 4221 SERVER (0 CRC)
+Server #1
+[22:20:14] Warning: unexpected end of sprites/hud.txt (211 should be 57)
+[22:20:14] Missing bitmap font: gfx\vgui\fonts\640_Basic Text.tga
+[22:20:14] Missing bitmap font: gfx\vgui\fonts\640_Primary Button Text.tga
+[22:20:14] Missing bitmap font: gfx\vgui\fonts\640_CommandMenu Text.tga
+[22:20:14] Missing bitmap font: gfx\vgui\fonts\640_Scoreboard Text.tga
+[22:20:14] Missing bitmap font: gfx\vgui\fonts\640_Scoreboard Title Text.tga
+[22:20:14] Missing bitmap font: gfx\vgui\fonts\640_Scoreboard Small Text.tga
+[22:20:14] Missing bitmap font: gfx\vgui\fonts\640_Title Font.tga
+[22:20:14] Unable to open commandmenu.txt
+[22:20:14] Unable to open spectatormenu.txt
+[22:20:14] Unable to open spectcammenu.txt
+[22:20:14] Verifying and downloading resources...
+[22:20:14] Error: Could not load sound sound/items/smallmedkit1.wav
+[22:20:14] Error: Could not load sound sound/items/9mmclip1.wav
+[22:20:14] Error: Could not load sound sound/weapons/dbarrel1.wav
+[22:20:14] Error: Could not load sound sound/weapons/sbarrel1.wav
+[22:20:14] Error: Could not load sound sound/weapons/reload1.wav
+[22:20:14] Error: Could not load sound sound/weapons/reload3.wav
+[22:20:14] Error: Could not load sound sound/weapons/357_cock1.wav
+[22:20:14] Error: Could not load sound sound/weapons/scock1.wav
+[22:20:14] Error: Could not load sound sound/weapons/cbar_hit1.wav
+[22:20:14] Error: Could not load sound sound/weapons/cbar_hit2.wav
+[22:20:14] Error: Could not load sound sound/weapons/cbar_hitbod1.wav
+[22:20:14] Error: Could not load sound sound/weapons/cbar_hitbod2.wav
+[22:20:14] Error: Could not load sound sound/weapons/cbar_hitbod3.wav
+[22:20:14] Error: Could not load sound sound/weapons/cbar_miss1.wav
+[22:20:14] Error: Could not load sound sound/items/9mmclip2.wav
+[22:20:14] Error: Could not load sound sound/weapons/pl_gun1.wav
+[22:20:14] Error: Could not load sound sound/weapons/pl_gun2.wav
+[22:20:14] Error: Could not load sound sound/weapons/pl_gun3.wav
+[22:20:14] Error: Could not load sound sound/items/clipinsert1.wav
+[22:20:14] Error: Could not load sound sound/items/cliprelease1.wav
+[22:20:14] Error: Could not load sound sound/weapons/hks1.wav
+[22:20:14] Error: Could not load sound sound/weapons/hks2.wav
+[22:20:14] Error: Could not load sound sound/weapons/hks3.wav
+[22:20:14] Error: Could not load sound sound/weapons/glauncher.wav
+[22:20:14] Error: Could not load sound sound/weapons/glauncher2.wav
+[22:20:14] Error: Could not load sound sound/weapons/357_reload1.wav
+[22:20:14] Error: Could not load sound sound/weapons/357_shot1.wav
+[22:20:14] Error: Could not load sound sound/weapons/357_shot2.wav
+[22:20:14] Error: Could not load sound sound/weapons/gauss2.wav
+[22:20:14] Error: Could not load sound sound/weapons/electro4.wav
+[22:20:14] Error: Could not load sound sound/weapons/electro5.wav
+[22:20:14] Error: Could not load sound sound/weapons/electro6.wav
+[22:20:14] Error: Could not load sound sound/ambience/pulsemachine.wav
+[22:20:14] Error: Could not load sound sound/weapons/rocket1.wav
+[22:20:14] Error: Could not load sound sound/weapons/rocketfire1.wav
+[22:20:14] Error: Could not load sound sound/weapons/xbow_fire1.wav
+[22:20:14] Error: Could not load sound sound/weapons/xbow_reload1.wav
+[22:20:14] Error: Could not load sound sound/weapons/xbow_hitbod1.wav
+[22:20:14] Error: Could not load sound sound/weapons/xbow_hitbod2.wav
+[22:20:14] Error: Could not load sound sound/weapons/xbow_fly1.wav
+[22:20:14] Error: Could not load sound sound/weapons/xbow_hit1.wav
+[22:20:14] Error: Could not load sound sound/fvox/beep.wav
+[22:20:14] Error: Could not load sound sound/weapons/egon_off1.wav
+[22:20:14] Error: Could not load sound sound/weapons/egon_run3.wav
+[22:20:14] Error: Could not load sound sound/weapons/egon_windup2.wav
+[22:20:14] Error: Could not load sound sound/weapons/mine_deploy.wav
+[22:20:14] Error: Could not load sound sound/weapons/mine_activate.wav
+[22:20:14] Error: Could not load sound sound/weapons/mine_charge.wav
+[22:20:14] Error: Could not load sound sound/weapons/g_bounce1.wav
+[22:20:14] Error: Could not load sound sound/weapons/g_bounce2.wav
+[22:20:14] Error: Could not load sound sound/weapons/g_bounce3.wav
+[22:20:14] Error: Could not load sound sound/squeek/sqk_hunt2.wav
+[22:20:14] Error: Could not load sound sound/squeek/sqk_hunt3.wav
+[22:20:14] Error: Could not load sound sound/squeek/sqk_blast1.wav
+[22:20:14] Error: Could not load sound sound/common/bodysplat.wav
+[22:20:14] Error: Could not load sound sound/squeek/sqk_die1.wav
+[22:20:14] Error: Could not load sound sound/squeek/sqk_hunt1.wav
+[22:20:14] Error: Could not load sound sound/squeek/sqk_deploy1.wav
+[22:20:14] Error: Could not load sound sound/agrunt/ag_fire1.wav
+[22:20:14] Error: Could not load sound sound/agrunt/ag_fire2.wav
+[22:20:14] Error: Could not load sound sound/agrunt/ag_fire3.wav
+[22:20:14] Error: Could not load sound sound/hornet/ag_buzz1.wav
+[22:20:14] Error: Could not load sound sound/hornet/ag_buzz2.wav
+[22:20:14] Error: Could not load sound sound/hornet/ag_buzz3.wav
+[22:20:14] Error: Could not load sound sound/hornet/ag_hornethit1.wav
+[22:20:14] Error: Could not load sound sound/hornet/ag_hornethit2.wav
+[22:20:14] Error: Could not load sound sound/hornet/ag_hornethit3.wav
+[22:20:14] Error: Could not load sound sound/weapons/debris1.wav
+[22:20:14] Error: Could not load sound sound/weapons/debris2.wav
+[22:20:14] Error: Could not load sound sound/weapons/debris3.wav
+[22:20:14] Error: Could not load sound sound/weapons/grenade_hit1.wav
+[22:20:14] Error: Could not load sound sound/weapons/grenade_hit2.wav
+[22:20:14] Error: Could not load sound sound/weapons/grenade_hit3.wav
+[22:20:14] Error: Could not load sound sound/weapons/bullet_hit1.wav
+[22:20:14] Error: Could not load sound sound/weapons/bullet_hit2.wav
+[22:20:14] Error: Could not load sound sound/items/weapondrop1.wav
+[22:20:14] Error: Could not load sound sound/player/sprayer.wav
+[22:20:14] Error: Could not load sound sound/player/pl_fallpain2.wav
+[22:20:14] Error: Could not load sound sound/player/pl_fallpain3.wav
+[22:20:14] Error: Could not load sound sound/player/pl_step1.wav
+[22:20:14] Error: Could not load sound sound/player/pl_step2.wav
+[22:20:14] Error: Could not load sound sound/player/pl_step3.wav
+[22:20:14] Error: Could not load sound sound/player/pl_step4.wav
+[22:20:14] Error: Could not load sound sound/player/pl_metal1.wav
+[22:20:14] Error: Could not load sound sound/player/pl_metal2.wav
+[22:20:14] Error: Could not load sound sound/player/pl_metal3.wav
+[22:20:14] Error: Could not load sound sound/player/pl_metal4.wav
+[22:20:14] Error: Could not load sound sound/player/pl_dirt1.wav
+[22:20:14] Error: Could not load sound sound/player/pl_dirt2.wav
+[22:20:14] Error: Could not load sound sound/player/pl_dirt3.wav
+[22:20:14] Error: Could not load sound sound/player/pl_dirt4.wav
+[22:20:14] Error: Could not load sound sound/player/pl_duct1.wav
+[22:20:14] Error: Could not load sound sound/player/pl_duct2.wav
+[22:20:14] Error: Could not load sound sound/player/pl_duct3.wav
+[22:20:14] Error: Could not load sound sound/player/pl_duct4.wav
+[22:20:14] Error: Could not load sound sound/player/pl_grate1.wav
+[22:20:14] Error: Could not load sound sound/player/pl_grate2.wav
+[22:20:14] Error: Could not load sound sound/player/pl_grate3.wav
+[22:20:14] Error: Could not load sound sound/player/pl_grate4.wav
+[22:20:14] Error: Could not load sound sound/player/pl_slosh1.wav
+[22:20:14] Error: Could not load sound sound/player/pl_slosh2.wav
+[22:20:14] Error: Could not load sound sound/player/pl_slosh3.wav
+[22:20:14] Error: Could not load sound sound/player/pl_slosh4.wav
+[22:20:14] Error: Could not load sound sound/player/pl_tile1.wav
+[22:20:14] Error: Could not load sound sound/player/pl_tile2.wav
+[22:20:14] Error: Could not load sound sound/player/pl_tile3.wav
+[22:20:14] Error: Could not load sound sound/player/pl_tile4.wav
+[22:20:14] Error: Could not load sound sound/player/pl_tile5.wav
+[22:20:14] Error: Could not load sound sound/player/pl_swim1.wav
+[22:20:14] Error: Could not load sound sound/player/pl_swim2.wav
+[22:20:14] Error: Could not load sound sound/player/pl_swim3.wav
+[22:20:14] Error: Could not load sound sound/player/pl_swim4.wav
+[22:20:14] Error: Could not load sound sound/player/pl_ladder1.wav
+[22:20:14] Error: Could not load sound sound/player/pl_ladder2.wav
+[22:20:14] Error: Could not load sound sound/player/pl_ladder3.wav
+[22:20:14] Error: Could not load sound sound/player/pl_ladder4.wav
+[22:20:14] Error: Could not load sound sound/player/pl_wade1.wav
+[22:20:14] Error: Could not load sound sound/player/pl_wade2.wav
+[22:20:14] Error: Could not load sound sound/player/pl_wade3.wav
+[22:20:14] Error: Could not load sound sound/player/pl_wade4.wav
+[22:20:14] Error: Could not load sound sound/debris/wood1.wav
+[22:20:14] Error: Could not load sound sound/debris/wood2.wav
+[22:20:14] Error: Could not load sound sound/debris/wood3.wav
+[22:20:14] Error: Could not load sound sound/plats/train_use1.wav
+[22:20:14] Error: Could not load sound sound/plats/vehicle_ignition.wav
+[22:20:14] Error: Could not load sound sound/buttons/spark5.wav
+[22:20:14] Error: Could not load sound sound/buttons/spark6.wav
+[22:20:14] Error: Could not load sound sound/debris/glass1.wav
+[22:20:14] Error: Could not load sound sound/debris/glass2.wav
+[22:20:14] Error: Could not load sound sound/debris/glass3.wav
+[22:20:14] Error: Could not load sound sound/items/flashlight1.wav
+[22:20:14] Error: Could not load sound sound/player/pl_pain2.wav
+[22:20:14] Error: Could not load sound sound/player/pl_pain4.wav
+[22:20:14] Error: Could not load sound sound/player/pl_pain5.wav
+[22:20:14] Error: Could not load sound sound/player/pl_pain6.wav
+[22:20:14] Error: Could not load sound sound/player/pl_pain7.wav
+[22:20:14] Error: Could not load sound sound/common/wpn_hudoff.wav
+[22:20:14] Error: Could not load sound sound/common/wpn_hudon.wav
+[22:20:14] Error: Could not load sound sound/common/wpn_moveselect.wav
+[22:20:14] Error: Could not load sound sound/common/wpn_select.wav
+[22:20:14] Error: Could not load sound sound/common/wpn_denyselect.wav
+[22:20:14] Error: Could not load sound sound/player/geiger6.wav
+[22:20:14] Error: Could not load sound sound/player/geiger5.wav
+[22:20:14] Error: Could not load sound sound/player/geiger4.wav
+[22:20:14] Error: Could not load sound sound/player/geiger3.wav
+[22:20:15] Error: Could not load sound sound/player/geiger2.wav
+[22:20:15] Error: Could not load sound sound/player/geiger1.wav
+[22:20:15] Error: Could not load sound sound/common/null.wav
+[22:20:15] Error: Could not load sound sound/items/suitchargeok1.wav
+[22:20:15] Error: Could not load sound sound/common/bodydrop3.wav
+[22:20:15] Error: Could not load sound sound/common/bodydrop4.wav
+[22:20:15] Error: Could not load sound sound/weapons/ric1.wav
+[22:20:15] Error: Could not load sound sound/weapons/ric2.wav
+[22:20:15] Error: Could not load sound sound/weapons/ric3.wav
+[22:20:15] Error: Could not load sound sound/weapons/ric4.wav
+[22:20:15] Error: Could not load sound sound/weapons/ric5.wav
+[22:20:15] Error: Could not load sound sound/buttons/button9.wav
+[22:20:15] Error: Could not load sound sound/doors/doormove7.wav
+[22:20:15] Error: Could not load model models/w_suit.mdl from disk
+[22:20:15] Error: Could not load model models/w_medkit.mdl from disk
+[22:20:15] Error: Could not load model models/w_battery.mdl from disk
+[22:20:15] Error: Could not load model models/w_antidote.mdl from disk
+[22:20:15] Error: Could not load model models/w_security.mdl from disk
+[22:20:15] Error: Could not load model models/w_longjump.mdl from disk
+[22:20:15] Error: Could not load model models/v_shotgun.mdl from disk
+[22:20:15] Error: Could not load model models/w_shotgun.mdl from disk
+[22:20:15] Error: Could not load model models/p_shotgun.mdl from disk
+[22:20:15] Error: Could not load model models/shotgunshell.mdl from disk
+[22:20:15] Error: Could not load model models/w_shotbox.mdl from disk
+[22:20:15] Error: Could not load model models/v_crowbar.mdl from disk
+[22:20:15] Error: Could not load model models/w_crowbar.mdl from disk
+[22:20:15] Error: Could not load model models/p_crowbar.mdl from disk
+[22:20:15] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[22:20:15] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[22:20:15] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[22:20:15] Error: Could not load model models/shell.mdl from disk
+[22:20:15] Error: Could not load model models/w_9mmclip.mdl from disk
+[22:20:15] Error: Could not load model models/v_9mmAR.mdl from disk
+[22:20:15] Error: Could not load model models/w_9mmAR.mdl from disk
+[22:20:15] Error: Could not load model models/p_9mmAR.mdl from disk
+[22:20:15] Error: Could not load model models/grenade.mdl from disk
+[22:20:15] Error: Could not load model models/w_9mmARclip.mdl from disk
+[22:20:15] Error: Could not load model models/w_ARgrenade.mdl from disk
+[22:20:15] Error: Could not load model models/w_chainammo.mdl from disk
+[22:20:15] Error: Could not load model models/v_357.mdl from disk
+[22:20:15] Error: Could not load model models/w_357.mdl from disk
+[22:20:15] Error: Could not load model models/p_357.mdl from disk
+[22:20:15] Error: Could not load model models/w_357ammobox.mdl from disk
+[22:20:15] Error: Could not load model models/w_gauss.mdl from disk
+[22:20:15] Error: Could not load model models/v_gauss.mdl from disk
+[22:20:15] Error: Could not load model models/p_gauss.mdl from disk
+[22:20:15] Error: Could not load model sprites/hotglow.spr from disk
+[22:20:15] Error: Could not load model sprites/smoke.spr from disk
+[22:20:15] Error: Could not load model models/w_gaussammo.mdl from disk
+[22:20:15] Error: Could not load model models/w_rpg.mdl from disk
+[22:20:15] Error: Could not load model models/v_rpg.mdl from disk
+[22:20:15] Error: Could not load model models/p_rpg.mdl from disk
+[22:20:15] Error: Could not load model sprites/laserdot.spr from disk
+[22:20:15] Error: Could not load model models/rpgrocket.mdl from disk
+[22:20:15] Error: Could not load model models/w_rpgammo.mdl from disk
+[22:20:15] Error: Could not load model models/w_crossbow.mdl from disk
+[22:20:15] Error: Could not load model models/v_crossbow.mdl from disk
+[22:20:15] Error: Could not load model models/p_crossbow.mdl from disk
+[22:20:15] Error: Could not load model models/crossbow_bolt.mdl from disk
+[22:20:15] Error: Could not load model sprites/streak.spr from disk
+[22:20:15] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[22:20:15] Error: Could not load model models/w_egon.mdl from disk
+[22:20:15] Error: Could not load model models/v_egon.mdl from disk
+[22:20:15] Error: Could not load model models/p_egon.mdl from disk
+[22:20:15] Error: Could not load model sprites/xbeam1.spr from disk
+[22:20:15] Error: Could not load model models/v_tripmine.mdl from disk
+[22:20:15] Error: Could not load model models/p_tripmine.mdl from disk
+[22:20:15] Error: Could not load model models/v_satchel.mdl from disk
+[22:20:15] Error: Could not load model models/v_satchel_radio.mdl from disk
+[22:20:15] Error: Could not load model models/w_satchel.mdl from disk
+[22:20:15] Error: Could not load model models/p_satchel.mdl from disk
+[22:20:15] Error: Could not load model models/p_satchel_radio.mdl from disk
+[22:20:15] Error: Could not load model models/w_grenade.mdl from disk
+[22:20:15] Error: Could not load model models/v_grenade.mdl from disk
+[22:20:15] Error: Could not load model models/p_grenade.mdl from disk
+[22:20:15] Error: Could not load model models/w_sqknest.mdl from disk
+[22:20:15] Error: Could not load model models/v_squeak.mdl from disk
+[22:20:15] Error: Could not load model models/p_squeak.mdl from disk
+[22:20:15] Error: Could not load model models/w_squeak.mdl from disk
+[22:20:15] Error: Could not load model models/v_hgun.mdl from disk
+[22:20:15] Error: Could not load model models/w_hgun.mdl from disk
+[22:20:15] Error: Could not load model models/p_hgun.mdl from disk
+[22:20:15] Error: Could not load model models/hornet.mdl from disk
+[22:20:15] Error: Could not load model sprites/muz1.spr from disk
+[22:20:15] Error: Could not load model sprites/zerogxplode.spr from disk
+[22:20:15] Error: Could not load model sprites/WXplo1.spr from disk
+[22:20:15] Error: Could not load model sprites/explode1.spr from disk
+[22:20:15] Error: Could not load model models/player.mdl from disk
+[22:20:15] Error: Could not load model models/hgibs.mdl from disk
+[22:20:15] Error: Could not load model models/agibs.mdl from disk
+[22:20:15] Setting up renderer...
+[22:20:15] SKY:  blackrt, blackbk, blacklf, blackft, blackup, blackdn. done
+[22:20:15] Signon network traffic:  28.243 Kb from server, 237 bytes to server
+[22:20:15] client connected at 1.28 sec
+[22:20:15] COF/HUD STAT 100 100 0
+[22:20:15] COF/HUD INV 0
+[22:20:15] COF/HUD QUICK - - -
+[22:20:15] COF/HUD OBJECTIVE 
+[22:20:15] COF/HUD MUSIC 0 0 music1.mp3
+[22:20:15] Couldn't open file overviews/c_start.txt. Using default values for overiew mode.
+[22:20:15] Couldn't open file overviews/c_start.txt. Using default values for overiew mode.
+[22:20:15] Warning: unexpected end of sprites/weapon_glock.txt (10 should be 8)
+[22:20:15] Note: GL2_GetProg: Generating progs for 0x0017
+[22:20:15] Note: GL2_GetProg: Generated progs for 0x0017
+[.WebGL-0x387c0011b800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+[.WebGL-0x387c0011b800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+[22:20:15] COF/KEY !player movetype handled=1
+[22:20:15] COF/FENCE model_test_1 time=1.2
+[22:20:15] "sv_cheats" changed to "1"
+[22:20:15] COF/ANIM sequence1 seq=3 frame=213.504 rate=512 loops=1 finished=0 on=1 next=1.517 now=1.417 body=0 skin=0
+[22:20:15] COF/FENCE model_test_2 time=1.417
+[22:20:15] COF/ANIM sequence1 seq=3 frame=213.504 rate=512 loops=1 finished=0 on=1 next=1.517 now=1.45 body=0 skin=0
+[22:20:15] COF/FENCE model_test_3 time=1.45
+[22:20:15] COF/ANIM sequence1 seq=3 frame=213.504 rate=512 loops=1 finished=0 on=1 next=1.517 now=1.466 body=0 skin=0
+[22:20:15] COF/FENCE model_test_4 time=1.466
+[22:20:15] COF/ANIM sequence1 seq=3 frame=8.70404 rate=512 loops=1 finished=1 on=1 next=1.617 now=1.582 body=0 skin=0
+[22:20:15] COF/FENCE model_test_5 time=1.582
+[22:20:15] COF/ANIM sequence2 seq=0 frame=15.4411 rate=29.8667 loops=1 finished=0 on=1 next=1.617 now=1.6 body=0 skin=0
+[22:20:15] COF/FENCE model_test_6 time=1.6
+[22:20:15] COF/ANIM sequence2 seq=0 frame=18.4277 rate=29.8667 loops=1 finished=0 on=1 next=1.717 now=1.617 body=0 skin=0
+[22:20:15] COF/FENCE model_test_7 time=1.617
+[22:20:15] COF/ANIM sequence2 seq=0 frame=18.4277 rate=29.8667 loops=1 finished=0 on=1 next=1.717 now=1.632 body=0 skin=0
+[22:20:15] COF/FENCE model_test_8 time=1.632
+[22:20:15] COF/ANIM sequence2 seq=0 frame=21.4144 rate=29.8667 loops=1 finished=0 on=1 next=1.817 now=1.749 body=0 skin=0
+[22:20:15] COF/FENCE model_test_9 time=1.749
+[22:20:16] COF/ANIM simon3 seq=5 frame=61.184 rate=85.3333 loops=1 finished=0 on=1 next=1.817 now=1.766 body=0 skin=0
+[22:20:16] COF/FENCE model_test_10 time=1.766
+[22:20:16] COF/ANIM simon3 seq=5 frame=61.184 rate=85.3333 loops=1 finished=0 on=1 next=1.817 now=1.782 body=0 skin=0
+[22:20:16] COF/FENCE model_test_11 time=1.782
+[22:20:16] COF/ANIM simon3 seq=5 frame=61.184 rate=85.3333 loops=1 finished=0 on=1 next=1.817 now=1.799 body=0 skin=0
+[22:20:16] COF/FENCE model_test_12 time=1.799
+[22:20:16] COF/ANIM simon3 seq=5 frame=78.2507 rate=85.3333 loops=1 finished=0 on=1 next=2.017 now=1.917 body=0 skin=0
+[22:20:16] COF/FENCE model_test_13 time=1.917
+[22:20:16] COF/ANIM sblacker seq=0 frame=43.5204 rate=2560 loops=1 finished=1 on=1 next=2.017 now=1.932 body=0 skin=0
+[22:20:16] COF/FENCE model_test_14 time=1.932
+[22:20:16] COF/ANIM sblacker seq=0 frame=43.5204 rate=2560 loops=1 finished=1 on=1 next=2.017 now=1.949 body=0 skin=0
+[22:20:16] COF/FENCE model_test_15 time=1.949
+[22:20:16] COF/ANIM sblacker seq=0 frame=43.5204 rate=2560 loops=1 finished=1 on=1 next=2.017 now=1.966 body=0 skin=0
+[22:20:16] COF/FENCE model_test_16 time=1.966
+[22:20:16] COF/ANIM sblacker seq=0 frame=43.5205 rate=2560 loops=1 finished=1 on=1 next=2.117 now=2.083 body=0 skin=0
+[22:20:16] COF/FENCE model_test_17 time=2.083
+[22:20:16] COF/ANIM slower_arms seq=0 frame=130.562 rate=7680 loops=1 finished=1 on=0 next=2.117 now=2.099 body=0 skin=0
+[22:20:16] COF/FENCE model_test_18 time=2.099
+[22:20:16] COF/ANIM slower_arms seq=0 frame=130.561 rate=7680 loops=1 finished=1 on=0 next=2.217 now=2.117 body=0 skin=0
+[22:20:16] COF/FENCE model_test_19 time=2.117
+[22:20:16] COF/ANIM slower_arms seq=0 frame=130.561 rate=7680 loops=1 finished=1 on=0 next=2.217 now=2.132 body=0 skin=0
+[22:20:16] COF/FENCE model_test_20 time=2.132
+[22:20:16] COF/ANIM slower_arms seq=0 frame=130.56 rate=7680 loops=1 finished=1 on=0 next=2.317 now=2.249 body=0 skin=0
+[22:20:16] COF/FENCE model_test_21 time=2.249
+[22:20:16] COF/ANIM padlock_air seq=0 frame=0 rate=0 loops=0 finished=0 on=1 next=2.317 now=2.266 body=0 skin=0
+[22:20:16] COF/FENCE model_test_22 time=2.266
+[22:20:16] COF/FENCE model_test_23 time=2.282
+[22:20:16] COF/ANIM padlock_air seq=0 frame=0 rate=0 loops=0 finished=0 on=0 next=2.582 now=2.549 body=0 skin=0
+[22:20:16] COF/FENCE model_test_24 time=2.549
+[22:20:16] COF/KEY sequence1 framerate handled=1
+[22:20:16] COF/KEY sequence1 frame handled=1
+[22:20:16] COF/FENCE model_test_25 time=2.582
+[22:20:16] COF/ANIM sequence1 seq=3 frame=123 rate=512 loops=1 finished=1 on=1 next=2.617 now=2.583 body=0 skin=0
+[22:20:16] COF/FENCE model_test_26 time=2.583
+[22:20:16] COF/FENCE model_test_27 time=2.599
+[22:20:16] COF/ANIM sequence1 seq=2 frame=0 rate=17.0667 loops=0 finished=0 on=0 next=2.699 now=2.617 body=0 skin=0
+[22:20:16] COF/FENCE model_test_28 time=2.617
+[22:20:16] COF/ANIM sequence1 seq=2 frame=0 rate=17.0667 loops=0 finished=0 on=0 next=2.699 now=2.632 body=0 skin=0
+[22:20:16] COF/FENCE model_test_29 time=2.632
+[22:20:16] COF/ANIM sequence1 seq=2 frame=0 rate=17.0667 loops=0 finished=0 on=0 next=2.699 now=2.649 body=0 skin=0
+[22:20:16] COF/FENCE model_test_30 time=2.649
+[22:20:17] COF/ANIM sequence1 seq=2 frame=1.70667 rate=17.0667 loops=0 finished=0 on=0 next=2.799 now=2.782 body=0 skin=0
+[22:20:17] COF/FENCE model_test_31 time=2.782
+[22:20:17] COF/KEY sequence1 framerate handled=1
+[22:20:17] COF/FENCE model_test_32 time=2.782
+[22:20:17] COF/ANIM sequence1 seq=2 frame=3.41333 rate=17.0667 loops=0 finished=0 on=0 next=2.899 now=2.817 body=0 skin=0
+[22:20:17] COF/FENCE model_test_33 time=2.817
+[22:20:17] COF/ANIM sequence1 seq=2 frame=174.08 rate=17.0667 loops=0 finished=0 on=0 next=2.999 now=2.917 body=0 skin=0
+[22:20:17] COF/FENCE model_test_34 time=2.917
+[22:20:17] Done.
+[22:20:17] COF/ANIM sequence1 seq=2 frame=255 rate=17.0667 loops=0 finished=1 on=0 next=0 now=2.999 body=0 skin=0
+[22:20:17] COF/FENCE model_test_35 time=2.999
+[22:20:17] COF/HUD PICKUP inventoryitems/weapons/weapon_mobile.txt
+[22:20:17] COF/ANIM sequence1 seq=2 frame=255 rate=17.0667 loops=0 finished=1 on=0 next=0 now=3.017 body=0 skin=0
+[22:20:17] COF/FENCE model_test_36 time=3.017
+[22:20:17] COF/HUD STAT 100 100 0
+[22:20:17] COF/HUD INV 1 inventoryitems/weapons/weapon_mobile.txt
+[22:20:17] COF/HUD QUICK weapon_mobile - -
+[22:20:17] COF/HUD OBJECTIVE 
+[22:20:17] COF/FENCE model_test_37 time=3.082
+[22:20:17] COF/ANIM sequence1 seq=2 frame=255 rate=17.0667 loops=0 finished=1 on=0 next=0 now=3.082 body=0 skin=0
+[22:20:17] COF/FENCE model_test_38 time=3.082
+[22:20:17] COF/FENCE model_test_39 time=3.099
+[22:20:17] COF/ANIM sequence1 seq=3 frame=0 rate=512 loops=1 finished=0 on=1 next=3.199 now=3.117 body=0 skin=0
+[22:20:17] COF/FENCE model_test_40 time=3.117
+[22:20:17] COF/ANIM sequence1 seq=3 frame=0 rate=512 loops=1 finished=0 on=1 next=3.199 now=3.132 body=0 skin=0
+[22:20:17] COF/FENCE model_test_41 time=3.132
+[22:20:17] COF/ANIM sequence1 seq=3 frame=0 rate=512 loops=1 finished=0 on=1 next=3.199 now=3.15 body=0 skin=0
+[22:20:17] COF/FENCE model_test_42 time=3.15
+[22:20:17] COF/ANIM sequence1 seq=3 frame=51.2 rate=512 loops=1 finished=0 on=1 next=3.299 now=3.282 body=0 skin=0
+[22:20:17] COF/FENCE model_test_43 time=3.282
+[22:20:17] COF/KEY sequence1 m_iAction_Off handled=1
+[22:20:17] COF/KEY sequence1 framerate handled=1
+[22:20:17] COF/FENCE model_test_44 time=3.282
+[22:20:17] COF/ANIM sequence1 seq=2 frame=0 rate=17.0667 loops=0 finished=0 on=0 next=3.382 now=3.299 body=0 skin=0
+[22:20:17] COF/FENCE model_test_45 time=3.299
+[22:20:17] COF/ANIM sequence1 seq=2 frame=170.667 rate=17.0667 loops=0 finished=0 on=0 next=3.482 now=3.417 body=0 skin=0
+[22:20:17] COF/FENCE model_test_46 time=3.417
+[22:20:17] COF/ANIM sequence1 seq=3 frame=0 rate=512 loops=1 finished=0 on=1 next=3.582 now=3.532 body=0 skin=0
+[22:20:17] COF/FENCE model_test_47 time=3.532
+[22:20:17] COF/ANIM sequence1 seq=3 frame=0 rate=512 loops=1 finished=0 on=1 next=3.582 now=3.549 body=0 skin=0
+[22:20:17] COF/FENCE model_test_48 time=3.549
+[22:20:17] COF/KEY sequence1 m_iAction_Off handled=1
+[22:20:17] COF/KEY sequence1 m_iAction_On handled=1
+[22:20:17] COF/KEY sequence1 framerate handled=1
+[22:20:17] COF/FENCE model_test_49 time=3.582
+[22:20:17] COF/ANIM sequence1 seq=3 frame=0 rate=512 loops=0 finished=0 on=1 next=3.682 now=3.582 body=0 skin=0
+[22:20:17] COF/FENCE model_test_50 time=3.582
+[22:20:17] COF/ANIM sequence1 seq=2 frame=0 rate=17.0667 loops=0 finished=0 on=0 next=3.782 now=3.703 body=0 skin=0
+[22:20:17] COF/FENCE model_test_51 time=3.703
+[22:20:17] COF/ANIM sequence1 seq=2 frame=0 rate=17.0667 loops=0 finished=0 on=0 next=3.782 now=3.717 body=0 skin=0
+[22:20:17] COF/FENCE model_test_52 time=3.717
+[22:20:17] COF/KEY sequence1 m_iAction_On handled=1
+[22:20:17] COF/FENCE model_test_53 time=3.732
+[22:20:17] COF/KEY sequence2 m_iszSequence_Off handled=1
+[22:20:17] COF/FENCE model_test_54 time=3.749
+[22:20:18] COF/ANIM sequence2 seq=0 frame=81.1477 rate=29.8667 loops=1 finished=0 on=1 next=3.817 now=3.782 body=0 skin=0
+[22:20:18] COF/FENCE model_test_55 time=3.782
+[22:20:18] env_model sequence2: unknown sequence ""
+[22:20:18] COF/FENCE model_test_56 time=3.782
+[22:20:18] COF/ANIM sequence2 seq=0 frame=0 rate=29.8667 loops=0 finished=0 on=0 next=3.882 now=3.8 body=0 skin=0
+[22:20:18] COF/FENCE model_test_57 time=3.8
+[22:20:18] COF/KEY sequence2 m_iszSequence_On handled=1
+[22:20:18] env_model sequence2: unknown sequence "unknown_sequence_regression"
+[22:20:18] COF/FENCE model_test_58 time=3.817
+[22:20:18] COF/ANIM sequence2 seq=0 frame=0 rate=29.8667 loops=1 finished=0 on=1 next=3.917 now=3.833 body=0 skin=0
+[22:20:18] COF/FENCE model_test_59 time=3.833
+[22:20:18] COF/KEY sequence2 m_iszSequence_On handled=1
+[22:20:18] COF/KEY sequence2 m_iszSequence_Off handled=1
+[22:20:18] COF/FENCE model_test_60 time=3.849
+[22:20:18] COF/FENCE model_test_61 time=3.882
+[22:20:18] COF/ANIM slower_arms seq=1 frame=0 rate=48 loops=0 finished=0 on=1 next=3.982 now=3.882 body=0 skin=0
+[22:20:18] COF/FENCE model_test_62 time=3.882
+[22:20:18] COF/ANIM slower_arms seq=1 frame=0 rate=48 loops=0 finished=0 on=1 next=3.982 now=3.899 body=0 skin=0
+[22:20:18] COF/FENCE model_test_63 time=3.899
+[22:20:18] COF/ANIM slower_arms seq=1 frame=0 rate=48 loops=0 finished=0 on=1 next=3.982 now=3.917 body=0 skin=0
+[22:20:18] COF/FENCE model_test_64 time=3.917
+[22:20:18] COF/ANIM slower_arms seq=1 frame=0 rate=48 loops=0 finished=0 on=1 next=3.982 now=3.933 body=0 skin=0
+[22:20:18] COF/FENCE model_test_65 time=3.933
+[22:20:18] COF/ANIM slower_arms seq=1 frame=4.8 rate=48 loops=0 finished=0 on=1 next=4.082 now=4.049 body=0 skin=0
+[22:20:18] COF/FENCE model_test_66 time=4.049
+[22:20:18] COF/FENCE model_test_67 time=4.082
+[22:20:18] COF/ANIM sblacker seq=0 frame=43.5156 rate=2560 loops=1 finished=1 on=1 next=4.117 now=4.082 body=0 skin=0
+[22:20:18] COF/FENCE model_test_68 time=4.082
+[22:20:18] COF/ANIM sblacker seq=1 frame=0 rate=46.9333 loops=0 finished=0 on=0 next=4.283 now=4.217 body=0 skin=0
+[22:20:18] COF/FENCE model_test_69 time=4.217
+[22:20:18] COF/ANIM sblacker seq=1 frame=0 rate=46.9333 loops=0 finished=0 on=0 next=4.283 now=4.217 body=0 skin=0
+[22:20:18] COF/FENCE model_test_70 time=4.217
+[22:20:18] COF/ANIM sblacker seq=1 frame=0 rate=46.9333 loops=0 finished=0 on=0 next=4.283 now=4.232 body=0 skin=0
+[22:20:18] COF/FENCE model_test_71 time=4.232
+[22:20:18] COF/ANIM sblacker seq=1 frame=0 rate=46.9333 loops=0 finished=0 on=0 next=4.283 now=4.25 body=0 skin=0
+[22:20:18] COF/FENCE model_test_72 time=4.25
+[22:20:18] COF/ANIM sblacker seq=1 frame=9.38666 rate=46.9333 loops=0 finished=0 on=0 next=4.483 now=4.382 body=0 skin=0
+[22:20:18] COF/FENCE model_test_73 time=4.382
+[22:20:18] COF/KEY sequence2 framerate handled=1
+[22:20:18] COF/FENCE model_test_74 time=4.383
+[22:20:18] COF/ANIM sequence2 seq=1 frame=0 rate=13.7143 loops=0 finished=0 on=0 next=4.483 now=4.4 body=0 skin=0
+[22:20:18] COF/FENCE model_test_75 time=4.4
+[22:20:18] COF/ANIM sequence2 seq=1 frame=137.143 rate=13.7143 loops=0 finished=0 on=0 next=4.583 now=4.517 body=0 skin=0
+[22:20:18] COF/FENCE model_test_76 time=4.517
+[22:20:18] COF/ANIM sequence2 seq=1 frame=255 rate=13.7143 loops=0 finished=1 on=0 next=0 now=4.632 body=0 skin=0
+[22:20:18] COF/FENCE model_test_77 time=4.632
+[22:20:18] COF/ANIM sequence2 seq=1 frame=255 rate=13.7143 loops=0 finished=1 on=0 next=0 now=4.649 body=0 skin=0
+[22:20:18] COF/FENCE model_test_78 time=4.649
+[22:20:18] COF/KEY sequence1 body handled=1
+[22:20:18] COF/KEY sequence1 skin handled=1
+[22:20:18] COF/KEY sequence1 framerate handled=1
+[22:20:18] COF/KEY sequence1 frame handled=1
+[22:20:18] COF/FENCE model_test_79 time=4.682
+[22:20:18] Error: Can't find landmark land2b
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:18] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Error: Invalid function pointer in entity!
+[22:20:19] Saving game to save/model_regression.sav...
+[22:20:19] COF/FENCE model_test_80 time=4.683
+[22:20:19] COF/KEY sequence1 m_iszSequence_Off handled=1
+[22:20:19] COF/KEY sequence1 body handled=1
+[22:20:19] COF/FENCE model_test_81 time=4.717
+[22:20:19] Loading game from save/model_regression.sav...
+[22:20:19] Error: Delta_ParseField: unable to find field is_donator
+[22:20:19] Spawn Server: c_start
+[22:20:19] Loading game from save/c_start.HL1...
+[22:20:19] execing maps/c_start_unload.cfg
+[22:20:19] execing maps/c_start_load.cfg
+[22:20:19] 
+GAME SKILL LEVEL:1
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_agrunt_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_agrunt_dmg_punch1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_apache_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_barney_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_bite1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_whip1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_spit1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_gargantua_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_slash1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_fire1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_stomp1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_hassassin_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_headcrab_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_headcrab_dmg_bite1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_kick1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_pellets1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_gspeed1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_houndeye_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_houndeye_dmg_blast1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_islave_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_claw1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_clawrake1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_zap1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_shake1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_leech_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_leech_dmg_bite1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_controller_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgzap1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_controller_speedball1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgball1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_zap1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_scientist_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_snark_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_bite1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_pop1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_turret_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_miniturret_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_sentry_health1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_plr_crowbar1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_plr_9mm_bullet1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_plr_357_bullet1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_bullet1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_grenade1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_client1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_monster1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_plr_rpg1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_plr_gauss1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_narrow1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_wide1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_plr_hand_grenade1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_plr_satchel1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_plr_tripmine1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_12mm_bullet1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_9mmAR_bullet1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_9mm_bullet1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_hornet_dmg1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_suitcharger1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_battery1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_healthcharger1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_healthkit1 **
+
+[22:20:19] 
+
+** GetSkillCVar Got a zero for sk_scientist_heal1 **
+
+[22:20:19] Error: Could not load model models/w_suit.mdl from disk
+[22:20:19] Error: Could not load model models/w_medkit.mdl from disk
+[22:20:19] Error: Could not load model models/w_battery.mdl from disk
+[22:20:19] Error: Could not load model models/w_antidote.mdl from disk
+[22:20:19] Error: Could not load model models/w_security.mdl from disk
+[22:20:19] Error: Could not load model models/w_longjump.mdl from disk
+[22:20:19] Error: Could not load model models/v_shotgun.mdl from disk
+[22:20:19] Error: Could not load model models/w_shotgun.mdl from disk
+[22:20:19] Error: Could not load model models/p_shotgun.mdl from disk
+[22:20:19] Error: Could not load model models/shotgunshell.mdl from disk
+[22:20:19] Error: Could not load model models/w_shotbox.mdl from disk
+[22:20:19] Error: Could not load model models/v_crowbar.mdl from disk
+[22:20:19] Error: Could not load model models/w_crowbar.mdl from disk
+[22:20:19] Error: Could not load model models/p_crowbar.mdl from disk
+[22:20:19] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[22:20:19] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[22:20:19] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[22:20:19] Error: Could not load model models/shell.mdl from disk
+[22:20:19] Error: Could not load model models/w_9mmclip.mdl from disk
+[22:20:19] Error: Could not load model models/v_9mmAR.mdl from disk
+[22:20:19] Error: Could not load model models/w_9mmAR.mdl from disk
+[22:20:19] Error: Could not load model models/p_9mmAR.mdl from disk
+[22:20:19] Error: Could not load model models/shell.mdl from disk
+[22:20:19] Error: Could not load model models/grenade.mdl from disk
+[22:20:19] Error: Could not load model models/w_9mmARclip.mdl from disk
+[22:20:19] Error: Could not load model models/w_9mmARclip.mdl from disk
+[22:20:19] Error: Could not load model models/w_ARgrenade.mdl from disk
+[22:20:19] Error: Could not load model models/w_chainammo.mdl from disk
+[22:20:19] Error: Could not load model models/v_357.mdl from disk
+[22:20:19] Error: Could not load model models/w_357.mdl from disk
+[22:20:19] Error: Could not load model models/p_357.mdl from disk
+[22:20:19] Error: Could not load model models/w_357ammobox.mdl from disk
+[22:20:19] Error: Could not load model models/w_357ammobox.mdl from disk
+[22:20:19] Error: Could not load model models/w_gauss.mdl from disk
+[22:20:19] Error: Could not load model models/v_gauss.mdl from disk
+[22:20:19] Error: Could not load model models/p_gauss.mdl from disk
+[22:20:19] Error: Could not load model sprites/hotglow.spr from disk
+[22:20:19] Error: Could not load model sprites/hotglow.spr from disk
+[22:20:19] Error: Could not load model sprites/smoke.spr from disk
+[22:20:19] Error: Could not load model models/w_gaussammo.mdl from disk
+[22:20:19] Error: Could not load model models/w_rpg.mdl from disk
+[22:20:19] Error: Could not load model models/v_rpg.mdl from disk
+[22:20:19] Error: Could not load model models/p_rpg.mdl from disk
+[22:20:19] Error: Could not load model sprites/laserdot.spr from disk
+[22:20:19] Error: Could not load model models/rpgrocket.mdl from disk
+[22:20:19] Error: Could not load model sprites/smoke.spr from disk
+[22:20:19] Error: Could not load model models/w_rpgammo.mdl from disk
+[22:20:19] Error: Could not load model models/w_crossbow.mdl from disk
+[22:20:19] Error: Could not load model models/v_crossbow.mdl from disk
+[22:20:19] Error: Could not load model models/p_crossbow.mdl from disk
+[22:20:19] Error: Could not load model models/crossbow_bolt.mdl from disk
+[22:20:19] Error: Could not load model sprites/streak.spr from disk
+[22:20:19] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[22:20:19] Error: Could not load model models/w_egon.mdl from disk
+[22:20:19] Error: Could not load model models/v_egon.mdl from disk
+[22:20:19] Error: Could not load model models/p_egon.mdl from disk
+[22:20:19] Error: Could not load model models/w_9mmclip.mdl from disk
+[22:20:19] Error: Could not load model sprites/xbeam1.spr from disk
+[22:20:19] Error: Could not load model models/v_tripmine.mdl from disk
+[22:20:19] Error: Could not load model models/p_tripmine.mdl from disk
+[22:20:19] Error: Could not load model models/v_tripmine.mdl from disk
+[22:20:19] Error: Could not load model models/v_satchel.mdl from disk
+[22:20:19] Error: Could not load model models/v_satchel_radio.mdl from disk
+[22:20:19] Error: Could not load model models/w_satchel.mdl from disk
+[22:20:19] Error: Could not load model models/p_satchel.mdl from disk
+[22:20:19] Error: Could not load model models/p_satchel_radio.mdl from disk
+[22:20:19] Error: Could not load model models/w_satchel.mdl from disk
+[22:20:19] Error: Could not load model models/w_grenade.mdl from disk
+[22:20:19] Error: Could not load model models/v_grenade.mdl from disk
+[22:20:19] Error: Could not load model models/p_grenade.mdl from disk
+[22:20:19] Error: Could not load model models/w_sqknest.mdl from disk
+[22:20:19] Error: Could not load model models/v_squeak.mdl from disk
+[22:20:19] Error: Could not load model models/p_squeak.mdl from disk
+[22:20:19] Error: Could not load model models/w_squeak.mdl from disk
+[22:20:19] Error: Could not load model models/v_hgun.mdl from disk
+[22:20:19] Error: Could not load model models/w_hgun.mdl from disk
+[22:20:19] Error: Could not load model models/p_hgun.mdl from disk
+[22:20:19] Error: Could not load model models/hornet.mdl from disk
+[22:20:19] Error: Could not load model sprites/muz1.spr from disk
+[22:20:19] Error: Could not load model sprites/zerogxplode.spr from disk
+[22:20:19] Error: Could not load model sprites/WXplo1.spr from disk
+[22:20:19] Error: Could not load model sprites/laserdot.spr from disk
+[22:20:19] Error: Could not load model models/grenade.mdl from disk
+[22:20:19] Error: Could not load model sprites/explode1.spr from disk
+[22:20:19] Error: Could not load model models/player.mdl from disk
+[22:20:19] Error: Could not load model models/hgibs.mdl from disk
+[22:20:19] Error: Could not load model models/agibs.mdl from disk
+[22:20:19] 
+*Graph Loaded!
+[22:20:19] Error: Could not load model models/player.mdl from disk
+[22:20:19] Error: Could not load model models/player.mdl from disk
+[22:20:19] **Graph Pointers Set!
+[22:20:19] Error: Could not load model models/player.mdl from disk
+[22:20:19] Error: Could not load model models/player.mdl from disk
+[22:20:19] Error: No spawn function for ""
+[22:20:19] NULL Ent in UTIL_PrecacheOther
+[22:20:19] Error: No spawn function for ""
+[22:20:19] NULL Ent in UTIL_PrecacheOther
+[22:20:19] Game started
+[22:20:19] level loaded at 0.29 sec
+[22:20:19] execing spserver.cfg
+[22:20:19] Server changing, reconnecting
+[22:20:19] Trying to connect with modern protocol
+[22:20:19] Spooling demo header.
+[22:20:19] 
+BUILD 4221 SERVER (0 CRC)
+Server #2
+[22:20:19] Verifying and downloading resources...
+[22:20:19] Error: Could not load sound sound/items/smallmedkit1.wav
+[22:20:19] Error: Could not load sound sound/items/9mmclip1.wav
+[22:20:19] Error: Could not load sound sound/weapons/dbarrel1.wav
+[22:20:19] Error: Could not load sound sound/weapons/sbarrel1.wav
+[22:20:19] Error: Could not load sound sound/weapons/reload1.wav
+[22:20:19] Error: Could not load sound sound/weapons/reload3.wav
+[22:20:19] Error: Could not load sound sound/weapons/357_cock1.wav
+[22:20:19] Error: Could not load sound sound/weapons/scock1.wav
+[22:20:19] Error: Could not load sound sound/weapons/cbar_hit1.wav
+[22:20:19] Error: Could not load sound sound/weapons/cbar_hit2.wav
+[22:20:19] Error: Could not load sound sound/weapons/cbar_hitbod1.wav
+[22:20:19] Error: Could not load sound sound/weapons/cbar_hitbod2.wav
+[22:20:19] Error: Could not load sound sound/weapons/cbar_hitbod3.wav
+[22:20:19] Error: Could not load sound sound/weapons/cbar_miss1.wav
+[22:20:19] Error: Could not load sound sound/items/9mmclip2.wav
+[22:20:19] Error: Could not load sound sound/weapons/pl_gun1.wav
+[22:20:19] Error: Could not load sound sound/weapons/pl_gun2.wav
+[22:20:19] Error: Could not load sound sound/weapons/pl_gun3.wav
+[22:20:19] Error: Could not load sound sound/items/clipinsert1.wav
+[22:20:19] Error: Could not load sound sound/items/cliprelease1.wav
+[22:20:19] Error: Could not load sound sound/weapons/hks1.wav
+[22:20:19] Error: Could not load sound sound/weapons/hks2.wav
+[22:20:19] Error: Could not load sound sound/weapons/hks3.wav
+[22:20:19] Error: Could not load sound sound/weapons/glauncher.wav
+[22:20:19] Error: Could not load sound sound/weapons/glauncher2.wav
+[22:20:19] Error: Could not load sound sound/weapons/357_reload1.wav
+[22:20:19] Error: Could not load sound sound/weapons/357_shot1.wav
+[22:20:19] Error: Could not load sound sound/weapons/357_shot2.wav
+[22:20:19] Error: Could not load sound sound/weapons/gauss2.wav
+[22:20:19] Error: Could not load sound sound/weapons/electro4.wav
+[22:20:19] Error: Could not load sound sound/weapons/electro5.wav
+[22:20:19] Error: Could not load sound sound/weapons/electro6.wav
+[22:20:19] Error: Could not load sound sound/ambience/pulsemachine.wav
+[22:20:19] Error: Could not load sound sound/weapons/rocket1.wav
+[22:20:19] Error: Could not load sound sound/weapons/rocketfire1.wav
+[22:20:19] Error: Could not load sound sound/weapons/xbow_fire1.wav
+[22:20:19] Error: Could not load sound sound/weapons/xbow_reload1.wav
+[22:20:19] Error: Could not load sound sound/weapons/xbow_hitbod1.wav
+[22:20:19] Error: Could not load sound sound/weapons/xbow_hitbod2.wav
+[22:20:19] Error: Could not load sound sound/weapons/xbow_fly1.wav
+[22:20:19] Error: Could not load sound sound/weapons/xbow_hit1.wav
+[22:20:19] Error: Could not load sound sound/fvox/beep.wav
+[22:20:19] Error: Could not load sound sound/weapons/egon_off1.wav
+[22:20:19] Error: Could not load sound sound/weapons/egon_run3.wav
+[22:20:19] Error: Could not load sound sound/weapons/egon_windup2.wav
+[22:20:19] Error: Could not load sound sound/weapons/mine_deploy.wav
+[22:20:19] Error: Could not load sound sound/weapons/mine_activate.wav
+[22:20:19] Error: Could not load sound sound/weapons/mine_charge.wav
+[22:20:19] Error: Could not load sound sound/weapons/g_bounce1.wav
+[22:20:19] Error: Could not load sound sound/weapons/g_bounce2.wav
+[22:20:19] Error: Could not load sound sound/weapons/g_bounce3.wav
+[22:20:19] Error: Could not load sound sound/squeek/sqk_hunt2.wav
+[22:20:19] Error: Could not load sound sound/squeek/sqk_hunt3.wav
+[22:20:19] Error: Could not load sound sound/squeek/sqk_blast1.wav
+[22:20:19] Error: Could not load sound sound/common/bodysplat.wav
+[22:20:19] Error: Could not load sound sound/squeek/sqk_die1.wav
+[22:20:19] Error: Could not load sound sound/squeek/sqk_hunt1.wav
+[22:20:19] Error: Could not load sound sound/squeek/sqk_deploy1.wav
+[22:20:19] Error: Could not load sound sound/agrunt/ag_fire1.wav
+[22:20:19] Error: Could not load sound sound/agrunt/ag_fire2.wav
+[22:20:19] Error: Could not load sound sound/agrunt/ag_fire3.wav
+[22:20:19] Error: Could not load sound sound/hornet/ag_buzz1.wav
+[22:20:19] Error: Could not load sound sound/hornet/ag_buzz2.wav
+[22:20:19] Error: Could not load sound sound/hornet/ag_buzz3.wav
+[22:20:19] Error: Could not load sound sound/hornet/ag_hornethit1.wav
+[22:20:19] Error: Could not load sound sound/hornet/ag_hornethit2.wav
+[22:20:19] Error: Could not load sound sound/hornet/ag_hornethit3.wav
+[22:20:19] Error: Could not load sound sound/weapons/debris1.wav
+[22:20:19] Error: Could not load sound sound/weapons/debris2.wav
+[22:20:19] Error: Could not load sound sound/weapons/debris3.wav
+[22:20:19] Error: Could not load sound sound/weapons/grenade_hit1.wav
+[22:20:19] Error: Could not load sound sound/weapons/grenade_hit2.wav
+[22:20:19] Error: Could not load sound sound/weapons/grenade_hit3.wav
+[22:20:19] Error: Could not load sound sound/weapons/bullet_hit1.wav
+[22:20:19] Error: Could not load sound sound/weapons/bullet_hit2.wav
+[22:20:19] Error: Could not load sound sound/items/weapondrop1.wav
+[22:20:19] Error: Could not load sound sound/player/sprayer.wav
+[22:20:19] Error: Could not load sound sound/player/pl_fallpain2.wav
+[22:20:19] Error: Could not load sound sound/player/pl_fallpain3.wav
+[22:20:19] Error: Could not load sound sound/player/pl_step1.wav
+[22:20:19] Error: Could not load sound sound/player/pl_step2.wav
+[22:20:19] Error: Could not load sound sound/player/pl_step3.wav
+[22:20:19] Error: Could not load sound sound/player/pl_step4.wav
+[22:20:19] Error: Could not load sound sound/player/pl_metal1.wav
+[22:20:19] Error: Could not load sound sound/player/pl_metal2.wav
+[22:20:19] Error: Could not load sound sound/player/pl_metal3.wav
+[22:20:19] Error: Could not load sound sound/player/pl_metal4.wav
+[22:20:19] Error: Could not load sound sound/player/pl_dirt1.wav
+[22:20:19] Error: Could not load sound sound/player/pl_dirt2.wav
+[22:20:19] Error: Could not load sound sound/player/pl_dirt3.wav
+[22:20:19] Error: Could not load sound sound/player/pl_dirt4.wav
+[22:20:19] Error: Could not load sound sound/player/pl_duct1.wav
+[22:20:19] Error: Could not load sound sound/player/pl_duct2.wav
+[22:20:19] Error: Could not load sound sound/player/pl_duct3.wav
+[22:20:19] Error: Could not load sound sound/player/pl_duct4.wav
+[22:20:19] Error: Could not load sound sound/player/pl_grate1.wav
+[22:20:19] Error: Could not load sound sound/player/pl_grate2.wav
+[22:20:19] Error: Could not load sound sound/player/pl_grate3.wav
+[22:20:19] Error: Could not load sound sound/player/pl_grate4.wav
+[22:20:19] Error: Could not load sound sound/player/pl_slosh1.wav
+[22:20:19] Error: Could not load sound sound/player/pl_slosh2.wav
+[22:20:19] Error: Could not load sound sound/player/pl_slosh3.wav
+[22:20:19] Error: Could not load sound sound/player/pl_slosh4.wav
+[22:20:19] Error: Could not load sound sound/player/pl_tile1.wav
+[22:20:19] Error: Could not load sound sound/player/pl_tile2.wav
+[22:20:19] Error: Could not load sound sound/player/pl_tile3.wav
+[22:20:19] Error: Could not load sound sound/player/pl_tile4.wav
+[22:20:19] Error: Could not load sound sound/player/pl_tile5.wav
+[22:20:19] Error: Could not load sound sound/player/pl_swim1.wav
+[22:20:19] Error: Could not load sound sound/player/pl_swim2.wav
+[22:20:19] Error: Could not load sound sound/player/pl_swim3.wav
+[22:20:19] Error: Could not load sound sound/player/pl_swim4.wav
+[22:20:19] Error: Could not load sound sound/player/pl_ladder1.wav
+[22:20:19] Error: Could not load sound sound/player/pl_ladder2.wav
+[22:20:19] Error: Could not load sound sound/player/pl_ladder3.wav
+[22:20:19] Error: Could not load sound sound/player/pl_ladder4.wav
+[22:20:19] Error: Could not load sound sound/player/pl_wade1.wav
+[22:20:19] Error: Could not load sound sound/player/pl_wade2.wav
+[22:20:19] Error: Could not load sound sound/player/pl_wade3.wav
+[22:20:19] Error: Could not load sound sound/player/pl_wade4.wav
+[22:20:19] Error: Could not load sound sound/debris/wood1.wav
+[22:20:19] Error: Could not load sound sound/debris/wood2.wav
+[22:20:19] Error: Could not load sound sound/debris/wood3.wav
+[22:20:19] Error: Could not load sound sound/plats/train_use1.wav
+[22:20:19] Error: Could not load sound sound/plats/vehicle_ignition.wav
+[22:20:19] Error: Could not load sound sound/buttons/spark5.wav
+[22:20:19] Error: Could not load sound sound/buttons/spark6.wav
+[22:20:19] Error: Could not load sound sound/debris/glass1.wav
+[22:20:19] Error: Could not load sound sound/debris/glass2.wav
+[22:20:19] Error: Could not load sound sound/debris/glass3.wav
+[22:20:19] Error: Could not load sound sound/items/flashlight1.wav
+[22:20:19] Error: Could not load sound sound/player/pl_pain2.wav
+[22:20:19] Error: Could not load sound sound/player/pl_pain4.wav
+[22:20:19] Error: Could not load sound sound/player/pl_pain5.wav
+[22:20:19] Error: Could not load sound sound/player/pl_pain6.wav
+[22:20:19] Error: Could not load sound sound/player/pl_pain7.wav
+[22:20:19] Error: Could not load sound sound/common/wpn_hudoff.wav
+[22:20:19] Error: Could not load sound sound/common/wpn_hudon.wav
+[22:20:19] Error: Could not load sound sound/common/wpn_moveselect.wav
+[22:20:19] Error: Could not load sound sound/common/wpn_select.wav
+[22:20:19] Error: Could not load sound sound/common/wpn_denyselect.wav
+[22:20:19] Error: Could not load sound sound/player/geiger6.wav
+[22:20:19] Error: Could not load sound sound/player/geiger5.wav
+[22:20:19] Error: Could not load sound sound/player/geiger4.wav
+[22:20:19] Error: Could not load sound sound/player/geiger3.wav
+[22:20:19] Error: Could not load sound sound/player/geiger2.wav
+[22:20:19] Error: Could not load sound sound/player/geiger1.wav
+[22:20:19] Error: Could not load sound sound/common/null.wav
+[22:20:19] Error: Could not load sound sound/items/suitchargeok1.wav
+[22:20:19] Error: Could not load sound sound/common/bodydrop3.wav
+[22:20:19] Error: Could not load sound sound/common/bodydrop4.wav
+[22:20:19] Error: Could not load sound sound/weapons/ric1.wav
+[22:20:19] Error: Could not load sound sound/weapons/ric2.wav
+[22:20:19] Error: Could not load sound sound/weapons/ric3.wav
+[22:20:19] Error: Could not load sound sound/weapons/ric4.wav
+[22:20:19] Error: Could not load sound sound/weapons/ric5.wav
+[22:20:19] Error: Could not load sound sound/buttons/button9.wav
+[22:20:19] Error: Could not load sound sound/doors/doormove7.wav
+[22:20:19] Error: Could not load model models/w_suit.mdl from disk
+[22:20:19] Error: Could not load model models/w_medkit.mdl from disk
+[22:20:19] Error: Could not load model models/w_battery.mdl from disk
+[22:20:19] Error: Could not load model models/w_antidote.mdl from disk
+[22:20:19] Error: Could not load model models/w_security.mdl from disk
+[22:20:19] Error: Could not load model models/w_longjump.mdl from disk
+[22:20:19] Error: Could not load model models/v_shotgun.mdl from disk
+[22:20:19] Error: Could not load model models/w_shotgun.mdl from disk
+[22:20:19] Error: Could not load model models/p_shotgun.mdl from disk
+[22:20:19] Error: Could not load model models/shotgunshell.mdl from disk
+[22:20:19] Error: Could not load model models/w_shotbox.mdl from disk
+[22:20:19] Error: Could not load model models/v_crowbar.mdl from disk
+[22:20:19] Error: Could not load model models/w_crowbar.mdl from disk
+[22:20:19] Error: Could not load model models/p_crowbar.mdl from disk
+[22:20:19] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[22:20:19] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[22:20:19] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[22:20:19] Error: Could not load model models/shell.mdl from disk
+[22:20:19] Error: Could not load model models/w_9mmclip.mdl from disk
+[22:20:19] Error: Could not load model models/v_9mmAR.mdl from disk
+[22:20:19] Error: Could not load model models/w_9mmAR.mdl from disk
+[22:20:19] Error: Could not load model models/p_9mmAR.mdl from disk
+[22:20:19] Error: Could not load model models/grenade.mdl from disk
+[22:20:19] Error: Could not load model models/w_9mmARclip.mdl from disk
+[22:20:19] Error: Could not load model models/w_ARgrenade.mdl from disk
+[22:20:19] Error: Could not load model models/w_chainammo.mdl from disk
+[22:20:19] Error: Could not load model models/v_357.mdl from disk
+[22:20:19] Error: Could not load model models/w_357.mdl from disk
+[22:20:19] Error: Could not load model models/p_357.mdl from disk
+[22:20:19] Error: Could not load model models/w_357ammobox.mdl from disk
+[22:20:19] Error: Could not load model models/w_gauss.mdl from disk
+[22:20:19] Error: Could not load model models/v_gauss.mdl from disk
+[22:20:19] Error: Could not load model models/p_gauss.mdl from disk
+[22:20:19] Error: Could not load model sprites/hotglow.spr from disk
+[22:20:19] Error: Could not load model sprites/smoke.spr from disk
+[22:20:19] Error: Could not load model models/w_gaussammo.mdl from disk
+[22:20:19] Error: Could not load model models/w_rpg.mdl from disk
+[22:20:19] Error: Could not load model models/v_rpg.mdl from disk
+[22:20:19] Error: Could not load model models/p_rpg.mdl from disk
+[22:20:19] Error: Could not load model sprites/laserdot.spr from disk
+[22:20:19] Error: Could not load model models/rpgrocket.mdl from disk
+[22:20:19] Error: Could not load model models/w_rpgammo.mdl from disk
+[22:20:19] Error: Could not load model models/w_crossbow.mdl from disk
+[22:20:19] Error: Could not load model models/v_crossbow.mdl from disk
+[22:20:19] Error: Could not load model models/p_crossbow.mdl from disk
+[22:20:19] Error: Could not load model models/crossbow_bolt.mdl from disk
+[22:20:19] Error: Could not load model sprites/streak.spr from disk
+[22:20:19] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[22:20:19] Error: Could not load model models/w_egon.mdl from disk
+[22:20:19] Error: Could not load model models/v_egon.mdl from disk
+[22:20:19] Error: Could not load model models/p_egon.mdl from disk
+[22:20:19] Error: Could not load model sprites/xbeam1.spr from disk
+[22:20:19] Error: Could not load model models/v_tripmine.mdl from disk
+[22:20:19] Error: Could not load model models/p_tripmine.mdl from disk
+[22:20:19] Error: Could not load model models/v_satchel.mdl from disk
+[22:20:19] Error: Could not load model models/v_satchel_radio.mdl from disk
+[22:20:19] Error: Could not load model models/w_satchel.mdl from disk
+[22:20:19] Error: Could not load model models/p_satchel.mdl from disk
+[22:20:19] Error: Could not load model models/p_satchel_radio.mdl from disk
+[22:20:20] Error: Could not load model models/w_grenade.mdl from disk
+[22:20:20] Error: Could not load model models/v_grenade.mdl from disk
+[22:20:20] Error: Could not load model models/p_grenade.mdl from disk
+[22:20:20] Error: Could not load model models/w_sqknest.mdl from disk
+[22:20:20] Error: Could not load model models/v_squeak.mdl from disk
+[22:20:20] Error: Could not load model models/p_squeak.mdl from disk
+[22:20:20] Error: Could not load model models/w_squeak.mdl from disk
+[22:20:20] Error: Could not load model models/v_hgun.mdl from disk
+[22:20:20] Error: Could not load model models/w_hgun.mdl from disk
+[22:20:20] Error: Could not load model models/p_hgun.mdl from disk
+[22:20:20] Error: Could not load model models/hornet.mdl from disk
+[22:20:20] Error: Could not load model sprites/muz1.spr from disk
+[22:20:20] Error: Could not load model sprites/zerogxplode.spr from disk
+[22:20:20] Error: Could not load model sprites/WXplo1.spr from disk
+[22:20:20] Error: Could not load model sprites/explode1.spr from disk
+[22:20:20] Error: Could not load model models/player.mdl from disk
+[22:20:20] Error: Could not load model models/hgibs.mdl from disk
+[22:20:20] Error: Could not load model models/agibs.mdl from disk
+[22:20:20] Setting up renderer...
+[22:20:20] SKY:  blackrt, blackbk, blacklf, blackft, blackup, blackdn. done
+[22:20:20] Error: Can't find landmark 
+[22:20:20] Error: Can't find landmark 
+[22:20:20] Error: Can't find landmark 
+[22:20:20] Error: Can't find landmark 
+[22:20:20] Signon network traffic:  28.168 Kb from server, 199 bytes to server
+[22:20:20] client connected at 0.68 sec
+[22:20:20] COF/HUD STAT 100 100 0
+[22:20:20] COF/HUD INV 1 inventoryitems/weapons/weapon_mobile.txt
+[22:20:20] COF/HUD QUICK weapon_mobile - -
+[22:20:20] COF/HUD OBJECTIVE 
+[22:20:20] Couldn't open file overviews/c_start.txt. Using default values for overiew mode.
+[22:20:20] COF/ANIM sequence1 seq=3 frame=77 rate=512 loops=1 finished=1 on=1 next=4.832 now=4.799 body=1 skin=0
+[22:20:20] COF/FENCE model_test_82 time=4.799
+[22:20:20] COF/ANIM sequence2 seq=1 frame=255 rate=13.7143 loops=0 finished=1 on=0 next=0 now=4.817 body=0 skin=0
+[22:20:20] COF/FENCE model_test_83 time=4.817
+[22:20:20] COF/FENCE model_test_84 time=4.882
+[22:20:20] COF/ANIM sequence2 seq=0 frame=2.98666 rate=29.8667 loops=1 finished=0 on=1 next=5.082 now=4.917 body=0 skin=0
+[22:20:20] COF/FENCE model_test_85 time=4.917
+[22:20:21] COF/ANIM sequence2 seq=0 frame=6.95901 rate=29.8667 loops=1 finished=0 on=1 next=5.215 now=5.115 body=0 skin=0
+[22:20:21] COF/FENCE model_test_86 time=5.115
+[22:20:21] COF/ANIM sequence2 seq=0 frame=21.8923 rate=29.8667 loops=1 finished=0 on=1 next=5.715 now=5.683 body=0 skin=0
+[22:20:21] COF/FENCE model_test_87 time=5.683
+[22:20:21] COF/KEY sequence1 framerate handled=1
+[22:20:21] COF/FENCE model_test_88 time=5.865
+[22:20:21] COF/ANIM sequence1 seq=3 frame=77 rate=512 loops=1 finished=1 on=1 next=5.965 now=5.929 body=1 skin=0
+[22:20:21] COF/FENCE model_test_89 time=5.929
+[22:20:21] COF/ANIM sequence1 seq=3 frame=77 rate=512 loops=1 finished=1 on=1 next=5.965 now=5.936 body=1 skin=0
+[22:20:21] COF/FENCE model_test_90 time=5.936
+[22:20:21] COF/ANIM sequence1 seq=3 frame=179.4 rate=512 loops=1 finished=1 on=1 next=6.165 now=6.065 body=1 skin=0
+[22:20:21] COF/FENCE model_test_91 time=6.065
+[22:20:21] COF/FENCE model_test_92 time=6.069
+[22:20:21] COF/ANIM sequence1 seq=2 frame=0 rate=17.0667 loops=0 finished=0 on=0 next=6.169 now=6.086 body=1 skin=0
+[22:20:21] COF/FENCE model_test_93 time=6.086
+[22:20:21] COF/ANIM sequence1 seq=2 frame=0 rate=17.0667 loops=0 finished=0 on=0 next=6.169 now=6.102 body=1 skin=0
+[22:20:21] COF/FENCE model_test_94 time=6.102
+[22:20:21] COF/ANIM sequence1 seq=2 frame=0 rate=17.0667 loops=0 finished=0 on=0 next=6.169 now=6.119 body=1 skin=0
+[22:20:21] COF/FENCE model_test_95 time=6.119
+[22:20:22] COF/ANIM sequence1 seq=2 frame=1.70667 rate=17.0667 loops=0 finished=0 on=0 next=6.269 now=6.186 body=1 skin=0
+[22:20:22] COF/FENCE model_test_96 time=6.186

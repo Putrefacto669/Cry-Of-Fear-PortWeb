@@ -1,0 +1,14 @@
+Build commands will be stored in ../../build/engine/compile_commands.json
+Waf: Entering directory `/root/cof-audits/audit-D3Kl5uly/build/engine'
+[379/607] Processing ref/gl/gl_studio.c
+../../engine/xash3d-fwgs/ref/gl/gl_studio.c:435:5: warning: assigning to 'int *' from 'uint *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  435 |         *a = &r_stats.c_studio_models_drawn;
+      |            ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl_studio.c:3364:10: warning: enumeration values 'mod_bad', 'mod_brush', and 'mod_sprite' not handled in switch [-Wswitch]
+ 3364 |         switch( RI.currententity->model->type )
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2 warnings generated.
+
+[607/607] Linking ../../build/engine/ref/gl/libref_gles3compat.wasm
+Waf: Leaving directory `/root/cof-audits/audit-D3Kl5uly/build/engine'
+'build' finished successfully (3.325s)

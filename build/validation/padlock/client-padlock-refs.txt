@@ -1,0 +1,169 @@
+GLOBAL 10143f94
+REF 100309b5
+FUNCTION 100309b0 FUN_100309b0
+
+void FUN_100309b0(void)
+
+{
+  (*DAT_101b2650)("Padlock",FUN_10030960);
+  return;
+}
+
+
+GLOBAL 10143fec
+REF 100304ff
+FUNCTION 100304c0 FUN_100304c0
+
+Panel * __fastcall FUN_100304c0(Panel *param_1)
+
+{
+  int *piVar1;
+  ImagePanel *this;
+  undefined4 *puVar2;
+  int iVar3;
+  int iVar4;
+  Color aCStack_2a [2];
+  int local_18;
+  int local_14;
+  void *local_10;
+  undefined1 *puStack_c;
+  undefined4 local_8;
+  
+  local_8 = 0xffffffff;
+  puStack_c = &LAB_10132d51;
+  local_10 = ExceptionList;
+  ExceptionList = &local_10;
+  vgui::Panel::Panel(param_1,0,0,DAT_1018f430,DAT_1018f434);
+  *(undefined ***)param_1 = CPadlock::vftable;
+  piVar1 = (int *)FUN_10008640();
+  *(int **)(param_1 + 0xbc) = piVar1;
+  if (piVar1 == (int *)0x0) {
+    (*DAT_101b26a8)();
+  }
+  else {
+    vgui::Color::Color(aCStack_2a + -0xe,0xff,0xff,0xff,1);
+    (**(code **)(*piVar1 + 0xc))();
+  }
+  (**(code **)(**(int **)(param_1 + 0xbc) + 8))(&local_14,&local_18);
+  iVar3 = DAT_1018f434 - local_18;
+  iVar4 = DAT_1018f430 / 2;
+  this = (ImagePanel *)FUN_100b44cb(0xc0);
+  local_8 = 0;
+  if (this == (ImagePanel *)0x0) {
+    piVar1 = (int *)0x0;
+  }
+  else {
+    piVar1 = (int *)vgui::ImagePanel::ImagePanel(this,*(Image **)(param_1 + 0xbc));
+  }
+  *(int **)(param_1 + 0xc0) = piVar1;
+  local_8 = 0xffffffff;
+  (**(code **)(*piVar1 + 0x40))(param_1);
+  (**(code **)**(undefined4 **)(param_1 + 0xc0))(iVar4 - local_14 / 2,iVar3);
+  (**(code **)(**(int **)(param_1 + 0xc0) + 0x24))(1);
+  iVar3 = FUN_100b44cb(0x130);
+  local_8 = 1;
+  if (iVar3 == 0) {
+    piVar1 = (int *)0x0;
+  }
+  else {
+    piVar1 = (int *)FUN_10097020(&PTR_1013b108,0x12,0x14,0x42,0x42,1,1);
+  }
+  local_8 = 0xffffffff;
+  (**(code **)(*piVar1 + 0x40))(*(undefined4 *)(param_1 + 0xc0));
+  puVar2 = (undefined4 *)FUN_100b44cb(0xc);
+  if (puVar2 == (undefined4 *)0x0) {
+    puVar2 = (undefined4 *)0x0;
+  }
+  else {
+    *puVar2 = CPadlockHandler_Command::vftable;
+    puVar2[1] = param_1;
+    puVar2[2] = 1;
+  }
+  (**(code **)(*piVar1 + 0x240))(puVar2);
+  iVar3 = FUN_100b44cb(0x130);
+  local_8 = 2;
+  if (iVar3 == 0) {
+    piVar1 = (int *)0x0;
+  }
+  else {
+    piVar1 = (int *)FUN_10097020(&PTR_1013b108,0x54,0x14,0x42,0x42,1,1);
+  }
+  local_8 = 0xffffffff;
+  (**(code **)(*piVar1 + 0x40))(*(undefined4 *)(param_1 + 0xc0));
+  puVar2 = (undefined4 *)FUN_100b44cb(0xc);
+  if (puVar2 == (undefined4 *)0x0) {
+    puVar2 = (undefined4 *)0x0;
+  }
+  else {
+    *puVar2 = CPadlockHandler_Command::vftable;
+    puVar2[1] = param_1;
+    puVar2[2] = 2;
+  }
+  (**(code **)(*piVar1 + 0x240))(puVar2);
+  iVar3 = FUN_100b44cb(0x130);
+  local_8 = 3;
+  if (iVar3 == 0) {
+    piVar1 = (int *)0x0;
+  }
+  else {
+    piVar1 = (int *)FUN_10097020(&PTR_1013b108,0x96,0x14,0x42,0x42,1,1);
+  }
+  local_8 = 0xffffffff;
+  (**(code **)(*piVar1 + 0x40))(*(undefined4 *)(param_1 + 0xc0));
+  puVar2 = (undefined4 *)FUN_100b44cb(0xc);
+  if (puVar2 == (undefined4 *)0x0) {
+    puVar2 = (undefined4 *)0x0;
+  }
+  else {
+    *puVar2 = CPadlockHandler_Command::vftable;
+    puVar2[1] = param_1;
+    puVar2[2] = 3;
+  }
+  (**(code **)(*piVar1 + 0x240))(puVar2);
+  iVar3 = FUN_100b44cb(0x130);
+  local_8 = 4;
+  if (iVar3 == 0) {
+    piVar1 = (int *)0x0;
+  }
+  else {
+    piVar1 = (int *)FUN_10097020(&PTR_1013b108,0xd8,0x14,0x42,0x42,1,1);
+  }
+  local_8 = 0xffffffff;
+  (**(code **)(*piVar1 + 0x40))(*(undefined4 *)(param_1 + 0xc0));
+  puVar2 = (undefined4 *)FUN_100b44cb(0xc);
+  if (puVar2 == (undefined4 *)0x0) {
+    puVar2 = (undefined4 *)0x0;
+  }
+  else {
+    *puVar2 = CPadlockHandler_Command::vftable;
+    puVar2[1] = param_1;
+    puVar2[2] = 4;
+  }
+  (**(code **)(*piVar1 + 0x240))(puVar2);
+  iVar3 = FUN_100b44cb(0x130);
+  local_8 = 5;
+  if (iVar3 == 0) {
+    piVar1 = (int *)0x0;
+  }
+  else {
+    piVar1 = (int *)FUN_10097020(&PTR_1013b108,0x75,0x56,0x42,0xe,1,1);
+  }
+  local_8 = 0xffffffff;
+  (**(code **)(*piVar1 + 0x40))(*(undefined4 *)(param_1 + 0xc0));
+  puVar2 = (undefined4 *)FUN_100b44cb(0xc);
+  if (puVar2 == (undefined4 *)0x0) {
+    puVar2 = (undefined4 *)0x0;
+  }
+  else {
+    *puVar2 = CPadlockHandler_Command::vftable;
+    puVar2[1] = param_1;
+    puVar2[2] = 5;
+  }
+  (**(code **)(*piVar1 + 0x240))(puVar2);
+  vgui::Panel::setBgColor(param_1,0,0,0,0xff);
+  FUN_10030950();
+  ExceptionList = local_10;
+  return param_1;
+}
+
+

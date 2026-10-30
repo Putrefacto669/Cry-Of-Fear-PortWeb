@@ -1,0 +1,110 @@
+diff --git a/ref/gl/gl_rmain.c b/ref/gl/gl_rmain.c
+index 97b12119..b7fa04cb 100644
+--- a/ref/gl/gl_rmain.c
++++ b/ref/gl/gl_rmain.c
+@@ -231,8 +231,12 @@ void R_ClearScene( void )
+ R_AddEntity
+ ===============
+ */
++static qboolean R_CoFSkyConfigured( void );
++
+ qboolean R_AddEntity( struct cl_entity_s *clent, int type )
+ {
++	if( R_CoFSkyEntity(clent) && !R_CoFSkyConfigured() ) return true;
++
+ 	if( !r_drawentities->value )
+ 		return false; // not allow to drawing
+ 
+@@ -292,6 +296,74 @@ qboolean R_AddEntity( struct cl_entity_s *clent, int type )
+ R_Clear
+ =============
+ */
++static cvar_t *cofSky[11];
++static qboolean cofSkyDrawing;
++static int cofSkyDraws, cofSkyPolys, cofSkyBeforePolys, cofSkyAmbient=-1, cofSkyDirect=-1;
++static vec3_t cofSkyOffset, cofSkyView;
++static matrix4x4 cofSkySavedMatrix;
++static void R_CoFSkyStatus( void )
++{
++ gEngfuncs.Con_Printf("COF/SKY_RENDER active=%d draws=%d polys=%d offset=%g,%g,%g view=%g,%g,%g ambient=%d direct=%d\n",
++  R_CoFSkyActive(),cofSkyDraws,cofSkyPolys,cofSkyOffset[0],cofSkyOffset[1],cofSkyOffset[2],
++  cofSkyView[0],cofSkyView[1],cofSkyView[2],cofSkyAmbient,cofSkyDirect);
++}
++static void R_CoFSkyInit( void )
++{
++ if(cofSky[0]) return;
++ static const char *names[]={"cof_sky_valid","cof_sky_scale","cof_sky_world_x","cof_sky_world_y","cof_sky_world_z","cof_sky_origin_x","cof_sky_origin_y","cof_sky_origin_z","cof_sky_ambient","cof_sky_direct","gl_customsky"};
++ for(int i=0;i<11;i++) {
++  // Cvar_Get resets existing values: preserve metadata already received by the client.
++  cofSky[i]=gEngfuncs.pfnGetCvarPointer(names[i]);
++  if(!cofSky[i]) cofSky[i]=gEngfuncs.Cvar_Get(names[i],i==10?"1":i>=8?"-1":"0",0,"Cry of Fear sky marker state");
++ }
++ gEngfuncs.Cmd_AddCommand("cof_sky_render_status",R_CoFSkyStatus,"inspect the last Cry of Fear sky pass");
++}
++static qboolean R_CoFSkyConfigured( void )
++{
++ R_CoFSkyInit();
++ return cofSky[0]->value==3 && cofSky[10]->value!=0;
++}
++qboolean R_CoFSkyActive( void )
++{
++ return R_CoFSkyConfigured() && FBitSet(RI.rvp.flags,RF_DRAW_WORLD) && !FBitSet(RI.rvp.flags,RF_DRAW_OVERVIEW);
++}
++qboolean R_CoFSkyDrawing( void ) { return cofSkyDrawing; }
++qboolean R_CoFSkyEntity( const cl_entity_t *e )
++{
++ return e && e->model && e->model->type==mod_studio && e->curstate.renderfx==137;
++}
++void R_CoFSkyBegin( void )
++{
++ cofSkyDrawing=true;
++ for(int i=0;i<3;i++) {
++  cofSkyView[i]=RI.rvp.vieworigin[i];
++  cofSkyOffset[i]=cofSkyView[i]-cofSky[5+i]->value;
++  if(cofSky[1]->value!=0) cofSkyOffset[i]-=(cofSkyView[i]-cofSky[2+i]->value)/cofSky[1]->value;
++ }
++ cofSkyBeforePolys=r_stats.c_studio_polys;
++ R_LoadIdentity();
++ Matrix4x4_Copy(cofSkySavedMatrix,RI.modelviewMatrix);
++ Matrix4x4_ConcatTranslate(RI.modelviewMatrix,cofSkyOffset[0],cofSkyOffset[1],cofSkyOffset[2]);
++ pglMatrixMode(GL_MODELVIEW); GL_LoadMatrix(RI.modelviewMatrix);
++ pglDepthRange(0.8,0.9);
++}
++void R_CoFSkyEnd( void )
++{
++ cofSkyDraws++;
++ cofSkyPolys+=r_stats.c_studio_polys-cofSkyBeforePolys;
++ Matrix4x4_Copy(RI.modelviewMatrix,cofSkySavedMatrix);
++ pglMatrixMode(GL_MODELVIEW); GL_LoadMatrix(RI.modelviewMatrix);
++ pglDepthRange(gldepthmin,gldepthmax);
++ cofSkyDrawing=false;
++}
++void R_CoFSkyLight( alight_t *light )
++{
++ if(!cofSkyDrawing) return;
++ if(cofSky[8]->value>=0) light->ambientlight=(int)cofSky[8]->value;
++ if(cofSky[9]->value>=0) light->shadelight=(int)cofSky[9]->value;
++ cofSkyAmbient=light->ambientlight; cofSkyDirect=light->shadelight;
++}
++
+ static void R_Clear( int bitMask )
+ {
+ 	if( ENGINE_GET_PARM( PARM_DEV_OVERVIEW ))
+@@ -316,7 +388,7 @@ static void R_Clear( int bitMask )
+ 	else
+ 	{
+ 		gldepthmin = 0.0f;
+-		gldepthmax = 1.0f;
++		gldepthmax = R_CoFSkyActive() ? 0.8f : 1.0f;
+ 	}
+ 
+ 	pglDepthFunc( GL_LEQUAL );
+@@ -973,6 +1045,8 @@ void R_RenderScene( void )
+ 	R_SetupFrame();
+ 	R_SetupGL( true );
+ 	R_Clear( ~0 );
++	cofSkyDraws=cofSkyPolys=0;
++	cofSkyAmbient=cofSkyDirect=-1;
+ 
+ 	R_MarkLeaves();
+ 	R_DrawFog ();

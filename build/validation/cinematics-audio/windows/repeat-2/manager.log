@@ -1,0 +1,7 @@
+RENDERER ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Laptop GPU (0x000028E0) Direct3D11 vs_5_0 ps_5_0, D3D11)
+OK idle real c_start multi_manager fires model sequence after save/load
+OK real c_start delayed replacements and subtitle order survive save/load
+OK active manager resumes only pending targets in order and stays busy
+OK completed manager remains idle on restore and can be used again
+OK restored pending manager preserves its actual activator EHANDLE through *locus
+OK threaded clones resume independently, dispose themselves and leave source reusable

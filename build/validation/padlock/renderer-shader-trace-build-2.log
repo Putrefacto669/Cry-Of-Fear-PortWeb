@@ -1,0 +1,20 @@
+Build commands will be stored in ../../build/engine/compile_commands.json
+Waf: Entering directory `/root/cof-audits/audit-D3Kl5uly/build/engine'
+[385/607] Processing ref/gl/gl2_shim/gl2_shim.c
+../../engine/xash3d-fwgs/ref/gl/gl2_shim/gl2_shim.c:200:70: warning: passing 'GLuint *' (aka 'unsigned int *') to parameter of type 'GLint *' (aka 'int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  200 |                 pglGetObjectParameterivARB( object, GL_OBJECT_INFO_LOG_LENGTH_ARB, &maxLength );
+      |                                                                                    ^~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl2_shim/gl2_shim.c:209:44: warning: passing 'GLuint *' (aka 'unsigned int *') to parameter of type 'GLsizei *' (aka 'int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  209 |                 pglGetProgramInfoLog( object, maxLength, &maxLength, msg );
+      |                                                          ^~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl2_shim/gl2_shim.c:211:40: warning: passing 'GLuint *' (aka 'unsigned int *') to parameter of type 'GLsizei *' (aka 'int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  211 |                 pglGetInfoLogARB( object, maxLength, &maxLength, msg );
+      |                                                      ^~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl2_shim/gl2_shim.c:351:66: warning: passing 'GLuint *' (aka 'unsigned int *') to parameter of type 'GLint *' (aka 'int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  351 |                 pglGetObjectParameterivARB( glprog, GL_OBJECT_LINK_STATUS_ARB, &status );
+      |                                                                                ^~~~~~~
+4 warnings generated.
+
+[607/607] Linking ../../build/engine/ref/gl/libref_gles3compat.wasm
+Waf: Leaving directory `/root/cof-audits/audit-D3Kl5uly/build/engine'
+'build' finished successfully (1.314s)

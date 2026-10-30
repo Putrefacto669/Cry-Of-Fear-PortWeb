@@ -1,0 +1,259 @@
+{
+  "managers": [
+    {
+      "origin": "608 -2792 -624",
+      "angles": "0 0 0",
+      "givesms1": "45",
+      "padlock_gr_inv": "0",
+      "fade2": "37",
+      "sequence2": "26",
+      "kamera7": "36",
+      "kamera6": "29",
+      "kamera9": "25",
+      "kamera2": "22",
+      "kamera8": "20",
+      "kamera5": "16",
+      "kamera4": "10",
+      "fade1": "0.1",
+      "music1": "0",
+      "sequence1": "12",
+      "targetname": "multiscene1",
+      "classname": "multi_manager"
+    },
+    {
+      "origin": "608 -2808 -624",
+      "angles": "0 0 0",
+      "ljudnivo": "0",
+      "cities22#1": "46",
+      "cities22": "0",
+      "subtitles3": "30",
+      "subch2": "30",
+      "subch1": "22",
+      "subtitles2": "22",
+      "subtitles1": "14",
+      "kukgeha": "0",
+      "soundme1": "46",
+      "sub1": "14",
+      "fokus3": "0",
+      "block": "0",
+      "fade3": "44",
+      "targetname": "multiscene1",
+      "classname": "multi_manager"
+    },
+    {
+      "origin": "608 -2776 -624",
+      "angles": "0 0 0",
+      "chapter": "46",
+      "givemobile": "2",
+      "giveswitchblade": "4",
+      "removecamera": "0",
+      "sd_door1_lock": "0",
+      "blurstart1#1": "44",
+      "blurstart1": "1",
+      "aljusfl1": "0",
+      "invsequence2": "44",
+      "invsequence1": "44",
+      "invsimon3": "0",
+      "mainteleport": "0",
+      "1teleport": "44",
+      "targetname": "multiscene1",
+      "classname": "multi_manager"
+    },
+    {
+      "origin": "608 -2824 -624",
+      "angles": "0 0 0",
+      "simona_inv": "0",
+      "simonw_inv": "0",
+      "smsljudicut": "26",
+      "multiljusfl1_1": "0",
+      "kamera3": "0",
+      "lydene5": "22",
+      "lydene4": "21.15",
+      "lydene3": "19.2",
+      "lydene2": "15.7",
+      "lydene1": "29.1",
+      "12simcus1": "29.26",
+      "45simcus2": "0",
+      "45simcus1": "26",
+      "22simcus2": "26",
+      "targetname": "multiscene1",
+      "classname": "multi_manager"
+    }
+  ],
+  "activation": [
+    {
+      "model": "*34",
+      "angles": "0 0 0",
+      "delay": "0",
+      "sounds": "0",
+      "target": "multiscene1",
+      "classname": "trigger_once"
+    }
+  ],
+  "targets": {
+    "12simcus1": [
+      "env_customize"
+    ],
+    "1teleport": [
+      "cof_teleport"
+    ],
+    "22simcus2": [
+      "env_customize"
+    ],
+    "45simcus1": [
+      "env_customize"
+    ],
+    "45simcus2": [
+      "env_customize"
+    ],
+    "aljusfl1": [
+      "env_dynlight"
+    ],
+    "block": [
+      "func_wall_toggle"
+    ],
+    "blurstart1": [],
+    "chapter": [
+      "cof_chapter"
+    ],
+    "cities22": [
+      "ambient_generic",
+      "ambient_generic"
+    ],
+    "fade1": [
+      "env_fade"
+    ],
+    "fade2": [
+      "env_fade"
+    ],
+    "fade3": [
+      "env_fade"
+    ],
+    "fokus3": [
+      "func_train"
+    ],
+    "givemobile": [
+      "cof_giveitems"
+    ],
+    "givesms1": [
+      "trigger_cofmobile"
+    ],
+    "giveswitchblade": [
+      "cof_giveitems"
+    ],
+    "invsequence1": [
+      "env_customize"
+    ],
+    "invsequence2": [
+      "env_customize"
+    ],
+    "invsimon3": [
+      "env_customize"
+    ],
+    "kamera2": [
+      "trigger_camera"
+    ],
+    "kamera3": [
+      "trigger_camera"
+    ],
+    "kamera4": [
+      "trigger_camera"
+    ],
+    "kamera5": [
+      "trigger_camera"
+    ],
+    "kamera6": [
+      "trigger_camera"
+    ],
+    "kamera7": [
+      "trigger_camera"
+    ],
+    "kamera8": [
+      "trigger_camera"
+    ],
+    "kamera9": [
+      "trigger_camera"
+    ],
+    "kukgeha": [
+      "env_particle"
+    ],
+    "ljudnivo": [
+      "ambient_generic"
+    ],
+    "lydene1": [
+      "ambient_generic"
+    ],
+    "lydene2": [
+      "ambient_generic"
+    ],
+    "lydene3": [
+      "ambient_generic"
+    ],
+    "lydene4": [
+      "ambient_generic"
+    ],
+    "lydene5": [
+      "ambient_generic"
+    ],
+    "mainteleport": [
+      "cof_teleport"
+    ],
+    "multiljusfl1_1": [
+      "multi_manager"
+    ],
+    "music1": [
+      "ambient_fmodstream"
+    ],
+    "padlock_gr_inv": [
+      "env_customize"
+    ],
+    "removecamera": [
+      "cof_clearitems"
+    ],
+    "sd_door1_lock": [
+      "cof_interdooronoff"
+    ],
+    "sequence1": [
+      "env_model"
+    ],
+    "sequence2": [
+      "env_model"
+    ],
+    "simona_inv": [
+      "env_customize"
+    ],
+    "simonw_inv": [
+      "env_customize"
+    ],
+    "smsljudicut": [
+      "ambient_generic"
+    ],
+    "soundme1": [
+      "ambient_generic",
+      "ambient_generic",
+      "ambient_generic",
+      "ambient_generic",
+      "ambient_generic",
+      "ambient_generic",
+      "ambient_generic"
+    ],
+    "sub1": [
+      "subtitle_main"
+    ],
+    "subch1": [
+      "subtitle_linechange"
+    ],
+    "subch2": [
+      "subtitle_linechange"
+    ],
+    "subtitles1": [
+      "ambient_generic"
+    ],
+    "subtitles2": [
+      "ambient_generic"
+    ],
+    "subtitles3": [
+      "ambient_generic"
+    ]
+  }
+}

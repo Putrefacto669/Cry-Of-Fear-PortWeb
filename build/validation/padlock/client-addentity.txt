@@ -1,0 +1,21 @@
+1004c310
+
+undefined4 HUD_AddEntity(undefined4 param_1,int *param_2,undefined4 param_3)
+
+{
+  int iVar1;
+  
+                    /* 0x4c310  559  HUD_AddEntity */
+  iVar1 = FUN_100565b0(param_1,param_2,param_3);
+  if ((iVar1 == 0) || (iVar1 = FUN_10060000(param_1,param_2,param_3), iVar1 == 0)) {
+    return 0;
+  }
+  if ((DAT_105593b8 == 0) ||
+     (((FUN_10074d40(param_1,param_2,param_3), DAT_105593b8 != 4 &&
+       (*(float *)(DAT_1018e998 + 0xc) != DAT_1013e3e0)) || (*param_2 != DAT_105593bc)))) {
+    return 1;
+  }
+  return 0;
+}
+
+

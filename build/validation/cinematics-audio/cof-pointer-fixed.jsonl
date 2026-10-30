@@ -1,0 +1,67 @@
+{"wall":1793071581889,"event":"console","text":"COF/DIAG event-loop gap=2375.9ms"}
+{"wall":1793071581889,"event":"console","text":"COF/DIAG audio {\"state\":\"running\",\"time\":2.5193650793650795,\"voices\":0,\"buffers\":0}"}
+{"wall":1793071583235,"event":"console","text":"[21:26:23] client connected at 1.33 sec"}
+{"wall":1793071583238,"event":"command-start","token":"manager_test_1","text":"sv_cheats 1\nr_norefresh 1\npausable 0\ncof_unfreeze !player\ncof_setkey !player movetype 8"}
+{"wall":1793071583544,"event":"command-enqueued","token":"manager_test_1"}
+{"wall":1793071583558,"event":"console","text":"[21:26:23] COF/FENCE manager_test_1 time=1.2"}
+{"wall":1793071583558,"event":"command-end","token":"manager_test_1"}
+{"wall":1793071583558,"event":"command-start","token":"manager_test_2","text":"cof_manager_trace 1"}
+{"wall":1793071583561,"event":"command-enqueued","token":"manager_test_2"}
+{"wall":1793071583568,"event":"console","text":"[21:26:23] COF/FENCE manager_test_2 time=1.449"}
+{"wall":1793071583569,"event":"command-end","token":"manager_test_2"}
+{"wall":1793071583571,"event":"command-start","token":"manager_test_3","text":"cof_inspect multiscene1"}
+{"wall":1793071583573,"event":"command-enqueued","token":"manager_test_3"}
+{"wall":1793071583585,"event":"console","text":"[21:26:23] COF/FENCE manager_test_3 time=1.476"}
+{"wall":1793071583585,"event":"command-end","token":"manager_test_3"}
+{"wall":1793071583586,"event":"command-start","token":"manager_test_4","text":"save manager_idle"}
+{"wall":1793071583587,"event":"command-enqueued","token":"manager_test_4"}
+{"wall":1793071583610,"event":"console","text":"[21:26:23] COF/DIAG manager save id=103 index=3 count=14 next=11.033 time=1.5 think=1 use=0"}
+{"wall":1793071583612,"event":"console","text":"[21:26:23] COF/DIAG manager save id=126 index=5 count=14 next=15.033 time=1.5 think=1 use=0"}
+{"wall":1793071583685,"event":"console","text":"[21:26:23] COF/DIAG manager save id=462 index=5 count=13 next=2.033 time=1.5 think=1 use=0"}
+{"wall":1793071583689,"event":"console","text":"[21:26:23] COF/DIAG manager save id=474 index=5 count=14 next=16.733 time=1.5 think=1 use=0"}
+{"wall":1793071583768,"event":"console","text":"[21:26:23] COF/FENCE manager_test_4 time=1.5"}
+{"wall":1793071583769,"event":"command-end","token":"manager_test_4"}
+{"wall":1793071583782,"event":"load-start","name":"manager_idle"}
+{"wall":1793071584011,"event":"console","text":"[21:26:24] COF/DIAG manager restore id=97 index=3 count=14 next=11.033 time=1.5 callbacks=1"}
+{"wall":1793071584013,"event":"console","text":"[21:26:24] COF/DIAG manager restore id=120 index=5 count=14 next=15.033 time=1.5 callbacks=1"}
+{"wall":1793071584018,"event":"console","text":"[21:26:24] COF/DIAG manager restore id=453 index=5 count=13 next=2.033 time=1.5 callbacks=1"}
+{"wall":1793071584019,"event":"console","text":"[21:26:24] COF/DIAG manager restore id=465 index=5 count=14 next=16.733 time=1.5 callbacks=1"}
+{"wall":1793071584719,"event":"console","text":"[21:26:24] client connected at 0.60 sec"}
+{"wall":1793071584794,"event":"command-start","token":"manager_test_5","text":"r_norefresh 1\ncof_unfreeze !player"}
+{"wall":1793071584797,"event":"command-enqueued","token":"manager_test_5"}
+{"wall":1793071584800,"event":"console","text":"[21:26:24] COF/FENCE manager_test_5 time=1.65"}
+{"wall":1793071584801,"event":"command-end","token":"manager_test_5"}
+{"wall":1793071584801,"event":"load-end","name":"manager_idle"}
+{"wall":1793071584801,"event":"command-start","token":"manager_test_6","text":"cof_fire slower_arms_mm"}
+{"wall":1793071584802,"event":"command-enqueued","token":"manager_test_6"}
+{"wall":1793071584817,"event":"console","text":"[21:26:24] COF/FENCE manager_test_6 time=1.666"}
+{"wall":1793071584818,"event":"command-end","token":"manager_test_6"}
+{"wall":1793071584818,"event":"command-start","token":"manager_test_7","text":"cof_animation slower_arms"}
+{"wall":1793071584822,"event":"command-enqueued","token":"manager_test_7"}
+{"wall":1793071584840,"event":"console","text":"[21:26:24] COF/FENCE manager_test_7 time=1.683"}
+{"wall":1793071584841,"event":"command-end","token":"manager_test_7"}
+{"wall":1793071584847,"event":"command-start","token":"manager_test_8","text":"cof_fire slower_cam2_mm"}
+{"wall":1793071584857,"event":"command-enqueued","token":"manager_test_8"}
+{"wall":1793071584857,"event":"console","text":"[21:26:24] COF/FENCE manager_test_8 time=1.7"}
+{"wall":1793071584857,"event":"command-end","token":"manager_test_8"}
+{"wall":1793071585152,"event":"console","text":"[21:26:25] COF/DIAG manager target-begin id=453 index=5 target=blurstart1 time=2.033"}
+{"wall":1793071585152,"event":"console","text":"[21:26:25] COF/DIAG manager target-end id=453 index=5 seconds=0.000999928"}
+{"wall":1793071585919,"event":"console","text":"[21:26:25] COF/HUD SUB 2"}
+{"wall":1793071586472,"event":"console","text":"[21:26:26] COF/DIAG manager target-begin id=453 index=6 target=givemobile time=3.033"}
+{"wall":1793071586475,"event":"console","text":"[21:26:26] COF/DIAG manager target-end id=453 index=6 seconds=0.00299978"}
+{"wall":1793071588854,"event":"console","text":"COF/DIAG event-loop gap=1448.6ms"}
+{"wall":1793071588855,"event":"console","text":"COF/DIAG audio {\"state\":\"running\",\"time\":9.485351473922902,\"voices\":0,\"buffers\":6}"}
+{"wall":1793071595099,"event":"console","text":"COF/DIAG event-loop gap=6244.4ms"}
+{"wall":1793071595099,"event":"console","text":"COF/DIAG audio {\"state\":\"running\",\"time\":15.731519274376417,\"voices\":0,\"buffers\":6}"}
+{"wall":1793071600543,"event":"console","text":"COF/DIAG event-loop gap=5443.3ms"}
+{"wall":1793071600544,"event":"console","text":"COF/DIAG audio {\"state\":\"running\",\"time\":21.16498866213152,\"voices\":0,\"buffers\":6}"}
+{"wall":1793071604367,"event":"console","text":"COF/DIAG event-loop gap=3824.3ms"}
+{"wall":1793071604368,"event":"console","text":"COF/DIAG audio {\"state\":\"running\",\"time\":24.99628117913832,\"voices\":0,\"buffers\":6}"}
+{"wall":1793071605052,"event":"console","text":"[21:26:45] COF/DIAG manager target-begin id=453 index=7 target=giveswitchblade time=5.033"}
+{"wall":1793071605055,"event":"console","text":"[21:26:45] COF/DIAG manager target-end id=453 index=7 seconds=0.00300026"}
+{"wall":1793071606217,"event":"console","text":"[21:26:46] COF/HUD SUB 3"}
+{"wall":1793071627870,"event":"console","text":"COF/DIAG event-loop gap=19956.0ms"}
+{"wall":1793071627870,"event":"console","text":"COF/DIAG audio {\"state\":\"running\",\"time\":49.075374149659865,\"voices\":0,\"buffers\":6}"}
+{"wall":1793071639733,"event":"console","text":"COF/DIAG event-loop gap=11865.2ms"}
+{"wall":1793071639733,"event":"console","text":"COF/DIAG audio {\"state\":\"running\",\"time\":59.45469387755102,\"voices\":0,\"buffers\":6}"}
+{"wall":1793071644920,"event":"failure","text":"Error: timeout waiting for restored multi_manager"}

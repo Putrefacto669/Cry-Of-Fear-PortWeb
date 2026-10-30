@@ -1,0 +1,45 @@
+[
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render",
+      "shot": "01-received-model"
+    }
+  },
+  {
+    "interaction": {
+      "key": "Escape",
+      "wait": 400,
+      "cmd": "cof_padlock",
+      "shot": "02-escape"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_inspect !player\ncof_use padlock on\nr_fullbright 1",
+      "wait": 300,
+      "shot": "03-fullbright-diagnostic"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock_render\nr_fullbright 0\nr_nocull 1",
+      "wait": 300,
+      "shot": "04-cull-diagnostic"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_padlock\nr_nocull 0\nr_fullbright 0"
+    }
+  },
+  {
+    "interaction": {
+      "key": "Escape"
+    }
+  },
+  {
+    "interaction": {
+      "close": true
+    }
+  }
+]

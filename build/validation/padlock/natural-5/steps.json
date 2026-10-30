@@ -1,0 +1,65 @@
+[
+  {
+    "interaction": {
+      "turn": 180,
+      "key": "e",
+      "wait": 300,
+      "shot": "restored-pc-form"
+    }
+  },
+  {
+    "interaction": {
+      "type": [
+        "#cof-dialog input",
+        "wrong-password"
+      ]
+    }
+  },
+  {
+    "interaction": {
+      "key": "Enter",
+      "wait": 300,
+      "shot": "wrong-password-result"
+    }
+  },
+  {
+    "interaction": {
+      "fill": [
+        "#cof-dialog input",
+        ""
+      ]
+    }
+  },
+  {
+    "interaction": {
+      "type": [
+        "#cof-dialog input",
+        "apple45"
+      ]
+    }
+  },
+  {
+    "interaction": {
+      "key": "Enter",
+      "wait": 400,
+      "shot": "padlock-code-from-pc"
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "save natural_pc_authenticated",
+      "export": true
+    }
+  },
+  {
+    "interaction": {
+      "cmd": "cof_inspect computeron\ncof_inspect *19\ncof_padlock_render",
+      "shot": "restore-pc-diagnostic"
+    }
+  },
+  {
+    "interaction": {
+      "close": true
+    }
+  }
+]

@@ -1,0 +1,94 @@
+Build commands will be stored in ../../build/engine/compile_commands.json
+Waf: Entering directory `/root/cof-audits/audit-D3Kl5uly/build/engine'
+[368/607] Processing ref/gl/gl_triapi.c
+[369/607] Processing ref/gl/gl_warp.c
+[370/607] Processing ref/gl/gl_sprite.c
+[371/607] Processing ref/gl/gl_opengl.c
+[372/607] Processing ref/gl/gl_image.c
+[373/607] Processing ref/gl/gl_rpart.c
+[374/607] Processing ref/gl/gl_rmain.c
+[375/607] Processing ref/gl/gl_frustum.c
+[376/607] Processing ref/gl/gl_fbo.c
+[377/607] Processing ref/gl/gl_cull.c
+[378/607] Processing ref/gl/gl_beams.c
+[379/607] Processing ref/gl/gl_backend.c
+[380/607] Processing ref/gl/gl_alias.c
+[381/607] Processing ref/gl/gl2_shim/gl2_shim.c
+[382/607] Processing ref/gl/gl_context.c
+[383/607] Processing ref/gl/gl_decals.c
+[384/607] Processing ref/gl/gl_draw.c
+[385/607] Processing ref/gl/gl_rsurf.c
+[386/607] Processing ref/gl/gl_studio.c
+../../engine/xash3d-fwgs/ref/gl/gl_sprite.c:51:34: warning: comparison of different enumeration types ('spriteframetype_t' and 'frametype_t') [-Wenum-compare]
+   51 |         if( psprite->frames[frame].type == FRAME_SINGLE )
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl_sprite.c:55:113: warning: comparison of different enumeration types ('spriteframetype_t' and 'frametype_t') [-Wenum-compare]
+   55 |                         if( ent->latched.prevblending[0] >= psprite->numframes || psprite->frames[ent->latched.prevblending[0]].type != FRAME_SINGLE )
+      |                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl_sprite.c:100:39: warning: comparison of different enumeration types ('spriteframetype_t' and 'frametype_t') [-Wenum-compare]
+  100 |         else if( psprite->frames[frame].type == FRAME_GROUP )
+      |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl_sprite.c:134:39: warning: comparison of different enumeration types ('spriteframetype_t' and 'frametype_t') [-Wenum-compare]
+  134 |         else if( psprite->frames[frame].type == FRAME_ANGLED )
+      |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl_sprite.c:142:113: warning: comparison of different enumeration types ('spriteframetype_t' and 'frametype_t') [-Wenum-compare]
+  142 |                         if( ent->latched.prevblending[0] >= psprite->numframes || psprite->frames[ent->latched.prevblending[0]].type != FRAME_ANGLED )
+      |                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~
+5 warnings generated.
+
+../../engine/xash3d-fwgs/ref/gl/gl_opengl.c:1169:29: warning: passing 'const GLubyte *' (aka 'const unsigned char *') to parameter of type 'const char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+ 1169 |                                 int l = Q_strncpy( str, pglGetStringi( GL_EXTENSIONS, i ), len );
+      |                                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../engine/xash3d-fwgs/public/crtlib.h:245:56: note: passing argument to parameter 'src' here
+  245 | static inline size_t Q_strncpy( char *dst, const char *src, size_t size )
+      |                                                        ^
+1 warning generated.
+
+../../engine/xash3d-fwgs/ref/gl/gl_beams.c:621:8: warning: variable 'vLast' set but not used [-Wunused-but-set-variable]
+  621 |         float vLast = 0.0f;
+      |               ^
+1 warning generated.
+
+../../engine/xash3d-fwgs/ref/gl/gl_rmain.c:919:11: warning: 4 enumeration values not handled in switch: 'mod_bad', 'mod_brush', 'mod_alias'... [-Wswitch]
+  919 |                 switch( RI.currentmodel->type )
+      |                         ^~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+
+../../engine/xash3d-fwgs/ref/gl/gl2_shim/gl2_shim.c:200:70: warning: passing 'GLuint *' (aka 'unsigned int *') to parameter of type 'GLint *' (aka 'int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  200 |                 pglGetObjectParameterivARB( object, GL_OBJECT_INFO_LOG_LENGTH_ARB, &maxLength );
+      |                                                                                    ^~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl2_shim/gl2_shim.c:209:44: warning: passing 'GLuint *' (aka 'unsigned int *') to parameter of type 'GLsizei *' (aka 'int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  209 |                 pglGetProgramInfoLog( object, maxLength, &maxLength, msg );
+      |                                                          ^~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl2_shim/gl2_shim.c:211:40: warning: passing 'GLuint *' (aka 'unsigned int *') to parameter of type 'GLsizei *' (aka 'int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  211 |                 pglGetInfoLogARB( object, maxLength, &maxLength, msg );
+      |                                                      ^~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl2_shim/gl2_shim.c:351:66: warning: passing 'GLuint *' (aka 'unsigned int *') to parameter of type 'GLint *' (aka 'int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  351 |                 pglGetObjectParameterivARB( glprog, GL_OBJECT_LINK_STATUS_ARB, &status );
+      |                                                                                ^~~~~~~
+4 warnings generated.
+
+../../engine/xash3d-fwgs/ref/gl/gl_image.c:593:11: warning: 14 enumeration values not handled in switch: 'PF_UNKNOWN', 'PF_INDEXED_24', 'PF_INDEXED_32'... [-Wswitch]
+  593 |                 switch( format )
+      |                         ^~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl_image.c:684:27: warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  684 |         int r = 0, g = 0, b = 0, a = 0;
+      |                                  ^
+2 warnings generated.
+
+../../engine/xash3d-fwgs/ref/gl/gl_studio.c:426:5: warning: assigning to 'int *' from 'uint *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  426 |         *a = &r_stats.c_studio_models_drawn;
+      |            ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl_studio.c:3355:10: warning: enumeration values 'mod_bad', 'mod_brush', and 'mod_sprite' not handled in switch [-Wswitch]
+ 3355 |         switch( RI.currententity->model->type )
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2 warnings generated.
+
+../../engine/xash3d-fwgs/ref/gl/gl_rsurf.c:3915:6: warning: variable 'nColinElim' set but not used [-Wunused-but-set-variable]
+ 3915 |         int     nColinElim = 0;
+      |                 ^
+1 warning generated.
+
+[607/607] Linking ../../build/engine/ref/gl/libref_gles3compat.wasm
+Waf: Leaving directory `/root/cof-audits/audit-D3Kl5uly/build/engine'
+'build' finished successfully (3.842s)

@@ -1,0 +1,289 @@
+{"wall":1793158757011,"event":"console","text":"COF/DIAG event-loop gap=2783.1ms"}
+{"wall":1793158757011,"event":"console","text":"COF/DIAG audio {\"state\":\"running\",\"time\":2.8908843537414968,\"voices\":0,\"buffers\":0}"}
+{"wall":1793158758278,"event":"console","text":"[21:39:18] client connected at 1.27 sec"}
+{"wall":1793158758298,"event":"command-start","token":"manager_test_1","text":"sv_cheats 1\nr_norefresh 1\npausable 0\ncof_unfreeze !player\ncof_setkey !player movetype 8"}
+{"wall":1793158758630,"event":"command-enqueued","token":"manager_test_1"}
+{"wall":1793158758644,"event":"console","text":"[21:39:18] COF/FENCE manager_test_1 time=1.1"}
+{"wall":1793158758644,"event":"command-end","token":"manager_test_1"}
+{"wall":1793158758644,"event":"command-start","token":"manager_test_2","text":"cof_manager_trace 1"}
+{"wall":1793158758648,"event":"command-enqueued","token":"manager_test_2"}
+{"wall":1793158758659,"event":"console","text":"[21:39:18] COF/FENCE manager_test_2 time=1.317"}
+{"wall":1793158758659,"event":"command-end","token":"manager_test_2"}
+{"wall":1793158758661,"event":"command-start","token":"manager_test_3","text":"cof_inspect multiscene1"}
+{"wall":1793158758663,"event":"command-enqueued","token":"manager_test_3"}
+{"wall":1793158758676,"event":"console","text":"[21:39:18] COF/FENCE manager_test_3 time=1.344"}
+{"wall":1793158758677,"event":"command-end","token":"manager_test_3"}
+{"wall":1793158758677,"event":"command-start","token":"manager_test_4","text":"save manager_idle"}
+{"wall":1793158758681,"event":"command-enqueued","token":"manager_test_4"}
+{"wall":1793158758701,"event":"console","text":"[21:39:18] COF/DIAG manager save id=103 index=3 count=14 next=11.034 time=1.361 think=1 use=0"}
+{"wall":1793158758704,"event":"console","text":"[21:39:18] COF/DIAG manager save id=126 index=5 count=14 next=15.034 time=1.361 think=1 use=0"}
+{"wall":1793158758760,"event":"console","text":"[21:39:18] COF/DIAG manager save id=462 index=5 count=13 next=2.034 time=1.361 think=1 use=0"}
+{"wall":1793158758765,"event":"console","text":"[21:39:18] COF/DIAG manager save id=474 index=5 count=14 next=16.734 time=1.361 think=1 use=0"}
+{"wall":1793158758843,"event":"console","text":"[21:39:18] COF/FENCE manager_test_4 time=1.361"}
+{"wall":1793158758843,"event":"command-end","token":"manager_test_4"}
+{"wall":1793158758895,"event":"load-start","name":"manager_idle"}
+{"wall":1793158759125,"event":"console","text":"[21:39:19] COF/DIAG manager restore id=97 index=3 count=14 next=11.034 time=1.361 callbacks=1"}
+{"wall":1793158759127,"event":"console","text":"[21:39:19] COF/DIAG manager restore id=120 index=5 count=14 next=15.034 time=1.361 callbacks=1"}
+{"wall":1793158759131,"event":"console","text":"[21:39:19] COF/DIAG manager restore id=453 index=5 count=13 next=2.034 time=1.361 callbacks=1"}
+{"wall":1793158759132,"event":"console","text":"[21:39:19] COF/DIAG manager restore id=465 index=5 count=14 next=16.734 time=1.361 callbacks=1"}
+{"wall":1793158759825,"event":"console","text":"[21:39:19] client connected at 0.60 sec"}
+{"wall":1793158759899,"event":"command-start","token":"manager_test_5","text":"r_norefresh 1\ncof_unfreeze !player"}
+{"wall":1793158759902,"event":"command-enqueued","token":"manager_test_5"}
+{"wall":1793158759909,"event":"console","text":"[21:39:19] COF/FENCE manager_test_5 time=1.527"}
+{"wall":1793158759909,"event":"command-end","token":"manager_test_5"}
+{"wall":1793158759909,"event":"load-end","name":"manager_idle"}
+{"wall":1793158759909,"event":"command-start","token":"manager_test_6","text":"cof_fire slower_arms_mm"}
+{"wall":1793158759935,"event":"command-enqueued","token":"manager_test_6"}
+{"wall":1793158759936,"event":"console","text":"[21:39:19] COF/FENCE manager_test_6 time=1.544"}
+{"wall":1793158759936,"event":"command-end","token":"manager_test_6"}
+{"wall":1793158759936,"event":"command-start","token":"manager_test_7","text":"cof_animation slower_arms"}
+{"wall":1793158759942,"event":"command-enqueued","token":"manager_test_7"}
+{"wall":1793158759960,"event":"console","text":"[21:39:19] COF/FENCE manager_test_7 time=1.588"}
+{"wall":1793158759960,"event":"command-end","token":"manager_test_7"}
+{"wall":1793158759961,"event":"command-start","token":"manager_test_8","text":"cof_fire slower_cam2_mm"}
+{"wall":1793158759963,"event":"command-enqueued","token":"manager_test_8"}
+{"wall":1793158759977,"event":"console","text":"[21:39:19] COF/FENCE manager_test_8 time=1.595"}
+{"wall":1793158759978,"event":"command-end","token":"manager_test_8"}
+{"wall":1793158760409,"event":"console","text":"[21:39:20] COF/DIAG manager target-begin id=453 index=5 target=blurstart1 time=2.045"}
+{"wall":1793158760409,"event":"console","text":"[21:39:20] COF/DIAG manager target-end id=453 index=5 seconds=0.000999928"}
+{"wall":1793158761062,"event":"console","text":"[21:39:21] COF/HUD SUB 2"}
+{"wall":1793158761409,"event":"console","text":"[21:39:21] COF/DIAG manager target-begin id=453 index=6 target=givemobile time=3.045"}
+{"wall":1793158761413,"event":"console","text":"[21:39:21] COF/DIAG manager target-end id=453 index=6 seconds=0.00300026"}
+{"wall":1793158763392,"event":"console","text":"[21:39:23] COF/DIAG manager target-begin id=453 index=7 target=giveswitchblade time=5.034"}
+{"wall":1793158763398,"event":"console","text":"[21:39:23] COF/DIAG manager target-end id=453 index=7 seconds=0.00199986"}
+{"wall":1793158764444,"event":"console","text":"[21:39:24] COF/HUD SUB 3"}
+{"wall":1793158767460,"event":"console","text":"[21:39:27] COF/HUD SUB 4"}
+{"wall":1793158767608,"event":"command-start","token":"manager_test_9","text":"cof_spawn multi_manager mm_pending\ncof_spawn subtitle_main mm_pending_sub0\ncof_setkey mm_pending_sub0 linenumber \"5101\"\ncof_setkey mm_pending mm_pending_sub0 \"0\"\ncof_spawn subtitle_main mm_pending_sub1\ncof_setkey mm_pending_sub1 linenumber \"5102\"\ncof_setkey mm_pending mm_pending_sub1 \"2\"\ncof_spawn subtitle_main mm_pending_sub2\ncof_setkey mm_pending_sub2 linenumber \"5103\"\ncof_setkey mm_pending mm_pending_sub2 \"4\""}
+{"wall":1793158767614,"event":"command-enqueued","token":"manager_test_9"}
+{"wall":1793158767633,"event":"console","text":"[21:39:27] COF/FENCE manager_test_9 time=9.261"}
+{"wall":1793158767634,"event":"command-end","token":"manager_test_9"}
+{"wall":1793158767634,"event":"command-start","token":"manager_test_10","text":"cof_fire mm_pending"}
+{"wall":1793158767641,"event":"command-enqueued","token":"manager_test_10"}
+{"wall":1793158767643,"event":"console","text":"[21:39:27] COF/FENCE manager_test_10 time=9.262"}
+{"wall":1793158767643,"event":"command-end","token":"manager_test_10"}
+{"wall":1793158767643,"event":"console","text":"[21:39:27] COF/HUD SUB 5101"}
+{"wall":1793158767744,"event":"command-start","token":"manager_test_11","text":"save manager_pending"}
+{"wall":1793158767747,"event":"command-enqueued","token":"manager_test_11"}
+{"wall":1793158767765,"event":"console","text":"[21:39:27] COF/DIAG manager save id=97 index=3 count=14 next=11.034 time=9.39301 think=1 use=0"}
+{"wall":1793158767767,"event":"console","text":"[21:39:27] COF/DIAG manager save id=120 index=5 count=14 next=15.034 time=9.39301 think=1 use=0"}
+{"wall":1793158767768,"event":"console","text":"[21:39:27] COF/DIAG manager save id=453 index=8 count=13 next=45.034 time=9.39301 think=1 use=0"}
+{"wall":1793158767769,"event":"console","text":"[21:39:27] COF/DIAG manager save id=465 index=5 count=14 next=16.734 time=9.39301 think=1 use=0"}
+{"wall":1793158767777,"event":"console","text":"[21:39:27] COF/FENCE manager_test_11 time=9.39301"}
+{"wall":1793158767777,"event":"command-end","token":"manager_test_11"}
+{"wall":1793158767826,"event":"load-start","name":"manager_pending"}
+{"wall":1793158768165,"event":"console","text":"[21:39:28] COF/DIAG manager restore id=97 index=3 count=14 next=11.034 time=9.39301 callbacks=1"}
+{"wall":1793158768168,"event":"console","text":"[21:39:28] COF/DIAG manager restore id=120 index=5 count=14 next=15.034 time=9.39301 callbacks=1"}
+{"wall":1793158768173,"event":"console","text":"[21:39:28] COF/DIAG manager restore id=453 index=8 count=13 next=45.034 time=9.39301 callbacks=1"}
+{"wall":1793158768174,"event":"console","text":"[21:39:28] COF/DIAG manager restore id=465 index=5 count=14 next=16.734 time=9.39301 callbacks=1"}
+{"wall":1793158769692,"event":"console","text":"[21:39:29] client connected at 0.71 sec"}
+{"wall":1793158769745,"event":"command-start","token":"manager_test_12","text":"r_norefresh 1\ncof_unfreeze !player"}
+{"wall":1793158769747,"event":"command-enqueued","token":"manager_test_12"}
+{"wall":1793158769759,"event":"console","text":"[21:39:29] COF/FENCE manager_test_12 time=9.50901"}
+{"wall":1793158769759,"event":"command-end","token":"manager_test_12"}
+{"wall":1793158769759,"event":"load-end","name":"manager_pending"}
+{"wall":1793158769759,"event":"command-start","token":"manager_test_13","text":"cof_fire mm_pending"}
+{"wall":1793158769766,"event":"command-enqueued","token":"manager_test_13"}
+{"wall":1793158769780,"event":"console","text":"[21:39:29] COF/FENCE manager_test_13 time=9.52601"}
+{"wall":1793158769780,"event":"command-end","token":"manager_test_13"}
+{"wall":1793158771260,"event":"console","text":"[21:39:31] COF/DIAG manager target-begin id=97 index=3 target=kamera4 time=11.034"}
+{"wall":1793158771260,"event":"console","text":"[21:39:31] COF/DIAG manager target-end id=97 index=3 seconds=0.00200081"}
+{"wall":1793158771492,"event":"console","text":"[21:39:31] COF/HUD SUB 5102"}
+{"wall":1793158773262,"event":"console","text":"[21:39:33] COF/DIAG manager target-begin id=97 index=4 target=sequence1 time=13.034"}
+{"wall":1793158773262,"event":"console","text":"[21:39:33] COF/DIAG manager target-end id=97 index=4 seconds=0.00200081"}
+{"wall":1793158773492,"event":"console","text":"[21:39:33] COF/HUD SUB 5103"}
+{"wall":1793158773496,"event":"command-start","token":"manager_test_14","text":"save manager_finished"}
+{"wall":1793158773501,"event":"command-enqueued","token":"manager_test_14"}
+{"wall":1793158773513,"event":"console","text":"[21:39:33] COF/DIAG manager save id=97 index=5 count=14 next=17.034 time=13.262 think=1 use=0"}
+{"wall":1793158773514,"event":"console","text":"[21:39:33] COF/DIAG manager save id=120 index=5 count=14 next=15.034 time=13.262 think=1 use=0"}
+{"wall":1793158773516,"event":"console","text":"[21:39:33] COF/DIAG manager save id=453 index=8 count=13 next=45.034 time=13.262 think=1 use=0"}
+{"wall":1793158773516,"event":"console","text":"[21:39:33] COF/DIAG manager save id=465 index=5 count=14 next=16.734 time=13.262 think=1 use=0"}
+{"wall":1793158773520,"event":"console","text":"[21:39:33] COF/FENCE manager_test_14 time=13.262"}
+{"wall":1793158773520,"event":"command-end","token":"manager_test_14"}
+{"wall":1793158773531,"event":"load-start","name":"manager_finished"}
+{"wall":1793158773703,"event":"console","text":"[21:39:33] COF/DIAG manager restore id=97 index=5 count=14 next=17.034 time=13.262 callbacks=1"}
+{"wall":1793158773705,"event":"console","text":"[21:39:33] COF/DIAG manager restore id=120 index=5 count=14 next=15.034 time=13.262 callbacks=1"}
+{"wall":1793158773707,"event":"console","text":"[21:39:33] COF/DIAG manager restore id=453 index=8 count=13 next=45.034 time=13.262 callbacks=1"}
+{"wall":1793158773708,"event":"console","text":"[21:39:33] COF/DIAG manager restore id=465 index=5 count=14 next=16.734 time=13.262 callbacks=1"}
+{"wall":1793158774276,"event":"console","text":"[21:39:34] client connected at 0.50 sec"}
+{"wall":1793158774338,"event":"command-start","token":"manager_test_15","text":"r_norefresh 1\ncof_unfreeze !player"}
+{"wall":1793158774339,"event":"command-enqueued","token":"manager_test_15"}
+{"wall":1793158774342,"event":"console","text":"[21:39:34] COF/FENCE manager_test_15 time=13.362"}
+{"wall":1793158774342,"event":"command-end","token":"manager_test_15"}
+{"wall":1793158774342,"event":"load-end","name":"manager_finished"}
+{"wall":1793158774593,"event":"command-start","token":"manager_test_16","text":"cof_fire mm_pending"}
+{"wall":1793158774594,"event":"command-enqueued","token":"manager_test_16"}
+{"wall":1793158774608,"event":"console","text":"[21:39:34] COF/FENCE manager_test_16 time=13.634"}
+{"wall":1793158774608,"event":"command-end","token":"manager_test_16"}
+{"wall":1793158774611,"event":"console","text":"[21:39:34] COF/HUD SUB 5101"}
+{"wall":1793158775996,"event":"console","text":"[21:39:35] COF/DIAG manager target-begin id=120 index=5 target=subtitles1 time=15.034"}
+{"wall":1793158775997,"event":"console","text":"[21:39:35] COF/DIAG manager target-end id=120 index=5 seconds=0.00100136"}
+{"wall":1793158775997,"event":"console","text":"[21:39:35] COF/DIAG manager target-begin id=120 index=6 target=sub1 time=15.034"}
+{"wall":1793158775997,"event":"console","text":"[21:39:35] COF/HUD SUB 4"}
+{"wall":1793158775997,"event":"console","text":"[21:39:35] COF/DIAG manager target-end id=120 index=6 seconds=0.000999451"}
+{"wall":1793158776591,"event":"console","text":"[21:39:36] COF/HUD SUB 5102"}
+{"wall":1793158777709,"event":"console","text":"[21:39:37] COF/DIAG manager target-begin id=465 index=5 target=lydene2 time=16.746"}
+{"wall":1793158777709,"event":"console","text":"[21:39:37] COF/DIAG manager target-end id=465 index=5 seconds=0.000999451"}
+{"wall":1793158777993,"event":"console","text":"[21:39:37] COF/DIAG manager target-begin id=97 index=5 target=kamera5 time=17.034"}
+{"wall":1793158777994,"event":"console","text":"[21:39:37] COF/DIAG manager target-end id=97 index=5 seconds=0"}
+{"wall":1793158778593,"event":"console","text":"[21:39:38] COF/HUD SUB 5103"}
+{"wall":1793158778667,"event":"command-start","token":"manager_test_17","text":"cof_spawn info_target mm_actor\ncof_setkey mm_actor origin \"10 20 30\"\ncof_spawn motion_manager mm_locus_motion\ncof_setkey mm_locus_motion target \"*locus\"\ncof_setkey mm_locus_motion m_iszPosition \"111 222 333\"\ncof_spawn multi_manager mm_locus\ncof_setkey mm_locus mm_locus_motion \"2\"\ncof_fire mm_locus mm_actor"}
+{"wall":1793158778669,"event":"command-enqueued","token":"manager_test_17"}
+{"wall":1793158778677,"event":"console","text":"[21:39:38] COF/FENCE manager_test_17 time=17.699"}
+{"wall":1793158778677,"event":"command-end","token":"manager_test_17"}
+{"wall":1793158778677,"event":"command-start","token":"manager_test_18","text":"save manager_activator"}
+{"wall":1793158778679,"event":"command-enqueued","token":"manager_test_18"}
+{"wall":1793158778693,"event":"console","text":"[21:39:38] COF/DIAG manager save id=97 index=6 count=14 next=21.034 time=17.713 think=1 use=0"}
+{"wall":1793158778694,"event":"console","text":"[21:39:38] COF/DIAG manager save id=120 index=7 count=14 next=23.034 time=17.713 think=1 use=0"}
+{"wall":1793158778695,"event":"console","text":"[21:39:38] COF/DIAG manager save id=453 index=8 count=13 next=45.034 time=17.713 think=1 use=0"}
+{"wall":1793158778695,"event":"console","text":"[21:39:38] COF/DIAG manager save id=465 index=6 count=14 next=20.234 time=17.713 think=1 use=0"}
+{"wall":1793158778699,"event":"console","text":"[21:39:38] COF/FENCE manager_test_18 time=17.713"}
+{"wall":1793158778699,"event":"command-end","token":"manager_test_18"}
+{"wall":1793158778745,"event":"load-start","name":"manager_activator"}
+{"wall":1793158778934,"event":"console","text":"[21:39:38] COF/DIAG manager restore id=97 index=6 count=14 next=21.034 time=17.713 callbacks=1"}
+{"wall":1793158778937,"event":"console","text":"[21:39:38] COF/DIAG manager restore id=120 index=7 count=14 next=23.034 time=17.713 callbacks=1"}
+{"wall":1793158778940,"event":"console","text":"[21:39:38] COF/DIAG manager restore id=453 index=8 count=13 next=45.034 time=17.713 callbacks=1"}
+{"wall":1793158778941,"event":"console","text":"[21:39:38] COF/DIAG manager restore id=465 index=6 count=14 next=20.234 time=17.713 callbacks=1"}
+{"wall":1793158779761,"event":"console","text":"[21:39:39] client connected at 0.56 sec"}
+{"wall":1793158779851,"event":"command-start","token":"manager_test_19","text":"r_norefresh 1\ncof_unfreeze !player"}
+{"wall":1793158779853,"event":"command-enqueued","token":"manager_test_19"}
+{"wall":1793158779859,"event":"console","text":"[21:39:39] COF/FENCE manager_test_19 time=17.861"}
+{"wall":1793158779859,"event":"command-end","token":"manager_test_19"}
+{"wall":1793158779859,"event":"load-end","name":"manager_activator"}
+{"wall":1793158779859,"event":"command-start","token":"manager_test_20","text":"cof_kinematics mm_actor"}
+{"wall":1793158779860,"event":"command-enqueued","token":"manager_test_20"}
+{"wall":1793158779875,"event":"console","text":"[21:39:39] COF/FENCE manager_test_20 time=17.893"}
+{"wall":1793158779875,"event":"command-end","token":"manager_test_20"}
+{"wall":1793158779976,"event":"command-start","token":"manager_test_21","text":"cof_kinematics mm_actor"}
+{"wall":1793158779986,"event":"command-enqueued","token":"manager_test_21"}
+{"wall":1793158779992,"event":"console","text":"[21:39:39] COF/FENCE manager_test_21 time=17.995"}
+{"wall":1793158779993,"event":"command-end","token":"manager_test_21"}
+{"wall":1793158780093,"event":"command-start","token":"manager_test_22","text":"cof_kinematics mm_actor"}
+{"wall":1793158780095,"event":"command-enqueued","token":"manager_test_22"}
+{"wall":1793158780109,"event":"console","text":"[21:39:40] COF/FENCE manager_test_22 time=18.111"}
+{"wall":1793158780109,"event":"command-end","token":"manager_test_22"}
+{"wall":1793158780210,"event":"command-start","token":"manager_test_23","text":"cof_kinematics mm_actor"}
+{"wall":1793158780213,"event":"command-enqueued","token":"manager_test_23"}
+{"wall":1793158780225,"event":"console","text":"[21:39:40] COF/FENCE manager_test_23 time=18.229"}
+{"wall":1793158780225,"event":"command-end","token":"manager_test_23"}
+{"wall":1793158780326,"event":"command-start","token":"manager_test_24","text":"cof_kinematics mm_actor"}
+{"wall":1793158780328,"event":"command-enqueued","token":"manager_test_24"}
+{"wall":1793158780342,"event":"console","text":"[21:39:40] COF/FENCE manager_test_24 time=18.347"}
+{"wall":1793158780343,"event":"command-end","token":"manager_test_24"}
+{"wall":1793158780443,"event":"command-start","token":"manager_test_25","text":"cof_kinematics mm_actor"}
+{"wall":1793158780445,"event":"command-enqueued","token":"manager_test_25"}
+{"wall":1793158780459,"event":"console","text":"[21:39:40] COF/FENCE manager_test_25 time=18.461"}
+{"wall":1793158780459,"event":"command-end","token":"manager_test_25"}
+{"wall":1793158780559,"event":"command-start","token":"manager_test_26","text":"cof_kinematics mm_actor"}
+{"wall":1793158780561,"event":"command-enqueued","token":"manager_test_26"}
+{"wall":1793158780575,"event":"console","text":"[21:39:40] COF/FENCE manager_test_26 time=18.593"}
+{"wall":1793158780575,"event":"command-end","token":"manager_test_26"}
+{"wall":1793158780675,"event":"command-start","token":"manager_test_27","text":"cof_kinematics mm_actor"}
+{"wall":1793158780677,"event":"command-enqueued","token":"manager_test_27"}
+{"wall":1793158780692,"event":"console","text":"[21:39:40] COF/FENCE manager_test_27 time=18.696"}
+{"wall":1793158780692,"event":"command-end","token":"manager_test_27"}
+{"wall":1793158780793,"event":"command-start","token":"manager_test_28","text":"cof_kinematics mm_actor"}
+{"wall":1793158780795,"event":"command-enqueued","token":"manager_test_28"}
+{"wall":1793158780810,"event":"console","text":"[21:39:40] COF/FENCE manager_test_28 time=18.811"}
+{"wall":1793158780810,"event":"command-end","token":"manager_test_28"}
+{"wall":1793158780910,"event":"command-start","token":"manager_test_29","text":"cof_kinematics mm_actor"}
+{"wall":1793158780914,"event":"command-enqueued","token":"manager_test_29"}
+{"wall":1793158780926,"event":"console","text":"[21:39:40] COF/FENCE manager_test_29 time=18.934"}
+{"wall":1793158780926,"event":"command-end","token":"manager_test_29"}
+{"wall":1793158781026,"event":"command-start","token":"manager_test_30","text":"cof_kinematics mm_actor"}
+{"wall":1793158781028,"event":"command-enqueued","token":"manager_test_30"}
+{"wall":1793158781042,"event":"console","text":"[21:39:41] COF/FENCE manager_test_30 time=19.045"}
+{"wall":1793158781042,"event":"command-end","token":"manager_test_30"}
+{"wall":1793158781143,"event":"command-start","token":"manager_test_31","text":"cof_kinematics mm_actor"}
+{"wall":1793158781145,"event":"command-enqueued","token":"manager_test_31"}
+{"wall":1793158781159,"event":"console","text":"[21:39:41] COF/FENCE manager_test_31 time=19.162"}
+{"wall":1793158781159,"event":"command-end","token":"manager_test_31"}
+{"wall":1793158781259,"event":"command-start","token":"manager_test_32","text":"cof_kinematics mm_actor"}
+{"wall":1793158781261,"event":"command-enqueued","token":"manager_test_32"}
+{"wall":1793158781275,"event":"console","text":"[21:39:41] COF/FENCE manager_test_32 time=19.293"}
+{"wall":1793158781275,"event":"command-end","token":"manager_test_32"}
+{"wall":1793158781375,"event":"command-start","token":"manager_test_33","text":"cof_kinematics mm_actor"}
+{"wall":1793158781377,"event":"command-enqueued","token":"manager_test_33"}
+{"wall":1793158781392,"event":"console","text":"[21:39:41] COF/FENCE manager_test_33 time=19.395"}
+{"wall":1793158781392,"event":"command-end","token":"manager_test_33"}
+{"wall":1793158781493,"event":"command-start","token":"manager_test_34","text":"cof_kinematics mm_actor"}
+{"wall":1793158781495,"event":"command-enqueued","token":"manager_test_34"}
+{"wall":1793158781510,"event":"console","text":"[21:39:41] COF/FENCE manager_test_34 time=19.511"}
+{"wall":1793158781510,"event":"command-end","token":"manager_test_34"}
+{"wall":1793158781610,"event":"command-start","token":"manager_test_35","text":"cof_kinematics mm_actor"}
+{"wall":1793158781612,"event":"command-enqueued","token":"manager_test_35"}
+{"wall":1793158781625,"event":"console","text":"[21:39:41] COF/FENCE manager_test_35 time=19.634"}
+{"wall":1793158781626,"event":"command-end","token":"manager_test_35"}
+{"wall":1793158781726,"event":"command-start","token":"manager_test_36","text":"cof_kinematics mm_actor"}
+{"wall":1793158781728,"event":"command-enqueued","token":"manager_test_36"}
+{"wall":1793158781742,"event":"console","text":"[21:39:41] COF/FENCE manager_test_36 time=19.745"}
+{"wall":1793158781742,"event":"command-end","token":"manager_test_36"}
+{"wall":1793158781906,"event":"command-start","token":"manager_test_37","text":"cof_spawn multi_manager mm_threads\ncof_setkey mm_threads spawnflags \"1\"\ncof_spawn subtitle_main mm_threads_sub0\ncof_setkey mm_threads_sub0 linenumber \"5201\"\ncof_setkey mm_threads mm_threads_sub0 \"0\"\ncof_spawn subtitle_main mm_threads_sub1\ncof_setkey mm_threads_sub1 linenumber \"5202\"\ncof_setkey mm_threads mm_threads_sub1 \"3\""}
+{"wall":1793158781909,"event":"command-enqueued","token":"manager_test_37"}
+{"wall":1793158781927,"event":"console","text":"[21:39:41] COF/FENCE manager_test_37 time=19.928"}
+{"wall":1793158781927,"event":"command-end","token":"manager_test_37"}
+{"wall":1793158781927,"event":"command-start","token":"manager_test_38","text":"cof_count multi_manager"}
+{"wall":1793158781928,"event":"command-enqueued","token":"manager_test_38"}
+{"wall":1793158781942,"event":"console","text":"[21:39:41] COF/FENCE manager_test_38 time=19.945"}
+{"wall":1793158781942,"event":"command-end","token":"manager_test_38"}
+{"wall":1793158781942,"event":"command-start","token":"manager_test_39","text":"cof_fire mm_threads\ncof_fire mm_threads"}
+{"wall":1793158781943,"event":"command-enqueued","token":"manager_test_39"}
+{"wall":1793158781959,"event":"console","text":"[21:39:41] COF/FENCE manager_test_39 time=19.961"}
+{"wall":1793158781959,"event":"command-end","token":"manager_test_39"}
+{"wall":1793158781959,"event":"console","text":"[21:39:41] COF/HUD SUB 5201"}
+{"wall":1793158781959,"event":"console","text":"[21:39:41] COF/HUD SUB 5201"}
+{"wall":1793158782060,"event":"command-start","token":"manager_test_40","text":"cof_count multi_manager"}
+{"wall":1793158782066,"event":"command-enqueued","token":"manager_test_40"}
+{"wall":1793158782075,"event":"console","text":"[21:39:42] COF/FENCE manager_test_40 time=20.078"}
+{"wall":1793158782075,"event":"command-end","token":"manager_test_40"}
+{"wall":1793158782075,"event":"command-start","token":"manager_test_41","text":"save manager_threads"}
+{"wall":1793158782077,"event":"command-enqueued","token":"manager_test_41"}
+{"wall":1793158782094,"event":"console","text":"[21:39:42] COF/DIAG manager save id=97 index=6 count=14 next=21.034 time=20.095 think=1 use=0"}
+{"wall":1793158782094,"event":"console","text":"[21:39:42] COF/DIAG manager save id=120 index=7 count=14 next=23.034 time=20.095 think=1 use=0"}
+{"wall":1793158782095,"event":"console","text":"[21:39:42] COF/DIAG manager save id=453 index=8 count=13 next=45.034 time=20.095 think=1 use=0"}
+{"wall":1793158782096,"event":"console","text":"[21:39:42] COF/DIAG manager save id=465 index=6 count=14 next=20.234 time=20.095 think=1 use=0"}
+{"wall":1793158782099,"event":"console","text":"[21:39:42] COF/FENCE manager_test_41 time=20.095"}
+{"wall":1793158782099,"event":"command-end","token":"manager_test_41"}
+{"wall":1793158782109,"event":"load-start","name":"manager_threads"}
+{"wall":1793158782303,"event":"console","text":"[21:39:42] COF/DIAG manager restore id=97 index=6 count=14 next=21.034 time=20.095 callbacks=1"}
+{"wall":1793158782307,"event":"console","text":"[21:39:42] COF/DIAG manager restore id=120 index=7 count=14 next=23.034 time=20.095 callbacks=1"}
+{"wall":1793158782312,"event":"console","text":"[21:39:42] COF/DIAG manager restore id=453 index=8 count=13 next=45.034 time=20.095 callbacks=1"}
+{"wall":1793158782312,"event":"console","text":"[21:39:42] COF/DIAG manager restore id=465 index=6 count=14 next=20.234 time=20.095 callbacks=1"}
+{"wall":1793158782925,"event":"console","text":"[21:39:42] client connected at 0.55 sec"}
+{"wall":1793158783011,"event":"console","text":"[21:39:43] COF/DIAG manager target-begin id=465 index=6 target=lydene3 time=20.234"}
+{"wall":1793158783011,"event":"console","text":"[21:39:43] COF/DIAG manager target-end id=465 index=6 seconds=0.00100136"}
+{"wall":1793158783019,"event":"command-start","token":"manager_test_42","text":"r_norefresh 1\ncof_unfreeze !player"}
+{"wall":1793158783033,"event":"command-enqueued","token":"manager_test_42"}
+{"wall":1793158783034,"event":"console","text":"[21:39:43] COF/FENCE manager_test_42 time=20.226"}
+{"wall":1793158783034,"event":"command-end","token":"manager_test_42"}
+{"wall":1793158783034,"event":"load-end","name":"manager_threads"}
+{"wall":1793158783809,"event":"console","text":"[21:39:43] COF/DIAG manager target-begin id=97 index=6 target=kamera8 time=21.034"}
+{"wall":1793158783809,"event":"console","text":"[21:39:43] COF/DIAG manager target-end id=97 index=6 seconds=0.000999451"}
+{"wall":1793158784959,"event":"console","text":"[21:39:44] COF/DIAG manager target-begin id=465 index=7 target=lydene4 time=22.184"}
+{"wall":1793158784959,"event":"console","text":"[21:39:44] COF/DIAG manager target-end id=465 index=7 seconds=0.000999451"}
+{"wall":1793158785741,"event":"console","text":"[21:39:45] COF/HUD SUB 5202"}
+{"wall":1793158785741,"event":"console","text":"[21:39:45] COF/HUD SUB 5202"}
+{"wall":1793158785808,"event":"console","text":"[21:39:45] COF/DIAG manager target-begin id=97 index=7 target=kamera2 time=23.034"}
+{"wall":1793158785809,"event":"console","text":"[21:39:45] COF/DIAG manager target-end id=97 index=7 seconds=0.000999451"}
+{"wall":1793158785810,"event":"console","text":"[21:39:45] COF/DIAG manager target-begin id=120 index=7 target=subch1 time=23.034"}
+{"wall":1793158785810,"event":"console","text":"[21:39:45] COF/HUD SUB 10"}
+{"wall":1793158785810,"event":"console","text":"[21:39:45] COF/DIAG manager target-end id=120 index=7 seconds=0.000999451"}
+{"wall":1793158785810,"event":"console","text":"[21:39:45] COF/DIAG manager target-begin id=120 index=8 target=subtitles2 time=23.034"}
+{"wall":1793158785811,"event":"console","text":"[21:39:45] COF/DIAG manager target-end id=120 index=8 seconds=0"}
+{"wall":1793158785811,"event":"console","text":"[21:39:45] COF/DIAG manager target-begin id=465 index=8 target=lydene5 time=23.034"}
+{"wall":1793158785812,"event":"console","text":"[21:39:45] COF/DIAG manager target-end id=465 index=8 seconds=0.000999451"}
+{"wall":1793158785840,"event":"command-start","token":"manager_test_43","text":"cof_count multi_manager"}
+{"wall":1793158785844,"event":"command-enqueued","token":"manager_test_43"}
+{"wall":1793158785859,"event":"console","text":"[21:39:45] COF/FENCE manager_test_43 time=23.069"}
+{"wall":1793158785859,"event":"command-end","token":"manager_test_43"}
+{"wall":1793158785859,"event":"command-start","token":"manager_test_44","text":"cof_fire mm_threads"}
+{"wall":1793158785860,"event":"command-enqueued","token":"manager_test_44"}
+{"wall":1793158785885,"event":"console","text":"[21:39:45] COF/FENCE manager_test_44 time=23.077"}
+{"wall":1793158785885,"event":"command-end","token":"manager_test_44"}
+{"wall":1793158785885,"event":"console","text":"[21:39:45] COF/HUD SUB 5201"}
+{"wall":1793158788812,"event":"console","text":"[21:39:48] COF/DIAG manager target-begin id=97 index=8 target=kamera9 time=26.034"}
+{"wall":1793158788813,"event":"console","text":"[21:39:48] COF/DIAG manager target-end id=97 index=8 seconds=0.000999451"}
+{"wall":1793158788858,"event":"console","text":"[21:39:48] COF/HUD SUB 5202"}
+{"wall":1793158788894,"event":"command-start","token":"manager_test_45","text":"cof_count multi_manager"}
+{"wall":1793158788906,"event":"command-enqueued","token":"manager_test_45"}
+{"wall":1793158788909,"event":"console","text":"[21:39:48] COF/FENCE manager_test_45 time=26.109"}
+{"wall":1793158788910,"event":"command-end","token":"manager_test_45"}

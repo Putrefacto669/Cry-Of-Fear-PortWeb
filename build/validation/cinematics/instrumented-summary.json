@@ -1,0 +1,40 @@
+{
+  "commands": 45,
+  "slowest_commands": [
+    {
+      "ms": 21809,
+      "command": "cof_fire mm_threads"
+    },
+    {
+      "ms": 16154,
+      "command": "cof_count multi_manager"
+    },
+    {
+      "ms": 391,
+      "command": "sv_cheats 1\nr_norefresh 1\npausable 0\ncof_unfreeze !player\ncof_setkey !player movetype 8"
+    },
+    {
+      "ms": 249,
+      "command": "save manager_idle"
+    },
+    {
+      "ms": 72,
+      "command": "cof_spawn info_target mm_actor\ncof_setkey mm_actor origin \"10 20 30\"\ncof_spawn motion_manager mm_locus_motion\ncof_setkey mm_locus_motion target \"*locus\"\ncof_setkey mm_locus_motion m_iszPosition \"111 222 333\"\ncof_spawn multi_manager mm_locus\ncof_setkey mm_locus mm_locus_motion \"2\"\ncof_fire mm_locus mm_actor"
+    },
+    {
+      "ms": 58,
+      "command": "cof_fire slower_cam2_mm"
+    }
+  ],
+  "max_callback_seconds": 0.0189972,
+  "callbacks": 24,
+  "max_event_loop_gap_ms": 31826.3,
+  "saved_states": 20,
+  "restored_states": 20,
+  "restore_ids": [
+    "120",
+    "453",
+    "465",
+    "97"
+  ]
+}

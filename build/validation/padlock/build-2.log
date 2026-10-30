@@ -1,0 +1,127 @@
+Build commands will be stored in ../../build/game/compile_commands.json
+Waf: Entering directory `/root/cof-audits/audit-D3Kl5uly/build/game'
+[ 48/253] Compiling dlls/multiplay_gamerules.cpp
+[ 59/253] Compiling dlls/mp5.cpp
+[ 65/253] Compiling game_shared/voice_gamemgr.cpp
+[ 69/253] Compiling ../cof-logic/cof/stairs.cpp
+[ 78/253] Compiling dlls/func_tank.cpp
+[ 84/253] Compiling dlls/maprules.cpp
+[ 89/253] Compiling ../cof-logic/cof/envpos.cpp
+[ 94/253] Compiling ../cof-logic/cof/effects_cof.cpp
+[101/253] Compiling dlls/h_cycler.cpp
+[117/253] Compiling ../cof-logic/cof/doors.cpp
+[133/253] Compiling dlls/weapons.cpp
+[136/253] Compiling dlls/util.cpp
+[137/253] Compiling dlls/healthkit.cpp
+[138/253] Compiling dlls/airtank.cpp
+[159/253] Compiling dlls/client.cpp
+[165/253] Compiling dlls/gauss.cpp
+[194/253] Compiling dlls/player.cpp
+[210/253] Compiling dlls/observer.cpp
+[211/253] Compiling dlls/egon.cpp
+[212/253] Compiling dlls/python.cpp
+[213/253] Compiling dlls/glock.cpp
+[214/253] Compiling ../cof-logic/cof/puzzles.cpp
+[215/253] Compiling dlls/hornetgun.cpp
+[216/253] Compiling dlls/rpg.cpp
+[217/253] Compiling dlls/satchel.cpp
+[218/253] Compiling dlls/world.cpp
+[219/253] Compiling dlls/crossbow.cpp
+[220/253] Compiling dlls/shotgun.cpp
+[221/253] Compiling dlls/gamerules.cpp
+[222/253] Compiling ../cof-logic/cof/sound_trigger.cpp
+[223/253] Compiling dlls/items.cpp
+[224/253] Compiling dlls/singleplay_gamerules.cpp
+[225/253] Compiling dlls/crowbar.cpp
+[226/253] Compiling ../cof-logic/cof/hud.cpp
+[227/253] Compiling dlls/sound.cpp
+[228/253] Compiling dlls/handgrenade.cpp
+[229/253] Compiling ../cof-logic/cof/weapons_cof.cpp
+[230/253] Compiling ../cof-logic/cof/padlock.cpp
+[231/253] Compiling dlls/squeakgrenade.cpp
+[232/253] Compiling dlls/teamplay_gamerules.cpp
+[233/253] Compiling ../cof-logic/cof/player_cof.cpp
+[234/253] Compiling dlls/triggers.cpp
+[235/253] Compiling dlls/tripmine.cpp
+[236/253] Compiling cl_dll/hl/hl_baseentity.cpp
+[237/253] Compiling dlls/handgrenade.cpp
+[238/253] Compiling dlls/crowbar.cpp
+[239/253] Compiling dlls/mp5.cpp
+[240/253] Compiling dlls/squeakgrenade.cpp
+[241/253] Compiling dlls/satchel.cpp
+[242/253] Compiling dlls/glock.cpp
+[243/253] Compiling dlls/egon.cpp
+[244/253] Compiling dlls/hornetgun.cpp
+[245/253] Compiling dlls/shotgun.cpp
+[246/253] Compiling dlls/gauss.cpp
+[247/253] Compiling dlls/tripmine.cpp
+../../game/hlsdk-portable/dlls/shotgun.cpp:176:3: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  176 |                 m_flPumpTime = gpGlobals->time + 0.5f;
+      |                 ^
+../../game/hlsdk-portable/dlls/shotgun.cpp:171:2: note: previous statement is here
+  171 |         if( !m_iClip && m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 )
+      |         ^
+../../game/hlsdk-portable/dlls/shotgun.cpp:247:3: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  247 |                 m_flPumpTime = gpGlobals->time + 0.95f;
+      |                 ^
+../../game/hlsdk-portable/dlls/shotgun.cpp:242:2: note: previous statement is here
+  242 |         if( !m_iClip && m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 )
+      |         ^
+2 warnings generated.
+
+[248/253] Compiling dlls/python.cpp
+[249/253] Compiling dlls/crossbow.cpp
+[250/253] Compiling cl_dll/hl/hl_weapons.cpp
+[251/253] Compiling dlls/rpg.cpp
+../../game/hlsdk-portable/dlls/client.cpp:1192:10: warning: first argument in call to 'memset' is a pointer to non-trivially copyable type 'struct entity_state_s' [-Wnontrivial-memcall]
+ 1192 |         memset( state, 0, sizeof(*state) );
+      |                 ^
+../../game/hlsdk-portable/dlls/client.cpp:1192:10: note: explicitly cast the pointer to silence this warning
+ 1192 |         memset( state, 0, sizeof(*state) );
+      |                 ^
+      |                 (void*)
+1 warning generated.
+
+../../game/hlsdk-portable/dlls/shotgun.cpp:176:3: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  176 |                 m_flPumpTime = gpGlobals->time + 0.5f;
+      |                 ^
+../../game/hlsdk-portable/dlls/shotgun.cpp:171:2: note: previous statement is here
+  171 |         if( !m_iClip && m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 )
+      |         ^
+../../game/hlsdk-portable/dlls/shotgun.cpp:247:3: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  247 |                 m_flPumpTime = gpGlobals->time + 0.95f;
+      |                 ^
+../../game/hlsdk-portable/dlls/shotgun.cpp:242:2: note: previous statement is here
+  242 |         if( !m_iClip && m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 )
+      |         ^
+2 warnings generated.
+
+../../game/hlsdk-portable/cl_dll/hl/hl_weapons.cpp:114:10: warning: first argument in call to 'memset' is a pointer to non-trivially copyable type 'entvars_t' (aka 'entvars_s') [-Wnontrivial-memcall]
+  114 |         memset( &ev[num_ents], 0, sizeof(entvars_t) );
+      |                 ^
+../../game/hlsdk-portable/cl_dll/hl/hl_weapons.cpp:114:10: note: explicitly cast the pointer to silence this warning
+  114 |         memset( &ev[num_ents], 0, sizeof(entvars_t) );
+      |                 ^
+      |                 (void*)
+../../game/hlsdk-portable/cl_dll/hl/hl_weapons.cpp:489:10: warning: first argument in call to 'memset' is a pointer to non-trivially copyable type 'TraceResult' [-Wnontrivial-memcall]
+  489 |         memset( ptr, 0, sizeof(*ptr) );
+      |                 ^
+../../game/hlsdk-portable/cl_dll/hl/hl_weapons.cpp:489:10: note: explicitly cast the pointer to silence this warning
+  489 |         memset( ptr, 0, sizeof(*ptr) );
+      |                 ^
+      |                 (void*)
+2 warnings generated.
+
+[252/253] Linking ../../build/game/cl_dll/client_emscripten_wasm32.wasm
+../../game/hlsdk-portable/dlls/triggers.cpp:461:18: warning: first argument in call to 'memcpy' is a pointer to non-trivially copyable type 'entvars_t' (aka 'entvars_s') [-Wnontrivial-memcall]
+  461 |         memcpy( pMulti->pev, pev, sizeof(*pev) );
+      |                         ^
+../../game/hlsdk-portable/dlls/triggers.cpp:461:18: note: explicitly cast the pointer to silence this warning
+  461 |         memcpy( pMulti->pev, pev, sizeof(*pev) );
+      |                         ^
+      |                 (void*)
+1 warning generated.
+
+[253/253] Linking ../../build/game/dlls/hl_emscripten_wasm32.wasm
+Waf: Leaving directory `/root/cof-audits/audit-D3Kl5uly/build/game'
+'build' finished successfully (3.602s)

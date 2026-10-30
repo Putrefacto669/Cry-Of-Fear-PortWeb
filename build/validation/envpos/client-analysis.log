@@ -1,0 +1,208 @@
+INFO  Using log config file: jar:file:/C:/Users/josue/cof-re-tools/ghidra_12.2_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\application.log (LoggingInitialization)  
+INFO  Loading user preferences: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (957 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (DefaultSSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: SHA1PRNG (SecureRandomFactory)  
+INFO  Loaded 53 trusted CA certificates from the OS trust store. (DefaultTrustManagerFactory)  
+INFO  Loaded 118 trusted CA certificates from the Java default trust store. (DefaultTrustManagerFactory)  
+INFO  Headless startup complete (3561 ms) (AnalyzeHeadless)  
+INFO  Class searcher loaded 60 extension points (19 false positives) (ClassSearcher)  
+INFO  HEADLESS Script Paths:
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\MicrosoftCodeAnalyzer\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Processors\JVM\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\PDB\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\Decompiler\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\BSim\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\PyGhidra\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Processors\DATA\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\BytePatterns\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\WildcardAssembler\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\Base\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\FileFormats\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\VersionTracking\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Debug\Debugger\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Debug\Debugger-rmi-trace\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\GnuDemangler\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\FunctionID\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\SystemEmulation\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\DecompilerDependent\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\Swift\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Processors\8051\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Processors\Atmel\ghidra_scripts
+    C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web\build\entity-analysis
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Processors\PIC\ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+INFO  Creating project: C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web\build\envpos-client-analysis\envpos_client (HeadlessAnalyzer)  
+INFO  Creating project: C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web\build\envpos-client-analysis\envpos_client (DefaultProject)  
+INFO  REPORT: Processing input files:  (HeadlessAnalyzer)  
+INFO       project: C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web\build\envpos-client-analysis\envpos_client (HeadlessAnalyzer)  
+INFO  IMPORTING: file:///C:/Users/josue/cof-re-tools/client.dll (HeadlessAnalyzer)  
+INFO  Using Loader: Portable Executable (PE) (ProgramLoader)  
+INFO  Using Language/Compiler: x86:LE:32:default:windows (ProgramLoader)  
+INFO  Using Library Search Path: [., C:\WINDOWS\SysWOW64, C:\Users\josue\cof-re-tools\jdk-25.0.4.1+1\bin, C:\WINDOWS\Sun\Java\bin, C:\WINDOWS\system32, C:\WINDOWS, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\powershell, C:\Users\josue\.codex\tmp\arg0-windows\codex-arg01qMcN0, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\libheif\libheif\bin, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\jxrlib\jxrlib\bin, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\poppler\Library\bin, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\bin\override, C:\Program Files\Microsoft\jdk-21.0.11.10-hotspot\bin, C:\Program Files (x86)\Common Files\Oracle\Java\java8path, C:\Program Files (x86)\Common Files\Oracle\Java\javapath, C:\WINDOWS\System32\Wbem, C:\WINDOWS\System32\WindowsPowerShell\v1.0\, C:\WINDOWS\System32\OpenSSH\, C:\Program Files (x86)\Microsoft SQL Server\160\Tools\Binn\, C:\Program Files\Microsoft SQL Server\160\Tools\Binn\, C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\, C:\Program Files\Microsoft SQL Server\160\DTS\Binn\, C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR, C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common, C:\Program Files\Microsoft SQL Server\150\Tools\Binn\, C:\Program Files\dotnet\, C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\, C:\Program Files\nodejs\, C:\Program Files\Git\cmd, C:\Program Files\GitHub CLI\, C:\xampp\php, C:\Users\josue\.cargo\bin, C:\Ruby40-x64\bin, C:\Users\josue\AppData\Local\Microsoft\WindowsApps, C:\Users\josue\AppData\Local\Programs\Microsoft VS Code\bin, C:\Users\josue\.dotnet\tools, C:\Users\josue\AppData\Roaming\npm, C:\Users\josue\AppData\Local\Programs\Antigravity IDE\bin, C:\Users\josue\AppData\Local\Microsoft\WinGet\Packages\hpjansson.Chafa_Microsoft.Winget.Source_8wekyb3d8bbwe\chafa-1.18.2-1-x86_64-win, C:\Users\josue\AppData\Local\Programs\Ollama, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\bin\fallback, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\git\cmd, C:\Users\josue\AppData\Local\OpenAI\Codex\bin\593bad775a30e636, C:\Users\josue\AppData\Local\OpenAI\Codex\bin\08d187884f2330d1] (ProgramLoader)  
+INFO  TLS callbacks at 1013ac70 (TLSDirectory)  
+WARN  Invalid or missing function at 100dcd7c (ExportDataDirectory)  
+WARN  Invalid or missing function at 52e820e8 (ExportDataDirectory)  
+INFO  Additional info:
+Loading file:///C:/Users/josue/cof-re-tools/client.dll?MD5=fed5406e73905bd19737c97097c92704...
+------------------------------------------------
+
+Searching 43 paths for library ADVAPI32.DLL...
+Loading file:///C:/Windows/SysWOW64/advapi32.dll?MD5=6f319acb447453b1365b3c508cf6b344...
+Using existing exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\advapi32.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 43 paths for library CG.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 43 paths for library CGGL.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 43 paths for library DEVIL.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 43 paths for library ID3LIB.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 43 paths for library IRRKLANG.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 43 paths for library KERNEL32.DLL...
+Loading file:///C:/Windows/SysWOW64/kernel32.dll?MD5=770414a520903821a02bbcad3ca69fcc...
+Using existing exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\kernel32.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 43 paths for library OPENGL32.DLL...
+Loading file:///C:/Windows/SysWOW64/opengl32.dll?MD5=f3a27cd315c876cd7e0d1940bbfcae2d...
+Using existing exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\opengl32.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 43 paths for library STEAM_API.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 43 paths for library USER32.DLL...
+Loading file:///C:/Windows/SysWOW64/user32.dll?MD5=a87613d5a9420564cc848130252fed2b...
+[user32.dll]: failed to create WEVTResource at 100fba70: Failed to resolve data length for WEVTResource
+Using existing exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\user32.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 43 paths for library VGUI.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 43 paths for library WINMM.DLL...
+Loading file:///C:/Windows/SysWOW64/winmm.dll?MD5=75d3005314fd1d51e05457c52583792f...
+[winmm.dll]: failed to create WEVTResource at 1002c310: Failed to resolve data length for WEVTResource
+Using existing exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\winmm.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 43 paths for library WSOCK32.DLL...
+Loading file:///C:/Windows/SysWOW64/wsock32.dll?MD5=37f04524570f79e3a206d307af4a0e92...
+Using existing exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\wsock32.exports
+Library not saved to project.
+------------------------------------------------
+
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\winmm.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\wsock32.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\opengl32.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\kernel32.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\user32.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\advapi32.exports
+Linking the External Programs of 'client.dll' to imported libraries...
+  [WINMM.DLL] -> not found in project
+  [VGUI.DLL] -> not found in project
+  [WSOCK32.DLL] -> not found in project
+  [OPENGL32.DLL] -> not found in project
+  [STEAM_API.DLL] -> not found in project
+  [KERNEL32.DLL] -> not found in project
+  [USER32.DLL] -> not found in project
+  [ADVAPI32.DLL] -> not found in project
+  [ID3LIB.DLL] -> not found in project
+  [CG.DLL] -> not found in project
+  [CGGL.DLL] -> not found in project
+  [IRRKLANG.DLL] -> not found in project
+  [DEVIL.DLL] -> not found in project
+------------------------------------------------
+
+ (ProgramLoader)  
+INFO  IMPORTING: Loaded 0 additional files (HeadlessAnalyzer)  
+INFO  ANALYZING all memory and code: file:///C:/Users/josue/cof-re-tools/client.dll (HeadlessAnalyzer)  
+WARN  Ignoring leading '_' chars on no-return name '___raise_securityfailure' specified in file: C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\Base\data\PEFunctionsThatDoNotReturn (NoReturnFunctionAnalyzer)  
+WARN  Ignoring leading '_' chars on no-return name '___report_rangecheckfailure' specified in file: C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\Base\data\PEFunctionsThatDoNotReturn (NoReturnFunctionAnalyzer)  
+INFO  Unable to find DWARF information, skipping DWARF analysis (DWARFAnalyzer)  
+INFO  Skipping PDB processing: failed to locate PDB file in configured locations (PdbUniversalAnalyzer)  
+INFO  Use a script to set the PDB file location. I.e.,
+    PdbAnalyzer.setPdbFileOption(currentProgram, new File("/path/to/pdb/file.pdb")); or
+    PdbUniversalAnalyzer.setPdbFileOption(currentProgram, new File("/path/to/pdb/file.pdb"));
+Or set the symbol server search configuration using:    PdbPlugin.saveSymbolServerServiceConfig(...);
+ This must be done using a pre-script (prior to analysis). (PdbUniversalAnalyzer)  
+INFO  Packed database cache: C:\Users\josue\AppData\Local\ghidra\packed-db-cache (PackedDatabaseCache)  
+WARN  Invalid symbol name: "std::basic_string<char,std::char_traits<char>,std::allocator<char> >::_Eos" at 100b7d57 (SymbolUtilities)  
+WARN  Invalid symbol name: "std::basic_string<char,std::char_traits<char>,std::allocator<char> >::_Tidy_deallocate" at 100ba042 (SymbolUtilities)  
+INFO  Applied data type archive: windows_vs12_32 (ApplyDataArchiveAnalyzer)  
+INFO  Applied data type archive: windows_vs12_32 (ApplyDataArchiveAnalyzer)  
+INFO  -----------------------------------------------------
+    ASCII Strings                              0.928 secs
+    Apply Data Archives                        0.337 secs
+    Call Convention ID                         0.508 secs
+    Call-Fixup Installer                       0.329 secs
+    Create Address Tables                      0.594 secs
+    Create Address Tables - One Time           1.094 secs
+    Create Function                            3.867 secs
+    DWARF                                      0.003 secs
+    Data Reference                             2.302 secs
+    Decompiler Switch Analysis                27.347 secs
+    Demangler Microsoft                        1.953 secs
+    Disassemble                                6.542 secs
+    Disassemble Entry Points                   3.986 secs
+    Disassemble Entry Points - One Time        0.002 secs
+    Embedded Media                             0.024 secs
+    External Entry References                  0.006 secs
+    Function ID                                8.240 secs
+    Function Start Pre Search                  0.044 secs
+    Function Start Search                      2.501 secs
+    Function Start Search After Code           0.417 secs
+    Function Start Search After Data           0.713 secs
+    Non-Returning Functions - Discovered       2.692 secs
+    Non-Returning Functions - Known            0.038 secs
+    PDB Universal                              0.022 secs
+    Reference                                  2.200 secs
+    Scalar Operand References                  4.937 secs
+    Shared Return Calls                        2.255 secs
+    Source Language Support                    0.017 secs
+    Stack                                     18.161 secs
+    Subroutine References                      1.179 secs
+    Subroutine References - One Time           0.017 secs
+    Variadic Function Signature Override       5.988 secs
+    Windows x86 PE Exception Handling          5.874 secs
+    Windows x86 PE RTTI Analyzer              13.039 secs
+    Windows x86 Thread Environment Block (TEB) Analyzer     0.133 secs
+    WindowsResourceReference                   1.162 secs
+    X86 Function Callee Purge                  1.281 secs
+    x86 Constant Reference Analyzer           13.757 secs
+-----------------------------------------------------
+     Total Time   134 secs
+-----------------------------------------------------
+ (AutoAnalysisManager)  
+INFO  REPORT: Analysis succeeded for file: file:///C:/Users/josue/cof-re-tools/client.dll (HeadlessAnalyzer)  
+INFO  REPORT: Execute script: DumpEnvposRefs.java 'C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web\build\validation\envpos\client-refs.txt'  (HeadlessAnalyzer)  
+INFO  SCRIPT: C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web\build\entity-analysis\DumpEnvposRefs.java (HeadlessAnalyzer)  
+INFO  ANALYZING changes made by post scripts: file:///C:/Users/josue/cof-re-tools/client.dll (HeadlessAnalyzer)  
+INFO  REPORT: Post-analysis succeeded for file: file:///C:/Users/josue/cof-re-tools/client.dll (HeadlessAnalyzer)  
+INFO  /client.dll: file created (josue) (LocalFileSystem)  
+INFO  REPORT: Save succeeded for: /client.dll (envpos_client:/client.dll) (HeadlessAnalyzer)  
+INFO  REPORT: Import succeeded (HeadlessAnalyzer)  

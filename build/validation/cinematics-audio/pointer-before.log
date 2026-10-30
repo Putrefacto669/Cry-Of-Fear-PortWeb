@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: an already locked request must not be retried
+
+2 !== 1
+
+    at file:///mnt/c/Users/josue/OneDrive/Desktop/Cry%20Of%20Fear%20Web%20Alpha%20Version/Cry-Of-Fear-Port-Web/tools/e2e/pointer_lock.mjs:36:10 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 2,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

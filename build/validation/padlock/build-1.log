@@ -1,0 +1,143 @@
+Setting top to                                               : /root/cof-audits/audit-D3Kl5uly/game/hlsdk-portable 
+Setting out to                                               : /root/cof-audits/audit-D3Kl5uly/build/game 
+Build type                                                   : humanrights 
+LTO build                                                    : no 
+PolyOpt build                                                : no 
+OpenMP build                                                 : no 
+Generate profile                                             : no 
+Use profile                                                  : not found 
+Checking for program 'emcc'                                  : emcc 
+Checking for program 'emar'                                  : emar 
+Checking for program 'ar'                                    : emar 
+Checking for program 'em++'                                  : em++ 
+Checking for 'gcc' (C compiler)                              : not found 
+Checking for 'clang' (C compiler)                            : emcc 
+Target OS                                                    : emscripten 
+Target CPU                                                   : wasm 
+Target binfmt                                                : elf 
+Checking for 'g++' (C++ compiler)                            : not found 
+Checking for 'clang++' (C++ compiler)                        : em++ 
+Target OS                                                    : emscripten 
+Target CPU                                                   : wasm 
+Target binfmt                                                : elf 
+Checking for c flags '-MMD'                                  : yes 
+Checking for cxx flags '-MMD'                                : yes 
+Checking for program 'strip'                                 : emstrip 
+Checking for program 'objcopy'                               : llvm-objcopy 
+Couldn't find objcopy, --strip-to-file will be unavailable!
+Checking if 'clang' generates 32-bit code                    : yes 
+Checking for strlcpy                                         : yes 
+Checking for strlcat                                         : yes 
+Checking for required C flags                                : yes 
+Checking for required C++ flags                              : yes 
+Checking supported flags for clang in parallel               : started 
+... -Werror=write-strings                                    : yes 
+... -Werror=bool-operation                                   : yes 
+... -Werror=cast-align=strict                                : no 
+... -Werror=int-conversion                                   : yes 
+... -Werror=parentheses                                      : yes 
+... -Werror=use-after-free=3                                 : no 
+... -Werror=string-compare                                   : yes 
+... -Werror=implicit-fallthrough=2                           : no 
+... -Werror=enum-conversion                                  : yes 
+... -Wmisleading-indentation                                 : yes 
+... -Werror=sizeof-pointer-memaccess                         : yes 
+... -Werror=tautological-compare                             : yes 
+... -fdiagnostics-color=always                               : yes 
+... -Werror=bool-compare                                     : no 
+... -fnonconst-initializers                                  : no 
+... -Werror=packed                                           : yes 
+... -Werror=sizeof-pointer-div                               : yes 
+... -Werror=implicit-int                                     : yes 
+... -Werror=packed-not-aligned                               : no 
+... -Werror=sequence-point                                   : yes 
+... -Wunintialized                                           : no 
+... -Werror=jump-misses-init                                 : yes 
+... -Winit-self                                              : yes 
+... -Werror=sizeof-array-div                                 : yes 
+... -Werror=implicit-function-declaration                    : yes 
+... -Werror=duplicated-cond                                  : no 
+... -Werror=incompatible-pointer-types                       : yes 
+... -Werror=return-type                                      : yes 
+... -Werror=vla                                              : yes 
+-> processing test results                                   : 8 test failed 
+Checking supported flags for clang++ in parallel             : started 
+... -Werror=bool-operation                                   : yes 
+... -Werror=duplicated-cond                                  : no 
+... -Winit-self                                              : yes 
+... -fdiagnostics-color=always                               : yes 
+... -Werror=packed                                           : yes 
+... -Werror=parentheses                                      : yes 
+... -Wmisleading-indentation                                 : yes 
+... -Wunintialized                                           : no 
+... -Werror=sequence-point                                   : yes 
+... -Werror=use-after-free=3                                 : no 
+... -Werror=string-compare                                   : yes 
+... -Werror=vla                                              : yes 
+... -Werror=sizeof-pointer-memaccess                         : yes 
+... -Werror=write-strings                                    : yes 
+... -Werror=cast-align=strict                                : no 
+... -Werror=tautological-compare                             : yes 
+... -Werror=packed-not-aligned                               : no 
+... -Werror=implicit-fallthrough=2                           : no 
+... -Werror=sizeof-array-div                                 : yes 
+... -Werror=sizeof-pointer-div                               : yes 
+... -Werror=bool-compare                                     : no 
+... -Werror=return-type                                      : yes 
+-> processing test results                                   : 7 test failed 
+Checking for library m                                       : yes 
+Checking for header tgmath.h                                 : yes 
+Checking if tgmath.h is usable                               : yes 
+-> processing mod options                                    : ... 
+* Barnacle tongue length fix                                 : OFF 
+* Client local weapons prediction                            : ON 
+* Crowbar idle animation                                     : OFF 
+* Crowbar attack delay fix                                   : OFF 
+* Rapid crowbar fix                                          : ON 
+* Gauss overcharge fix                                       : OFF 
+* Fix of tripmine beam duplication on level transition       : OFF 
+* Handgrenade deploy animation fix after finishing a throw   : OFF 
+* Animation times fix for some weapons                       : OFF 
+* Old pre-HL 25th satchel's behaviour                        : OFF 
+* Speakable cycler and func_button (breaks AMXModX offsets)  : ON 
+* Enable hud_allow_hd cvar by default (breaks HUD in some mods) : ON 
+* OEM Build                                                     : OFF 
+* Demo Build                                                    : OFF 
+* Gamedir path                                                  : valve 
+* Where to put server dll                                       : dlls 
+* Where to put client or menu dll                               : cl_dlls 
+* Default server dll name                                       : hl 
+Determining library postfix                                     : started 
+-> processing test results                                      : _emscripten_wasm32 
+--> game_shared                                                 : in progress 
+Checking for program 'git'                                      : /usr/bin/git 
+Git commit hash                                                 : 8a09758d-dirty 
+Git branch                                                      : master 
+<-- game_shared                                                 : done 
+--> dlls                                                        : in progress 
+<-- dlls                                                        : done 
+--> freevgui                                                    : in progress 
+Checking if 'clang++' supports C++11                            : yes 
+<-- freevgui                                                    : done 
+--> cl_dll                                                      : in progress 
+<-- cl_dll                                                      : done 
+'configure' finished successfully (29.574s)
+Build commands will be stored in ../../build/game/compile_commands.json
+Waf: Entering directory `/root/cof-audits/audit-D3Kl5uly/build/game'
+[ 57/253] Compiling ../cof-logic/cof/weapons_cof.cpp
+[ 66/253] Compiling ../cof-logic/cof/puzzles.cpp
+[ 72/253] Compiling ../cof-logic/cof/player_cof.cpp
+[ 75/253] Compiling ../cof-logic/cof/padlock.cpp
+[ 82/253] Compiling ../cof-logic/cof/monsters.cpp
+[ 89/253] Compiling ../cof-logic/cof/hud.cpp
+[ 94/253] Compiling ../cof-logic/cof/effects_cof.cpp
+[ 98/253] Compiling ../cof-logic/cof/atmosphere.cpp
+[104/253] Compiling ../cof-logic/cof/bossbar.cpp
+[108/253] Compiling ../cof-logic/cof/doors.cpp
+[128/253] Compiling ../cof-logic/cof/checkbrush.cpp
+[156/253] Compiling dlls/player.cpp
+[237/253] Compiling ../cof-logic/client/cof_client.cpp
+[252/253] Linking ../../build/game/cl_dll/client_emscripten_wasm32.wasm
+[253/253] Linking ../../build/game/dlls/hl_emscripten_wasm32.wasm
+Waf: Leaving directory `/root/cof-audits/audit-D3Kl5uly/build/game'
+'build' finished successfully (3.214s)

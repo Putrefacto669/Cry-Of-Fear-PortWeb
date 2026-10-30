@@ -1,0 +1,2086 @@
+[22:36:57] Console initialized.
+[22:36:57] FS_LoadProgs: filesystem_stdio successfully loaded
+[22:36:57] /rwdir is working directory now
+[22:36:57] Error: game directory "cryoffear" not exist
+[22:36:57] Adding directory: /rodir/
+[22:36:57] Adding directory: ./
+[22:36:57] Program args: ./this.program -game cryoffear -rodir /rodir -ref gles3compat -dll /lib/server.wasm -clientlib /lib/client.wasm -menulib /lib/menu.wasm -windowed -dev 1 -log +exec cof_web.cfg +map c_start 
+[22:36:57] Developer level: 1
+[22:36:57] execing cryoffear/vfs.cfg
+[22:36:57] FS_AddGameHierarchy( valve )
+[22:36:57] Adding directory: /rodir/valve/
+[22:36:57] Adding directory: valve/
+[22:36:57] FS_AddGameHierarchy( cryoffear )
+[22:36:57] Adding directory: /rodir/cryoffear/
+[22:36:57] Adding directory: cryoffear_downloads/
+[22:36:57] Adding directory: cryoffear/
+[22:36:57] Adding directory: cryoffear/custom/
+[22:36:57] Touch_Init()
+[22:36:57] Warning: SV_LoadProgs: couldn't get physics API
+[22:36:57] Dll loaded for game "Half-Life"
+[22:36:57] Error: Delta_ParseField: unable to find field is_donator
+[22:36:57] execing skill.cfg
+[22:36:57] Warning: Unknown command "sk_monster_head4"
+[22:36:57] Warning: Unknown command "sk_monster_chest4"
+[22:36:57] Warning: Unknown command "sk_monster_stomach4"
+[22:36:57] Warning: Unknown command "sk_monster_arm4"
+[22:36:57] Warning: Unknown command "sk_monster_leg4"
+[22:36:57] Warning: Unknown command "sk_player_head4"
+[22:36:57] Warning: Unknown command "sk_player_chest4"
+[22:36:57] Warning: Unknown command "sk_player_stomach4"
+[22:36:57] Warning: Unknown command "sk_player_arm4"
+[22:36:57] Warning: Unknown command "sk_player_leg4"
+[22:36:57] Warning: Unknown command "sk_cof_sledgehammer1"
+[22:36:57] Warning: Unknown command "sk_cof_sledgehammer2"
+[22:36:57] Warning: Unknown command "sk_cof_sledgehammer3"
+[22:36:57] Warning: Unknown command "sk_cof_sledgehammer4"
+[22:36:57] Warning: Unknown command "sk_cof_nightstick1"
+[22:36:57] Warning: Unknown command "sk_cof_nightstick2"
+[22:36:57] Warning: Unknown command "sk_cof_nightstick3"
+[22:36:57] Warning: Unknown command "sk_cof_nightstick4"
+[22:36:57] Warning: Unknown command "sk_cof_2switchblade1"
+[22:36:57] Warning: Unknown command "sk_cof_2switchblade2"
+[22:36:57] Warning: Unknown command "sk_cof_2switchblade3"
+[22:36:57] Warning: Unknown command "sk_cof_2switchblade4"
+[22:36:57] Warning: Unknown command "sk_cof_switchblade1"
+[22:36:57] Warning: Unknown command "sk_cof_switchblade2"
+[22:36:57] Warning: Unknown command "sk_cof_switchblade3"
+[22:36:57] Warning: Unknown command "sk_cof_switchblade4"
+[22:36:57] Warning: Unknown command "sk_cof_punch1"
+[22:36:57] Warning: Unknown command "sk_cof_punch2"
+[22:36:57] Warning: Unknown command "sk_cof_punch3"
+[22:36:57] Warning: Unknown command "sk_cof_punch4"
+[22:36:57] Warning: Unknown command "sk_baby_health1"
+[22:36:57] Warning: Unknown command "sk_baby_health2"
+[22:36:57] Warning: Unknown command "sk_baby_health3"
+[22:36:57] Warning: Unknown command "sk_baby_health4"
+[22:36:57] Warning: Unknown command "sk_baby_damage1"
+[22:36:57] Warning: Unknown command "sk_baby_damage2"
+[22:36:57] Warning: Unknown command "sk_baby_damage3"
+[22:36:57] Warning: Unknown command "sk_baby_damage4"
+[22:36:57] Warning: Unknown command "sk_faster_health1"
+[22:36:57] Warning: Unknown command "sk_faster_health2"
+[22:36:57] Warning: Unknown command "sk_faster_health3"
+[22:36:57] Warning: Unknown command "sk_faster_health4"
+[22:36:57] Warning: Unknown command "sk_faster_dmg_one_slash1"
+[22:36:57] Warning: Unknown command "sk_faster_dmg_one_slash2"
+[22:36:57] Warning: Unknown command "sk_faster_dmg_one_slash3"
+[22:36:57] Warning: Unknown command "sk_faster_dmg_one_slash4"
+[22:36:57] Warning: Unknown command "sk_faster_dmg_both_slash1"
+[22:36:57] Warning: Unknown command "sk_faster_dmg_both_slash2"
+[22:36:57] Warning: Unknown command "sk_faster_dmg_both_slash3"
+[22:36:57] Warning: Unknown command "sk_faster_dmg_both_slash4"
+[22:36:57] Warning: Unknown command "sk_krypande_health1"
+[22:36:57] Warning: Unknown command "sk_krypande_health2"
+[22:36:57] Warning: Unknown command "sk_krypande_health3"
+[22:36:57] Warning: Unknown command "sk_krypande_health4"
+[22:36:57] Warning: Unknown command "sk_krypande_dmg_one_slash1"
+[22:36:57] Warning: Unknown command "sk_krypande_dmg_one_slash2"
+[22:36:57] Warning: Unknown command "sk_krypande_dmg_one_slash3"
+[22:36:57] Warning: Unknown command "sk_krypande_dmg_one_slash4"
+[22:36:57] Warning: Unknown command "sk_syringe_heal1"
+[22:36:57] Warning: Unknown command "sk_syringe_heal2"
+[22:36:57] Warning: Unknown command "sk_syringe_heal3"
+[22:36:57] Warning: Unknown command "sk_syringe_heal4"
+[22:36:57] Warning: Unknown command "sk_chainsawboss_health1"
+[22:36:57] Warning: Unknown command "sk_chainsawboss_health2"
+[22:36:57] Warning: Unknown command "sk_chainsawboss_health3"
+[22:36:57] Warning: Unknown command "sk_chainsawboss_health4"
+[22:36:57] Warning: Unknown command "sk_sewmo_health1"
+[22:36:57] Warning: Unknown command "sk_sewmo_health2"
+[22:36:57] Warning: Unknown command "sk_sewmo_health3"
+[22:36:57] Warning: Unknown command "sk_sewmo_health4"
+[22:36:57] Warning: Unknown command "sk_sewmo_dmg_one_slash1"
+[22:36:57] Warning: Unknown command "sk_sewmo_dmg_one_slash2"
+[22:36:57] Warning: Unknown command "sk_sewmo_dmg_one_slash3"
+[22:36:57] Warning: Unknown command "sk_sewmo_dmg_one_slash4"
+[22:36:57] Warning: Unknown command "sk_sewmo_dmg_both_slash1"
+[22:36:57] Warning: Unknown command "sk_sewmo_dmg_both_slash2"
+[22:36:57] Warning: Unknown command "sk_sewmo_dmg_both_slash3"
+[22:36:57] Warning: Unknown command "sk_sewmo_dmg_both_slash4"
+[22:36:57] Warning: Unknown command "sk_sawrunner_health1"
+[22:36:57] Warning: Unknown command "sk_sawrunner_health2"
+[22:36:57] Warning: Unknown command "sk_sawrunner_health3"
+[22:36:57] Warning: Unknown command "sk_sawrunner_health4"
+[22:36:57] Warning: Unknown command "sk_sawrunner_dmg_one_slash1"
+[22:36:57] Warning: Unknown command "sk_sawrunner_dmg_one_slash2"
+[22:36:57] Warning: Unknown command "sk_sawrunner_dmg_one_slash3"
+[22:36:57] Warning: Unknown command "sk_sawrunner_dmg_one_slash4"
+[22:36:57] Warning: Unknown command "sk_sawrunner_dmg_both_slash1"
+[22:36:57] Warning: Unknown command "sk_sawrunner_dmg_both_slash2"
+[22:36:57] Warning: Unknown command "sk_sawrunner_dmg_both_slash3"
+[22:36:57] Warning: Unknown command "sk_sawrunner_dmg_both_slash4"
+[22:36:57] Warning: Unknown command "sk_zombie_health4"
+[22:36:57] Warning: Unknown command "sk_zombie_dmg_one_slash4"
+[22:36:57] Warning: Unknown command "sk_zombie_dmg_both_slash4"
+[22:36:57] Warning: Unknown command "sk_child_health1"
+[22:36:57] Warning: Unknown command "sk_child_health2"
+[22:36:57] Warning: Unknown command "sk_child_health3"
+[22:36:57] Warning: Unknown command "sk_child_health4"
+[22:36:57] Warning: Unknown command "sk_child_dmg_one_slash1"
+[22:36:57] Warning: Unknown command "sk_child_dmg_one_slash2"
+[22:36:57] Warning: Unknown command "sk_child_dmg_one_slash3"
+[22:36:57] Warning: Unknown command "sk_child_dmg_one_slash4"
+[22:36:57] Warning: Unknown command "sk_child_dmg_both_slash1"
+[22:36:57] Warning: Unknown command "sk_child_dmg_both_slash2"
+[22:36:57] Warning: Unknown command "sk_child_dmg_both_slash3"
+[22:36:57] Warning: Unknown command "sk_child_dmg_both_slash4"
+[22:36:57] Warning: Unknown command "sk_sewerboss_health1"
+[22:36:57] Warning: Unknown command "sk_sewerboss_health2"
+[22:36:57] Warning: Unknown command "sk_sewerboss_health3"
+[22:36:57] Warning: Unknown command "sk_sewerboss_health4"
+[22:36:57] Warning: Unknown command "sk_sewerboss_melee1"
+[22:36:57] Warning: Unknown command "sk_sewerboss_melee2"
+[22:36:57] Warning: Unknown command "sk_sewerboss_melee3"
+[22:36:57] Warning: Unknown command "sk_sewerboss_melee4"
+[22:36:57] Warning: Unknown command "sk_slower3_health1"
+[22:36:57] Warning: Unknown command "sk_slower3_health2"
+[22:36:57] Warning: Unknown command "sk_slower3_health3"
+[22:36:57] Warning: Unknown command "sk_slower3_health4"
+[22:36:57] Warning: Unknown command "sk_slower3_dmg_one_slash1"
+[22:36:57] Warning: Unknown command "sk_slower3_dmg_one_slash2"
+[22:36:57] Warning: Unknown command "sk_slower3_dmg_one_slash3"
+[22:36:57] Warning: Unknown command "sk_slower3_dmg_one_slash4"
+[22:36:57] Warning: Unknown command "sk_slower3_dmg_both_slash1"
+[22:36:57] Warning: Unknown command "sk_slower3_dmg_both_slash2"
+[22:36:57] Warning: Unknown command "sk_slower3_dmg_both_slash3"
+[22:36:57] Warning: Unknown command "sk_slower3_dmg_both_slash4"
+[22:36:57] Warning: Unknown command "sk_flygare_health1"
+[22:36:57] Warning: Unknown command "sk_flygare_health2"
+[22:36:57] Warning: Unknown command "sk_flygare_health3"
+[22:36:57] Warning: Unknown command "sk_flygare_health4"
+[22:36:57] Warning: Unknown command "sk_flygare_acid1"
+[22:36:57] Warning: Unknown command "sk_flygare_acid2"
+[22:36:57] Warning: Unknown command "sk_flygare_acid3"
+[22:36:57] Warning: Unknown command "sk_flygare_acid4"
+[22:36:57] Warning: Unknown command "sk_flygare_melee1"
+[22:36:57] Warning: Unknown command "sk_flygare_melee2"
+[22:36:57] Warning: Unknown command "sk_flygare_melee3"
+[22:36:57] Warning: Unknown command "sk_flygare_melee4"
+[22:36:57] Warning: Unknown command "sk_plr_buckshot4"
+[22:36:57] Warning: Unknown command "sk_rcrazy_health1"
+[22:36:57] Warning: Unknown command "sk_rcrazy_health2"
+[22:36:57] Warning: Unknown command "sk_rcrazy_health3"
+[22:36:57] Warning: Unknown command "sk_rcrazy_health4"
+[22:36:57] Warning: Unknown command "sk_rcrazy_dmg_one_slash1"
+[22:36:57] Warning: Unknown command "sk_rcrazy_dmg_one_slash2"
+[22:36:57] Warning: Unknown command "sk_rcrazy_dmg_one_slash3"
+[22:36:57] Warning: Unknown command "sk_rcrazy_dmg_one_slash4"
+[22:36:57] Warning: Unknown command "sk_rcrazy_dmg_both_slash1"
+[22:36:57] Warning: Unknown command "sk_rcrazy_dmg_both_slash2"
+[22:36:57] Warning: Unknown command "sk_rcrazy_dmg_both_slash3"
+[22:36:57] Warning: Unknown command "sk_rcrazy_dmg_both_slash4"
+[22:36:57] Warning: Unknown command "sk_primary_speed1"
+[22:36:57] Warning: Unknown command "sk_primary_speed2"
+[22:36:57] Warning: Unknown command "sk_primary_speed3"
+[22:36:57] Warning: Unknown command "sk_primary_speed4"
+[22:36:57] Warning: Unknown command "sk_secondary_speed1"
+[22:36:57] Warning: Unknown command "sk_secondary_speed2"
+[22:36:57] Warning: Unknown command "sk_secondary_speed3"
+[22:36:57] Warning: Unknown command "sk_secondary_speed4"
+[22:36:57] Warning: Unknown command "sk_sprint_speed1"
+[22:36:57] Warning: Unknown command "sk_sprint_speed2"
+[22:36:57] Warning: Unknown command "sk_sprint_speed3"
+[22:36:57] Warning: Unknown command "sk_sprint_speed4"
+[22:36:57] Warning: Unknown command "sk_stair_speed1"
+[22:36:57] Warning: Unknown command "sk_stair_speed2"
+[22:36:57] Warning: Unknown command "sk_stair_speed3"
+[22:36:57] Warning: Unknown command "sk_stair_speed4"
+[22:36:57] Warning: Unknown command "bullet_punch_max"
+[22:36:57] Warning: Unknown command "bullet_punch_divide"
+[22:36:57] Warning: Unknown command "blast_punch_max"
+[22:36:57] Warning: Unknown command "blast_punch_divide"
+[22:36:57] Warning: Unknown command "sk_cof_m161"
+[22:36:57] Warning: Unknown command "sk_cof_m162"
+[22:36:57] Warning: Unknown command "sk_cof_m163"
+[22:36:57] Warning: Unknown command "sk_cof_m164"
+[22:36:57] Warning: Unknown command "sk_cof_VP701"
+[22:36:57] Warning: Unknown command "sk_cof_VP702"
+[22:36:57] Warning: Unknown command "sk_cof_VP703"
+[22:36:57] Warning: Unknown command "sk_cof_VP704"
+[22:36:57] Warning: Unknown command "sk_cof_glock1"
+[22:36:57] Warning: Unknown command "sk_cof_glock2"
+[22:36:57] Warning: Unknown command "sk_cof_glock3"
+[22:36:57] Warning: Unknown command "sk_cof_glock4"
+[22:36:57] Warning: Unknown command "sk_cof_weapon_melee1"
+[22:36:57] Warning: Unknown command "sk_cof_weapon_melee2"
+[22:36:57] Warning: Unknown command "sk_cof_weapon_melee3"
+[22:36:57] Warning: Unknown command "sk_cof_weapon_melee4"
+[22:36:57] Warning: Unknown command "sk_cof_p3451"
+[22:36:57] Warning: Unknown command "sk_cof_p3452"
+[22:36:57] Warning: Unknown command "sk_cof_p3453"
+[22:36:57] Warning: Unknown command "sk_cof_p3454"
+[22:36:57] Warning: Unknown command "sk_cof_g431"
+[22:36:57] Warning: Unknown command "sk_cof_g432"
+[22:36:57] Warning: Unknown command "sk_cof_g433"
+[22:36:57] Warning: Unknown command "sk_cof_g434"
+[22:36:57] Warning: Unknown command "sk_cof_shotgun1"
+[22:36:57] Warning: Unknown command "sk_cof_shotgun2"
+[22:36:57] Warning: Unknown command "sk_cof_shotgun3"
+[22:36:57] Warning: Unknown command "sk_cof_shotgun4"
+[22:36:57] Warning: Unknown command "sk_cof_rifle1"
+[22:36:57] Warning: Unknown command "sk_cof_rifle2"
+[22:36:57] Warning: Unknown command "sk_cof_rifle3"
+[22:36:57] Warning: Unknown command "sk_cof_rifle4"
+[22:36:57] Warning: Unknown command "sk_cof_revolver1"
+[22:36:57] Warning: Unknown command "sk_cof_revolver2"
+[22:36:57] Warning: Unknown command "sk_cof_revolver3"
+[22:36:57] Warning: Unknown command "sk_cof_revolver4"
+[22:36:57] Warning: Unknown command "sk_stranger_health1"
+[22:36:57] Warning: Unknown command "sk_stranger_health2"
+[22:36:57] Warning: Unknown command "sk_stranger_health3"
+[22:36:57] Warning: Unknown command "sk_stranger_health4"
+[22:36:57] Warning: Unknown command "sk_stranger_damage1"
+[22:36:57] Warning: Unknown command "sk_stranger_damage2"
+[22:36:57] Warning: Unknown command "sk_stranger_damage3"
+[22:36:57] Warning: Unknown command "sk_stranger_damage4"
+[22:36:57] Warning: Unknown command "sk_suicider_health1"
+[22:36:57] Warning: Unknown command "sk_suicider_health2"
+[22:36:57] Warning: Unknown command "sk_suicider_health3"
+[22:36:57] Warning: Unknown command "sk_suicider_health4"
+[22:36:57] Warning: Unknown command "sk_suicider_bullet1"
+[22:36:57] Warning: Unknown command "sk_suicider_bullet2"
+[22:36:57] Warning: Unknown command "sk_suicider_bullet3"
+[22:36:57] Warning: Unknown command "sk_suicider_bullet4"
+[22:36:57] Warning: Unknown command "sk_suicider_suicide1"
+[22:36:57] Warning: Unknown command "sk_suicider_suicide2"
+[22:36:57] Warning: Unknown command "sk_suicider_suicide3"
+[22:36:57] Warning: Unknown command "sk_suicider_suicide4"
+[22:36:57] Warning: Unknown command "sk_roofboss_health1"
+[22:36:57] Warning: Unknown command "sk_roofboss_health2"
+[22:36:57] Warning: Unknown command "sk_roofboss_health3"
+[22:36:57] Warning: Unknown command "sk_roofboss_health4"
+[22:36:57] Warning: Unknown command "sk_roofboss_headhit1"
+[22:36:57] Warning: Unknown command "sk_roofboss_headhit2"
+[22:36:57] Warning: Unknown command "sk_roofboss_headhit3"
+[22:36:57] Warning: Unknown command "sk_roofboss_headhit4"
+[22:36:57] Warning: Unknown command "sk_roofboss_headhealth1"
+[22:36:57] Warning: Unknown command "sk_roofboss_headhealth2"
+[22:36:57] Warning: Unknown command "sk_roofboss_headhealth3"
+[22:36:57] Warning: Unknown command "sk_roofboss_headhealth4"
+[22:36:57] Warning: Unknown command "sk_roofboss_attacktime1"
+[22:36:57] Warning: Unknown command "sk_roofboss_attacktime2"
+[22:36:57] Warning: Unknown command "sk_roofboss_attacktime3"
+[22:36:57] Warning: Unknown command "sk_roofboss_attacktime4"
+[22:36:57] Warning: Unknown command "sk_faceless_health1"
+[22:36:57] Warning: Unknown command "sk_faceless_health2"
+[22:36:57] Warning: Unknown command "sk_faceless_health3"
+[22:36:57] Warning: Unknown command "sk_faceless_health4"
+[22:36:57] Warning: Unknown command "sk_faceless_dmg_one_slash1"
+[22:36:57] Warning: Unknown command "sk_faceless_dmg_one_slash2"
+[22:36:57] Warning: Unknown command "sk_faceless_dmg_one_slash3"
+[22:36:57] Warning: Unknown command "sk_faceless_dmg_one_slash4"
+[22:36:57] Warning: Unknown command "sk_faceless_dmg_both_slash1"
+[22:36:57] Warning: Unknown command "sk_faceless_dmg_both_slash2"
+[22:36:57] Warning: Unknown command "sk_faceless_dmg_both_slash3"
+[22:36:57] Warning: Unknown command "sk_faceless_dmg_both_slash4"
+[22:36:57] Warning: Unknown command "sk_cof_branch1"
+[22:36:57] Warning: Unknown command "sk_cof_branch2"
+[22:36:57] Warning: Unknown command "sk_cof_branch3"
+[22:36:57] Warning: Unknown command "sk_cof_branch4"
+[22:36:57] Warning: Unknown command "sk_doctor_health1"
+[22:36:57] Warning: Unknown command "sk_doctor_health2"
+[22:36:57] Warning: Unknown command "sk_doctor_health3"
+[22:36:57] Warning: Unknown command "sk_doctor_health4"
+[22:36:57] Warning: Unknown command "sk_doctor_p3451"
+[22:36:57] Warning: Unknown command "sk_doctor_p3452"
+[22:36:57] Warning: Unknown command "sk_doctor_p3453"
+[22:36:57] Warning: Unknown command "sk_doctor_p3454"
+[22:36:57] Warning: Unknown command "sk_doctor_revolver1"
+[22:36:57] Warning: Unknown command "sk_doctor_revolver2"
+[22:36:57] Warning: Unknown command "sk_doctor_revolver3"
+[22:36:57] Warning: Unknown command "sk_doctor_revolver4"
+[22:36:57] Warning: Unknown command "sk_flare_burn_time1"
+[22:36:57] Warning: Unknown command "sk_flare_burn_time2"
+[22:36:57] Warning: Unknown command "sk_flare_burn_time3"
+[22:36:57] Warning: Unknown command "sk_flare_burn_time4"
+[22:36:57] Warning: Unknown command "sk_taller_health1"
+[22:36:57] Warning: Unknown command "sk_taller_health2"
+[22:36:57] Warning: Unknown command "sk_taller_health3"
+[22:36:57] Warning: Unknown command "sk_taller_health4"
+[22:36:57] Warning: Unknown command "sk_taller_dmg_punch1"
+[22:36:57] Warning: Unknown command "sk_taller_dmg_punch2"
+[22:36:57] Warning: Unknown command "sk_taller_dmg_punch3"
+[22:36:57] Warning: Unknown command "sk_taller_dmg_punch4"
+[22:36:57] Warning: Unknown command "sk_spitter_health1"
+[22:36:57] Warning: Unknown command "sk_spitter_health2"
+[22:36:57] Warning: Unknown command "sk_spitter_health3"
+[22:36:57] Warning: Unknown command "sk_spitter_health4"
+[22:36:57] Warning: Unknown command "sk_aom_pills1"
+[22:36:57] Warning: Unknown command "sk_aom_pills2"
+[22:36:57] Warning: Unknown command "sk_aom_pills3"
+[22:36:57] Warning: Unknown command "sk_aom_pills4"
+[22:36:57] Warning: Unknown command "sk_cof_axe1"
+[22:36:57] Warning: Unknown command "sk_cof_axe2"
+[22:36:57] Warning: Unknown command "sk_cof_axe3"
+[22:36:57] Warning: Unknown command "sk_cof_axe4"
+[22:36:57] Warning: Unknown command "sk_twitcher_health1"
+[22:36:57] Warning: Unknown command "sk_twitcher_health2"
+[22:36:57] Warning: Unknown command "sk_twitcher_health3"
+[22:36:57] Warning: Unknown command "sk_twitcher_health4"
+[22:36:57] Warning: Unknown command "sk_twitcher_dmg_one_slash1"
+[22:36:57] Warning: Unknown command "sk_twitcher_dmg_one_slash2"
+[22:36:57] Warning: Unknown command "sk_twitcher_dmg_one_slash3"
+[22:36:57] Warning: Unknown command "sk_twitcher_dmg_one_slash4"
+[22:36:57] Warning: Unknown command "sk_twitcher_dmg_both_slash1"
+[22:36:57] Warning: Unknown command "sk_twitcher_dmg_both_slash2"
+[22:36:57] Warning: Unknown command "sk_twitcher_dmg_both_slash3"
+[22:36:57] Warning: Unknown command "sk_twitcher_dmg_both_slash4"
+[22:36:57] Warning: Unknown command "sk_twitcher2_health1"
+[22:36:57] Warning: Unknown command "sk_twitcher2_health2"
+[22:36:57] Warning: Unknown command "sk_twitcher2_health3"
+[22:36:57] Warning: Unknown command "sk_twitcher2_health4"
+[22:36:57] Warning: Unknown command "sk_twitcher2_dmg_one_slash1"
+[22:36:57] Warning: Unknown command "sk_twitcher2_dmg_one_slash2"
+[22:36:57] Warning: Unknown command "sk_twitcher2_dmg_one_slash3"
+[22:36:57] Warning: Unknown command "sk_twitcher2_dmg_one_slash4"
+[22:36:57] Warning: Unknown command "sk_twitcher2_dmg_both_slash1"
+[22:36:57] Warning: Unknown command "sk_twitcher2_dmg_both_slash2"
+[22:36:57] Warning: Unknown command "sk_twitcher2_dmg_both_slash3"
+[22:36:57] Warning: Unknown command "sk_twitcher2_dmg_both_slash4"
+[22:36:57] Warning: Unknown command "sk_twitcher3_health1"
+[22:36:57] Warning: Unknown command "sk_twitcher3_health2"
+[22:36:57] Warning: Unknown command "sk_twitcher3_health3"
+[22:36:57] Warning: Unknown command "sk_twitcher3_health4"
+[22:36:57] Warning: Unknown command "sk_twitcher3_dmg_one_slash1"
+[22:36:57] Warning: Unknown command "sk_twitcher3_dmg_one_slash2"
+[22:36:57] Warning: Unknown command "sk_twitcher3_dmg_one_slash3"
+[22:36:57] Warning: Unknown command "sk_twitcher3_dmg_one_slash4"
+[22:36:57] Warning: Unknown command "sk_twitcher3_dmg_both_slash1"
+[22:36:57] Warning: Unknown command "sk_twitcher3_dmg_both_slash2"
+[22:36:57] Warning: Unknown command "sk_twitcher3_dmg_both_slash3"
+[22:36:57] Warning: Unknown command "sk_twitcher3_dmg_both_slash4"
+[22:36:57] Warning: Unknown command "sk_twitcher4_health1"
+[22:36:57] Warning: Unknown command "sk_twitcher4_health2"
+[22:36:57] Warning: Unknown command "sk_twitcher4_health3"
+[22:36:57] Warning: Unknown command "sk_twitcher4_health4"
+[22:36:57] Warning: Unknown command "sk_twitcher4_dmg_one_slash1"
+[22:36:57] Warning: Unknown command "sk_twitcher4_dmg_one_slash2"
+[22:36:57] Warning: Unknown command "sk_twitcher4_dmg_one_slash3"
+[22:36:57] Warning: Unknown command "sk_twitcher4_dmg_one_slash4"
+[22:36:57] Warning: Unknown command "sk_twitcher4_dmg_both_slash1"
+[22:36:57] Warning: Unknown command "sk_twitcher4_dmg_both_slash2"
+[22:36:57] Warning: Unknown command "sk_twitcher4_dmg_both_slash3"
+[22:36:57] Warning: Unknown command "sk_twitcher4_dmg_both_slash4"
+[22:36:57] execing video.cfg
+[22:36:57] Loading renderer: gles3compat -> libref_gles3compat.wasm
+[22:36:57] execing opengl.cfg
+[22:36:57] Trying safe opengl mode 0
+[22:36:57] bpp 24
+[22:36:57] Video: SDL
+[22:36:57] Video driver: emscripten
+[22:36:57] Window size: 640x242 (real 640x242)
+[22:36:57] Window position: 0x0
+[22:36:57] Window mode: windowed
+[22:36:57] Window bordered: true
+[22:36:57] Window resizable: true
+[22:36:57] Window maximized: false
+[22:36:57] Window display index: 0
+[22:36:57] Window display mode: 640x480@0
+WebGL: INVALID_ENUM: getParameter: invalid parameter name
+[22:36:57] Note: GL2_ShimInit: missing BufferStorage
+[22:36:57] Note: GL2_ShimInit: config: ASYNC MAP CYCLE=1 VER=300
+[22:36:57] Note: GL2_ShimInit: 1441792 bytes allocated for vertex buffer
+[22:36:57] Note: GL2_InitProgs: Pre-generating 8 progs, version 300...
+[22:36:57] Note: GL2_GetProg: Generating progs for 0x0001
+[22:36:57] Note: GL2_GetProg: Generated progs for 0x0001
+[22:36:57] Note: GL2_GetProg: Generating progs for 0x0005
+[22:36:57] Note: GL2_GetProg: Generated progs for 0x0005
+[22:36:57] Note: GL2_GetProg: Generating progs for 0x0007
+[22:36:57] Note: GL2_GetProg: Generated progs for 0x0007
+[22:36:57] Note: GL2_GetProg: Generating progs for 0x0015
+[22:36:57] Note: GL2_GetProg: Generated progs for 0x0015
+[22:36:57] Note: GL2_GetProg: Generating progs for 0x0021
+[22:36:57] Note: GL2_GetProg: Generated progs for 0x0021
+[22:36:57] Note: GL2_GetProg: Generating progs for 0x0025
+[22:36:57] Note: GL2_GetProg: Generated progs for 0x0025
+[22:36:57] Note: GL2_GetProg: Generating progs for 0x0027
+[22:36:57] Note: GL2_GetProg: Generated progs for 0x0027
+[22:36:57] Note: GL2_GetProg: Generating progs for 0x0035
+[22:36:57] Note: GL2_GetProg: Generated progs for 0x0035
+[22:36:57] 
+[22:36:57] GL_VENDOR: WebKit
+[22:36:57] GL_RENDERER: WebKit WebGL
+[22:36:57] GL_VERSION: OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))
+[22:36:57] GL_MAX_TEXTURE_SIZE: 8192
+[22:36:57] GL_MAX_TEXTURE_UNITS_ARB: 32
+[22:36:57] GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT: 16.0
+[22:36:57] 
+[22:36:57] MODE: 640x242
+[22:36:57] 
+[22:36:57] Color 24 bits, Alpha 8 bits, Depth 24 bits, Stencil 8 bits
+[22:36:57] OpenGL Error: GL_INVALID_ENUM while uploading *default [2D]
+[22:36:57] UI_ApplyCustomColors: colors.lst not found
+[22:36:57] Rendering Trebuchet MS(8, 500) took 0.013000 seconds
+[22:36:57] Rendering Trebuchet MS(6, 500) took 0.007000 seconds
+[22:36:57] Rendering Trebuchet MS(12, 500) took 0.006000 seconds
+[22:36:57] Rendering Trebuchet MS(8, 1000) took 0.005000 seconds
+[22:36:57] Rendering Trebuchet MS(8, 500) took 0.000000 seconds
+[22:36:57] Rendering Trebuchet MS(8, 500) took 0.011000 seconds
+[22:36:57] Rendering Tahoma(5, 500) took 0.007000 seconds
+[22:36:57] AVI: Not supported
+The ScriptProcessorNode is deprecated. Use AudioWorkletNode instead. (https://bit.ly/audio-worklet)
+[22:36:57] Using SDL audio driver: emscripten @ 44100 Hz
+[22:36:57] Web Audio: 3D channels enabled
+[22:36:57] execing valve.rc
+[22:36:57] Warning: Unknown command "s_refgain"
+[22:36:57] Warning: Unknown command "s_refdelay"
+[22:36:57] Warning: Unknown command "s_occfactor"
+[22:36:57] Warning: Unknown command "s_verbwet"
+[22:36:57] Warning: Unknown command "s_distance"
+[22:36:57] execing language.cfg
+[22:36:57] execing joystick.cfg
+[22:36:57] execing autoexec.cfg
+[22:36:57] Warning: Unknown command "r_dynamiclight"
+[22:36:57] Warning: Unknown command "cl_noiseeffect"
+[22:36:57] Warning: Unknown command "gl_texturemode"
+[22:36:57] Warning: Unknown command "sv_voicecodec"
+[22:36:57] execing config.cfg
+[22:36:57] execing cof_web.cfg
+[22:36:57] Time to first frame: 0.602 seconds
+[22:36:57] Error: Delta_ParseField: unable to find field is_donator
+[22:36:57] Spawn Server: c_start
+[22:36:58] execing maps/c_start_load.cfg
+[22:36:58] 
+GAME SKILL LEVEL:1
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_agrunt_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_agrunt_dmg_punch1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_apache_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_barney_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_bite1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_whip1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_spit1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_gargantua_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_slash1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_fire1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_stomp1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_hassassin_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_headcrab_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_headcrab_dmg_bite1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_kick1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_pellets1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_gspeed1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_houndeye_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_houndeye_dmg_blast1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_islave_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_claw1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_clawrake1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_zap1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_shake1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_leech_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_leech_dmg_bite1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_controller_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgzap1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_controller_speedball1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgball1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_zap1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_scientist_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_snark_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_bite1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_pop1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_turret_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_miniturret_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_sentry_health1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_plr_crowbar1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_plr_9mm_bullet1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_plr_357_bullet1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_bullet1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_grenade1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_client1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_monster1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_plr_rpg1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_plr_gauss1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_narrow1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_wide1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_plr_hand_grenade1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_plr_satchel1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_plr_tripmine1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_12mm_bullet1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_9mmAR_bullet1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_9mm_bullet1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_hornet_dmg1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_suitcharger1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_battery1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_healthcharger1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_healthkit1 **
+
+[22:36:58] 
+
+** GetSkillCVar Got a zero for sk_scientist_heal1 **
+
+[22:36:58] Error: Could not load model models/w_suit.mdl from disk
+[22:36:58] Error: Could not load model models/w_medkit.mdl from disk
+[22:36:58] Error: Could not load model models/w_battery.mdl from disk
+[22:36:58] Error: Could not load model models/w_antidote.mdl from disk
+[22:36:58] Error: Could not load model models/w_security.mdl from disk
+[22:36:58] Error: Could not load model models/w_longjump.mdl from disk
+[22:36:58] Error: Could not load model models/v_shotgun.mdl from disk
+[22:36:58] Error: Could not load model models/w_shotgun.mdl from disk
+[22:36:58] Error: Could not load model models/p_shotgun.mdl from disk
+[22:36:58] Error: Could not load model models/shotgunshell.mdl from disk
+[22:36:58] Error: Could not load model models/w_shotbox.mdl from disk
+[22:36:58] Error: Could not load model models/v_crowbar.mdl from disk
+[22:36:58] Error: Could not load model models/w_crowbar.mdl from disk
+[22:36:58] Error: Could not load model models/p_crowbar.mdl from disk
+[22:36:58] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[22:36:58] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[22:36:58] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[22:36:58] Error: Could not load model models/shell.mdl from disk
+[22:36:58] Error: Could not load model models/w_9mmclip.mdl from disk
+[22:36:58] Error: Could not load model models/v_9mmAR.mdl from disk
+[22:36:58] Error: Could not load model models/w_9mmAR.mdl from disk
+[22:36:58] Error: Could not load model models/p_9mmAR.mdl from disk
+[22:36:58] Error: Could not load model models/shell.mdl from disk
+[22:36:58] Error: Could not load model models/grenade.mdl from disk
+[22:36:58] Error: Could not load model models/w_9mmARclip.mdl from disk
+[22:36:58] Error: Could not load model models/w_9mmARclip.mdl from disk
+[22:36:58] Error: Could not load model models/w_ARgrenade.mdl from disk
+[22:36:58] Error: Could not load model models/w_chainammo.mdl from disk
+[22:36:58] Error: Could not load model models/v_357.mdl from disk
+[22:36:58] Error: Could not load model models/w_357.mdl from disk
+[22:36:58] Error: Could not load model models/p_357.mdl from disk
+[22:36:58] Error: Could not load model models/w_357ammobox.mdl from disk
+[22:36:58] Error: Could not load model models/w_357ammobox.mdl from disk
+[22:36:58] Error: Could not load model models/w_gauss.mdl from disk
+[22:36:58] Error: Could not load model models/v_gauss.mdl from disk
+[22:36:58] Error: Could not load model models/p_gauss.mdl from disk
+[22:36:58] Error: Could not load model sprites/hotglow.spr from disk
+[22:36:58] Error: Could not load model sprites/hotglow.spr from disk
+[22:36:58] Error: Could not load model sprites/smoke.spr from disk
+[22:36:58] Error: Could not load model models/w_gaussammo.mdl from disk
+[22:36:58] Error: Could not load model models/w_rpg.mdl from disk
+[22:36:58] Error: Could not load model models/v_rpg.mdl from disk
+[22:36:58] Error: Could not load model models/p_rpg.mdl from disk
+[22:36:58] Error: Could not load model sprites/laserdot.spr from disk
+[22:36:58] Error: Could not load model models/rpgrocket.mdl from disk
+[22:36:58] Error: Could not load model sprites/smoke.spr from disk
+[22:36:58] Error: Could not load model models/w_rpgammo.mdl from disk
+[22:36:58] Error: Could not load model models/w_crossbow.mdl from disk
+[22:36:58] Error: Could not load model models/v_crossbow.mdl from disk
+[22:36:58] Error: Could not load model models/p_crossbow.mdl from disk
+[22:36:58] Error: Could not load model models/crossbow_bolt.mdl from disk
+[22:36:58] Error: Could not load model sprites/streak.spr from disk
+[22:36:58] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[22:36:58] Error: Could not load model models/w_egon.mdl from disk
+[22:36:58] Error: Could not load model models/v_egon.mdl from disk
+[22:36:58] Error: Could not load model models/p_egon.mdl from disk
+[22:36:58] Error: Could not load model models/w_9mmclip.mdl from disk
+[22:36:58] Error: Could not load model sprites/xbeam1.spr from disk
+[22:36:58] Error: Could not load model models/v_tripmine.mdl from disk
+[22:36:58] Error: Could not load model models/p_tripmine.mdl from disk
+[22:36:58] Error: Could not load model models/v_tripmine.mdl from disk
+[22:36:58] Error: Could not load model models/v_satchel.mdl from disk
+[22:36:58] Error: Could not load model models/v_satchel_radio.mdl from disk
+[22:36:58] Error: Could not load model models/w_satchel.mdl from disk
+[22:36:58] Error: Could not load model models/p_satchel.mdl from disk
+[22:36:58] Error: Could not load model models/p_satchel_radio.mdl from disk
+[22:36:58] Error: Could not load model models/w_satchel.mdl from disk
+[22:36:58] Error: Could not load model models/w_grenade.mdl from disk
+[22:36:58] Error: Could not load model models/v_grenade.mdl from disk
+[22:36:58] Error: Could not load model models/p_grenade.mdl from disk
+[22:36:58] Error: Could not load model models/w_sqknest.mdl from disk
+[22:36:58] Error: Could not load model models/v_squeak.mdl from disk
+[22:36:58] Error: Could not load model models/p_squeak.mdl from disk
+[22:36:58] Error: Could not load model models/w_squeak.mdl from disk
+[22:36:58] Error: Could not load model models/v_hgun.mdl from disk
+[22:36:58] Error: Could not load model models/w_hgun.mdl from disk
+[22:36:58] Error: Could not load model models/p_hgun.mdl from disk
+[22:36:58] Error: Could not load model models/hornet.mdl from disk
+[22:36:58] Error: Could not load model sprites/muz1.spr from disk
+[22:36:58] Error: Could not load model sprites/zerogxplode.spr from disk
+[22:36:58] Error: Could not load model sprites/WXplo1.spr from disk
+[22:36:58] Error: Could not load model sprites/laserdot.spr from disk
+[22:36:58] Error: Could not load model models/grenade.mdl from disk
+[22:36:58] Error: Could not load model sprites/explode1.spr from disk
+[22:36:59] Error: Could not load model models/player.mdl from disk
+[22:36:59] Error: Could not load model models/hgibs.mdl from disk
+[22:36:59] Error: Could not load model models/agibs.mdl from disk
+[22:36:59] Error: No spawn function for "info_texlights"
+[22:36:59] env_model : unknown sequence "idle"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:36:59] Error: No spawn function for "env_static_decal"
+[22:37:00] Error: No spawn function for "env_static_decal"
+[22:37:00] Error: No spawn function for "env_static_decal"
+[22:37:00] Error: No spawn function for "cof_developer_commentary"
+[22:37:00] Error: No spawn function for "cof_developer_commentary"
+[22:37:00] Error: No spawn function for "cof_developer_commentary"
+[22:37:00] Error: No spawn function for "cof_clothesmenu"
+[22:37:00] Error: No spawn function for "cof_developer_commentary"
+[22:37:00] Error: No spawn function for "item_nightvision"
+[22:37:00] 
+0 entities inhibited
+[22:37:00] Game started
+[22:37:00] level loaded at 2.56 sec
+[22:37:00] execing spserver.cfg
+[22:37:00] Trying to connect with modern protocol
+[22:37:00] LoadBackground: found steam background in game directory
+[22:37:00] execing mainui.cfg
+[22:37:00] Localize_AddToDict( resource/mainui_english.txt ): couldn't open file. Some strings will not be localized!.
+[22:37:00] Localize_AddToDict( resource/cryoffear_english.txt ): couldn't open file. Some strings will not be localized!.
+[22:37:00] Spooling demo header.
+[22:37:00] 
+BUILD 4221 SERVER (0 CRC)
+Server #1
+[22:37:00] Warning: unexpected end of sprites/hud.txt (211 should be 57)
+[22:37:00] Missing bitmap font: gfx\vgui\fonts\640_Basic Text.tga
+[22:37:00] Missing bitmap font: gfx\vgui\fonts\640_Primary Button Text.tga
+[22:37:00] Missing bitmap font: gfx\vgui\fonts\640_CommandMenu Text.tga
+[22:37:00] Missing bitmap font: gfx\vgui\fonts\640_Scoreboard Text.tga
+[22:37:00] Missing bitmap font: gfx\vgui\fonts\640_Scoreboard Title Text.tga
+[22:37:00] Missing bitmap font: gfx\vgui\fonts\640_Scoreboard Small Text.tga
+[22:37:00] Missing bitmap font: gfx\vgui\fonts\640_Title Font.tga
+[22:37:00] Unable to open commandmenu.txt
+[22:37:00] Unable to open spectatormenu.txt
+[22:37:00] Unable to open spectcammenu.txt
+[22:37:01] Verifying and downloading resources...
+[22:37:01] Error: Could not load sound sound/items/smallmedkit1.wav
+[22:37:01] Error: Could not load sound sound/items/9mmclip1.wav
+[22:37:01] Error: Could not load sound sound/weapons/dbarrel1.wav
+[22:37:01] Error: Could not load sound sound/weapons/sbarrel1.wav
+[22:37:01] Error: Could not load sound sound/weapons/reload1.wav
+[22:37:01] Error: Could not load sound sound/weapons/reload3.wav
+[22:37:01] Error: Could not load sound sound/weapons/357_cock1.wav
+[22:37:01] Error: Could not load sound sound/weapons/scock1.wav
+[22:37:01] Error: Could not load sound sound/weapons/cbar_hit1.wav
+[22:37:01] Error: Could not load sound sound/weapons/cbar_hit2.wav
+[22:37:01] Error: Could not load sound sound/weapons/cbar_hitbod1.wav
+[22:37:01] Error: Could not load sound sound/weapons/cbar_hitbod2.wav
+[22:37:01] Error: Could not load sound sound/weapons/cbar_hitbod3.wav
+[22:37:01] Error: Could not load sound sound/weapons/cbar_miss1.wav
+[22:37:01] Error: Could not load sound sound/items/9mmclip2.wav
+[22:37:01] Error: Could not load sound sound/weapons/pl_gun1.wav
+[22:37:01] Error: Could not load sound sound/weapons/pl_gun2.wav
+[22:37:01] Error: Could not load sound sound/weapons/pl_gun3.wav
+[22:37:01] Error: Could not load sound sound/items/clipinsert1.wav
+[22:37:01] Error: Could not load sound sound/items/cliprelease1.wav
+[22:37:01] Error: Could not load sound sound/weapons/hks1.wav
+[22:37:01] Error: Could not load sound sound/weapons/hks2.wav
+[22:37:01] Error: Could not load sound sound/weapons/hks3.wav
+[22:37:01] Error: Could not load sound sound/weapons/glauncher.wav
+[22:37:01] Error: Could not load sound sound/weapons/glauncher2.wav
+[22:37:01] Error: Could not load sound sound/weapons/357_reload1.wav
+[22:37:01] Error: Could not load sound sound/weapons/357_shot1.wav
+[22:37:01] Error: Could not load sound sound/weapons/357_shot2.wav
+[22:37:01] Error: Could not load sound sound/weapons/gauss2.wav
+[22:37:01] Error: Could not load sound sound/weapons/electro4.wav
+[22:37:01] Error: Could not load sound sound/weapons/electro5.wav
+[22:37:01] Error: Could not load sound sound/weapons/electro6.wav
+[22:37:01] Error: Could not load sound sound/ambience/pulsemachine.wav
+[22:37:01] Error: Could not load sound sound/weapons/rocket1.wav
+[22:37:01] Error: Could not load sound sound/weapons/rocketfire1.wav
+[22:37:01] Error: Could not load sound sound/weapons/xbow_fire1.wav
+[22:37:01] Error: Could not load sound sound/weapons/xbow_reload1.wav
+[22:37:01] Error: Could not load sound sound/weapons/xbow_hitbod1.wav
+[22:37:01] Error: Could not load sound sound/weapons/xbow_hitbod2.wav
+[22:37:01] Error: Could not load sound sound/weapons/xbow_fly1.wav
+[22:37:01] Error: Could not load sound sound/weapons/xbow_hit1.wav
+[22:37:01] Error: Could not load sound sound/fvox/beep.wav
+[22:37:01] Error: Could not load sound sound/weapons/egon_off1.wav
+[22:37:01] Error: Could not load sound sound/weapons/egon_run3.wav
+[22:37:01] Error: Could not load sound sound/weapons/egon_windup2.wav
+[22:37:01] Error: Could not load sound sound/weapons/mine_deploy.wav
+[22:37:01] Error: Could not load sound sound/weapons/mine_activate.wav
+[22:37:01] Error: Could not load sound sound/weapons/mine_charge.wav
+[22:37:01] Error: Could not load sound sound/weapons/g_bounce1.wav
+[22:37:01] Error: Could not load sound sound/weapons/g_bounce2.wav
+[22:37:01] Error: Could not load sound sound/weapons/g_bounce3.wav
+[22:37:01] Error: Could not load sound sound/squeek/sqk_hunt2.wav
+[22:37:01] Error: Could not load sound sound/squeek/sqk_hunt3.wav
+[22:37:01] Error: Could not load sound sound/squeek/sqk_blast1.wav
+[22:37:01] Error: Could not load sound sound/common/bodysplat.wav
+[22:37:01] Error: Could not load sound sound/squeek/sqk_die1.wav
+[22:37:01] Error: Could not load sound sound/squeek/sqk_hunt1.wav
+[22:37:01] Error: Could not load sound sound/squeek/sqk_deploy1.wav
+[22:37:01] Error: Could not load sound sound/agrunt/ag_fire1.wav
+[22:37:01] Error: Could not load sound sound/agrunt/ag_fire2.wav
+[22:37:01] Error: Could not load sound sound/agrunt/ag_fire3.wav
+[22:37:01] Error: Could not load sound sound/hornet/ag_buzz1.wav
+[22:37:01] Error: Could not load sound sound/hornet/ag_buzz2.wav
+[22:37:01] Error: Could not load sound sound/hornet/ag_buzz3.wav
+[22:37:01] Error: Could not load sound sound/hornet/ag_hornethit1.wav
+[22:37:01] Error: Could not load sound sound/hornet/ag_hornethit2.wav
+[22:37:01] Error: Could not load sound sound/hornet/ag_hornethit3.wav
+[22:37:01] Error: Could not load sound sound/weapons/debris1.wav
+[22:37:01] Error: Could not load sound sound/weapons/debris2.wav
+[22:37:01] Error: Could not load sound sound/weapons/debris3.wav
+[22:37:01] Error: Could not load sound sound/weapons/grenade_hit1.wav
+[22:37:01] Error: Could not load sound sound/weapons/grenade_hit2.wav
+[22:37:01] Error: Could not load sound sound/weapons/grenade_hit3.wav
+[22:37:01] Error: Could not load sound sound/weapons/bullet_hit1.wav
+[22:37:01] Error: Could not load sound sound/weapons/bullet_hit2.wav
+[22:37:01] Error: Could not load sound sound/items/weapondrop1.wav
+[22:37:01] Error: Could not load sound sound/player/sprayer.wav
+[22:37:01] Error: Could not load sound sound/player/pl_fallpain2.wav
+[22:37:01] Error: Could not load sound sound/player/pl_fallpain3.wav
+[22:37:01] Error: Could not load sound sound/player/pl_step1.wav
+[22:37:01] Error: Could not load sound sound/player/pl_step2.wav
+[22:37:01] Error: Could not load sound sound/player/pl_step3.wav
+[22:37:01] Error: Could not load sound sound/player/pl_step4.wav
+[22:37:01] Error: Could not load sound sound/player/pl_metal1.wav
+[22:37:01] Error: Could not load sound sound/player/pl_metal2.wav
+[22:37:01] Error: Could not load sound sound/player/pl_metal3.wav
+[22:37:01] Error: Could not load sound sound/player/pl_metal4.wav
+[22:37:01] Error: Could not load sound sound/player/pl_dirt1.wav
+[22:37:01] Error: Could not load sound sound/player/pl_dirt2.wav
+[22:37:01] Error: Could not load sound sound/player/pl_dirt3.wav
+[22:37:01] Error: Could not load sound sound/player/pl_dirt4.wav
+[22:37:01] Error: Could not load sound sound/player/pl_duct1.wav
+[22:37:01] Error: Could not load sound sound/player/pl_duct2.wav
+[22:37:01] Error: Could not load sound sound/player/pl_duct3.wav
+[22:37:01] Error: Could not load sound sound/player/pl_duct4.wav
+[22:37:01] Error: Could not load sound sound/player/pl_grate1.wav
+[22:37:01] Error: Could not load sound sound/player/pl_grate2.wav
+[22:37:01] Error: Could not load sound sound/player/pl_grate3.wav
+[22:37:01] Error: Could not load sound sound/player/pl_grate4.wav
+[22:37:01] Error: Could not load sound sound/player/pl_slosh1.wav
+[22:37:01] Error: Could not load sound sound/player/pl_slosh2.wav
+[22:37:01] Error: Could not load sound sound/player/pl_slosh3.wav
+[22:37:01] Error: Could not load sound sound/player/pl_slosh4.wav
+[22:37:01] Error: Could not load sound sound/player/pl_tile1.wav
+[22:37:01] Error: Could not load sound sound/player/pl_tile2.wav
+[22:37:01] Error: Could not load sound sound/player/pl_tile3.wav
+[22:37:01] Error: Could not load sound sound/player/pl_tile4.wav
+[22:37:01] Error: Could not load sound sound/player/pl_tile5.wav
+[22:37:01] Error: Could not load sound sound/player/pl_swim1.wav
+[22:37:01] Error: Could not load sound sound/player/pl_swim2.wav
+[22:37:01] Error: Could not load sound sound/player/pl_swim3.wav
+[22:37:01] Error: Could not load sound sound/player/pl_swim4.wav
+[22:37:01] Error: Could not load sound sound/player/pl_ladder1.wav
+[22:37:01] Error: Could not load sound sound/player/pl_ladder2.wav
+[22:37:01] Error: Could not load sound sound/player/pl_ladder3.wav
+[22:37:01] Error: Could not load sound sound/player/pl_ladder4.wav
+[22:37:01] Error: Could not load sound sound/player/pl_wade1.wav
+[22:37:01] Error: Could not load sound sound/player/pl_wade2.wav
+[22:37:01] Error: Could not load sound sound/player/pl_wade3.wav
+[22:37:01] Error: Could not load sound sound/player/pl_wade4.wav
+[22:37:01] Error: Could not load sound sound/debris/wood1.wav
+[22:37:01] Error: Could not load sound sound/debris/wood2.wav
+[22:37:01] Error: Could not load sound sound/debris/wood3.wav
+[22:37:01] Error: Could not load sound sound/plats/train_use1.wav
+[22:37:01] Error: Could not load sound sound/plats/vehicle_ignition.wav
+[22:37:01] Error: Could not load sound sound/buttons/spark5.wav
+[22:37:01] Error: Could not load sound sound/buttons/spark6.wav
+[22:37:01] Error: Could not load sound sound/debris/glass1.wav
+[22:37:01] Error: Could not load sound sound/debris/glass2.wav
+[22:37:01] Error: Could not load sound sound/debris/glass3.wav
+[22:37:01] Error: Could not load sound sound/items/flashlight1.wav
+[22:37:01] Error: Could not load sound sound/player/pl_pain2.wav
+[22:37:01] Error: Could not load sound sound/player/pl_pain4.wav
+[22:37:01] Error: Could not load sound sound/player/pl_pain5.wav
+[22:37:01] Error: Could not load sound sound/player/pl_pain6.wav
+[22:37:01] Error: Could not load sound sound/player/pl_pain7.wav
+[22:37:01] Error: Could not load sound sound/common/wpn_hudoff.wav
+[22:37:01] Error: Could not load sound sound/common/wpn_hudon.wav
+[22:37:01] Error: Could not load sound sound/common/wpn_moveselect.wav
+[22:37:01] Error: Could not load sound sound/common/wpn_select.wav
+[22:37:01] Error: Could not load sound sound/common/wpn_denyselect.wav
+[22:37:01] Error: Could not load sound sound/player/geiger6.wav
+[22:37:01] Error: Could not load sound sound/player/geiger5.wav
+[22:37:01] Error: Could not load sound sound/player/geiger4.wav
+[22:37:01] Error: Could not load sound sound/player/geiger3.wav
+[22:37:01] Error: Could not load sound sound/player/geiger2.wav
+[22:37:01] Error: Could not load sound sound/player/geiger1.wav
+[22:37:01] Error: Could not load sound sound/common/null.wav
+[22:37:01] Error: Could not load sound sound/items/suitchargeok1.wav
+[22:37:01] Error: Could not load sound sound/common/bodydrop3.wav
+[22:37:01] Error: Could not load sound sound/common/bodydrop4.wav
+[22:37:01] Error: Could not load sound sound/weapons/ric1.wav
+[22:37:01] Error: Could not load sound sound/weapons/ric2.wav
+[22:37:01] Error: Could not load sound sound/weapons/ric3.wav
+[22:37:01] Error: Could not load sound sound/weapons/ric4.wav
+[22:37:01] Error: Could not load sound sound/weapons/ric5.wav
+[22:37:01] Error: Could not load sound sound/buttons/button9.wav
+[22:37:01] Error: Could not load sound sound/doors/doormove7.wav
+[22:37:01] Error: Could not load model models/w_suit.mdl from disk
+[22:37:01] Error: Could not load model models/w_medkit.mdl from disk
+[22:37:01] Error: Could not load model models/w_battery.mdl from disk
+[22:37:01] Error: Could not load model models/w_antidote.mdl from disk
+[22:37:01] Error: Could not load model models/w_security.mdl from disk
+[22:37:01] Error: Could not load model models/w_longjump.mdl from disk
+[22:37:01] Error: Could not load model models/v_shotgun.mdl from disk
+[22:37:01] Error: Could not load model models/w_shotgun.mdl from disk
+[22:37:01] Error: Could not load model models/p_shotgun.mdl from disk
+[22:37:01] Error: Could not load model models/shotgunshell.mdl from disk
+[22:37:01] Error: Could not load model models/w_shotbox.mdl from disk
+[22:37:01] Error: Could not load model models/v_crowbar.mdl from disk
+[22:37:01] Error: Could not load model models/w_crowbar.mdl from disk
+[22:37:01] Error: Could not load model models/p_crowbar.mdl from disk
+[22:37:01] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[22:37:01] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[22:37:01] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[22:37:01] Error: Could not load model models/shell.mdl from disk
+[22:37:01] Error: Could not load model models/w_9mmclip.mdl from disk
+[22:37:01] Error: Could not load model models/v_9mmAR.mdl from disk
+[22:37:01] Error: Could not load model models/w_9mmAR.mdl from disk
+[22:37:01] Error: Could not load model models/p_9mmAR.mdl from disk
+[22:37:01] Error: Could not load model models/grenade.mdl from disk
+[22:37:01] Error: Could not load model models/w_9mmARclip.mdl from disk
+[22:37:01] Error: Could not load model models/w_ARgrenade.mdl from disk
+[22:37:01] Error: Could not load model models/w_chainammo.mdl from disk
+[22:37:01] Error: Could not load model models/v_357.mdl from disk
+[22:37:01] Error: Could not load model models/w_357.mdl from disk
+[22:37:01] Error: Could not load model models/p_357.mdl from disk
+[22:37:01] Error: Could not load model models/w_357ammobox.mdl from disk
+[22:37:01] Error: Could not load model models/w_gauss.mdl from disk
+[22:37:01] Error: Could not load model models/v_gauss.mdl from disk
+[22:37:01] Error: Could not load model models/p_gauss.mdl from disk
+[22:37:01] Error: Could not load model sprites/hotglow.spr from disk
+[22:37:01] Error: Could not load model sprites/smoke.spr from disk
+[22:37:01] Error: Could not load model models/w_gaussammo.mdl from disk
+[22:37:01] Error: Could not load model models/w_rpg.mdl from disk
+[22:37:01] Error: Could not load model models/v_rpg.mdl from disk
+[22:37:01] Error: Could not load model models/p_rpg.mdl from disk
+[22:37:01] Error: Could not load model sprites/laserdot.spr from disk
+[22:37:01] Error: Could not load model models/rpgrocket.mdl from disk
+[22:37:01] Error: Could not load model models/w_rpgammo.mdl from disk
+[22:37:01] Error: Could not load model models/w_crossbow.mdl from disk
+[22:37:01] Error: Could not load model models/v_crossbow.mdl from disk
+[22:37:01] Error: Could not load model models/p_crossbow.mdl from disk
+[22:37:01] Error: Could not load model models/crossbow_bolt.mdl from disk
+[22:37:01] Error: Could not load model sprites/streak.spr from disk
+[22:37:01] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[22:37:01] Error: Could not load model models/w_egon.mdl from disk
+[22:37:01] Error: Could not load model models/v_egon.mdl from disk
+[22:37:01] Error: Could not load model models/p_egon.mdl from disk
+[22:37:01] Error: Could not load model sprites/xbeam1.spr from disk
+[22:37:01] Error: Could not load model models/v_tripmine.mdl from disk
+[22:37:01] Error: Could not load model models/p_tripmine.mdl from disk
+[22:37:01] Error: Could not load model models/v_satchel.mdl from disk
+[22:37:01] Error: Could not load model models/v_satchel_radio.mdl from disk
+[22:37:01] Error: Could not load model models/w_satchel.mdl from disk
+[22:37:01] Error: Could not load model models/p_satchel.mdl from disk
+[22:37:01] Error: Could not load model models/p_satchel_radio.mdl from disk
+[22:37:01] Error: Could not load model models/w_grenade.mdl from disk
+[22:37:01] Error: Could not load model models/v_grenade.mdl from disk
+[22:37:01] Error: Could not load model models/p_grenade.mdl from disk
+[22:37:01] Error: Could not load model models/w_sqknest.mdl from disk
+[22:37:01] Error: Could not load model models/v_squeak.mdl from disk
+[22:37:01] Error: Could not load model models/p_squeak.mdl from disk
+[22:37:01] Error: Could not load model models/w_squeak.mdl from disk
+[22:37:01] Error: Could not load model models/v_hgun.mdl from disk
+[22:37:01] Error: Could not load model models/w_hgun.mdl from disk
+[22:37:01] Error: Could not load model models/p_hgun.mdl from disk
+[22:37:01] Error: Could not load model models/hornet.mdl from disk
+[22:37:01] Error: Could not load model sprites/muz1.spr from disk
+[22:37:01] Error: Could not load model sprites/zerogxplode.spr from disk
+[22:37:01] Error: Could not load model sprites/WXplo1.spr from disk
+[22:37:01] Error: Could not load model sprites/explode1.spr from disk
+[22:37:01] Error: Could not load model models/player.mdl from disk
+[22:37:01] Error: Could not load model models/hgibs.mdl from disk
+[22:37:01] Error: Could not load model models/agibs.mdl from disk
+[22:37:01] Setting up renderer...
+[22:37:01] SKY:  blackrt, blackbk, blacklf, blackft, blackup, blackdn. done
+[.WebGL-0x294c01bd1200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+[22:37:01] Signon network traffic:  28.756 Kb from server, 237 bytes to server
+[22:37:01] client connected at 1.13 sec
+[22:37:01] COF/HUD STAT 100 100 0
+[22:37:01] COF/HUD INV 0
+[22:37:01] COF/HUD QUICK - - -
+[22:37:01] COF/HUD OBJECTIVE 
+[22:37:01] COF/HUD MUSIC 0 0 music1.mp3
+[22:37:01] Couldn't open file overviews/c_start.txt. Using default values for overiew mode.
+[22:37:01] COF/HUD PADLOCK 0
+[22:37:01] Couldn't open file overviews/c_start.txt. Using default values for overiew mode.
+[22:37:01] Warning: unexpected end of sprites/weapon_glock.txt (10 should be 8)
+[22:37:01] Note: GL2_GetProg: Generating progs for 0x0017
+[22:37:01] Note: GL2_GetProg: Generated progs for 0x0017
+[.WebGL-0x294c01bd1200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+[.WebGL-0x294c01bd1200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+[22:37:01] COF/FENCE walk_1 time=1.1
+[22:37:01] "sv_cheats" changed to "1"
+[22:37:01] COF/COUNT multi_manager 29
+[22:37:01] COF/FENCE walk_2 time=1.327
+[22:37:01] COF/CAMERA kamera3 id=105 state=1 think=1 next=1.354 now=1.354 remaining=43.674 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2832.98,-757 speed=6 distance=130.23 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:01] COF/FENCE walk_3 time=1.354
+[22:37:02] COF/CAMERA kamera3 id=105 state=1 think=1 next=1.471 now=1.471 remaining=43.557 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2833.42,-757 speed=6 distance=129.54 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:02] COF/FENCE walk_4 time=1.471
+[22:37:02] COF/CAMERA kamera3 id=105 state=1 think=1 next=1.604 now=1.604 remaining=43.424 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2834,-757 speed=6 distance=128.736 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:02] COF/FENCE walk_5 time=1.604
+[22:37:02] COF/CAMERA kamera3 id=105 state=1 think=1 next=1.721 now=1.727 remaining=43.301 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2834.55,-757 speed=6 distance=128.04 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:02] COF/FENCE walk_6 time=1.727
+[22:37:02] COF/CAMERA kamera3 id=105 state=1 think=1 next=1.838 now=1.838 remaining=43.19 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2835.14,-757 speed=6 distance=127.332 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:02] COF/FENCE walk_7 time=1.838
+[22:37:02] COF/CAMERA kamera3 id=105 state=1 think=1 next=1.954 now=1.954 remaining=43.074 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2835.74,-757 speed=6 distance=126.63 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:02] COF/FENCE walk_8 time=1.954
+[22:37:02] COF/CAMERA kamera3 id=105 state=1 think=1 next=2.072 now=2.078 remaining=42.95 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2836.37,-757 speed=6 distance=125.934 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:02] COF/FENCE walk_9 time=2.078
+[22:37:02] COF/CAMERA kamera3 id=105 state=1 think=1 next=2.187 now=2.187 remaining=42.841 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2837.01,-757 speed=6 distance=125.238 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:02] COF/FENCE walk_10 time=2.187
+[22:37:02] COF/CAMERA kamera3 id=105 state=1 think=1 next=2.304 now=2.304 remaining=42.724 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2837.67,-757 speed=6 distance=124.53 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:02] COF/FENCE walk_11 time=2.304
+[22:37:02] COF/CAMERA kamera3 id=105 state=1 think=1 next=2.421 now=2.427 remaining=42.601 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2838.33,-757 speed=6 distance=123.834 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:02] COF/FENCE walk_12 time=2.427
+[22:37:03] COF/CAMERA kamera3 id=105 state=1 think=1 next=2.538 now=2.538 remaining=42.49 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2839.01,-757 speed=6 distance=123.126 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:03] COF/FENCE walk_13 time=2.538
+[22:37:03] COF/CAMERA kamera3 id=105 state=1 think=1 next=2.671 now=2.671 remaining=42.357 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2839.77,-757 speed=6 distance=122.34 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:03] COF/FENCE walk_14 time=2.671
+[22:37:03] COF/CAMERA kamera3 id=105 state=1 think=1 next=2.788 now=2.788 remaining=42.24 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2840.45,-757 speed=6 distance=121.638 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:03] COF/FENCE walk_15 time=2.788
+[22:37:03] COF/CAMERA kamera3 id=105 state=1 think=1 next=2.905 now=2.905 remaining=42.123 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2841.14,-757 speed=6 distance=120.936 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:03] COF/FENCE walk_16 time=2.905
+[22:37:03] Done.
+[22:37:03] COF/CAMERA kamera3 id=105 state=1 think=1 next=2.987 now=2.987 remaining=42.041 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2841.64,-757 speed=6 distance=120.432 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:03] COF/FENCE walk_17 time=2.987
+[22:37:03] COF/HUD STAT 100 100 0
+[22:37:03] COF/HUD PICKUP inventoryitems/weapons/weapon_mobile.txt
+[22:37:03] COF/HUD INV 1 inventoryitems/weapons/weapon_mobile.txt
+[22:37:03] COF/HUD QUICK weapon_mobile - -
+[22:37:03] COF/HUD OBJECTIVE 
+[22:37:03] COF/CAMERA kamera3 id=105 state=1 think=1 next=3.154 now=3.154 remaining=41.874 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2842.63,-757 speed=6 distance=119.43 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:03] COF/FENCE walk_18 time=3.154
+[22:37:03] COF/CAMERA kamera3 id=105 state=1 think=1 next=3.271 now=3.271 remaining=41.757 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2843.32,-757 speed=6 distance=118.734 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:03] COF/FENCE walk_19 time=3.271
+[22:37:03] COF/CAMERA kamera3 id=105 state=1 think=1 next=3.387 now=3.387 remaining=41.641 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2844.01,-757 speed=6 distance=118.038 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:03] COF/FENCE walk_20 time=3.387
+[22:37:04] COF/CAMERA kamera3 id=105 state=1 think=1 next=3.505 now=3.505 remaining=41.523 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2844.71,-757 speed=6 distance=117.33 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:04] COF/FENCE walk_21 time=3.505
+[22:37:04] COF/CAMERA kamera3 id=105 state=1 think=1 next=3.621 now=3.627 remaining=41.401 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2845.4,-757 speed=6 distance=116.634 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:04] COF/FENCE walk_22 time=3.627
+[22:37:04] COF/CAMERA kamera3 id=105 state=1 think=1 next=3.738 now=3.738 remaining=41.29 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2846.1,-757 speed=6 distance=115.932 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:04] COF/FENCE walk_23 time=3.738
+[22:37:04] COF/CAMERA kamera3 id=105 state=1 think=1 next=3.854 now=3.854 remaining=41.174 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2846.8,-757 speed=6 distance=115.236 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:04] COF/FENCE walk_24 time=3.854
+[22:37:04] COF/CAMERA kamera3 id=105 state=1 think=1 next=3.971 now=3.971 remaining=41.057 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2847.5,-757 speed=6 distance=114.534 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:04] COF/FENCE walk_25 time=3.971
+[22:37:04] COF/CAMERA kamera3 id=105 state=1 think=1 next=4.087 now=4.087 remaining=40.941 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2848.2,-757 speed=6 distance=113.832 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:04] COF/FENCE walk_26 time=4.087
+[22:37:04] COF/CAMERA kamera3 id=105 state=1 think=1 next=4.205 now=4.205 remaining=40.823 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2848.89,-757 speed=6 distance=113.136 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:04] COF/FENCE walk_27 time=4.205
+[22:37:04] COF/CAMERA kamera3 id=105 state=1 think=1 next=4.322 now=4.327 remaining=40.701 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2849.61,-757 speed=6 distance=112.422 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:04] COF/FENCE walk_28 time=4.327
+[22:37:05] COF/CAMERA kamera3 id=105 state=1 think=1 next=4.454 now=4.454 remaining=40.574 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2850.4,-757 speed=6 distance=111.63 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:05] COF/FENCE walk_29 time=4.454
+[22:37:05] COF/CAMERA kamera3 id=105 state=1 think=1 next=4.572 now=4.572 remaining=40.456 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2851.09,-757 speed=6 distance=110.934 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:05] COF/FENCE walk_30 time=4.572
+[22:37:05] COF/CAMERA kamera3 id=105 state=1 think=1 next=4.687 now=4.687 remaining=40.341 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2851.79,-757 speed=6 distance=110.238 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:05] COF/FENCE walk_31 time=4.687
+[22:37:05] COF/CAMERA kamera3 id=105 state=1 think=1 next=4.804 now=4.804 remaining=40.224 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2852.5,-757 speed=6 distance=109.524 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:05] COF/FENCE walk_32 time=4.804
+[22:37:05] COF/CAMERA kamera3 id=105 state=1 think=1 next=4.939 now=4.939 remaining=40.089 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2853.29,-757 speed=6 distance=108.738 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:05] COF/FENCE walk_33 time=4.939
+[22:37:05] COF/HUD PICKUP inventoryitems/weapons/weapon_switchblade.txt
+[22:37:05] COF/HUD INV 2 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt
+[22:37:05] COF/HUD QUICK weapon_mobile weapon_switchblade -
+[22:37:05] COF/HUD OBJECTIVE 
+[22:37:05] COF/CAMERA kamera3 id=105 state=1 think=1 next=5.037 now=5.037 remaining=39.991 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2853.97,-757 speed=6 distance=108.054 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:05] COF/FENCE walk_34 time=5.037
+[22:37:05] COF/HUD STAT 100 100 0
+[22:37:05] COF/CAMERA kamera3 id=105 state=1 think=1 next=5.171 now=5.171 remaining=39.857 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2854.69,-757 speed=6 distance=107.334 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:05] COF/FENCE walk_35 time=5.171
+[22:37:05] COF/CAMERA kamera3 id=105 state=1 think=1 next=5.287 now=5.288 remaining=39.74 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2855.4,-757 speed=6 distance=106.632 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:05] COF/FENCE walk_36 time=5.288
+[22:37:05] COF/CAMERA kamera3 id=105 state=1 think=1 next=5.405 now=5.405 remaining=39.623 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2856.09,-757 speed=6 distance=105.936 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:05] COF/FENCE walk_37 time=5.405
+[22:37:06] COF/CAMERA kamera3 id=105 state=1 think=1 next=5.522 now=5.527 remaining=39.501 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2856.79,-757 speed=6 distance=105.24 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:06] COF/FENCE walk_38 time=5.527
+[22:37:06] COF/CAMERA kamera3 id=105 state=1 think=1 next=5.637 now=5.637 remaining=39.391 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2857.49,-757 speed=6 distance=104.532 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:06] COF/FENCE walk_39 time=5.637
+[22:37:06] COF/CAMERA kamera3 id=105 state=1 think=1 next=5.754 now=5.754 remaining=39.274 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2858.2,-757 speed=6 distance=103.83 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:06] COF/FENCE walk_40 time=5.754
+[22:37:06] COF/CAMERA kamera3 id=105 state=1 think=1 next=5.871 now=5.871 remaining=39.157 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2858.89,-757 speed=6 distance=103.14 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:06] COF/FENCE walk_41 time=5.871
+[22:37:06] COF/CAMERA kamera3 id=105 state=1 think=1 next=5.988 now=6 remaining=39.028 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2859.59,-757 speed=6 distance=102.438 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:06] COF/FENCE walk_42 time=6
+[22:37:06] COF/CAMERA kamera3 id=105 state=1 think=1 next=6.09 now=6.09 remaining=38.938 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2860.31,-757 speed=6 distance=101.718 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:06] COF/FENCE walk_43 time=6.09
+[22:37:06] COF/CAMERA kamera3 id=105 state=1 think=1 next=6.224 now=6.227 remaining=38.801 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2861.02,-757 speed=6 distance=101.01 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:06] COF/FENCE walk_44 time=6.227
+[22:37:07] COF/CAMERA kamera3 id=105 state=1 think=1 next=6.392 now=6.427 remaining=38.601 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2862.15,-757 speed=6 distance=99.8822 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:07] COF/FENCE walk_45 time=6.427
+[22:37:07] COF/CAMERA kamera3 id=105 state=1 think=1 next=6.526 now=6.527 remaining=38.501 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2862.91,-757 speed=6 distance=99.1202 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:07] COF/FENCE walk_46 time=6.527
+[22:37:07] COF/CAMERA kamera3 id=105 state=1 think=1 next=6.711 now=6.727 remaining=38.301 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2864.01,-757 speed=6 distance=98.0162 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:07] COF/FENCE walk_47 time=6.727
+[22:37:07] COF/CAMERA kamera3 id=105 state=1 think=1 next=6.838 now=6.838 remaining=38.19 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2864.8,-757 speed=6 distance=97.2242 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:07] COF/FENCE walk_48 time=6.838
+[22:37:07] COF/CAMERA kamera3 id=105 state=1 think=1 next=7.054 now=7.054 remaining=37.974 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2865.99,-757 speed=6 distance=96.0362 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:07] COF/FENCE walk_49 time=7.054
+[22:37:07] COF/HUD STAT 100 100 0
+[22:37:07] COF/CAMERA kamera3 id=105 state=1 think=1 next=7.171 now=7.171 remaining=37.857 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2866.69,-757 speed=6 distance=95.3402 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:07] COF/FENCE walk_50 time=7.171
+[22:37:07] COF/CAMERA kamera3 id=105 state=1 think=1 next=7.288 now=7.288 remaining=37.74 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2867.39,-757 speed=6 distance=94.6382 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:07] COF/FENCE walk_51 time=7.288
+[22:37:07] COF/CAMERA kamera3 id=105 state=1 think=1 next=7.405 now=7.405 remaining=37.623 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2868.09,-757 speed=6 distance=93.9362 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:07] COF/FENCE walk_52 time=7.405
+[22:37:08] COF/CAMERA kamera3 id=105 state=1 think=1 next=7.521 now=7.527 remaining=37.501 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2868.79,-757 speed=6 distance=93.2342 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:08] COF/FENCE walk_53 time=7.527
+[22:37:08] COF/CAMERA kamera3 id=105 state=1 think=1 next=7.637 now=7.637 remaining=37.391 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2869.5,-757 speed=6 distance=92.5322 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:08] COF/FENCE walk_54 time=7.637
+[22:37:08] COF/CAMERA kamera3 id=105 state=1 think=1 next=7.754 now=7.754 remaining=37.274 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2870.19,-757 speed=6 distance=91.8362 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:08] COF/FENCE walk_55 time=7.754
+[22:37:08] COF/CAMERA kamera3 id=105 state=1 think=1 next=7.871 now=7.871 remaining=37.157 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2870.89,-757 speed=6 distance=91.1342 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:08] COF/FENCE walk_56 time=7.871
+[22:37:08] COF/CAMERA kamera3 id=105 state=1 think=1 next=7.988 now=8 remaining=37.028 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2871.59,-757 speed=6 distance=90.4382 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:08] COF/FENCE walk_57 time=8
+[22:37:08] COF/CAMERA kamera3 id=105 state=1 think=1 next=8.104 now=8.104 remaining=36.924 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2872.3,-757 speed=6 distance=89.7302 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:08] COF/FENCE walk_58 time=8.104
+[22:37:08] COF/CAMERA kamera3 id=105 state=1 think=1 next=8.221 now=8.227 remaining=36.801 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2872.99,-757 speed=6 distance=89.0403 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:08] COF/FENCE walk_59 time=8.227
+[22:37:08] COF/CAMERA kamera3 id=105 state=1 think=1 next=8.337 now=8.337 remaining=36.691 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2873.69,-757 speed=6 distance=88.3323 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:08] COF/FENCE walk_60 time=8.337
+[22:37:09] COF/CAMERA kamera3 id=105 state=1 think=1 next=8.455 now=8.455 remaining=36.573 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2874.39,-757 speed=6 distance=87.6363 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:09] COF/FENCE walk_61 time=8.455
+[22:37:09] COF/CAMERA kamera3 id=105 state=1 think=1 next=8.571 now=8.578 remaining=36.45 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2875.09,-757 speed=6 distance=86.9343 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:09] COF/FENCE walk_62 time=8.578
+[22:37:09] COF/CAMERA kamera3 id=105 state=1 think=1 next=8.688 now=8.688 remaining=36.34 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2875.79,-757 speed=6 distance=86.2383 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:09] COF/FENCE walk_63 time=8.688
+[22:37:09] COF/CAMERA kamera3 id=105 state=1 think=1 next=8.804 now=8.804 remaining=36.224 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2876.49,-757 speed=6 distance=85.5363 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:09] COF/FENCE walk_64 time=8.804
+[22:37:09] COF/CAMERA kamera3 id=105 state=1 think=1 next=8.921 now=8.927 remaining=36.101 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2877.19,-757 speed=6 distance=84.8403 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:09] COF/FENCE walk_65 time=8.927
+[22:37:09] COF/CAMERA kamera3 id=105 state=1 think=1 next=9.037 now=9.037 remaining=35.991 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2877.89,-757 speed=6 distance=84.1383 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:09] COF/FENCE walk_66 time=9.037
+[22:37:09] COF/HUD STAT 100 100 0
+[22:37:09] COF/CAMERA kamera3 id=105 state=1 think=1 next=9.155 now=9.155 remaining=35.873 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2878.59,-757 speed=6 distance=83.4363 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:09] COF/FENCE walk_67 time=9.155
+[22:37:09] COF/CAMERA kamera3 id=105 state=1 think=1 next=9.272 now=9.272 remaining=35.756 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2879.29,-757 speed=6 distance=82.7343 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:09] COF/FENCE walk_68 time=9.272
+[22:37:09] COF/CAMERA kamera3 id=105 state=1 think=1 next=9.388 now=9.388 remaining=35.64 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2879.99,-757 speed=6 distance=82.0383 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:09] COF/FENCE walk_69 time=9.388
+[22:37:10] COF/CAMERA kamera3 id=105 state=1 think=1 next=9.505 now=9.505 remaining=35.523 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2880.69,-757 speed=6 distance=81.3363 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:10] COF/FENCE walk_70 time=9.505
+[22:37:10] COF/CAMERA kamera3 id=105 state=1 think=1 next=9.621 now=9.627 remaining=35.401 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2881.39,-757 speed=6 distance=80.6403 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:10] COF/FENCE walk_71 time=9.627
+[22:37:10] COF/CAMERA kamera3 id=105 state=1 think=1 next=9.738 now=9.738 remaining=35.29 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2882.09,-757 speed=6 distance=79.9383 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:10] COF/FENCE walk_72 time=9.738
+[22:37:10] COF/CAMERA kamera3 id=105 state=1 think=1 next=9.855 now=9.855 remaining=35.173 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2882.79,-757 speed=6 distance=79.2363 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:10] COF/FENCE walk_73 time=9.855
+[22:37:10] COF/CAMERA kamera3 id=105 state=1 think=1 next=9.971 now=9.971 remaining=35.057 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2883.49,-757 speed=6 distance=78.5403 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:10] COF/FENCE walk_74 time=9.971
+[22:37:10] COF/CAMERA kamera3 id=105 state=1 think=1 next=10.088 now=10.088 remaining=34.94 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2884.19,-757 speed=6 distance=77.8383 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:10] COF/FENCE walk_75 time=10.088
+[22:37:10] COF/CAMERA kamera3 id=105 state=1 think=1 next=10.204 now=10.204 remaining=34.824 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2884.9,-757 speed=6 distance=77.1244 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:10] COF/FENCE walk_76 time=10.204
+[22:37:10] COF/CAMERA kamera3 id=105 state=1 think=1 next=10.322 now=10.327 remaining=34.701 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2885.59,-757 speed=6 distance=76.4404 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:10] COF/FENCE walk_77 time=10.327
+[22:37:10] COF/CAMERA kamera3 id=105 state=1 think=1 next=10.438 now=10.438 remaining=34.59 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2886.29,-757 speed=6 distance=75.7384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:10] COF/FENCE walk_78 time=10.438
+[22:37:11] COF/CAMERA kamera3 id=105 state=1 think=1 next=10.554 now=10.554 remaining=34.474 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2887,-757 speed=6 distance=75.0304 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:11] COF/FENCE walk_79 time=10.554
+[22:37:11] COF/CAMERA kamera3 id=105 state=1 think=1 next=10.671 now=10.671 remaining=34.357 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2887.69,-757 speed=6 distance=74.3404 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:11] COF/FENCE walk_80 time=10.671
+[22:37:11] COF/CAMERA kamera3 id=105 state=1 think=1 next=10.787 now=10.787 remaining=34.241 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2888.39,-757 speed=6 distance=73.6384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:11] COF/FENCE walk_81 time=10.787
+[22:37:11] COF/CAMERA kamera3 id=105 state=1 think=1 next=10.905 now=10.905 remaining=34.123 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2889.1,-757 speed=6 distance=72.9304 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:11] COF/FENCE walk_82 time=10.905
+[.WebGL-0x294c01bd1200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now. (this message will no longer repeat)
+[22:37:11] COF/CAMERA kamera3 id=105 state=1 think=1 next=11.021 now=11.027 remaining=34.001 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2889.79,-757 speed=6 distance=72.2344 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:11] COF/FENCE walk_83 time=11.027
+[22:37:11] COF/HUD STAT 100 100 0
+[22:37:11] COF/CAMERA kamera3 id=105 state=1 think=1 next=11.138 now=11.138 remaining=33.89 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2890.59,-757 speed=6 distance=71.4364 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:11] COF/FENCE walk_84 time=11.138
+[22:37:11] COF/CAMERA kamera3 id=105 state=1 think=1 next=11.271 now=11.271 remaining=33.757 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2891.4,-757 speed=6 distance=70.6324 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:11] COF/FENCE walk_85 time=11.271
+[22:37:11] COF/CAMERA kamera3 id=105 state=1 think=1 next=11.404 now=11.427 remaining=33.601 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2892.19,-757 speed=6 distance=69.8404 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:11] COF/FENCE walk_86 time=11.427
+[22:37:12] COF/CAMERA kamera3 id=105 state=1 think=1 next=11.538 now=11.538 remaining=33.49 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2892.99,-757 speed=6 distance=69.0364 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:12] COF/FENCE walk_87 time=11.538
+[22:37:12] COF/CAMERA kamera3 id=105 state=1 think=1 next=11.672 now=11.672 remaining=33.356 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2893.79,-757 speed=6 distance=68.2384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:12] COF/FENCE walk_88 time=11.672
+[22:37:12] COF/CAMERA kamera3 id=105 state=1 think=1 next=11.804 now=11.827 remaining=33.201 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2894.59,-757 speed=6 distance=67.4404 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:12] COF/FENCE walk_89 time=11.827
+[22:37:12] COF/CAMERA kamera3 id=105 state=1 think=1 next=11.937 now=11.937 remaining=33.091 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2895.4,-757 speed=6 distance=66.6304 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:12] COF/FENCE walk_90 time=11.937
+[22:37:12] COF/CAMERA kamera3 id=105 state=1 think=1 next=12.071 now=12.071 remaining=32.957 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2896.19,-757 speed=6 distance=65.8384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:12] COF/FENCE walk_91 time=12.071
+[22:37:12] COF/CAMERA kamera3 id=105 state=1 think=1 next=12.204 now=12.227 remaining=32.801 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2896.99,-757 speed=6 distance=65.0404 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:12] COF/FENCE walk_92 time=12.227
+[22:37:12] COF/CAMERA kamera3 id=105 state=1 think=1 next=12.338 now=12.338 remaining=32.69 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2897.8,-757 speed=6 distance=64.2304 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:12] COF/FENCE walk_93 time=12.338
+[22:37:13] COF/CAMERA kamera3 id=105 state=1 think=1 next=12.472 now=12.472 remaining=32.556 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2898.59,-757 speed=6 distance=63.4384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:13] COF/FENCE walk_94 time=12.472
+[22:37:13] COF/CAMERA kamera3 id=105 state=1 think=1 next=12.605 now=12.627 remaining=32.401 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2899.39,-757 speed=6 distance=62.6404 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:13] COF/FENCE walk_95 time=12.627
+[22:37:13] COF/CAMERA kamera3 id=105 state=1 think=1 next=12.706 now=12.727 remaining=32.301 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2900.09,-757 speed=6 distance=61.9324 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:13] COF/FENCE walk_96 time=12.727
+[22:37:13] COF/CAMERA kamera3 id=105 state=1 think=1 next=12.855 now=12.855 remaining=32.173 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2900.89,-757 speed=6 distance=61.1404 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:13] COF/FENCE walk_97 time=12.855
+[22:37:13] COF/CAMERA kamera3 id=105 state=1 think=1 next=12.988 now=12.988 remaining=32.04 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2901.69,-757 speed=6 distance=60.3364 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:13] COF/FENCE walk_98 time=12.988
+[22:37:13] COF/HUD STAT 100 100 0
+[22:37:13] COF/CAMERA kamera3 id=105 state=1 think=1 next=13.122 now=13.127 remaining=31.901 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2902.49,-757 speed=6 distance=59.5384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:13] COF/FENCE walk_99 time=13.127
+[22:37:13] COF/CAMERA kamera3 id=105 state=1 think=1 next=13.255 now=13.255 remaining=31.773 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2903.29,-757 speed=6 distance=58.7344 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:13] COF/FENCE walk_100 time=13.255
+[22:37:13] COF/CAMERA kamera3 id=105 state=1 think=1 next=13.388 now=13.388 remaining=31.64 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2904.09,-757 speed=6 distance=57.9364 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:13] COF/FENCE walk_101 time=13.388
+[22:37:14] COF/CAMERA kamera3 id=105 state=1 think=1 next=13.521 now=13.527 remaining=31.501 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2904.89,-757 speed=6 distance=57.1384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:14] COF/FENCE walk_102 time=13.527
+[22:37:14] COF/CAMERA kamera3 id=105 state=1 think=1 next=13.654 now=13.654 remaining=31.374 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2905.69,-757 speed=6 distance=56.3344 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:14] COF/FENCE walk_103 time=13.654
+[22:37:14] COF/CAMERA kamera3 id=105 state=1 think=1 next=13.787 now=13.787 remaining=31.241 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2906.5,-757 speed=6 distance=55.5304 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:14] COF/FENCE walk_104 time=13.787
+[22:37:14] COF/CAMERA kamera3 id=105 state=1 think=1 next=13.921 now=13.927 remaining=31.101 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2907.29,-757 speed=6 distance=54.7384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:14] COF/FENCE walk_105 time=13.927
+[22:37:14] COF/CAMERA kamera3 id=105 state=1 think=1 next=14.055 now=14.055 remaining=30.973 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2908.09,-757 speed=6 distance=53.9404 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:14] COF/FENCE walk_106 time=14.055
+[22:37:14] COF/CAMERA kamera3 id=105 state=1 think=1 next=14.187 now=14.187 remaining=30.841 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2908.89,-757 speed=6 distance=53.1364 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:14] COF/FENCE walk_107 time=14.187
+[22:37:14] COF/CAMERA kamera3 id=105 state=1 think=1 next=14.304 now=14.327 remaining=30.701 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2909.59,-757 speed=6 distance=52.4404 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:14] COF/FENCE walk_108 time=14.327
+[22:37:15] COF/CAMERA kamera3 id=105 state=1 think=1 next=14.437 now=14.437 remaining=30.591 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2910.4,-757 speed=6 distance=51.6304 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:15] COF/FENCE walk_109 time=14.437
+[22:37:15] COF/CAMERA kamera3 id=105 state=1 think=1 next=14.571 now=14.571 remaining=30.457 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2911.19,-757 speed=6 distance=50.8384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:15] COF/FENCE walk_110 time=14.571
+[22:37:15] COF/CAMERA kamera3 id=105 state=1 think=1 next=14.704 now=14.727 remaining=30.301 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2911.99,-757 speed=6 distance=50.0344 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:15] COF/FENCE walk_111 time=14.727
+[22:37:15] COF/CAMERA kamera3 id=105 state=1 think=1 next=14.821 now=14.827 remaining=30.201 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2912.69,-757 speed=6 distance=49.3384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:15] COF/FENCE walk_112 time=14.827
+[22:37:15] COF/CAMERA kamera3 id=105 state=1 think=1 next=14.923 now=14.927 remaining=30.101 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2913.29,-757 speed=6 distance=48.7384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:15] COF/FENCE walk_113 time=14.927
+[22:37:15] COF/HUD SUB 9
+[22:37:15] COF/CAMERA kamera3 id=105 state=1 think=1 next=15.039 now=15.065 remaining=29.963 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2913.99,-757 speed=6 distance=48.0364 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:15] COF/FENCE walk_114 time=15.065
+[22:37:15] COF/HUD STAT 100 100 0
+[22:37:15] COF/CAMERA kamera3 id=105 state=1 think=1 next=15.171 now=15.171 remaining=29.857 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2914.79,-757 speed=6 distance=47.2384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:15] COF/FENCE walk_115 time=15.171
+[22:37:15] COF/CAMERA kamera3 id=105 state=1 think=1 next=15.305 now=15.305 remaining=29.723 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2915.5,-757 speed=6 distance=46.5244 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:15] COF/FENCE walk_116 time=15.305
+[22:37:16] COF/CAMERA kamera3 id=105 state=1 think=1 next=15.421 now=15.427 remaining=29.601 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2916.3,-757 speed=6 distance=45.7324 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:16] COF/FENCE walk_117 time=15.427
+[22:37:16] COF/CAMERA kamera3 id=105 state=1 think=1 next=15.555 now=15.555 remaining=29.473 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2917.09,-757 speed=6 distance=44.9404 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:16] COF/FENCE walk_118 time=15.555
+[22:37:16] COF/CAMERA kamera3 id=105 state=1 think=1 next=15.688 now=15.688 remaining=29.34 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2917.9,-757 speed=6 distance=44.1304 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:16] COF/FENCE walk_119 time=15.688
+[22:37:16] COF/CAMERA kamera3 id=105 state=1 think=1 next=15.822 now=15.827 remaining=29.201 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2918.7,-757 speed=6 distance=43.3324 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:16] COF/FENCE walk_120 time=15.827
+[22:37:16] COF/CAMERA kamera3 id=105 state=1 think=1 next=15.954 now=15.954 remaining=29.074 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2919.49,-757 speed=6 distance=42.5344 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:16] COF/FENCE walk_121 time=15.954
+[22:37:16] COF/CAMERA kamera3 id=105 state=1 think=1 next=16.087 now=16.087 remaining=28.941 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2920.29,-757 speed=6 distance=41.7364 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:16] COF/FENCE walk_122 time=16.087
+[22:37:16] COF/CAMERA kamera3 id=105 state=1 think=1 next=16.222 now=16.227 remaining=28.801 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2921.09,-757 speed=6 distance=40.9384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:16] COF/FENCE walk_123 time=16.227
+[22:37:16] COF/CAMERA kamera3 id=105 state=1 think=1 next=16.354 now=16.354 remaining=28.674 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2921.89,-757 speed=6 distance=40.1344 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:16] COF/FENCE walk_124 time=16.354
+[22:37:17] COF/CAMERA kamera3 id=105 state=1 think=1 next=16.487 now=16.487 remaining=28.541 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2922.69,-757 speed=6 distance=39.3364 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:17] COF/FENCE walk_125 time=16.487
+[22:37:17] COF/CAMERA kamera3 id=105 state=1 think=1 next=16.621 now=16.627 remaining=28.401 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2923.5,-757 speed=6 distance=38.5324 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:17] COF/FENCE walk_126 time=16.627
+[22:37:17] COF/CAMERA kamera3 id=105 state=1 think=1 next=16.755 now=16.755 remaining=28.273 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2924.29,-757 speed=6 distance=37.7404 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:17] COF/FENCE walk_127 time=16.755
+[22:37:17] COF/CAMERA kamera3 id=105 state=1 think=1 next=16.872 now=16.872 remaining=28.156 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2924.99,-757 speed=6 distance=37.0384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:17] COF/FENCE walk_128 time=16.872
+[22:37:17] COF/CAMERA kamera3 id=105 state=1 think=1 next=17.004 now=17.027 remaining=28.001 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2925.79,-757 speed=6 distance=36.2404 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:17] COF/FENCE walk_129 time=17.027
+[22:37:17] COF/HUD STAT 100 100 0
+[22:37:17] COF/CAMERA kamera3 id=105 state=1 think=1 next=17.137 now=17.137 remaining=27.891 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2926.5,-757 speed=6 distance=35.5264 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:17] COF/FENCE walk_130 time=17.137
+[22:37:17] COF/CAMERA kamera3 id=105 state=1 think=1 next=17.255 now=17.255 remaining=27.773 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2927.2,-757 speed=6 distance=34.8304 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:17] COF/FENCE walk_131 time=17.255
+[22:37:17] COF/CAMERA kamera3 id=105 state=1 think=1 next=17.372 now=17.372 remaining=27.656 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2927.89,-757 speed=6 distance=34.1404 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:17] COF/FENCE walk_132 time=17.372
+[22:37:18] COF/CAMERA kamera3 id=105 state=1 think=1 next=17.472 now=17.472 remaining=27.556 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2928.59,-757 speed=6 distance=33.4384 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:18] COF/FENCE walk_133 time=17.472
+[22:37:18] COF/CAMERA kamera3 id=105 state=1 think=1 next=17.604 now=17.604 remaining=27.424 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2929.3,-757 speed=6 distance=32.7303 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:18] COF/FENCE walk_134 time=17.604
+[22:37:18] COF/CAMERA kamera3 id=105 state=1 think=1 next=17.722 now=17.727 remaining=27.301 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2930.09,-757 speed=6 distance=31.9383 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:18] COF/FENCE walk_135 time=17.727
+[22:37:18] COF/CAMERA kamera3 id=105 state=1 think=1 next=17.854 now=17.854 remaining=27.174 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2930.8,-757 speed=6 distance=31.2243 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:18] COF/FENCE walk_136 time=17.854
+[22:37:18] COF/CAMERA kamera3 id=105 state=1 think=1 next=17.971 now=18 remaining=27.028 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2931.6,-757 speed=6 distance=30.4323 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:18] COF/FENCE walk_137 time=18
+[22:37:18] COF/CAMERA kamera3 id=105 state=1 think=1 next=18.105 now=18.127 remaining=26.901 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2932.39,-757 speed=6 distance=29.6343 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:18] COF/FENCE walk_138 time=18.127
+[22:37:18] COF/CAMERA kamera3 id=105 state=1 think=1 next=18.238 now=18.238 remaining=26.79 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2933.19,-757 speed=6 distance=28.8363 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:18] COF/FENCE walk_139 time=18.238
+[22:37:18] COF/CAMERA kamera3 id=105 state=1 think=1 next=18.372 now=18.372 remaining=26.656 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2933.99,-757 speed=6 distance=28.0383 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:18] COF/FENCE walk_140 time=18.372
+[22:37:19] COF/CAMERA kamera3 id=105 state=1 think=1 next=18.473 now=18.473 remaining=26.555 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2934.59,-757 speed=6 distance=27.4383 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:19] COF/FENCE walk_141 time=18.473
+[22:37:19] COF/CAMERA kamera3 id=105 state=1 think=1 next=18.605 now=18.627 remaining=26.401 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2935.39,-757 speed=6 distance=26.6403 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:19] COF/FENCE walk_142 time=18.627
+[22:37:19] COF/CAMERA kamera3 id=105 state=1 think=1 next=18.737 now=18.737 remaining=26.291 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2936.2,-757 speed=6 distance=25.8303 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:19] COF/FENCE walk_143 time=18.737
+[22:37:19] COF/CAMERA kamera3 id=105 state=1 think=1 next=18.872 now=18.872 remaining=26.156 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2936.99,-757 speed=6 distance=25.0383 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:19] COF/FENCE walk_144 time=18.872
+[22:37:19] COF/CAMERA kamera3 id=105 state=1 think=1 next=19.004 now=19.027 remaining=26.001 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2937.79,-757 speed=6 distance=24.2403 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:19] COF/FENCE walk_145 time=19.027
+[22:37:19] COF/HUD STAT 100 100 0
+[22:37:19] COF/CAMERA kamera3 id=105 state=1 think=1 next=19.154 now=19.154 remaining=25.874 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2938.6,-757 speed=6 distance=23.4243 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:19] COF/FENCE walk_146 time=19.154
+[22:37:19] COF/CAMERA kamera3 id=105 state=1 think=1 next=19.271 now=19.271 remaining=25.757 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2939.39,-757 speed=6 distance=22.6383 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:19] COF/FENCE walk_147 time=19.271
+[22:37:19] COF/CAMERA kamera3 id=105 state=1 think=1 next=19.405 now=19.427 remaining=25.601 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2940.19,-757 speed=6 distance=21.8403 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:19] COF/FENCE walk_148 time=19.427
+[22:37:20] COF/CAMERA kamera3 id=105 state=1 think=1 next=19.538 now=19.538 remaining=25.49 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2940.99,-757 speed=6 distance=21.0363 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:20] COF/FENCE walk_149 time=19.538
+[22:37:20] COF/CAMERA kamera3 id=105 state=1 think=1 next=19.671 now=19.671 remaining=25.357 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2941.79,-757 speed=6 distance=20.2383 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:20] COF/FENCE walk_150 time=19.671
+[22:37:20] COF/CAMERA kamera3 id=105 state=1 think=1 next=19.805 now=19.827 remaining=25.201 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2942.59,-757 speed=6 distance=19.4403 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:20] COF/FENCE walk_151 time=19.827
+[22:37:20] COF/CAMERA kamera3 id=105 state=1 think=1 next=19.938 now=19.965 remaining=25.063 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2943.4,-757 speed=6 distance=18.6303 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:20] COF/FENCE walk_152 time=19.965
+[22:37:20] COF/CAMERA kamera3 id=105 state=1 think=1 next=20.087 now=20.087 remaining=24.941 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2944.19,-757 speed=6 distance=17.8383 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:20] COF/FENCE walk_153 time=20.087
+[22:37:20] COF/CAMERA kamera3 id=105 state=1 think=1 next=20.204 now=20.227 remaining=24.801 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2945,-757 speed=6 distance=17.0343 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:20] COF/FENCE walk_154 time=20.227
+[22:37:20] COF/CAMERA kamera3 id=105 state=1 think=1 next=20.321 now=20.327 remaining=24.701 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2945.7,-757 speed=6 distance=16.3323 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:20] COF/FENCE walk_155 time=20.327
+[22:37:21] COF/CAMERA kamera3 id=105 state=1 think=1 next=20.471 now=20.471 remaining=24.557 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2946.5,-757 speed=6 distance=15.5343 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:21] COF/FENCE walk_156 time=20.471
+[22:37:21] COF/CAMERA kamera3 id=105 state=1 think=1 next=20.572 now=20.572 remaining=24.456 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2947.2,-757 speed=6 distance=14.8323 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:21] COF/FENCE walk_157 time=20.572
+[22:37:21] COF/CAMERA kamera3 id=105 state=1 think=1 next=20.705 now=20.705 remaining=24.323 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2947.91,-757 speed=6 distance=14.1243 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:21] COF/FENCE walk_158 time=20.705
+[22:37:21] COF/CAMERA kamera3 id=105 state=1 think=1 next=20.823 now=20.827 remaining=24.201 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2948.69,-757 speed=6 distance=13.3383 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:21] COF/FENCE walk_159 time=20.827
+[22:37:21] COF/CAMERA kamera3 id=105 state=1 think=1 next=20.955 now=20.955 remaining=24.073 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2949.41,-757 speed=6 distance=12.6243 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:21] COF/FENCE walk_160 time=20.955
+[22:37:21] COF/CAMERA kamera3 id=105 state=1 think=1 next=21.055 now=21.055 remaining=23.973 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2950.09,-757 speed=6 distance=11.9403 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:21] COF/FENCE walk_161 time=21.055
+[22:37:21] COF/HUD STAT 100 100 0
+[22:37:21] COF/CAMERA kamera3 id=105 state=1 think=1 next=21.187 now=21.187 remaining=23.841 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2950.89,-757 speed=6 distance=11.1363 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:21] COF/FENCE walk_162 time=21.187
+[22:37:21] COF/CAMERA kamera3 id=105 state=1 think=1 next=21.321 now=21.327 remaining=23.701 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2951.7,-757 speed=6 distance=10.3323 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:21] COF/FENCE walk_163 time=21.327
+[22:37:22] COF/CAMERA kamera3 id=105 state=1 think=1 next=21.454 now=21.454 remaining=23.574 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2952.5,-757 speed=6 distance=9.53434 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:22] COF/FENCE walk_164 time=21.454
+[22:37:22] COF/CAMERA kamera3 id=105 state=1 think=1 next=21.588 now=21.588 remaining=23.44 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2953.3,-757 speed=6 distance=8.73034 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:22] COF/FENCE walk_165 time=21.588
+[22:37:22] COF/CAMERA kamera3 id=105 state=1 think=1 next=21.721 now=21.727 remaining=23.301 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2954.09,-757 speed=6 distance=7.93834 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:22] COF/FENCE walk_166 time=21.727
+[22:37:22] COF/CAMERA kamera3 id=105 state=1 think=1 next=21.854 now=21.854 remaining=23.174 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2954.9,-757 speed=6 distance=7.13434 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:22] COF/FENCE walk_167 time=21.854
+[22:37:22] COF/CAMERA kamera3 id=105 state=1 think=1 next=21.987 now=22 remaining=23.028 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2955.69,-757 speed=6 distance=6.33634 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:22] COF/FENCE walk_168 time=22
+[22:37:22] COF/CAMERA kamera3 id=105 state=1 think=1 next=22.054 now=22.054 remaining=22.974 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2956.09,-757 speed=6 distance=5.94034 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:22] COF/FENCE walk_169 time=22.054
+[22:37:22] COF/CAMERA kamera3 id=105 state=1 think=1 next=22.154 now=22.178 remaining=22.85 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2956.7,-757 speed=6 distance=5.33434 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:22] COF/FENCE walk_170 time=22.178
+[22:37:22] COF/CAMERA kamera3 id=105 state=1 think=1 next=22.305 now=22.305 remaining=22.723 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2957.51,-757 speed=6 distance=4.52434 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:22] COF/FENCE walk_171 time=22.305
+[22:37:22] COF/CAMERA kamera3 id=105 state=1 think=1 next=22.437 now=22.437 remaining=22.591 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2958.29,-757 speed=6 distance=3.73834 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:22] COF/FENCE walk_172 time=22.437
+[22:37:23] COF/CAMERA kamera3 id=105 state=1 think=1 next=22.537 now=22.555 remaining=22.473 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2958.9,-757 speed=6 distance=3.12634 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:23] COF/FENCE walk_173 time=22.555
+[22:37:23] COF/CAMERA kamera3 id=105 state=1 think=1 next=22.654 now=22.654 remaining=22.374 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2959.69,-757 speed=6 distance=2.34034 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:23] COF/FENCE walk_174 time=22.654
+[22:37:23] COF/CAMERA kamera3 id=105 state=1 think=1 next=22.773 now=22.773 remaining=22.255 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2960.39,-757 speed=6 distance=1.63834 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:23] COF/FENCE walk_175 time=22.773
+[22:37:23] COF/CAMERA kamera3 id=105 state=1 think=1 next=22.888 now=22.888 remaining=22.14 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2961.09,-757 speed=6 distance=0.936336 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:23] COF/FENCE walk_176 time=22.888
+[22:37:23] COF/HUD SUB 10
+[22:37:23] COF/CAMERA kamera3 id=105 state=1 think=1 next=23.021 now=23.0271 remaining=22.0009 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2961.81,-757 speed=6 distance=0.222336 stop=1.028 initial=6 accel=500 decel=500 route=1stop1
+[22:37:23] COF/FENCE walk_177 time=23.0271
+[22:37:23] COF/HUD STAT 100 100 0
+[22:37:23] COF/CAMERA kamera3 id=105 state=1 think=1 next=23.154 now=23.154 remaining=21.874 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2962.45,-757 speed=6 distance=128.598 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:23] COF/FENCE walk_178 time=23.154
+[22:37:23] COF/CAMERA kamera3 id=105 state=1 think=1 next=23.273 now=23.273 remaining=21.755 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2962.75,-757 speed=6 distance=127.794 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:23] COF/FENCE walk_179 time=23.273
+[22:37:23] COF/CAMERA kamera3 id=105 state=1 think=1 next=23.404 now=23.404 remaining=21.624 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2962.8,-757 speed=6 distance=127.086 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:23] COF/FENCE walk_180 time=23.404
+[22:37:24] COF/CAMERA kamera3 id=105 state=1 think=1 next=23.539 now=23.539 remaining=21.489 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2962.66,-757 speed=6 distance=126.288 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:24] COF/FENCE walk_181 time=23.539
+[22:37:24] COF/CAMERA kamera3 id=105 state=1 think=1 next=23.654 now=23.654 remaining=21.374 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2962.41,-757 speed=6 distance=125.586 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:24] COF/FENCE walk_182 time=23.654
+[22:37:24] COF/CAMERA kamera3 id=105 state=1 think=1 next=23.771 now=23.771 remaining=21.257 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2962.01,-757 speed=6 distance=124.8 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:24] COF/FENCE walk_183 time=23.771
+[22:37:24] COF/CAMERA kamera3 id=105 state=1 think=1 next=23.904 now=23.9271 remaining=21.1009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2961.51,-757 speed=6 distance=124.002 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:24] COF/FENCE walk_184 time=23.9271
+[22:37:24] COF/CAMERA kamera3 id=105 state=1 think=1 next=24.038 now=24.038 remaining=20.99 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2960.93,-757 speed=6 distance=123.192 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:24] COF/FENCE walk_185 time=24.038
+[22:37:24] COF/CAMERA kamera3 id=105 state=1 think=1 next=24.171 now=24.171 remaining=20.857 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2960.31,-757 speed=6 distance=122.4 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:24] COF/FENCE walk_186 time=24.171
+[22:37:24] COF/CAMERA kamera3 id=105 state=1 think=1 next=24.305 now=24.305 remaining=20.723 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2959.72,-757 speed=6 distance=121.686 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:24] COF/FENCE walk_187 time=24.305
+[22:37:25] COF/CAMERA kamera3 id=105 state=1 think=1 next=24.437 now=24.437 remaining=20.591 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2959.03,-757 speed=6 distance=120.894 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:25] COF/FENCE walk_188 time=24.437
+[22:37:25] COF/CAMERA kamera3 id=105 state=1 think=1 next=24.554 now=24.556 remaining=20.472 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2958.31,-757 speed=6 distance=120.102 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:25] COF/FENCE walk_189 time=24.556
+[22:37:25] COF/CAMERA kamera3 id=105 state=1 think=1 next=24.688 now=24.688 remaining=20.34 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2957.56,-757 speed=6 distance=119.292 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:25] COF/FENCE walk_190 time=24.688
+[22:37:25] COF/CAMERA kamera3 id=105 state=1 think=1 next=24.821 now=24.8271 remaining=20.2009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2956.82,-757 speed=6 distance=118.5 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:25] COF/FENCE walk_191 time=24.8271
+[22:37:25] COF/CAMERA kamera3 id=105 state=1 think=1 next=24.954 now=24.954 remaining=20.074 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2956.05,-757 speed=6 distance=117.702 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:25] COF/FENCE walk_192 time=24.954
+[22:37:25] COF/CAMERA kamera3 id=105 state=1 think=1 next=25.088 now=25.088 remaining=19.94 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2955.27,-757 speed=6 distance=116.892 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:25] COF/FENCE walk_193 time=25.088
+[22:37:25] COF/HUD STAT 100 100 0
+[22:37:25] COF/CAMERA kamera3 id=105 state=1 think=1 next=25.237 now=25.237 remaining=19.791 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2954.48,-757 speed=6 distance=116.088 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:25] COF/FENCE walk_194 time=25.237
+[22:37:25] COF/CAMERA kamera3 id=105 state=1 think=1 next=25.354 now=25.354 remaining=19.674 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2953.71,-757 speed=6 distance=115.296 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:25] COF/FENCE walk_195 time=25.354
+[22:37:26] COF/CAMERA kamera3 id=105 state=1 think=1 next=25.488 now=25.488 remaining=19.54 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2952.92,-757 speed=6 distance=114.498 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:26] COF/FENCE walk_196 time=25.488
+[22:37:26] COF/CAMERA kamera3 id=105 state=1 think=1 next=25.606 now=25.6271 remaining=19.4009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2952.23,-757 speed=6 distance=113.802 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:26] COF/FENCE walk_197 time=25.6271
+[22:37:26] COF/CAMERA kamera3 id=105 state=1 think=1 next=25.737 now=25.737 remaining=19.291 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2951.43,-757 speed=6 distance=112.998 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:26] COF/FENCE walk_198 time=25.737
+[22:37:26] COF/CAMERA kamera3 id=105 state=1 think=1 next=25.871 now=25.871 remaining=19.157 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2950.64,-757 speed=6 distance=112.2 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:26] COF/FENCE walk_199 time=25.871
+[22:37:26] COF/CAMERA kamera3 id=105 state=1 think=1 next=26.004 now=26.004 remaining=19.024 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2949.93,-757 speed=6 distance=111.486 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:26] COF/FENCE walk_200 time=26.004
+[22:37:26] COF/CAMERA kamera3 id=105 state=1 think=1 next=26.121 now=26.1271 remaining=18.9009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2949.15,-757 speed=6 distance=110.7 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:26] COF/FENCE walk_201 time=26.1271
+[22:37:26] COF/CAMERA kamera3 id=105 state=1 think=1 next=26.255 now=26.255 remaining=18.773 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2948.35,-757 speed=6 distance=109.902 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:26] COF/FENCE walk_202 time=26.255
+[22:37:26] COF/CAMERA kamera3 id=105 state=1 think=1 next=26.388 now=26.388 remaining=18.64 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2947.55,-757 speed=6 distance=109.098 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:26] COF/FENCE walk_203 time=26.388
+[22:37:27] COF/CAMERA kamera3 id=105 state=1 think=1 next=26.522 now=26.5271 remaining=18.5009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2946.75,-757 speed=6 distance=108.294 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:27] COF/FENCE walk_204 time=26.5271
+[22:37:27] COF/CAMERA kamera3 id=105 state=1 think=1 next=26.654 now=26.654 remaining=18.374 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2945.96,-757 speed=6 distance=107.502 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:27] COF/FENCE walk_205 time=26.654
+[22:37:27] COF/CAMERA kamera3 id=105 state=1 think=1 next=26.787 now=26.787 remaining=18.241 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2945.15,-757 speed=6 distance=106.698 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:27] COF/FENCE walk_206 time=26.787
+[22:37:27] COF/CAMERA kamera3 id=105 state=1 think=1 next=26.921 now=26.9271 remaining=18.1009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2944.35,-757 speed=6 distance=105.894 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:27] COF/FENCE walk_207 time=26.9271
+[22:37:27] COF/CAMERA kamera3 id=105 state=1 think=1 next=27.054 now=27.054 remaining=17.974 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2943.56,-757 speed=6 distance=105.102 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:27] COF/FENCE walk_208 time=27.054
+[22:37:27] COF/HUD STAT 100 100 0
+[22:37:27] COF/CAMERA kamera3 id=105 state=1 think=1 next=27.187 now=27.187 remaining=17.841 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2942.75,-757 speed=6 distance=104.298 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:27] COF/FENCE walk_209 time=27.187
+[22:37:27] COF/CAMERA kamera3 id=105 state=1 think=1 next=27.322 now=27.3271 remaining=17.7009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2941.96,-757 speed=6 distance=103.5 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:27] COF/FENCE walk_210 time=27.3271
+[22:37:28] COF/CAMERA kamera3 id=105 state=1 think=1 next=27.455 now=27.456 remaining=17.572 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2941.15,-757 speed=6 distance=102.696 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:28] COF/FENCE walk_211 time=27.456
+[22:37:28] COF/CAMERA kamera3 id=105 state=1 think=1 next=27.587 now=27.587 remaining=17.441 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2940.35,-757 speed=6 distance=101.898 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:28] COF/FENCE walk_212 time=27.587
+[22:37:28] COF/CAMERA kamera3 id=105 state=1 think=1 next=27.722 now=27.7271 remaining=17.3009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2939.55,-757 speed=6 distance=101.094 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:28] COF/FENCE walk_213 time=27.7271
+[22:37:28] COF/CAMERA kamera3 id=105 state=1 think=1 next=27.855 now=27.855 remaining=17.173 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2938.76,-757 speed=6 distance=100.302 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:28] COF/FENCE walk_214 time=27.855
+[22:37:28] COF/CAMERA kamera3 id=105 state=1 think=1 next=27.987 now=28 remaining=17.028 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2937.95,-757 speed=6 distance=99.4917 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:28] COF/FENCE walk_215 time=28
+[22:37:28] COF/CAMERA kamera3 id=105 state=1 think=1 next=28.106 now=28.1271 remaining=16.9009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2937.26,-757 speed=6 distance=98.8017 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:28] COF/FENCE walk_216 time=28.1271
+[22:37:28] COF/CAMERA kamera3 id=105 state=1 think=1 next=28.237 now=28.238 remaining=16.79 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2936.46,-757 speed=6 distance=97.9977 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:28] COF/FENCE walk_217 time=28.238
+[22:37:28] COF/CAMERA kamera3 id=105 state=1 think=1 next=28.371 now=28.371 remaining=16.657 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2935.66,-757 speed=6 distance=97.1997 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:28] COF/FENCE walk_218 time=28.371
+[22:37:29] COF/CAMERA kamera3 id=105 state=1 think=1 next=28.487 now=28.487 remaining=16.541 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2934.95,-757 speed=6 distance=96.4917 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:29] COF/FENCE walk_219 time=28.487
+[22:37:29] COF/CAMERA kamera3 id=105 state=1 think=1 next=28.621 now=28.6271 remaining=16.4009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2934.16,-757 speed=6 distance=95.6997 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:29] COF/FENCE walk_220 time=28.6271
+[22:37:29] COF/CAMERA kamera3 id=105 state=1 think=1 next=28.754 now=28.754 remaining=16.274 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2933.44,-757 speed=6 distance=94.9857 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:29] COF/FENCE walk_221 time=28.754
+[22:37:29] COF/CAMERA kamera3 id=105 state=1 think=1 next=28.871 now=28.871 remaining=16.157 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2932.65,-757 speed=6 distance=94.1937 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:29] COF/FENCE walk_222 time=28.871
+[22:37:29] COF/CAMERA kamera3 id=105 state=1 think=1 next=29.004 now=29.0271 remaining=16.0009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2931.86,-757 speed=6 distance=93.4017 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:29] COF/FENCE walk_223 time=29.0271
+[22:37:29] COF/CAMERA kamera3 id=105 state=1 think=1 next=29.137 now=29.137 remaining=15.891 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2931.05,-757 speed=6 distance=92.5917 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:29] COF/FENCE walk_224 time=29.137
+[22:37:29] COF/HUD STAT 100 100 0
+[22:37:29] COF/CAMERA kamera3 id=105 state=1 think=1 next=29.254 now=29.254 remaining=15.774 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2930.24,-757 speed=6 distance=91.7877 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:29] COF/FENCE walk_225 time=29.254
+[22:37:29] COF/CAMERA kamera3 id=105 state=1 think=1 next=29.357 now=29.357 remaining=15.671 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2929.55,-757 speed=6 distance=91.0917 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:29] COF/FENCE walk_226 time=29.357
+[22:37:30] COF/CAMERA kamera3 id=105 state=1 think=1 next=29.472 now=29.488 remaining=15.54 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2928.95,-757 speed=6 distance=90.4977 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:30] COF/FENCE walk_227 time=29.488
+[22:37:30] COF/CAMERA kamera3 id=105 state=1 think=1 next=29.638 now=29.638 remaining=15.39 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2927.95,-757 speed=6 distance=89.4957 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:30] COF/FENCE walk_228 time=29.638
+[22:37:30] COF/CAMERA kamera3 id=105 state=1 think=1 next=29.773 now=29.798 remaining=15.23 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2927.15,-757 speed=6 distance=88.6977 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:30] COF/FENCE walk_229 time=29.798
+[22:37:30] COF/CAMERA kamera3 id=105 state=1 think=1 next=29.955 now=29.955 remaining=15.073 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2926.16,-757 speed=6 distance=87.7017 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:30] COF/FENCE walk_230 time=29.955
+[22:37:30] COF/CAMERA kamera3 id=105 state=1 think=1 next=30.054 now=30.054 remaining=14.974 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2925.46,-757 speed=6 distance=86.9997 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:30] COF/FENCE walk_231 time=30.054
+[22:37:30] COF/CAMERA kamera3 id=105 state=1 think=1 next=30.204 now=30.2271 remaining=14.8009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2924.66,-757 speed=6 distance=86.2017 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:30] COF/FENCE walk_232 time=30.2271
+[22:37:30] COF/CAMERA kamera3 id=105 state=1 think=1 next=30.339 now=30.339 remaining=14.689 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2923.85,-757 speed=6 distance=85.3977 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:30] COF/FENCE walk_233 time=30.339
+[22:37:31] COF/CAMERA kamera3 id=105 state=1 think=1 next=30.472 now=30.488 remaining=14.54 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2923.05,-757 speed=6 distance=84.5937 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:31] COF/FENCE walk_234 time=30.488
+[22:37:31] COF/CAMERA kamera3 id=105 state=1 think=1 next=30.588 now=30.588 remaining=14.44 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2922.35,-757 speed=6 distance=83.8977 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:31] COF/FENCE walk_235 time=30.588
+[22:37:31] COF/CAMERA kamera3 id=105 state=1 think=1 next=30.706 now=30.7271 remaining=14.3009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2921.65,-757 speed=6 distance=83.1957 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:31] COF/FENCE walk_236 time=30.7271
+[22:37:31] COF/CAMERA kamera3 id=105 state=1 think=1 next=30.854 now=30.854 remaining=14.174 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2920.85,-757 speed=6 distance=82.3917 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:31] COF/FENCE walk_237 time=30.854
+[22:37:31] COF/CAMERA kamera3 id=105 state=1 think=1 next=30.957 now=30.957 remaining=14.071 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2920.24,-757 speed=6 distance=81.7857 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:31] COF/FENCE walk_238 time=30.957
+[22:37:31] COF/HUD SUB 11
+[22:37:31] COF/CAMERA kamera3 id=105 state=1 think=1 next=31.072 now=31.072 remaining=13.956 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2919.55,-757 speed=6 distance=81.0897 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:31] COF/FENCE walk_239 time=31.072
+[22:37:31] COF/CAMERA kamera3 id=105 state=1 think=1 next=31.189 now=31.189 remaining=13.839 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2918.84,-757 speed=6 distance=80.3877 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:31] COF/FENCE walk_240 time=31.189
+[22:37:31] COF/HUD STAT 100 100 0
+[22:37:31] COF/CAMERA kamera3 id=105 state=1 think=1 next=31.305 now=31.3271 remaining=13.7009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2918.06,-757 speed=6 distance=79.6017 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:31] COF/FENCE walk_241 time=31.3271
+[22:37:32] COF/CAMERA kamera3 id=105 state=1 think=1 next=31.437 now=31.437 remaining=13.591 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2917.25,-757 speed=6 distance=78.7917 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:32] COF/FENCE walk_242 time=31.437
+[22:37:32] COF/CAMERA kamera3 id=105 state=1 think=1 next=31.572 now=31.572 remaining=13.456 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2916.46,-757 speed=6 distance=77.9997 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:32] COF/FENCE walk_243 time=31.572
+[22:37:32] COF/CAMERA kamera3 id=105 state=1 think=1 next=31.704 now=31.7271 remaining=13.3009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2915.65,-757 speed=6 distance=77.1957 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:32] COF/FENCE walk_244 time=31.7271
+[22:37:32] COF/CAMERA kamera3 id=105 state=1 think=1 next=31.821 now=31.8271 remaining=13.2009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2914.96,-757 speed=6 distance=76.4997 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:32] COF/FENCE walk_245 time=31.8271
+[22:37:32] COF/CAMERA kamera3 id=105 state=1 think=1 next=31.938 now=31.938 remaining=13.09 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2914.25,-757 speed=6 distance=75.7917 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:32] COF/FENCE walk_246 time=31.938
+[22:37:32] COF/CAMERA kamera3 id=105 state=1 think=1 next=32.054 now=32.054 remaining=12.974 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2913.55,-757 speed=6 distance=75.0957 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:32] COF/FENCE walk_247 time=32.054
+[22:37:32] COF/CAMERA kamera3 id=105 state=1 think=1 next=32.188 now=32.188 remaining=12.84 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2912.75,-757 speed=6 distance=74.2977 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:32] COF/FENCE walk_248 time=32.188
+[22:37:32] COF/CAMERA kamera3 id=105 state=1 think=1 next=32.305 now=32.3271 remaining=12.7009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2912.06,-757 speed=6 distance=73.6017 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:32] COF/FENCE walk_249 time=32.3271
+[22:37:33] COF/CAMERA kamera3 id=105 state=1 think=1 next=32.438 now=32.438 remaining=12.59 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2911.25,-757 speed=6 distance=72.7917 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:33] COF/FENCE walk_250 time=32.438
+[22:37:33] COF/CAMERA kamera3 id=105 state=1 think=1 next=32.555 now=32.555 remaining=12.473 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2910.55,-757 speed=6 distance=72.0957 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:33] COF/FENCE walk_251 time=32.555
+[22:37:33] COF/CAMERA kamera3 id=105 state=1 think=1 next=32.687 now=32.687 remaining=12.341 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2909.75,-757 speed=6 distance=71.2917 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:33] COF/FENCE walk_252 time=32.687
+[22:37:33] COF/CAMERA kamera3 id=105 state=1 think=1 next=32.821 now=32.8271 remaining=12.2009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2908.95,-757 speed=6 distance=70.4937 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:33] COF/FENCE walk_253 time=32.8271
+[22:37:33] COF/CAMERA kamera3 id=105 state=1 think=1 next=32.938 now=32.938 remaining=12.09 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2908.25,-757 speed=6 distance=69.7917 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:33] COF/FENCE walk_254 time=32.938
+[22:37:33] COF/CAMERA kamera3 id=105 state=1 think=1 next=33.071 now=33.104 remaining=11.924 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2907.45,-757 speed=6 distance=68.9937 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:33] COF/FENCE walk_255 time=33.104
+[22:37:33] COF/CAMERA kamera3 id=105 state=1 think=1 next=33.204 now=33.204 remaining=11.824 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2906.74,-757 speed=6 distance=68.2857 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:33] COF/FENCE walk_256 time=33.204
+[22:37:33] COF/HUD STAT 100 100 0
+[22:37:33] COF/CAMERA kamera3 id=105 state=1 think=1 next=33.321 now=33.3271 remaining=11.7009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2905.96,-757 speed=6 distance=67.4997 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:33] COF/FENCE walk_257 time=33.3271
+[22:37:34] COF/CAMERA kamera3 id=105 state=1 think=1 next=33.454 now=33.454 remaining=11.574 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2905.15,-757 speed=6 distance=66.6957 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:34] COF/FENCE walk_258 time=33.454
+[22:37:34] COF/CAMERA kamera3 id=105 state=1 think=1 next=33.588 now=33.588 remaining=11.44 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2904.35,-757 speed=6 distance=65.8977 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:34] COF/FENCE walk_259 time=33.588
+[22:37:34] COF/CAMERA kamera3 id=105 state=1 think=1 next=33.722 now=33.7271 remaining=11.3009 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2903.55,-757 speed=6 distance=65.0937 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:34] COF/FENCE walk_260 time=33.7271
+[22:37:34] COF/CAMERA kamera3 id=105 state=1 think=1 next=33.854 now=33.854 remaining=11.174 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2902.75,-757 speed=6 distance=64.2957 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:34] COF/FENCE walk_261 time=33.854
+[22:37:34] COF/CAMERA kamera3 id=105 state=1 think=1 next=33.988 now=34 remaining=11.028 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2901.95,-757 speed=6 distance=63.4977 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:34] COF/FENCE walk_262 time=34
+[22:37:34] COF/CAMERA kamera3 id=105 state=1 think=1 next=34.137 now=34.137 remaining=10.891 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2901.14,-757 speed=6 distance=62.6877 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:34] COF/FENCE walk_263 time=34.137
+[22:37:34] COF/CAMERA kamera3 id=105 state=1 think=1 next=34.254 now=34.254 remaining=10.774 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2900.36,-757 speed=6 distance=61.9017 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:34] COF/FENCE walk_264 time=34.254
+[22:37:34] COF/CAMERA kamera3 id=105 state=1 think=1 next=34.387 now=34.404 remaining=10.624 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2899.55,-757 speed=6 distance=61.0977 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:34] COF/FENCE walk_265 time=34.404
+[22:37:35] COF/CAMERA kamera3 id=105 state=1 think=1 next=34.506 now=34.527 remaining=10.501 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2898.85,-757 speed=6 distance=60.3957 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:35] COF/FENCE walk_266 time=34.527
+[22:37:35] COF/CAMERA kamera3 id=105 state=1 think=1 next=34.637 now=34.637 remaining=10.391 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2898.05,-757 speed=6 distance=59.5977 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:35] COF/FENCE walk_267 time=34.637
+[22:37:35] COF/CAMERA kamera3 id=105 state=1 think=1 next=34.771 now=34.771 remaining=10.257 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2897.25,-757 speed=6 distance=58.7997 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:35] COF/FENCE walk_268 time=34.771
+[22:37:35] COF/CAMERA kamera3 id=105 state=1 think=1 next=34.904 now=34.904 remaining=10.124 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2896.54,-757 speed=6 distance=58.0857 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:35] COF/FENCE walk_269 time=34.904
+[22:37:35] COF/CAMERA kamera3 id=105 state=1 think=1 next=35.022 now=35.027 remaining=10.001 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2895.75,-757 speed=6 distance=57.2997 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:35] COF/FENCE walk_270 time=35.027
+[22:37:35] COF/CAMERA kamera3 id=105 state=1 think=1 next=35.137 now=35.137 remaining=9.891 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2895.05,-757 speed=6 distance=56.5977 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:35] COF/FENCE walk_271 time=35.137
+[22:37:35] COF/HUD STAT 100 100 0
+[22:37:35] COF/CAMERA kamera3 id=105 state=1 think=1 next=35.271 now=35.271 remaining=9.757 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2894.25,-757 speed=6 distance=55.7997 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:35] COF/FENCE walk_272 time=35.271
+[22:37:35] COF/CAMERA kamera3 id=105 state=1 think=1 next=35.405 now=35.427 remaining=9.60097 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2893.46,-757 speed=6 distance=55.0017 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:35] COF/FENCE walk_273 time=35.427
+[22:37:36] COF/CAMERA kamera3 id=105 state=1 think=1 next=35.523 now=35.527 remaining=9.50097 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2892.75,-757 speed=6 distance=54.2937 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:36] COF/FENCE walk_274 time=35.527
+[22:37:36] COF/CAMERA kamera3 id=105 state=1 think=1 next=35.655 now=35.655 remaining=9.373 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2891.96,-757 speed=6 distance=53.5016 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:36] COF/FENCE walk_275 time=35.655
+[22:37:36] COF/CAMERA kamera3 id=105 state=1 think=1 next=35.788 now=35.788 remaining=9.24 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2891.15,-757 speed=6 distance=52.6976 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:36] COF/FENCE walk_276 time=35.788
+[22:37:36] COF/CAMERA kamera3 id=105 state=1 think=1 next=35.921 now=35.927 remaining=9.10098 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2890.35,-757 speed=6 distance=51.8996 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:36] COF/FENCE walk_277 time=35.927
+[22:37:36] COF/CAMERA kamera3 id=105 state=1 think=1 next=36.054 now=36.054 remaining=8.974 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2889.55,-757 speed=6 distance=51.0956 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:36] COF/FENCE walk_278 time=36.054
+[22:37:36] COF/CAMERA kamera3 id=105 state=1 think=1 next=36.187 now=36.187 remaining=8.841 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2888.75,-757 speed=6 distance=50.2976 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:36] COF/FENCE walk_279 time=36.187
+[22:37:36] COF/CAMERA kamera3 id=105 state=1 think=1 next=36.321 now=36.327 remaining=8.70098 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2887.95,-757 speed=6 distance=49.4996 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:36] COF/FENCE walk_280 time=36.327
+[22:37:37] COF/CAMERA kamera3 id=105 state=1 think=1 next=36.454 now=36.454 remaining=8.574 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2887.15,-757 speed=6 distance=48.6956 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:37] COF/FENCE walk_281 time=36.454
+[22:37:37] COF/CAMERA kamera3 id=105 state=1 think=1 next=36.588 now=36.588 remaining=8.44 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2886.35,-757 speed=6 distance=47.8916 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:37] COF/FENCE walk_282 time=36.588
+[22:37:37] COF/CAMERA kamera3 id=105 state=1 think=1 next=36.722 now=36.727 remaining=8.30099 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2885.55,-757 speed=6 distance=47.0996 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:37] COF/FENCE walk_283 time=36.727
+[22:37:37] COF/CAMERA kamera3 id=105 state=1 think=1 next=36.855 now=36.855 remaining=8.173 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2884.76,-757 speed=6 distance=46.3016 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:37] COF/FENCE walk_284 time=36.855
+[22:37:37] COF/CAMERA kamera3 id=105 state=1 think=1 next=36.99 now=36.99 remaining=8.038 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2883.95,-757 speed=6 distance=45.4916 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:37] COF/FENCE walk_285 time=36.99
+[22:37:37] COF/CAMERA kamera3 id=105 state=1 think=1 next=37.121 now=37.127 remaining=7.90099 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2883.15,-757 speed=6 distance=44.6936 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:37] COF/FENCE walk_286 time=37.127
+[22:37:37] COF/HUD STAT 100 100 0
+[22:37:37] COF/CAMERA kamera3 id=105 state=1 think=1 next=37.254 now=37.254 remaining=7.774 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2882.35,-757 speed=6 distance=43.8956 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:37] COF/FENCE walk_287 time=37.254
+[22:37:37] COF/CAMERA kamera3 id=105 state=1 think=1 next=37.387 now=37.387 remaining=7.641 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2881.55,-757 speed=6 distance=43.0916 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:37] COF/FENCE walk_288 time=37.387
+[22:37:38] COF/CAMERA kamera3 id=105 state=1 think=1 next=37.521 now=37.527 remaining=7.501 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2880.75,-757 speed=6 distance=42.2996 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:38] COF/FENCE walk_289 time=37.527
+[22:37:38] COF/CAMERA kamera3 id=105 state=1 think=1 next=37.654 now=37.654 remaining=7.374 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2879.95,-757 speed=6 distance=41.4956 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:38] COF/FENCE walk_290 time=37.654
+[22:37:38] COF/CAMERA kamera3 id=105 state=1 think=1 next=37.756 now=37.756 remaining=7.272 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2879.36,-757 speed=6 distance=40.9016 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:38] COF/FENCE walk_291 time=37.756
+[22:37:38] COF/CAMERA kamera3 id=105 state=1 think=1 next=37.887 now=37.887 remaining=7.141 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2878.55,-757 speed=6 distance=40.0976 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:38] COF/FENCE walk_292 time=37.887
+[22:37:38] COF/CAMERA kamera3 id=105 state=1 think=1 next=38.021 now=38.027 remaining=7.00101 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2877.75,-757 speed=6 distance=39.2936 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:38] COF/FENCE walk_293 time=38.027
+[22:37:38] COF/CAMERA kamera3 id=105 state=1 think=1 next=38.155 now=38.155 remaining=6.873 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2876.96,-757 speed=6 distance=38.5016 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:38] COF/FENCE walk_294 time=38.155
+[22:37:38] COF/CAMERA kamera3 id=105 state=1 think=1 next=38.271 now=38.271 remaining=6.757 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2876.25,-757 speed=6 distance=37.7996 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:38] COF/FENCE walk_295 time=38.271
+[22:37:38] COF/CAMERA kamera3 id=105 state=1 think=1 next=38.404 now=38.427 remaining=6.60101 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2875.46,-757 speed=6 distance=37.0016 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:38] COF/FENCE walk_296 time=38.427
+[22:37:39] COF/CAMERA kamera3 id=105 state=1 think=1 next=38.522 now=38.527 remaining=6.50101 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2874.75,-757 speed=6 distance=36.2996 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:39] COF/FENCE walk_297 time=38.527
+[22:37:39] COF/CAMERA kamera3 id=105 state=1 think=1 next=38.655 now=38.655 remaining=6.373 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2873.96,-757 speed=6 distance=35.5016 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:39] COF/FENCE walk_298 time=38.655
+[22:37:39] COF/CAMERA kamera3 id=105 state=1 think=1 next=38.787 now=38.787 remaining=6.241 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2873.15,-757 speed=6 distance=34.6976 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:39] COF/FENCE walk_299 time=38.787
+[22:37:39] COF/CAMERA kamera3 id=105 state=1 think=1 next=38.921 now=38.927 remaining=6.10102 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2872.35,-757 speed=6 distance=33.8996 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:39] COF/FENCE walk_300 time=38.927
+[22:37:39] COF/CAMERA kamera3 id=105 state=1 think=1 next=39.054 now=39.054 remaining=5.974 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2871.56,-757 speed=6 distance=33.1016 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:39] COF/FENCE walk_301 time=39.054
+[22:37:39] COF/CAMERA kamera3 id=105 state=1 think=1 next=39.187 now=39.187 remaining=5.841 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2870.75,-757 speed=6 distance=32.2916 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:39] COF/FENCE walk_302 time=39.187
+[22:37:39] COF/HUD STAT 100 100 0
+[22:37:39] COF/CAMERA kamera3 id=105 state=1 think=1 next=39.321 now=39.327 remaining=5.70103 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2869.95,-757 speed=6 distance=31.4996 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:39] COF/FENCE walk_303 time=39.327
+[22:37:40] COF/CAMERA kamera3 id=105 state=1 think=1 next=39.454 now=39.454 remaining=5.574 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2869.15,-757 speed=6 distance=30.6956 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:40] COF/FENCE walk_304 time=39.454
+[22:37:40] COF/CAMERA kamera3 id=105 state=1 think=1 next=39.588 now=39.614 remaining=5.414 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2868.35,-757 speed=6 distance=29.8916 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:40] COF/FENCE walk_305 time=39.614
+[22:37:40] COF/CAMERA kamera3 id=105 state=1 think=1 next=39.721 now=39.727 remaining=5.30103 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2867.55,-757 speed=6 distance=29.0996 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:40] COF/FENCE walk_306 time=39.727
+[22:37:40] COF/CAMERA kamera3 id=105 state=1 think=1 next=39.855 now=39.855 remaining=5.173 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2866.76,-757 speed=6 distance=28.3016 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:40] COF/FENCE walk_307 time=39.855
+[22:37:40] COF/CAMERA kamera3 id=105 state=1 think=1 next=39.987 now=40 remaining=5.028 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2865.95,-757 speed=6 distance=27.4976 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:40] COF/FENCE walk_308 time=40
+[22:37:40] COF/CAMERA kamera3 id=105 state=1 think=1 next=40.122 now=40.127 remaining=4.90104 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2865.15,-757 speed=6 distance=26.6996 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:40] COF/FENCE walk_309 time=40.127
+[22:37:40] COF/CAMERA kamera3 id=105 state=1 think=1 next=40.254 now=40.254 remaining=4.774 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2864.35,-757 speed=6 distance=25.8956 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:40] COF/FENCE walk_310 time=40.254
+[22:37:40] COF/CAMERA kamera3 id=105 state=1 think=1 next=40.387 now=40.387 remaining=4.641 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2863.55,-757 speed=6 distance=25.0976 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:40] COF/FENCE walk_311 time=40.387
+[22:37:41] COF/CAMERA kamera3 id=105 state=1 think=1 next=40.521 now=40.527 remaining=4.50105 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2862.75,-757 speed=6 distance=24.2936 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:41] COF/FENCE walk_312 time=40.527
+[22:37:41] COF/CAMERA kamera3 id=105 state=1 think=1 next=40.654 now=40.654 remaining=4.374 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2861.95,-757 speed=6 distance=23.4956 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:41] COF/FENCE walk_313 time=40.654
+[22:37:41] COF/CAMERA kamera3 id=105 state=1 think=1 next=40.787 now=40.787 remaining=4.241 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2861.15,-757 speed=6 distance=22.6976 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:41] COF/FENCE walk_314 time=40.787
+[22:37:41] COF/CAMERA kamera3 id=105 state=1 think=1 next=40.921 now=40.9269 remaining=4.10105 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2860.35,-757 speed=6 distance=21.8936 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:41] COF/FENCE walk_315 time=40.9269
+[22:37:41] COF/CAMERA kamera3 id=105 state=1 think=1 next=41.006 now=41.0269 remaining=4.00105 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2859.65,-757 speed=6 distance=21.1916 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:41] COF/FENCE walk_316 time=41.0269
+[22:37:41] COF/CAMERA kamera3 id=105 state=1 think=1 next=41.154 now=41.154 remaining=3.874 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2858.85,-757 speed=6 distance=20.3996 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:41] COF/FENCE walk_317 time=41.154
+[22:37:41] COF/HUD STAT 100 100 0
+[22:37:41] COF/CAMERA kamera3 id=105 state=1 think=1 next=41.304 now=41.3269 remaining=3.70106 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2857.95,-757 speed=6 distance=19.4936 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:41] COF/FENCE walk_318 time=41.3269
+[22:37:42] COF/CAMERA kamera3 id=105 state=1 think=1 next=41.455 now=41.455 remaining=3.573 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2857.14,-757 speed=6 distance=18.6896 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:42] COF/FENCE walk_319 time=41.455
+[22:37:42] COF/CAMERA kamera3 id=105 state=1 think=1 next=41.587 now=41.6269 remaining=3.40106 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2856.26,-757 speed=6 distance=17.8016 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:42] COF/FENCE walk_320 time=41.6269
+[22:37:42] COF/CAMERA kamera3 id=105 state=1 think=1 next=41.737 now=41.737 remaining=3.291 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2855.36,-757 speed=6 distance=16.9016 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:42] COF/FENCE walk_321 time=41.737
+[22:37:42] COF/CAMERA kamera3 id=105 state=1 think=1 next=41.887 now=41.887 remaining=3.141 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2854.55,-757 speed=6 distance=16.0976 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:42] COF/FENCE walk_322 time=41.887
+[22:37:42] COF/CAMERA kamera3 id=105 state=1 think=1 next=42.038 now=42.038 remaining=2.99 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2853.56,-757 speed=6 distance=15.1016 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:42] COF/FENCE walk_323 time=42.038
+[22:37:42] COF/CAMERA kamera3 id=105 state=1 think=1 next=42.171 now=42.204 remaining=2.824 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2852.75,-757 speed=6 distance=14.2916 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:42] COF/FENCE walk_324 time=42.204
+[22:37:42] COF/CAMERA kamera3 id=105 state=1 think=1 next=42.306 now=42.3269 remaining=2.70107 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2851.95,-757 speed=6 distance=13.4936 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:42] COF/FENCE walk_325 time=42.3269
+[22:37:43] COF/CAMERA kamera3 id=105 state=1 think=1 next=42.454 now=42.454 remaining=2.574 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2851.05,-757 speed=6 distance=12.5936 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:43] COF/FENCE walk_326 time=42.454
+[22:37:43] COF/CAMERA kamera3 id=105 state=1 think=1 next=42.606 now=42.6269 remaining=2.40108 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2850.15,-757 speed=6 distance=11.6996 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:43] COF/FENCE walk_327 time=42.6269
+[22:37:43] COF/CAMERA kamera3 id=105 state=1 think=1 next=42.805 now=42.8269 remaining=2.20108 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2849.05,-757 speed=6 distance=10.5956 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:43] COF/FENCE walk_328 time=42.8269
+[22:37:43] COF/CAMERA kamera3 id=105 state=1 think=1 next=42.954 now=42.954 remaining=2.074 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2848.15,-757 speed=6 distance=9.6956 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:43] COF/FENCE walk_329 time=42.954
+[22:37:43] COF/CAMERA kamera3 id=105 state=1 think=1 next=43.088 now=43.088 remaining=1.94 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2847.35,-757 speed=6 distance=8.8976 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:43] COF/FENCE walk_330 time=43.088
+[22:37:43] COF/CAMERA kamera3 id=105 state=1 think=1 next=43.206 now=43.2269 remaining=1.80109 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2846.66,-757 speed=6 distance=8.2016 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:43] COF/FENCE walk_331 time=43.2269
+[22:37:43] COF/HUD STAT 100 100 0
+[22:37:43] COF/CAMERA kamera3 id=105 state=1 think=1 next=43.337 now=43.337 remaining=1.691 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2845.85,-757 speed=6 distance=7.3976 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:43] COF/FENCE walk_332 time=43.337
+[22:37:44] COF/CAMERA kamera3 id=105 state=1 think=1 next=43.471 now=43.471 remaining=1.557 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2845.05,-757 speed=6 distance=6.5996 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:44] COF/FENCE walk_333 time=43.471
+[22:37:44] COF/CAMERA kamera3 id=105 state=1 think=1 next=43.588 now=43.588 remaining=1.44 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2844.35,-757 speed=6 distance=5.8976 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:44] COF/FENCE walk_334 time=43.588
+[22:37:44] COF/CAMERA kamera3 id=105 state=1 think=1 next=43.69 now=43.69 remaining=1.338 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2843.75,-757 speed=6 distance=5.2976 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:44] COF/FENCE walk_335 time=43.69
+[22:37:44] COF/CAMERA kamera3 id=105 state=1 think=1 next=43.821 now=43.8269 remaining=1.2011 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2842.95,-757 speed=6 distance=4.4996 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:44] COF/FENCE walk_336 time=43.8269
+[22:37:44] COF/CAMERA kamera3 id=105 state=1 think=1 next=43.94 now=43.94 remaining=1.088 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2842.25,-757 speed=6 distance=3.7976 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:44] COF/FENCE walk_337 time=43.94
+[22:37:44] COF/CAMERA kamera3 id=105 state=1 think=1 next=44.071 now=44.071 remaining=0.957001 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2841.45,-757 speed=6 distance=2.9936 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:44] COF/FENCE walk_338 time=44.071
+[22:37:44] COF/CAMERA kamera3 id=105 state=1 think=1 next=44.187 now=44.204 remaining=0.823997 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2840.74,-757 speed=6 distance=2.2916 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:44] COF/FENCE walk_339 time=44.204
+[22:37:44] COF/CAMERA kamera3 id=105 state=1 think=1 next=44.322 now=44.3269 remaining=0.701103 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2839.95,-757 speed=6 distance=1.4936 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:44] COF/FENCE walk_340 time=44.3269
+[22:37:45] COF/CAMERA kamera3 id=105 state=1 think=1 next=44.455 now=44.455 remaining=0.572998 wait=44 path=1stop1 look=fokus3 player=1 pos=686,-2839.15,-757 speed=6 distance=0.701601 stop=23.071 initial=6 accel=500 decel=500 route=1stop1
+[22:37:45] COF/FENCE walk_341 time=44.455
+[22:37:45] COF/CAMERA kamera3 id=105 state=1 think=1 next=44.587 now=44.587 remaining=0.440998 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2838.45,-757 speed=6 distance=125.445 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:45] COF/FENCE walk_342 time=44.587
+[22:37:45] COF/CAMERA kamera3 id=105 state=1 think=1 next=44.704 now=44.7269 remaining=0.301109 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2837.96,-757 speed=6 distance=124.659 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:45] COF/FENCE walk_343 time=44.7269
+[22:37:45] COF/CAMERA kamera3 id=105 state=1 think=1 next=44.823 now=44.8269 remaining=0.201111 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2837.77,-757 speed=6 distance=123.957 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:45] COF/FENCE walk_344 time=44.8269
+[22:37:45] COF/CAMERA kamera3 id=105 state=1 think=1 next=44.954 now=44.954 remaining=0.0739975 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2837.79,-757 speed=6 distance=123.159 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:45] COF/FENCE walk_345 time=44.954
+[22:37:45] COF/TELEPORT teleportdes1 origin=641.0,-2950.0,-730.0 minsZ=-36.0 yaw=90.0 velocity=0.0
+[22:37:45] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=45.073 remaining=-0.045002 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2837.95,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:45] COF/FENCE walk_346 time=45.073
+[22:37:45] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=45.2269 remaining=-0.198883 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2838.14,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:45] COF/FENCE walk_347 time=45.2269
+[22:37:45] COF/HUD STAT 100 100 0
+[22:37:45] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=45.3269 remaining=-0.298882 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2838.31,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:45] COF/FENCE walk_348 time=45.3269
+[22:37:46] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=45.439 remaining=-0.410999 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2838.47,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:46] COF/FENCE walk_349 time=45.439
+[22:37:46] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=45.587 remaining=-0.559002 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2838.66,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:46] COF/FENCE walk_350 time=45.587
+[22:37:46] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=45.7269 remaining=-0.698875 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2838.85,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:46] COF/FENCE walk_351 time=45.7269
+[22:37:46] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=45.8269 remaining=-0.798874 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2839.02,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:46] COF/FENCE walk_352 time=45.8269
+[22:37:46] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=45.955 remaining=-0.927002 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2839.21,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:46] COF/FENCE walk_353 time=45.955
+[22:37:46] COF/HUD SMS 0
+[22:37:46] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=46.0999 remaining=-1.07193 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2839.4,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:46] COF/FENCE walk_354 time=46.0999
+[22:37:46] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=46.2269 remaining=-1.19887 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2839.59,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:46] COF/FENCE walk_355 time=46.2269
+[22:37:46] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=46.354 remaining=-1.326 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2839.78,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:46] COF/FENCE walk_356 time=46.354
+[22:37:47] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=46.488 remaining=-1.46 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2839.97,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:47] COF/FENCE walk_357 time=46.488
+[22:37:47] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=46.6269 remaining=-1.59886 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2840.16,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:47] COF/FENCE walk_358 time=46.6269
+[22:37:47] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=46.737 remaining=-1.709 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2840.33,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:47] COF/FENCE walk_359 time=46.737
+[22:37:47] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=46.854 remaining=-1.826 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2840.54,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:47] COF/FENCE walk_360 time=46.854
+[22:37:47] COF/HUD CHAPTER Chapter 1 - Lost in a city
+[22:37:47] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=47.0269 remaining=-1.99886 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2840.71,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:47] COF/FENCE walk_361 time=47.0269
+[22:37:47] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=47.172 remaining=-2.144 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2840.95,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:47] COF/FENCE walk_362 time=47.172
+[22:37:47] COF/HUD STAT 100 100 0
+[22:37:47] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=47.2999 remaining=-2.27193 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2841.12,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:47] COF/FENCE walk_363 time=47.2999
+[22:37:48] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=47.4268 remaining=-2.39885 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2841.28,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:48] COF/FENCE walk_364 time=47.4268
+[22:37:48] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=47.5268 remaining=-2.49885 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2841.47,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:48] COF/FENCE walk_365 time=47.5268
+[22:37:48] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=47.654 remaining=-2.626 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2841.64,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:48] COF/FENCE walk_366 time=47.654
+[22:37:48] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=47.754 remaining=-2.726 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2841.78,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:48] COF/FENCE walk_367 time=47.754
+[22:37:48] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=47.9268 remaining=-2.89884 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2842,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:48] COF/FENCE walk_368 time=47.9268
+[22:37:48] COF/CAMERA kamera3 id=105 state=0 think=1 next=0 now=48.0268 remaining=-2.99884 wait=44 path=1stop2 look=fokus3 player=1 pos=686,-2842.16,-757 speed=6 distance=122.757 stop=44.587 initial=6 accel=500 decel=500 route=1stop1
+[22:37:48] COF/FENCE walk_369 time=48.0268
+[22:37:48] org ( 641.031 -2949.97 -702.938 )
+[22:37:48] ang ( 0 90 0 )
+[22:37:48] COF/ENTITY !player class=player body=0 solid=3 origin=641.0,-2950.0,-731.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0
+[22:37:48] COF/FENCE walk_370 time=48.054
+[22:37:48] COF/FENCE walk_371 time=48.1268
+[22:37:48] COF/HUD PADLOCK 1
+[22:37:48] COF/PADLOCK state=1 owner=1 angles=0,0,0,0 sequence=0 remaining=-48.388
+[22:37:48] COF/FENCE walk_372 time=48.388
+[22:37:48] COF/PAD_RENDER id=637 origin=1749,-1635,-1238 effect=0 fx=125 mode=0 amount=0 seq=0 controller=0,0,0,0
+[22:37:48] COF/PAD_RENDER count=1
+[22:37:48] COF/FENCE walk_373 time=48.4268
+[22:37:49] org ( 1677 -1635 -1238 )
+[22:37:49] ang ( 0 0 0 )
+[22:37:49] COF/ENTITY !player class=player body=0 solid=3 origin=641.0,-2950.0,-731.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0
+[22:37:49] COF/FENCE walk_374 time=49.172
+[22:37:49] COF/HUD PADLOCK 0
+[22:37:49] COF/HUD STAT 100 100 0
+[22:37:50] COF/PADLOCK state=0 owner=0 angles=0,0,0,0 sequence=0 remaining=-49.64
+[22:37:50] COF/FENCE walk_375 time=49.64
+[22:37:50] org ( 641.031 -2949.97 -702.938 )
+[22:37:50] ang ( 0 90 0 )
+[22:37:50] COF/ENTITY !player class=player body=0 solid=3 origin=641.0,-2950.0,-731.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0
+[22:37:50] COF/FENCE walk_376 time=50.371
+[22:37:51] COF/HUD STAT 100 100 0
+[22:37:53] COF/HUD STAT 100 100 0
+[22:37:55] COF/HUD STAT 100 100 0
+[22:37:57] COF/HUD STAT 100 100 0
+[22:37:59] COF/HUD STAT 100 100 0
+[22:38:01] COF/HUD STAT 100 100 0
+[22:38:03] COF/HUD STAT 100 100 0
+[22:38:05] COF/HUD STAT 100 100 0
+[22:38:07] COF/HUD STAT 100 100 0
+[22:38:10] COF/HUD STAT 100 100 0
+[22:38:12] COF/HUD STAT 100 100 0
+[22:38:14] COF/HUD STAT 100 100 0
+[22:38:16] COF/HUD STAT 100 100 0
+[22:38:18] COF/HUD STAT 100 100 0
+[22:38:20] COF/HUD STAT 100 100 0
+[22:38:22] COF/HUD STAT 100 100 0
+[22:38:24] COF/HUD STAT 100 100 0
+[22:38:26] COF/HUD STAT 100 100 0
+[22:38:28] COF/HUD STAT 100 100 0
+[22:38:30] COF/HUD STAT 100 100 0
+[22:38:32] COF/HUD STAT 100 100 0
+[22:38:34] COF/HUD STAT 100 100 0
+[22:38:36] COF/HUD STAT 100 100 0
+[22:38:38] COF/HUD STAT 100 100 0
+[22:38:40] COF/HUD STAT 100 100 0
+[22:38:42] COF/HUD STAT 100 100 0
+[22:38:44] COF/HUD STAT 100 100 0
+[22:38:46] COF/HUD STAT 100 100 0
+[22:38:48] COF/HUD STAT 100 100 0
+[22:38:50] COF/HUD STAT 100 100 0
+[22:38:52] COF/HUD STAT 100 100 0
+[22:38:54] COF/HUD STAT 100 100 0
+[22:38:56] COF/HUD STAT 100 100 0
+[22:38:58] COF/HUD STAT 100 100 0
+[22:39:00] COF/HUD STAT 100 100 0
+[22:39:02] COF/HUD STAT 100 100 0
+[22:39:04] COF/HUD STAT 100 100 0
+[22:39:06] COF/HUD STAT 100 100 0
+[22:39:08] COF/HUD STAT 100 100 0
+[22:39:10] COF/HUD STAT 100 100 0
+[22:39:12] COF/HUD STAT 100 100 0
+[22:39:14] COF/HUD STAT 100 100 0
+[22:39:16] COF/HUD STAT 100 100 0
+[22:39:18] COF/HUD STAT 100 100 0
+[22:39:20] COF/HUD STAT 100 100 0
+[22:39:22] COF/HUD STAT 100 100 0
+[22:39:24] COF/HUD STAT 100 100 0
+[22:39:26] COF/HUD STAT 100 100 0
+[22:39:28] COF/HUD STAT 100 100 0
+[22:39:30] COF/HUD STAT 100 100 0
+[22:39:32] COF/HUD STAT 100 100 0
+[22:39:34] COF/HUD STAT 100 100 0
+[22:39:36] COF/HUD STAT 100 100 0
+[22:39:38] COF/HUD STAT 100 100 0
+[22:39:40] COF/HUD STAT 100 100 0
+[22:39:43] COF/HUD STAT 100 100 0
+[22:39:45] COF/HUD STAT 100 100 0
+[22:39:47] COF/HUD STAT 100 100 0
+[22:39:49] COF/HUD STAT 100 100 0
+[22:39:51] COF/HUD STAT 100 100 0
+[22:39:53] COF/HUD STAT 100 100 0
+[22:39:55] COF/HUD STAT 100 100 0
+[22:39:57] COF/HUD STAT 100 100 0
+[22:39:59] COF/HUD STAT 100 100 0
+[22:40:01] COF/HUD STAT 100 100 0
+[22:40:03] COF/HUD STAT 100 100 0
+[22:40:05] COF/HUD STAT 100 100 0
+[22:40:07] COF/HUD STAT 100 100 0
+[22:40:09] COF/HUD STAT 100 100 0
+[22:40:11] COF/HUD STAT 100 100 0
+[22:40:13] COF/HUD STAT 100 100 0
+[22:40:15] COF/HUD STAT 100 100 0
+[22:40:17] COF/HUD STAT 100 100 0
+[22:40:19] COF/HUD STAT 100 100 0
+[22:40:21] COF/HUD STAT 100 100 0
+[22:40:23] COF/HUD STAT 100 100 0
+[22:40:25] COF/HUD STAT 100 100 0
+[22:40:27] COF/HUD STAT 100 100 0
+[22:40:29] COF/HUD STAT 100 100 0
+[22:40:31] COF/HUD STAT 100 100 0
+[22:40:33] COF/HUD STAT 100 100 0
+[22:40:35] COF/HUD STAT 100 100 0
+[22:40:37] COF/HUD STAT 100 100 0
+[22:40:39] COF/HUD STAT 100 100 0
+[22:40:41] COF/HUD STAT 100 100 0
+[22:40:43] COF/HUD STAT 100 100 0
+[22:40:45] COF/HUD STAT 100 100 0
+[22:40:47] COF/HUD STAT 100 100 0
+[22:40:49] COF/HUD STAT 100 100 0
+[22:40:52] COF/HUD STAT 100 100 0
+[22:40:53] COF/HUD STAT 100 100 0
+[22:40:56] COF/HUD STAT 100 100 0
+[22:40:58] COF/HUD STAT 100 100 0
+[22:41:00] COF/HUD STAT 100 100 0
+[22:41:02] COF/HUD STAT 100 100 0
+[22:41:04] COF/HUD STAT 100 100 0
+[22:41:06] COF/HUD STAT 100 100 0
+[22:41:08] COF/HUD STAT 100 100 0
+[22:41:10] COF/HUD STAT 100 100 0
+[22:41:12] COF/HUD STAT 100 100 0
+[22:41:14] COF/HUD STAT 100 100 0
+[22:41:16] COF/HUD STAT 100 100 0
+[22:41:18] COF/HUD STAT 100 100 0
+[22:41:20] COF/HUD STAT 100 100 0
+[22:41:22] COF/HUD STAT 100 100 0
+[22:41:24] COF/HUD STAT 100 100 0
+[22:41:25] COF/ENTITY !player class=player body=0 solid=3 origin=641.0,-2950.0,-731.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0
+[22:41:25] COF/FENCE walk_377 time=263.76
+[22:41:25] COF/HUD PADLOCK 1
+[22:41:25] org ( 1677 -1635 -1238 )
+[22:41:25] ang ( 0 0 0 )
+[22:41:25] COF/ENTITY !player class=player body=0 solid=3 origin=641.0,-2950.0,-731.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0
+[22:41:25] COF/FENCE walk_378 time=263.964
+[22:41:25] COF/PAD_RENDER id=637 origin=1749,-1635,-1238 effect=0 fx=125 mode=0 amount=0 seq=0 controller=0,0,0,0
+[22:41:25] COF/PAD_RENDER count=1
+[22:41:25] COF/FENCE walk_379 time=264.36
+[22:41:25] org ( 1677 -1635 -1238 )
+[22:41:25] ang ( 0 0 0 )
+[22:41:25] COF/ENTITY !player class=player body=0 solid=3 origin=641.0,-2950.0,-731.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0
+[22:41:25] COF/FENCE walk_380 time=264.464
+[22:41:26] COF/HUD STAT 100 100 0
+[22:41:28] COF/HUD STAT 100 100 0
+[22:41:30] COF/HUD STAT 100 100 0
+[22:41:32] COF/HUD STAT 100 100 0
+[22:41:34] COF/HUD STAT 100 100 0
+[22:41:36] COF/HUD STAT 100 100 0
+[22:41:38] COF/HUD STAT 100 100 0
+[22:41:40] COF/HUD STAT 100 100 0
+[22:41:42] COF/HUD STAT 100 100 0
+[22:41:44] COF/HUD STAT 100 100 0
+[22:41:46] COF/HUD STAT 100 100 0
+[22:41:48] COF/HUD STAT 100 100 0
+[22:41:50] COF/HUD STAT 100 100 0
+[22:41:52] COF/HUD STAT 100 100 0
+[22:41:54] COF/HUD STAT 100 100 0
+[22:41:56] COF/HUD STAT 100 100 0
+[22:41:58] COF/HUD STAT 100 100 0
+[22:42:00] COF/HUD STAT 100 100 0
+[22:42:02] COF/HUD STAT 100 100 0
+[22:42:04] COF/HUD STAT 100 100 0
+[22:42:06] COF/HUD STAT 100 100 0
+[22:42:08] COF/HUD STAT 100 100 0
+[22:42:10] COF/HUD STAT 100 100 0
+[22:42:12] COF/HUD STAT 100 100 0
+[22:42:14] COF/HUD STAT 100 100 0
+[22:42:16] COF/HUD STAT 100 100 0
+[22:42:18] COF/HUD STAT 100 100 0
+[22:42:20] COF/HUD STAT 100 100 0
+[22:42:22] COF/HUD STAT 100 100 0
+[22:42:24] COF/HUD STAT 100 100 0
+[22:42:26] COF/HUD STAT 100 100 0
+[22:42:28] COF/HUD STAT 100 100 0
+[22:42:30] COF/HUD STAT 100 100 0
+[22:42:32] COF/HUD STAT 100 100 0
+[22:42:34] COF/HUD STAT 100 100 0
+[22:42:36] COF/HUD STAT 100 100 0
+[22:42:38] COF/HUD STAT 100 100 0
+[22:42:40] COF/HUD STAT 100 100 0
+[22:42:42] COF/HUD STAT 100 100 0
+[22:42:44] COF/HUD STAT 100 100 0
+[22:42:46] COF/HUD STAT 100 100 0
+[22:42:48] COF/HUD STAT 100 100 0
+[22:42:50] COF/HUD STAT 100 100 0
+[22:42:52] COF/HUD STAT 100 100 0
+[22:42:54] COF/HUD STAT 100 100 0
+[22:42:56] COF/HUD STAT 100 100 0
+[22:42:58] COF/HUD STAT 100 100 0
+[22:43:00] COF/HUD STAT 100 100 0
+[22:43:02] COF/HUD STAT 100 100 0
+[22:43:04] COF/HUD STAT 100 100 0
+[22:43:07] COF/HUD STAT 100 100 0
+[22:43:09] COF/HUD STAT 100 100 0
+[22:43:11] COF/HUD STAT 100 100 0
+[22:43:13] COF/HUD STAT 100 100 0
+[22:43:15] COF/HUD STAT 100 100 0
+[22:43:17] COF/HUD STAT 100 100 0
+[22:43:19] COF/HUD STAT 100 100 0
+[22:43:20] COF/PADLOCK state=1 owner=1 angles=0,0,0,0 sequence=0 remaining=-379.416
+[22:43:20] COF/FENCE walk_381 time=379.416
