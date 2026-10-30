@@ -1,0 +1,190 @@
+# CLAUDE.md
+
+Guía para Claude Code (y cualquier asistente) que trabaje en este repositorio: qué es el proyecto,
+cómo se compila y se prueba, qué se hizo hasta ahora y qué trampas ya se conocen. El usuario
+trabaja en español: responder y documentar en español; los comentarios del código van en inglés.
+
+## El proyecto
+
+Port de **Cry of Fear** (Team Psykskallar, motor GoldSrc) al navegador con **Xash3D FWGS +
+Emscripten 4.0.11 + WebGL 2**. La lógica del juego (las DLL originales de Windows) no se puede usar
+en la web, así que se reimplementa en C++ sobre hlsdk-portable (`game/cof-logic/`).
+
+- Repositorio público: <https://github.com/Putrefacto669/Cry-Of-Fear-PortWeb> (remote `portweb`,
+  rama `main`). El repositorio antiguo, privado, es `origin` (Cry-Of-Fear-Port-Web) y quedó en
+  `744cbcb`.
+- Permiso de Andreas (Team Psykskallar) con tres condiciones: **créditos visibles, código abierto
+  (GPL-3.0) y sin fines de lucro**. La página enlaza el código fuente desde "Acerca de".
+- Juego original (referencia, solo lectura): `C:\Program Files (x86)\Steam\steamapps\common\Cry of Fear`.
+- SDK oficial 1.3 de Team Psykskallar (FGD, `.rmf` de mapas, prefabs):
+  `C:\Users\josue\OneDrive\Desktop\COF SDK\CryOfFear_SDK_1.3.4(1)\CryOfFear_SDK_1.3`.
+  Es propiedad de Team Psykskallar y solo se usa como referencia: no se sube al repositorio.
+
+## Reglas de trabajo
+
+- Investigar → reproducir → explicar → corregir → compilar → probar → documentar.
+- No hacer commits, pushes ni despliegues sin que el usuario lo pida. Commits en español, con la
+  línea `Co-Authored-By` que indique el sistema.
+- No usar operaciones destructivas (`git reset --hard`, `git clean`, `git checkout` sobre archivos
+  modificados, force push) ni sobrescribir distribuciones o informes ajenos sin autorización.
+- No alterar reglas del juego para pasar pruebas, no subir timeouts para ocultar fallos, no
+  desactivar cinemáticas, acertijos ni enemigos, no inventar códigos fijos.
+- El análisis de las DLL originales es **solo lectura** (Ghidra en modo `-readOnly`). Los proyectos
+  de Ghidra (`build/entity-analysis`, `build/envpos-client-analysis`) llevan dentro los bytes de las
+  DLL: **no se suben** salvo que el usuario lo pida expresamente.
+- `build/validation/padlock/http-2.log` lo modifica el `serve.py` de Codex: no incluirlo en commits.
+
+## Estructura
+
+```
+platform/web/       index.html, loader.js, hud.js (HUD/menús propios), postfx.js (+ shaders/), sw.js
+game/cof-logic/cof/ lógica de servidor de CoF (entidades, armas, monstruos, candado, puzles...)
+game/cof-logic/client/ lado cliente (niebla, partículas, cielo envpos, calcomanías, candado)
+patches/xash3d/     cambios sobre Xash3D FWGS (0001-root.patch y submódulos)
+patches/hlsdk/      cambios sobre hlsdk-portable (0001-root.patch)
+tools/stage_map.py  copia del juego lo que necesita cada mapa (boot + paquetes por mapa)
+tools/wsl/          setup, builds, package.sh, patches.sh, e2e
+tools/e2e/          pruebas de navegador (Playwright 1.64.1)
+tools/ghidra/       scripts de Ghidra de solo lectura para estudiar las DLL originales
+docs/               contratos de entidades reconstruidas (PADLOCK, ENVPOS, STATIC_DECAL...)
+dist/               build jugable completo (se versiona: el usuario lo pidió en el repo público)
+build/validation/   informes y trazas de pruebas (se versiona; el trace de 922 MB va como .json.gz)
+```
+
+## Entorno de compilación (WSL Ubuntu, root)
+
+- Árbol de trabajo canónico: **`/root/cof-audits/audit-D3Kl5uly`** (el de Codex, build 19 en
+  adelante). Contiene `engine/xash3d-fwgs`, `game/hlsdk-portable`, `build/`, `stage/` (los 11 mapas
+  ya preparados con texcomp) y las salidas `dist-decals/`, `dist-next/`.
+  `~/cof-web` está desfasado (25 oct): no usarlo.
+- Los scripts usan `COF_WORK` (por defecto `~/cof-web`): exportar
+  `COF_WORK=/root/cof-audits/audit-D3Kl5uly`.
+- `build_game.sh` copia `game/cof-logic` del repo al árbol de trabajo antes de compilar.
+- Los parches se editan en el árbol de WSL y se exportan con `tools/wsl/patches.sh export`. El
+  diff textual del `.patch` sale grande (cambia el orden de los hunks); comprobar el cambio real
+  comparando las líneas `+`/`-` por archivo.
+
+Ciclo completo que se usó (desde Git Bash, con un script en archivo):
+
+```bash
+export COF_WORK=/root/cof-audits/audit-D3Kl5uly
+REPO="/mnt/c/Users/josue/OneDrive/Desktop/Cry Of Fear Web Alpha Version/Cry-Of-Fear-Port-Web"
+MAPS="c_game_menu1 c_intro c_nightmare c_start c_start2 c_apartment1 c_apartment2 c_apartment3 c_apartment4 c_apartment5 c_apartmentsick"
+cd "$REPO"
+bash tools/wsl/build_engine.sh          # solo si cambió patches/xash3d
+bash tools/wsl/build_game.sh
+for m in $MAPS; do                       # solo si cambió stage_map.py o los assets de un mapa
+  python3 tools/stage_map.py "/mnt/c/Program Files (x86)/Steam/steamapps/common/Cry of Fear" $m $COF_WORK/stage --texcomp $COF_WORK/build/tools/texcomp
+done
+COF_DIST=$COF_WORK/dist-next bash tools/wsl/package.sh $MAPS
+rsync -a --delete --checksum $COF_WORK/dist-next/ "$REPO/dist/"
+bash tools/wsl/patches.sh export        # si se tocó el árbol de Xash o hlsdk
+```
+
+Los 11 mapas publicados: menú (`c_game_menu1`), prólogo (`c_intro`), **preludio (`c_nightmare`)**
+y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apartmentsick`).
+
+## Trampas conocidas
+
+- **Comillas en WSL desde Git Bash**: `$var` y `$(...)` se expanden antes de llegar a WSL. Escribir
+  siempre un script en el scratchpad, quitar CRLF (`sed -i 's/\r$//'`) y ejecutar con
+  `MSYS_NO_PATHCONV=1 wsl -u root -- bash /mnt/c/.../script.sh`.
+- **Finales de línea**: varios archivos del repo usan CRLF (`postfx.js`, `index.html`). `sed -i` de
+  Git Bash los convierte a LF y Python en Windows escribe CRLF: usar la herramienta Edit, `sed -b`
+  o escribir bytes. `sw-manifest.js` va con LF.
+- **dist/ y el Service Worker**: `sw.js` sirve las copias `.gz` de los `.data`/`.wasm` y comprueba
+  hashes de `sw-manifest.js`. Si se toca cualquier archivo de `dist/` a mano hay que regenerar los
+  `.gz` y el manifiesto (el bloque Python final de `package.sh`). Con `.gz` desfasados el motor no
+  arranca (`filesystem_stdio.wasm: need to see wasm magic number`). Lo más seguro es empaquetar
+  siempre todo con `package.sh`.
+- `.gitattributes` tiene `dist/** -text` y `build/validation/** -text`: no tocarlos o cambian los hashes.
+- **GitHub**: límite de 100 MB por archivo y HTTP 408 en pushes grandes. Subir en partes de ~150 MB
+  (se hizo con un script que hace `git add --pathspec-from-file` por lotes). Windows corta las listas
+  de argumentos largas.
+- **`index.lock`**: la app de escritorio ejecuta `git status` a menudo; si un comando de git se
+  cuelga, puede quedar un lock viejo. Comprobar su hora y los procesos de git antes de borrarlo.
+- **Ghidra headless** (`C:\Users\josue\cof-re-tools`, JDK en `jdk-25.0.4.1+1`): el `.bat` parte los
+  argumentos por comas y descarta los vacíos; usar `+` como separador y `-` como vacío. Proyecto del
+  `client.dll`: `build/envpos-client-analysis/envpos_client`; del servidor:
+  `build/entity-analysis/cof_classes`. Scripts de solo lectura en `tools/ghidra/`: `DumpBlackRefs`
+  (funciones que usan ciertas cadenas), `DumpFuncs` (descompila funciones y sus llamadores),
+  `DumpScalarUse` (quién usa un desplazamiento), `DumpFloats` (valores de constantes). Ejemplo:
+
+  ```powershell
+  $env:JAVA_HOME = "C:\Users\josue\cof-re-tools\jdk-25.0.4.1+1"
+  & "C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\support\analyzeHeadless.bat" "<repo>\build\envpos-client-analysis" envpos_client -process -noanalysis -readOnly -scriptPath "<repo>\tools\ghidra" -postScript DumpFuncs.java "<salida>.txt" "1006e4f0" "-" "0" "-"
+  ```
+
+## Probar en el navegador
+
+- Servidor: `python dist/serve.py dist --port 8090` (Windows) o `serve.py` en WSL en otro puerto.
+  El 8080 suele estar ocupado por el `Jugar.bat` del usuario.
+- Parámetros de la página: `?map=c_nightmare` (mapa inicial), `?sw=0` (sin Service Worker),
+  `?timer=1` (el bucle no se para con el panel oculto), `?debug=1`.
+- Si una pestaña de `localhost:8090` sirve cosas viejas: desregistrar el Service Worker y borrar
+  `caches`.
+- Comandos de consola desde JS: `Module.ccall("Xash_Cmd", null, ["string"], ["comando\n"])`.
+- Depuración del port (requieren `sv_cheats 1`): `cof_goto x y z` / `cof_goto <nombre>`,
+  `cof_face <nombre>`, `cof_count <clase>`, `cof_remove <nombre>`, `cof_inspect <nombre>`,
+  `cof_give <arma>`, `cof_use`, `cof_fire`, `noclip`. Xash no tiene `setpos`.
+- Una pestaña en segundo plano corre a ~1 fps: traerla al frente para comparar.
+
+## Protocolo y piezas clave
+
+- El servidor imprime líneas `COF/HUD <CMD> ...`; `loader.js` les quita el `[hh:mm:ss] ` y las pasa
+  a `hud.js` (menú propio, bolso, salud/energía, notas, candado, blanco y negro, desenfoque...).
+- Mensajes de usuario CoF: `CoFFog`, `CoFEmit` (atmosphere.cpp), `skymark_w`/`skymark_sky`
+  (envpos.cpp), `Padlock`, `CoFDecal` (static_decal.cpp). Se registran en `CoF_LinkUserMessages`.
+- Estado por cliente que hay que reenviar en cada mapa o partida cargada: se manda desde
+  `CBasePlayer::UpdateClientData` (`CoF_SendEnvpos`, `CoF_PadlockSync`, `CoF_SendStaticDecals`).
+- Armas CoF: `UseDecrement() TRUE` y `cl_lw 0` (sin predicción en cliente).
+- El cliente pide la RenderAPI de Xash con `HUD_GetRenderInterface` (cof_decals.cpp) sin sustituir
+  funciones del renderer: sirve para cargar texturas propias.
+
+## Trabajo hecho
+
+### Antes de la llegada de Codex (hasta el 25 de octubre)
+- Menú original con paneles propios (sin el menú de Half-Life: Esc, TAB, cargar partida, opciones),
+  pantalla de carga negra.
+- Prólogo (lluvia), preludio (cámara de fotos, `camera_spot_trigger`) y capítulo 1 con enemigos,
+  armas (navaja, Glock, jeringa, móvil, cámara), bolso guardado en las partidas, notas, puzles,
+  escaleras, subtítulos y textos en español, niebla (`FogParams` exponencial, `gl_fog 1`), hojas y
+  vapor (sistema de partículas propio con TriAPI), brillos, `func_button` con `lockedby`.
+- Release `v0.2.0-alpha` con el zip de `dist/`.
+
+### Trabajo de Codex (30 de octubre), auditado
+- Entidades de `c_start`: candado (`item_padlock`, `docs/PADLOCK.md`), `bossbar`, `changevalue`,
+  `checkbrush`, `envpos` (cielo 3D), `motion_manager`, `trigger_sound`, escaleras, `triggeron`,
+  serialización de cámaras, trenes, botones, `multi_manager` y `trigger_changelevel`.
+- Auditoría de continuidad: `build/validation/claude-audit-2026-10-30/AUDITORIA.md`.
+
+### 30 de octubre (Claude Code)
+- **Repositorio público**: historia unida con el commit inicial (sin force push), etiquetas,
+  `dist/` y `build/validation` subidos por partes. Copias en `C:\Users\josue\CoF-Backups\2026-10-30\`
+  (bundle con todas las ramas, `build/validation`, árbol de WSL, `dist` anterior).
+- **Enlace GPL** apuntando al repositorio público (README, `package.sh`, `build_preload.sh`).
+- **dist/ roto**: los `.gz` del build de Codex eran del 25 de octubre; se regeneraron.
+- **`env_static_decal`** (63 en el capítulo 1: hojas, grafitis, carteles): `docs/STATIC_DECAL.md`.
+  Texturas TGA de `gfx/decals` con fondo gris 128 y mezcla 2x modulate (`GL_DST_COLOR,
+  GL_SRC_COLOR`) en `gl_decals.c` para los nombres que empiezan por `gfx/decals/`.
+- **Blanco y negro**: `cof_blackandwhite` usaba `cgshaders/black_fp.cg`, que invierte la imagen (el
+  menú y las escenas salían blancas). El `client.dll` hace un pase de `gl_grayscale`: la imagen en
+  gris encima con alfa = `iuser1 / 255` (`GreyFade` lo anima). `postfx.js` hace ahora
+  `mix(color, luma, grey)`.
+- **Preludio**: `camera_spot_trigger` ya no se oculta: es la X blanca (`c_nightmarex`, aditivo) que
+  hay que fotografiar. Recorrido completo comprobado: intro, 11 X, espejo que se rompe, screamer
+  final (`headdy` + grito) y cambio a `c_start`.
+
+## Pendiente
+
+- Cielo especial del menú (`envpos` en `c_game_menu1`): la prueba `envpos_entities` falla desde el
+  30 de octubre (cielo con `draws=0`); el menú se ve muy oscuro.
+- `GL_INVALID_OPERATION (gl_rmain.c:1015)` cada frame con la cámara de fotos en la mano (también
+  en versiones anteriores).
+- X falsas del preludio (`wrong1..11`) sin probar una por una.
+- Candado: falta validar de forma natural la contraseña correcta, la combinación, el regreso a
+  `c_start` y guardar/cargar. Manos blancas tras cargar partida.
+- `cof_greyfade` (fundido a gris) no está implementado; no aparece en los mapas publicados.
+- Entidades del capítulo 1 sin implementar: `cof_developer_commentary`, `cof_hoodie`,
+  `cof_clothesmenu`, `item_nightvision` (y `info_texlights`, que solo sirve al compilar).
+- Página de presentación (`index.html` tipo launcher) que quiere el usuario.
