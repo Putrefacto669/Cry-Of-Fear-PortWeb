@@ -40,7 +40,7 @@ Leyenda del estado del port: **comprobado** (visto funcionando en el port durant
 | `c_nightmare` | 5:20 | Marco del espejo | Escena del espejo (`spot9`) | Comprobado | — | — |
 | `c_nightmare` | 5:28 | Reflejo de Simon dentro del espejo, iluminado | `nightmare/4.mdl` con `scripted_sequence` | Comprobado que aparece y que el espejo (`break8w`) se rompe | No se pudo confirmar si la animación del golpe se ve completa en el port | Media |
 | `c_nightmare` | 5:42 | Puerta abierta con luz al fondo | La foto abre la puerta donde estaba la X y enciende la luz | Comprobado | — | — |
-| `c_nightmare` | 5:55 | Cara del screamer (`headdy`) en primer plano, **muy oscura** | Screamer final con grito | Comprobado que aparece | En el port la cara salió **muy iluminada**. Hipótesis: iluminación del modelo o la luz parpadeante (`multiljusfl1`); la captura del port se hizo con noclip y otra posición | **Alta** (fidelidad visual) |
+| `c_nightmare` | 5:55 | Cara del screamer (`headdy`) en primer plano, muy oscura, **llena el encuadre** | Screamer final con grito | Comprobado que aparece, oscura como en el original (sección «Investigación del screamer») | La cara se ve **más pequeña** en el port (≈24° frente a ≈52° de ancho angular). Causa sin demostrar | Media |
 | `c_nightmare` | 5:58–6:05 | Fundido a negro, pantalla de carga con las barras | Cambio a `c_start` | Comprobado | — | — |
 
 ## Inicio del capítulo 1
@@ -60,7 +60,7 @@ Leyenda del estado del port: **comprobado** (visto funcionando en el port durant
 
 | Diferencia | Tipo | Estado | Siguiente paso |
 |---|---|---|---|
-| Cara del screamer mucho más iluminada en el port | Fidelidad visual | Observada, causa sin demostrar | Repetir en el port sin noclip desde la posición del jugador y medir la luz del modelo (`env_model` y luces dinámicas) |
+| Cara del screamer más pequeña en el port | Fidelidad visual | Observada, causa sin demostrar (ver abajo) | Capturar el port a 16:9 y repetir fotogramas del vídeo entre 5:54 y 5:56 |
 | Cono de luz del móvil | Jugabilidad / fidelidad | Sin comparar | Capturar el port en las escaleras de `c_start` y comparar con 9:00 |
 | Animación del reflejo en el espejo | Fidelidad | Sin confirmar | Capturas seguidas en el port al disparar `spot9` |
 | Escena del gato y estación de tren | Fidelidad | Sin verificar | Recorrer `c_intro` y el inicio de `c_nightmare` en el port |
@@ -68,6 +68,41 @@ Leyenda del estado del port: **comprobado** (visto funcionando en el port durant
 
 No se cambió código a partir de este documento: cada diferencia necesita confirmarse primero en el
 motor.
+
+## Investigación del screamer (`c_nightmare`, 5:55)
+
+Capturas del port en `build/validation/screamer-2026-10-30/` (renders propios, sin posproceso:
+`fx=0`), tomadas sin noclip disparando `multispotea`, la lógica del propio nivel.
+
+**Hechos:**
+
+- El nivel teletransporta al jugador a `beforetelet` (`-739,-1416,-320`, ángulo 270) al empezar el
+  screamer. En el port, `viewpos` da `-738.97,-1415.97,-255.94`, ángulo 270.
+- El `CCofTeleport` del `hl.dll` original (función de la vtable en `0x100a7990`, Ghidra, solo
+  lectura) hace lo mismo: origen del destino con `z − mins.z + constante`, ángulos del destino en
+  `angles` y `v_angle`, `fixangle` y velocidad a cero. La posición de la cámara es la misma.
+- `headdy.mdl` tiene dos secuencias: `idle` (51 fotogramas a 1 fps) y `action` (51 a 30 fps, 1,7 s).
+  Ninguna tiene movimiento lineal y la caja de `action` apenas cambia: la cara no se acerca a la
+  cámara.
+- Vista como jugador, la cara está **oscura** en el port, igual que en el original. La primera
+  impresión de «muy iluminada» venía de una captura con noclip desde otra posición: **descartada**.
+- Tamaño: en el port la cara ocupa ≈46 % de la altura del lienzo; en el vídeo llena el encuadre.
+  Estimado con FOV Hor+ (90° para 4:3): ≈24° de ancho angular en el port frente a ≈52° en el vídeo.
+- `client.dll` original: FOV por defecto 90; el mensaje `SetFOV` con 2 da 60° y con 3 da 30°, con
+  transición suave; el resultado se multiplica por `cl_fovmultiplier`. En `hl.dll` las únicas
+  escrituras literales en el FOV del jugador (`m_iFOV`) son reinicios a 0.
+
+**Hipótesis no demostradas:** un zoom de cámara que no se ha encontrado en el código; un
+`cl_fovmultiplier` menor que 1 en la configuración de quien grabó el vídeo (no verificable desde el
+vídeo); diferencias de proporción del lienzo en las capturas del port (2,8:1, no 16:9).
+
+**Decisión:** no se cambia código. No hay un defecto demostrado.
+
+**Nota sobre las capturas sin interfaz:** en ellas el modelo de la cámara en mano sale blanco, sin
+textura. En las capturas del mismo día en el navegador de la app (GPU real) la cámara y las manos sí
+tenían textura, así que se atribuye a SwiftShader, el renderizador por software de las pruebas, y no
+se considera un fallo del port. Esto puede afectar también a la observación de «manos blancas tras
+cargar» de la auditoría, que se hizo con el mismo renderizador; está sin comprobar.
 
 ## Limitaciones
 

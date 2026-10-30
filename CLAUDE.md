@@ -186,8 +186,10 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
 - `GL_INVALID_OPERATION (gl_rmain.c:1015)` cada frame con la cámara de fotos en la mano (también
   en versiones anteriores).
 - X falsas del preludio (`wrong1..11`) sin probar una por una.
-- Diferencias frente al recorrido original en vídeo (`docs/VIDEO_REFERENCE.md`): cara del screamer
-  mucho más iluminada en el port y cono de luz del móvil sin comparar.
+- Diferencias frente al recorrido original en vídeo (`docs/VIDEO_REFERENCE.md`): la cara del
+  screamer se ve más pequeña en el port (causa sin demostrar) y el cono de luz del móvil está sin
+  comparar. Las capturas sin interfaz (SwiftShader) pintan blanco el modelo en mano: no es un fallo
+  del port.
 - `tools/e2e/smoke.mjs` falla dos comprobaciones (ya fallaban antes de la corrección de envpos): la
   recarga vuelve a descargar 4,6 MiB y aparece `ERR_INTERNET_DISCONNECTED` sin conexión.
 - Candado: falta validar de forma natural la contraseña correcta, la combinación, el regreso a
