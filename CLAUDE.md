@@ -186,6 +186,8 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
 - `GL_INVALID_OPERATION (gl_rmain.c:1015)` cada frame con la cámara de fotos en la mano (también
   en versiones anteriores).
 - X falsas del preludio (`wrong1..11`) sin probar una por una.
+- Diferencias frente al recorrido original en vídeo (`docs/VIDEO_REFERENCE.md`): cara del screamer
+  mucho más iluminada en el port y cono de luz del móvil sin comparar.
 - `tools/e2e/smoke.mjs` falla dos comprobaciones (ya fallaban antes de la corrección de envpos): la
   recarga vuelve a descargar 4,6 MiB y aparece `ERR_INTERNET_DISCONNECTED` sin conexión.
 - Candado: falta validar de forma natural la contraseña correcta, la combinación, el regreso a
