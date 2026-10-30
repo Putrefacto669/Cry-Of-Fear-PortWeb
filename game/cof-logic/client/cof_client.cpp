@@ -333,8 +333,74 @@ static void CoF_EmitTest( void )
 	}
 }
 
+// The renderer consumes these client-owned values; they never change server coordinates.
+static const char *skyNames[]={"cof_sky_valid","cof_sky_scale","cof_sky_world_x","cof_sky_world_y","cof_sky_world_z","cof_sky_origin_x","cof_sky_origin_y","cof_sky_origin_z","cof_sky_ambient","cof_sky_direct","gl_customsky"};
+static int skyValid;
+static char skyLevel[128];
+static void SkyReset()
+{
+ skyValid=0;
+ for(int i=0;i<10;i++) gEngfuncs.Cvar_SetValue(skyNames[i],i>=8?-1:0);
+}
+void CoF_ClientSkyReset()
+{
+ SkyReset();
+ const char *level=gEngfuncs.pfnGetLevelName();
+ strncpy(skyLevel,level?level:"",sizeof(skyLevel)-1); skyLevel[sizeof(skyLevel)-1]=0;
+}
+static void SkyLevel()
+{
+ const char *level=gEngfuncs.pfnGetLevelName();
+ if(strcmp(skyLevel,level?level:"")) CoF_ClientSkyReset();
+}
+static int SkyWorld(const char*,int size,void *buffer)
+{
+ SkyLevel();
+ BEGIN_READ(buffer,size);
+ for(int i=2;i<5;i++) gEngfuncs.Cvar_SetValue(skyNames[i],READ_COORD());
+ gEngfuncs.Cvar_SetValue(skyNames[1],READ_COORD());
+ skyValid|=1; gEngfuncs.Cvar_SetValue(skyNames[0],skyValid);
+ return 1;
+}
+static int SkyMarker(const char*,int size,void *buffer)
+{
+ SkyLevel();
+ BEGIN_READ(buffer,size);
+ for(int i=5;i<8;i++) gEngfuncs.Cvar_SetValue(skyNames[i],READ_COORD());
+ int flags=READ_BYTE();
+ if(flags&1) gEngfuncs.Cvar_SetValue(skyNames[8],READ_BYTE());
+ if(flags&2) gEngfuncs.Cvar_SetValue(skyNames[9],READ_BYTE());
+ skyValid|=2; gEngfuncs.Cvar_SetValue(skyNames[0],skyValid);
+ return 1;
+}
+static void SkyStatus()
+{
+ gEngfuncs.Con_Printf("COF/SKY mask=%d valid=%g scale=%g world=%g,%g,%g sky=%g,%g,%g ambient=%g direct=%g\n",
+  skyValid,gEngfuncs.pfnGetCvarFloat(skyNames[0]),gEngfuncs.pfnGetCvarFloat(skyNames[1]),
+  gEngfuncs.pfnGetCvarFloat(skyNames[2]),gEngfuncs.pfnGetCvarFloat(skyNames[3]),gEngfuncs.pfnGetCvarFloat(skyNames[4]),
+  gEngfuncs.pfnGetCvarFloat(skyNames[5]),gEngfuncs.pfnGetCvarFloat(skyNames[6]),gEngfuncs.pfnGetCvarFloat(skyNames[7]),
+  gEngfuncs.pfnGetCvarFloat(skyNames[8]),gEngfuncs.pfnGetCvarFloat(skyNames[9]));
+}
+
+static void PadlockRenderStatus() {
+ int count=0;
+ for(int i=1;i<2048;i++) {cl_entity_t *e=gEngfuncs.GetEntityByIndex(i);
+  if(e&&e->model&&strstr(e->model->name,"padlock.mdl")) {
+   count++;gEngfuncs.Con_Printf("COF/PAD_RENDER id=%d origin=%g,%g,%g effect=%d fx=%d mode=%d amount=%d seq=%d controller=%d,%d,%d,%d\n",i,e->origin[0],e->origin[1],e->origin[2],e->curstate.effects,e->curstate.renderfx,e->curstate.rendermode,e->curstate.renderamt,e->curstate.sequence,e->curstate.controller[0],e->curstate.controller[1],e->curstate.controller[2],e->curstate.controller[3]);
+  }
+ }
+ gEngfuncs.Con_Printf("COF/PAD_RENDER count=%d\n",count);
+}
+static int PadlockMessage(const char*,int size,void *buffer) { BEGIN_READ(buffer,size); gEngfuncs.Con_Printf("COF/HUD PADLOCK %d\n",READ_BYTE()); return 1; }
 void CoF_ClientInit( void )
 {
+ gEngfuncs.pfnHookUserMsg("Padlock",PadlockMessage);
+ gEngfuncs.pfnAddCommand("cof_padlock_render",PadlockRenderStatus);
+ gEngfuncs.pfnRegisterVariable("cof_padlock_trace","0",0);
+ for(int i=0;i<11;i++) gEngfuncs.pfnRegisterVariable(skyNames[i],i==10?"1":i>=8?"-1":"0",0);
+ gEngfuncs.pfnHookUserMsg("skymark_w",SkyWorld);
+ gEngfuncs.pfnHookUserMsg("skymark_sky",SkyMarker);
+ gEngfuncs.pfnAddCommand("cof_sky_status",SkyStatus);
 	gEngfuncs.pfnAddCommand( "cof_emittest", CoF_EmitTest );
 	gEngfuncs.pfnHookUserMsg( "CoFFog", __MsgFunc_CoFFog );
 	gEngfuncs.pfnHookUserMsg( "CoFEmit", __MsgFunc_CoFEmit );
@@ -348,6 +414,7 @@ void CoF_ClientDrawTransparent( void )
 
 void CoF_ClientVidInit( void )
 {
+ SkyLevel();
 	for( int j = 0; j < MAX_PARTICLES; j++ )
 		g_particles[j].emitter = -1;
 	memset( &g_fog, 0, sizeof( g_fog ));

@@ -42,3 +42,12 @@ void CoF_CenterPrint( const char *text );
 
 // one-line markers for platform/web/hud.js ("COF/HUD ..." on the server console)
 void CoF_HudPrint( const char *fmt, ... );
+
+const char *CoF_PadlockCode();
+void CoF_SetPadlockCode(const char *code);
+bool CoF_PadlockCommand(CBasePlayer *,const char *);
+void CoF_PadlockSync(CBasePlayer *);
+
+void CoF_InspectChangeLevel(const char *name);
+
+void CoF_InspectInterDoor(const char *name);

@@ -129,10 +129,20 @@ index 8815a3fb..6b7fc218 100644
  		'public/safe_snprintf.c',
  		'pm_shared/*.c',
 diff --git a/dlls/buttons.cpp b/dlls/buttons.cpp
-index 9c7d5d39..caf3f428 100644
+index 9c7d5d39..885a0615 100644
 --- a/dlls/buttons.cpp
 +++ b/dlls/buttons.cpp
-@@ -268,6 +268,10 @@ TYPEDESCRIPTION CBaseButton::m_SaveData[] =
+@@ -259,6 +259,9 @@ void CMultiSource::Register( void )
+ // CBaseButton
+ TYPEDESCRIPTION CBaseButton::m_SaveData[] =
+ {
++#ifdef __EMSCRIPTEN__
++ DEFINE_ARRAY(CBaseButton,m_iCofButtonCallbacks,FIELD_INTEGER,5),
++#endif
+ 	DEFINE_FIELD( CBaseButton, m_fStayPushed, FIELD_BOOLEAN ),
+ 	DEFINE_FIELD( CBaseButton, m_fRotating, FIELD_BOOLEAN ),
+ 
+@@ -268,15 +271,80 @@ TYPEDESCRIPTION CBaseButton::m_SaveData[] =
  	DEFINE_FIELD( CBaseButton, m_bUnlockedSound, FIELD_CHARACTER ),	
  	DEFINE_FIELD( CBaseButton, m_bUnlockedSentence, FIELD_CHARACTER ),
  	DEFINE_FIELD( CBaseButton, m_strChangeTarget, FIELD_STRING ),
@@ -143,7 +153,67 @@ index 9c7d5d39..caf3f428 100644
  	//DEFINE_FIELD( CBaseButton, m_ls, FIELD_??? ),   // This is restored in Precache()
  };
  	
-@@ -277,6 +281,9 @@ void CBaseButton::Precache( void )
++#ifdef __EMSCRIPTEN__
++// Save stable SDK callback identities; SIDE_MODULE method addresses cannot be
++// resolved by NAME_FOR_FUNCTION. Keep null/busy states and deadlines intact.
++int CBaseButton::Save( CSave &save )
++{
++ typedef void (CBaseEntity::*ThinkFn)();
++ typedef void (CBaseEntity::*TouchFn)(CBaseEntity *);
++ typedef void (CBaseEntity::*UseFn)(CBaseEntity *,CBaseEntity *,USE_TYPE,float);
++ typedef void (CBaseToggle::*MoveFn)();
++ int think=-1, touch=-1, use=-1, move=-1;
++ if(!m_pfnThink) think=0;
++ else if(m_pfnThink==static_cast<ThinkFn>(&CBaseButton::ButtonSpark)) think=1;
++ else if(m_pfnThink==static_cast<ThinkFn>(&CBaseButton::ButtonReturn)) think=2;
++ else if(m_pfnThink==static_cast<ThinkFn>(&CBaseToggle::LinearMoveDone)) think=3;
++ else if(m_pfnThink==static_cast<ThinkFn>(&CBaseToggle::AngularMoveDone)) think=4;
++ else if(m_pfnThink==static_cast<ThinkFn>(&CBaseEntity::SUB_Remove)) think=5;
++ else if(m_pfnThink==static_cast<ThinkFn>(&CBaseEntity::SUB_DoNothing)) think=6;
++ if(!m_pfnTouch) touch=0;
++ else if(m_pfnTouch==static_cast<TouchFn>(&CBaseButton::ButtonTouch)) touch=1;
++ if(!m_pfnUse) use=0;
++ else if(m_pfnUse==static_cast<UseFn>(&CBaseButton::ButtonUse)) use=1;
++ if(!m_pfnCallWhenMoveDone) move=0;
++ else if(m_pfnCallWhenMoveDone==static_cast<MoveFn>(&CBaseButton::TriggerAndWait)) move=1;
++ else if(m_pfnCallWhenMoveDone==static_cast<MoveFn>(&CBaseButton::ButtonBackHome)) move=2;
++ if(think<0||touch<0||use<0||move<0||m_pfnBlocked) {
++  ALERT(at_error,"CoF button: unsupported save callback on %s\n",STRING(pev->classname)); return 0;
++ }
++ m_iCofButtonCallbacks[0]=think; m_iCofButtonCallbacks[1]=touch;
++ m_iCofButtonCallbacks[2]=use; m_iCofButtonCallbacks[3]=move;
++ auto savedThink=m_pfnThink; auto savedTouch=m_pfnTouch; auto savedUse=m_pfnUse;
++ auto savedMove=m_pfnCallWhenMoveDone;
++ m_pfnThink=NULL; m_pfnTouch=NULL; m_pfnUse=NULL; m_pfnCallWhenMoveDone=NULL;
++ int status=CBaseToggle::Save(save);
++ m_pfnThink=savedThink; m_pfnTouch=savedTouch; m_pfnUse=savedUse; m_pfnCallWhenMoveDone=savedMove;
++ if(!status) return 0;
++ return save.WriteFields("CBaseButton",this,m_SaveData,ARRAYSIZE(m_SaveData));
++}
++int CBaseButton::Restore( CRestore &restore )
++{
++ if(!CBaseToggle::Restore(restore)||!restore.ReadFields("CBaseButton",this,m_SaveData,ARRAYSIZE(m_SaveData))) return 0;
++ SetThink(NULL); SetTouch(NULL); SetUse(NULL); SetMoveDone(NULL);
++ switch(m_iCofButtonCallbacks[0]) {
++ case 1: SetThink(&CBaseButton::ButtonSpark); break;
++ case 2: SetThink(&CBaseButton::ButtonReturn); break;
++ case 3: SetThink(&CBaseToggle::LinearMoveDone); break;
++ case 4: SetThink(&CBaseToggle::AngularMoveDone); break;
++ case 5: SetThink(&CBaseEntity::SUB_Remove); break;
++ case 6: SetThink(&CBaseEntity::SUB_DoNothing); break;
++ }
++ if(m_iCofButtonCallbacks[1]==1) SetTouch(&CBaseButton::ButtonTouch);
++ if(m_iCofButtonCallbacks[2]==1) SetUse(&CBaseButton::ButtonUse);
++ if(m_iCofButtonCallbacks[3]==1) SetMoveDone(&CBaseButton::TriggerAndWait);
++ if(m_iCofButtonCallbacks[3]==2) SetMoveDone(&CBaseButton::ButtonBackHome);
++ if(m_iCofButtonCallbacks[4]) pev->nextthink=m_iCofButtonCallbacks[4]==1?0:-1;
++ return 1;
++}
++#else
+ IMPLEMENT_SAVERESTORE( CBaseButton, CBaseToggle )
++#endif
+ 
+ void CBaseButton::Precache( void )
  {
  	const char *pszSound;
  
@@ -153,7 +223,7 @@ index 9c7d5d39..caf3f428 100644
  	if( FBitSet( pev->spawnflags, SF_BUTTON_SPARK_IF_OFF ) )// this button should spark in OFF state
  	{
  		PRECACHE_SOUND( "buttons/spark1.wav" );
-@@ -372,9 +379,21 @@ void CBaseButton::Precache( void )
+@@ -372,9 +440,21 @@ void CBaseButton::Precache( void )
  //
  // Cache user-entity-field values until spawn is called.
  //
@@ -176,7 +246,7 @@ index 9c7d5d39..caf3f428 100644
  	{
  		m_strChangeTarget = ALLOC_STRING( pkvd->szValue );
  		pkvd->fHandled = TRUE;
-@@ -652,6 +671,9 @@ void CBaseButton::ButtonUse( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_
+@@ -652,6 +732,9 @@ void CBaseButton::ButtonUse( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_
  	if( m_toggle_state == TS_GOING_UP || m_toggle_state == TS_GOING_DOWN )
  		return;
  
@@ -187,10 +257,10 @@ index 9c7d5d39..caf3f428 100644
  	if( m_toggle_state == TS_AT_TOP )
  	{
 diff --git a/dlls/cbase.h b/dlls/cbase.h
-index d7ec85fd..e46cf4af 100644
+index d7ec85fd..5fe31734 100644
 --- a/dlls/cbase.h
 +++ b/dlls/cbase.h
-@@ -724,6 +724,12 @@ public:
+@@ -724,6 +724,15 @@ public:
  	BYTE m_bUnlockedSound;	
  	BYTE m_bUnlockedSentence;
  	int m_sounds;
@@ -200,11 +270,14 @@ index d7ec85fd..e46cf4af 100644
 +	string_t m_iszCofLockedMsg;
 +	string_t m_iszCofUnlockedMsg;
 +	string_t m_iszCofUnlockedSnd;
++#ifdef __EMSCRIPTEN__
++ int m_iCofButtonCallbacks[5];
++#endif
  };
  
  //
 diff --git a/dlls/client.cpp b/dlls/client.cpp
-index da2e9e1d..33dda9d8 100644
+index da2e9e1d..0db5b553 100644
 --- a/dlls/client.cpp
 +++ b/dlls/client.cpp
 @@ -465,6 +465,9 @@ called each time a player uses a "cmd" command
@@ -227,6 +300,16 @@ index da2e9e1d..33dda9d8 100644
  	if( FStrEq( pcmd, "say" ) )
  	{
  		Host_Say( pEntity, 0 );
+@@ -1143,7 +1149,8 @@ int AddToFullPack( struct entity_state_s *state, int e, edict_t *ent, edict_t *h
+ 		if( !ENGINE_CHECK_VISIBILITY( (const struct edict_s *)ent, pSet ) )
+ 		{
+ 			// env_sky is visible always
+-			if( !FClassnameIs( ent, "env_sky" ) )
++			if( !FClassnameIs( ent, "env_sky" ) &&
++				!( FClassnameIs( ent, "env_model" ) && ent->v.renderfx == 137 ))
+ 			{
+ 				return 0;
+ 			}
 diff --git a/dlls/glock.cpp b/dlls/glock.cpp
 index d9411d66..8c146245 100644
 --- a/dlls/glock.cpp
@@ -256,7 +339,7 @@ index 53323a74..2a7e7083 100644
  
  //=========================================================
 diff --git a/dlls/player.cpp b/dlls/player.cpp
-index bbb68ea6..9b44de38 100644
+index bbb68ea6..61d04bd3 100644
 --- a/dlls/player.cpp
 +++ b/dlls/player.cpp
 @@ -40,6 +40,10 @@
@@ -270,16 +353,31 @@ index bbb68ea6..9b44de38 100644
  extern DLL_GLOBAL BOOL g_fGameOver;
  extern DLL_GLOBAL BOOL g_fDrawLines;
  int gEvilImpulse101;
-@@ -185,6 +189,8 @@ int gmsgTeamNames = 0;
+@@ -70,6 +74,7 @@ extern CGraph WorldGraph;
+ // Global Savedata for player
+ TYPEDESCRIPTION	CBasePlayer::m_playerSaveData[] =
+ {
++ DEFINE_ARRAY(CBasePlayer,m_iCofPadlockNumber,FIELD_INTEGER,4),
+ 	DEFINE_FIELD( CBasePlayer, m_flFlashLightTime, FIELD_TIME ),
+ 	DEFINE_FIELD( CBasePlayer, m_iFlashBattery, FIELD_INTEGER ),
+ 
+@@ -185,8 +190,15 @@ int gmsgTeamNames = 0;
  int gmsgStatusText = 0;
  int gmsgStatusValue = 0;
  
 +void CoF_LinkUserMessages( void );
 +
++extern void CoF_PrecachePadlock();
++extern void CoF_PrecacheEnvpos( void );
++
  void LinkUserMessages( void )
  {
++	CoF_PrecacheEnvpos();
++ CoF_PrecachePadlock();
  	// Already taken care of?
-@@ -230,6 +236,9 @@ void LinkUserMessages( void )
+ 	if( gmsgSelAmmo )
+ 	{
+@@ -230,6 +242,9 @@ void LinkUserMessages( void )
  
  	gmsgStatusText = REG_USER_MSG( "StatusText", -1 );
  	gmsgStatusValue = REG_USER_MSG( "StatusValue", 3 );
@@ -289,7 +387,27 @@ index bbb68ea6..9b44de38 100644
  }
  
  LINK_ENTITY_TO_CLASS( player, CBasePlayer )
-@@ -1891,6 +1900,8 @@ void CBasePlayer::PreThink( void )
+@@ -1591,7 +1606,18 @@ void CBasePlayer::PlayerUse( void )
+ 			vecLOS = UTIL_ClampVectorToBox( vecLOS, pObject->pev->size * 0.5 );
+ 
+ 			flDot = DotProduct( vecLOS , gpGlobals->v_forward );
+-			if( flDot > flMaxDot )
++			// Coincident usable brushes can have the same clamped direction.
++			// Prefer the surface actually under the crosshair in that tie (e.g.
++			// a padlock button one unit in front of a locked inter_door).
++			BOOL directTie = FALSE;
++			if( pClosest && flDot == flMaxDot )
++			{
++				TraceResult useTrace;
++				Vector eyes = pev->origin + pev->view_ofs;
++				UTIL_TraceLine( eyes, eyes + gpGlobals->v_forward * PLAYER_SEARCH_RADIUS, dont_ignore_monsters, edict(), &useTrace );
++				directTie = useTrace.pHit == pObject->edict();
++			}
++			if( flDot > flMaxDot || directTie )
+ 			{
+ 				// only if the item is in front of the user
+ 				pClosest = pObject;
+@@ -1891,6 +1917,8 @@ void CBasePlayer::PreThink( void )
  
  	UTIL_MakeVectors( pev->v_angle );             // is this still used?
  
@@ -298,7 +416,7 @@ index bbb68ea6..9b44de38 100644
  	ItemPreFrame();
  	WaterMove();
  
-@@ -2998,6 +3009,7 @@ void CBasePlayer::Spawn( void )
+@@ -2998,6 +3026,7 @@ void CBasePlayer::Spawn( void )
  
  	SET_VIEW(edict(), edict());
  
@@ -306,6 +424,287 @@ index bbb68ea6..9b44de38 100644
  	g_pGameRules->PlayerSpawn( this );
  }
  
+@@ -3997,6 +4026,9 @@ ForceClientDllUpdate to ensure the demo gets messages
+ reflecting all of the HUD state info.
+ =========================================================
+ */
++extern void CoF_PadlockSync(CBasePlayer *player);
++extern void CoF_SendEnvpos( CBasePlayer *player );
++
+ void CBasePlayer::UpdateClientData( void )
+ {
+ 	if( m_fInitHUD )
+@@ -4007,6 +4039,8 @@ void CBasePlayer::UpdateClientData( void )
+ 		MESSAGE_BEGIN( MSG_ONE, gmsgResetHUD, NULL, pev );
+ 			WRITE_BYTE( 0 );
+ 		MESSAGE_END();
++		CoF_SendEnvpos( this );
++ CoF_PadlockSync(this);
+ 
+ 		if( !m_fGameHUDInitialized )
+ 		{
+diff --git a/dlls/triggers.cpp b/dlls/triggers.cpp
+index 7b5dde0f..1e60c3aa 100644
+--- a/dlls/triggers.cpp
++++ b/dlls/triggers.cpp
+@@ -272,6 +272,9 @@ public:
+ 	float m_startTime;// Time we started firing
+ 	string_t m_iTargetName[MAX_MULTI_TARGETS];// list if indexes into global string array
+ 	float m_flTargetDelay[MAX_MULTI_TARGETS];// delay (in seconds) from time of manager fire to target fire
++#ifdef __EMSCRIPTEN__
++	int m_iSavedCallbacks; // portable identities: bit 0 Think, bit 1 Use
++#endif
+ private:
+ 	inline BOOL IsClone( void ) { return ( pev->spawnflags & SF_MULTIMAN_CLONE ) ? TRUE : FALSE; }
+ 	inline BOOL ShouldClone( void )
+@@ -295,9 +298,58 @@ TYPEDESCRIPTION	CMultiManager::m_SaveData[] =
+ 	DEFINE_FIELD( CMultiManager, m_startTime, FIELD_TIME ),
+ 	DEFINE_ARRAY( CMultiManager, m_iTargetName, FIELD_STRING, MAX_MULTI_TARGETS ),
+ 	DEFINE_ARRAY( CMultiManager, m_flTargetDelay, FIELD_FLOAT, MAX_MULTI_TARGETS ),
++#ifdef __EMSCRIPTEN__
++	DEFINE_FIELD( CMultiManager, m_iSavedCallbacks, FIELD_INTEGER ),
++#endif
+ };
+ 
++#ifdef __EMSCRIPTEN__
++static bool s_cofManagerTrace = false;
++void CoF_SetManagerTrace( int enabled ) { s_cofManagerTrace = enabled != 0; }
++
++// Opt-in, sparse diagnostics: one record per save/restore or actual target,
++// never per frame. No serialized state or scheduling changes.
++static bool CoF_TraceManager( entvars_t *pev )
++{
++	return s_cofManagerTrace && CVAR_GET_FLOAT( "sv_cheats" ) != 0 &&
++		FStrEq( STRING( pev->targetname ), "multiscene1" );
++}
++
++int CMultiManager::Save( CSave &save )
++{
++	// SIDE_MODULE callback addresses cannot round-trip through NAME_FOR_FUNCTION.
++	// WriteFunction omits unresolved fields without fixing BASE's field count.
++	// Persist these two known callback identities instead, keeping null/busy
++	// states distinct. Leave the native SDK serialization unchanged.
++	if( CoF_TraceManager( pev )) ALERT( at_console, "COF/DIAG manager save id=%d index=%d count=%d next=%g time=%g think=%d use=%d\n", ENTINDEX( edict() ), m_index, m_cTargets, pev->nextthink, gpGlobals->time, m_pfnThink != NULL, m_pfnUse != NULL );
++	m_iSavedCallbacks = ( m_pfnThink ? 1 : 0 ) | ( m_pfnUse ? 2 : 0 );
++	auto think = m_pfnThink;
++	auto use = m_pfnUse;
++	m_pfnThink = NULL;
++	m_pfnUse = NULL;
++	int status = CBaseToggle::Save( save );
++	m_pfnThink = think;
++	m_pfnUse = use;
++	if( !status ) return 0;
++	return save.WriteFields( "CMultiManager", this, m_SaveData, ARRAYSIZE( m_SaveData ));
++}
++
++int CMultiManager::Restore( CRestore &restore )
++{
++	if( !CBaseToggle::Restore( restore ) ||
++		!restore.ReadFields( "CMultiManager", this, m_SaveData, ARRAYSIZE( m_SaveData ))) return 0;
++	SetThink( NULL );
++	SetUse( NULL );
++	if( m_iSavedCallbacks & 1 ) SetThink( &CMultiManager::ManagerThink );
++	if( m_iSavedCallbacks & 2 ) SetUse( &CMultiManager::ManagerUse );
++	if( CoF_TraceManager( pev )) ALERT( at_console, "COF/DIAG manager restore id=%d index=%d count=%d next=%g time=%g callbacks=%d\n", ENTINDEX( edict() ), m_index, m_cTargets, pev->nextthink, gpGlobals->time, m_iSavedCallbacks );
++	// Keep restored nextthink, start time and index. Spawn would re-sort/reset
++	// state; rescheduling idle managers would fire targets without activation.
++	return 1;
++}
++#else
+ IMPLEMENT_SAVERESTORE( CMultiManager, CBaseToggle )
++#endif
+ 
+ void CMultiManager::KeyValue( KeyValueData *pkvd )
+ {
+@@ -375,7 +427,15 @@ void CMultiManager::ManagerThink( void )
+ 	time = gpGlobals->time - m_startTime;
+ 	while( m_index < m_cTargets && m_flTargetDelay[m_index] <= time )
+ 	{
++#ifdef __EMSCRIPTEN__
++		const bool trace = CoF_TraceManager( pev );
++		const float started = trace ? g_engfuncs.pfnTime() : 0;
++		if( trace ) ALERT( at_console, "COF/DIAG manager target-begin id=%d index=%d target=%s time=%g\n", ENTINDEX( edict() ), m_index, STRING( m_iTargetName[m_index] ), gpGlobals->time );
++#endif
+ 		FireTargets( STRING( m_iTargetName[m_index] ), m_hActivator, this, USE_TOGGLE, 0 );
++#ifdef __EMSCRIPTEN__
++		if( trace ) ALERT( at_console, "COF/DIAG manager target-end id=%d index=%d seconds=%g\n", ENTINDEX( edict() ), m_index, g_engfuncs.pfnTime() - started );
++#endif
+ 		m_index++;
+ 	}
+ 
+@@ -1124,6 +1184,10 @@ void CBaseTrigger::MultiTouch( CBaseEntity *pOther )
+ //
+ void CBaseTrigger::ActivateMultiTrigger( CBaseEntity *pActivator )
+ {
++	// Cry of Fear: iuser1 disables a trigger until cof_triggeron enables it.
++	if( pev->iuser1 && ( FClassnameIs( pev, "trigger_once" ) || FClassnameIs( pev, "trigger_multiple" )))
++		return;
++
+ 	if( pev->nextthink > gpGlobals->time )
+ 		return;         // still waiting for reset time
+ 
+@@ -1324,24 +1388,71 @@ public:
+ 
+ 	static TYPEDESCRIPTION m_SaveData[];
+ 
+-	char m_szMapName[cchMapNameMost];		// trigger_changelevel only:  next map
++	#ifdef __EMSCRIPTEN__
++ int m_iCofSavedCallbacks;
++#endif
++ char m_szMapName[cchMapNameMost];		// trigger_changelevel only:  next map
+ 	char m_szLandmarkName[cchMapNameMost];		// trigger_changelevel only:  landmark on next map
+ 	string_t m_changeTarget;
+ 	float m_changeTargetDelay;
+ };
+ 
+ LINK_ENTITY_TO_CLASS( trigger_changelevel, CChangeLevel )
++// Read-only diagnostics for the original transition data and callbacks.
++void CoF_InspectChangeLevel(const char *name)
++{
++ CBaseEntity *e=UTIL_FindEntityByTargetname(NULL,name);
++ if(!e||!FClassnameIs(e->pev,"trigger_changelevel")) { ALERT(at_console,"COF/CHANGELEVEL %s missing\n",name);return; }
++ CChangeLevel *c=(CChangeLevel*)e;
++ ALERT(at_console,"COF/CHANGELEVEL %s map=%s landmark=%s use=%d touch=%d think=%d\n",name,c->m_szMapName,c->m_szLandmarkName,c->m_pfnUse!=NULL,c->m_pfnTouch!=NULL,c->m_pfnThink!=NULL);
++}
+ 
+ // Global Savedata for changelevel trigger
+ TYPEDESCRIPTION	CChangeLevel::m_SaveData[] =
+ {
+-	DEFINE_ARRAY( CChangeLevel, m_szMapName, FIELD_CHARACTER, cchMapNameMost ),
++	#ifdef __EMSCRIPTEN__
++ DEFINE_FIELD(CChangeLevel,m_iCofSavedCallbacks,FIELD_INTEGER),
++#endif
++ DEFINE_ARRAY( CChangeLevel, m_szMapName, FIELD_CHARACTER, cchMapNameMost ),
+ 	DEFINE_ARRAY( CChangeLevel, m_szLandmarkName, FIELD_CHARACTER, cchMapNameMost ),
+ 	DEFINE_FIELD( CChangeLevel, m_changeTarget, FIELD_STRING ),
+ 	DEFINE_FIELD( CChangeLevel, m_changeTargetDelay, FIELD_FLOAT ),
+ };
+ 
++#ifdef __EMSCRIPTEN__
++int CChangeLevel::Save(CSave &save)
++{
++ typedef void (CBaseEntity::*ThinkFn)();
++ typedef void (CBaseEntity::*TouchFn)(CBaseEntity *);
++ typedef void (CBaseEntity::*UseFn)(CBaseEntity *,CBaseEntity *,USE_TYPE,float);
++ if((m_pfnUse&&m_pfnUse!=static_cast<UseFn>(&CChangeLevel::UseChangeLevel))||
++    (m_pfnTouch&&m_pfnTouch!=static_cast<TouchFn>(&CChangeLevel::TouchChangeLevel))||
++    (m_pfnThink&&m_pfnThink!=static_cast<ThinkFn>(&CChangeLevel::ExecuteChangeLevel)&&m_pfnThink!=static_cast<ThinkFn>(&CBaseEntity::SUB_Remove))||m_pfnBlocked||m_pfnCallWhenMoveDone) {
++  ALERT(at_error,"CoF trigger_changelevel: unsupported save callback\n");return 0;
++ }
++ m_iCofSavedCallbacks=(m_pfnUse?1:0)|(m_pfnTouch?2:0)|
++  (m_pfnThink==static_cast<ThinkFn>(&CChangeLevel::ExecuteChangeLevel)?4:0)|
++  (m_pfnThink==static_cast<ThinkFn>(&CBaseEntity::SUB_Remove)?8:0);
++ auto use=m_pfnUse;auto touch=m_pfnTouch;auto think=m_pfnThink;
++ m_pfnUse=NULL;m_pfnTouch=NULL;m_pfnThink=NULL;
++ int status=CBaseTrigger::Save(save);
++ m_pfnUse=use;m_pfnTouch=touch;m_pfnThink=think;
++ if(!status)return 0;
++ return save.WriteFields("CChangeLevel",this,m_SaveData,ARRAYSIZE(m_SaveData));
++}
++int CChangeLevel::Restore(CRestore &restore)
++{
++ if(!CBaseTrigger::Restore(restore)||!restore.ReadFields("CChangeLevel",this,m_SaveData,ARRAYSIZE(m_SaveData)))return 0;
++ SetUse(NULL);SetTouch(NULL);SetThink(NULL);
++ if(m_iCofSavedCallbacks&1)SetUse(&CChangeLevel::UseChangeLevel);
++ if(m_iCofSavedCallbacks&2)SetTouch(&CChangeLevel::TouchChangeLevel);
++ if(m_iCofSavedCallbacks&4)SetThink(&CChangeLevel::ExecuteChangeLevel);
++ if(m_iCofSavedCallbacks&8)SetThink(&CBaseEntity::SUB_Remove);
++ return 1;
++}
++#else
+ IMPLEMENT_SAVERESTORE( CChangeLevel, CBaseTrigger )
++#endif
+ 
+ //
+ // Cache user-entity-field values until spawn is called.
+@@ -2131,10 +2242,35 @@ public:
+ 	float m_acceleration;
+ 	float m_deceleration;
+ 	int m_state;
++#ifdef __EMSCRIPTEN__
++	int m_iSavedThink;
++#endif
+ };
+ 
+ LINK_ENTITY_TO_CLASS( trigger_camera, CTriggerCamera )
+ 
++#ifdef __EMSCRIPTEN__
++void CoF_CameraDump( const char *name )
++{
++	CBaseEntity *entity = NULL;
++	while(( entity = UTIL_FindEntityByTargetname( entity, name )))
++	{
++		if( !FClassnameIs( entity->pev, "trigger_camera" )) continue;
++		CTriggerCamera *c = (CTriggerCamera *)entity;
++		CBaseEntity *look = c->m_hTarget;
++		CBaseEntity *player = c->m_hPlayer;
++		ALERT( at_console, "COF/CAMERA %s id=%d state=%d think=%d next=%g now=%g remaining=%g wait=%g path=%s look=%s player=%d pos=%g,%g,%g speed=%g distance=%g stop=%g initial=%g accel=%g decel=%g route=%s\n",
++			name, ENTINDEX( c->edict() ), c->m_state, c->m_pfnThink != NULL, c->pev->nextthink, gpGlobals->time,
++			c->m_flReturnTime - gpGlobals->time, c->m_flWait,
++			c->m_pentPath ? STRING( c->m_pentPath->pev->targetname ) : "-", look ? STRING( look->pev->targetname ) : "-",
++			player ? ENTINDEX( player->edict() ) : 0, c->pev->origin.x, c->pev->origin.y, c->pev->origin.z,
++			c->pev->speed, c->m_moveDistance, c->m_flStopTime, c->m_initialSpeed, c->m_acceleration, c->m_deceleration,
++			c->m_sPath ? STRING( c->m_sPath ) : "-" );
++	}
++}
++#endif
++
++
+ // Global Savedata for changelevel friction modifier
+ TYPEDESCRIPTION	CTriggerCamera::m_SaveData[] =
+ {
+@@ -2151,9 +2287,38 @@ TYPEDESCRIPTION	CTriggerCamera::m_SaveData[] =
+ 	DEFINE_FIELD( CTriggerCamera, m_acceleration, FIELD_FLOAT ),
+ 	DEFINE_FIELD( CTriggerCamera, m_deceleration, FIELD_FLOAT ),
+ 	DEFINE_FIELD( CTriggerCamera, m_state, FIELD_INTEGER ),
++#ifdef __EMSCRIPTEN__
++	DEFINE_FIELD( CTriggerCamera, m_iSavedThink, FIELD_INTEGER ),
++#endif
+ };
+ 
++#ifdef __EMSCRIPTEN__
++int CTriggerCamera::Save( CSave &save )
++{
++	// Like multi_manager, omit the unresolved SIDE_MODULE callback from BASE.
++	// Preserve its identity separately; nextthink still determines scheduling.
++	m_iSavedThink = m_pfnThink != NULL;
++	auto think = m_pfnThink;
++	m_pfnThink = NULL;
++	int status = CBaseDelay::Save( save );
++	m_pfnThink = think;
++	if( !status ) return 0;
++	return save.WriteFields( "CTriggerCamera", this, m_SaveData, ARRAYSIZE( m_SaveData ));
++}
++
++int CTriggerCamera::Restore( CRestore &restore )
++{
++	if( !CBaseDelay::Restore( restore ) ||
++		!restore.ReadFields( "CTriggerCamera", this, m_SaveData, ARRAYSIZE( m_SaveData ))) return 0;
++	SetThink( NULL );
++	if( m_iSavedThink ) SetThink( &CTriggerCamera::FollowTarget );
++	// Do not call Use/Spawn, restart Move, or change SET_VIEW. The engine restores
++	// the actual viewed entity independently, including overlapping cameras.
++	return 1;
++}
++#else
+ IMPLEMENT_SAVERESTORE( CTriggerCamera, CBaseDelay )
++#endif
+ 
+ void CTriggerCamera::Spawn( void )
+ {
+diff --git a/dlls/util.cpp b/dlls/util.cpp
+index 27c7ffe8..40cdfb3b 100644
+--- a/dlls/util.cpp
++++ b/dlls/util.cpp
+@@ -306,6 +306,8 @@ TYPEDESCRIPTION	gEntvarsDescription[] =
+ 	DEFINE_ENTITY_FIELD( air_finished, FIELD_TIME ),
+ 	DEFINE_ENTITY_FIELD( pain_finished, FIELD_TIME ),
+ 	DEFINE_ENTITY_FIELD( radsuit_finished, FIELD_TIME ),
++	// Cry of Fear maps use iuser1 to gate triggers; retain it in save games.
++	DEFINE_ENTITY_FIELD( iuser1, FIELD_INTEGER ),
+ };
+ 
+ #define ENTVARS_COUNT		( sizeof(gEntvarsDescription) / sizeof(gEntvarsDescription[0]) )
 diff --git a/dlls/weapons.cpp b/dlls/weapons.cpp
 index 3ff1a15f..4509abb6 100644
 --- a/dlls/weapons.cpp
@@ -345,3 +744,244 @@ index 3f2758cd..a08a02d2 100644
  	source += bld.path.parent.ant_glob([
  					'pm_shared/*.c',
  					'public/safe_snprintf.c',
+diff --git a/dlls/plats.cpp b/dlls/plats.cpp
+index 35eb3fba..3d05b4f0 100644
+--- a/dlls/plats.cpp
++++ b/dlls/plats.cpp
+@@ -618,18 +618,109 @@ public:
+ 	entvars_t *m_pevCurrentTarget;
+ 	int m_sounds;
+ 	BOOL m_activated;
++#ifdef __EMSCRIPTEN__
++	int m_iSavedThink;
++	int m_iSavedMoveDone;
++#endif
+ };
+ 
+ LINK_ENTITY_TO_CLASS( func_train, CFuncTrain )
+ 
++#ifdef __EMSCRIPTEN__
++static int CoF_TrackThinkKind( CFuncTrackTrain *t )
++{
++	if( !t->m_pfnThink ) return 0;
++	if( t->m_pfnThink == static_cast<void (CBaseEntity::*)(void)>(&CFuncTrackTrain::Next) ) return 1;
++	if( t->m_pfnThink == static_cast<void (CBaseEntity::*)(void)>(&CFuncTrackTrain::Find) ) return 2;
++	if( t->m_pfnThink == static_cast<void (CBaseEntity::*)(void)>(&CFuncTrackTrain::NearestPath) ) return 3;
++	if( t->m_pfnThink == static_cast<void (CBaseEntity::*)(void)>(&CFuncTrackTrain::DeadEnd) ) return 4;
++	return -1;
++}
++
++void CoF_TrainDump( const char *name )
++{
++	CBaseEntity *e = NULL;
++	while(( e = UTIL_FindEntityByTargetname( e, name )))
++	{
++		if( FClassnameIs( e->pev, "func_tracktrain" ))
++		{
++			CFuncTrackTrain *t = (CFuncTrackTrain *)e;
++			ALERT( at_console, "COF/TRACKTRAIN %s think=%d path=%s next=%g local=%g now=%g speed=%g maxspeed=%g start=%g dir=%g height=%g length=%g pos=%g,%g,%g vel=%g,%g,%g flags=%d\n",
++				name, CoF_TrackThinkKind(t), t->m_ppath ? STRING(t->m_ppath->pev->targetname) : "-",
++				t->pev->nextthink,t->pev->ltime,gpGlobals->time,t->pev->speed,t->m_speed,t->m_startSpeed,t->m_dir,t->m_height,t->m_length,
++				t->pev->origin.x,t->pev->origin.y,t->pev->origin.z,t->pev->velocity.x,t->pev->velocity.y,t->pev->velocity.z,t->pev->spawnflags );
++			continue;
++		}
++		if( !FClassnameIs( e->pev, "func_train" )) continue;
++		CFuncTrain *t = (CFuncTrain *)e;
++		int think = t->m_pfnThink == NULL ? 0 :
++			t->m_pfnThink == static_cast<void (CBaseEntity::*)(void)>(&CFuncTrain::Next) ? 1 :
++			t->m_pfnThink == static_cast<void (CBaseEntity::*)(void)>(&CBaseToggle::LinearMoveDone) ? 2 : -1;
++		int done = t->m_pfnCallWhenMoveDone == NULL ? 0 :
++			t->m_pfnCallWhenMoveDone == static_cast<void (CBaseToggle::*)(void)>(&CFuncTrain::Wait) ? 1 : -1;
++		ALERT( at_console, "COF/TRAIN %s think=%d done=%d active=%d current=%s target=%s next=%g local=%g now=%g wait=%g flags=%d pos=%g,%g,%g vel=%g,%g,%g final=%g,%g,%g center=%g,%g,%g\n",
++			name, think, done, t->m_activated, t->m_pevCurrentTarget ? STRING(t->m_pevCurrentTarget->targetname) : "-",
++			STRING(t->pev->target), t->pev->nextthink, t->pev->ltime, gpGlobals->time, t->m_flWait, t->pev->spawnflags,
++			t->pev->origin.x,t->pev->origin.y,t->pev->origin.z,t->pev->velocity.x,t->pev->velocity.y,t->pev->velocity.z,
++			t->m_vecFinalDest.x,t->m_vecFinalDest.y,t->m_vecFinalDest.z,t->Center().x,t->Center().y,t->Center().z );
++	}
++}
++#endif
++
++
+ TYPEDESCRIPTION	CFuncTrain::m_SaveData[] =
+ {
+ 	DEFINE_FIELD( CFuncTrain, m_sounds, FIELD_INTEGER ),
+ 	DEFINE_FIELD( CFuncTrain, m_pevCurrentTarget, FIELD_EVARS ),
+ 	DEFINE_FIELD( CFuncTrain, m_activated, FIELD_BOOLEAN ),
++#ifdef __EMSCRIPTEN__
++	DEFINE_FIELD( CFuncTrain, m_iSavedThink, FIELD_INTEGER ),
++	DEFINE_FIELD( CFuncTrain, m_iSavedMoveDone, FIELD_INTEGER ),
++#endif
+ };
+ 
++#ifdef __EMSCRIPTEN__
++int CFuncTrain::Save( CSave &save )
++{
++	m_iSavedThink = m_pfnThink == NULL ? 0 :
++		m_pfnThink == static_cast<void (CBaseEntity::*)(void)>(&CFuncTrain::Next) ? 1 :
++		m_pfnThink == static_cast<void (CBaseEntity::*)(void)>(&CBaseToggle::LinearMoveDone) ? 2 : -1;
++	m_iSavedMoveDone = m_pfnCallWhenMoveDone == NULL ? 0 :
++		m_pfnCallWhenMoveDone == static_cast<void (CBaseToggle::*)(void)>(&CFuncTrain::Wait) ? 1 : -1;
++	if( m_iSavedThink < 0 || m_iSavedMoveDone < 0 )
++	{
++		ALERT( at_error, "CoF func_train: unsupported save callback\n" );
++		return 0;
++	}
++	// Both BASE and TOGGLE contain function fields. An unresolved WASM name
++	// would desynchronize the block count; omit both and save known identities.
++	auto think = m_pfnThink;
++	auto done = m_pfnCallWhenMoveDone;
++	m_pfnThink = NULL;
++	m_pfnCallWhenMoveDone = NULL;
++	int status = CBasePlatTrain::Save( save );
++	m_pfnThink = think;
++	m_pfnCallWhenMoveDone = done;
++	if( !status ) return 0;
++	return save.WriteFields( "CFuncTrain", this, m_SaveData, ARRAYSIZE( m_SaveData ));
++}
++
++int CFuncTrain::Restore( CRestore &restore )
++{
++	if( !CBasePlatTrain::Restore( restore ) ||
++		!restore.ReadFields( "CFuncTrain", this, m_SaveData, ARRAYSIZE( m_SaveData ))) return 0;
++	SetThink( NULL );
++	SetMoveDone( NULL );
++	if( m_iSavedThink == 1 ) SetThink( &CFuncTrain::Next );
++	else if( m_iSavedThink == 2 ) SetThink( &CBaseToggle::LinearMoveDone );
++	if( m_iSavedMoveDone == 1 ) SetMoveDone( &CFuncTrain::Wait );
++	// Keep origin, velocity, final destination, local-clock deadline and
++	// m_activated. Activate must not teleport a restored train to its first node.
++	return 1;
++}
++#else
+ IMPLEMENT_SAVERESTORE( CFuncTrain, CBasePlatTrain )
++#endif
+ 
+ void CFuncTrain::KeyValue( KeyValueData *pkvd )
+ {
+@@ -908,9 +999,45 @@ TYPEDESCRIPTION	CFuncTrackTrain::m_SaveData[] =
+ 	DEFINE_FIELD( CFuncTrackTrain, m_flVolume, FIELD_FLOAT ),
+ 	DEFINE_FIELD( CFuncTrackTrain, m_flBank, FIELD_FLOAT ),
+ 	DEFINE_FIELD( CFuncTrackTrain, m_oldSpeed, FIELD_FLOAT ),
++#ifdef __EMSCRIPTEN__
++	DEFINE_FIELD( CFuncTrackTrain, m_iSavedThink, FIELD_INTEGER ),
++#endif
+ };
+ 
++#ifdef __EMSCRIPTEN__
++int CFuncTrackTrain::Save( CSave &save )
++{
++	m_iSavedThink = CoF_TrackThinkKind( this );
++	if( m_iSavedThink < 0 )
++	{
++		ALERT( at_error, "CoF func_tracktrain: unsupported save callback\n" );
++		return 0;
++	}
++	auto think = m_pfnThink;
++	m_pfnThink = NULL;
++	int status = CBaseEntity::Save( save );
++	m_pfnThink = think;
++	if( !status ) return 0;
++	return save.WriteFields( "CFuncTrackTrain", this, m_SaveData, ARRAYSIZE( m_SaveData ));
++}
++
++int CFuncTrackTrain::Restore( CRestore &restore )
++{
++	if( !CBaseEntity::Restore( restore ) ||
++		!restore.ReadFields( "CFuncTrackTrain", this, m_SaveData, ARRAYSIZE( m_SaveData ))) return 0;
++	SetThink( NULL );
++	switch( m_iSavedThink )
++	{
++	case 1: SetThink( &CFuncTrackTrain::Next ); break;
++	case 2: SetThink( &CFuncTrackTrain::Find ); break;
++	case 3: SetThink( &CFuncTrackTrain::NearestPath ); break;
++	case 4: SetThink( &CFuncTrackTrain::DeadEnd ); break;
++	}
++	return 1;
++}
++#else
+ IMPLEMENT_SAVERESTORE( CFuncTrackTrain, CBaseEntity )
++#endif
+ LINK_ENTITY_TO_CLASS( func_tracktrain, CFuncTrackTrain )
+ 
+ void CFuncTrackTrain::KeyValue( KeyValueData *pkvd )
+diff --git a/dlls/cbase.cpp b/dlls/cbase.cpp
+index d1e7aadd..406190ec 100644
+--- a/dlls/cbase.cpp
++++ b/dlls/cbase.cpp
+@@ -270,12 +270,31 @@ void DispatchSave( edict_t *pent, SAVERESTOREDATA *pSaveData )
+ 		if( pEntity->ObjectCaps() & FCAP_DONT_SAVE )
+ 			return;
+ 
+-		// These don't use ltime & nextthink as times really, but we'll fudge around it.
++		#ifdef __EMSCRIPTEN__
++        // Buttons disable scheduling with 0 (Spawn) or -1 (MoveDone).
++        // Preserve those identities across pusher-clock and save-time rebasing.
++        int buttonIdleThink=0;
++        if(FClassnameIs(pEntity->pev,"func_button")||FClassnameIs(pEntity->pev,"func_rot_button")) {
++            buttonIdleThink=pEntity->pev->nextthink==0?1:pEntity->pev->nextthink==-1?2:0;
++            ((CBaseButton*)pEntity)->m_iCofButtonCallbacks[4]=buttonIdleThink;
++        }
++#endif
++        // These don't use ltime & nextthink as times really, but we'll fudge around it.
+ 		if( pEntity->pev->movetype == MOVETYPE_PUSH )
+ 		{
++#ifdef __EMSCRIPTEN__
++			// A stopped train uses zero as a scheduling sentinel, not a
++			// local-clock deadline. Preserve it when rebasing the pusher clock.
++			bool idleTrain = ( FClassnameIs( pEntity->pev, "func_train" ) ||
++				FClassnameIs( pEntity->pev, "func_tracktrain" )) && pEntity->pev->nextthink == 0;
++#endif
+ 			float delta = pEntity->pev->nextthink - pEntity->pev->ltime;
+ 			pEntity->pev->ltime = gpGlobals->time;
+ 			pEntity->pev->nextthink = pEntity->pev->ltime + delta;
++#ifdef __EMSCRIPTEN__
++			if( idleTrain ) pEntity->pev->nextthink = 0;
++            if(buttonIdleThink) pEntity->pev->nextthink=buttonIdleThink==1?0:-1;
++#endif
+ 		}
+ 
+ 		pTable->location = pSaveData->size;		// Remember entity position for file I/O
+diff --git a/dlls/trains.h b/dlls/trains.h
+index 652ecbc4..70509dfd 100644
+--- a/dlls/trains.h
++++ b/dlls/trains.h
+@@ -118,6 +118,9 @@ public:
+ 	float m_flVolume;
+ 	float m_flBank;
+ 	float m_oldSpeed;
++#ifdef __EMSCRIPTEN__
++	int m_iSavedThink;
++#endif
+ 
+ private:
+ 	unsigned short m_usAdjustPitch;
+
+diff --git a/cl_dll/hud_msg.cpp b/cl_dll/hud_msg.cpp
+index d901ec69..ab23d601 100644
+--- a/cl_dll/hud_msg.cpp
++++ b/cl_dll/hud_msg.cpp
+@@ -31,8 +31,11 @@ extern float g_lastFOV;			// Vit_amiN
+ 
+ /// USER-DEFINED SERVER MESSAGE HANDLERS
+ 
++extern void CoF_ClientSkyReset( void );
++
+ int CHud::MsgFunc_ResetHUD( const char *pszName, int iSize, void *pbuf )
+ {
++	CoF_ClientSkyReset();
+ 	ASSERT( iSize == 0 );
+ 
+ 	// clear all hud data
+diff --git a/dlls/player.h b/dlls/player.h
+index 90dd62e1..ed3d6ca7 100644
+--- a/dlls/player.h
++++ b/dlls/player.h
+@@ -87,6 +87,8 @@ enum sbar_data
+ class CBasePlayer : public CBaseMonster
+ {
+ public:
++ int m_iCofPadlockNumber[4]; // Original per-player padlock digits; saved across landmarks.
++
+ 	// Spectator camera
+ 	void	Observer_FindNextPlayer( bool bReverse );
+ 	void	Observer_HandleButtons();

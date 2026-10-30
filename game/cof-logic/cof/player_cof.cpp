@@ -22,6 +22,13 @@
 #include "saverestore.h"
 #include "cof_player.h"
 
+#ifdef __EMSCRIPTEN__
+extern void CoF_SetManagerTrace( int enabled );
+extern void CoF_CameraDump( const char *name );
+extern void CoF_TrainDump( const char *name );
+extern void CoF_SendEnvpos( CBasePlayer *player );
+#endif
+
 #define COF_WALK_SPEED     150.0f
 #define COF_SPRINT_SPEED   275.0f  // walk + sk_sprint_speed (125)
 #define COF_STAMINA_MAX    100.0f
@@ -29,6 +36,9 @@
 #define COF_STAMINA_REGEN  10.0f   // per second
 #define COF_STAMINA_DELAY  1.0f    // seconds without sprinting before it recovers
 #define COF_STAMINA_RESUME 20.0f   // after running out, needed to sprint again
+
+bool CoF_OnStairs( CBasePlayer *pPlayer );
+void CoF_MotionDump( void );
 
 typedef struct
 {
@@ -396,7 +406,7 @@ void CoF_PlayerPreThink( CBasePlayer *pPlayer )
 		s->stamina = fmin( COF_STAMINA_MAX, s->stamina + regen * dt );
 	}
 
-	float speed = s->sprinting ? COF_SPRINT_SPEED : COF_WALK_SPEED;
+	float speed = CoF_OnStairs( pPlayer ) ? 50.0f : s->sprinting ? COF_SPRINT_SPEED : COF_WALK_SPEED;
 	if( pev->maxspeed != speed && !FBitSet( pev->flags, FL_FROZEN ))
 		g_engfuncs.pfnSetClientMaxspeed( pPlayer->edict(), speed );
 
@@ -508,12 +518,124 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
 
 	const char *arg = CMD_ARGV( 1 );
 
-	if( FStrEq( pcmd, "cof_give" ))
+	if( FStrEq( pcmd, "cof_useaim" ))
+ {
+  UTIL_MakeVectors(pPlayer->pev->v_angle);
+  Vector eyes=pPlayer->pev->origin+pPlayer->pev->view_ofs;
+  TraceResult tr; UTIL_TraceLine(eyes,eyes+gpGlobals->v_forward*64,dont_ignore_monsters,pPlayer->edict(),&tr);
+  CBaseEntity *hit=tr.pHit?CBaseEntity::Instance(tr.pHit):NULL;
+  ALERT(at_console,"COF/USEAIM hit=%s class=%s fraction=%.9g\n",hit?STRING(hit->pev->targetname):"",hit?STRING(hit->pev->classname):"none",tr.flFraction);
+  CBaseEntity *e=NULL;
+  while((e=UTIL_FindEntityInSphere(e,pPlayer->pev->origin,64))) {
+   if(!(e->ObjectCaps()&(FCAP_IMPULSE_USE|FCAP_CONTINUOUS_USE|FCAP_ONOFF_USE))) continue;
+   Vector los=UTIL_ClampVectorToBox(VecBModelOrigin(e->pev)-eyes,e->pev->size*.5f);
+   ALERT(at_console,"COF/USEAIM candidate=%s class=%s dot=%.9g\n",STRING(e->pev->targetname),STRING(e->pev->classname),DotProduct(los,gpGlobals->v_forward));
+  }
+ }
+ else if( FStrEq( pcmd, "cof_door" ))
+  CoF_InspectInterDoor(arg);
+ else if( FStrEq( pcmd, "cof_changelevel" ))
+  CoF_InspectChangeLevel(arg);
+ else if( FStrEq( pcmd, "cof_fence" ))
+		ALERT( at_console, "COF/FENCE %s time=%g\n", arg, gpGlobals->time );
+#ifdef __EMSCRIPTEN__
+	else if( FStrEq( pcmd, "cof_sky_sync" ))
+		CoF_SendEnvpos( pPlayer );
+	else if( FStrEq( pcmd, "cof_train" ))
+		CoF_TrainDump( arg );
+	else if( FStrEq( pcmd, "cof_camera" ))
+		CoF_CameraDump( arg );
+	else if( FStrEq( pcmd, "cof_manager_trace" ))
+		CoF_SetManagerTrace( atoi( arg ));
+#endif
+	else if( FStrEq( pcmd, "cof_unfreeze" ))
+		pPlayer->pev->flags &= ~FL_FROZEN;
+	else if( FStrEq( pcmd, "cof_motion_dump" ))
+		CoF_MotionDump();
+	else if( FStrEq( pcmd, "cof_count" ))
+	{
+		int count = 0;
+		CBaseEntity *entity = NULL;
+		while(( entity = UTIL_FindEntityByClassname( entity, arg )))
+			if( !FBitSet( entity->pev->flags, FL_KILLME )) ++count;
+		ALERT( at_console, "COF/COUNT %s %d\n", arg, count );
+	}
+	else if( FStrEq( pcmd, "cof_remove" ))
+	{
+		CBaseEntity *entity = CoF_FindDebugTarget( arg );
+		if( entity ) UTIL_Remove( entity );
+	}
+	else if( FStrEq( pcmd, "cof_kinematics" ))
+	{
+		CBaseEntity *entity = FStrEq( arg, "!player" ) ? pPlayer : CoF_FindDebugTarget( arg );
+		if( entity )
+			ALERT( at_console, "COF/KIN %s pos=%.6g,%.6g,%.6g vel=%.6g,%.6g,%.6g angles=%.6g,%.6g,%.6g avel=%.6g,%.6g,%.6g\n", arg,
+				entity->pev->origin.x, entity->pev->origin.y, entity->pev->origin.z,
+				entity->pev->velocity.x, entity->pev->velocity.y, entity->pev->velocity.z,
+				entity->pev->angles.x, entity->pev->angles.y, entity->pev->angles.z,
+				entity->pev->avelocity.x, entity->pev->avelocity.y, entity->pev->avelocity.z );
+	}
+	else if( FStrEq( pcmd, "cof_animation" ))
+	{
+		CBaseEntity *entity = CoF_FindDebugTarget( arg );
+		if( entity && FClassnameIs( entity->pev, "env_model" ))
+		{
+			CBaseAnimating *anim = (CBaseAnimating *)entity;
+			ALERT( at_console, "COF/ANIM %s seq=%d frame=%.6g rate=%.6g loops=%d finished=%d on=%d next=%.6g now=%.6g body=%d skin=%d\n",
+				arg, anim->pev->sequence, anim->pev->frame, anim->m_flFrameRate, anim->m_fSequenceLoops,
+				anim->m_fSequenceFinished, !( anim->pev->spawnflags & 1 ), anim->pev->nextthink,
+				gpGlobals->time, anim->pev->body, anim->pev->skin );
+		}
+	}
+	else if( FStrEq( pcmd, "cof_use" ) && CMD_ARGC() == 3 )
+	{
+		CBaseEntity *entity = CoF_FindDebugTarget( arg );
+		const char *mode = CMD_ARGV( 2 );
+		if( entity && ( FStrEq( mode, "on" ) || FStrEq( mode, "off" ) || FStrEq( mode, "toggle" )))
+			entity->Use( pPlayer, pPlayer, FStrEq( mode, "on" ) ? USE_ON : FStrEq( mode, "off" ) ? USE_OFF : USE_TOGGLE, 0 );
+	}
+	else if( FStrEq( pcmd, "cof_inspect" ))
+	{
+		CBaseEntity *pTarget = FStrEq( arg, "!player" ) ? pPlayer : CoF_FindDebugTarget( arg );
+		if( pTarget )
+			ALERT( at_console, "COF/ENTITY %s class=%s body=%d solid=%d origin=%.1f,%.1f,%.1f gate=%d speed=%.1f spawn=%d touch=%d target=%s frozen=%d stairs=%d use=%d think=%d toggle=%d next=%g now=%g effects=%d\n",
+				arg, STRING( pTarget->pev->classname ), pTarget->pev->body, pTarget->pev->solid,
+				pTarget->pev->origin.x, pTarget->pev->origin.y, pTarget->pev->origin.z, pTarget->pev->iuser1, pTarget->pev->maxspeed,
+				pTarget->pev->spawnflags, pTarget->m_pfnTouch != NULL, STRING( pTarget->pev->target ),
+				FBitSet( pTarget->pev->flags, FL_FROZEN ) != 0, pTarget->IsPlayer() ? CoF_OnStairs( (CBasePlayer *)pTarget ) : -1, pTarget->m_pfnUse != NULL, pTarget->m_pfnThink != NULL, pTarget->GetToggleState(), pTarget->pev->nextthink, gpGlobals->time, pTarget->pev->effects );
+		else
+			ALERT( at_console, "COF/ENTITY %s missing\n", arg );
+	}
+	else if( FStrEq( pcmd, "cof_setkey" ) && CMD_ARGC() == 4 )
+	{
+		CBaseEntity *pTarget = FStrEq( arg, "!player" ) ? pPlayer : CoF_FindDebugTarget( arg );
+		if( pTarget )
+		{
+			KeyValueData kv = { (char *)STRING( pTarget->pev->classname ), (char *)CMD_ARGV( 2 ), (char *)CMD_ARGV( 3 ), FALSE };
+			DispatchKeyValue( pTarget->edict(), &kv );
+			ALERT( at_console, "COF/KEY %s %s handled=%d\n", arg, CMD_ARGV( 2 ), kv.fHandled );
+		}
+	}
+	else if( FStrEq( pcmd, "cof_touch" ))
+	{
+		CBaseEntity *pTarget = CoF_FindDebugTarget( arg );
+		CBaseEntity *other = CMD_ARGC() >= 3 ? CoF_FindDebugTarget( CMD_ARGV( 2 )) : pPlayer;
+		ALERT( at_console, "COF/TOUCH %s found=%d player=%d flags=%d\n", arg, pTarget != NULL, other ? other->IsPlayer() : 0, other ? other->pev->flags : 0 );
+		if( pTarget && other ) pTarget->Touch( other );
+	}
+	else if( FStrEq( pcmd, "cof_soundstate" ))
+		ALERT( at_console, "COF/SOUND room=%g range=%g source=%s special=%g\n", pPlayer->m_flSndRoomtype,
+			pPlayer->m_flSndRange, FNullEnt( pPlayer->m_pentSndLast ) ? "<none>" : STRING( VARS( pPlayer->m_pentSndLast )->model ), pPlayer->pev->vuser1.x );
+	else if( FStrEq( pcmd, "cof_give" ))
 		CoF_GiveItem( pPlayer, arg );
 	else if( FStrEq( pcmd, "cof_sethealth" ))
 		pPlayer->pev->health = atoi( arg ) > 0 ? atoi( arg ) : 1;
 	else if( FStrEq( pcmd, "cof_fire" ))
-		FireTargets( arg, pPlayer, pPlayer, USE_TOGGLE, 0 );
+	{
+		CBaseEntity *activator = CMD_ARGC() >= 3 ? CoF_FindDebugTarget( CMD_ARGV( 2 )) : pPlayer;
+		if( activator ) FireTargets( arg, activator, pPlayer, USE_TOGGLE, 0 );
+		else ALERT( at_console, "COF/FIRE missing activator %s\n", CMD_ARGV( 2 ));
+	}
 	else if( FStrEq( pcmd, "cof_spawn" ))
 	{
 		UTIL_MakeVectors( Vector( 0, pPlayer->pev->v_angle.y, 0 ));
@@ -521,7 +643,10 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
 		// Create keeps the name as the classname: not the console buffer
 		CBaseEntity *pNew = CBaseEntity::Create( (char *)STRING( ALLOC_STRING( arg )), pos, Vector( 0, pPlayer->pev->v_angle.y + 180, 0 ), NULL );
 		if( pNew )
+		{
+			if( CMD_ARGC() >= 3 ) pNew->pev->targetname = ALLOC_STRING( CMD_ARGV( 2 ));
 			DROP_TO_FLOOR( pNew->edict());
+		}
 	}
 	else if( FStrEq( pcmd, "cof_goto" ) && CMD_ARGC() >= 4 )
 	{
@@ -599,7 +724,7 @@ bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd )
 		FStrEq( pcmd, "cancelselect" ) || FStrEq( pcmd, "weapontoggle" ) ||
 		FStrEq( pcmd, "+attack3" ) || FStrEq( pcmd, "-attack3" ))
 		;
-	else if( CoF_PuzzleCommand( pPlayer, pcmd ) || CoF_DebugCommand( pPlayer, pcmd ))
+	else if( CoF_PadlockCommand( pPlayer, pcmd ) || CoF_PuzzleCommand( pPlayer, pcmd ) || CoF_DebugCommand( pPlayer, pcmd ))
 		;
 	else
 		return false;
@@ -834,6 +959,7 @@ public:
 	float m_flStamina;
 	int m_iPassword;
 	string_t m_iszCode;
+ string_t m_iszPadlockCode;
 };
 
 LINK_ENTITY_TO_CLASS( cof_playerstate, CCofPlayerState )
@@ -847,6 +973,7 @@ TYPEDESCRIPTION CCofPlayerState::m_SaveData[] =
 	DEFINE_ARRAY( CCofPlayerState, m_iszQuick, FIELD_STRING, 3 ),
 	DEFINE_FIELD( CCofPlayerState, m_iPassword, FIELD_INTEGER ),
 	DEFINE_FIELD( CCofPlayerState, m_iszCode, FIELD_STRING ),
+ DEFINE_FIELD( CCofPlayerState, m_iszPadlockCode, FIELD_STRING ),
 	DEFINE_FIELD( CCofPlayerState, m_flStamina, FIELD_FLOAT ),
 };
 
@@ -874,6 +1001,7 @@ int CCofPlayerState::Save( CSave &save )
 	char code[16];
 	m_iPassword = CoF_GetPuzzleState( code, sizeof( code ));
 	m_iszCode = ALLOC_STRING( code );
+ m_iszPadlockCode=ALLOC_STRING(CoF_PadlockCode());
 
 	if( !CBaseEntity::Save( save ))
 		return 0;
@@ -901,6 +1029,7 @@ int CCofPlayerState::Restore( CRestore &restore )
 	s->stamina = m_flStamina;
 	s->exhausted = FALSE;
 	CoF_SetPuzzleState( m_iPassword, FStringNull( m_iszCode ) ? "" : STRING( m_iszCode ));
+ if(!FStringNull(m_iszPadlockCode)) CoF_SetPadlockCode(STRING(m_iszPadlockCode));
 	s->invDirty = TRUE;
 	s->store = this;
 	return 1;

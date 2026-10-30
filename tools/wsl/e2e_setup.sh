@@ -11,6 +11,7 @@ export PATH="$NODE_BIN:$PATH"
 mkdir -p "$WORK/e2e"
 cd "$WORK/e2e"
 [ -f package.json ] || npm init -y > /dev/null
-npm install --no-fund --no-audit playwright@1.56.1 > /dev/null
+# Referencia validada con multiscene1 activo: ver docs/CINEMATIC_FOLLOWUP.md.
+npm install --no-fund --no-audit playwright@1.64.1 > /dev/null
 npx playwright install --with-deps chromium > /dev/null
 echo "node $(node --version), $(npx playwright --version) en $WORK/e2e"

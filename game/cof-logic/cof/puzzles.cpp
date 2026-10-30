@@ -26,6 +26,20 @@ static const char *g_cofPasswords[] =
 
 static int g_cofPassword = -1;      // index in g_cofPasswords, 640_pass<n+1>.tga
 static char g_cofKeypadCode[8];
+// These digits belong to the player, including landmark transitions.
+const char *CoF_PadlockCode() {
+ static char text[8]; CBasePlayer *p=(CBasePlayer*)UTIL_PlayerByIndex(1);
+ if(!p) return "";
+ BOOL generate=FALSE; for(int i=0;i<4;i++) if(p->m_iCofPadlockNumber[i]<1||p->m_iCofPadlockNumber[i]>9) generate=TRUE;
+ if(generate) for(int i=0;i<4;i++) p->m_iCofPadlockNumber[i]=RANDOM_LONG(1,9);
+ snprintf(text,sizeof(text),"%d%d%d%d",p->m_iCofPadlockNumber[0],p->m_iCofPadlockNumber[1],p->m_iCofPadlockNumber[2],p->m_iCofPadlockNumber[3]); return text;
+}
+void CoF_SetPadlockCode(const char *code) {
+ CBasePlayer *p=(CBasePlayer*)UTIL_PlayerByIndex(1);
+ if(!p||!code||strlen(code)!=4) return;
+ for(int i=0;i<4;i++) if(code[i]<'1'||code[i]>'9') return;
+ for(int i=0;i<4;i++) p->m_iCofPadlockNumber[i]=code[i]-'0';
+}
 
 void CoF_PuzzlesNewGame( void )
 {
@@ -34,6 +48,7 @@ void CoF_PuzzlesNewGame( void )
 	for( int i = 0; i < 4; i++ )
 		g_cofKeypadCode[i] = (char)( '0' + RANDOM_LONG( 1, 9 ));
 	g_cofKeypadCode[4] = 0;
+ CoF_PadlockCode();
 }
 
 static void CoF_EnsurePuzzles( void )
@@ -284,6 +299,10 @@ cof_passwordnote / cof_computer: the computer of c_start2
 class CCofPasswordNote : public CPointEntity
 {
 public:
+ void Precache() { if(FStringNull(pev->model)) pev->model=ALLOC_STRING("models/items/generic_note.mdl"); PRECACHE_MODEL((char*)STRING(pev->model)); }
+ void Spawn() { Precache(); SET_MODEL(edict(),STRING(pev->model)); pev->solid=SOLID_BBOX; pev->movetype=MOVETYPE_NONE; pev->health=100; UTIL_SetSize(pev,Vector(-6,-5,0),Vector(6,5,1)); UTIL_SetOrigin(pev,pev->origin+Vector(0,0,1)); DROP_TO_FLOOR(edict()); }
+ int ObjectCaps() { return CPointEntity::ObjectCaps()|FCAP_IMPULSE_USE; }
+
 	virtual void KeyValue( KeyValueData *pkvd )
 	{
 		if( FStrEq( pkvd->szKeyName, "usertype" ))
@@ -303,9 +322,13 @@ LINK_ENTITY_TO_CLASS( cof_passwordnote, CCofPasswordNote )
 class CCofComputer : public CPointEntity
 {
 public:
+ void Precache() { PRECACHE_MODEL("models/props/inomhusd/cafe_monitor.mdl"); }
+ void Spawn() { Precache(); SET_MODEL(edict(),"models/props/inomhusd/cafe_monitor.mdl"); pev->solid=SOLID_NOT; pev->movetype=MOVETYPE_NONE; pev->sequence=1; pev->health=100; }
+
 	virtual void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
 	{
-		CoF_HudPrint( "COF/HUD COMPUTER %d\n", entindex());
+		if(pev->iuser1) CoF_HudPrint("COF/HUD PADCLUE %s\n",CoF_PadlockCode());
+ else CoF_HudPrint( "COF/HUD COMPUTER %d\n", entindex());
 	}
 };
 
@@ -345,35 +368,6 @@ LINK_ENTITY_TO_CLASS( cof_updatekeypad, CPointEntity )
 item_padlock: opened with use; its code is not in the map data
 =====================================================================
 */
-class CItemPadlock : public CBaseEntity
-{
-public:
-	void Spawn( void )
-	{
-		pev->movetype = MOVETYPE_NONE;
-		pev->solid = SOLID_TRIGGER;
-		if( !FStringNull( pev->model ))
-		{
-			PRECACHE_MODEL( (char *)STRING( pev->model ));
-			SET_MODEL( ENT( pev ), STRING( pev->model ));
-		}
-		UTIL_SetSize( pev, Vector( -8, -8, -8 ), Vector( 8, 8, 8 ));
-		UTIL_SetOrigin( pev, pev->origin );
-	}
-	virtual int ObjectCaps( void ) { return CBaseEntity::ObjectCaps() | FCAP_IMPULSE_USE; }
-	virtual void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
-	{
-		if( !pActivator || !pActivator->IsPlayer() || pev->iuser4 )
-			return;
-		pev->iuser4 = 1;
-		CoF_HudPrint( "COF/HUD SUB 16\n" ); // "You unlocked the lock."
-		SUB_UseTargets( pActivator, USE_TOGGLE, 0 );
-	}
-};
-
-LINK_ENTITY_TO_CLASS( item_padlock, CItemPadlock )
-LINK_ENTITY_TO_CLASS( door_prop_view, CPointEntity )
-
 /*
 =====================================================================
 cof_ladder_manager(_use): the original plays climbing animations; here
@@ -494,7 +488,15 @@ bool CoF_PuzzleCommand( CBasePlayer *pPlayer, const char *pcmd )
 		return true;
 	}
 
-	CoF_HudPrint( "COF/HUD GRANTED\n" );
-	FireTargets( STRING( pEntity->pev->target ), pPlayer, pEntity, USE_TOGGLE, 0 );
+	if(password) {
+  CoF_HudPrint("COF/HUD PADCLUE %s\n",CoF_PadlockCode());
+  if(!pEntity->pev->iuser1) {
+   pEntity->pev->iuser1=1; pEntity->pev->sequence=2;
+   FireTargets(STRING(pEntity->pev->target),pPlayer,pEntity,USE_TOGGLE,0);
+  }
+ } else {
+  CoF_HudPrint("COF/HUD GRANTED\n");
+  FireTargets(STRING(pEntity->pev->target),pPlayer,pEntity,USE_TOGGLE,0);
+ }
 	return true;
 }

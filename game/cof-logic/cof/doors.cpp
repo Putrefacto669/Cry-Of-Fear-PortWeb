@@ -31,6 +31,7 @@ public:
 
 	void EXPORT PassThink( void );
 	BOOL TryUnlock( CBaseEntity *pActivator );
+	void ToggleLock() { m_sLockedBy=FStringNull(m_sLockedBy)?ALLOC_STRING("somethinglocked"):iStringNull; }
 	void SetLock( string_t lockedBy )
 	{
 		const char *name = FStringNull( lockedBy ) ? "" : STRING( lockedBy );
@@ -49,8 +50,17 @@ public:
 	float m_flMusicFadeOut;
 	EHANDLE m_hUser;
 	float m_flNextUse;
+	BOOL m_bDisabled;
+	void SetDisabled( BOOL disabled ) { m_bDisabled = disabled; }
 };
 
+void CoF_InspectInterDoor(const char *name)
+{
+ CBaseEntity *e=UTIL_FindEntityByTargetname(NULL,name);
+ if(!e||!FClassnameIs(e->pev,"inter_door")) { ALERT(at_console,"COF/DOOR %s missing\n",name);return; }
+ CInterDoor *d=(CInterDoor*)e;
+ ALERT(at_console,"COF/DOOR %s locked=%d disabled=%d target=%s\n",name,!FStringNull(d->m_sLockedBy)&&(STRING(d->m_sLockedBy))[0],d->m_bDisabled,STRING(d->pev->target));
+}
 LINK_ENTITY_TO_CLASS( inter_door, CInterDoor )
 LINK_ENTITY_TO_CLASS( inter_door_exit, CPointEntity )
 
@@ -68,6 +78,7 @@ TYPEDESCRIPTION CInterDoor::m_SaveData[] =
 	DEFINE_FIELD( CInterDoor, m_flMusicFadeOut, FIELD_FLOAT ),
 	DEFINE_FIELD( CInterDoor, m_hUser, FIELD_EHANDLE ),
 	DEFINE_FIELD( CInterDoor, m_flNextUse, FIELD_TIME ),
+	DEFINE_FIELD( CInterDoor, m_bDisabled, FIELD_BOOLEAN ),
 };
 
 IMPLEMENT_SAVERESTORE( CInterDoor, CBaseEntity )
@@ -127,6 +138,7 @@ void CInterDoor::Precache( void )
 void CInterDoor::Spawn( void )
 {
 	Precache();
+	m_bDisabled = ( pev->spawnflags & 4 ) != 0;
 
 	pev->solid = SOLID_BSP;
 	pev->movetype = MOVETYPE_PUSH;
@@ -167,7 +179,7 @@ BOOL CInterDoor::TryUnlock( CBaseEntity *pActivator )
 
 void CInterDoor::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
 {
-	if( !pActivator || !pActivator->IsPlayer() || gpGlobals->time < m_flNextUse )
+	if( !pActivator || !pActivator->IsPlayer() || m_bDisabled || gpGlobals->time < m_flNextUse )
 		return;
 
 	m_flNextUse = gpGlobals->time + 0.5f;
@@ -283,7 +295,7 @@ void CCofInterDoorOnOff::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE
 	while(( pDoor = UTIL_FindEntityByTargetname( pDoor, STRING( pev->message ))))
 	{
 		if( FClassnameIs( pDoor->pev, "inter_door" ))
-			( (CInterDoor *)pDoor )->SetLock( m_sNewLock );
+			( (CInterDoor *)pDoor )->ToggleLock();
 	}
 }
 
@@ -294,6 +306,19 @@ is pressed. With the item, it is used up and the button goes at once
 (the videotape plays, the rope is placed).
 =====================================================================
 */
+class CCofInterDoorDisable : public CPointEntity
+{
+public:
+	void Use( CBaseEntity *pActivator, CBaseEntity *, USE_TYPE, float )
+	{
+		if( !pActivator || !pActivator->IsPlayer() || FStringNull( pev->target )) return;
+		CBaseEntity *pTarget = UTIL_FindEntityByTargetname( NULL, STRING( pev->target ));
+		if( pTarget && FClassnameIs( pTarget->pev, "inter_door" ))
+			((CInterDoor *)pTarget)->SetDisabled( pev->frags == 0 );
+	}
+};
+LINK_ENTITY_TO_CLASS( inter_door_disable, CCofInterDoorDisable )
+
 bool CoF_ButtonLock( CBaseEntity *pButton, CBaseEntity *pActivator, string_t *lockedBy, string_t lockedMsg, string_t unlockedMsg, string_t unlockedSnd )
 {
 	if( FStringNull( *lockedBy ))

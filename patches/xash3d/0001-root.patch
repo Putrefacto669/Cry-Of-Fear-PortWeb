@@ -1018,3 +1018,191 @@ index 8a7c8f19..f44edfea 100644
  
  def post_compiler_cxx_configure(conf):
  	conf.msg('Target OS', conf.env.DEST_OS)
+diff --git a/ref/gl/gl_local.h b/ref/gl/gl_local.h
+index 1e4d23e9..92d8d01d 100644
+--- a/ref/gl/gl_local.h
++++ b/ref/gl/gl_local.h
+@@ -824,3 +824,11 @@ extern convar_t r_scene_scale;
+ 
+ 
+ #endif // GL_LOCAL_H
++
++// Cry of Fear's marker-driven studio sky, inactive on maps without both markers.
++qboolean R_CoFSkyActive( void );
++qboolean R_CoFSkyDrawing( void );
++qboolean R_CoFSkyEntity( const cl_entity_t *e );
++void R_CoFSkyBegin( void );
++void R_CoFSkyEnd( void );
++void R_CoFSkyLight( alight_t *light );
+diff --git a/ref/gl/gl_rmain.c b/ref/gl/gl_rmain.c
+index 97b12119..4ab719aa 100644
+--- a/ref/gl/gl_rmain.c
++++ b/ref/gl/gl_rmain.c
+@@ -231,8 +231,12 @@ void R_ClearScene( void )
+ R_AddEntity
+ ===============
+ */
++static qboolean R_CoFSkyConfigured( void );
++
+ qboolean R_AddEntity( struct cl_entity_s *clent, int type )
+ {
++	if( R_CoFSkyEntity(clent) && !R_CoFSkyConfigured() ) return true;
++
+ 	if( !r_drawentities->value )
+ 		return false; // not allow to drawing
+ 
+@@ -292,6 +296,78 @@ qboolean R_AddEntity( struct cl_entity_s *clent, int type )
+ R_Clear
+ =============
+ */
++static cvar_t *cofSky[11];
++static qboolean cofSkyDrawing;
++static int cofSkyDraws, cofSkyPolys, cofSkyBeforePolys, cofSkyAmbient=-1, cofSkyDirect=-1;
++static vec3_t cofSkyOffset, cofSkyView;
++static matrix4x4 cofSkySavedMatrix;
++static void R_CoFSkyStatus( void )
++{
++ gEngfuncs.Con_Printf("COF/SKY_RENDER active=%d draws=%d polys=%d offset=%g,%g,%g view=%g,%g,%g ambient=%d direct=%d\n",
++  R_CoFSkyActive(),cofSkyDraws,cofSkyPolys,cofSkyOffset[0],cofSkyOffset[1],cofSkyOffset[2],
++  cofSkyView[0],cofSkyView[1],cofSkyView[2],cofSkyAmbient,cofSkyDirect);
++}
++static void R_CoFSkyInit( void )
++{
++ if(cofSky[0]) return;
++ static const char *names[]={"cof_sky_valid","cof_sky_scale","cof_sky_world_x","cof_sky_world_y","cof_sky_world_z","cof_sky_origin_x","cof_sky_origin_y","cof_sky_origin_z","cof_sky_ambient","cof_sky_direct","gl_customsky"};
++ for(int i=0;i<11;i++) {
++  // Cvar_Get resets existing values: preserve metadata already received by the client.
++  cofSky[i]=gEngfuncs.pfnGetCvarPointer(names[i]);
++  if(!cofSky[i]) cofSky[i]=gEngfuncs.Cvar_Get(names[i],i==10?"1":i>=8?"-1":"0",0,"Cry of Fear sky marker state");
++ }
++ gEngfuncs.Cmd_AddCommand("cof_sky_render_status",R_CoFSkyStatus,"inspect the last Cry of Fear sky pass");
++}
++static qboolean R_CoFSkyConfigured( void )
++{
++ R_CoFSkyInit();
++ return cofSky[0]->value==3 && cofSky[10]->value!=0;
++}
++qboolean R_CoFSkyActive( void )
++{
++ return R_CoFSkyConfigured() && FBitSet(RI.rvp.flags,RF_DRAW_WORLD) && !FBitSet(RI.rvp.flags,RF_DRAW_OVERVIEW);
++}
++qboolean R_CoFSkyDrawing( void ) { return cofSkyDrawing; }
++qboolean R_CoFSkyEntity( const cl_entity_t *e )
++{
++ return e && e->model && e->model->type==mod_studio && e->curstate.renderfx==137;
++}
++void R_CoFSkyBegin( void )
++{
++ cofSkyDrawing=true;
++ for(int i=0;i<3;i++) {
++  cofSkyView[i]=RI.rvp.vieworigin[i];
++  cofSkyOffset[i]=cofSkyView[i]-cofSky[5+i]->value;
++  if(cofSky[1]->value!=0) cofSkyOffset[i]-=(cofSkyView[i]-cofSky[2+i]->value)/cofSky[1]->value;
++ }
++ cofSkyBeforePolys=r_stats.c_studio_polys;
++ // R_SetupGL loads worldviewMatrix without refreshing modelviewMatrix.
++ // Off-map camera views can draw no world brushes, leaving that cache stale.
++ Matrix4x4_LoadIdentity(RI.objectMatrix);
++ Matrix4x4_Copy(RI.modelviewMatrix,RI.worldviewMatrix);
++ tr.modelviewIdentity=true;
++ Matrix4x4_Copy(cofSkySavedMatrix,RI.worldviewMatrix);
++ Matrix4x4_ConcatTranslate(RI.modelviewMatrix,cofSkyOffset[0],cofSkyOffset[1],cofSkyOffset[2]);
++ pglMatrixMode(GL_MODELVIEW); GL_LoadMatrix(RI.modelviewMatrix);
++ pglDepthRange(0.8,0.9);
++}
++void R_CoFSkyEnd( void )
++{
++ cofSkyDraws++;
++ cofSkyPolys+=r_stats.c_studio_polys-cofSkyBeforePolys;
++ Matrix4x4_Copy(RI.modelviewMatrix,cofSkySavedMatrix);
++ pglMatrixMode(GL_MODELVIEW); GL_LoadMatrix(RI.modelviewMatrix);
++ pglDepthRange(gldepthmin,gldepthmax);
++ cofSkyDrawing=false;
++}
++void R_CoFSkyLight( alight_t *light )
++{
++ if(!cofSkyDrawing) return;
++ if(cofSky[8]->value>=0) light->ambientlight=(int)cofSky[8]->value;
++ if(cofSky[9]->value>=0) light->shadelight=(int)cofSky[9]->value;
++ cofSkyAmbient=light->ambientlight; cofSkyDirect=light->shadelight;
++}
++
+ static void R_Clear( int bitMask )
+ {
+ 	if( ENGINE_GET_PARM( PARM_DEV_OVERVIEW ))
+@@ -316,7 +392,7 @@ static void R_Clear( int bitMask )
+ 	else
+ 	{
+ 		gldepthmin = 0.0f;
+-		gldepthmax = 1.0f;
++		gldepthmax = R_CoFSkyActive() ? 0.8f : 1.0f;
+ 	}
+ 
+ 	pglDepthFunc( GL_LEQUAL );
+@@ -973,6 +1049,8 @@ void R_RenderScene( void )
+ 	R_SetupFrame();
+ 	R_SetupGL( true );
+ 	R_Clear( ~0 );
++	cofSkyDraws=cofSkyPolys=0;
++	cofSkyAmbient=cofSkyDirect=-1;
+ 
+ 	R_MarkLeaves();
+ 	R_DrawFog ();
+diff --git a/ref/gl/gl_studio.c b/ref/gl/gl_studio.c
+index 39873fb4..630f73c2 100644
+--- a/ref/gl/gl_studio.c
++++ b/ref/gl/gl_studio.c
+@@ -252,7 +252,7 @@ static qboolean R_StudioComputeBBox( vec3_t bbox[8] )
+ 		if( bbox ) VectorCopy( p2, bbox[i] );
+ 	}
+ 
+-	if( !bbox && R_CullModel( e, studio_mins, studio_maxs ))
++	if( !bbox && !R_CoFSkyDrawing() && R_CullModel( e, studio_mins, studio_maxs ))
+ 		return false; // model culled
+ 	return true; // visible
+ }
+@@ -1302,6 +1302,7 @@ static void R_StudioSetupLighting( alight_t *plight )
+ 	if( RI.currententity != NULL )
+ 		scale = RI.currententity->curstate.scale;
+ 
++	R_CoFSkyLight( plight );
+ 	g_studio.ambientlight = plight->ambientlight;
+ 	g_studio.shadelight = plight->shadelight;
+ 	VectorCopy( plight->plightvec, g_studio.lightvec );
+@@ -3205,6 +3206,8 @@ R_StudioDrawModelInternal
+ */
+ static void R_StudioDrawModelInternal( cl_entity_t *e, int flags )
+ {
++ qboolean sky=(flags & STUDIO_RENDER) && R_CoFSkyEntity(e) && R_CoFSkyActive();
++ if(sky) R_CoFSkyBegin();
+ 	if( !FBitSet( RI.rvp.flags, RF_DRAW_WORLD ))
+ 	{
+ 		if( e->player )
+@@ -3224,6 +3227,7 @@ static void R_StudioDrawModelInternal( cl_entity_t *e, int flags )
+ 			pStudioDraw->StudioDrawPlayer( flags, R_StudioGetPlayerState( e->index - 1 ));
+ 		else pStudioDraw->StudioDrawModel( flags );
+ 	}
++ if(sky) R_CoFSkyEnd();
+ }
+ 
+ static cl_entity_t *R_FindParentEntity( cl_entity_t *e, cl_entity_t **entities, uint num_entities )
+diff --git a/ref/gl/gl_warp.c b/ref/gl/gl_warp.c
+index a80b878d..16ce9ec3 100644
+--- a/ref/gl/gl_warp.c
++++ b/ref/gl/gl_warp.c
+@@ -302,6 +302,7 @@ R_DrawSkybox
+ */
+ void R_DrawSkyBox( void )
+ {
++	if( R_CoFSkyActive() ) pglDepthRange(0.9,1.0);
+ 	// don't fogging skybox (this fix old Half-Life bug)
+ 	if( !RI.fogSkybox ) R_AllowFog( false );
+ 
+@@ -336,6 +337,7 @@ void R_DrawSkyBox( void )
+ 		pglFogf( GL_FOG_DENSITY, RI.fogDensity );
+ 
+ 	R_LoadIdentity();
++	if( R_CoFSkyActive() ) pglDepthRange(gldepthmin,gldepthmax);
+ }
+ 
+ //==============================================================================

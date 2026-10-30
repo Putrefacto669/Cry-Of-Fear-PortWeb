@@ -615,8 +615,48 @@
     if (on && document.pointerLockElement) document.exitPointerLock();
   };
 
+  let bossBar = null;
+  const updateBoss = (health, maximum, full, empty) => {
+    if (!bossBar && maximum <= 0) return;
+    if (!bossBar) {
+      bossBar = document.createElement("div");
+      bossBar.id = "cof-bossbar";
+      bossBar.setAttribute("role", "progressbar");
+      bossBar.setAttribute("aria-label", "Boss health");
+      bossBar.style.cssText = "position:absolute;bottom:5%;left:20%;width:60%;height:18px;background:#222;border:1px solid #777;z-index:12;pointer-events:none";
+      const fill = document.createElement("div");
+      fill.className = "fill";
+      fill.style.cssText = "height:100%;width:100%;background-color:#900";
+      bossBar.appendChild(fill);
+      document.querySelector("main").appendChild(bossBar);
+    }
+    bossBar.hidden = !(maximum > 0);
+    const ratio = maximum > 0 ? Math.max(0, Math.min(1, health / maximum)) : 0;
+    bossBar.setAttribute("aria-valuemin", "0");
+    bossBar.setAttribute("aria-valuemax", String(maximum));
+    bossBar.setAttribute("aria-valuenow", String(health));
+    const fill = bossBar.firstElementChild;
+    // Clip the full texture without stretching its artwork as health falls.
+    fill.style.clipPath = `inset(0 ${(1 - ratio) * 100}% 0 0)`;
+    for (const [el, path] of [[fill, full], [bossBar, empty]]) {
+      if (!path || path === "-") {
+        el.dataset.texture = "";
+        el.style.backgroundImage = "";
+        continue;
+      }
+      if (el.dataset.texture === path) continue;
+      el.dataset.texture = path;
+      loadTga(`/rodir/cryoffear/${path}`).then(url => {
+        if (el.dataset.texture !== path) return;
+        el.style.backgroundImage = `url("${url}")`;
+        el.style.backgroundSize = "100% 100%";
+      }).catch(() => { /* visible color fallback when the image was not staged */ });
+    }
+  };
+
   // loader.js reports every map the server spawns
   const onMap = (name) => {
+    updateBoss(0, 0, "-", "-");
     if (!optionsApplied) applyOptions();
     if (typeof setRain === "function" && rain.canvas) setRain(0, 0, 0);
     const isMenu = name === MENU_MAP;
@@ -765,8 +805,11 @@
       if (!dialog.classList.contains("on")) return;
       // the dialog has the keyboard: keep it from the engine (TAB, E, movement...)
       if (e.key === "Escape") closeDialog();
-      if (!dialog.querySelector("input")) e.stopPropagation();
+      // SDL captures document key events and cancels browser defaults, including
+      // password typing and implicit Enter submission. Keep dialog keys here.
+      e.stopPropagation();
     }, true);
+    addEventListener("keypress", e => { if (dialog.classList.contains("on")) e.stopPropagation(); }, true);
     panel = { sub, sms, dialog, subTimer: 0, smsTimer: 0 };
     document.querySelector("main").append(sub, sms, dialog);
   };
@@ -881,6 +924,34 @@
   };
 
 
+  // The original Padlock message owns a transparent overlay over the model view.
+  let padlockPanel=null;
+  const showPadlock = (open) => {
+    if(!padlockPanel) {
+      const overlay=document.createElement("div");overlay.id="cof-padlock";
+      Object.assign(overlay.style,{position:"absolute",inset:"0",zIndex:"14",display:"none",containerType:"size"});
+      const controls=document.createElement("div");
+      Object.assign(controls.style,{position:"absolute",bottom:"0",left:"50%",transform:"translateX(-50%)",width:"min(300px,62.5cqh,100cqw)",aspectRatio:"3 / 1"});
+      const img=document.createElement("img");Object.assign(img.style,{width:"100%",height:"100%",position:"absolute"});
+      loadTga(`${GAME}/gfx/vgui/puzzle/padlock_buttons.tga`).then(url=>img.src=url).catch(e=>console.error("padlock UI",e));
+      controls.append(img);
+      for(let i=0;i<5;i++) {
+        const b=document.createElement("button");b.type="button";b.setAttribute("aria-label",i<4?`Rotate wheel ${i+1}`:"Cancel padlock");
+        b.dataset.wheel=i<4?i+1:"cancel";
+        Object.assign(b.style,{position:"absolute",left:`${(i<4?18+i*66:117)/3}%`,top:i<4?"20%":"86%",width:"22%",height:i<4?"66%":"14%",border:"0",background:"transparent",cursor:"pointer"});
+        b.addEventListener("click",()=>engineCmd(i<4?`padlockrotate ${i+1}`:"padlockcancel"));controls.append(b);
+      }
+      overlay.append(controls);document.querySelector("main").append(overlay);padlockPanel=overlay;
+      for(const event of ["mousedown","mouseup","mousemove","click"]) overlay.addEventListener(event,e=>e.stopPropagation());
+      addEventListener("keydown",e=>{if(overlay.style.display==="none")return;
+        e.preventDefault();e.stopImmediatePropagation();if(e.key==="Escape")engineCmd("padlockcancel");
+      },true);
+    }
+    padlockPanel.style.display=open?"block":"none";
+    if(open&&document.pointerLockElement) document.exitPointerLock();
+    if(!open) {try {const p=document.getElementById("canvas").requestPointerLock();if(p&&p.catch)p.catch(()=>{});}catch(_) {}}
+  };
+
   // --- pause menu (Esc in game) ---------------------------------------------------------------
   // The engine's own menu is Half-Life's; in game Esc opens this one instead, with the art of
   // the original menu. hud.js is loaded before the engine, so this capture listener runs first.
@@ -973,6 +1044,7 @@
   let escapeTaken = false;
   addEventListener("keydown", (e) => {
     if (e.key !== "Escape" && e.keyCode !== 27) return;
+    if(padlockPanel && padlockPanel.style.display!=="none") { e.preventDefault();e.stopImmediatePropagation();escapeTaken=true;if(!e.repeat)engineCmd("padlockcancel");return; }
     // the dialogs of hud.js (notes, keypad) close themselves with their own listener
     if (panel && panel.dialog.classList.contains("on")) return;
     // Esc never reaches the engine: its menu is Half-Life's
@@ -1263,6 +1335,9 @@
       const [cmd, ...args] = line.trim().split(/\s+/);
       const rest = line.trim().slice(cmd.length).trim();
       switch (cmd) {
+        case "BOSS":
+          updateBoss(Number(args[0]) || 0, Number(args[1]) || 0, args[2], args[3]);
+          break;
         case "LOGO":
           showLogo(parseInt(args[0], 10) || 0);
           break;
@@ -1330,6 +1405,12 @@
           break;
         case "IMAGE":
           if (args[0]) showImage(args[0]);
+          break;
+        case "PADLOCK":
+          showPadlock(parseInt(args[0],10)!==0);
+          break;
+        case "PADCLUE":
+          showNoteText(`${SPANISH?"C\u00f3digo del candado":"Padlock code"}: ${args[0]}`);
           break;
         case "COMPUTER":
           showComputer(parseInt(args[0], 10) || 0);

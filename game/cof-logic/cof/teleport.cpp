@@ -28,15 +28,16 @@ void CCofTeleport::KeyValue( KeyValueData *pkvd )
 		CPointEntity::KeyValue( pkvd );
 }
 
-void CCofTeleport::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
+static bool CoF_TeleportTo( CBaseEntity *pActivator, string_t target )
 {
 	if( !pActivator || !FBitSet( pActivator->pev->flags, FL_CLIENT | FL_MONSTER ) )
-		return;
+		return false;
 
-	CBaseEntity *pDest = UTIL_FindEntityByTargetname( NULL, STRING( pev->target ) );
+	if( FStringNull( target )) return false;
+	CBaseEntity *pDest = UTIL_FindEntityByTargetname( NULL, STRING( target ) );
 
 	if( !pDest )
-		return;
+		return false;
 
 	Vector vecDest = pDest->pev->origin;
 
@@ -55,4 +56,39 @@ void CCofTeleport::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE 
 
 	pActivator->pev->fixangle = TRUE;
 	pActivator->pev->velocity = pActivator->pev->basevelocity = g_vecZero;
+	if( CVAR_GET_FLOAT( "sv_cheats" ) != 0 )
+		ALERT( at_console, "COF/TELEPORT %s origin=%.1f,%.1f,%.1f minsZ=%.1f yaw=%.1f velocity=%.1f\n",
+			STRING( target ), pActivator->pev->origin.x, pActivator->pev->origin.y, pActivator->pev->origin.z,
+			pActivator->pev->mins.z, pActivator->pev->v_angle.y, pActivator->pev->velocity.Length() );
+	return true;
 }
+
+void CCofTeleport::Use( CBaseEntity *pActivator, CBaseEntity *, USE_TYPE, float )
+{
+	CoF_TeleportTo( pActivator, pev->target );
+}
+
+class CCofTriggerTeleport : public CBaseToggle
+{
+public:
+	int ObjectCaps( void ) { return CBaseToggle::ObjectCaps() & ~FCAP_ACROSS_TRANSITION; }
+	void Spawn( void )
+	{
+		pev->solid = SOLID_TRIGGER;
+		pev->movetype = MOVETYPE_NONE;
+		if( CVAR_GET_FLOAT( "showtriggers" ) == 0 ) pev->effects |= EF_NODRAW;
+		else pev->effects &= ~EF_NODRAW;
+		SET_MODEL( edict(), STRING( pev->model ));
+		SetTouch( &CCofTriggerTeleport::TeleportTouch );
+	}
+	void EXPORT TeleportTouch( CBaseEntity *pOther )
+	{
+		if( !pOther || !pOther->IsPlayer() || !UTIL_IsMasterTriggered( m_sMaster, pOther )) return;
+		if( CoF_TeleportTo( pOther, pev->target ) && ( pev->spawnflags & 1 ))
+		{
+			SetTouch( NULL );
+			UTIL_Remove( this );
+		}
+	}
+};
+LINK_ENTITY_TO_CLASS( trigger_cofteleport, CCofTriggerTeleport )

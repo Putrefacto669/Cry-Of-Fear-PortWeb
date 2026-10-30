@@ -279,13 +279,24 @@
   // los picos de movementX de Windows. Si no se soporta, se repite sin opciones.
   const nativeRequestLock = Element.prototype.requestPointerLock;
   Element.prototype.requestPointerLock = function (options) {
-    const fallback = () => nativeRequestLock.call(this);
+    const fallback = (error) => {
+      // Only unsupported raw movement warrants a second request. In particular,
+      // retrying an already locked or gesture-denied request cannot fix it.
+      if (error.name !== "NotSupportedError") throw error;
+      return nativeRequestLock.call(this);
+    };
+    const observed = (promise) => {
+      // SDL's legacy caller ignores the return value. Handle that case without
+      // changing the rejection seen by callers that await the returned promise.
+      if (promise && typeof promise.catch === "function") promise.catch(() => {});
+      return promise;
+    };
     try {
       const p = nativeRequestLock.call(this, { unadjustedMovement: true, ...options });
-      if (p && typeof p.catch === "function") return p.catch(fallback);
+      if (p && typeof p.catch === "function") return observed(p.catch(fallback));
       return p;
-    } catch (_) {
-      return fallback();
+    } catch (error) {
+      return observed(fallback(error));
     }
   };
 

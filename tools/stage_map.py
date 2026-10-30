@@ -51,6 +51,7 @@ BOOT_FILES = ["liblist.gam", "valve.rc", "delta.lst","titles.txt", "skill.cfg", 
               "gfx/vgui/introductions/spanish/spanish_sp.TGA",
               "gfx/vgui/introductions/spanish/spanish_doc.TGA",
               # bolso, salud y energía (hud.js)
+              "gfx/vgui/puzzle/padlock_buttons.tga",
               "gfx/vgui/640_inventory.tga", "gfx/vgui/640_healthbar.tga",
               "gfx/vgui/640_healthbar_bar.tga", "gfx/vgui/640_healthbar_barempty.tga",
               "gfx/vgui/640_staminabar.tga", "gfx/vgui/640_staminabar_bar.tga",
@@ -93,6 +94,10 @@ MONSTER_ASSETS = {
     "monster_bosschainsaw": ["models/chainsawguy.mdl", "sound/boss/sawer"],
     # puzzles.cpp
     "tape_recorder": ["models/tape_recorder.mdl"],
+    "item_padlock": ["models/items/padlock.mdl", "sound/items/padl_turn.wav", "sound/items/padl_unlock.wav"],
+    "door_prop_view": ["models/null.mdl"],
+    "cof_passwordnote": ["models/items/generic_note.mdl"],
+    "cof_computer": ["models/props/inomhusd/cafe_monitor.mdl"],
 }
 ITEM_FIELD_RE = re.compile(r'"([^"]+)"\s*\{\s*data\s+"([^"]*)"\s*\}')
 
@@ -148,6 +153,10 @@ def map_dependencies(game: Path, bsp: Path) -> tuple[set[str], list[str]]:
     for ent in ents:
         # armas de CoF que se recogen del suelo: el modelo no está en el BSP (player_cof.cpp)
         cls = ent.get("classname", "")
+        if cls == "cof_bosshealthbar":
+            for key in ("fulltga", "emptytga"):
+                if ent.get(key):
+                    deps.add(ent[key].replace("\\", "/").lower())
         for monster in (cls, ent.get("monstertype", "")):
             for rel in MONSTER_ASSETS.get(monster, []):
                 d = game / rel
