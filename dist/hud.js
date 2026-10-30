@@ -1345,7 +1345,8 @@
           toggleIntro(parseInt(args[0], 10) || 0, parseInt(args[1], 10) || 0);
           break;
         case "BW":
-          if (window.CoFPostFX) CoFPostFX.set({ black: (parseInt(args[0], 10) || 0) > 0 });
+          // strength 0..255: how much of the frame turns grey (0 = colour again)
+          if (window.CoFPostFX) CoFPostFX.set({ grey: Math.min(Math.max(parseInt(args[0], 10) || 0, 0), 255) / 255 });
           break;
         case "BLUR": {
           const on = (parseInt(args[0], 10) || 0) !== 0;

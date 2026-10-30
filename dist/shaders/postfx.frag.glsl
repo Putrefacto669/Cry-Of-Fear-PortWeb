@@ -4,7 +4,9 @@
 //   flashlight: Cry of Fear projects gfx/flashlight.tga from client.dll (no shader ships with the
 //               game). Here the same cookie is applied in screen space: no depth buffer is
 //               available to the page, so the cone has no distance falloff or occlusion.
-//   black:      cryoffear/cgshaders/black_fp.cg, same math as black.frag.glsl
+//   grey:       cof_blackandwhite, client.dll's gl_grayscale pass: the frame drawn again in
+//               grey over itself with alpha = strength / 255 (not cgshaders/black_fp.cg, which
+//               inverts the image)
 //   grain:      cl_noiseeffect, recreated as per-frame hashed noise, stronger in the shadows
 //   vignette:   darkened corners
 //
@@ -24,7 +26,7 @@ uniform float uFlashlightGain;  // how much the cone multiplies the scene
 uniform float uFlashlightSize;  // cone radius relative to screen height
 uniform vec3  uFlashlightTint;
 
-uniform float uBlack;           // 0 or 1: the black_fp effect
+uniform float uGrey;            // 0..1: how much of the frame turns grey
 uniform float uGrain;           // grain amplitude, 0 disables
 uniform float uVignette;        // 0 disables
 uniform float uBlur;            // screen blur radius in pixels, 0 disables
@@ -42,11 +44,10 @@ float Hash( uvec3 v )
 	return float( v.x & 0xffffu ) / 65535.0;
 }
 
-vec3 Black( vec3 color )
+vec3 Grey( vec3 color, float amount )
 {
-	float luma = ( color.r + color.g + color.b ) / 0.5;
-	luma = 2.0 * ( luma - 0.5 );
-	return vec3( 0.2 - luma );
+	float luma = dot( color, vec3( 0.299, 0.587, 0.114 ));
+	return mix( color, vec3( luma ), amount );
 }
 
 void main()
@@ -77,8 +78,8 @@ void main()
 		color = mix( color, lit, uFlashlight );
 	}
 
-	if( uBlack > 0.0 )
-		color = Black( color );
+	if( uGrey > 0.0 )
+		color = Grey( color, uGrey );
 
 	if( uVignette > 0.0 )
 	{

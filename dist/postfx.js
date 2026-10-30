@@ -1,4 +1,4 @@
-// postfx.js - Efectos de pantalla de Cry of Fear (linterna, black, grano, viñeta) sobre WebGL 2.
+// postfx.js - Efectos de pantalla de Cry of Fear (linterna, gris, grano, viñeta) sobre WebGL 2.
 //
 // Se ejecuta justo después de cada frame del motor (MainLoop.postMainLoop), en el mismo contexto:
 //   1. copia el backbuffer a una textura (copyTexSubImage2D)
@@ -6,7 +6,7 @@
 // El renderer del motor asume que su estado GL persiste entre frames, así que todo lo que se toca
 // se guarda y se restaura.
 //
-// API: CoFPostFX.set({ flashlight: true, grain: 0.06, black: false, vignette: 0.35 })
+// API: CoFPostFX.set({ flashlight: true, grain: 0.06, grey: 0, vignette: 0.35 })
 //      CoFPostFX.stats()  -> coste medio por frame en ms (CPU, incluye la copia)
 // Tecla F: enciende/apaga la linterna (hasta que la lógica de CoF la controle).
 (() => {
@@ -19,7 +19,7 @@
     flashlightGain: 12.0,     // ganancia en el centro del cono
     flashlightSize: 0.5,      // radio del cono en alturas de pantalla
     flashlightTint: [1.0, 0.93, 0.8], // halógeno cálido
-    black: false,
+    grey: 0,                  // 0..1, cof_blackandwhite (strength / 255)
     grain: 0.06,              // cl_noiseeffect 1 en autoexec.cfg
     vignette: 0.35,
     blur: 0,                  // radio en píxeles; CoF "cof_blur" (gl_screenblur)
@@ -91,7 +91,7 @@
     gl.linkProgram(prog);
     if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
     for (const n of ["uScene", "uCookie", "uTime", "uResolution", "uFlashlight", "uFlashlightSway",
-      "uFlashlightGain", "uFlashlightSize", "uFlashlightTint", "uBlack", "uGrain", "uVignette", "uBlur"]) {
+      "uFlashlightGain", "uFlashlightSize", "uFlashlightTint", "uGrey", "uGrain", "uVignette", "uBlur"]) {
       loc[n] = gl.getUniformLocation(prog, n);
     }
     vao = gl.createVertexArray(); // vacío: los vértices salen de gl_VertexID
@@ -137,7 +137,7 @@
     gl.pixelStorei(gl.UNPACK_ALIGNMENT, s.unpackAlign);
   };
 
-  const active = () => settings.flashlight || flashlightLevel > 0 || settings.black || settings.blur > 0 || settings.grain > 0 || settings.vignette > 0;
+  const active = () => settings.flashlight || flashlightLevel > 0 || settings.grey > 0 || settings.blur > 0 || settings.grain > 0 || settings.vignette > 0;
 
   const frame = () => {
     if (!gl || !active()) return;
@@ -187,7 +187,7 @@
     gl.uniform1f(loc.uFlashlightGain, settings.flashlightGain);
     gl.uniform1f(loc.uFlashlightSize, settings.flashlightSize);
     gl.uniform3fv(loc.uFlashlightTint, settings.flashlightTint);
-    gl.uniform1f(loc.uBlack, settings.black ? 1 : 0);
+    gl.uniform1f(loc.uGrey, settings.grey);
     gl.uniform1f(loc.uGrain, settings.grain);
     gl.uniform1f(loc.uVignette, settings.vignette);
     gl.uniform1f(loc.uBlur, settings.blur);

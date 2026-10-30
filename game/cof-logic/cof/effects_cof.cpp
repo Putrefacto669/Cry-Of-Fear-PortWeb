@@ -16,8 +16,11 @@
 
 /*
 =====================================================================
-camera_spot_trigger: an invisible brush; the flash of the camera fires
-its target when the brush is in the frame and nothing is in between
+camera_spot_trigger: a brush the player photographs; the flash of the
+camera fires its target when the brush is in the frame and nothing is
+in between. It is the white X of the prelude (texture c_nightmarex on
+black, rendermode 5 additive in c_nightmare), so it stays visible until
+the level kills it
 =====================================================================
 */
 class CCameraSpotTrigger : public CBaseEntity
@@ -27,8 +30,7 @@ public:
 	{
 		pev->solid = SOLID_NOT;
 		pev->movetype = MOVETYPE_NONE;
-		SET_MODEL( ENT( pev ), STRING( pev->model )); // for its bounds
-		pev->effects |= EF_NODRAW;
+		SET_MODEL( ENT( pev ), STRING( pev->model ));
 	}
 	virtual int ObjectCaps( void ) { return CBaseEntity::ObjectCaps() & ~FCAP_ACROSS_TRANSITION; }
 };
