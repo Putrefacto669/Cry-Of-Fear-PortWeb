@@ -97,6 +97,10 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
   `.gz` y el manifiesto (el bloque Python final de `package.sh`). Con `.gz` desfasados el motor no
   arranca (`filesystem_stdio.wasm: need to see wasm magic number`). Lo más seguro es empaquetar
   siempre todo con `package.sh`.
+- **Mayúsculas en rutas**: los recursos vienen de Windows (`models/Props` = `models/props`), pero MEMFS
+  las distingue y `FS_FixFileCase` solo entra en una carpeta. `loader.js` unifica la capitalización al
+  montar paquetes; aun así, `stage_map.py` debe copiar rutas con la capitalización real (`find_ci`).
+  Caso completo en `docs/ENVPOS_CASE_STUDY.md`.
 - `.gitattributes` tiene `dist/** -text` y `build/validation/** -text`: no tocarlos o cambian los hashes.
 - **GitHub**: límite de 100 MB por archivo y HTTP 408 en pushes grandes. Subir en partes de ~150 MB
   (se hizo con un script que hace `git add --pathspec-from-file` por lotes). Windows corta las listas
@@ -125,8 +129,10 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
   `caches`.
 - Comandos de consola desde JS: `Module.ccall("Xash_Cmd", null, ["string"], ["comando\n"])`.
 - Depuración del port (requieren `sv_cheats 1`): `cof_goto x y z` / `cof_goto <nombre>`,
-  `cof_face <nombre>`, `cof_count <clase>`, `cof_remove <nombre>`, `cof_inspect <nombre>`,
-  `cof_give <arma>`, `cof_use`, `cof_fire`, `noclip`. Xash no tiene `setpos`.
+  `cof_face <nombre>`, `cof_count <clase>`, `cof_list <clase>`, `cof_remove <nombre>`,
+  `cof_inspect <nombre|#índice>`, `cof_give <arma>`, `cof_use`, `cof_fire`, `noclip`. Xash no tiene
+  `setpos`. Cielo: `cof_sky_status`, `cof_sky_entities` (cliente) y `cof_sky_render_status`
+  (renderer; `view=` es la del último frame en que se dibujó el cielo, no la vista actual).
 - Una pestaña en segundo plano corre a ~1 fps: traerla al frente para comparar.
 
 ## Protocolo y piezas clave
@@ -177,11 +183,11 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
 
 ## Pendiente
 
-- Cielo especial del menú (`envpos` en `c_game_menu1`): la prueba `envpos_entities` falla desde el
-  30 de octubre (cielo con `draws=0`); el menú se ve muy oscuro.
 - `GL_INVALID_OPERATION (gl_rmain.c:1015)` cada frame con la cámara de fotos en la mano (también
   en versiones anteriores).
 - X falsas del preludio (`wrong1..11`) sin probar una por una.
+- `tools/e2e/smoke.mjs` falla dos comprobaciones (ya fallaban antes de la corrección de envpos): la
+  recarga vuelve a descargar 4,6 MiB y aparece `ERR_INTERNET_DISCONNECTED` sin conexión.
 - Candado: falta validar de forma natural la contraseña correcta, la combinación, el regreso a
   `c_start` y guardar/cargar. Manos blancas tras cargar partida.
 - `cof_greyfade` (fundido a gris) no está implementado; no aparece en los mapas publicados.

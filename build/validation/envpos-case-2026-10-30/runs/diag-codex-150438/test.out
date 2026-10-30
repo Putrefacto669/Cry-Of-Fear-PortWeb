@@ -1,0 +1,41 @@
+OK c_start: original marker protocol, ambient/direct values, parallax equation and actual sky model polygons
+OK original markers and sky rendering restored during multiscene1
+OK marker fields, optional-light flags, zero divisor, updates and saved field restoration
+OK actual canvas comparison: 25403 pixels change with the original gl_customsky switch
+DIAG c_start2 after-connect
+[15:05:48] org ( 2428.03 -882.969 -702.938 )
+[15:05:48] ang ( 0 90 0 )
+[15:05:48] COF/SKY_RENDER active=1 draws=1 polys=448 offset=1794.16,-3762.66,472.562 view=2428.03,-882.969,-702.938 ambient=32 direct=25
+[15:05:48] COF/ENTITY !player class=player body=0 solid=3 origin=2428.0,-883.0,-731.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=1.067 effects=0
+[15:05:48] COF/FENCE envpos_370 time=1.067
+OK map transition c_start2: actual marker pair and rendered sky polygons
+DIAG c_intro after-connect
+[15:05:52] org ( -1146 -2968 1355 )
+[15:05:52] ang ( 0 -1.12061 0 )
+[15:05:52] COF/SKY_RENDER active=1 draws=1 polys=224 offset=-3768.46,-2578.68,2643.02 view=-1146,-2968,1355 ambient=32 direct=25
+[15:05:52] COF/ENTITY !player class=player body=0 solid=3 origin=-1081.0,-2422.0,63.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=1.118 effects=0
+[15:05:52] COF/FENCE envpos_373 time=1.118
+OK map transition c_intro: actual marker pair and rendered sky polygons
+DIAG c_game_menu1 after-connect
+[15:05:54] org ( -3654.75 -264.875 -77.875 )
+[15:05:54] ang ( -0.351562 0.296631 0 )
+[15:05:54] COF/SKY_RENDER active=1 draws=0 polys=0 offset=-3768.46,-2578.68,2643.02 view=-1146,-2968,1355 ambient=-1 direct=-1
+[15:05:54] COF/CAMERA kamera id=78 state=1 think=1 next=1.117 now=1.117 remaining=665.9 wait=666 path=stop2s look=fokuses player=1 pos=-3654.81,-264.973,-77.9727 speed=5 distance=6.40643 stop=1.017 initial=5 accel=500 decel=500 route=stop1s
+[15:05:54] COF/ENTITY !player class=player body=0 solid=3 origin=-3742.0,-256.0,-205.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=1.117 effects=0
+[15:05:54] COF/FENCE envpos_376 time=1.117
+DIAG c_game_menu1 timeout
+[15:06:54] org ( -3619.12 -206 -61.375 )
+[15:06:54] ang ( -5.75684 3.68591 0 )
+[15:06:54] COF/SKY_RENDER active=1 draws=0 polys=0 offset=-3768.46,-2578.68,2643.02 view=-1146,-2968,1355 ambient=-1 direct=-1
+[15:06:54] COF/CAMERA kamera id=78 state=1 think=1 next=59.147 now=59.164 remaining=607.853 wait=666 path=stop1s look=fokuses player=1 pos=-3619.24,-206.077,-61.483 speed=5 distance=6.54283 stop=26.098 initial=5 accel=500 decel=500 route=stop1s
+[15:06:54] COF/ENTITY !player class=player body=0 solid=3 origin=-3742.0,-256.0,-205.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=59.164 effects=0
+[15:06:54] COF/FENCE envpos_693 time=59.164
+file:///root/cof-envpos/diag-codex-150438/test.mjs:16
+      if(Date.now()-start>60000) throw new Error("sky state timeout");
+                                       ^
+
+Error: sky state timeout
+    at until (file:///root/cof-envpos/diag-codex-150438/test.mjs:16:40)
+    at async file:///root/cof-envpos/diag-codex-150438/test.mjs:120:11
+
+Node.js v24.19.0

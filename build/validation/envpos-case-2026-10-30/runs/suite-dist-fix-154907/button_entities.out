@@ -1,0 +1,7 @@
+BEFORE [15:54:31] "sv_cheats" changed to "1"
+[15:54:31] COF/ENTITY *19 class=func_button body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=1 touch=0 target=computeron frozen=0 stairs=-1 use=1 think=0 toggle=1 next=0 now=1.318 effects=0 renderfx=0 modelindex=20 model=*19
+[15:54:31] COF/FENCE walk_2 time=1.318
+AFTER [15:54:32] COF/ENTITY *19 class=func_button body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=1 touch=0 target=computeron frozen=0 stairs=-1 use=1 think=0 toggle=1 next=0 now=1.367 effects=0 renderfx=0 modelindex=20 model=*19
+[15:54:32] COF/FENCE walk_4 time=1.367
+OK original button idle and return callback survive without Spawn or Use during restoration
+OK actual keyboard typing and Enter reach server validation

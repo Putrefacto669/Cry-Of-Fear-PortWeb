@@ -382,6 +382,17 @@ static void SkyStatus()
   gEngfuncs.pfnGetCvarFloat(skyNames[8]),gEngfuncs.pfnGetCvarFloat(skyNames[9]));
 }
 
+// sky models (renderfx 137) the client knows about; "fresh" = in the last packet from the server
+static void SkyEntities() {
+ cl_entity_t *local=gEngfuncs.GetLocalPlayer();
+ int current=local?local->curstate.messagenum:-1,count=0;
+ for(int i=1;i<2048;i++) {cl_entity_t *e=gEngfuncs.GetEntityByIndex(i);
+  if(e&&e->model&&e->curstate.renderfx==137) {
+   count++;gEngfuncs.Con_Printf("COF/SKY_ENTITY id=%d model=%s origin=%g,%g,%g effects=%d fresh=%d\n",i,e->model->name,e->origin[0],e->origin[1],e->origin[2],e->curstate.effects,e->curstate.messagenum==current);
+  }
+ }
+ gEngfuncs.Con_Printf("COF/SKY_ENTITY count=%d\n",count);
+}
 static void PadlockRenderStatus() {
  int count=0;
  for(int i=1;i<2048;i++) {cl_entity_t *e=gEngfuncs.GetEntityByIndex(i);
@@ -404,6 +415,7 @@ void CoF_ClientInit( void )
  gEngfuncs.pfnHookUserMsg("skymark_w",SkyWorld);
  gEngfuncs.pfnHookUserMsg("skymark_sky",SkyMarker);
  gEngfuncs.pfnAddCommand("cof_sky_status",SkyStatus);
+ gEngfuncs.pfnAddCommand("cof_sky_entities",SkyEntities);
 	gEngfuncs.pfnAddCommand( "cof_emittest", CoF_EmitTest );
 	gEngfuncs.pfnHookUserMsg( "CoFFog", __MsgFunc_CoFFog );
 	gEngfuncs.pfnHookUserMsg( "CoFEmit", __MsgFunc_CoFEmit );

@@ -1,0 +1,10 @@
+{"name":"primera","loadMs":8221,"network":42,"networkBytes":37353466,"fromSW":9,"networkMiB":35.6,"controlled":true,"cachedFiles":33,"cachedHeavy":4,"frames":22,"isolated":true}
+{"name":"recarga","loadMs":10714,"network":2,"networkBytes":4856135,"fromSW":15,"networkMiB":4.6,"controlled":true,"cachedFiles":33,"cachedHeavy":4,"frames":27,"isolated":true}
+{"name":"offline","loadMs":10028,"network":0,"networkBytes":0,"fromSW":15,"networkMiB":0,"controlled":true,"cachedFiles":33,"cachedHeavy":4,"frames":23,"isolated":true}
+OK   el mapa carga
+OK   el SW controla la página
+OK   lo pesado (.wasm/.data) queda en caché
+FALLO la recarga no descarga nada pesado
+OK   arranca sin conexión
+FALLO sin errores de página
+  Failed to load resource: net::ERR_INTERNET_DISCONNECTED

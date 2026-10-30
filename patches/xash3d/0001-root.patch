@@ -918,10 +918,23 @@ index f05a3ddf..4f70d755 100644
  	gEngfuncs.GL_SetAttribute( REF_GL_CONTEXT_EGL, 1 );
  #if XASH_NANOGL
 diff --git a/ref/gl/gl_rmain.c b/ref/gl/gl_rmain.c
-index 97b12119..4ab719aa 100644
+index 97b12119..973f3ff1 100644
 --- a/ref/gl/gl_rmain.c
 +++ b/ref/gl/gl_rmain.c
-@@ -231,8 +231,12 @@ void R_ClearScene( void )
+@@ -214,8 +214,12 @@ void R_PopScene( void )
+ R_ClearScene
+ ===============
+ */
++// Cry of Fear sky models offered by the client: this frame and the last complete one
++static int cofSkyAdded, cofSkyLastAdded;
+ void R_ClearScene( void )
+ {
++	cofSkyLastAdded = cofSkyAdded;
++	cofSkyAdded = 0;
+ 	tr.draw_list->num_solid_entities = 0;
+ 	tr.draw_list->num_trans_entities = 0;
+ 	tr.draw_list->num_beam_entities = 0;
+@@ -231,8 +235,13 @@ void R_ClearScene( void )
  R_AddEntity
  ===============
  */
@@ -930,11 +943,12 @@ index 97b12119..4ab719aa 100644
  qboolean R_AddEntity( struct cl_entity_s *clent, int type )
  {
 +	if( R_CoFSkyEntity(clent) && !R_CoFSkyConfigured() ) return true;
++	if( R_CoFSkyEntity(clent) ) cofSkyAdded++;
 +
  	if( !r_drawentities->value )
  		return false; // not allow to drawing
  
-@@ -292,6 +296,78 @@ qboolean R_AddEntity( struct cl_entity_s *clent, int type )
+@@ -292,6 +301,78 @@ qboolean R_AddEntity( struct cl_entity_s *clent, int type )
  R_Clear
  =============
  */
@@ -945,9 +959,9 @@ index 97b12119..4ab719aa 100644
 +static matrix4x4 cofSkySavedMatrix;
 +static void R_CoFSkyStatus( void )
 +{
-+ gEngfuncs.Con_Printf("COF/SKY_RENDER active=%d draws=%d polys=%d offset=%g,%g,%g view=%g,%g,%g ambient=%d direct=%d\n",
++ gEngfuncs.Con_Printf("COF/SKY_RENDER active=%d draws=%d polys=%d offset=%g,%g,%g view=%g,%g,%g ambient=%d direct=%d added=%d\n",
 +  R_CoFSkyActive(),cofSkyDraws,cofSkyPolys,cofSkyOffset[0],cofSkyOffset[1],cofSkyOffset[2],
-+  cofSkyView[0],cofSkyView[1],cofSkyView[2],cofSkyAmbient,cofSkyDirect);
++  cofSkyView[0],cofSkyView[1],cofSkyView[2],cofSkyAmbient,cofSkyDirect,cofSkyLastAdded);
 +}
 +static void R_CoFSkyInit( void )
 +{
@@ -1013,7 +1027,7 @@ index 97b12119..4ab719aa 100644
  static void R_Clear( int bitMask )
  {
  	if( ENGINE_GET_PARM( PARM_DEV_OVERVIEW ))
-@@ -316,7 +392,7 @@ static void R_Clear( int bitMask )
+@@ -316,7 +397,7 @@ static void R_Clear( int bitMask )
  	else
  	{
  		gldepthmin = 0.0f;
@@ -1022,7 +1036,7 @@ index 97b12119..4ab719aa 100644
  	}
  
  	pglDepthFunc( GL_LEQUAL );
-@@ -973,6 +1049,8 @@ void R_RenderScene( void )
+@@ -973,6 +1054,8 @@ void R_RenderScene( void )
  	R_SetupFrame();
  	R_SetupGL( true );
  	R_Clear( ~0 );

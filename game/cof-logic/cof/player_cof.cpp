@@ -452,6 +452,12 @@ debug commands (sv_cheats 1), for testing map logic from the console:
 */
 static CBaseEntity *CoF_FindDebugTarget( const char *name )
 {
+	// #N: the entity with that index (point entities without a targetname)
+	if( name[0] == '#' )
+	{
+		edict_t *ent = INDEXENT( atoi( name + 1 ));
+		return ent && !ent->free ? CBaseEntity::Instance( ent ) : NULL;
+	}
 	if( name[0] != '*' )
 		return UTIL_FindEntityByTargetname( NULL, name );
 
@@ -560,6 +566,16 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
 			if( !FBitSet( entity->pev->flags, FL_KILLME )) ++count;
 		ALERT( at_console, "COF/COUNT %s %d\n", arg, count );
 	}
+	else if( FStrEq( pcmd, "cof_list" ))
+	{
+		// every entity of a class with what decides whether the client gets it
+		CBaseEntity *entity = NULL;
+		while(( entity = UTIL_FindEntityByClassname( entity, arg )))
+			ALERT( at_console, "COF/LIST %s #%d origin=%.0f,%.0f,%.0f effects=%d renderfx=%d rendermode=%d modelindex=%d model=%s killme=%d\n",
+				arg, entity->entindex(), entity->pev->origin.x, entity->pev->origin.y, entity->pev->origin.z,
+				entity->pev->effects, entity->pev->renderfx, entity->pev->rendermode, entity->pev->modelindex,
+				FStringNull( entity->pev->model ) ? "-" : STRING( entity->pev->model ), FBitSet( entity->pev->flags, FL_KILLME ) != 0 );
+	}
 	else if( FStrEq( pcmd, "cof_remove" ))
 	{
 		CBaseEntity *entity = CoF_FindDebugTarget( arg );
@@ -598,11 +614,12 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
 	{
 		CBaseEntity *pTarget = FStrEq( arg, "!player" ) ? pPlayer : CoF_FindDebugTarget( arg );
 		if( pTarget )
-			ALERT( at_console, "COF/ENTITY %s class=%s body=%d solid=%d origin=%.1f,%.1f,%.1f gate=%d speed=%.1f spawn=%d touch=%d target=%s frozen=%d stairs=%d use=%d think=%d toggle=%d next=%g now=%g effects=%d\n",
+			ALERT( at_console, "COF/ENTITY %s class=%s body=%d solid=%d origin=%.1f,%.1f,%.1f gate=%d speed=%.1f spawn=%d touch=%d target=%s frozen=%d stairs=%d use=%d think=%d toggle=%d next=%g now=%g effects=%d renderfx=%d modelindex=%d model=%s\n",
 				arg, STRING( pTarget->pev->classname ), pTarget->pev->body, pTarget->pev->solid,
 				pTarget->pev->origin.x, pTarget->pev->origin.y, pTarget->pev->origin.z, pTarget->pev->iuser1, pTarget->pev->maxspeed,
 				pTarget->pev->spawnflags, pTarget->m_pfnTouch != NULL, STRING( pTarget->pev->target ),
-				FBitSet( pTarget->pev->flags, FL_FROZEN ) != 0, pTarget->IsPlayer() ? CoF_OnStairs( (CBasePlayer *)pTarget ) : -1, pTarget->m_pfnUse != NULL, pTarget->m_pfnThink != NULL, pTarget->GetToggleState(), pTarget->pev->nextthink, gpGlobals->time, pTarget->pev->effects );
+				FBitSet( pTarget->pev->flags, FL_FROZEN ) != 0, pTarget->IsPlayer() ? CoF_OnStairs( (CBasePlayer *)pTarget ) : -1, pTarget->m_pfnUse != NULL, pTarget->m_pfnThink != NULL, pTarget->GetToggleState(), pTarget->pev->nextthink, gpGlobals->time, pTarget->pev->effects,
+				pTarget->pev->renderfx, pTarget->pev->modelindex, FStringNull( pTarget->pev->model ) ? "-" : STRING( pTarget->pev->model ));
 		else
 			ALERT( at_console, "COF/ENTITY %s missing\n", arg );
 	}

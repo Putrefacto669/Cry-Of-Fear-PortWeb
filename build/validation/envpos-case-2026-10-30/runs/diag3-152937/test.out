@@ -1,0 +1,65 @@
+OK c_start: original marker protocol, ambient/direct values, parallax equation and actual sky model polygons
+OK original markers and sky rendering restored during multiscene1
+OK marker fields, optional-light flags, zero divisor, updates and saved field restoration
+OK actual canvas comparison: 25537 pixels change with the original gl_customsky switch
+DIAG c_start2 after-connect
+[15:30:46] COF/SKY_ENTITY id=271 model=models/props/sky_sphere4.mdl origin=613,2909,-1111 effects=0 fresh=1
+[15:30:46] COF/SKY_ENTITY count=1
+[15:30:46] COF/SKY_RENDER active=1 draws=1 polys=448 offset=1794.16,-3762.66,472.562 view=2428.03,-882.969,-702.938 ambient=32 direct=25 added=1
+[15:30:46] org ( 2428.03 -882.969 -702.938 )
+[15:30:46] ang ( 0 90 0 )
+[15:30:46] COF/FENCE envpos_352 time=1.1
+[15:30:46] COF/ENTITY #271 class=env_model body=0 solid=0 origin=613.0,2909.0,-1111.0 gate=0 speed=0.0 spawn=0 touch=0 target= frozen=0 stairs=-1 use=0 think=0 toggle=0 next=1.2 now=1.102 effects=0 renderfx=137 modelindex=192 model=models/props/sky_sphere4.mdl
+[15:30:46] COF/FENCE envpos_353 time=1.102
+DIAG c_start2 ok
+[15:30:47] COF/SKY_ENTITY id=271 model=models/props/sky_sphere4.mdl origin=613,2909,-1111 effects=0 fresh=1
+[15:30:47] COF/SKY_ENTITY count=1
+[15:30:47] COF/SKY_RENDER active=1 draws=1 polys=448 offset=1794.16,-3762.66,472.562 view=2428.03,-882.969,-702.938 ambient=32 direct=25 added=1
+[15:30:47] org ( 2428.03 -882.969 -702.938 )
+[15:30:47] ang ( 0 90 0 )
+[15:30:47] COF/FENCE envpos_355 time=1.2
+[15:30:47] COF/ENTITY #271 class=env_model body=0 solid=0 origin=613.0,2909.0,-1111.0 gate=0 speed=0.0 spawn=0 touch=0 target= frozen=0 stairs=-1 use=0 think=0 toggle=0 next=1.3 now=1.208 effects=0 renderfx=137 modelindex=192 model=models/props/sky_sphere4.mdl
+[15:30:47] COF/FENCE envpos_356 time=1.208
+OK map transition c_start2: actual marker pair and rendered sky polygons
+DIAG c_intro after-connect
+[15:30:51] COF/SKY_ENTITY id=509 model=models/Props/sky_blixt.mdl origin=2674,-373,-1252 effects=0 fresh=1
+[15:30:51] COF/SKY_ENTITY count=1
+[15:30:51] COF/SKY_RENDER active=1 draws=1 polys=224 offset=-3768.46,-2578.68,2643.02 view=-1146,-2968,1355 ambient=32 direct=25 added=1
+[15:30:51] org ( -1146 -2968 1355 )
+[15:30:51] ang ( 0 -1.80176 0 )
+[15:30:51] COF/FENCE envpos_358 time=1.05
+[15:30:51] COF/ENTITY #509 class=env_model body=0 solid=0 origin=2674.0,-373.0,-1252.0 gate=0 speed=0.0 spawn=0 touch=0 target= frozen=0 stairs=-1 use=0 think=0 toggle=0 next=1.2 now=1.103 effects=0 renderfx=137 modelindex=311 model=models/Props/sky_blixt.mdl
+[15:30:51] COF/FENCE envpos_359 time=1.103
+DIAG c_intro ok
+[15:30:51] COF/SKY_ENTITY id=509 model=models/Props/sky_blixt.mdl origin=2674,-373,-1252 effects=0 fresh=1
+[15:30:51] COF/SKY_ENTITY count=1
+[15:30:51] COF/SKY_RENDER active=1 draws=1 polys=224 offset=-3768.46,-2578.68,2643.02 view=-1146,-2968,1355 ambient=32 direct=25 added=1
+[15:30:51] org ( -1146 -2968 1355 )
+[15:30:51] ang ( 0 -4.34509 0 )
+[15:30:51] COF/FENCE envpos_361 time=1.156
+[15:30:51] COF/ENTITY #509 class=env_model body=0 solid=0 origin=2674.0,-373.0,-1252.0 gate=0 speed=0.0 spawn=0 touch=0 target= frozen=0 stairs=-1 use=0 think=0 toggle=0 next=1.3 now=1.18 effects=0 renderfx=137 modelindex=311 model=models/Props/sky_blixt.mdl
+[15:30:51] COF/FENCE envpos_362 time=1.18
+OK map transition c_intro: actual marker pair and rendered sky polygons
+DIAG c_game_menu1 after-connect
+[15:30:53] COF/SKY_ENTITY count=0
+[15:30:53] COF/SKY_RENDER active=1 draws=0 polys=0 offset=-3768.46,-2578.68,2643.02 view=-1146,-2968,1355 ambient=-1 direct=-1 added=0
+[15:30:53] org ( -3654.75 -264.875 -77.875 )
+[15:30:53] ang ( -0.368042 0.307617 0 )
+[15:30:53] COF/FENCE envpos_364 time=1.116
+
+DIAG c_game_menu1 timeout
+[15:31:54] COF/SKY_ENTITY count=0
+[15:31:54] COF/SKY_RENDER active=1 draws=0 polys=0 offset=-3768.46,-2578.68,2643.02 view=-1146,-2968,1355 ambient=-1 direct=-1 added=0
+[15:31:54] org ( -3620.12 -199.625 -61.625 )
+[15:31:54] ang ( -5.76233 3.44421 0 )
+[15:31:54] COF/FENCE envpos_698 time=60.762
+
+file:///root/cof-envpos/diag3-152937/test.mjs:16
+      if(Date.now()-start>60000) throw new Error("sky state timeout");
+                                       ^
+
+Error: sky state timeout
+    at until (file:///root/cof-envpos/diag3-152937/test.mjs:16:40)
+    at async file:///root/cof-envpos/diag3-152937/test.mjs:126:11
+
+Node.js v24.19.0

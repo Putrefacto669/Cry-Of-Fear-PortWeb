@@ -116,20 +116,46 @@
       const pending = [...prefetching];
       setStatus(baseStatus + (pending.length ? ` · precargando ${pending.join(", ")}…` : ""));
     };
+    // Los assets vienen de Windows, donde "models/Props" y "models/props" son la misma carpeta. MEMFS
+    // distingue mayúsculas: un paquete que escriba la carpeta de otra forma crearía una segunda, y la
+    // búsqueda sin mayúsculas del motor (FS_FixFileCase) solo entra en una de las dos y deja de
+    // encontrar lo que está en la otra (docs/ENVPOS_CASE_STUDY.md). Se reutiliza la que ya existe.
+    const canonicalPath = (path) => {
+      let cur = "";
+      for (let name of path.split("/").filter(Boolean)) {
+        if (!FS.analyzePath(`${cur}/${name}`).exists) {
+          try {
+            const lower = name.toLowerCase();
+            name = FS.readdir(cur || "/").find((e) => e.toLowerCase() === lower) || name;
+          } catch (_) { /* el padre aún no existe: se crea con este nombre */ }
+        }
+        cur = `${cur}/${name}`;
+      }
+      return cur || "/";
+    };
+    const splitPath = (path) => {
+      const cut = path.lastIndexOf("/");
+      return [path.slice(0, cut) || "/", path.slice(cut + 1)];
+    };
     // Los paquetes de mapas comparten archivos (modelos, sonidos): file_packager falla con EEXIST
     // en el primero repetido y deja sin montar el resto del paquete. Se sustituye el existente.
     const allowOverlappingPacks = () => {
-      const create = Module.FS_createDataFile;
+      const create = Module.FS_createDataFile, createPath = Module.FS_createPath;
       if (!create || create.cofOverlap) return;
       const wrapped = function (parent, name, ...rest) {
         // file_packager llama (rutaCompleta, null, datos, ...)
         const dir = typeof parent === "string" ? parent : parent && FS.getPath(parent);
-        const path = name == null ? dir : dir ? `${dir}/${name}` : name;
+        const path = canonicalPath(name == null ? dir : dir ? `${dir}/${name}` : name);
         try { if (FS.analyzePath(path).exists) FS.unlink(path); } catch (_) { /* lo crea igual */ }
-        return create.call(this, parent, name, ...rest);
+        return create.call(this, ...splitPath(path), ...rest);
       };
       wrapped.cofOverlap = true;
       Module.FS_createDataFile = wrapped;
+      // file_packager crea antes cada carpeta con createPath(padre, nombre, ...)
+      if (createPath) Module.FS_createPath = function (parent, name, ...rest) {
+        const dir = typeof parent === "string" ? parent : FS.getPath(parent);
+        return createPath.call(this, ...splitPath(canonicalPath(`${dir}/${name}`)), ...rest);
+      };
     };
 
     async function prefetchMap(name) {
@@ -206,6 +232,8 @@
       // .data de los paquetes viven en packs/; xash3d.data (--preload-file) junto a index.html
       locateFile: (path) => (path.endsWith(".data") && path !== "xash3d.data" ? `packs/${path}` : path),
       preRun: [() => {
+        // antes de que los paquetes iniciales (engine, boot, primer mapa) creen sus archivos
+        allowOverlappingPacks();
         // /rwdir: configuración y partidas, persistente en IndexedDB
         FS.mkdir("/rwdir");
         FS.mount(IDBFS, {}, "/rwdir");

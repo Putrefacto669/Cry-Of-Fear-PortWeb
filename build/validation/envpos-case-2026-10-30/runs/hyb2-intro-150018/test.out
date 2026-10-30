@@ -1,0 +1,15 @@
+OK c_start: original marker protocol, ambient/direct values, parallax equation and actual sky model polygons
+OK original markers and sky rendering restored during multiscene1
+OK marker fields, optional-light flags, zero divisor, updates and saved field restoration
+OK actual canvas comparison: 25548 pixels change with the original gl_customsky switch
+OK map transition c_start2: actual marker pair and rendered sky polygons
+OK map transition c_intro: actual marker pair and rendered sky polygons
+file:///root/cof-envpos/hyb2-intro-150018/test.mjs:16
+      if(Date.now()-start>60000) throw new Error("sky state timeout");
+                                       ^
+
+Error: sky state timeout
+    at until (file:///root/cof-envpos/hyb2-intro-150018/test.mjs:16:40)
+    at async file:///root/cof-envpos/hyb2-intro-150018/test.mjs:119:5
+
+Node.js v24.19.0
