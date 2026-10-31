@@ -32,6 +32,7 @@ typedef struct
 	int message;   // bodynumber of the last trigger_cofmobile
 	int unread;    // UnreadSMS of the original: the HUD icon until the phone is taken out
 	int flash;     // held as a flashlight instead of showing the message (the original starts with the message)
+	int dual;      // dual wielded with the knife: the light stays on in the other hand (CDualWeapon)
 } cof_phone_t;
 
 cof_phone_t *CoF_Phone( CBaseEntity *pPlayer );

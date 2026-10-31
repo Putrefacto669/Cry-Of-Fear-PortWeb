@@ -756,6 +756,36 @@ bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd )
 			s->invDirty = TRUE;
 		}
 	}
+	// the flashlight button of the original ("Press flashlight button to enable"): the phone's light,
+	// when the phone is not the weapon in the hands (there, +attack switches it)
+	else if( FStrEq( pcmd, "flashlight" ))
+	{
+		CBasePlayerItem *pActive = pPlayer->m_pActiveItem;
+		if( pPlayer->HasNamedPlayerItem( "weapon_mobile" ) && !( pActive && FClassnameIs( pActive->pev, "weapon_mobile" )))
+		{
+			if( pPlayer->FlashlightIsOn())
+				pPlayer->FlashlightTurnOff();
+			else
+				pPlayer->FlashlightTurnOn();
+		}
+	}
+	// DUAL WIELD in the bag: the phone and the knife together, light in one hand and knife in the other
+	else if( FStrEq( pcmd, "cof_dualwield" ) && CMD_ARGC() == 3 )
+	{
+		int a = atoi( CMD_ARGV( 1 )), b = atoi( CMD_ARGV( 2 ));
+		cof_phone_t *phone = CoF_Phone( pPlayer );
+		if( phone )
+		{
+			const char *x = ( a >= 0 && a < s->numItems ) ? s->names[a] : "";
+			const char *y = ( b >= 0 && b < s->numItems ) ? s->names[b] : "";
+			phone->dual = ( !stricmp( x, "weapon_mobile" ) && !stricmp( y, "weapon_switchblade" )) ||
+				( !stricmp( x, "weapon_switchblade" ) && !stricmp( y, "weapon_mobile" ));
+			CBasePlayerItem *pActive = pPlayer->m_pActiveItem;
+			if( phone->dual && pActive && FClassnameIs( pActive->pev, "weapon_switchblade" ))
+				pPlayer->FlashlightTurnOn();
+			s->invDirty = TRUE;
+		}
+	}
 	// binds of the original config.cfg that do nothing yet: keep them out of the console
 	else if( FStrEq( pcmd, "+dodge" ) || FStrEq( pcmd, "-dodge" ) || FStrEq( pcmd, "adlib" ) ||
 		FStrEq( pcmd, "cancelselect" ) || FStrEq( pcmd, "weapontoggle" ) ||
@@ -1000,6 +1030,7 @@ public:
 	int m_iSmsMessage;
 	BOOL m_fSmsUnread;
 	BOOL m_fMobileFlash;
+	BOOL m_fMobileDual;
 };
 
 LINK_ENTITY_TO_CLASS( cof_playerstate, CCofPlayerState )
@@ -1018,6 +1049,7 @@ TYPEDESCRIPTION CCofPlayerState::m_SaveData[] =
 	DEFINE_FIELD( CCofPlayerState, m_iSmsMessage, FIELD_INTEGER ),
 	DEFINE_FIELD( CCofPlayerState, m_fSmsUnread, FIELD_BOOLEAN ),
 	DEFINE_FIELD( CCofPlayerState, m_fMobileFlash, FIELD_BOOLEAN ),
+	DEFINE_FIELD( CCofPlayerState, m_fMobileDual, FIELD_BOOLEAN ),
 };
 
 void CCofPlayerState::Spawn( void )
@@ -1044,6 +1076,7 @@ int CCofPlayerState::Save( CSave &save )
 	m_iSmsMessage = s->phone.message;
 	m_fSmsUnread = s->phone.unread;
 	m_fMobileFlash = s->phone.flash;
+	m_fMobileDual = s->phone.dual;
 	char code[16];
 	m_iPassword = CoF_GetPuzzleState( code, sizeof( code ));
 	m_iszCode = ALLOC_STRING( code );
@@ -1077,6 +1110,7 @@ int CCofPlayerState::Restore( CRestore &restore )
 	s->phone.message = m_iSmsMessage;
 	s->phone.unread = m_fSmsUnread;
 	s->phone.flash = m_fMobileFlash;
+	s->phone.dual = m_fMobileDual;
 	CoF_SetPuzzleState( m_iPassword, FStringNull( m_iszCode ) ? "" : STRING( m_iszCode ));
  if(!FStringNull(m_iszPadlockCode)) CoF_SetPadlockCode(STRING(m_iszPadlockCode));
 	s->invDirty = TRUE;

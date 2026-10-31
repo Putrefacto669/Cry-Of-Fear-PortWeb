@@ -61,10 +61,15 @@ public:
 weapon_switchblade
 =====================================================================
 */
+// The knife has a sequence set per hand: p1* is the right hand, p2* the left (v_switchblade.mdl).
+// Right click (SecondaryAttack) moves it to the other hand with p1top2 / p2top1.
 enum switchblade_e
 {
 	BLADE_IDLE = 0, BLADE_DRAW = 1, BLADE_HOLSTER = 2, BLADE_ATTACK1 = 3,
-	BLADE_ATTACK2 = 16, BLADE_ATTACK3 = 17, BLADE_FIDGET1 = 20
+	BLADE_TOP_TO_LEFT = 4, BLADE_IDLE_LEFT = 5, BLADE_DRAW_LEFT = 6, BLADE_HOLSTER_LEFT = 7,
+	BLADE_ATTACK1_LEFT = 8, BLADE_TOP_TO_RIGHT = 9,
+	BLADE_ATTACK2 = 16, BLADE_ATTACK3 = 17, BLADE_ATTACK2_LEFT = 18, BLADE_ATTACK3_LEFT = 19,
+	BLADE_FIDGET1 = 20, BLADE_FIDGET1_LEFT = 23
 };
 
 class CCofSwitchblade : public CCofWeapon
@@ -73,18 +78,53 @@ public:
 	void Spawn( void );
 	void Precache( void );
 	int GetItemInfo( ItemInfo *p );
-	BOOL Deploy( void ) { return DefaultDeploy( "models/weapons/switchblade/v_switchblade.mdl", "", BLADE_DRAW, "crowbar" ); }
-	void Holster( int skiplocal = 0 ) { m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5f; SendWeaponAnim( BLADE_HOLSTER, 0 ); }
+	BOOL Deploy( void );
+	void Holster( int skiplocal = 0 );
 	void PrimaryAttack( void );
+	void SecondaryAttack( void );
 	void WeaponIdle( void );
+
+	int m_iHand;  // 1: right, 2: left
 };
 
 LINK_ENTITY_TO_CLASS( weapon_switchblade, CCofSwitchblade )
+
+BOOL CCofSwitchblade::Deploy( void )
+{
+	if( !m_iHand )
+		m_iHand = 1;
+	// dual wielded with the phone: its light stays on in the other hand
+	cof_phone_t *phone = CoF_Phone( m_pPlayer );
+	if( phone && phone->dual && !m_pPlayer->FlashlightIsOn())
+		m_pPlayer->FlashlightTurnOn();
+	return DefaultDeploy( "models/weapons/switchblade/v_switchblade.mdl", "",
+		m_iHand == 2 ? BLADE_DRAW_LEFT : BLADE_DRAW, "crowbar" );
+}
+
+void CCofSwitchblade::Holster( int skiplocal )
+{
+	cof_phone_t *phone = CoF_Phone( m_pPlayer );
+	if( phone && phone->dual && m_pPlayer->FlashlightIsOn())
+		m_pPlayer->FlashlightTurnOff();
+	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5f;
+	SendWeaponAnim( m_iHand == 2 ? BLADE_HOLSTER_LEFT : BLADE_HOLSTER, 0 );
+}
+
+// right click: the knife changes hand (p1top2 or p2top1, 35 frames at 30 fps)
+void CCofSwitchblade::SecondaryAttack( void )
+{
+	if( !m_iHand )
+		m_iHand = 1;
+	Anim( m_iHand == 1 ? BLADE_TOP_TO_LEFT : BLADE_TOP_TO_RIGHT, 35.0f / 30.0f );
+	m_iHand = m_iHand == 1 ? 2 : 1;
+	m_flNextPrimaryAttack = m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 35.0f / 30.0f;
+}
 
 void CCofSwitchblade::Spawn( void )
 {
 	Precache();
 	m_iId = WEAPON_COF_SWITCHBLADE;
+	m_iHand = 1;
 	SET_MODEL( ENT( pev ), "models/weapons/switchblade/w_switchblade.mdl" );
 	m_iClip = -1;
 	FallInit();
@@ -119,7 +159,9 @@ int CCofSwitchblade::GetItemInfo( ItemInfo *p )
 
 void CCofSwitchblade::PrimaryAttack( void )
 {
-	static const int swings[] = { BLADE_ATTACK1, BLADE_ATTACK2, BLADE_ATTACK3 };
+	static const int swingsRight[] = { BLADE_ATTACK1, BLADE_ATTACK2, BLADE_ATTACK3 };
+	static const int swingsLeft[] = { BLADE_ATTACK1_LEFT, BLADE_ATTACK2_LEFT, BLADE_ATTACK3_LEFT };
+	const int *swings = m_iHand == 2 ? swingsLeft : swingsRight;
 	TraceResult tr;
 
 	UTIL_MakeVectors( m_pPlayer->pev->v_angle );
@@ -161,7 +203,10 @@ void CCofSwitchblade::WeaponIdle( void )
 {
 	if( m_flTimeWeaponIdle > UTIL_WeaponTimeBase())
 		return;
-	Anim( RANDOM_LONG( 0, 4 ) ? BLADE_IDLE : BLADE_FIDGET1, RANDOM_FLOAT( 5, 10 ));
+	if( m_iHand == 2 )
+		Anim( RANDOM_LONG( 0, 4 ) ? BLADE_IDLE_LEFT : BLADE_FIDGET1_LEFT, RANDOM_FLOAT( 5, 10 ));
+	else
+		Anim( RANDOM_LONG( 0, 4 ) ? BLADE_IDLE : BLADE_FIDGET1, RANDOM_FLOAT( 5, 10 ));
 }
 
 /*
