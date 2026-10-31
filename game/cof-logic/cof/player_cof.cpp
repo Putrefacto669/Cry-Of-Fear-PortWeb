@@ -64,6 +64,10 @@ typedef struct
 
 	char objective[COF_ITEM_LEN];  // hints.txt key of the current objective
 	EHANDLE store;                 // cof_playerstate holding this in save games
+
+	cof_phone_t phone;   // trigger_cofmobile / weapon_mobile
+	int sentHide;        // m_iHideHUD in the last COF/HUD STAT
+	int sentUnread;      // last COF/HUD SMSICON
 } cof_player_t;
 
 static cof_player_t g_cofPlayers[33];
@@ -104,6 +108,12 @@ static CBaseEntity *CoF_Recipient( CBaseEntity *pActivator )
 		return pActivator;
 
 	return UTIL_PlayerByIndex( 1 );
+}
+
+cof_phone_t *CoF_Phone( CBaseEntity *pPlayer )
+{
+	cof_player_t *s = CoF_State( pPlayer );
+	return s ? &s->phone : NULL;
 }
 
 /*
@@ -312,7 +322,7 @@ void CoF_PlayerSpawn( CBasePlayer *pPlayer )
 	memset( s, 0, sizeof( *s ));
 	s->stamina = COF_STAMINA_MAX;
 	CoF_PuzzlesNewGame();
-	s->sentHealth = s->sentStamina = s->sentSprint = -1;
+	s->sentHealth = s->sentStamina = s->sentSprint = s->sentHide = -1;
 	s->invDirty = TRUE;
 }
 
@@ -412,16 +422,26 @@ void CoF_PlayerPreThink( CBasePlayer *pPlayer )
 
 	int health = pev->health > 0.0f ? (int)ceil( pev->health ) : 0;
 	int stamina = (int)s->stamina;
-	BOOL changed = health != s->sentHealth || stamina != s->sentStamina || s->sprinting != s->sentSprint;
+	BOOL changed = health != s->sentHealth || stamina != s->sentStamina || s->sprinting != s->sentSprint ||
+		pPlayer->m_iHideHUD != s->sentHide;
 
+	// the bars are always on screen in the original, except while the HUD is hidden
 	if(( changed && now >= s->nextStatus ) || now >= s->forceStatus )
 	{
-		CoF_HudPrint( "COF/HUD STAT %d %d %d\n", health, stamina, s->sprinting ? 1 : 0 );
+		CoF_HudPrint( "COF/HUD STAT %d %d %d %d\n", health, stamina, s->sprinting ? 1 : 0, pPlayer->m_iHideHUD );
 		s->sentHealth = health;
 		s->sentStamina = stamina;
 		s->sentSprint = s->sprinting;
+		s->sentHide = pPlayer->m_iHideHUD;
 		s->nextStatus = now + 0.1f;
 		s->forceStatus = now + 2.0f;
+	}
+
+	// UnreadSMS of the original: the icon stays until the phone is taken out
+	if( s->phone.unread != s->sentUnread || s->invDirty )
+	{
+		CoF_HudPrint( "COF/HUD SMSICON %d\n", s->phone.unread ? 1 : 0 );
+		s->sentUnread = s->phone.unread;
 	}
 
 	CoF_SyncCounts( pPlayer, s );
@@ -977,6 +997,9 @@ public:
 	int m_iPassword;
 	string_t m_iszCode;
  string_t m_iszPadlockCode;
+	int m_iSmsMessage;
+	BOOL m_fSmsUnread;
+	BOOL m_fMobileFlash;
 };
 
 LINK_ENTITY_TO_CLASS( cof_playerstate, CCofPlayerState )
@@ -992,6 +1015,9 @@ TYPEDESCRIPTION CCofPlayerState::m_SaveData[] =
 	DEFINE_FIELD( CCofPlayerState, m_iszCode, FIELD_STRING ),
  DEFINE_FIELD( CCofPlayerState, m_iszPadlockCode, FIELD_STRING ),
 	DEFINE_FIELD( CCofPlayerState, m_flStamina, FIELD_FLOAT ),
+	DEFINE_FIELD( CCofPlayerState, m_iSmsMessage, FIELD_INTEGER ),
+	DEFINE_FIELD( CCofPlayerState, m_fSmsUnread, FIELD_BOOLEAN ),
+	DEFINE_FIELD( CCofPlayerState, m_fMobileFlash, FIELD_BOOLEAN ),
 };
 
 void CCofPlayerState::Spawn( void )
@@ -1015,6 +1041,9 @@ int CCofPlayerState::Save( CSave &save )
 	for( int q = 0; q < 3; q++ )
 		m_iszQuick[q] = s->quick[q][0] ? ALLOC_STRING( s->quick[q] ) : iStringNull;
 	m_flStamina = s->stamina;
+	m_iSmsMessage = s->phone.message;
+	m_fSmsUnread = s->phone.unread;
+	m_fMobileFlash = s->phone.flash;
 	char code[16];
 	m_iPassword = CoF_GetPuzzleState( code, sizeof( code ));
 	m_iszCode = ALLOC_STRING( code );
@@ -1045,6 +1074,9 @@ int CCofPlayerState::Restore( CRestore &restore )
 	snprintf( s->objective, sizeof( s->objective ), "%s", FStringNull( m_iszObjective ) ? "" : STRING( m_iszObjective ));
 	s->stamina = m_flStamina;
 	s->exhausted = FALSE;
+	s->phone.message = m_iSmsMessage;
+	s->phone.unread = m_fSmsUnread;
+	s->phone.flash = m_fMobileFlash;
 	CoF_SetPuzzleState( m_iPassword, FStringNull( m_iszCode ) ? "" : STRING( m_iszCode ));
  if(!FStringNull(m_iszPadlockCode)) CoF_SetPadlockCode(STRING(m_iszPadlockCode));
 	s->invDirty = TRUE;

@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "c11d928d6509",
+ "version": "f7039c016011",
  "coi": false,
  "precache": [
   "LICENSE.txt",
@@ -36,7 +36,7 @@ self.COF_MANIFEST = {
   "LICENSE.txt": "230184f60bae",
   "debug.js": "40590135a97a",
   "gpustats.js": "70aaa1f28265",
-  "hud.js": "565ed825f06e",
+  "hud.js": "72472891cfeb",
   "index.html": "a79520cdd368",
   "loader.js": "9dee81fda9c2",
   "mp3/2aphall1.mp3": "70a02fded189",
@@ -79,32 +79,32 @@ self.COF_MANIFEST = {
   "mp3/tv_noise.mp3": "3e7347b88a61",
   "mp3/unlockables.mp3": "4ce75cbcd963",
   "mp3/watercorridor.mp3": "ba8c97aa265b",
-  "packs/boot.data": "3f91308bfe11",
-  "packs/boot.js": "ff5f6003d70b",
-  "packs/engine.data": "859ce1ccb05a",
-  "packs/engine.js": "28e0996d8040",
-  "packs/map_c_apartment1.data": "98d2f60e8b98",
-  "packs/map_c_apartment1.js": "f8005dcf8016",
+  "packs/boot.data": "580dd42238b7",
+  "packs/boot.js": "d592d8e316ec",
+  "packs/engine.data": "c908d64391d5",
+  "packs/engine.js": "437f864ac78b",
+  "packs/map_c_apartment1.data": "c9f774131e6d",
+  "packs/map_c_apartment1.js": "d82cf02e3434",
   "packs/map_c_apartment2.data": "d9c0dd5a14b5",
-  "packs/map_c_apartment2.js": "ce9ff038047e",
+  "packs/map_c_apartment2.js": "f1d26626f496",
   "packs/map_c_apartment3.data": "20c22cbe6f4c",
-  "packs/map_c_apartment3.js": "b4b0527c9d61",
+  "packs/map_c_apartment3.js": "facf3c150c82",
   "packs/map_c_apartment4.data": "d9f0978f0ca2",
-  "packs/map_c_apartment4.js": "204f9ac61c3e",
-  "packs/map_c_apartment5.data": "a93608703ee9",
-  "packs/map_c_apartment5.js": "7b8364eb3992",
+  "packs/map_c_apartment4.js": "c2af7758609d",
+  "packs/map_c_apartment5.data": "c98c0fd97724",
+  "packs/map_c_apartment5.js": "9dce9794c350",
   "packs/map_c_apartmentsick.data": "75813d82361a",
-  "packs/map_c_apartmentsick.js": "196ac942c793",
+  "packs/map_c_apartmentsick.js": "44ec911b7ec5",
   "packs/map_c_game_menu1.data": "ae0666489e26",
-  "packs/map_c_game_menu1.js": "62f3b97b2830",
+  "packs/map_c_game_menu1.js": "a673021158fc",
   "packs/map_c_intro.data": "95524a3f0d7a",
-  "packs/map_c_intro.js": "328287147be9",
+  "packs/map_c_intro.js": "605ee5748681",
   "packs/map_c_nightmare.data": "2737687a6e69",
-  "packs/map_c_nightmare.js": "e3fb96136c9d",
-  "packs/map_c_start.data": "925160ee84d8",
-  "packs/map_c_start.js": "6531d9287fbc",
+  "packs/map_c_nightmare.js": "c7213c0199bd",
+  "packs/map_c_start.data": "1f7e4dbf91dd",
+  "packs/map_c_start.js": "0f10cdbd7efd",
   "packs/map_c_start2.data": "0558e5332920",
-  "packs/map_c_start2.js": "439e078571fa",
+  "packs/map_c_start2.js": "2c0b3af84b85",
   "packs/maps.json": "0e0c426dc0e3",
   "packs/transitions.json": "79671f300407",
   "postfx.js": "2b0b3ba1a448",
@@ -120,16 +120,16 @@ self.COF_MANIFEST = {
  },
  "gz": {
   "packs/boot.data": {
-   "size": 75720687,
-   "gzSize": 19306673
+   "size": 79977175,
+   "gzSize": 21807159
   },
   "packs/engine.data": {
-   "size": 2804942,
-   "gzSize": 932717
+   "size": 2806325,
+   "gzSize": 933848
   },
   "packs/map_c_apartment1.data": {
-   "size": 51581504,
-   "gzSize": 28439283
+   "size": 51495602,
+   "gzSize": 28388590
   },
   "packs/map_c_apartment2.data": {
    "size": 37484890,
@@ -144,8 +144,8 @@ self.COF_MANIFEST = {
    "gzSize": 19854564
   },
   "packs/map_c_apartment5.data": {
-   "size": 29948188,
-   "gzSize": 15951384
+   "size": 29862286,
+   "gzSize": 15900981
   },
   "packs/map_c_apartmentsick.data": {
    "size": 25074929,
@@ -164,8 +164,8 @@ self.COF_MANIFEST = {
    "gzSize": 18193168
   },
   "packs/map_c_start.data": {
-   "size": 63762914,
-   "gzSize": 29974582
+   "size": 63677012,
+   "gzSize": 29923845
   },
   "packs/map_c_start2.data": {
    "size": 52792141,

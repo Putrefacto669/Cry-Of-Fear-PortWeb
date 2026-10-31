@@ -190,10 +190,11 @@
 
   // --- health and stamina bars ------------------------------------------------------------------
   // 640_healthbar.tga / 640_staminabar.tga are 32x160 frames; the 11x118 bar sits at (10,3) and
-  // empties from the top. Stamina shows while it is not full, health when it changes or with the bag.
+  // empties from the top. Like the original client.dll, both are always on screen while playing,
+  // except in the prelude (c_nightmare) and while the HUD is hidden (HIDEHUD_ALL / HIDEHUD_HEALTH).
   const GAME = "/rodir/cryoffear";
   const VGUI = `${GAME}/gfx/vgui`;
-  const status = { health: 100, stamina: 100, sprint: 0 };
+  const status = { health: 100, stamina: 100, sprint: 0, hide: 0 };
   let bars = null;
 
   const makeBar = (kind) => {
@@ -229,7 +230,7 @@
     document.head.appendChild(style);
     const box = document.createElement("div");
     box.id = "cof-status";
-    bars = { box, health: makeBar("healthbar"), stamina: makeBar("staminabar"), healthTimer: 0 };
+    bars = { box, health: makeBar("healthbar"), stamina: makeBar("staminabar") };
     box.append(bars.health, bars.stamina);
     document.querySelector("main").appendChild(box);
   };
@@ -238,20 +239,35 @@
     el.querySelector(".clip").style.height = `${Math.max(0, Math.min(100, value))}%`;
   };
 
-  const showHealth = (ms) => {
-    bars.health.classList.add("on");
-    clearTimeout(bars.healthTimer);
-    if (ms) bars.healthTimer = setTimeout(() => { if (!bag.open) bars.health.classList.remove("on"); }, ms);
+  const refreshBars = () => {
+    if (!bars) return;
+    const on = !(status.hide & 0xc) && currentMapName() !== "c_nightmare" && !loading.active;
+    bars.health.classList.toggle("on", on);
+    bars.stamina.classList.toggle("on", on);
   };
 
-  const updateStatus = (health, stamina, sprint) => {
+  const updateStatus = (health, stamina, sprint, hide) => {
     ensureBars();
-    const hurt = health !== status.health;
-    Object.assign(status, { health, stamina, sprint });
+    Object.assign(status, { health, stamina, sprint, hide });
     setBar(bars.health, health);
     setBar(bars.stamina, stamina);
-    bars.stamina.classList.toggle("on", stamina < 100 || sprint > 0 || bag.open);
-    if (hurt) showHealth(4000);
+    refreshBars();
+  };
+
+  // UnreadSMS: 640_hudelem_smsicon.tga until the phone is taken out (player_cof.cpp)
+  let smsIcon = null;
+  const setSmsIcon = (on) => {
+    if (!smsIcon) {
+      smsIcon = document.createElement("img");
+      smsIcon.id = "cof-smsicon";
+      smsIcon.alt = "";
+      Object.assign(smsIcon.style, { position: "absolute", right: "3%", bottom: "6%", width: "calc(32px * clamp(1, 100vh / 480px, 2.4))",
+        zIndex: 11, pointerEvents: "none", display: "none" });
+      loadTga(`${VGUI}/640_hudelem_smsicon.tga`).then((url) => { smsIcon.src = url; })
+        .catch((e) => console.warn("cof sms icon:", e.message));
+      document.querySelector("main").appendChild(smsIcon);
+    }
+    smsIcon.style.display = on ? "block" : "none";
   };
 
   // --- bag (TAB) ----------------------------------------------------------------------------------
@@ -266,8 +282,16 @@
   const OBJECTIVE_BOX = [404, 354, 301, 97];
   const ITEM_RE = /"([^"]+)"\s*\{\s*data\s+"([^"]*)"\s*\}/g;
 
+  // the item menu of the original: inventory_weapons.tga (EQUIP, COMBINE, DROP, DUAL WIELD, 1 2 3) and
+  // inventory_items.tga (USE, COMBINE, DROP), 126 px wide with 42 px rows, opened next to the slot
+  const MENU_W = 126, MENU_ROW = 42;
+  const WEAPON_MENU = ["equip", "combine", "drop", "dual", "quick"];
+  const ITEM_MENU = ["use", "combine", "drop"];
+  // inventory/*.wav, played by the original client.dll for each action
+  const bagSound = (name) => engineCmd(`play inventory/inventory_${name}.wav\n`);
+
   // items: "inventoryitems/...txt" or "...txt:count" (ammo, syringes); quick: names per slot
-  const bag = { open: false, el: null, items: [], counts: [], quick: ["-", "-", "-"], selected: -1, objective: "" };
+  const bag = { open: false, el: null, items: [], counts: [], quick: ["-", "-", "-"], selected: -1, objective: "", menu: null };
   const itemCache = new Map();
 
   const readItem = (def) => {
@@ -293,10 +317,17 @@
     const style = document.createElement("style");
     style.textContent = `
       #cof-bag { position:absolute; inset:0; display:none; align-items:center; justify-content:center;
-                 z-index:12; background:rgba(0,0,0,.55); container-type:size; }
+                 z-index:12; background:#000; container-type:size; }
       #cof-bag.on { display:flex; }
+      #cof-bag > img.rust { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
       #cof-bag .sheet { position:relative; aspect-ratio:${BAG_W} / ${BAG_H}; width:min(94cqw, calc(92cqh * ${BAG_W / BAG_H})); }
       #cof-bag .sheet > img.bg { position:absolute; inset:0; width:100%; height:100%; }
+      #cof-bag .menu { position:absolute; display:none; z-index:2; }
+      #cof-bag .menu.on { display:block; }
+      #cof-bag .menu img { display:block; width:100%; height:100%; }
+      #cof-bag .menu .row { position:absolute; left:0; width:100%; cursor:pointer; }
+      #cof-bag .menu .row:hover, #cof-bag .menu .row.q:hover { background:rgba(255,255,255,.12); }
+      #cof-bag .menu .row.q { width:33.34%; }
       #cof-bag .slot { position:absolute; display:flex; align-items:center; justify-content:center; }
       #cof-bag .slot[data-item] { cursor:pointer; }
       #cof-bag .slot img { width:100%; height:100%; object-fit:contain; }
@@ -313,8 +344,11 @@
     document.head.appendChild(style);
     const el = document.createElement("div");
     el.id = "cof-bag";
-    el.innerHTML = `<div class="sheet"><img class="bg" alt=""></div>`;
+    el.innerHTML = `<img class="rust" alt=""><div class="sheet"><img class="bg" alt=""><div class="menu"><img alt=""></div></div>`;
     const sheet = el.querySelector(".sheet");
+    bag.menu = el.querySelector(".menu");
+    loadTga(`${VGUI}/backgroundtoall.TGA`).then((url) => { el.querySelector(".rust").src = url; })
+      .catch((e) => console.warn("cof bag background:", e.message));
     for (const [x, y] of SLOTS) {
       const slot = document.createElement("div");
       slot.className = "slot";
@@ -329,16 +363,20 @@
     place(objective, ...OBJECTIVE_BOX);
     sheet.append(desc, objective);
     sheet.addEventListener("click", (e) => {
+      const row = e.target.closest(".menu .row");
+      if (row) { bagAction(row.dataset.act, +row.dataset.q || 0); return; }
       const slot = e.target.closest(".slot");
-      if (!slot) return;
+      if (!slot) { closeMenu(); return; }
       if (slot.dataset.quick !== undefined) {
         // with an item selected, a quick slot takes it (only weapons; the server checks)
-        if (bag.selected >= 0) engineCmd(`cof_quickset ${+slot.dataset.quick + 1} ${bag.selected}`);
+        if (bag.selected >= 0) { engineCmd(`cof_quickset ${+slot.dataset.quick + 1} ${bag.selected}`); bagSound("click"); }
+        closeMenu();
         return;
       }
-      if (slot.dataset.item === undefined) return;
+      if (slot.dataset.item === undefined) { closeMenu(); return; }
       bag.selected = +slot.dataset.item;
       renderBag();
+      openMenu(slot);
     });
     sheet.addEventListener("dblclick", (e) => {
       const slot = e.target.closest(".slot");
@@ -348,6 +386,54 @@
       .catch((e) => console.warn("cof bag:", e.message));
     bag.el = el;
     document.querySelector("main").appendChild(el);
+  };
+
+  const isWeapon = (i) => /^inventoryitems\/weapons\//i.test(bag.items[i] || "");
+
+  const closeMenu = () => { if (bag.menu) bag.menu.classList.remove("on"); };
+
+  // like the original, the menu opens at the slot's right edge, 5 px up and left
+  const openMenu = (slot) => {
+    const weapon = isWeapon(bag.selected);
+    const rows = weapon ? WEAPON_MENU : ITEM_MENU;
+    const menu = bag.menu;
+    const x = (parseFloat(slot.style.left) / 100) * BAG_W + SLOT - 5;
+    const y = (parseFloat(slot.style.top) / 100) * BAG_H - 5;
+    place(menu, Math.min(x, BAG_W - MENU_W), Math.min(y, BAG_H - rows.length * MENU_ROW), MENU_W, rows.length * MENU_ROW);
+    menu.replaceChildren(menu.querySelector("img") || document.createElement("img"));
+    loadTga(`${VGUI}/${weapon ? "inventory_weapons" : "inventory_items"}.tga`).then((url) => { menu.querySelector("img").src = url; })
+      .catch((e) => console.warn("cof bag menu:", e.message));
+    rows.forEach((act, r) => {
+      const cells = act === "quick" ? [1, 2, 3] : [0];
+      cells.forEach((q, c) => {
+        const row = document.createElement("div");
+        row.className = act === "quick" ? "row q" : "row";
+        row.dataset.act = act;
+        if (q) row.dataset.q = q;
+        Object.assign(row.style, { top: `${(r / rows.length) * 100}%`, height: `${100 / rows.length}%`, left: `${c * 33.33}%` });
+        menu.appendChild(row);
+      });
+    });
+    menu.classList.add("on");
+    bagSound("toggle");
+  };
+
+  // EQUIP / USE take it in the hands (cof_equip: the server only equips real weapons), 1 2 3 put a weapon
+  // in a quick select slot. COMBINE, DROP and DUAL WIELD are not in the port yet: the original's "no" sound.
+  const bagAction = (act, q) => {
+    const i = bag.selected;
+    closeMenu();
+    if (i < 0) return;
+    if (act === "equip" || (act === "use" && isWeapon(i))) {
+      engineCmd(`cof_equip ${i}`);
+      bagSound("click");
+      toggleBag();
+    } else if (act === "quick") {
+      engineCmd(`cof_quickset ${q} ${i}`);
+      bagSound("click");
+    } else {
+      bagSound("no");
+    }
   };
 
   // the picture, or the item's name when the game has none (Glock ammo)
@@ -425,16 +511,14 @@
     ensureBars();
     bag.open = !bag.open;
     bag.el.classList.toggle("on", bag.open);
+    closeMenu();
+    bagSound(bag.open ? "open" : "close");
     if (bag.open) {
       if (bag.selected >= bag.items.length) bag.selected = -1;
       renderBag();
-      showHealth(0);
-      bars.stamina.classList.add("on");
       // the cursor is needed to pick items; clicking the game captures it again
       if (document.pointerLockElement) document.exitPointerLock();
     } else {
-      showHealth(1500);
-      updateStatus(status.health, status.stamina, status.sprint);
       // TAB is a recent user gesture, so the browser usually accepts this without a click
       try {
         const p = document.getElementById("canvas").requestPointerLock();
@@ -831,6 +915,13 @@
   const showSms = (n) => {
     const line = lineOf("phone_messages.txt", n + 1).replace(/^"|"$/g, "");
     if (line) flash(panel?.sms || (ensurePanel(), panel.sms), "smsTimer", line, 7000);
+  };
+
+  // the phone's screen shows the original English text; in Spanish, the translation as a subtitle
+  const showSmsTranslation = (n) => {
+    if (!SPANISH) return;
+    const line = lineOf("phone_messages.txt", n + 1).replace(/^"|"$/g, "");
+    if (line) flash(panel?.sub || (ensurePanel(), panel.sub), "subTimer", line, 6000);
   };
 
   const openDialog = (content) => {
@@ -1356,7 +1447,14 @@
         }
         case "STAT":
           if (loading.active) loading.ready();
-          updateStatus(+args[0] || 0, +args[1] || 0, +args[2] || 0);
+          updateStatus(+args[0] || 0, +args[1] || 0, +args[2] || 0, +args[3] || 0);
+          break;
+        case "SMSICON":
+          setSmsIcon(args[0] === "1");
+          break;
+        case "SMSREAD":
+          // the message is on the phone's screen (in English, like the original): its translation below
+          showSmsTranslation(parseInt(args[0], 10) || 0);
           break;
         case "INV": {
           const entries = args.slice(1, 1 + (parseInt(args[0], 10) || 0));

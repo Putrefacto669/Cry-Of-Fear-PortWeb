@@ -119,7 +119,9 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
   `client.dll`: `build/envpos-client-analysis/envpos_client`; del servidor:
   `build/entity-analysis/cof_classes`. Scripts de solo lectura en `tools/ghidra/`: `DumpBlackRefs`
   (funciones que usan ciertas cadenas), `DumpFuncs` (descompila funciones y sus llamadores),
-  `DumpScalarUse` (quién usa un desplazamiento), `DumpFloats` (valores de constantes). Ejemplo:
+  `DumpScalarUse` (quién usa un desplazamiento), `DumpFloats` (valores de constantes),
+  `DumpCallers` (quién llama a una dirección), `DumpEntityClass` (clase exportada y su tabla de
+  métodos). Ejemplo:
 
   ```powershell
   $env:JAVA_HOME = "C:\Users\josue\cof-re-tools\jdk-25.0.4.1+1"
@@ -194,12 +196,23 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
   punto de reproducción los dibujos inválidos pasan de 253 a 0, y en GPU real (D3D11) de decenas de
   errores por segundo a 0. La suite y el preludio completo pasan. El disparador del screamer es el
   `trigger_once` `*125` (y ≈ -1370): se llega caminando hacia -y desde (-738, -1300, -290).
+- **Bolso, barras, teléfono y pisadas como el original** (`docs/HUD_PHONE_FOOTSTEPS.md`), sacado de
+  `client.dll` y `hl.dll`:
+  - **Bolso:** fondo de óxido y menú por objeto (EQUIP... 1 2 3) con los sonidos `inventory/*`.
+  - **Barras:** siempre visibles, salvo en el preludio o con el HUD oculto; las cámaras con
+    spawnflag 16 ponen `HIDEHUD_HEALTH`.
+  - **Teléfono:** modos SMS y linterna; el SMS se ve en la pantalla del modelo (`body` = número de
+    mensaje), con icono de no leído y traducción como subtítulo.
+  - **Pisadas:** `player/footsteps/*` según `sound/materials.txt`, más el roce del bolso.
 
 ## Pendiente
 
 - Reempaquetar `dist/` con el arreglo de `gl2_shim` (ya está en `patches/xash3d`; validado en
   `dist-glfix` del árbol de WSL, falta autorización para publicarlo).
-- X falsas del preludio (`wrong1..11`) sin probar una por una.
+- X falsas del preludio (`wrong1..11`) sin probar una por una (el usuario dice que las X van bien).
+- Bolso: COMBINE, DROP, DUAL WIELD y el panel de notas sin implementar (suenan a `inventory_no`).
+  Falta también el puñetazo con el teléfono (disparo secundario).
+- El usuario ve animaciones "trabadas": falta saber cuáles (armas, enemigos o cinemáticas).
 - Diferencias frente al recorrido original en vídeo (`docs/VIDEO_REFERENCE.md`): la cara del
   screamer se ve más pequeña en el port (causa sin demostrar) y el cono de luz del móvil está sin
   comparar. Las capturas sin interfaz (SwiftShader) pintan blanco el modelo en mano: no es un fallo

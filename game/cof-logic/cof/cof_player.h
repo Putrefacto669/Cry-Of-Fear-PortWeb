@@ -25,6 +25,18 @@ void CoF_ClearItem( CBaseEntity *pActivator, const char *classname );
 // current objective (hints.txt key), shown in the bag and kept in save games
 void CoF_SetObjective( const char *key );
 
+// Simon's phone (trigger_cofmobile, weapon_mobile), kept in save games. The text messages are
+// drawn on the model's screen: "message" picks the screen1..7 submodel of v_mobile.mdl.
+typedef struct
+{
+	int message;   // bodynumber of the last trigger_cofmobile
+	int unread;    // UnreadSMS of the original: the HUD icon until the phone is taken out
+	int flash;     // held as a flashlight instead of showing the message (the original starts with the message)
+} cof_phone_t;
+
+cof_phone_t *CoF_Phone( CBaseEntity *pPlayer );
+void CoF_MobileNewMessage( CBasePlayer *pPlayer );  // weapons_cof.cpp: a phone in the hand shows it
+
 // puzzles.cpp: computer password and keypad code, drawn for each new game
 void CoF_PuzzlesNewGame( void );
 int CoF_GetPuzzleState( char *code, int size );

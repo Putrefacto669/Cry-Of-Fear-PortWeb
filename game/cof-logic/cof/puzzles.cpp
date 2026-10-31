@@ -158,7 +158,7 @@ class CTriggerCofMobile : public CPointEntity
 {
 public:
 	void Spawn( void ) { Precache(); CPointEntity::Spawn(); }
-	void Precache( void ) { PRECACHE_SOUND( "weapons/mobile/mobile_sms.wav" ); }
+	void Precache( void ) { PRECACHE_SOUND( "weapons/mobile/mobile_sms.wav" ); PRECACHE_SOUND( "phone/phone_vibrate.wav" ); }
 	virtual void KeyValue( KeyValueData *pkvd );
 	virtual void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value );
 	virtual int Save( CSave &save );
@@ -188,12 +188,25 @@ void CTriggerCofMobile::KeyValue( KeyValueData *pkvd )
 		CPointEntity::KeyValue( pkvd );
 }
 
+// Like the original (CCofTriggerMobile): the message goes to the phone, which shows it on its screen.
+// Players without the phone get nothing; spawnflag 1 is silent; a phone in the hand looks at it.
+#define SF_COFMOBILE_SILENT 1
+
 void CTriggerCofMobile::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
 {
-	CBaseEntity *pPlayer = UTIL_PlayerByIndex( 1 );
-	if( pPlayer )
-		EMIT_SOUND( ENT( pPlayer->pev ), CHAN_ITEM, "weapons/mobile/mobile_sms.wav", 1.0f, ATTN_NORM );
-	CoF_HudPrint( "COF/HUD SMS %d\n", m_iMessage );
+	CBasePlayer *pPlayer = (CBasePlayer *)UTIL_PlayerByIndex( 1 );
+	cof_phone_t *phone = CoF_Phone( pPlayer );
+	if( !phone || !pPlayer->HasNamedPlayerItem( "weapon_mobile" ))
+		return;
+
+	phone->message = m_iMessage;
+	phone->unread = TRUE;
+	CoF_MobileNewMessage( pPlayer );
+	if( !FBitSet( pev->spawnflags, SF_COFMOBILE_SILENT ))
+	{
+		EMIT_SOUND( ENT( pPlayer->pev ), CHAN_WEAPON, "weapons/mobile/mobile_sms.wav", 1.0f, ATTN_NORM );
+		EMIT_SOUND( ENT( pPlayer->pev ), CHAN_AUTO, "phone/phone_vibrate.wav", 1.0f, ATTN_NORM );
+	}
 }
 
 /*

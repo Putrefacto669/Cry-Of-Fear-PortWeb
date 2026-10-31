@@ -57,6 +57,12 @@ BOOT_FILES = ["liblist.gam", "valve.rc", "delta.lst","titles.txt", "skill.cfg", 
               "gfx/vgui/640_staminabar.tga", "gfx/vgui/640_staminabar_bar.tga",
               "gfx/vgui/640_staminabar_barempty.tga",
               "sound/items/gunpickup2.wav",  # recoger armas (player_cof.cpp)
+              # pisadas del original (pm_shared.c): materiales de las texturas y roce del bolso
+              "sound/materials.txt", "sound/player/sprint/bag_movement.wav",
+              # bolso como el original (hud.js): fondo y menú de cada objeto
+              "gfx/vgui/backgroundtoall.TGA", "gfx/vgui/inventory_weapons.tga", "gfx/vgui/inventory_items.tga",
+              # teléfono: SMS sin leer (hud.js) y vibración (trigger_cofmobile)
+              "gfx/vgui/640_hudelem_smsicon.tga", "sound/phone/phone_vibrate.wav",
               "models/ammo/clip.mdl",  # ammo_glock (weapons_cof.cpp)
               "models/tape_recorder.mdl",  # grabadoras para guardar (puzzles.cpp)
               "txtfiles/hints.txt",  # textos de cof_hint y cof_objective (hud.js)
@@ -82,7 +88,8 @@ BOOT_DIRS = ["gfx/shell", "resource", "sprites", "events", "inventoryitems",
              "models/weapons/switchblade", "models/weapons/glock", "models/weapons/syringe",
              "models/weapons/mobile", "sound/weapons/switchblade", "sound/weapons/glock",
              "sound/weapons/syringe", "sound/weapons/mobile", "models/weapons/camera",
-             "sound/weapons/camera", "notes"]
+             "sound/weapons/camera", "notes",
+             "sound/player/footsteps", "sound/inventory"]
 # Enemigos de game/cof-logic/cof/monsters.cpp: el modelo y los sonidos los pone el código, no el BSP.
 # Se buscan por classname y por la "monstertype" de los monstermaker.
 MONSTER_ASSETS = {

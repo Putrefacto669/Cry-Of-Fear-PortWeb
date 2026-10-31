@@ -408,10 +408,17 @@ void CCofSyringe::WeaponIdle( void )
 
 /*
 =====================================================================
-weapon_mobile: Simon's phone, held in flashlight mode
+weapon_mobile: Simon's phone. Like the original (CMobile), it has two
+modes: the last text message on its screen (the body picks the
+screen1..7 submodel) and a flashlight. It starts with the message;
++attack switches. Taking it out reads the message (UnreadSMS off).
 =====================================================================
 */
-enum mobile_e { MOBILE_IDLE_FLASH = 5, MOBILE_DRAW_FLASH = 7, MOBILE_HOLSTER_FLASH = 9 };
+enum mobile_e
+{
+	MOBILE_IDLE_SMS = 0, MOBILE_LOOK_SMS = 1, MOBILE_DRAW_SMS = 2, MOBILE_HOLSTER_SMS = 3, MOBILE_SMS_TO_FLASH = 4,
+	MOBILE_IDLE_FLASH = 5, MOBILE_LOOK_FLASH = 6, MOBILE_DRAW_FLASH = 7, MOBILE_FLASH_TO_SMS = 8, MOBILE_HOLSTER_FLASH = 9
+};
 
 class CCofMobile : public CCofWeapon
 {
@@ -421,7 +428,12 @@ public:
 	int GetItemInfo( ItemInfo *p );
 	BOOL Deploy( void );
 	void Holster( int skiplocal = 0 );
+	void PrimaryAttack( void );
 	void WeaponIdle( void );
+	void ItemPostFrame( void );
+	void LookAtMessage( void );
+
+	float m_flLightSwitch;  // the flashlight follows the switch animation (FlashToggle of the original)
 };
 
 LINK_ENTITY_TO_CLASS( weapon_mobile, CCofMobile )
@@ -439,6 +451,8 @@ void CCofMobile::Precache( void )
 {
 	PRECACHE_MODEL( "models/weapons/mobile/v_mobile.mdl" );
 	PRECACHE_MODEL( "models/weapons/mobile/w_mobile.mdl" );
+	PRECACHE_SOUND( "weapons/mobile/mobile_sms.wav" );
+	PRECACHE_SOUND( "phone/phone_vibrate.wav" );
 }
 
 int CCofMobile::GetItemInfo( ItemInfo *p )
@@ -457,26 +471,98 @@ int CCofMobile::GetItemInfo( ItemInfo *p )
 	return 1;
 }
 
+static void CoF_MobileLight( CBasePlayer *pPlayer, BOOL on )
+{
+	if( on && !pPlayer->FlashlightIsOn())
+		pPlayer->FlashlightTurnOn();
+	else if( !on && pPlayer->FlashlightIsOn())
+		pPlayer->FlashlightTurnOff();
+}
+
 BOOL CCofMobile::Deploy( void )
 {
-	if( !m_pPlayer->FlashlightIsOn())
-		m_pPlayer->FlashlightTurnOn();
-	return DefaultDeploy( "models/weapons/mobile/v_mobile.mdl", "", MOBILE_DRAW_FLASH, "trip" );
+	cof_phone_t *phone = CoF_Phone( m_pPlayer );
+	BOOL flash = phone && phone->flash;
+
+	pev->body = phone ? phone->message : 0;
+	m_flLightSwitch = 0.0f;
+	CoF_MobileLight( m_pPlayer, flash );
+	if( !flash && phone )
+		CoF_HudPrint( "COF/HUD SMSREAD %d\n", phone->message );
+	return DefaultDeploy( "models/weapons/mobile/v_mobile.mdl", "", flash ? MOBILE_DRAW_FLASH : MOBILE_DRAW_SMS, "trip", 0, pev->body );
 }
 
 void CCofMobile::Holster( int skiplocal )
 {
-	if( m_pPlayer->FlashlightIsOn())
-		m_pPlayer->FlashlightTurnOff();
+	cof_phone_t *phone = CoF_Phone( m_pPlayer );
+
+	CoF_MobileLight( m_pPlayer, FALSE );
+	m_flLightSwitch = 0.0f;
 	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5f;
-	SendWeaponAnim( MOBILE_HOLSTER_FLASH, 0 );
+	SendWeaponAnim( phone && phone->flash ? MOBILE_HOLSTER_FLASH : MOBILE_HOLSTER_SMS, 0 );
+}
+
+// smstoflash / flashtosms are 30 frames at 30 fps; the light changes partway, as in the original
+void CCofMobile::PrimaryAttack( void )
+{
+	cof_phone_t *phone = CoF_Phone( m_pPlayer );
+	if( !phone )
+		return;
+
+	phone->flash = !phone->flash;
+	Anim( phone->flash ? MOBILE_SMS_TO_FLASH : MOBILE_FLASH_TO_SMS, 1.0f );
+	m_flLightSwitch = gpGlobals->time + ( phone->flash ? 0.23f : 0.66f );
+	m_flNextPrimaryAttack = m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 1.0f;
+	if( !phone->flash )
+		CoF_HudPrint( "COF/HUD SMSREAD %d\n", phone->message );
+}
+
+// a new message with the phone in the hand: Simon looks at it (sms_looksms / flash_looksms, 53 frames at 35 fps)
+void CCofMobile::LookAtMessage( void )
+{
+	cof_phone_t *phone = CoF_Phone( m_pPlayer );
+	if( !phone )
+		return;
+
+	pev->body = phone->message;
+	Anim( phone->flash ? MOBILE_LOOK_FLASH : MOBILE_LOOK_SMS, 53.0f / 35.0f );
+	m_flNextPrimaryAttack = m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 53.0f / 35.0f;
+	CoF_HudPrint( "COF/HUD SMSREAD %d\n", phone->message );
+}
+
+void CCofMobile::ItemPostFrame( void )
+{
+	cof_phone_t *phone = CoF_Phone( m_pPlayer );
+
+	if( phone )
+	{
+		if( m_flLightSwitch && gpGlobals->time >= m_flLightSwitch )
+		{
+			CoF_MobileLight( m_pPlayer, phone->flash );
+			m_flLightSwitch = 0.0f;
+		}
+		// the message is on the screen in the hand: read
+		phone->unread = FALSE;
+	}
+	CCofWeapon::ItemPostFrame();
 }
 
 void CCofMobile::WeaponIdle( void )
 {
+	cof_phone_t *phone = CoF_Phone( m_pPlayer );
+
 	if( m_flTimeWeaponIdle > UTIL_WeaponTimeBase())
 		return;
-	Anim( MOBILE_IDLE_FLASH, 100.0f / 15.0f );
+	if( phone && !phone->flash )
+		Anim( MOBILE_IDLE_SMS, 101.0f / 15.0f );
+	else
+		Anim( MOBILE_IDLE_FLASH, 100.0f / 15.0f );
+}
+
+void CoF_MobileNewMessage( CBasePlayer *pPlayer )
+{
+	if( pPlayer->m_pActiveItem && FClassnameIs( pPlayer->m_pActiveItem->pev, "weapon_mobile" ))
+		((CCofMobile *)pPlayer->m_pActiveItem)->LookAtMessage();
 }
 
 void UTIL_PrecacheOtherWeapon( const char *szClassname ); // weapons.cpp, not in a header
@@ -491,6 +577,25 @@ void CoF_PrecacheWeapons( void )
 	UTIL_PrecacheOtherWeapon( "weapon_mobile" );
 	UTIL_PrecacheOtherWeapon( "weapon_camera" );
 	UTIL_PrecacheOther( "ammo_glock" );
+
+	// pm_shared.c plays these on the server too (the original's footsteps and bag rustling)
+	static const char *steps[] = { "carpet", "concrete", "crawl", "dirt", "glass", "grass", "gravel", "metal",
+		"mud", "paper", "sand", "snow", "splash", "wade", "wood" };
+	char sample[64];
+	for( size_t i = 0; i < ARRAYSIZE( steps ); i++ )
+	{
+		for( int n = 1; n <= 4; n++ )
+		{
+			snprintf( sample, sizeof( sample ), "player/footsteps/%s%d.wav", steps[i], n );
+			PRECACHE_SOUND( (char *)STRING( ALLOC_STRING( sample )));
+		}
+	}
+	for( int n = 1; n <= 8; n++ )
+	{
+		snprintf( sample, sizeof( sample ), "player/footsteps/twig_snap%d.wav", n );
+		PRECACHE_SOUND( (char *)STRING( ALLOC_STRING( sample )));
+	}
+	PRECACHE_SOUND( "player/sprint/bag_movement.wav" );
 }
 
 /*

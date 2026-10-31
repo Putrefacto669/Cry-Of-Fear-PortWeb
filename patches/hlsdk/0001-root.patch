@@ -686,7 +686,7 @@ index 652ecbc4..70509dfd 100644
  private:
  	unsigned short m_usAdjustPitch;
 diff --git a/dlls/triggers.cpp b/dlls/triggers.cpp
-index 7b5dde0f..1e60c3aa 100644
+index 7b5dde0f..043eeb71 100644
 --- a/dlls/triggers.cpp
 +++ b/dlls/triggers.cpp
 @@ -272,6 +272,9 @@ public:
@@ -859,7 +859,15 @@ index 7b5dde0f..1e60c3aa 100644
  
  //
  // Cache user-entity-field values until spawn is called.
-@@ -2131,10 +2242,35 @@ public:
+@@ -2103,6 +2214,7 @@ void CTriggerChangeTarget::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, U
+ #define SF_CAMERA_PLAYER_POSITION	1
+ #define SF_CAMERA_PLAYER_TARGET		2
+ #define SF_CAMERA_PLAYER_TAKECONTROL 4
++#define SF_CAMERA_HIDE_HUD		16	// Cry of Fear: HIDEHUD_HEALTH while the camera runs
+ 
+ class CTriggerCamera : public CBaseDelay
+ {
+@@ -2131,10 +2243,35 @@ public:
  	float m_acceleration;
  	float m_deceleration;
  	int m_state;
@@ -895,7 +903,7 @@ index 7b5dde0f..1e60c3aa 100644
  // Global Savedata for changelevel friction modifier
  TYPEDESCRIPTION	CTriggerCamera::m_SaveData[] =
  {
-@@ -2151,9 +2287,38 @@ TYPEDESCRIPTION	CTriggerCamera::m_SaveData[] =
+@@ -2151,9 +2288,38 @@ TYPEDESCRIPTION	CTriggerCamera::m_SaveData[] =
  	DEFINE_FIELD( CTriggerCamera, m_acceleration, FIELD_FLOAT ),
  	DEFINE_FIELD( CTriggerCamera, m_deceleration, FIELD_FLOAT ),
  	DEFINE_FIELD( CTriggerCamera, m_state, FIELD_INTEGER ),
@@ -934,6 +942,24 @@ index 7b5dde0f..1e60c3aa 100644
  
  void CTriggerCamera::Spawn( void )
  {
+@@ -2271,6 +2437,8 @@ void CTriggerCamera::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYP
+ 	}
+ 
+ 	SET_VIEW( pActivator->edict(), edict() );
++	if( FBitSet( pev->spawnflags, SF_CAMERA_HIDE_HUD ))
++		( (CBasePlayer *)pActivator )->m_iHideHUD |= HIDEHUD_HEALTH;
+ 
+ 	SET_MODEL( ENT( pev ), STRING( pActivator->pev->model ) );
+ 
+@@ -2289,6 +2457,8 @@ void CTriggerCamera::FollowTarget()
+ 
+ 	if( m_hTarget == 0 || m_flReturnTime < gpGlobals->time )
+ 	{
++		if( FBitSet( pev->spawnflags, SF_CAMERA_HIDE_HUD ))
++			( (CBasePlayer *)( (CBaseEntity *)m_hPlayer ) )->m_iHideHUD &= ~HIDEHUD_HEALTH;
+ 		if( m_hPlayer->IsAlive() )
+ 		{
+ 			SET_VIEW( m_hPlayer->edict(), m_hPlayer->edict() );
 diff --git a/dlls/util.cpp b/dlls/util.cpp
 index 27c7ffe8..40cdfb3b 100644
 --- a/dlls/util.cpp
@@ -986,3 +1012,378 @@ index 3f2758cd..a08a02d2 100644
  	source += bld.path.parent.ant_glob([
  					'pm_shared/*.c',
  					'public/safe_snprintf.c',
+diff --git a/pm_shared/pm_shared.c b/pm_shared/pm_shared.c
+index 925d040c..c33e2bff 100644
+--- a/pm_shared/pm_shared.c
++++ b/pm_shared/pm_shared.c
+@@ -16,6 +16,7 @@
+ #include <assert.h>
+ //#include <stdio.h>  // NULL
+ #include <math.h>   // sqrt
++#include <stdio.h>  // snprintf (Cry of Fear footsteps)
+ #include <string.h> // strcpy
+ #include <stdlib.h> // atoi
+ #include <ctype.h>  // isspace
+@@ -325,11 +326,35 @@ char PM_FindTextureType( char *name )
+ 	return CHAR_TEX_CONCRETE;
+ }
+ 
++// Cry of Fear: footsteps from the original client.dll (its PM_PlayStepSound and texture type map).
++// Four random sounds per material in player/footsteps/, a crawl sound while ducking and the bag
++// rustling on every step (louder when sprinting); 'B' surfaces snap twigs now and then.
++#define STEP_WOOD	9
++#define STEP_CARPET	10
++#define STEP_FLESH	11
++#define STEP_GRASS	12
++#define STEP_MUD	13
++#define STEP_SAND	14
++#define STEP_SNOW	15
++#define STEP_GLASS	16
++#define STEP_PAPER	17
++#define STEP_GRAVEL	18
++#define STEP_TWIGS	19
++
++#define COF_SPRINT_STEP_SPEED	200.0f	// walk 150, sprint 275 (player_cof.cpp)
++
++static void PM_CoFStep( const char *material, float fvol, int pitch )
++{
++	char sample[64];
++	snprintf( sample, sizeof( sample ), "player/footsteps/%s%d.wav", material, (int)pmove->RandomLong( 1, 4 ));
++	pmove->PM_PlaySound( CHAN_BODY, sample, fvol, ATTN_NORM, 0, pitch );
++}
++
+ void PM_PlayStepSound( int step, float fvol )
+ {
+-	static int iSkipStep = 0;
+ 	int irand;
+ 	vec3_t hvel;
++	char sample[64];
+ 
+ 	pmove->iStepLeft = !pmove->iStepLeft;
+ 
+@@ -338,234 +363,129 @@ void PM_PlayStepSound( int step, float fvol )
+ 		return;
+ 	}
+ 
++	VectorCopy( pmove->velocity, hvel );
++	hvel[2] = 0.0f;
++
++	if( pmove->waterlevel < 3 )
++	{
++		qboolean sprint = Length( hvel ) > COF_SPRINT_STEP_SPEED;
++		pmove->PM_PlaySound( CHAN_AUTO, "player/sprint/bag_movement.wav", sprint ? 0.7f : 0.1f, ATTN_NORM, 0,
++			PITCH_NORM + pmove->RandomLong( -30, 30 ));
++	}
++
+ 	irand = pmove->RandomLong( 0, 1 ) + ( pmove->iStepLeft * 2 );
+ 
+ 	// FIXME mp_footsteps needs to be a movevar
+ 	if( pmove->multiplayer && !pmove->movevars->footsteps )
+ 		return;
+ 
+-	VectorCopy( pmove->velocity, hvel );
+-	hvel[2] = 0.0f;
+-
+ 	if( pmove->multiplayer && ( !g_onladder && Length( hvel ) <= 220 ) )
+ 		return;
+ 
+-	// irand - 0,1 for right foot, 2,3 for left foot
+-	// used to alternate left and right foot
+-	// FIXME, move to player state
++	if(( pmove->flags & FL_DUCKING ) && pmove->waterlevel < 3 )
++	{
++		snprintf( sample, sizeof( sample ), "player/footsteps/crawl%d.wav", (int)pmove->RandomLong( 1, 4 ));
++		pmove->PM_PlaySound( CHAN_AUTO, sample, 0.7f, ATTN_NORM, 0, PITCH_NORM );
++	}
+ 
+ 	switch( step )
+ 	{
+-	default:
+-	case STEP_CONCRETE:
+-		switch( irand )
+-		{
+-		// right foot
+-		case 0:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_step1.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 1:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_step3.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		// left foot
+-		case 2:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_step2.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 3:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_step4.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		}
+-		break;
+ 	case STEP_METAL:
+-		switch( irand )
+-		{
+-		// right foot
+-		case 0:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_metal1.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 1:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_metal3.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		// left foot
+-		case 2:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_metal2.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 3:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_metal4.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		}
+-		break;
+-	case STEP_DIRT:
+-		switch( irand )
+-		{
+-		// right foot
+-		case 0:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_dirt1.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 1:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_dirt3.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		// left foot
+-		case 2:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_dirt2.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 3:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_dirt4.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		}
+-		break;
+ 	case STEP_VENT:
+-		switch( irand )
+-		{
+-		// right foot
+-		case 0:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_duct1.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 1:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_duct3.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		// left foot
+-		case 2:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_duct2.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 3:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_duct4.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		}
+-		break;
+ 	case STEP_GRATE:
+-		switch( irand )
+-		{
+-		// right foot
+-		case 0:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_grate1.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 1:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_grate3.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		// left foot
+-		case 2:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_grate2.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 3:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_grate4.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		}
++		PM_CoFStep( "metal", fvol, PITCH_NORM );
+ 		break;
+-	case STEP_TILE:
+-		if( !pmove->RandomLong( 0, 4 ) )
+-			irand = 4;
+-		switch( irand )
+-		{
+-		// right foot
+-		case 0:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_tile1.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 1:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_tile3.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		// left foot
+-		case 2:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_tile2.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 3:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_tile4.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 4:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_tile5.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		}
++	case STEP_DIRT:
++		// irand - 0,1 for right foot, 2,3 for left foot
++		snprintf( sample, sizeof( sample ), "player/footsteps/dirt%d.wav", irand + 1 );
++		pmove->PM_PlaySound( CHAN_BODY, sample, fvol, ATTN_NORM, 0, PITCH_NORM );
+ 		break;
+ 	case STEP_SLOSH:
+-		switch( irand )
+-		{
+-		// right foot
+-		case 0:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_slosh1.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 1:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_slosh3.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		// left foot
+-		case 2:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_slosh2.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 3:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_slosh4.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		}
++		PM_CoFStep( "splash", fvol, PITCH_NORM );
+ 		break;
+ 	case STEP_WADE:
+-		if( iSkipStep == 0 )
+-		{
+-			iSkipStep++;
+-			break;
+-		}
+-
+-		if( iSkipStep++ == 3 )
+-		{
+-			iSkipStep = 0;
+-		}
+-
+-		switch( irand )
+-		{
+-		// right foot
+-		case 0:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade1.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
++		if( pmove->waterlevel > 2 )
+ 			break;
+-		case 1:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade2.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		// left foot
+-		case 2:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade3.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 3:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade4.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		}
++		snprintf( sample, sizeof( sample ), "player/footsteps/wade%d.wav", irand + 1 );
++		pmove->PM_PlaySound( CHAN_BODY, sample, fvol, ATTN_NORM, 0, 80 );
+ 		break;
+ 	case STEP_LADDER:
+-		switch( irand )
+-		{
+-		// right foot
+-		case 0:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_ladder1.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		case 1:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_ladder3.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
+-			break;
+-		// left foot
+-		case 2:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_ladder2.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
++		PM_CoFStep( "metal", fvol, 150 );
++		break;
++	case STEP_WOOD:
++		PM_CoFStep( "wood", fvol, PITCH_NORM );
++		break;
++	case STEP_CARPET:
++		PM_CoFStep( "carpet", fvol, PITCH_NORM );
++		break;
++	case STEP_FLESH:
++	case STEP_MUD:
++		PM_CoFStep( "mud", fvol, PITCH_NORM );
++		break;
++	case STEP_GRASS:
++		PM_CoFStep( "grass", fvol, PITCH_NORM );
++		break;
++	case STEP_SAND:
++		PM_CoFStep( "sand", fvol, PITCH_NORM );
++		break;
++	case STEP_SNOW:
++		PM_CoFStep( "snow", fvol, PITCH_NORM );
++		break;
++	case STEP_GLASS:
++		PM_CoFStep( "glass", fvol, PITCH_NORM );
++		break;
++	case STEP_PAPER:
++		PM_CoFStep( "paper", fvol, PITCH_NORM );
++		break;
++	case STEP_GRAVEL:
++		PM_CoFStep( "gravel", fvol, PITCH_NORM );
++		break;
++	case STEP_TWIGS:
++	{
++		int twig;
++
++		PM_CoFStep( "grass", fvol, PITCH_NORM );
++		// three times in ten, one of twig_snap1..9 (the original never plays its second case)
++		if( pmove->RandomLong( 1, 10 ) > 3 )
+ 			break;
+-		case 3:
+-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_ladder4.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
++		twig = pmove->RandomLong( 0, 8 );
++		if( twig == 1 )
+ 			break;
+-		}
++		snprintf( sample, sizeof( sample ), "player/footsteps/twig_snap%d.wav", twig ? twig : 1 );
++		pmove->PM_PlaySound( CHAN_AUTO, sample, fvol, ATTN_NORM, 0, PITCH_NORM + pmove->RandomLong( -5, 5 ));
+ 		break;
+ 	}
+-}	
++	default:
++	case STEP_CONCRETE:
++	case STEP_TILE:
++		PM_CoFStep( "concrete", fvol, PITCH_NORM );
++		break;
++	}
++}
+ 
++// sound/materials.txt letters, as the original maps them
+ int PM_MapTextureTypeStepType( char chTextureType )
+ {
+ 	switch( chTextureType )
+ 	{
+-		default:
+-		case CHAR_TEX_CONCRETE:
+-			return STEP_CONCRETE;	
+-		case CHAR_TEX_METAL:
+-			return STEP_METAL;	
+-		case CHAR_TEX_DIRT:
+-			return STEP_DIRT;	
+-		case CHAR_TEX_VENT:
+-			return STEP_VENT;	
+-		case CHAR_TEX_GRATE:
+-			return STEP_GRATE;	
+-		case CHAR_TEX_TILE:
+-			return STEP_TILE;
+-		case CHAR_TEX_SLOSH:
+-			return STEP_SLOSH;
++	case 'B': return STEP_TWIGS;
++	case 'D': return STEP_DIRT;
++	case 'F': return STEP_FLESH;
++	case 'G': return STEP_GRATE;
++	case 'H': return STEP_PAPER;
++	case 'I': return STEP_MUD;
++	case 'M': return STEP_METAL;
++	case 'O': return STEP_SAND;
++	case 'P': return STEP_SNOW;
++	case 'R': return STEP_GRAVEL;
++	case 'S': return STEP_SLOSH;
++	case 'T': return STEP_TILE;
++	case 'U': return STEP_GRASS;
++	case 'V': return STEP_VENT;
++	case 'W': return STEP_WOOD;
++	case 'Y': return STEP_GLASS;
++	case 'Z': return STEP_CARPET;
++	default: return STEP_CONCRETE;
+ 	}
+ }
+ 
