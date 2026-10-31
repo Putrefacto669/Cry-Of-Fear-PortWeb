@@ -363,6 +363,30 @@ index da2e9e1d..0db5b553 100644
  			{
  				return 0;
  			}
+diff --git a/dlls/doors.cpp b/dlls/doors.cpp
+index 1f5b4b06..dc9baf1e 100644
+--- a/dlls/doors.cpp
++++ b/dlls/doors.cpp
+@@ -547,9 +547,19 @@ void CBaseDoor::DoorTouch( CBaseEntity *pOther )
+ //
+ // Used by SUB_UseTargets, when a door is the target of a button.
+ //
++// Cry of Fear: the door of the padlock (chapter 1) starts its scene the first time it is used,
++// instead of turning (the original's scene multiscene3 opens the door on the left).
++static BOOL g_cofDoorSceneDone = FALSE;
++
+ void CBaseDoor::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
+ {
+ 	m_hActivator = pActivator;
++	if( !g_cofDoorSceneDone && !FStringNull( pev->targetname ) && FStrEq( STRING( pev->targetname ), "doorclose2" ))
++	{
++		g_cofDoorSceneDone = TRUE;
++		FireTargets( "multiscene3", pActivator, this, USE_TOGGLE, 0 );
++		return;
++	}
+ 	// if not ready to be used, ignore "use" command.
+ 	if( m_toggle_state == TS_AT_BOTTOM || ( FBitSet( pev->spawnflags, SF_DOOR_NO_AUTO_RETURN ) && m_toggle_state == TS_AT_TOP ) )
+ 		DoorActivate();
 diff --git a/dlls/glock.cpp b/dlls/glock.cpp
 index d9411d66..8c146245 100644
 --- a/dlls/glock.cpp
