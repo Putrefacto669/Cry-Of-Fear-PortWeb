@@ -120,5 +120,18 @@ Después abre <http://localhost:8080/>. `<repo>` es la ruta de este repositorio 
   Netlify, `vercel.json` para Vercel).
 - Comprueba límites y cabeceras con `tools/deploy_check.py` (y `--url` una vez publicado).
 
-Hosting recomendado: Cloudflare Pages (tráfico estático sin límite, cabeceras configurables y archivos
-de hasta 25 MiB).
+### GitHub Pages (despliegue actual)
+
+`.github/workflows/pages.yml` publica la carpeta `dist/` del repositorio en cada push a `main` que la
+cambie (o a mano desde Actions). No compila nada: `dist/` ya está versionado. Para activarlo una vez:
+Settings → Pages → Build and deployment → Source: **GitHub Actions**. La web queda en
+<https://putrefacto669.github.io/Cry-Of-Fear-PortWeb/>.
+
+- Encaja en los límites: 822 MiB de sitio (máximo 1 GB) y ningún archivo de más de 100 MB.
+- No hacen falta cabeceras: el motor no usa hilos (`"coi": false`). Los `.data` viajan como `.gz`
+  que descomprime `sw.js`, porque Pages no comprime `application/octet-stream`.
+- Todas las URL son relativas, así que funciona bajo la subruta `/Cry-Of-Fear-PortWeb/`.
+- Límite blando de tráfico: 100 GB al mes, unos 300 jugadores nuevos (309 MiB cada uno la primera
+  vez). Con más capítulos el sitio pasará de 1 GB y habrá que llevar los paquetes a otro sitio.
+
+Cloudflare Pages ya no sirve tal cual: limita cada archivo a 25 MiB y 14 paquetes lo superan.

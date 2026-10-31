@@ -135,6 +135,9 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
 - Sin `?map=` la página abre el **launcher** (`#launcher` en `platform/web/index.html`, imágenes en
   `platform/web/launcher/`) y el motor solo arranca al pulsar Jugar; con `?map=` va directo al juego
   (todas las pruebas e2e lo usan).
+- Publicación: `.github/workflows/pages.yml` sube `dist/` a GitHub Pages en cada push a `main`
+  (Source: GitHub Actions). Todas las URL son relativas; se probó bajo `/Cry-Of-Fear-PortWeb/`.
+  El panel del navegador de Claude no admite Service Workers: el SW se prueba en Chrome.
 - Idioma de subtítulos: Opciones → pantalla de banderas original (`language_settings.tga`, 7 idiomas).
   hud.js lo guarda en `localStorage.cofLanguage` (por defecto, el del navegador) y fija la cvar
   `cof_subtitlelanguage` (1 inglés, 2 neerlandés, 3 francés, 4 alemán, 5 noruego, 6 español,

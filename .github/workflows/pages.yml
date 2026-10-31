@@ -1,0 +1,45 @@
+# Publica dist/ en GitHub Pages (https://putrefacto669.github.io/Cry-Of-Fear-PortWeb/).
+#
+# dist/ ya está compilado y versionado en el repositorio (tools/wsl/package.sh): aquí no se compila
+# nada, solo se sube la carpeta tal cual. Pages no deja poner cabeceras, pero el motor no usa hilos
+# ("coi": false en sw-manifest.js) y los .data viajan comprimidos como .gz que descomprime sw.js.
+#
+# Activación (una vez): Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+name: GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths: ["dist/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# un despliegue a la vez; uno nuevo no cancela el que ya está en curso
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # solo dist/: el resto del repositorio (fuentes, docs, evidencias) no hace falta para publicar
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: dist
+          sparse-checkout-cone-mode: true
+      # Jugar.bat y serve.py son para probar en Windows; no forman parte de la web
+      - run: rm -f dist/Jugar.bat dist/serve.py && du -sh dist
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v4
