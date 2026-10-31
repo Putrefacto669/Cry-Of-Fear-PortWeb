@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "1468a31a4b9f",
+ "version": "d518010c6e0b",
  "coi": false,
  "precache": [
   "LICENSE.txt",
@@ -38,8 +38,8 @@ self.COF_MANIFEST = {
   "LICENSE.txt": "230184f60bae",
   "debug.js": "40590135a97a",
   "gpustats.js": "70aaa1f28265",
-  "hud.js": "33d8d4cd4085",
-  "index.html": "831cd37fc985",
+  "hud.js": "352003c8fb51",
+  "index.html": "932d514c4492",
   "launcher/background.jpg": "d385a9ca8c75",
   "launcher/logo.png": "8d7bb7601333",
   "loader.js": "813b2f0463b4",
@@ -83,10 +83,10 @@ self.COF_MANIFEST = {
   "mp3/tv_noise.mp3": "3e7347b88a61",
   "mp3/unlockables.mp3": "4ce75cbcd963",
   "mp3/watercorridor.mp3": "ba8c97aa265b",
-  "packs/boot.data": "580dd42238b7",
-  "packs/boot.js": "1a5b0df63b0f",
-  "packs/engine.data": "842b7bf81285",
-  "packs/engine.js": "ddd937fb9643",
+  "packs/boot.data": "3b4d5e36de3e",
+  "packs/boot.js": "b4c096d86444",
+  "packs/engine.data": "83372856d15a",
+  "packs/engine.js": "3c1530c941ea",
   "packs/map_c_apartment1.data": "c9f774131e6d",
   "packs/map_c_apartment1.js": "a6933ce1bd84",
   "packs/map_c_apartment2.data": "d9c0dd5a14b5",
@@ -124,12 +124,12 @@ self.COF_MANIFEST = {
  },
  "gz": {
   "packs/boot.data": {
-   "size": 79977175,
-   "gzSize": 21807159
+   "size": 86275547,
+   "gzSize": 22662320
   },
   "packs/engine.data": {
-   "size": 2809908,
-   "gzSize": 935576
+   "size": 2809846,
+   "gzSize": 935566
   },
   "packs/map_c_apartment1.data": {
    "size": 51495602,
