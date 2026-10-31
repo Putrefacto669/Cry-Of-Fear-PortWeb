@@ -48,8 +48,6 @@ public:
 	void Spawn( void );
 	virtual void KeyValue( KeyValueData *pkvd );
 	virtual void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value );
-
-	int m_iMode;
 };
 
 LINK_ENTITY_TO_CLASS( cof_introduction, CCofIntroduction )
@@ -60,18 +58,12 @@ void CCofIntroduction::Spawn( void )
 	pev->solid = SOLID_NOT;
 	pev->effects |= EF_NODRAW;
 	pev->takedamage = DAMAGE_NO;
-	if( m_iMode < 0 ) m_iMode = 0;
-	if( m_iMode > 2 ) m_iMode = 2;
 }
 
+// iuser2/iuser3 are 1 in every map and decide nothing (see Use)
 void CCofIntroduction::KeyValue( KeyValueData *pkvd )
 {
-	if( FStrEq( pkvd->szKeyName, "iuser2" ) )
-	{
-		m_iMode = atoi( pkvd->szValue );
-		pkvd->fHandled = TRUE;
-	}
-	else if( FStrEq( pkvd->szKeyName, "iuser3" ) )
+	if( FStrEq( pkvd->szKeyName, "iuser2" ) || FStrEq( pkvd->szKeyName, "iuser3" ) )
 	{
 		pkvd->fHandled = TRUE;
 	}
@@ -83,7 +75,10 @@ void CCofIntroduction::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_T
 {
 	int coop = ( g_pGameRules && g_pGameRules->IsMultiplayer() ) ? 1 : 0;
 	int lang = (int)CVAR_GET_FLOAT( coop ? "cl_coop_language" : "cof_subtitlelanguage" );
-	int mode = m_iMode;
+	// Like the original: the type is pev->iuser1 (0 single player, 1 Doctor, 2 coop); the SDK stores
+	// the map's iuser1 key there. c_intro has none, so it is the single-player introduction;
+	// c_doc_city sets 1 and cof_campaign_01 sets 2.
+	int mode = pev->iuser1;
 	if( mode < 0 ) mode = 0;
 	if( mode > 2 ) mode = 2;
 

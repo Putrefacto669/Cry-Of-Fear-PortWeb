@@ -50,6 +50,12 @@ BOOT_FILES = ["liblist.gam", "valve.rc", "delta.lst","titles.txt", "skill.cfg", 
               "gfx/vgui/introductions/english/english_coop.TGA",
               "gfx/vgui/introductions/spanish/spanish_sp.TGA",
               "gfx/vgui/introductions/spanish/spanish_doc.TGA",
+              # resto de idiomas del original (pantalla de banderas language_settings.tga, hud.js)
+              "gfx/vgui/language_settings.tga",
+              "gfx/vgui/introductions/dutch/dutch_sp.TGA", "gfx/vgui/introductions/french/french_sp.TGA",
+              "gfx/vgui/introductions/german/german_sp.TGA",
+              "gfx/vgui/introductions/norwegian/norwegian_sp.TGA",
+              "gfx/vgui/introductions/swedish/swedish_sp.TGA",
               # bolso, salud y energía (hud.js)
               "gfx/vgui/puzzle/padlock_buttons.tga",
               "gfx/vgui/640_inventory.tga", "gfx/vgui/640_healthbar.tga",
@@ -68,8 +74,7 @@ BOOT_FILES = ["liblist.gam", "valve.rc", "delta.lst","titles.txt", "skill.cfg", 
               "txtfiles/hints.txt",  # textos de cof_hint y cof_objective (hud.js)
               # subtítulos, SMS, notas, contraseñas y teclado (puzzles.cpp, hud.js)
               "txtfiles/subtitles.txt", "txtfiles/phone_messages.txt",
-              "txtfiles/languages/spanish/subtitles.txt", "txtfiles/languages/spanish/hints.txt",
-              "txtfiles/languages/spanish/phone_messages.txt", "gfx/vgui/keypad3.tga",
+              "gfx/vgui/keypad3.tga",
               "gfx/vgui/640_pass1.tga", "gfx/vgui/640_pass2.tga", "gfx/vgui/640_pass3.tga",
               "gfx/vgui/640_pass4.tga", "gfx/vgui/640_pass5.tga", "gfx/vgui/640_pass6.tga",
               "gfx/vgui/640_pass7.tga", "gfx/vgui/640_pass8.tga",
@@ -82,7 +87,8 @@ BOOT_FILES = ["liblist.gam", "valve.rc", "delta.lst","titles.txt", "skill.cfg", 
               "gfx/flashlight.tga",  # cookie de la linterna para platform/web/postfx.js
               "gfx/decals/decalinfo.txt"]  # grupos de env_static_decal (static_decal.cpp)
 # inventoryitems/*.txt describen cada objeto del bolso (nombre, imágenes, sonido de recogida)
-BOOT_DIRS = ["gfx/shell", "resource", "sprites", "events", "inventoryitems",
+# txtfiles/languages: subtítulos, pistas, SMS y conclusiones de los 6 idiomas traducidos (274 KB)
+BOOT_DIRS = ["gfx/shell", "resource", "sprites", "events", "inventoryitems", "txtfiles/languages",
              "gfx/vgui/items", "gfx/vgui/weapons", "gfx/vgui/hints",
              # armas de weapons_cof.cpp: el jugador las lleva de un mapa a otro
              "models/weapons/switchblade", "models/weapons/glock", "models/weapons/syringe",

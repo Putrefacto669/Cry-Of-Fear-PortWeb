@@ -411,6 +411,9 @@ void CoF_ClientInit( void )
  gEngfuncs.pfnHookUserMsg("Padlock",PadlockMessage);
  gEngfuncs.pfnAddCommand("cof_padlock_render",PadlockRenderStatus);
  gEngfuncs.pfnRegisterVariable("cof_padlock_trace","0",0);
+ // the original client owns the subtitle language (1 English by default; its server only sets it,
+ // "subtitleset"). hud.js keeps the choice in localStorage and sets it on every start.
+ gEngfuncs.pfnRegisterVariable("cof_subtitlelanguage","1",0);
  for(int i=0;i<11;i++) gEngfuncs.pfnRegisterVariable(skyNames[i],i==10?"1":i>=8?"-1":"0",0);
  gEngfuncs.pfnHookUserMsg("skymark_w",SkyWorld);
  gEngfuncs.pfnHookUserMsg("skymark_sky",SkyMarker);

@@ -241,6 +241,50 @@ Conclusión: no se ha encontrado ninguna voz de Simon que el port deje de emitir
 pérdida tras cargar partida ya estaba corregida en `sound.cpp`. Falta la comprobación
 auditiva y saber qué escena concreta oye en silencio el usuario.
 
+## Monólogo de la introducción e idiomas de subtítulos
+
+### Introducción de un jugador
+
+**Causa.** `cof_introduction` mostraba un texto que no era el del prólogo. El servidor original
+envía `pev->iuser1` como tipo (0 un jugador, 1 Doctor, 2 cooperativo); el SDK guarda la clave
+`iuser1` del mapa en `entvars`, así que nunca llega a `KeyValue`. `c_intro` no la tiene (tipo 0),
+`c_doc_city` pone 1 y `cof_campaign_01` pone 2.
+
+**Corrección.** `CCofIntroduction::Use` (`game/cof-logic/cof/hud.cpp`) lee `pev->iuser1`;
+`iuser2` e `iuser3` valen 1 en todos los mapas y se ignoran. hud.js abre
+`gfx/vgui/introductions/<idioma>/<idioma>_<sp|doc|coop>.TGA`, con el inglés como respaldo.
+
+### Selector de idioma con banderas
+
+**Original.** La cvar `cof_subtitlelanguage` es del client (1 inglés por defecto, 2 neerlandés,
+3 francés, 4 alemán, 5 noruego, 6 español, 7 sueco); el servidor solo la escribe con el comando
+`subtitleset`. La pantalla es `gfx/vgui/language_settings.tga` (640x480), "SUBTITLE LANGUAGE",
+con una cuadrícula de banderas de 157x115 px en x 83/241/399 e y 64/181/298:
+English, Svenska, Norsk / Nederlands, Français, Deutsch / Español (bandera de España). Cada idioma
+tiene `txtfiles/languages/<idioma>/` (9 archivos), `notes/languages/<idioma>/` (8) y sus
+introducciones; el inglés usa los archivos de la raíz.
+
+**Implementación.**
+- `platform/web/hud.js`: Opciones → «Idioma de los subtítulos» abre la imagen original con 7 zonas
+  pulsables sobre las banderas; la actual se marca. La elección se guarda en
+  `localStorage.cofLanguage` (sin ella, el idioma del navegador) y cambia subtítulos, pistas, SMS,
+  notas e introducción; se vacían las cachés de texto y se envía `cof_subtitlelanguage <n>`.
+- `game/cof-logic/client/cof_client.cpp`: registra `cof_subtitlelanguage` (valor inicial 1). Antes
+  no existía: la consola decía `Unknown command` y el servidor leía siempre 0.
+- `tools/stage_map.py`: el paquete boot incluye `language_settings.tga`, la introducción `_sp` de
+  los siete idiomas y `txtfiles/languages` entero (boot pasa de unos 78 a 83 MB). Las de Doctor y
+  cooperativo de los idiomas nuevos se añadirán con esos mapas.
+
+**Fallo encontrado en la prueba.** La regla `#cof-sheet button` (más específica) dejaba los botones
+en `position: static` y las zonas no coincidían con las banderas; se resolvió con selectores
+`#cof-sheet .cof-lang button`.
+
+**Pruebas** (dist aislado `claude-launcher`, puerto 8091, `?sw=0`, clics reales):
+- Las 7 zonas miden exactamente 157x115 en las coordenadas de la imagen; el español sale marcado.
+- Al pulsar la bandera alemana: `cofLanguage = german`, Opciones muestra «Deutsch».
+- `c_intro` muestra «EINLEITUNG» (alemán) y la consola da `"cof_subtitlelanguage" is "4" ( "1" )`.
+- Los seis idiomas traducidos tienen sus 9 textos y su introducción en el sistema de archivos.
+
 ## Límites de la validación
 
 No se modificaron recursos originales, distribución principal, licencias ni

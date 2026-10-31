@@ -135,6 +135,10 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
 - Sin `?map=` la página abre el **launcher** (`#launcher` en `platform/web/index.html`, imágenes en
   `platform/web/launcher/`) y el motor solo arranca al pulsar Jugar; con `?map=` va directo al juego
   (todas las pruebas e2e lo usan).
+- Idioma de subtítulos: Opciones → pantalla de banderas original (`language_settings.tga`, 7 idiomas).
+  hud.js lo guarda en `localStorage.cofLanguage` (por defecto, el del navegador) y fija la cvar
+  `cof_subtitlelanguage` (1 inglés, 2 neerlandés, 3 francés, 4 alemán, 5 noruego, 6 español,
+  7 sueco), registrada en `cof_client.cpp` como en el client original.
 - Parámetros de la página: `?map=c_nightmare` (mapa inicial), `?sw=0` (sin Service Worker),
   `?timer=1` (el bucle no se para con el panel oculto), `?debug=1`.
 - Si una pestaña de `localhost:8090` sirve cosas viejas: desregistrar el Service Worker y borrar
@@ -227,7 +231,6 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
 - `cof_greyfade` (fundido a gris) no está implementado; no aparece en los mapas publicados.
 - Entidades del capítulo 1 sin implementar: `cof_developer_commentary`, `cof_hoodie`,
   `cof_clothesmenu`, `item_nightvision` (y `info_texlights`, que solo sirve al compilar).
-- Página de presentación (`index.html` tipo launcher) que quiere el usuario.
 ## Validación de continuación — 31 de octubre de 2026 (Codex)
 
 - Al recuperar el relevo: HEAD `4000b6a`, árbol limpio, rama activa

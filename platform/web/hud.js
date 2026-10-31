@@ -48,8 +48,30 @@
   })();
 
   const LOGOS = ["logo", "andreas", "james", "jordy", "stig", "lasse", "aina"];
-  const LANGS = { 0: "english", 2: "dutch", 3: "french", 4: "german", 5: "norwegian", 6: "spanish", 7: "swedish" };
   const TYPES = ["sp", "doc", "coop"];
+
+  // Subtitle language, chosen on the original's "SUBTITLE LANGUAGE" screen (language_settings.tga).
+  // cof_subtitlelanguage values of the original client: 1 English (its default), 2 Dutch, 3 French,
+  // 4 German, 5 Norwegian, 6 Spanish, 7 Swedish. The texts live in txtfiles/languages/<name>/,
+  // notes/languages/<name>/ and gfx/vgui/introductions/<name>/; English uses the root files.
+  const LANGUAGE_CODES = { english: 1, dutch: 2, french: 3, german: 4, norwegian: 5, spanish: 6, swedish: 7 };
+  const LANGUAGE_NAMES = { english: "English", swedish: "Svenska", norwegian: "Norsk", dutch: "Nederlands",
+                           french: "Français", german: "Deutsch", spanish: "Español" };
+  const LANGUAGE_KEY = "cofLanguage";
+  const browserLanguage = () => {
+    const l = (navigator.language || "").toLowerCase();
+    if (l.startsWith("es")) return "spanish";
+    if (l.startsWith("de")) return "german";
+    if (l.startsWith("fr")) return "french";
+    if (l.startsWith("nl")) return "dutch";
+    if (/^(nb|nn|no)\b/.test(l)) return "norwegian";
+    if (l.startsWith("sv")) return "swedish";
+    return "english";
+  };
+  let gameLanguage = (() => {
+    try { const saved = localStorage.getItem(LANGUAGE_KEY); if (LANGUAGE_CODES[saved]) return saved; } catch (_) { /* private mode */ }
+    return browserLanguage();
+  })();
 
   const cache = new Map();
   let logoImg = null;
@@ -132,8 +154,8 @@
     return name ? `/rodir/cryoffear/gfx/vgui/640_logo_${name}.tga` : null;
   };
 
-  const introPath = (mode, lang) => {
-    const language = lang === 0 && /^es\b/i.test(navigator.language || "") ? "spanish" : LANGS[lang] || "english";
+  // like the original client, the language is this client's setting (cof_subtitlelanguage)
+  const introPath = (mode, language) => {
     const type = TYPES[mode] || "sp";
     return `/rodir/cryoffear/gfx/vgui/introductions/${language}/${language}_${type}.TGA`;
   };
@@ -159,7 +181,7 @@
     }).catch((e) => console.warn("cof logo:", e.message));
   };
 
-  const toggleIntro = (mode, lang) => {
+  const toggleIntro = (mode) => {
     ensureDom();
     if (introVisible) {
       introVisible = false;
@@ -169,8 +191,8 @@
     }
     if (introBusy) return;
     introBusy = true;
-    const path = introPath(mode, lang);
-    const fallback = introPath(mode, 0);
+    const path = introPath(mode, gameLanguage);
+    const fallback = introPath(mode, "english");
     loadTga(path).catch((e) => {
       if (fallback === path) throw e;
       return loadTga(fallback);
@@ -842,17 +864,37 @@
 
 
   // --- subtitles, phone messages, notes, password and keypad dialogs (puzzles.cpp) -------------
-  // The game ships its texts in several languages: Spanish when the browser is in Spanish.
-  const SPANISH = /^es\b/i.test(navigator.language || "");
+  // The game ships its texts in seven languages (gameLanguage); the port's own labels are in Spanish
+  // when that is the chosen language and in English otherwise.
+  let SPANISH = gameLanguage === "spanish";
+  const localized = (dir, rel) => gameLanguage === "english" ? [`${GAME}/${dir}/${rel}`]
+    : [`${GAME}/${dir}/languages/${gameLanguage}/${rel}`, `${GAME}/${dir}/${rel}`];
   const textCache = new Map();
   const readText = (rel) => {
     if (textCache.has(rel)) return textCache.get(rel);
     let text = "";
-    for (const path of SPANISH ? [`${GAME}/txtfiles/languages/spanish/${rel}`, `${GAME}/txtfiles/${rel}`] : [`${GAME}/txtfiles/${rel}`]) {
+    for (const path of localized("txtfiles", rel)) {
       try { text = new TextDecoder("latin1").decode(FS.readFile(resolveCi(path))); break; } catch (_) { /* next */ }
     }
     textCache.set(rel, text);
     return text;
+  };
+
+  // the SUBTITLE LANGUAGE screen: texts, notes and introductions follow, and the engine gets the
+  // original cvar (cof_introduction reads it on the server)
+  let languageSynced = false;
+  const syncLanguage = () => {
+    languageSynced = true;
+    engineCmd(`cof_subtitlelanguage ${LANGUAGE_CODES[gameLanguage]}\n`);
+  };
+  const setLanguage = (name) => {
+    if (!LANGUAGE_CODES[name]) return;
+    gameLanguage = name;
+    SPANISH = name === "spanish";
+    try { localStorage.setItem(LANGUAGE_KEY, name); } catch (_) { /* private mode */ }
+    textCache.clear();
+    hintsCache = null;
+    syncLanguage();
   };
   const lineOf = (rel, n) => (readText(rel).split(/\r?\n/)[n - 1] || "").trim();
 
@@ -929,9 +971,9 @@
     if (line) flash(panel?.sms || (ensurePanel(), panel.sms), "smsTimer", line, 7000);
   };
 
-  // the phone's screen shows the original English text; in Spanish, the translation as a subtitle
+  // the phone's screen shows the original English text; in other languages, the translation as a subtitle
   const showSmsTranslation = (n) => {
-    if (!SPANISH) return;
+    if (gameLanguage === "english") return;
     const line = lineOf("phone_messages.txt", n + 1).replace(/^"|"$/g, "");
     if (line) flash(panel?.sub || (ensurePanel(), panel.sub), "subTimer", line, 6000);
   };
@@ -957,7 +999,7 @@
     const paper = document.createElement("div");
     paper.className = "paper";
     let text = "";
-    for (const path of SPANISH ? [`${GAME}/notes/languages/spanish/${file}`, `${GAME}/notes/${file}`] : [`${GAME}/notes/${file}`]) {
+    for (const path of localized("notes", file)) {
       try { text = new TextDecoder("latin1").decode(FS.readFile(resolveCi(path))); break; } catch (_) { /* next */ }
     }
     paper.textContent = text || file;
@@ -1396,6 +1438,46 @@
     openSheet(SPANISH ? "CARGAR PARTIDA" : "LOAD GAME", body, onClose);
   };
 
+  // The original SUBTITLE LANGUAGE screen: language_settings.tga (640x480) with a 3x3 grid of flags,
+  // 157x115 px cells at x 83/241/399 and y 64/181/298. Order of the original image.
+  const LANGUAGE_GRID = [["english", 0, 0], ["swedish", 1, 0], ["norwegian", 2, 0],
+                         ["dutch", 0, 1], ["french", 1, 1], ["german", 2, 1], ["spanish", 0, 2]];
+  let languageStyle = false;
+  const showLanguage = (onClose) => {
+    if (!languageStyle) {
+      languageStyle = true;
+      const style = document.createElement("style");
+      style.textContent = `
+        .cof-lang { position:relative; width:min(640px, 100%); aspect-ratio:640 / 480; margin:0 auto; }
+        .cof-lang img { position:absolute; inset:0; width:100%; height:100%; }
+        /* #cof-sheet: must beat the "#cof-sheet button" rule of the sheet, which would make them static */
+        #cof-sheet .cof-lang button { all:unset; position:absolute; cursor:pointer; box-sizing:border-box; }
+        #cof-sheet .cof-lang button:hover, #cof-sheet .cof-lang button:focus-visible { box-shadow:inset 0 0 0 3px rgba(255,255,255,.55); }
+        #cof-sheet .cof-lang button.on { box-shadow:inset 0 0 0 4px #f0d27a; }
+      `;
+      document.head.appendChild(style);
+    }
+    const board = document.createElement("div");
+    board.className = "cof-lang";
+    const img = document.createElement("img");
+    img.alt = "";
+    board.appendChild(img);
+    loadTga(`${VGUI}/language_settings.tga`).then((url) => { img.src = url; })
+      .catch((e) => console.warn("cof language screen:", e.message));
+    for (const [name, col, row] of LANGUAGE_GRID) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.title = LANGUAGE_NAMES[name];
+      button.setAttribute("aria-label", LANGUAGE_NAMES[name]);
+      button.classList.toggle("on", name === gameLanguage);
+      Object.assign(button.style, { left: `${((83 + col * 158) / 640) * 100}%`, top: `${((64 + row * 117) / 480) * 100}%`,
+        width: `${(157 / 640) * 100}%`, height: `${(115 / 480) * 100}%` });
+      button.addEventListener("click", () => { setLanguage(name); closeSheet(); });
+      board.appendChild(button);
+    }
+    openSheet(SPANISH ? "IDIOMA DE LOS SUBTÍTULOS" : "SUBTITLE LANGUAGE", board, onClose);
+  };
+
   const showOptions = (onClose) => {
     const body = document.createElement("div");
     const slider = (label, key, min, max, step) => {
@@ -1426,6 +1508,16 @@
     fs.addEventListener("click", () => document.getElementById("canvas").parentElement.requestFullscreen({ navigationUI: "hide" }).catch(() => {}));
     row.append(span, fs);
     body.appendChild(row);
+    const langRow = document.createElement("div");
+    langRow.className = "row";
+    const langLabel = document.createElement("span");
+    langLabel.textContent = SPANISH ? "Idioma de los subtítulos" : "Subtitle language";
+    const langButton = document.createElement("button");
+    langButton.textContent = LANGUAGE_NAMES[gameLanguage];
+    // back to these options afterwards, relabelled in the new language
+    langButton.addEventListener("click", () => showLanguage(() => showOptions(onClose)));
+    langRow.append(langLabel, langButton);
+    body.appendChild(langRow);
     openSheet(SPANISH ? "OPCIONES" : "OPTIONS", body, onClose);
   };
 
@@ -1435,6 +1527,7 @@
     get paused() { return pause.open; },
     onMap,
     handle(line) {
+      if (!languageSynced) syncLanguage();  // the first server line: the engine is up
       const [cmd, ...args] = line.trim().split(/\s+/);
       const rest = line.trim().slice(cmd.length).trim();
       switch (cmd) {
@@ -1445,7 +1538,7 @@
           showLogo(parseInt(args[0], 10) || 0);
           break;
         case "INTRO":
-          toggleIntro(parseInt(args[0], 10) || 0, parseInt(args[1], 10) || 0);
+          toggleIntro(parseInt(args[0], 10) || 0);
           break;
         case "BW":
           // strength 0..255: how much of the frame turns grey (0 = colour again)
