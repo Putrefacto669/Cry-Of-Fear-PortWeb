@@ -212,6 +212,35 @@ problema de `FIELD_FUNCTION` en WASM; Codex añadió su conservación en `sound.
 En una partida nueva la voz ya se emitía. La comprobación audible con altavoces
 sigue pendiente: las pruebas miden la emisión en WebAudio, no la escucha.
 
+### Voces de Simon en el capítulo 1: inventario y emisión (dist `3d08310`)
+
+Reporte del usuario: en los apartamentos y en varias escenas de la puerta de la derecha
+no se oye la voz de Simon.
+
+- **Inventario del original.** Las únicas voces habladas de Simon en esta parte son
+  `ambient_generic` con archivos de `sound/subtitles/`: 9 en `c_start`, 3 en
+  `c_apartment5` (`sschub1..3`, escena `multibadkars`) y el vómito de
+  `c_apartmentsick`. `c_apartment1..4` no tienen ninguna: allí los pensamientos de Simon
+  son solo subtítulos de texto, también en el original.
+- **Eventos de modelos.** Los modelos de `models/cutscene` llevan 83 eventos 1004 de
+  sonido (pasos, toses, puertas, coger el teléfono). Ni el `CEnvModel::Think` original
+  (`hl.dll`) ni el `client.dll` los procesan, así que el original tampoco los reproduce.
+  No se activan en el port para no añadir sonidos inexistentes.
+- **Volúmenes del mapa.** `subtitles1..3` (cinemática inicial) tienen volumen 5 y
+  `whatthesub` (escena del SMS) volumen 7; el resto, 10. El port los reproduce con esos
+  valores (ganancia 0,498 y 0,698 = volumen / 255 del canal).
+- **Emisión medida en WebAudio** (contexto `running`, sin bucle):
+  - `c_start`, cinemática inicial: tres voces a 16,9 s, 24,9 s y 32,9 s (2,19 s, 2,14 s y
+    0,78 s), a unas 200 unidades de la cámara, alcance 800.
+  - `c_apartment5`, `multibadkars`: tres voces a 9,3 s, 11,8 s y 14,8 s (0,78 s, 1,67 s y
+    2,77 s), ganancia 1, a entre 75 y 145 unidades, alcance 800.
+- **Mezcla.** En el original: `volume 0.6`, `fmod_volume 1`, `MP3Volume 0.7`. En el port:
+  efectos 0,8 y música 0,8. La música no queda más alta que en el original.
+
+Conclusión: no se ha encontrado ninguna voz de Simon que el port deje de emitir. La
+pérdida tras cargar partida ya estaba corregida en `sound.cpp`. Falta la comprobación
+auditiva y saber qué escena concreta oye en silencio el usuario.
+
 ## Límites de la validación
 
 No se modificaron recursos originales, distribución principal, licencias ni

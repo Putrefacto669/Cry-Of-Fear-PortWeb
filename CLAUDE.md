@@ -132,6 +132,9 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
 
 - Servidor: `python dist/serve.py dist --port 8090` (Windows) o `serve.py` en WSL en otro puerto.
   El 8080 suele estar ocupado por el `Jugar.bat` del usuario.
+- Sin `?map=` la página abre el **launcher** (`#launcher` en `platform/web/index.html`, imágenes en
+  `platform/web/launcher/`) y el motor solo arranca al pulsar Jugar; con `?map=` va directo al juego
+  (todas las pruebas e2e lo usan).
 - Parámetros de la página: `?map=c_nightmare` (mapa inicial), `?sw=0` (sin Service Worker),
   `?timer=1` (el bucle no se para con el panel oculto), `?debug=1`.
 - Si una pestaña de `localhost:8090` sirve cosas viejas: desregistrar el Service Worker y borrar

@@ -367,5 +367,21 @@
     setStatus("Contexto WebGL perdido: recarga la página");
   });
 
-  start().catch((e) => { setStatus(`Error: ${e.message}`); log(e.stack || String(e), "err"); });
+  const run = () => start().catch((e) => { setStatus(`Error: ${e.message}`); log(e.stack || String(e), "err"); });
+
+  // Launcher (index.html #launcher): without ?map= the page opens on it and the engine only starts
+  // on "Jugar". That click is a user gesture, so the browser lets the game's audio start right away.
+  // Links with ?map= (tests, shortcuts) go straight to the game as before.
+  const launcher = document.getElementById("launcher");
+  if (launcher && !params.has("map")) {
+    setStatus("En el launcher");
+    launcher.hidden = false;
+    document.getElementById("play").addEventListener("click", () => {
+      launcher.hidden = true;
+      canvas.focus();
+      run();
+    }, { once: true });
+  } else {
+    run();
+  }
 })();
