@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "f7039c016011",
+ "version": "d853a2954538",
  "coi": false,
  "precache": [
   "LICENSE.txt",
@@ -36,7 +36,7 @@ self.COF_MANIFEST = {
   "LICENSE.txt": "230184f60bae",
   "debug.js": "40590135a97a",
   "gpustats.js": "70aaa1f28265",
-  "hud.js": "72472891cfeb",
+  "hud.js": "33d8d4cd4085",
   "index.html": "a79520cdd368",
   "loader.js": "9dee81fda9c2",
   "mp3/2aphall1.mp3": "70a02fded189",
@@ -81,8 +81,8 @@ self.COF_MANIFEST = {
   "mp3/watercorridor.mp3": "ba8c97aa265b",
   "packs/boot.data": "580dd42238b7",
   "packs/boot.js": "d592d8e316ec",
-  "packs/engine.data": "c908d64391d5",
-  "packs/engine.js": "437f864ac78b",
+  "packs/engine.data": "0032b0c6a347",
+  "packs/engine.js": "5b4b0b3e8a22",
   "packs/map_c_apartment1.data": "c9f774131e6d",
   "packs/map_c_apartment1.js": "d82cf02e3434",
   "packs/map_c_apartment2.data": "d9c0dd5a14b5",
@@ -124,8 +124,8 @@ self.COF_MANIFEST = {
    "gzSize": 21807159
   },
   "packs/engine.data": {
-   "size": 2806325,
-   "gzSize": 933848
+   "size": 2807304,
+   "gzSize": 934311
   },
   "packs/map_c_apartment1.data": {
    "size": 51495602,

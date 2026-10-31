@@ -291,7 +291,8 @@
   const bagSound = (name) => engineCmd(`play inventory/inventory_${name}.wav\n`);
 
   // items: "inventoryitems/...txt" or "...txt:count" (ammo, syringes); quick: names per slot
-  const bag = { open: false, el: null, items: [], counts: [], quick: ["-", "-", "-"], selected: -1, objective: "", menu: null };
+  const bag = { open: false, el: null, items: [], counts: [], quick: ["-", "-", "-"], selected: -1, objective: "", menu: null,
+    dualFrom: -1 };  // DUAL WIELD waits for a second item: the next slot clicked
   const itemCache = new Map();
 
   const readItem = (def) => {
@@ -374,6 +375,13 @@
         return;
       }
       if (slot.dataset.item === undefined) { closeMenu(); return; }
+      if (bag.dualFrom >= 0 && +slot.dataset.item !== bag.dualFrom) {
+        engineCmd(`cof_dualwield ${bag.dualFrom} ${slot.dataset.item}`);
+        bag.dualFrom = -1;
+        bagSound("click");
+        closeMenu();
+        return;
+      }
       bag.selected = +slot.dataset.item;
       renderBag();
       openMenu(slot);
@@ -430,6 +438,10 @@
       toggleBag();
     } else if (act === "quick") {
       engineCmd(`cof_quickset ${q} ${i}`);
+      bagSound("click");
+    } else if (act === "dual") {
+      // the server only accepts the phone with the knife: the next slot clicked is the second item
+      bag.dualFrom = i;
       bagSound("click");
     } else {
       bagSound("no");

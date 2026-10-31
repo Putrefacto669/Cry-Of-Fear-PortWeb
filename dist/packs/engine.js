@@ -166,6 +166,6 @@ Module['FS_createPath']("/", "lib", true, true);
     }
 
     }
-    loadPackage({"files": [{"filename": "/lib/client.wasm", "start": 0, "end": 720326}, {"filename": "/lib/filesystem_stdio.wasm", "start": 720326, "end": 788518}, {"filename": "/lib/libref_gles3compat.wasm", "start": 788518, "end": 1059493}, {"filename": "/lib/menu.wasm", "start": 1059493, "end": 1450909}, {"filename": "/lib/server.wasm", "start": 1450909, "end": 2806325}], "remote_package_size": 2806325});
+    loadPackage({"files": [{"filename": "/lib/client.wasm", "start": 0, "end": 720326}, {"filename": "/lib/filesystem_stdio.wasm", "start": 720326, "end": 788518}, {"filename": "/lib/libref_gles3compat.wasm", "start": 788518, "end": 1059493}, {"filename": "/lib/menu.wasm", "start": 1059493, "end": 1450909}, {"filename": "/lib/server.wasm", "start": 1450909, "end": 2807304}], "remote_package_size": 2807304});
 
   })();
