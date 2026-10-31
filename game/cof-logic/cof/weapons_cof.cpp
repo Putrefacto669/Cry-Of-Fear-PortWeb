@@ -95,8 +95,8 @@ BOOL CCofSwitchblade::Deploy( void )
 		m_iHand = 1;
 	// dual wielded with the phone: its light stays on in the other hand
 	cof_phone_t *phone = CoF_Phone( m_pPlayer );
-	if( phone && phone->dual && !m_pPlayer->FlashlightIsOn())
-		m_pPlayer->FlashlightTurnOn();
+	if( phone && phone->dual )
+		CoF_SetFlashlight( m_pPlayer, true );
 	return DefaultDeploy( "models/weapons/switchblade/v_switchblade.mdl", "",
 		m_iHand == 2 ? BLADE_DRAW_LEFT : BLADE_DRAW, "crowbar" );
 }
@@ -104,8 +104,8 @@ BOOL CCofSwitchblade::Deploy( void )
 void CCofSwitchblade::Holster( int skiplocal )
 {
 	cof_phone_t *phone = CoF_Phone( m_pPlayer );
-	if( phone && phone->dual && m_pPlayer->FlashlightIsOn())
-		m_pPlayer->FlashlightTurnOff();
+	if( phone && phone->dual )
+		CoF_SetFlashlight( m_pPlayer, false );
 	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5f;
 	SendWeaponAnim( m_iHand == 2 ? BLADE_HOLSTER_LEFT : BLADE_HOLSTER, 0 );
 }
@@ -518,10 +518,7 @@ int CCofMobile::GetItemInfo( ItemInfo *p )
 
 static void CoF_MobileLight( CBasePlayer *pPlayer, BOOL on )
 {
-	if( on && !pPlayer->FlashlightIsOn())
-		pPlayer->FlashlightTurnOn();
-	else if( !on && pPlayer->FlashlightIsOn())
-		pPlayer->FlashlightTurnOff();
+	CoF_SetFlashlight( pPlayer, on != 0 );
 }
 
 BOOL CCofMobile::Deploy( void )

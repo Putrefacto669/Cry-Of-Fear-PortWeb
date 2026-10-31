@@ -3,9 +3,10 @@
 // They never move. Using one fades the screen to black, moves the player to
 // the inter_door_exit named in "target" and fades back in, like the doors of
 // survival horror games. "lockedby" keeps it locked: it is either the
-// map_name of an inventory key (inventoryitems/*.txt), which unlocks it and
-// is used up, or a name no item has, so the door stays shut unless map logic
-// changes it with cof_interdooronoff.
+// map_name of an inventory key (inventoryitems/*.txt), or a name no item has,
+// so the door stays shut unless map logic changes it with cof_interdooronoff.
+// Like the original, using a locked door only says so: the key is used from
+// the bag (CoF_UseItemOn, the original's "inventoryuse").
 
 #include "extdll.h"
 #include "util.h"
@@ -31,6 +32,7 @@ public:
 
 	void EXPORT PassThink( void );
 	BOOL TryUnlock( CBaseEntity *pActivator );
+	BOOL UnlockWith( CBaseEntity *pPlayer, const char *item );
 	void ToggleLock() { m_sLockedBy=FStringNull(m_sLockedBy)?ALLOC_STRING("somethinglocked"):iStringNull; }
 	void SetLock( string_t lockedBy )
 	{
@@ -158,23 +160,32 @@ static void InterDoor_Message( CBaseEntity *pPlayer, string_t msg )
 		CoF_CenterPrint( STRING( msg ));
 }
 
+// the original's Use (hl.dll FUN_10048f70) never looks in the bag: locked is locked
 BOOL CInterDoor::TryUnlock( CBaseEntity *pActivator )
 {
 	if( FStringNull( m_sLockedBy ))
 		return TRUE;
 
-	if( !CoF_HasItem( pActivator, STRING( m_sLockedBy )))
-	{
-		InterDoor_Sound( this, m_sLockedSound );
-		InterDoor_Message( pActivator, m_sLockedMsg );
-		return FALSE;
-	}
+	InterDoor_Sound( this, m_sLockedSound );
+	InterDoor_Message( pActivator, m_sLockedMsg );
+	return FALSE;
+}
 
-	CoF_RemoveItem( pActivator, STRING( m_sLockedBy ));
+// the key used from the bag (hl.dll FUN_10048e40): it only unlocks, the door is then used as usual.
+// Spawnflag 1 keeps the key in the bag.
+BOOL CInterDoor::UnlockWith( CBaseEntity *pPlayer, const char *item )
+{
+	if( FStringNull( m_sLockedBy ) || strcmp( STRING( m_sLockedBy ), item ))
+		return FALSE;
+
+	if( !( pev->spawnflags & 1 ))
+		CoF_RemoveItem( pPlayer, item );
 	m_sLockedBy = iStringNull;
+	m_sLockedMsg = iStringNull;
 	InterDoor_Sound( this, m_sUnlockedSound );
-	InterDoor_Message( pActivator, m_sUnlockedMsg );
-	return FALSE; // unlocking takes the use; the next one opens it
+	InterDoor_Message( pPlayer, m_sUnlockedMsg );
+	m_flNextUse = gpGlobals->time + 1.0f;
+	return TRUE;
 }
 
 void CInterDoor::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
@@ -299,13 +310,6 @@ void CCofInterDoorOnOff::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE
 	}
 }
 
-/*
-=====================================================================
-func_button with "lockedby": hlsdk's CBaseButton asks here before it
-is pressed. With the item, it is used up and the button goes at once
-(the videotape plays, the rope is placed).
-=====================================================================
-*/
 class CCofInterDoorDisable : public CPointEntity
 {
 public:
@@ -319,25 +323,78 @@ public:
 };
 LINK_ENTITY_TO_CLASS( inter_door_disable, CCofInterDoorDisable )
 
+/*
+=====================================================================
+func_button with "lockedby": hlsdk's CBaseButton asks here before it
+is pressed. While locked it only shows "lockedmsg"; the item is used
+from the bag (CoF_UseItemOn).
+=====================================================================
+*/
 bool CoF_ButtonLock( CBaseEntity *pButton, CBaseEntity *pActivator, string_t *lockedBy, string_t lockedMsg, string_t unlockedMsg, string_t unlockedSnd )
 {
 	if( FStringNull( *lockedBy ))
 		return true;
-	if( !pActivator || !pActivator->IsPlayer())
+
+	if( pActivator && pActivator->IsPlayer() && !FStringNull( lockedMsg ))
+		CoF_CenterPrint( STRING( lockedMsg ));
+	return false;
+}
+
+// the item used from the bag on a locked button (hl.dll FUN_10015a20). Spawnflag 0x400 keeps the item,
+// 0x800 presses the button at once (the rope is placed); without it the button is pressed afterwards
+// (the videotape goes in, then the player starts it).
+static BOOL Button_UnlockWith( CBaseButton *pButton, CBaseEntity *pPlayer, const char *item )
+{
+	if( FStringNull( pButton->m_iszCofLockedBy ) || strcmp( STRING( pButton->m_iszCofLockedBy ), item ))
+		return FALSE;
+
+	if( !( pButton->pev->spawnflags & 0x400 ))
+		CoF_RemoveItem( pPlayer, item );
+	pButton->m_iszCofLockedBy = iStringNull;
+	if( !FStringNull( pButton->m_iszCofUnlockedMsg ))
+		CoF_CenterPrint( STRING( pButton->m_iszCofUnlockedMsg ));
+	if( !FStringNull( pButton->m_iszCofUnlockedSnd ))
+		EMIT_SOUND( ENT( pButton->pev ), CHAN_ITEM, STRING( pButton->m_iszCofUnlockedSnd ), 1.0f, ATTN_NORM );
+	if( pButton->pev->spawnflags & 0x800 )
+		pButton->Use( pPlayer, pPlayer, USE_TOGGLE, 0 );
+	return TRUE;
+}
+
+static BOOL UseItemOnEntity( CBaseEntity *pEntity, CBaseEntity *pPlayer, const char *item )
+{
+	if( FClassnameIs( pEntity->pev, "inter_door" ))
+		return ( (CInterDoor *)pEntity )->UnlockWith( pPlayer, item );
+	if( FClassnameIs( pEntity->pev, "func_button" ))
+		return Button_UnlockWith( (CBaseButton *)pEntity, pPlayer, item );
+	return FALSE;
+}
+
+/*
+=====================================================================
+USE on an item of the bag, the original's "inventoryuse" (hl.dll
+FUN_100e4410): the item's map_name is tried on what the player looks
+at, 80 units from the eyes, and then on what is within 64 units of
+the player. The original also takes func_valve, which no published
+map locks with an item.
+=====================================================================
+*/
+bool CoF_UseItemOn( CBaseEntity *pPlayer, const char *item )
+{
+	if( !pPlayer || !item || !item[0] )
 		return false;
 
-	if( !CoF_HasItem( pActivator, STRING( *lockedBy )))
-	{
-		if( !FStringNull( lockedMsg ))
-			CoF_CenterPrint( STRING( lockedMsg ));
-		return false;
-	}
+	UTIL_MakeVectors( pPlayer->pev->v_angle );
+	Vector start = pPlayer->pev->origin + pPlayer->pev->view_ofs;
+	TraceResult tr;
+	UTIL_TraceLine( start, start + gpGlobals->v_forward * 80.0f, dont_ignore_monsters, pPlayer->edict(), &tr );
+	CBaseEntity *pHit = tr.pHit ? CBaseEntity::Instance( tr.pHit ) : NULL;
+	if( pHit && ( pHit->ObjectCaps() & ( FCAP_CONTINUOUS_USE | FCAP_IMPULSE_USE | FCAP_ONOFF_USE )) &&
+		UseItemOnEntity( pHit, pPlayer, item ))
+		return true;
 
-	CoF_RemoveItem( pActivator, STRING( *lockedBy ));
-	*lockedBy = iStringNull;
-	if( !FStringNull( unlockedSnd ))
-		EMIT_SOUND( ENT( pButton->pev ), CHAN_ITEM, STRING( unlockedSnd ), 1.0f, ATTN_NORM );
-	if( !FStringNull( unlockedMsg ))
-		CoF_CenterPrint( STRING( unlockedMsg ));
-	return true;
+	CBaseEntity *pNear = NULL;
+	while(( pNear = UTIL_FindEntityInSphere( pNear, pPlayer->pev->origin, 64.0f )))
+		if( UseItemOnEntity( pNear, pPlayer, item ))
+			return true;
+	return false;
 }

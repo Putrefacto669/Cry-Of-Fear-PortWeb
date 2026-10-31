@@ -20,6 +20,7 @@
 
 static int gmsgCoFFog = 0;
 static int gmsgCoFEmit = 0;
+static int gmsgCoFLight = 0;
 
 void CoF_LinkDecalMessages( void ); // static_decal.cpp
 
@@ -30,8 +31,19 @@ void CoF_LinkUserMessages( void )
 	{
 		gmsgCoFFog = REG_USER_MSG( "CoFFog", -1 );
 		gmsgCoFEmit = REG_USER_MSG( "CoFEmit", -1 );
+		gmsgCoFLight = REG_USER_MSG( "CoFLight", 1 );
 	}
 	CoF_LinkDecalMessages();
+}
+
+// the phone's light on or off (player_cof.cpp); the client projects it (cof_client.cpp)
+void CoF_SendFlashlight( CBaseEntity *pPlayer, bool on )
+{
+	if( !gmsgCoFLight || !pPlayer )
+		return;
+	MESSAGE_BEGIN( MSG_ONE, gmsgCoFLight, NULL, pPlayer->pev );
+		WRITE_BYTE( on ? 1 : 0 );
+	MESSAGE_END();
 }
 
 /*

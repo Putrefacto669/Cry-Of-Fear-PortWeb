@@ -9,6 +9,8 @@
 // API: CoFPostFX.set({ flashlight: true, grain: 0.06, grey: 0, vignette: 0.35 })
 //      CoFPostFX.stats()  -> coste medio por frame en ms (CPU, incluye la copia)
 // Tecla F: enciende/apaga la linterna (hasta que la lógica de CoF la controle).
+// Se mantiene mientras el foco del renderer (gl_rsurf.c, COF_SPOT_KEY) no ilumine el mundo: este cono
+// multiplica el frame ya iluminado y no puede aclarar lo negro (docs/INFORME_MEJORAS_2026_10_31.md).
 (() => {
   "use strict";
 

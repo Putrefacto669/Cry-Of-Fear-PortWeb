@@ -891,10 +891,20 @@ index fb0af14f..a97dc1d0 100644
  	{
  		if( subImage ) pglCompressedTexSubImage1DARB( tex->target, level, 0, width, tex->format, size, data );
 diff --git a/ref/gl/gl_local.h b/ref/gl/gl_local.h
-index 1e4d23e9..92d8d01d 100644
+index 1e4d23e9..3b701253 100644
 --- a/ref/gl/gl_local.h
 +++ b/ref/gl/gl_local.h
-@@ -824,3 +824,11 @@ extern convar_t r_scene_scale;
+@@ -506,6 +506,9 @@ void GL_InitExtensions( void );
+ void GL_ClearExtensions( void );
+ int GL_LoadTexture( const char *name, const byte *buf, size_t size, int flags );
+ qboolean VID_ScreenShot( const char *filename, int shot_type );
++// Cry of Fear flashlight (gl_rsurf.c): dlight/elight key of the client's spotlight
++#define COF_SPOT_KEY 0x7C0F000
++float R_CofSpotFactor( const vec3_t point, vec3_t color );
+ qboolean VID_CubemapShot( const char *base, uint size, const float *vieworg, qboolean skyshot );
+ void R_GammaChanged( qboolean do_reset_gamma );
+ void R_BeginFrame( qboolean clearScene );
+@@ -824,3 +827,11 @@ extern convar_t r_scene_scale;
  
  
  #endif // GL_LOCAL_H
@@ -1087,8 +1097,216 @@ index 97b12119..973f3ff1 100644
  
  	R_MarkLeaves();
  	R_DrawFog ();
+diff --git a/ref/gl/gl_rsurf.c b/ref/gl/gl_rsurf.c
+index 18dea062..dc748583 100644
+--- a/ref/gl/gl_rsurf.c
++++ b/ref/gl/gl_rsurf.c
+@@ -38,6 +38,171 @@ typedef struct
+ static vec2_t		world_orthocenter;
+ static vec2_t		world_orthohalf;
+ static uint		r_blocklights[BLOCK_SIZE_MAX*BLOCK_SIZE_MAX*3];
++
++/*
++=============================================================
++
++Cry of Fear flashlight. The original client.dll (Paranoia's renderer)
++projects gfx/flashlight.tga from the view as a spotlight and adds it
++to the lighting in a second pass (glBlendFunc GL_DST_ALPHA, GL_ONE):
++colour * cookie * (1 - t*t) * N.L, where t is the distance along the
++axis over the radius, inside a frustum of r_cofspot_fov degrees. The
++client (cof_client.cpp) marks that light with COF_SPOT_KEY; here it
++is added to each luxel after the gamma table, as the original adds it
++on top of the lightmapped surface.
++
++=============================================================
++*/
++static float	r_spotlight[BLOCK_SIZE_MAX*BLOCK_SIZE_MAX*3];
++static qboolean	r_spotused;
++static rgbdata_t	*r_spotcookie;
++static qboolean	r_spotcookietried;
++static cvar_t	*r_cofspot_fov;
++
++static void R_SpotCookie( float u, float v, vec3_t out )
++{
++	if( !r_spotcookietried )
++	{
++		r_spotcookietried = true;
++		r_spotcookie = gEngfuncs.FS_LoadImage( "gfx/flashlight.tga", NULL, 0 );
++	}
++
++	if( !r_spotcookie || !r_spotcookie->buffer || !r_spotcookie->width || !r_spotcookie->height )
++	{
++		VectorSet( out, 1.0f, 1.0f, 1.0f );
++		return;
++	}
++
++	int w = r_spotcookie->width, h = r_spotcookie->height;
++	int bpp = r_spotcookie->size / ( w * h );
++	int x = bound( 0, (int)( u * ( w - 1 ) + 0.5f ), w - 1 );
++	int y = bound( 0, (int)( v * ( h - 1 ) + 0.5f ), h - 1 );
++	const byte *p = r_spotcookie->buffer + ( y * w + x ) * bpp;
++
++	if( bpp >= 3 )
++		VectorSet( out, p[0] / 255.0f, p[1] / 255.0f, p[2] / 255.0f );
++	else
++		VectorSet( out, p[0] / 255.0f, p[0] / 255.0f, p[0] / 255.0f );
++}
++
++static float R_SpotTan( void )
++{
++	if( !r_cofspot_fov )
++		r_cofspot_fov = gEngfuncs.pfnGetCvarPointer( "r_cofspot_fov" );
++	float fov = r_cofspot_fov ? r_cofspot_fov->value : 50.0f;
++	return tan( DEG2RAD( bound( 1.0f, fov, 170.0f ) * 0.5f ));
++}
++
++// cookie * attenuation at a point in the space of org/fwd/rgt/up; 0 outside the frustum
++static float R_SpotAt( const vec3_t d, const vec3_t fwd, const vec3_t rgt, const vec3_t up,
++	float radius, float tanh, vec3_t cookie )
++{
++	float along = DotProduct( d, fwd );
++	if( along <= 1.0f || along >= radius )
++		return 0.0f;
++
++	float x = DotProduct( d, rgt ) / ( along * tanh );
++	float y = DotProduct( d, up ) / ( along * tanh );
++	if( x <= -1.0f || x >= 1.0f || y <= -1.0f || y >= 1.0f )
++		return 0.0f;
++
++	float t = along / radius;
++	R_SpotCookie(( x + 1.0f ) * 0.5f, ( 1.0f - y ) * 0.5f, cookie );
++	return 1.0f - t * t;
++}
++
++// for models (gl_studio.c): the strength of the spotlight at a point, and its tint there
++float R_CofSpotFactor( const vec3_t point, vec3_t color )
++{
++	vec3_t d;
++	VectorSubtract( point, RI.rvp.vieworigin, d );
++	float k = R_SpotAt( d, RI.vforward, RI.vright, RI.vup, 700.0f, R_SpotTan(), color );
++	VectorScale( color, k, color );
++	return k;
++}
++
++static void R_AddSpotLight( const msurface_t *surf, const dlight_t *dl, float sample_size, int smax, int tmax )
++{
++	const mextrasurf_t *info = surf->info;
++	vec3_t org, fwd, rgt, up, normal, U, V, W, p00, ds, dt;
++	float tanh = R_SpotTan();
++	float color[3] = { dl->color.r / 255.0f, dl->color.g / 255.0f, dl->color.b / 255.0f };
++
++	// the view in the space of the model being drawn (brush entities)
++	if( !tr.modelviewIdentity )
++	{
++		Matrix4x4_VectorITransform( RI.objectMatrix, RI.rvp.vieworigin, org );
++		Matrix4x4_VectorIRotate( RI.objectMatrix, RI.vforward, fwd );
++		Matrix4x4_VectorIRotate( RI.objectMatrix, RI.vright, rgt );
++		Matrix4x4_VectorIRotate( RI.objectMatrix, RI.vup, up );
++	}
++	else
++	{
++		VectorCopy( RI.rvp.vieworigin, org );
++		VectorCopy( RI.vforward, fwd );
++		VectorCopy( RI.vright, rgt );
++		VectorCopy( RI.vup, up );
++	}
++
++	// the face looks away from the light
++	VectorCopy( surf->plane->normal, normal );
++	float side = DotProduct( org, surf->plane->normal ) - surf->plane->dist;
++	if( FBitSet( surf->flags, SURF_PLANEBACK ))
++	{
++		VectorNegate( normal, normal );
++		side = -side;
++	}
++	if( side <= 0.0f )
++		return;
++
++	// luxel (s, t) -> point on the plane: invert the lightmap vectors with the plane
++	CrossProduct( info->lmvecs[1], surf->plane->normal, U );
++	CrossProduct( surf->plane->normal, info->lmvecs[0], V );
++	CrossProduct( info->lmvecs[0], info->lmvecs[1], W );
++	float det = DotProduct( info->lmvecs[0], U );
++	if( fabs( det ) < 1e-6f )
++		return;
++	VectorScale( U, 1.0f / det, U );
++	VectorScale( V, 1.0f / det, V );
++	VectorScale( W, 1.0f / det, W );
++
++	float a0 = info->lightmapmins[0] - info->lmvecs[0][3];
++	float b0 = info->lightmapmins[1] - info->lmvecs[1][3];
++	VectorScale( U, a0, p00 );
++	VectorMA( p00, b0, V, p00 );
++	VectorMA( p00, surf->plane->dist, W, p00 );
++	VectorScale( U, sample_size, ds );
++	VectorScale( V, sample_size, dt );
++
++	if( !r_spotused )
++	{
++		memset( r_spotlight, 0, sizeof( float ) * smax * tmax * 3 );
++		r_spotused = true;
++	}
++
++	for( int t = 0; t < tmax; t++ )
++	{
++		for( int s = 0; s < smax; s++ )
++		{
++			vec3_t p, d, cookie;
++			VectorMA( p00, s, ds, p );
++			VectorMA( p, t, dt, p );
++			VectorSubtract( p, org, d );
++
++			float k = R_SpotAt( d, fwd, rgt, up, dl->radius, tanh, cookie );
++			if( k <= 0.0f )
++				continue;
++
++			float ndl = -DotProduct( d, normal ) / VectorLength( d );
++			if( ndl <= 0.0f )
++				continue;
++
++			float *out = &r_spotlight[(s + t * smax) * 3];
++			for( int i = 0; i < 3; i++ )
++				out[i] += k * ndl * cookie[i] * color[i];
++		}
++	}
++}
+ static mextrasurf_t		*fullbright_surfaces[MAX_TEXTURES];
+ static mextrasurf_t		*detail_surfaces[MAX_TEXTURES];
+ 
+@@ -595,6 +760,12 @@ static void R_AddDynamicLights( const msurface_t *surf, float sample_size, int s
+ 
+ 		dlight_t *dl = &gp_dlights[lnum];
+ 
++		if( dl->key == COF_SPOT_KEY )
++		{
++			R_AddSpotLight( surf, dl, sample_size, smax, tmax );
++			continue;
++		}
++
+ 		// transform light origin to local bmodel space
+ 		if( !tr.modelviewIdentity )
+ 			Matrix4x4_VectorITransform( RI.objectMatrix, dl->origin, origin_l );
+@@ -786,6 +957,7 @@ static void R_BuildLightMap( const msurface_t *surf, byte *restrict dest, int st
+ 		memset( r_blocklights, 0, sizeof( uint ) * size * 3 );
+ 
+ 	// add all the dynamic lights
++	r_spotused = false;
+ 	if( surf->dlightframe == tr.framecount && dynamic )
+ 		R_AddDynamicLights( surf, sample_size, smax, tmax );
+ 
+@@ -815,6 +987,10 @@ static void R_BuildLightMap( const msurface_t *surf, byte *restrict dest, int st
+ 					dst[i] = t >> 2;
+ 				else
+ 					dst[i] = lightgammatable[t] >> 2;
++
++				// Cry of Fear flashlight: on top of the lightmap, like the original's additive pass
++				if( r_spotused )
++					dst[i] = Q_min( 255, dst[i] + (int)( r_spotlight[(s + t * smax) * 3 + i] * 255.0f + 0.5f ));
+ 			}
+ 			dst[3] = 255;
+ 		}
 diff --git a/ref/gl/gl_studio.c b/ref/gl/gl_studio.c
-index 39873fb4..630f73c2 100644
+index 39873fb4..e576c59b 100644
 --- a/ref/gl/gl_studio.c
 +++ b/ref/gl/gl_studio.c
 @@ -252,7 +252,7 @@ static qboolean R_StudioComputeBBox( vec3_t bbox[8] )
@@ -1100,7 +1318,37 @@ index 39873fb4..630f73c2 100644
  		return false; // model culled
  	return true; // visible
  }
-@@ -1302,6 +1302,7 @@ static void R_StudioSetupLighting( alight_t *plight )
+@@ -1236,7 +1236,15 @@ static void R_StudioEntityLight( alight_t *lightinfo )
+ 		if( el->die < g_studio.time || el->radius <= 0.0f )
+ 			continue;
+ 
+-		if(( el->key & 0xFFF ) == ent->index )
++		// Cry of Fear flashlight: from the view, as strong as the spotlight is where the model stands
++		vec3_t spottint = { 1.0f, 1.0f, 1.0f };
++		if( el->key == COF_SPOT_KEY )
++		{
++			if( R_CofSpotFactor( origin, spottint ) <= 0.0f )
++				continue;
++			VectorCopy( RI.rvp.vieworigin, el->origin );
++		}
++		else if(( el->key & 0xFFF ) == ent->index )
+ 		{
+ 			int	att = (el->key >> 12) & 0xF;
+ 
+@@ -1272,9 +1280,9 @@ static void R_StudioEntityLight( alight_t *lightinfo )
+ 
+ 			if( k != -1 )
+ 			{
+-				g_studio.locallightcolor[k][0] = LinearGammaTable( el->color.r << 2 );
+-				g_studio.locallightcolor[k][1] = LinearGammaTable( el->color.g << 2 );
+-				g_studio.locallightcolor[k][2] = LinearGammaTable( el->color.b << 2 );
++				g_studio.locallightcolor[k][0] = (int)( LinearGammaTable( el->color.r << 2 ) * spottint[0] );
++				g_studio.locallightcolor[k][1] = (int)( LinearGammaTable( el->color.g << 2 ) * spottint[1] );
++				g_studio.locallightcolor[k][2] = (int)( LinearGammaTable( el->color.b << 2 ) * spottint[2] );
+ 				g_studio.locallightR2[k] = r2;
+ 				g_studio.locallight[k] = el;
+ 				lstrength[k] = minstrength;
+@@ -1302,6 +1310,7 @@ static void R_StudioSetupLighting( alight_t *plight )
  	if( RI.currententity != NULL )
  		scale = RI.currententity->curstate.scale;
  
@@ -1108,7 +1356,7 @@ index 39873fb4..630f73c2 100644
  	g_studio.ambientlight = plight->ambientlight;
  	g_studio.shadelight = plight->shadelight;
  	VectorCopy( plight->plightvec, g_studio.lightvec );
-@@ -3205,6 +3206,8 @@ R_StudioDrawModelInternal
+@@ -3205,6 +3214,8 @@ R_StudioDrawModelInternal
  */
  static void R_StudioDrawModelInternal( cl_entity_t *e, int flags )
  {
@@ -1117,7 +1365,7 @@ index 39873fb4..630f73c2 100644
  	if( !FBitSet( RI.rvp.flags, RF_DRAW_WORLD ))
  	{
  		if( e->player )
-@@ -3224,6 +3227,7 @@ static void R_StudioDrawModelInternal( cl_entity_t *e, int flags )
+@@ -3224,6 +3235,7 @@ static void R_StudioDrawModelInternal( cl_entity_t *e, int flags )
  			pStudioDraw->StudioDrawPlayer( flags, R_StudioGetPlayerState( e->index - 1 ));
  		else pStudioDraw->StudioDrawModel( flags );
  	}

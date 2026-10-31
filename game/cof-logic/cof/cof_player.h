@@ -21,6 +21,12 @@ bool CoF_AddBagEntry( CBaseEntity *pActivator, const char *def ); // without giv
 bool CoF_HasItem( CBaseEntity *pActivator, const char *mapName );
 void CoF_RemoveItem( CBaseEntity *pActivator, const char *mapName );
 void CoF_ClearItem( CBaseEntity *pActivator, const char *classname );
+bool CoF_UseItemOn( CBaseEntity *pPlayer, const char *mapName ); // USE in the bag: keys (doors.cpp)
+
+// the phone's light: kept here and drawn by the client as the original's spotlight
+bool CoF_FlashlightIsOn( CBaseEntity *pPlayer );
+void CoF_SetFlashlight( CBaseEntity *pPlayer, bool on );
+void CoF_SendFlashlight( CBaseEntity *pPlayer, bool on ); // CoFLight message (atmosphere.cpp)
 
 // current objective (hints.txt key), shown in the bag and kept in save games
 void CoF_SetObjective( const char *key );

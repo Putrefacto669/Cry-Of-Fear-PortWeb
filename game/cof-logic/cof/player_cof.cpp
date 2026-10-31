@@ -68,6 +68,9 @@ typedef struct
 	cof_phone_t phone;   // trigger_cofmobile / weapon_mobile
 	int sentHide;        // m_iHideHUD in the last COF/HUD STAT
 	int sentUnread;      // last COF/HUD SMSICON
+	BOOL flashlight;     // the phone's light (CoF_SetFlashlight)
+	int sentFlashlight;  // last CoFLight message
+	float forceFlashlight;
 } cof_player_t;
 
 static cof_player_t g_cofPlayers[33];
@@ -322,8 +325,27 @@ void CoF_PlayerSpawn( CBasePlayer *pPlayer )
 	memset( s, 0, sizeof( *s ));
 	s->stamina = COF_STAMINA_MAX;
 	CoF_PuzzlesNewGame();
-	s->sentHealth = s->sentStamina = s->sentSprint = s->sentHide = -1;
+	s->sentHealth = s->sentStamina = s->sentSprint = s->sentHide = s->sentFlashlight = -1;
 	s->invDirty = TRUE;
+}
+
+// The phone's light. The original keeps its own flag (hl.dll FUN_1003fce0: CBasePlayer +0x1ea8 and bit 8
+// of a word for the client) with items/flashlight1.wav: no HEV suit and no battery, unlike Half-Life's
+// FlashlightTurnOn, which did nothing in the port (Simon has no suit). The client draws it (CoFLight).
+bool CoF_FlashlightIsOn( CBaseEntity *pPlayer )
+{
+	cof_player_t *s = CoF_State( pPlayer );
+	return s && s->flashlight;
+}
+
+void CoF_SetFlashlight( CBaseEntity *pPlayer, bool on )
+{
+	cof_player_t *s = CoF_State( pPlayer );
+	if( !s || ( s->flashlight != 0 ) == on )
+		return;
+
+	s->flashlight = on;
+	EMIT_SOUND_DYN( pPlayer->edict(), CHAN_WEAPON, "items/flashlight1.wav", 1.0f, 0.8f, 0, PITCH_NORM );
 }
 
 // glock magazines and syringes take a bag slot while there are any left
@@ -435,6 +457,14 @@ void CoF_PlayerPreThink( CBasePlayer *pPlayer )
 		s->sentHide = pPlayer->m_iHideHUD;
 		s->nextStatus = now + 0.1f;
 		s->forceStatus = now + 2.0f;
+	}
+
+	// the light to the client, again every 2 s so it survives a level change or a loaded game
+	if( s->flashlight != s->sentFlashlight || now >= s->forceFlashlight )
+	{
+		CoF_SendFlashlight( pPlayer, s->flashlight );
+		s->sentFlashlight = s->flashlight;
+		s->forceFlashlight = now + 2.0f;
 	}
 
 	// UnreadSMS of the original: the icon stays until the phone is taken out
@@ -746,6 +776,20 @@ bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd )
 		if( i >= 0 && i < s->numItems )
 			CoF_Equip( pPlayer, s->names[i] );
 	}
+	// USE on an item that is not a weapon (the original's "inventoryuse"): keys on doors and buttons.
+	// hud.js plays the click and closes the bag, or plays the original's "no"
+	else if( FStrEq( pcmd, "cof_useitem" ))
+	{
+		int i = atoi( CMD_ARGV( 1 ));
+		char name[COF_ITEM_LEN];
+		bool used = false;
+		if( i >= 0 && i < s->numItems )
+		{
+			snprintf( name, sizeof( name ), "%s", s->names[i] ); // the entry goes away if it is used up
+			used = CoF_UseItemOn( pPlayer, name );
+		}
+		CoF_HudPrint( "COF/HUD ITEMUSED %d\n", used ? 1 : 0 );
+	}
 	else if( FStrEq( pcmd, "cof_quickset" ))
 	{
 		int q = atoi( CMD_ARGV( 1 )) - 1, i = atoi( CMD_ARGV( 2 ));
@@ -764,12 +808,7 @@ bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd )
 	{
 		CBasePlayerItem *pActive = pPlayer->m_pActiveItem;
 		if( pPlayer->HasNamedPlayerItem( "weapon_mobile" ) && !( pActive && FClassnameIs( pActive->pev, "weapon_mobile" )))
-		{
-			if( pPlayer->FlashlightIsOn())
-				pPlayer->FlashlightTurnOff();
-			else
-				pPlayer->FlashlightTurnOn();
-		}
+			CoF_SetFlashlight( pPlayer, !CoF_FlashlightIsOn( pPlayer ));
 	}
 	// DUAL WIELD in the bag: the phone and the knife together, light in one hand and knife in the other
 	else if( FStrEq( pcmd, "cof_dualwield" ) && CMD_ARGC() == 3 )
@@ -784,7 +823,7 @@ bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd )
 				( !stricmp( x, "weapon_switchblade" ) && !stricmp( y, "weapon_mobile" ));
 			CBasePlayerItem *pActive = pPlayer->m_pActiveItem;
 			if( phone->dual && pActive && FClassnameIs( pActive->pev, "weapon_switchblade" ))
-				pPlayer->FlashlightTurnOn();
+				CoF_SetFlashlight( pPlayer, true );
 			s->invDirty = TRUE;
 		}
 	}
@@ -1033,6 +1072,7 @@ public:
 	BOOL m_fSmsUnread;
 	BOOL m_fMobileFlash;
 	BOOL m_fMobileDual;
+	BOOL m_fFlashlight;
 };
 
 LINK_ENTITY_TO_CLASS( cof_playerstate, CCofPlayerState )
@@ -1052,6 +1092,7 @@ TYPEDESCRIPTION CCofPlayerState::m_SaveData[] =
 	DEFINE_FIELD( CCofPlayerState, m_fSmsUnread, FIELD_BOOLEAN ),
 	DEFINE_FIELD( CCofPlayerState, m_fMobileFlash, FIELD_BOOLEAN ),
 	DEFINE_FIELD( CCofPlayerState, m_fMobileDual, FIELD_BOOLEAN ),
+	DEFINE_FIELD( CCofPlayerState, m_fFlashlight, FIELD_BOOLEAN ),
 };
 
 void CCofPlayerState::Spawn( void )
@@ -1079,6 +1120,7 @@ int CCofPlayerState::Save( CSave &save )
 	m_fSmsUnread = s->phone.unread;
 	m_fMobileFlash = s->phone.flash;
 	m_fMobileDual = s->phone.dual;
+	m_fFlashlight = s->flashlight;
 	char code[16];
 	m_iPassword = CoF_GetPuzzleState( code, sizeof( code ));
 	m_iszCode = ALLOC_STRING( code );
@@ -1113,6 +1155,8 @@ int CCofPlayerState::Restore( CRestore &restore )
 	s->phone.unread = m_fSmsUnread;
 	s->phone.flash = m_fMobileFlash;
 	s->phone.dual = m_fMobileDual;
+	s->flashlight = m_fFlashlight;
+	s->sentFlashlight = -1;
 	CoF_SetPuzzleState( m_iPassword, FStringNull( m_iszCode ) ? "" : STRING( m_iszCode ));
  if(!FStringNull(m_iszPadlockCode)) CoF_SetPadlockCode(STRING(m_iszPadlockCode));
 	s->invDirty = TRUE;

@@ -231,6 +231,12 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
   recarga vuelve a descargar 4,6 MiB y aparece `ERR_INTERNET_DISCONNECTED` sin conexión.
 - Candado: falta validar de forma natural la contraseña correcta, la combinación, el regreso a
   `c_start` y guardar/cargar. Manos blancas tras cargar partida.
+- Llaves: se usan desde el bolso (`cof_useitem`, `CoF_UseItemOn` en `doors.cpp`), como el
+  `inventoryuse` original; E sobre una puerta o un botón cerrados solo avisa. Sin probar en juego: el
+  botón de la cinta de vídeo de `c_apartment3` y la puerta `*96` de `c_apartment4`.
+- Linterna a medias (`docs/INFORME_MEJORAS_2026_10_31.md`): servidor, cliente y foco del renderer
+  (`COF_SPOT_KEY` en `patches/xash3d`) compilados, pero el foco apenas ilumina el mundo. El cono de
+  `postfx.js` sigue activo con F hasta arreglarlo.
 - `cof_greyfade` (fundido a gris) no está implementado; no aparece en los mapas publicados.
 - Entidades del capítulo 1 sin implementar: `cof_developer_commentary`, `cof_hoodie`,
   `cof_clothesmenu`, `item_nightvision` (y `info_texlights`, que solo sirve al compilar).

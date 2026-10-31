@@ -285,6 +285,56 @@ en `position: static` y las zonas no coincidían con las banderas; se resolvió 
 - `c_intro` muestra «EINLEITUNG» (alemán) y la consola da `"cof_subtitlelanguage" is "4" ( "1" )`.
 - Los seis idiomas traducidos tienen sus 9 textos y su introducción en el sistema de archivos.
 
+## Llaves: USE desde el bolso
+
+**Síntoma (usuario, `c_apartment1`).** Con la llave del apartamento, USE en el bolso no abría la puerta.
+
+**Causa.** El port hacía lo contrario que el original: `inter_door` y los `func_button` con
+`lockedby` se desbloqueaban al pulsar E si la llave estaba en el bolso, y USE en el bolso solo
+funcionaba con armas (con lo demás sonaba `inventory_no`).
+
+**Original** (`hl.dll`, análisis de solo lectura con `tools/ghidra`):
+- `inter_door` guarda `lockedby` en `+0x190`. Su `Use` (`FUN_10048f70`) no mira el bolso: si está
+  cerrada muestra `lockedmsg` y suena `lockedsnd`.
+- El comando de cliente `inventoryuse <ranura>` llama a `FUN_100e4410`, que toma el `map_name` del
+  objeto y:
+  - traza 80 unidades desde los ojos (`DAT_101a1f14` = 80.0); si choca con algo usable
+    (`ObjectCaps & 0x38`), lo prueba con `inter_door`, `func_valve` y `func_button` bloqueado;
+  - si no, recorre las entidades a 64 unidades del jugador (`0x42800000`) con las mismas pruebas;
+  - si nada coincide, suena `inventory_no`.
+- Desbloquear una puerta (`FUN_10048e40`): `unlockedsnd`, `unlockedmsg`, borra `lockedby` y
+  `lockedmsg`, y no admite otro uso durante 1 s. **No la abre**: luego se usa con E.
+  - El objeto se gasta salvo con la bandera 1 de la puerta.
+- Botón (`FUN_10015a20`): quita el bloqueo, `unlockedmsg` y su sonido.
+  - Con la bandera `0x800` lo pulsa en el acto.
+  - La bandera `0x400` conserva el objeto.
+- Tras usarlo bien suena `inventory_click` y el bolso se cierra.
+
+**Corrección.**
+- `game/cof-logic/cof/doors.cpp`: E sobre una puerta o un botón con llave solo avisa.
+  `CoF_UseItemOn` reproduce el recorrido del original para `inter_door` y `func_button`.
+  `func_valve` no se cubre: ningún mapa publicado lo bloquea con un objeto.
+- `player_cof.cpp`: comando `cof_useitem <ranura>`, que responde `COF/HUD ITEMUSED 0|1`.
+- `platform/web/hud.js`: USE sobre un objeto que no es arma envía `cof_useitem`. Con 1 suena el
+  clic y se cierra el bolso; con 0 suena el "no".
+
+Entidades afectadas en los 11 mapas (las demás `lockedby` son nombres que ningún objeto tiene):
+`c_apartment1` puertas `*10` (`hallkey`) y `*66` (`apartmentkey`), `c_apartment3` botón `*133`
+(`Videotape`), `c_apartment4` puerta `*96` (`basementkey`) y `c_apartment5` botón `*68` (`rope`,
+bandera `0x800`).
+
+**Pruebas** (dist aislado `claude-launcher`, puerto 8091, `?sw=0&timer=1`):
+- **`c_apartment1`, puerta `*66`:**
+  - E con la llave: "The door is locked." y la llave sigue en el bolso.
+  - Clic en la llave → USE: "Has abierto la cerradura.", `ITEMUSED 1`, bolso vacío y cerrado.
+  - E después: el jugador pasa a `3_exit1` (-312, 480).
+- **Llave lejos de su puerta** (`hallkey`): `ITEMUSED 0` y la llave se queda.
+- **`c_apartment5`, botón de la cuerda:**
+  - E: "You will need a rope or something to climb down."
+  - USE: "You have placed the rope.", la cuerda se gasta y se dispara `multiunlockedrope` (fundido).
+- **Sin probar en juego:** el botón de la cinta de vídeo (`*133`, sin `0x800`: se desbloquea y luego
+  se pulsa con E) y la puerta `*96` de `c_apartment4`.
+
 ## Límites de la validación
 
 No se modificaron recursos originales, distribución principal, licencias ni

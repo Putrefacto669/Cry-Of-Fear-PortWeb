@@ -16,6 +16,8 @@
 #include "r_efx.h"
 #include "cl_entity.h"
 #include "com_model.h"
+#include "event_api.h"
+#include "pm_defs.h"
 #include <math.h>
 #include <string.h>
 
@@ -403,6 +405,92 @@ static void PadlockRenderStatus() {
  gEngfuncs.Con_Printf("COF/PAD_RENDER count=%d\n",count);
 }
 static int PadlockMessage(const char*,int size,void *buffer) { BEGIN_READ(buffer,size); gEngfuncs.Con_Printf("COF/HUD PADLOCK %d\n",READ_BYTE()); return 1; }
+
+/*
+=====================================================================
+the phone's light, as the original client.dll (FUN_100aea10): every
+frame it asks its renderer for a spotlight at the view, radius 700,
+colour 0.46 0.46 0.51, projecting gfx/flashlight.tga. The aperture is
+50 degrees, opened by up to 30 more when a wall is within 150 units
+ahead, and follows that at 10 times the difference per second. Here
+the light is a dlight (world) and an elight (models) with
+COF_SPOT_KEY; the renderer (patches/xash3d, gl_rsurf.c) makes it a
+spotlight with r_cofspot_fov.
+=====================================================================
+*/
+#define COF_SPOT_KEY   0x7C0F000   // low 12 bits 0: not tied to an entity
+#define COF_SPOT_RANGE 700.0f
+
+static int g_flashlightOn;
+static int g_flashlightLit;      // the lights are allocated
+static float g_flashlightOpen;   // the extra degrees (DAT_10559ecc)
+static vec3_t g_spotNowhere;
+
+static int __MsgFunc_CoFLight( const char *pszName, int iSize, void *pbuf )
+{
+	BEGIN_READ( pbuf, iSize );
+	g_flashlightOn = READ_BYTE();
+	return 1;
+}
+
+static void Flashlight_SetLight( dlight_t *dl, const vec3_t org, float die )
+{
+	if( !dl )
+		return;
+	VectorCopy( org, dl->origin );
+	dl->radius = die > 0.0f ? COF_SPOT_RANGE : 0.0f;
+	dl->color.r = dl->color.g = 117;   // 0.46
+	dl->color.b = 130;                 // 0.51
+	dl->die = die;
+	dl->decay = 0.0f;
+	dl->minlight = 0.0f;
+	dl->dark = false;
+}
+
+static void Flashlight_Frame( float now, float dt )
+{
+	cl_entity_t *player = gEngfuncs.GetLocalPlayer();
+	vec3_t org, angles, forward, end;
+
+	if( !g_flashlightOn || !player )
+	{
+		if( g_flashlightLit )
+		{
+			Flashlight_SetLight( gEngfuncs.pEfxAPI->CL_AllocDlight( COF_SPOT_KEY ), g_spotNowhere, 0.0f );
+			Flashlight_SetLight( gEngfuncs.pEfxAPI->CL_AllocElight( COF_SPOT_KEY ), g_spotNowhere, 0.0f );
+			g_flashlightLit = 0;
+		}
+		g_flashlightOpen = 0.0f;
+		return;
+	}
+
+	gEngfuncs.pEventAPI->EV_LocalPlayerViewheight( org );
+	VectorAdd( org, player->origin, org );
+	gEngfuncs.GetViewAngles( angles );
+	gEngfuncs.pfnAngleVectors( angles, forward, NULL, NULL );
+	VectorMA( org, 150.0f, forward, end );
+
+	pmtrace_t tr;
+	gEngfuncs.pEventAPI->EV_SetUpPlayerPrediction( false, true );
+	gEngfuncs.pEventAPI->EV_PushPMStates();
+	gEngfuncs.pEventAPI->EV_SetSolidPlayers( player->index - 1 );
+	gEngfuncs.pEventAPI->EV_SetTraceHull( 2 );
+	gEngfuncs.pEventAPI->EV_PlayerTrace( org, end, PM_NORMAL, -1, &tr );
+	gEngfuncs.pEventAPI->EV_PopPMStates();
+
+	float target = tr.fraction < 1.0f ? ( 1.0f - tr.fraction ) * 30.0f : 0.0f;
+	float step = fabs( g_flashlightOpen - target ) * 10.0f * dt;
+	if( g_flashlightOpen < target )
+		g_flashlightOpen = fmin( target, g_flashlightOpen + step );
+	else
+		g_flashlightOpen = fmax( target, g_flashlightOpen - step );
+
+	gEngfuncs.Cvar_SetValue( "r_cofspot_fov", g_flashlightOpen + 50.0f );
+	Flashlight_SetLight( gEngfuncs.pEfxAPI->CL_AllocDlight( COF_SPOT_KEY ), org, now + 0.1f );
+	Flashlight_SetLight( gEngfuncs.pEfxAPI->CL_AllocElight( COF_SPOT_KEY ), org, now + 0.1f );
+	g_flashlightLit = 1;
+}
+
 void CoF_DecalsInit( void );    // cof_decals.cpp
 void CoF_DecalsVidInit( void );
 void CoF_ClientInit( void )
@@ -423,6 +511,8 @@ void CoF_ClientInit( void )
 	gEngfuncs.pfnHookUserMsg( "CoFFog", __MsgFunc_CoFFog );
 	gEngfuncs.pfnHookUserMsg( "CoFEmit", __MsgFunc_CoFEmit );
 	gEngfuncs.pfnAddCommand( "cof_fogtest", CoF_FogTest );
+	gEngfuncs.pfnHookUserMsg( "CoFLight", __MsgFunc_CoFLight );
+	gEngfuncs.pfnRegisterVariable( "r_cofspot_fov", "50", 0 );
 }
 
 void CoF_ClientDrawTransparent( void )
@@ -440,6 +530,9 @@ void CoF_ClientVidInit( void )
 	g_fog.start = g_fog.end = g_fog.curStart = g_fog.curEnd = FOG_FAR;
 	memset( g_emitters, 0, sizeof( g_emitters ));
 	g_lastTime = 0.0f;
+	// the server sends the light again within 2 s (player_cof.cpp)
+	g_flashlightOn = g_flashlightLit = 0;
+	g_flashlightOpen = 0.0f;
 }
 
 void CoF_ClientFrame( void )
@@ -450,4 +543,5 @@ void CoF_ClientFrame( void )
 
 	Fog_Frame();
 	Emitters_Frame( dt );
+	Flashlight_Frame( now, dt );
 }

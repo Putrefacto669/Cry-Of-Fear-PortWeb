@@ -449,7 +449,8 @@
   };
 
   // EQUIP / USE take it in the hands (cof_equip: the server only equips real weapons), 1 2 3 put a weapon
-  // in a quick select slot. COMBINE, DROP and DUAL WIELD are not in the port yet: the original's "no" sound.
+  // in a quick select slot. USE on anything else tries it on the door or button in front (cof_useitem: the
+  // server answers ITEMUSED). COMBINE, DROP and DUAL WIELD are not in the port yet: the original's "no" sound.
   const bagAction = (act, q) => {
     const i = bag.selected;
     closeMenu();
@@ -458,6 +459,8 @@
       engineCmd(`cof_equip ${i}`);
       bagSound("click");
       toggleBag();
+    } else if (act === "use") {
+      engineCmd(`cof_useitem ${i}`);
     } else if (act === "quick") {
       engineCmd(`cof_quickset ${q} ${i}`);
       bagSound("click");
@@ -1576,6 +1579,15 @@
         case "INVTOGGLE":
           // TAB on the main menu or while a level loads: nothing (the bag is for the game)
           if (bag.open || (!menu.visible && !loading.active && !pause.open)) toggleBag();
+          break;
+        case "ITEMUSED":
+          // like the original: the click and the bag closes, so the unlocked message is seen
+          if (args[0] === "1") {
+            bagSound("click");
+            if (bag.open) toggleBag();
+          } else {
+            bagSound("no");
+          }
           break;
         case "MUSIC":
           if (args[2]) playMusic(parseInt(args[0], 10) || 0, args[1] === "1", args[2], parseFloat(args[3]) || 0);
