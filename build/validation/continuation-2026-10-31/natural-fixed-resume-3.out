@@ -1,0 +1,8 @@
+RESUMED unmodified native PC checkpoint natural_pc
+CHECKPOINT natural_narrow
+CHECKPOINT natural_after_narrow
+OK 05-natural-return-to-padlock
+ReferenceError: colored is not defined
+    at file:///root/cof-audits/continuation-20261031/fixed-run/progression_resume.mjs:86:72
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:502:9)

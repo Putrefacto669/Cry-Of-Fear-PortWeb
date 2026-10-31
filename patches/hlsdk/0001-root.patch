@@ -273,10 +273,31 @@ index 9c7d5d39..885a0615 100644
  	if( m_toggle_state == TS_AT_TOP )
  	{
 diff --git a/dlls/cbase.cpp b/dlls/cbase.cpp
-index d1e7aadd..406190ec 100644
+index d1e7aadd..492424fd 100644
 --- a/dlls/cbase.cpp
 +++ b/dlls/cbase.cpp
-@@ -270,12 +270,31 @@ void DispatchSave( edict_t *pent, SAVERESTOREDATA *pSaveData )
+@@ -192,6 +192,20 @@ void DispatchKeyValue( edict_t *pentKeyvalue, KeyValueData *pkvd )
+ 	if( !pkvd || !pentKeyvalue )
+ 		return;
+ 
++	// env_customize uses these keys as target overrides, including explicit 0
++	// and -1 (leave unchanged), rather than as its own drawable entvars.
++	if( ( ( pkvd->szClassName && FStrEq( pkvd->szClassName, "env_customize" )) ||
++		FClassnameIs( VARS( pentKeyvalue ), "env_customize" )) &&
++		( FStrEq( pkvd->szKeyName, "body" ) || FStrEq( pkvd->szKeyName, "skin" )))
++	{
++		CBaseEntity *custom = (CBaseEntity *)GET_PRIVATE( pentKeyvalue );
++		if( custom )
++		{
++			custom->KeyValue( pkvd );
++			if( pkvd->fHandled ) return;
++		}
++	}
++
+ 	EntvarsKeyvalue( VARS( pentKeyvalue ), pkvd );
+ 
+ 	// If the key was an entity variable, or there's no class set yet, don't look for the object, it may
+@@ -270,12 +284,38 @@ void DispatchSave( edict_t *pent, SAVERESTOREDATA *pSaveData )
  		if( pEntity->ObjectCaps() & FCAP_DONT_SAVE )
  			return;
  
@@ -284,6 +305,12 @@ index d1e7aadd..406190ec 100644
 +		#ifdef __EMSCRIPTEN__
 +        // Buttons disable scheduling with 0 (Spawn) or -1 (MoveDone).
 +        // Preserve those identities across pusher-clock and save-time rebasing.
++        int doorIdleThink=0;
++        if(FClassnameIs(pEntity->pev,"func_door")||FClassnameIs(pEntity->pev,"func_door_rotating")) {
++            extern void CoF_PrepareDoorSave(CBaseEntity *,int);
++            doorIdleThink=pEntity->pev->nextthink==0?1:pEntity->pev->nextthink==-1?2:0;
++            CoF_PrepareDoorSave(pEntity,doorIdleThink);
++        }
 +        int buttonIdleThink=0;
 +        if(FClassnameIs(pEntity->pev,"func_button")||FClassnameIs(pEntity->pev,"func_rot_button")) {
 +            buttonIdleThink=pEntity->pev->nextthink==0?1:pEntity->pev->nextthink==-1?2:0;
@@ -305,6 +332,7 @@ index d1e7aadd..406190ec 100644
 +#ifdef __EMSCRIPTEN__
 +			if( idleTrain ) pEntity->pev->nextthink = 0;
 +            if(buttonIdleThink) pEntity->pev->nextthink=buttonIdleThink==1?0:-1;
++            if(doorIdleThink) pEntity->pev->nextthink=doorIdleThink==1?0:-1;
 +#endif
  		}
  
@@ -364,29 +392,84 @@ index da2e9e1d..0db5b553 100644
  				return 0;
  			}
 diff --git a/dlls/doors.cpp b/dlls/doors.cpp
-index 1f5b4b06..dc9baf1e 100644
+index 1f5b4b06..bf913531 100644
 --- a/dlls/doors.cpp
 +++ b/dlls/doors.cpp
-@@ -547,9 +547,19 @@ void CBaseDoor::DoorTouch( CBaseEntity *pOther )
- //
- // Used by SUB_UseTargets, when a door is the target of a button.
- //
-+// Cry of Fear: the door of the padlock (chapter 1) starts its scene the first time it is used,
-+// instead of turning (the original's scene multiscene3 opens the door on the left).
-+static BOOL g_cofDoorSceneDone = FALSE;
-+
- void CBaseDoor::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
+@@ -62,6 +62,9 @@ public:
+ 	void EXPORT DoorHitTop( void );
+ 	void EXPORT DoorHitBottom( void );
+ 
++#ifdef __EMSCRIPTEN__
++ int m_iCofCallbacks[4];
++#endif
+ 	BYTE m_bHealthValue;// some doors are medi-kit doors, they give players health
+ 
+ 	BYTE m_bMoveSnd;			// sound a door makes while moving
+@@ -77,6 +80,9 @@ public:
+ 
+ TYPEDESCRIPTION	CBaseDoor::m_SaveData[] =
  {
- 	m_hActivator = pActivator;
-+	if( !g_cofDoorSceneDone && !FStringNull( pev->targetname ) && FStrEq( STRING( pev->targetname ), "doorclose2" ))
-+	{
-+		g_cofDoorSceneDone = TRUE;
-+		FireTargets( "multiscene3", pActivator, this, USE_TOGGLE, 0 );
-+		return;
-+	}
- 	// if not ready to be used, ignore "use" command.
- 	if( m_toggle_state == TS_AT_BOTTOM || ( FBitSet( pev->spawnflags, SF_DOOR_NO_AUTO_RETURN ) && m_toggle_state == TS_AT_TOP ) )
- 		DoorActivate();
++#ifdef __EMSCRIPTEN__
++ DEFINE_ARRAY(CBaseDoor,m_iCofCallbacks,FIELD_INTEGER,4),
++#endif
+ 	DEFINE_FIELD( CBaseDoor, m_bHealthValue, FIELD_CHARACTER ),
+ 	DEFINE_FIELD( CBaseDoor, m_bMoveSnd, FIELD_CHARACTER ),
+ 	DEFINE_FIELD( CBaseDoor, m_bStopSnd, FIELD_CHARACTER ),
+@@ -87,7 +93,54 @@ TYPEDESCRIPTION	CBaseDoor::m_SaveData[] =
+ 	DEFINE_FIELD( CBaseDoor, m_bUnlockedSentence, FIELD_CHARACTER ),
+ };
+ 
++#ifdef __EMSCRIPTEN__
++// DispatchSave calls this before translating the pusher's local clock.
++void CoF_PrepareDoorSave(CBaseEntity *entity,int clock)
++{
++ static_cast<CBaseDoor *>(entity)->m_iCofCallbacks[3]=clock;
++}
++int CBaseDoor::Save(CSave &save)
++{
++ m_iCofCallbacks[0]=0;
++ if(m_pfnThink==static_cast<void(CBaseEntity::*)(void)>(&CBaseDoor::DoorGoDown)) m_iCofCallbacks[0]=1;
++ else if(m_pfnThink==static_cast<void(CBaseEntity::*)(void)>(&CBaseToggle::LinearMoveDone)) m_iCofCallbacks[0]=2;
++ else if(m_pfnThink==static_cast<void(CBaseEntity::*)(void)>(&CBaseToggle::AngularMoveDone)) m_iCofCallbacks[0]=3;
++ else if(m_pfnThink==&CBaseEntity::SUB_Remove) m_iCofCallbacks[0]=4;
++ else if(m_pfnThink) {ALERT(at_error,"door: unknown Think on save\n");return 0;}
++ m_iCofCallbacks[1]=m_pfnTouch?1:0;
++ if((m_pfnTouch&&m_pfnTouch!=static_cast<void(CBaseEntity::*)(CBaseEntity *)>(&CBaseDoor::DoorTouch))||m_pfnUse||m_pfnBlocked)
++ {ALERT(at_error,"door: unknown callback on save\n");return 0;}
++ m_iCofCallbacks[2]=0;
++ if(m_pfnCallWhenMoveDone==static_cast<void(CBaseToggle::*)(void)>(&CBaseDoor::DoorHitTop)) m_iCofCallbacks[2]=1;
++ else if(m_pfnCallWhenMoveDone==static_cast<void(CBaseToggle::*)(void)>(&CBaseDoor::DoorHitBottom)) m_iCofCallbacks[2]=2;
++ else if(m_pfnCallWhenMoveDone) {ALERT(at_error,"door: unknown MoveDone on save\n");return 0;}
++ auto think=m_pfnThink;auto touch=m_pfnTouch;auto done=m_pfnCallWhenMoveDone;
++ m_pfnThink=NULL;m_pfnTouch=NULL;m_pfnCallWhenMoveDone=NULL;
++ int status=CBaseToggle::Save(save);
++ m_pfnThink=think;m_pfnTouch=touch;m_pfnCallWhenMoveDone=done;
++ if(!status)return 0;
++ return save.WriteFields("CBaseDoor",this,m_SaveData,ARRAYSIZE(m_SaveData));
++}
++int CBaseDoor::Restore(CRestore &restore)
++{
++ if(!CBaseToggle::Restore(restore)||!restore.ReadFields("CBaseDoor",this,m_SaveData,ARRAYSIZE(m_SaveData)))return 0;
++ if(m_iCofCallbacks[0]<0||m_iCofCallbacks[0]>4||m_iCofCallbacks[1]<0||m_iCofCallbacks[1]>1||m_iCofCallbacks[2]<0||m_iCofCallbacks[2]>2||m_iCofCallbacks[3]<0||m_iCofCallbacks[3]>2)return 0;
++ SetThink(NULL);SetTouch(NULL);SetMoveDone(NULL);
++ switch(m_iCofCallbacks[0]) {
++ case 1:SetThink(&CBaseDoor::DoorGoDown);break;
++ case 2:SetThink(&CBaseToggle::LinearMoveDone);break;
++ case 3:SetThink(&CBaseToggle::AngularMoveDone);break;
++ case 4:SetThink(&CBaseEntity::SUB_Remove);break;
++ }
++ if(m_iCofCallbacks[1])SetTouch(&CBaseDoor::DoorTouch);
++ if(m_iCofCallbacks[2]==1)SetMoveDone(&CBaseDoor::DoorHitTop);
++ else if(m_iCofCallbacks[2]==2)SetMoveDone(&CBaseDoor::DoorHitBottom);
++ if(m_iCofCallbacks[3])pev->nextthink=m_iCofCallbacks[3]==1?0:-1;
++ return 1;
++}
++#else
+ IMPLEMENT_SAVERESTORE( CBaseDoor, CBaseToggle )
++#endif
+ 
+ #define DOOR_SENTENCEWAIT	6.0f
+ #define DOOR_SOUNDWAIT		3.0f
 diff --git a/dlls/glock.cpp b/dlls/glock.cpp
 index d9411d66..8c146245 100644
 --- a/dlls/glock.cpp
@@ -576,10 +659,18 @@ index 35eb3fba..3d05b4f0 100644
  
  void CFuncTrackTrain::KeyValue( KeyValueData *pkvd )
 diff --git a/dlls/player.cpp b/dlls/player.cpp
-index bbb68ea6..d2d0aeb6 100644
+index bbb68ea6..5f83e41d 100644
 --- a/dlls/player.cpp
 +++ b/dlls/player.cpp
-@@ -40,6 +40,10 @@
+@@ -21,6 +21,7 @@
+ */
+ 
+ #include "extdll.h"
++#include <float.h>
+ #include "util.h"
+ 
+ #include "cbase.h"
+@@ -40,6 +41,10 @@
  // #define DUCKFIX
  
  extern DLL_GLOBAL ULONG g_ulModelIndexPlayer;
@@ -590,7 +681,7 @@ index bbb68ea6..d2d0aeb6 100644
  extern DLL_GLOBAL BOOL g_fGameOver;
  extern DLL_GLOBAL BOOL g_fDrawLines;
  int gEvilImpulse101;
-@@ -70,6 +74,7 @@ extern CGraph WorldGraph;
+@@ -70,6 +75,7 @@ extern CGraph WorldGraph;
  // Global Savedata for player
  TYPEDESCRIPTION	CBasePlayer::m_playerSaveData[] =
  {
@@ -598,7 +689,7 @@ index bbb68ea6..d2d0aeb6 100644
  	DEFINE_FIELD( CBasePlayer, m_flFlashLightTime, FIELD_TIME ),
  	DEFINE_FIELD( CBasePlayer, m_iFlashBattery, FIELD_INTEGER ),
  
-@@ -185,8 +190,15 @@ int gmsgTeamNames = 0;
+@@ -185,8 +191,15 @@ int gmsgTeamNames = 0;
  int gmsgStatusText = 0;
  int gmsgStatusValue = 0;
  
@@ -614,7 +705,7 @@ index bbb68ea6..d2d0aeb6 100644
  	// Already taken care of?
  	if( gmsgSelAmmo )
  	{
-@@ -230,6 +242,9 @@ void LinkUserMessages( void )
+@@ -230,6 +243,9 @@ void LinkUserMessages( void )
  
  	gmsgStatusText = REG_USER_MSG( "StatusText", -1 );
  	gmsgStatusValue = REG_USER_MSG( "StatusValue", 3 );
@@ -624,27 +715,27 @@ index bbb68ea6..d2d0aeb6 100644
  }
  
  LINK_ENTITY_TO_CLASS( player, CBasePlayer )
-@@ -1591,7 +1606,18 @@ void CBasePlayer::PlayerUse( void )
+@@ -1591,7 +1607,18 @@ void CBasePlayer::PlayerUse( void )
  			vecLOS = UTIL_ClampVectorToBox( vecLOS, pObject->pev->size * 0.5 );
  
  			flDot = DotProduct( vecLOS , gpGlobals->v_forward );
 -			if( flDot > flMaxDot )
-+			// Coincident usable brushes can have the same clamped direction.
-+			// Prefer the surface actually under the crosshair in that tie (e.g.
-+			// a padlock button one unit in front of a locked inter_door).
-+			BOOL directTie = FALSE;
-+			if( pClosest && flDot == flMaxDot )
++			// Coincident surfaces can differ by one float rounding step after
++			// normalization. Resolve only that near-tie by the first actual hit.
++			BOOL preferObject = flDot > flMaxDot;
++			if( pClosest && fabs( flDot - flMaxDot ) <= 2.0f * FLT_EPSILON )
 +			{
 +				TraceResult useTrace;
 +				Vector eyes = pev->origin + pev->view_ofs;
 +				UTIL_TraceLine( eyes, eyes + gpGlobals->v_forward * PLAYER_SEARCH_RADIUS, dont_ignore_monsters, edict(), &useTrace );
-+				directTie = useTrace.pHit == pObject->edict();
++				if( useTrace.pHit == pObject->edict() ) preferObject = TRUE;
++				else if( useTrace.pHit == pClosest->edict() ) preferObject = FALSE;
 +			}
-+			if( flDot > flMaxDot || directTie )
++			if( preferObject )
  			{
  				// only if the item is in front of the user
  				pClosest = pObject;
-@@ -1891,6 +1917,8 @@ void CBasePlayer::PreThink( void )
+@@ -1891,6 +1918,8 @@ void CBasePlayer::PreThink( void )
  
  	UTIL_MakeVectors( pev->v_angle );             // is this still used?
  
@@ -653,7 +744,7 @@ index bbb68ea6..d2d0aeb6 100644
  	ItemPreFrame();
  	WaterMove();
  
-@@ -2998,6 +3026,7 @@ void CBasePlayer::Spawn( void )
+@@ -2998,6 +3027,7 @@ void CBasePlayer::Spawn( void )
  
  	SET_VIEW(edict(), edict());
  
@@ -661,7 +752,7 @@ index bbb68ea6..d2d0aeb6 100644
  	g_pGameRules->PlayerSpawn( this );
  }
  
-@@ -3997,6 +4026,10 @@ ForceClientDllUpdate to ensure the demo gets messages
+@@ -3997,6 +4027,10 @@ ForceClientDllUpdate to ensure the demo gets messages
  reflecting all of the HUD state info.
  =========================================================
  */
@@ -672,7 +763,7 @@ index bbb68ea6..d2d0aeb6 100644
  void CBasePlayer::UpdateClientData( void )
  {
  	if( m_fInitHUD )
-@@ -4007,6 +4040,9 @@ void CBasePlayer::UpdateClientData( void )
+@@ -4007,6 +4041,9 @@ void CBasePlayer::UpdateClientData( void )
  		MESSAGE_BEGIN( MSG_ONE, gmsgResetHUD, NULL, pev );
  			WRITE_BYTE( 0 );
  		MESSAGE_END();
@@ -710,7 +801,7 @@ index 652ecbc4..70509dfd 100644
  private:
  	unsigned short m_usAdjustPitch;
 diff --git a/dlls/triggers.cpp b/dlls/triggers.cpp
-index 7b5dde0f..043eeb71 100644
+index 7b5dde0f..baf18068 100644
 --- a/dlls/triggers.cpp
 +++ b/dlls/triggers.cpp
 @@ -272,6 +272,9 @@ public:
@@ -798,7 +889,62 @@ index 7b5dde0f..043eeb71 100644
  		m_index++;
  	}
  
-@@ -1124,6 +1184,10 @@ void CBaseTrigger::MultiTouch( CBaseEntity *pOther )
+@@ -1033,9 +1093,53 @@ if a trigger has a NETNAME, that NETNAME will become the TARGET of the triggered
+ class CTriggerMultiple : public CBaseTrigger
+ {
+ public:
+-	void Spawn( void );
++ void Spawn( void );
++#ifdef __EMSCRIPTEN__
++ int Save( CSave &save );
++ int Restore( CRestore &restore );
++ static TYPEDESCRIPTION m_SaveData[];
++ int m_iCofCallbacks[2];
++#endif
+ };
+ 
++#ifdef __EMSCRIPTEN__
++TYPEDESCRIPTION CTriggerMultiple::m_SaveData[] =
++{
++ DEFINE_ARRAY( CTriggerMultiple, m_iCofCallbacks, FIELD_INTEGER, 2 ),
++};
++
++int CTriggerMultiple::Save( CSave &save )
++{
++ // Preserve callback identity without FIELD_FUNCTION's unavailable WASM names.
++ // Keep idle, reset-wait and pending removal distinct; never call Spawn on load.
++ m_iCofCallbacks[0] = 0;
++ if( m_pfnThink == static_cast<void (CBaseEntity::*)(void)>(&CBaseTrigger::MultiWaitOver) ) m_iCofCallbacks[0] = 1;
++ else if( m_pfnThink == &CBaseEntity::SUB_Remove ) m_iCofCallbacks[0] = 2;
++ else if( m_pfnThink ) { ALERT(at_error,"trigger_multiple: unknown Think on save\n"); return 0; }
++ m_iCofCallbacks[1] = m_pfnTouch ? 1 : 0;
++ if( (m_pfnTouch && m_pfnTouch != static_cast<void (CBaseEntity::*)(CBaseEntity *)>(&CBaseTrigger::MultiTouch)) || m_pfnUse || m_pfnBlocked || m_pfnCallWhenMoveDone )
++ { ALERT(at_error,"trigger_multiple: unknown callback on save\n"); return 0; }
++ auto think = m_pfnThink;
++ auto touch = m_pfnTouch;
++ m_pfnThink = NULL; m_pfnTouch = NULL;
++ int status = CBaseTrigger::Save(save);
++ m_pfnThink = think; m_pfnTouch = touch;
++ if( !status ) return 0;
++ return save.WriteFields("CTriggerMultiple",this,m_SaveData,ARRAYSIZE(m_SaveData));
++}
++
++int CTriggerMultiple::Restore( CRestore &restore )
++{
++ if( !CBaseTrigger::Restore(restore) || !restore.ReadFields("CTriggerMultiple",this,m_SaveData,ARRAYSIZE(m_SaveData)) ) return 0;
++ if( m_iCofCallbacks[0] < 0 || m_iCofCallbacks[0] > 2 || m_iCofCallbacks[1] < 0 || m_iCofCallbacks[1] > 1 ) return 0;
++ SetThink(NULL); SetTouch(NULL);
++ if( m_iCofCallbacks[0] == 1 ) SetThink(&CBaseTrigger::MultiWaitOver);
++ else if( m_iCofCallbacks[0] == 2 ) SetThink(&CBaseEntity::SUB_Remove);
++ if( m_iCofCallbacks[1] ) SetTouch(&CBaseTrigger::MultiTouch);
++ return 1;
++}
++#endif
++
+ LINK_ENTITY_TO_CLASS( trigger_multiple, CTriggerMultiple )
+ 
+ void CTriggerMultiple::Spawn( void )
+@@ -1124,6 +1228,10 @@ void CBaseTrigger::MultiTouch( CBaseEntity *pOther )
  //
  void CBaseTrigger::ActivateMultiTrigger( CBaseEntity *pActivator )
  {
@@ -809,7 +955,7 @@ index 7b5dde0f..043eeb71 100644
  	if( pev->nextthink > gpGlobals->time )
  		return;         // still waiting for reset time
  
-@@ -1324,24 +1388,71 @@ public:
+@@ -1324,24 +1432,71 @@ public:
  
  	static TYPEDESCRIPTION m_SaveData[];
  
@@ -883,7 +1029,7 @@ index 7b5dde0f..043eeb71 100644
  
  //
  // Cache user-entity-field values until spawn is called.
-@@ -2103,6 +2214,7 @@ void CTriggerChangeTarget::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, U
+@@ -2103,6 +2258,7 @@ void CTriggerChangeTarget::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, U
  #define SF_CAMERA_PLAYER_POSITION	1
  #define SF_CAMERA_PLAYER_TARGET		2
  #define SF_CAMERA_PLAYER_TAKECONTROL 4
@@ -891,7 +1037,7 @@ index 7b5dde0f..043eeb71 100644
  
  class CTriggerCamera : public CBaseDelay
  {
-@@ -2131,10 +2243,35 @@ public:
+@@ -2131,10 +2287,35 @@ public:
  	float m_acceleration;
  	float m_deceleration;
  	int m_state;
@@ -927,7 +1073,7 @@ index 7b5dde0f..043eeb71 100644
  // Global Savedata for changelevel friction modifier
  TYPEDESCRIPTION	CTriggerCamera::m_SaveData[] =
  {
-@@ -2151,9 +2288,38 @@ TYPEDESCRIPTION	CTriggerCamera::m_SaveData[] =
+@@ -2151,9 +2332,38 @@ TYPEDESCRIPTION	CTriggerCamera::m_SaveData[] =
  	DEFINE_FIELD( CTriggerCamera, m_acceleration, FIELD_FLOAT ),
  	DEFINE_FIELD( CTriggerCamera, m_deceleration, FIELD_FLOAT ),
  	DEFINE_FIELD( CTriggerCamera, m_state, FIELD_INTEGER ),
@@ -966,7 +1112,7 @@ index 7b5dde0f..043eeb71 100644
  
  void CTriggerCamera::Spawn( void )
  {
-@@ -2271,6 +2437,8 @@ void CTriggerCamera::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYP
+@@ -2271,6 +2481,8 @@ void CTriggerCamera::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYP
  	}
  
  	SET_VIEW( pActivator->edict(), edict() );
@@ -975,7 +1121,7 @@ index 7b5dde0f..043eeb71 100644
  
  	SET_MODEL( ENT( pev ), STRING( pActivator->pev->model ) );
  
-@@ -2289,6 +2457,8 @@ void CTriggerCamera::FollowTarget()
+@@ -2289,6 +2501,8 @@ void CTriggerCamera::FollowTarget()
  
  	if( m_hTarget == 0 || m_flReturnTime < gpGlobals->time )
  	{
@@ -1411,3 +1557,65 @@ index 925d040c..c33e2bff 100644
  	}
  }
  
+diff --git a/dlls/sound.cpp b/dlls/sound.cpp
+index 29e6ab96..a573e0ab 100644
+--- a/dlls/sound.cpp
++++ b/dlls/sound.cpp
+@@ -128,12 +128,18 @@ public:
+ 
+ 	BOOL m_fActive;	// only TRUE when the entity is playing a looping sound
+ 	BOOL m_fLooping;	// TRUE when the sound played will loop
++#ifdef __EMSCRIPTEN__
++ int m_iCofCallbacks[2];
++#endif
+ };
+ 
+ LINK_ENTITY_TO_CLASS( ambient_generic, CAmbientGeneric )
+ 
+ TYPEDESCRIPTION	CAmbientGeneric::m_SaveData[] =
+ {
++#ifdef __EMSCRIPTEN__
++ DEFINE_ARRAY(CAmbientGeneric,m_iCofCallbacks,FIELD_INTEGER,2),
++#endif
+ 	DEFINE_FIELD( CAmbientGeneric, m_flAttenuation, FIELD_FLOAT ),
+ 	DEFINE_FIELD( CAmbientGeneric, m_fActive, FIELD_BOOLEAN ),
+ 	DEFINE_FIELD( CAmbientGeneric, m_fLooping, FIELD_BOOLEAN ),
+@@ -146,7 +152,38 @@ TYPEDESCRIPTION	CAmbientGeneric::m_SaveData[] =
+ 	DEFINE_ARRAY( CAmbientGeneric, m_dpv, FIELD_CHARACTER, sizeof(dynpitchvol_t) ),
+ };
+ 
++#ifdef __EMSCRIPTEN__
++int CAmbientGeneric::Save(CSave &save)
++{
++ // FIELD_FUNCTION cannot name SIDE_MODULE member callbacks. Keep the original
++ // modulation/state fields intact and save callback identities separately.
++ m_iCofCallbacks[0]=0;
++ if(m_pfnThink==static_cast<void(CBaseEntity::*)(void)>(&CAmbientGeneric::RampThink))m_iCofCallbacks[0]=1;
++ else if(m_pfnThink==&CBaseEntity::SUB_Remove)m_iCofCallbacks[0]=2;
++ else if(m_pfnThink){ALERT(at_error,"ambient_generic: unknown Think on save\n");return 0;}
++ m_iCofCallbacks[1]=m_pfnUse?1:0;
++ if((m_pfnUse&&m_pfnUse!=static_cast<void(CBaseEntity::*)(CBaseEntity *,CBaseEntity *,USE_TYPE,float)>(&CAmbientGeneric::ToggleUse))||m_pfnTouch||m_pfnBlocked)
++ {ALERT(at_error,"ambient_generic: unknown callback on save\n");return 0;}
++ auto think=m_pfnThink;auto use=m_pfnUse;
++ m_pfnThink=NULL;m_pfnUse=NULL;
++ int status=CBaseEntity::Save(save);
++ m_pfnThink=think;m_pfnUse=use;
++ if(!status)return 0;
++ return save.WriteFields("CAmbientGeneric",this,m_SaveData,ARRAYSIZE(m_SaveData));
++}
++int CAmbientGeneric::Restore(CRestore &restore)
++{
++ if(!CBaseEntity::Restore(restore)||!restore.ReadFields("CAmbientGeneric",this,m_SaveData,ARRAYSIZE(m_SaveData)))return 0;
++ if(m_iCofCallbacks[0]<0||m_iCofCallbacks[0]>2||m_iCofCallbacks[1]<0||m_iCofCallbacks[1]>1)return 0;
++ SetThink(NULL);SetUse(NULL);
++ if(m_iCofCallbacks[0]==1)SetThink(&CAmbientGeneric::RampThink);
++ else if(m_iCofCallbacks[0]==2)SetThink(&CBaseEntity::SUB_Remove);
++ if(m_iCofCallbacks[1])SetUse(&CAmbientGeneric::ToggleUse);
++ return 1;
++}
++#else
+ IMPLEMENT_SAVERESTORE( CAmbientGeneric, CBaseEntity )
++#endif
+ 
+ //
+ // ambient_generic - general-purpose user-defined static sound

@@ -1,3 +1,29 @@
+# Validación adicional del 31 de octubre de 2026
+
+El recorrido automatizado `continuation-2026-10-31/natural-1` llegó con controles
+normales a la nota, obtuvo del ordenador la combinación 9974 y volvió a c_start.
+`operations-2/result.json` verifica la combinación incorrecta 1974, las cuatro
+ruedas y sus vueltas completas, cancelación, guardados/restauraciones antes de
+usar, durante la interacción, durante la apertura y después de resolver; además,
+comprueba los controladores recibidos por el cliente, el modelo renderizado,
+los objetos visibles, la cerradura y el cruce con E de la puerta desbloqueada.
+La partida usada por esa segunda prueba es un guardado nativo sin modificar,
+obtenido del recorrido anterior. Los recursos y guardados no se publican.
+
+El primer intento de operaciones falló al repetir E antes del retorno del botón.
+La prueba corregida espera el reposo real de padbutton, sin ampliar límites ni
+cambiar el juego. El fallo se conserva. Tras aprobar las operaciones, su
+extensión hacia la escena siguiente se obstruyó en unas escaleras; ese fallo de
+navegación no se presenta como una escena completada.
+
+Estas pruebas se ejecutaron sobre el dist de 4000b6a con Playwright 1.64.1.
+Son interacción automatizada mediante teclado y ratón, no una sesión manual
+humana. Los apartados históricos siguientes conservan los pendientes y resultados
+existentes en el momento de su redacción. Informe de continuación:
+`docs/CONTINUATION_2026_10_31.md`.
+
+---
+
 # Candado de c_start: reconstrucción y validación
 
 Informe en curso, 29 de octubre de 2026. No se considera superado el criterio de

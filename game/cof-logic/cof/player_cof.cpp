@@ -562,6 +562,8 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
   CoF_InspectInterDoor(arg);
  else if( FStrEq( pcmd, "cof_changelevel" ))
   CoF_InspectChangeLevel(arg);
+ else if( FStrEq( pcmd, "cof_customize" ))
+  CoF_InspectCustomize(CoF_FindDebugTarget(arg),arg);
  else if( FStrEq( pcmd, "cof_fence" ))
 		ALERT( at_console, "COF/FENCE %s time=%g\n", arg, gpGlobals->time );
 #ifdef __EMSCRIPTEN__

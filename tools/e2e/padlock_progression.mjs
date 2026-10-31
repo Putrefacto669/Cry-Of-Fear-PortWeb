@@ -15,8 +15,8 @@ try {
   await Promise.all([page.waitForEvent("console",{predicate:m=>m.text().includes(`COF/FENCE ${token} `),timeout:30000}),page.evaluate(c=>CoFDebug.cmd(c),text+`\ncof_fence ${token}`)]);return output.slice(start).join("\n");};
  const until=async fn=>{const start=Date.now();while(!await fn()){if(Date.now()-start>60000)throw Error("state timeout");await page.waitForTimeout(100);}};
  const inspect=async()=>{const text=await command("cof_inspect !player\nviewpos");
-  const p=/COF\/ENTITY !player .*origin=([-\d.]+),([-\d.]+),([-\d.]+).*frozen=(\d)/.exec(text);
-  const a=/ang \(\s*([-\d.]+)\s+([-\d.]+)/.exec(text);assert.ok(p&&a,text);return {x:+p[1],y:+p[2],z:+p[3],frozen:+p[4],pitch:+a[1],yaw:+a[2]};};
+  const p=/COF\/ENTITY !player .*origin=([-\d.eE+]+),([-\d.eE+]+),([-\d.eE+]+).*frozen=(\d)/.exec(text);
+  const a=/ang \(\s*([-\d.eE+]+)\s+([-\d.eE+]+)/.exec(text);assert.ok(p&&a,text);return {x:+p[1],y:+p[2],z:+p[3],frozen:+p[4],pitch:+a[1],yaw:+a[2]};};
  const hold=async(key,ms)=>{steps.push({key,ms});await page.keyboard.down(key);await page.waitForTimeout(ms);await page.keyboard.up(key);await page.waitForTimeout(50);
   if(key==="w")await until(async()=>{const t=await command("cof_kinematics !player"),m=/vel=([-\d.e+]+),([-\d.e+]+),/.exec(t);assert.ok(m,t);return Math.hypot(+m[1],+m[2])<1;});
  };

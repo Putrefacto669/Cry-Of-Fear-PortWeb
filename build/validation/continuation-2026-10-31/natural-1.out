@@ -1,0 +1,10 @@
+OK 01-padlock-before-clue
+OK 02-original-level-exit
+OK 03-original-note
+OK 04-original-PC-code
+OK 05-natural-return-to-padlock
+OK natural round trip; original PC clue 9974 prepared for save/restore regression
+Error: padlock state timeout
+    at until (file:///root/cof-audits/continuation-20261031/padlock_entities.mjs:21:99)
+    at async enter (file:///root/cof-audits/continuation-20261031/padlock_entities.mjs:32:83)
+    at async file:///root/cof-audits/continuation-20261031/padlock_entities.mjs:64:17

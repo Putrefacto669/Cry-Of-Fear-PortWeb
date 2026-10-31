@@ -64,3 +64,4 @@ void CoF_PadlockSync(CBasePlayer *);
 void CoF_InspectChangeLevel(const char *name);
 
 void CoF_InspectInterDoor(const char *name);
+void CoF_InspectCustomize(CBaseEntity *entity, const char *name);

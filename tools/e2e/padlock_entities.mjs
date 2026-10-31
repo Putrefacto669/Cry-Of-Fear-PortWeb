@@ -24,12 +24,12 @@ try {
   return output.slice(start).join("\n");};
  const state=async()=>{const text=await command("cof_padlock");const line=text.split("\n").find(l=>l.includes("COF/PADLOCK "));assert.ok(line,text);
   return Object.fromEntries([...line.matchAll(/(\w+)=([^\s]*)/g)].map(([,k,v])=>[k,v]));};
- const player=async()=>{const text=await command("cof_inspect !player\nviewpos");const p=/origin=([-\d.]+),([-\d.]+),([-\d.]+).*frozen=(\d)/.exec(text),a=/ang \(\s*([-\d.]+)\s+([-\d.]+)/.exec(text);assert.ok(p&&a,text);return {x:+p[1],y:+p[2],z:+p[3],frozen:+p[4],yaw:+a[2]};};
+ const player=async()=>{const text=await command("cof_inspect !player\nviewpos");const p=/origin=([-\d.eE+]+),([-\d.eE+]+),([-\d.eE+]+).*frozen=(\d)/.exec(text),a=/ang \(\s*([-\d.eE+]+)\s+([-\d.eE+]+)/.exec(text);assert.ok(p&&a,text);return {x:+p[1],y:+p[2],z:+p[3],frozen:+p[4],yaw:+a[2]};};
  const turn=async target=>{for(let i=0;i<12;i++){const p=await player(),d=(target-p.yaw+540)%360-180;if(Math.abs(d)<8)return;
   const key=d>0?"ArrowLeft":"ArrowRight";await page.keyboard.down(key);await page.waitForTimeout(Math.min(450,Math.max(8,Math.abs(d)/280*1000)));await page.keyboard.up(key);await page.waitForTimeout(50);}throw Error("keyboard turn did not converge");};
  const save=async name=>{await command(`save ${name}`);assert.ok(await page.evaluate(n=>FS.analyzePath(`/rwdir/cryoffear/save/${n}.sav`).exists,name));};
  const load=async name=>{const n=output.filter(l=>l.includes("client connected")).length;await page.evaluate(n=>CoFDebug.cmd(`load ${n}`),name);await until(()=>output.filter(l=>l.includes("client connected")).length>n);await command("cof_padlock");};
- const enter=async()=>{await turn(270);await page.keyboard.press("e",{delay:120});await until(async()=>(await state()).state==="1");await page.locator("#cof-padlock").waitFor({state:"visible",timeout:30000});};
+ const enter=async()=>{await turn(270);await until(async()=>/toggle=1 next=(?:0|-1) /.test(await command("cof_inspect padbutton")));await page.keyboard.press("e",{delay:120});await until(async()=>(await state()).state==="1");await page.locator("#cof-padlock").waitFor({state:"visible",timeout:30000});};
  const cancel=async()=>{await page.keyboard.press("Escape");await until(async()=>(await state()).state==="0");assert.equal((await player()).frozen,0);};
  const wheel=async i=>{steps.push({wheel:i});await page.locator(`#cof-padlock button[data-wheel="${i}"]`).click();await command("cof_padlock");};
  const controllers=async angles=>until(async()=>{const text=await command("cof_padlock_render");return text.includes(`controller=${angles.map(a=>Math.floor(a*255/360)).join(",")}`);});

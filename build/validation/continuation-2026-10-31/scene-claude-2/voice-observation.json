@@ -1,0 +1,46 @@
+{
+  "expected": {
+    "len": 22722,
+    "rate": 22050,
+    "hash": 1187988295
+  },
+  "starts": [
+    {
+      "at": 75.66222222222223,
+      "state": "running",
+      "epoch": "original",
+      "offset": 0
+    },
+    {
+      "at": 77.11637188208617,
+      "state": "running",
+      "epoch": "scene_active",
+      "offset": 0,
+      "gain": 0.6980392336845398,
+      "master": 0.800000011920929,
+      "world": 1,
+      "panner": {
+        "x": 3089.375,
+        "y": -2433,
+        "z": -716.875,
+        "maxDistance": 800
+      },
+      "listener": {
+        "x": 3120,
+        "y": -2360,
+        "z": -713
+      }
+    }
+  ],
+  "context": "running",
+  "loads": [
+    {
+      "name": "scene_active",
+      "at": 75.87120181405896
+    },
+    {
+      "name": "scene_completed",
+      "at": 102.43482993197279
+    }
+  ]
+}

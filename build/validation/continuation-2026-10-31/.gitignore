@@ -1,0 +1,9 @@
+# Native save fixtures remain local; reports and scripts contain metadata only.
+*.sav
+*.HL1
+*.HL2
+*.HL3
+# Local read-only disassembly is analysis material, not a published game source.
+native-*.txt
+# Node dependencies linked from WSL, not evidence.
+node_modules

@@ -1,0 +1,19 @@
+[11:52:49] COF/HUD STAT 100 100 0 8
+[11:52:49] "sv_cheats" changed to "1"
+[11:52:49] COF/ENTITY *35 class=trigger_once body=0 solid=1 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=1 target=multiscene3 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=1.269 effects=128 renderfx=0 modelindex=36 model=*35
+[11:52:49] COF/ENTITY *43 class=trigger_once body=0 solid=1 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=1 target=doorclose2 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=1.269 effects=128 renderfx=0 modelindex=44 model=*43
+[11:52:49] COF/ENTITY doorclose2 class=func_door_rotating body=0 solid=4 origin=3127.0,-2457.0,-727.0 gate=0 speed=0.0 spawn=19 touch=1 target= frozen=0 stairs=-1 use=0 think=0 toggle=1 next=0 now=1.269 effects=0 renderfx=0 modelindex=43 model=*42
+[11:52:49] COF/FENCE probe_2 time=1.269
+AFTER
+[11:52:51] COF/HUD INV 0
+[11:52:51] COF/HUD QUICK - - -
+[11:52:51] COF/HUD OBJECTIVE 
+[11:52:51] COF/SKY_SEND world id=60 health=80
+[11:52:51] COF/SKY_SEND sky id=61 flags=3
+[11:52:51] COF/HUD PADLOCK 0
+[11:52:51] Couldn't open file overviews/c_start.txt. Using default values for overiew mode.
+[.WebGL-0x1424001ed600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+[11:52:51] COF/ENTITY *35 class=trigger_once body=0 solid=1 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=0 target=multiscene3 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=1.667 effects=128 renderfx=0 modelindex=36 model=*35
+[11:52:51] COF/ENTITY *43 class=trigger_once body=0 solid=1 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=0 target=doorclose2 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=1.667 effects=128 renderfx=0 modelindex=44 model=*43
+[11:52:51] COF/ENTITY doorclose2 class=func_door_rotating body=0 solid=4 origin=3127.0,-2457.0,-727.0 gate=0 speed=0.0 spawn=19 touch=0 target= frozen=0 stairs=-1 use=0 think=0 toggle=0 next=1.519 now=1.667 effects=0 renderfx=0 modelindex=43 model=*42
+[11:52:51] COF/FENCE probe_4 time=1.667

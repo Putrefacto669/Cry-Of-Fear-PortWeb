@@ -11,6 +11,7 @@ COF_STAGE="${COF_STAGE:-$WORK/stage}" python3 -B "$REPO/tools/e2e/test_envpos_ma
 COF_STAGE="${COF_STAGE:-$WORK/stage}" python3 -B "$REPO/tools/e2e/test_padlock_maps.py"
 cp "$REPO/tools/e2e/entities.mjs" "$REPO/tools/e2e/campaign_entities.mjs" "$REPO/tools/e2e/motion_entities.mjs" "$REPO/tools/e2e/model_entities.mjs" "$WORK/e2e/"
 cp "$REPO/tools/e2e/button_entities.mjs" "$REPO/tools/e2e/changelevel_entities.mjs" "$WORK/e2e/"
+cp "$REPO/tools/e2e/trigger_persistence.mjs" "$REPO/tools/e2e/ambient_persistence.mjs" "$WORK/e2e/"
 cp "$REPO/tools/e2e/camera_entities.mjs" "$REPO/tools/e2e/envpos_entities.mjs" "$WORK/e2e/"
 cp "$REPO/tools/e2e/manager_entities.mjs" "$REPO/tools/e2e/sound_entities.mjs" "$WORK/e2e/"
 cp "$REPO/tools/e2e/train_entities.mjs" "$REPO/tools/e2e/track_entities.mjs" "$WORK/e2e/"
@@ -32,3 +33,6 @@ node envpos_entities.mjs "${1:-http://127.0.0.1:8080/}"
 node button_entities.mjs "${1:-http://127.0.0.1:8080/}"
 
 node changelevel_entities.mjs "${1:-http://127.0.0.1:8080/}"
+
+node trigger_persistence.mjs "${1:-http://127.0.0.1:8080/}"
+node ambient_persistence.mjs "${1:-http://127.0.0.1:8080/}"

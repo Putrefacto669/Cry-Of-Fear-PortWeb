@@ -108,6 +108,7 @@ m_iVisible 1 shows, 2 hides, 3 toggles
 class CEnvCustomize : public CPointEntity
 {
 public:
+	void Spawn( void ) { m_iKeyValuesVersion = 1; CPointEntity::Spawn(); }
 	virtual void KeyValue( KeyValueData *pkvd );
 	virtual void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value );
 	virtual int Save( CSave &save );
@@ -117,6 +118,7 @@ public:
 	int m_iBody;      // stored +1: 0 means "not given" (KeyValue runs before Spawn)
 	int m_iSkin;
 	int m_iVisible;
+	int m_iKeyValuesVersion;
 };
 
 LINK_ENTITY_TO_CLASS( env_customize, CEnvCustomize )
@@ -126,9 +128,44 @@ TYPEDESCRIPTION CEnvCustomize::m_SaveData[] =
 	DEFINE_FIELD( CEnvCustomize, m_iBody, FIELD_INTEGER ),
 	DEFINE_FIELD( CEnvCustomize, m_iSkin, FIELD_INTEGER ),
 	DEFINE_FIELD( CEnvCustomize, m_iVisible, FIELD_INTEGER ),
+	DEFINE_FIELD( CEnvCustomize, m_iKeyValuesVersion, FIELD_INTEGER ),
 };
 
-IMPLEMENT_SAVERESTORE( CEnvCustomize, CPointEntity )
+int CEnvCustomize::Save( CSave &save )
+{
+	if( !CPointEntity::Save( save )) return 0;
+	return save.WriteFields( "CEnvCustomize", this, m_SaveData, ARRAYSIZE( m_SaveData ));
+}
+
+int CEnvCustomize::Restore( CRestore &restore )
+{
+	m_iKeyValuesVersion = 0;
+	if( !CPointEntity::Restore( restore ) ||
+		!restore.ReadFields( "CEnvCustomize", this, m_SaveData, ARRAYSIZE( m_SaveData ))) return 0;
+	if( m_iKeyValuesVersion == 0 )
+	{
+		// Older DispatchKeyValue consumed body/skin into entvars first.
+		// Nonzero values are unambiguous saved parameters. Zero cannot tell
+		// an omitted key from an explicit override, so do not invent that intent.
+		if( m_iBody == 0 && pev->body != 0 ) m_iBody = pev->body + 1;
+		if( m_iSkin == 0 && pev->skin != 0 ) m_iSkin = pev->skin + 1;
+		m_iKeyValuesVersion = 1;
+	}
+	return 1;
+}
+
+void CoF_InspectCustomize( CBaseEntity *entity, const char *name )
+{
+	if( !entity || !FClassnameIs( entity->pev, "env_customize" ))
+	{
+		ALERT( at_console, "COF/CUSTOMIZE %s missing-or-wrong-class\n", name );
+		return;
+	}
+	CEnvCustomize *custom = static_cast<CEnvCustomize *>( entity );
+	ALERT( at_console, "COF/CUSTOMIZE %s body=%d skin=%d visible=%d version=%d target=%s\n",
+		name, custom->m_iBody - 1, custom->m_iSkin - 1, custom->m_iVisible,
+		custom->m_iKeyValuesVersion, FStringNull( custom->pev->target ) ? "-" : STRING( custom->pev->target ));
+}
 
 void CEnvCustomize::KeyValue( KeyValueData *pkvd )
 {

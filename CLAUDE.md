@@ -225,3 +225,33 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
 - Entidades del capítulo 1 sin implementar: `cof_developer_commentary`, `cof_hoodie`,
   `cof_clothesmenu`, `item_nightvision` (y `info_texlights`, que solo sirve al compilar).
 - Página de presentación (`index.html` tipo launcher) que quiere el usuario.
+## Validación de continuación — 31 de octubre de 2026 (Codex)
+
+- Al recuperar el relevo: HEAD `4000b6a`, árbol limpio, rama activa
+  `codex/c-start-padlock` (no se cambió a main).
+- Sobre el dist de ese commit se repitieron las doce regresiones de navegador:
+  12/12 satisfactorias; también Pointer Lock y los nueve contratos BSP.
+  Evidencia nueva, separada: `build/validation/continuation-2026-10-31/`.
+- `natural-1` llegó con controles normales a la nota y al PC y volvió al candado.
+  `operations-2/result.json` comprueba código erróneo/correcto, cuatro ruedas,
+  cancelación, persistencia y cruce de la puerta liberada mediante E. La extensión
+  posterior hacia multiscene3 se obstruyó en una escalera: no acredita la escena.
+- Se reprodujo pérdida de MultiTouch de los trigger_once *35/*43 después de
+  guardar/cargar. También se perdían Touch y estado de doorclose2. Hay correcciones
+  en el parche hlsdk, compiladas y empaquetadas **solo en dist aislado**:
+  `/root/cof-audits/continuation-20261031/dist-doors`. El dist principal no cambió.
+- `trigger-fixed-2` pasa tres restauraciones de disparadores y puerta en reposo,
+  y una prueba de Use/guardado/carga de la puerta que termina detenida. La suite
+  completa posterior a esos cambios y el recorrido de multiscene3 siguen pendientes.
+- El original ofrece uso directo de func_door_rotating con bandera 256; *42 tiene
+  spawnflags 19. Su Use no activa multiscene3 por nombre: existe un trigger_once
+  de proximidad (*35). Se retiró el static global añadido para esa activación.
+- Informe: `docs/CONTINUATION_2026_10_31.md`. Las voces no se declaran audibles por
+  estar presentes: todavía falta la comprobación de emisión y escucha.
+- Validación de Claude Code sobre `dist-customize` (con el enrutamiento body/skin de
+  env_customize): escena natural del SMS completa, `cusse` pone `body=1` en `simon3`;
+  12/12 regresiones y pruebas de disparadores, voces y uso satisfactorias. La escena
+  arranca al entrar en `*35`, no con E. El "enemigo" inmóvil es probablemente
+  `models/cutscene/blacker.mdl`, visible si `*43` no cierra la puerta.
+- Ojo: Codex dejó servidores abiertos en 8096 (`dist/`) y 8099 (`dist-use`, sin el
+  arreglo). Una prueba lanzada contra 8099 no valida las correcciones posteriores.

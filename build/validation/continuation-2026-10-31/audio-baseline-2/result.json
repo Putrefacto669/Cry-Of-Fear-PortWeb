@@ -1,0 +1,62 @@
+{
+  "expected": {
+    "len": 22722,
+    "rate": 22050,
+    "hash": 1187988295
+  },
+  "before": "[12:25:57] COF/ENTITY whatthesub class=ambient_generic body=0 solid=0 origin=3089.5,-2433.0,-717.0 gate=0 speed=0.0 spawn=52 touch=0 target= frozen=0 stairs=-1 use=1 think=1 toggle=0 next=0 now=1.484 effects=0 renderfx=0 modelindex=0 model=-\n[12:25:57] COF/FENCE audio_2 time=1.484",
+  "after": "[12:25:58] COF/ENTITY whatthesub class=ambient_generic body=0 solid=0 origin=3089.5,-2433.0,-717.0 gate=0 speed=0.0 spawn=52 touch=0 target= frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=1.684 effects=0 renderfx=0 modelindex=0 model=-\n[12:25:58] COF/FENCE audio_5 time=1.684",
+  "a": {
+    "starts": [],
+    "context": "suspended",
+    "master": 1,
+    "world": 1,
+    "voices": 8
+  },
+  "b": {
+    "starts": [
+      {
+        "at": 0,
+        "state": "running"
+      }
+    ],
+    "context": "running",
+    "master": 0.958629846572876,
+    "world": 1,
+    "voices": 9
+  },
+  "c": {
+    "starts": [
+      {
+        "at": 0,
+        "state": "running"
+      },
+      {
+        "at": 0.9404081632653061,
+        "state": "running"
+      }
+    ],
+    "context": "running",
+    "master": 0.800000011920929,
+    "world": 1,
+    "voices": 1
+  },
+  "d": {
+    "starts": [
+      {
+        "at": 0,
+        "state": "running"
+      },
+      {
+        "at": 0.9404081632653061,
+        "state": "running"
+      }
+    ],
+    "context": "running",
+    "master": 0.800000011920929,
+    "world": 1,
+    "voices": 1
+  },
+  "errors": [],
+  "browser": "156.0.8078.4"
+}

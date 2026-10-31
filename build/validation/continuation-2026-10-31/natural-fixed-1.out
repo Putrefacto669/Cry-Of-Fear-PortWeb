@@ -1,0 +1,10 @@
+OK 01-padlock-before-clue
+OK 02-original-level-exit
+OK 03-original-note
+AssertionError [ERR_ASSERTION]: [12:23:46] org ( 31.6562 2035.26 -454.938 )
+[12:23:46] ang ( 2.86102e-06 94.8669 0 )
+[12:23:46] COF/ENTITY !player class=player body=0 solid=3 origin=31.6,2035.2,-483.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=141.351 effects=0 renderfx=0 modelindex=143 model=models/player.mdl
+[12:23:46] COF/FENCE walk_1225 time=141.351
+    at inspect (file:///root/cof-audits/continuation-20261031/fixed-run/padlock_progression.mjs:19:62)
+    at async look (file:///root/cof-audits/continuation-20261031/fixed-run/padlock_progression.mjs:25:58)
+    at async file:///root/cof-audits/continuation-20261031/fixed-run/padlock_progression.mjs:66:57

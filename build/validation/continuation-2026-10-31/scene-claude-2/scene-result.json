@@ -1,0 +1,88 @@
+{
+  "passed": true,
+  "beforeScene": "[14:10:37] COF/ENTITY *35 class=trigger_once body=0 solid=1 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=1 target=multiscene3 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=183.609 effects=128 renderfx=0 modelindex=36 model=*35\n[14:10:37] COF/ENTITY *43 missing\n[14:10:37] COF/ENTITY whatthesub class=ambient_generic body=0 solid=0 origin=3089.5,-2433.0,-717.0 gate=0 speed=0.0 spawn=52 touch=0 target= frozen=0 stairs=-1 use=1 think=1 toggle=0 next=0 now=183.609 effects=0 renderfx=0 modelindex=0 model=-\n[14:10:37] COF/CAMERA ckamera1 id=149 state=0 think=0 next=0 now=183.609 remaining=-183.609 wait=14.9 path=- look=- player=0 pos=3120,-2360,-711 speed=3 distance=0 stop=0 initial=3 accel=500 decel=500 route=cstop1\n[14:10:37] COF/ANIM simon3 seq=5 frame=218.51 rate=85.3333 loops=1 finished=1 on=1 next=183.661 now=183.609 body=0 skin=0\n[14:10:37] COF/ENTITY !player class=player body=0 solid=3 origin=3104.0,-2361.3,-739.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=183.609 effects=0 renderfx=0 modelindex=337 model=models/player.mdl\n[14:10:37] COF/FENCE pad_119 time=183.609",
+  "afterE": "[14:10:38] COF/CAMERA ckamera1 id=149 state=0 think=0 next=0 now=184.442 remaining=-184.442 wait=14.9 path=- look=- player=0 pos=3120,-2360,-711 speed=3 distance=0 stop=0 initial=3 accel=500 decel=500 route=cstop1\n[14:10:38] COF/ANIM simon3 seq=5 frame=34.2708 rate=85.3333 loops=1 finished=1 on=1 next=184.502 now=184.442 body=0 skin=0\n[14:10:38] COF/FENCE pad_122 time=184.442",
+  "completed": "[14:11:06] COF/ANIM simon3 seq=4 frame=255 rate=16.6957 loops=0 finished=1 on=0 next=0 now=201.631 body=1 skin=0\n[14:11:06] COF/ENTITY simon3 class=env_model body=1 solid=0 origin=3084.4,-2426.6,-775.0 gate=0 speed=0.0 spawn=1 touch=0 target= frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=201.631 effects=128 renderfx=0 modelindex=349 model=models/cutscene/player3.mdl\n[14:11:06] COF/ENTITY !player class=player body=0 solid=3 origin=3085.0,-2408.0,-739.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=201.631 effects=0 renderfx=0 modelindex=337 model=models/player.mdl\n[14:11:06] COF/FENCE pad_226 time=201.631",
+  "after": {
+    "x": 3112.7,
+    "y": -2434,
+    "z": -739,
+    "frozen": 0,
+    "yaw": 269.995
+  },
+  "animation": {
+    "text": "[14:10:39] COF/ANIM simon3 seq=4 frame=0 rate=16.6957 loops=0 finished=0 on=0 next=186.05 now=185.993 body=0 skin=0\n[14:10:39] COF/FENCE pad_128 time=185.993",
+    "seq": 4,
+    "frame": 0
+  },
+  "resumedAnimation": {
+    "text": "[14:10:41] COF/ANIM simon3 seq=4 frame=6.67867 rate=16.6957 loops=0 finished=0 on=0 next=186.45 now=186.417 body=0 skin=0\n[14:10:41] COF/FENCE pad_133 time=186.417",
+    "seq": 4,
+    "frame": 6.67867
+  },
+  "smsAnimation": {
+    "text": "[14:10:48] COF/ANIM simon3 seq=4 frame=110.459 rate=16.6957 loops=0 finished=0 on=0 next=192.666 now=192.566 body=1 skin=0\n[14:10:48] COF/FENCE pad_173 time=192.566",
+    "seq": 4,
+    "frame": 110.459
+  },
+  "controlBefore": {
+    "x": 3085,
+    "y": -2408,
+    "z": -739,
+    "frozen": 0,
+    "yaw": 180
+  },
+  "controlAfter": {
+    "x": 3046.8,
+    "y": -2408,
+    "z": -739,
+    "frozen": 0,
+    "yaw": 180
+  },
+  "voice": {
+    "expected": {
+      "len": 22722,
+      "rate": 22050,
+      "hash": 1187988295
+    },
+    "starts": [
+      {
+        "at": 75.66222222222223,
+        "state": "running",
+        "epoch": "original",
+        "offset": 0
+      },
+      {
+        "at": 77.11637188208617,
+        "state": "running",
+        "epoch": "scene_active",
+        "offset": 0,
+        "gain": 0.6980392336845398,
+        "master": 0.800000011920929,
+        "world": 1,
+        "panner": {
+          "x": 3089.375,
+          "y": -2433,
+          "z": -716.875,
+          "maxDistance": 800
+        },
+        "listener": {
+          "x": 3120,
+          "y": -2360,
+          "z": -713
+        }
+      }
+    ],
+    "context": "running",
+    "loads": [
+      {
+        "name": "scene_active",
+        "at": 75.87120181405896
+      },
+      {
+        "name": "scene_completed",
+        "at": 102.43482993197279
+      }
+    ]
+  }
+}

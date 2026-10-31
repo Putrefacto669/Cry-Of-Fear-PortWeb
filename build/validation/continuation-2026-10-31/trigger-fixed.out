@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: trigger state timeout
+    at until (file:///root/cof-audits/continuation-20261031/trigger_persistence.mjs:16:74)
+    at async file:///root/cof-audits/continuation-20261031/trigger_persistence.mjs:59:2 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

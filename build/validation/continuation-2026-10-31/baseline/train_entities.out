@@ -1,0 +1,4 @@
+OK real fokus3: in-flight callbacks, destination, local deadline, arrival and next segment survive load; kamera3 keeps its target
+OK user-stopped train restores without automatic departure or teleport
+OK timed wait resumes its remaining local delay; wait-for-trigger remains parked; pass targets do not replay
+OK moving restore reaches next node then honors the original teleport/retrigger flags and target order

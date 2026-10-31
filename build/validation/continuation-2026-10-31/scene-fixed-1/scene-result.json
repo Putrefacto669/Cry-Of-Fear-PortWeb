@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "beforeScene": "[13:38:52] COF/HUD STAT 100 100 0 0\n[13:38:52] COF/ENTITY *35 class=trigger_once body=0 solid=1 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=1 target=multiscene3 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=179.808 effects=128 renderfx=0 modelindex=36 model=*35\n[13:38:52] COF/ENTITY *43 missing\n[13:38:52] COF/ENTITY whatthesub class=ambient_generic body=0 solid=0 origin=3089.5,-2433.0,-717.0 gate=0 speed=0.0 spawn=52 touch=0 target= frozen=0 stairs=-1 use=1 think=1 toggle=0 next=0 now=179.808 effects=0 renderfx=0 modelindex=0 model=-\n[13:38:52] COF/CAMERA ckamera1 id=149 state=0 think=0 next=0 now=179.808 remaining=-179.808 wait=14.9 path=- look=- player=0 pos=3120,-2360,-711 speed=3 distance=0 stop=0 initial=3 accel=500 decel=500 route=cstop1\n[13:38:52] COF/ANIM simon3 seq=5 frame=151.006 rate=85.3333 loops=1 finished=1 on=1 next=179.87 now=179.808 body=0 skin=0\n[13:38:52] COF/ENTITY !player class=player body=0 solid=3 origin=3103.9,-2354.1,-739.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=179.808 effects=0 renderfx=0 modelindex=337 model=models/player.mdl\n[13:38:52] COF/FENCE pad_116 time=179.808",
+  "afterE": "[13:38:53] COF/CAMERA ckamera1 id=149 state=0 think=0 next=0 now=180.898 remaining=-180.898 wait=14.9 path=- look=- player=0 pos=3120,-2360,-711 speed=3 distance=0 stop=0 initial=3 accel=500 decel=500 route=cstop1\n[13:38:53] COF/ANIM simon3 seq=5 frame=246.325 rate=85.3333 loops=1 finished=1 on=1 next=180.987 now=180.898 body=0 skin=0\n[13:38:53] COF/FENCE pad_119 time=180.898",
+  "completed": "[13:39:16] COF/ANIM simon3 seq=4 frame=255 rate=16.6957 loops=0 finished=1 on=0 next=0 now=199.753 body=0 skin=0\n[13:39:16] COF/ENTITY simon3 class=env_model body=0 solid=0 origin=3084.4,-2426.6,-775.0 gate=0 speed=0.0 spawn=1 touch=0 target= frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=199.753 effects=128 renderfx=0 modelindex=349 model=models/cutscene/player3.mdl\n[13:39:16] COF/ENTITY !player class=player body=0 solid=3 origin=3085.0,-2408.0,-739.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=199.753 effects=0 renderfx=0 modelindex=337 model=models/player.mdl\n[13:39:16] COF/FENCE pad_213 time=199.753",
+  "after": {
+    "x": 3045,
+    "y": -2408,
+    "z": -739,
+    "frozen": 0,
+    "yaw": 180
+  },
+  "animation": {
+    "text": "[13:38:55] COF/ANIM simon3 seq=4 frame=0 rate=16.6957 loops=0 finished=0 on=0 next=183.569 now=183.518 body=0 skin=0\n[13:38:55] COF/FENCE pad_124 time=183.518",
+    "seq": 4,
+    "frame": 0
+  },
+  "resumedAnimation": {
+    "text": "[13:38:57] COF/HUD STAT 100 100 0 8\n[13:38:57] COF/HUD SMSICON 1\n[13:38:57] COF/HUD INV 2 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt\n[13:38:57] COF/HUD QUICK weapon_mobile weapon_switchblade -\n[13:38:57] COF/HUD OBJECTIVE \n[13:38:57] COF/SKY_SEND world id=60 health=80\n[13:38:57] COF/SKY_SEND sky id=61 flags=3\n[13:38:57] COF/HUD PADLOCK 0\n[13:38:57] Couldn't open file overviews/c_start.txt. Using default values for overiew mode.\n[13:38:57] COF/ANIM simon3 seq=4 frame=6.67867 rate=16.6957 loops=0 finished=0 on=0 next=183.969 now=183.918 body=0 skin=0\n[13:38:57] COF/FENCE pad_128 time=183.918",
+    "seq": 4,
+    "frame": 6.67867
+  },
+  "controlBefore": {
+    "x": 3085,
+    "y": -2408,
+    "z": -739,
+    "frozen": 0,
+    "yaw": 180
+  },
+  "controlAfter": {
+    "x": 3045,
+    "y": -2408,
+    "z": -739,
+    "frozen": 0,
+    "yaw": 180
+  },
+  "voice": {
+    "expected": {
+      "len": 22722,
+      "rate": 22050,
+      "hash": 1187988295
+    },
+    "starts": [
+      {
+        "at": 71.62195011337869,
+        "state": "running",
+        "epoch": "original",
+        "offset": 0
+      },
+      {
+        "at": 73.27056689342403,
+        "state": "running",
+        "epoch": "scene_active",
+        "offset": 0,
+        "gain": 0.6980392336845398,
+        "master": 0.800000011920929,
+        "world": 1,
+        "panner": {
+          "x": 3089.375,
+          "y": -2433,
+          "z": -716.875,
+          "maxDistance": 800
+        },
+        "listener": {
+          "x": 3120,
+          "y": -2360,
+          "z": -713.25
+        }
+      }
+    ],
+    "context": "running",
+    "loads": [
+      {
+        "name": "scene_active",
+        "at": 71.69160997732426
+      },
+      {
+        "name": "scene_completed",
+        "at": 92.12517006802722
+      }
+    ]
+  }
+}
