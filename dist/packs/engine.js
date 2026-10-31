@@ -17,7 +17,7 @@
         // web worker
         PACKAGE_PATH = encodeURIComponent(location.pathname.substring(0, location.pathname.lastIndexOf('/')) + '/');
       }
-      var PACKAGE_NAME = '/root/cof-audits/audit-D3Kl5uly/dist-fix/packs/engine.data';
+      var PACKAGE_NAME = '/root/cof-audits/audit-D3Kl5uly/dist-glfix/packs/engine.data';
       var REMOTE_PACKAGE_BASE = 'engine.data';
       var REMOTE_PACKAGE_NAME = Module['locateFile'] ? Module['locateFile'](REMOTE_PACKAGE_BASE, '') : REMOTE_PACKAGE_BASE;
 var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
@@ -143,10 +143,10 @@ Module['FS_createPath']("/", "lib", true, true);
           var files = metadata['files'];
           for (var i = 0; i < files.length; ++i) {
             DataRequest.prototype.requests[files[i].filename].onload();
-          }          Module['removeRunDependency']('datafile_/root/cof-audits/audit-D3Kl5uly/dist-fix/packs/engine.data');
+          }          Module['removeRunDependency']('datafile_/root/cof-audits/audit-D3Kl5uly/dist-glfix/packs/engine.data');
 
       };
-      Module['addRunDependency']('datafile_/root/cof-audits/audit-D3Kl5uly/dist-fix/packs/engine.data');
+      Module['addRunDependency']('datafile_/root/cof-audits/audit-D3Kl5uly/dist-glfix/packs/engine.data');
 
       Module['preloadResults'] ??= {};
 
@@ -166,6 +166,6 @@ Module['FS_createPath']("/", "lib", true, true);
     }
 
     }
-    loadPackage({"files": [{"filename": "/lib/client.wasm", "start": 0, "end": 721085}, {"filename": "/lib/filesystem_stdio.wasm", "start": 721085, "end": 789277}, {"filename": "/lib/libref_gles3compat.wasm", "start": 789277, "end": 1060147}, {"filename": "/lib/menu.wasm", "start": 1060147, "end": 1451563}, {"filename": "/lib/server.wasm", "start": 1451563, "end": 2804837}], "remote_package_size": 2804837});
+    loadPackage({"files": [{"filename": "/lib/client.wasm", "start": 0, "end": 721085}, {"filename": "/lib/filesystem_stdio.wasm", "start": 721085, "end": 789277}, {"filename": "/lib/libref_gles3compat.wasm", "start": 789277, "end": 1060252}, {"filename": "/lib/menu.wasm", "start": 1060252, "end": 1451668}, {"filename": "/lib/server.wasm", "start": 1451668, "end": 2804942}], "remote_package_size": 2804942});
 
   })();

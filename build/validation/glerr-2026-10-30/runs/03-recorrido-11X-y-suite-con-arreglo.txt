@@ -1,0 +1,35 @@
+##### walk: 11 X, screamer, c_start (dist-glfix)
+PHASE camera in hand (start room): drawElements=2576 tooSmallBuffers=0 
+PHASE noclip -620 800 40 facing spott1: drawElements=2448 tooSmallBuffers=0 
+PHASE walk spot2: drawElements=671 tooSmallBuffers=0 
+PHASE walk spot3: drawElements=737 tooSmallBuffers=0 
+PHASE walk spot4: drawElements=627 tooSmallBuffers=0 
+PHASE walk spot5: drawElements=648 tooSmallBuffers=0 
+PHASE walk spott1: drawElements=840 tooSmallBuffers=0 
+PHASE walk spot6: drawElements=732 tooSmallBuffers=0 
+PHASE walk spot7: drawElements=504 tooSmallBuffers=0 
+PHASE walk spot8: drawElements=621 tooSmallBuffers=0 
+PHASE walk spot9: drawElements=598 tooSmallBuffers=0 
+PHASE walk spot10: drawElements=660 tooSmallBuffers=0 
+PHASE walk spot11: drawElements=495 tooSmallBuffers=0 
+[20:14:34] COF/COUNT camera_spot_trigger 9
+changelevel to c_start: false
+page errors: 0
+exit=0
+OUT=/root/cof-glerr/quads-walk-fix-201139
+##### suite (dist-glfix)
+entities exit=0 22s 
+campaign_entities exit=0 18s 
+motion_entities exit=0 16s 
+model_entities exit=0 12s 
+manager_entities exit=0 41s 
+sound_entities exit=0 25s 
+camera_entities exit=0 72s 
+train_entities exit=0 44s 
+track_entities exit=0 9s 
+envpos_entities exit=1 72s       if(Date.now()-start>60000) throw new Error("sky state timeout");
+button_entities exit=0 15s 
+changelevel_entities exit=0 20s 
+OUT=/root/cof-envpos/suite-dist-glfix-201517
+
+[exited with code 0]

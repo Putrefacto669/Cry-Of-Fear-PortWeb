@@ -101,6 +101,13 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
   las distingue y `FS_FixFileCase` solo entra en una carpeta. `loader.js` unifica la capitalización al
   montar paquetes; aun así, `stage_map.py` debe copiar rutas con la capitalización real (`find_ci`).
   Caso completo en `docs/ENVPOS_CASE_STUDY.md`.
+- **Errores GL que dependen del backend**: SwiftShader (pruebas sin interfaz) no informa de lecturas
+  fuera de rango que ANGLE D3D11 rechaza con `GL_INVALID_OPERATION`. Para reproducir hay que usar la
+  GPU real (panel del navegador de la app) o el detector de buffers de
+  `build/validation/glerr-2026-10-30/scripts/glquads.mjs`. En WebGL, `gl2_shim` va sin VAO y con
+  arrays de cliente. El `glDrawRangeElements`/`glDrawElements` de Emscripten con un buffer de
+  índices enlazado no sube vértices. Caso completo en `docs/GL_INVALID_OPERATION.md`. La variable
+  de las partículas del motor es `r_drawparticles`; `cl_draw_particles` no existe.
 - `.gitattributes` tiene `dist/** -text` y `build/validation/** -text`: no tocarlos o cambian los hashes.
 - **GitHub**: límite de 100 MB por archivo y HTTP 408 en pushes grandes. Subir en partes de ~150 MB
   (se hizo con un script que hace `git add --pathspec-from-file` por lotes). Windows corta las listas
@@ -180,11 +187,18 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
 - **Preludio**: `camera_spot_trigger` ya no se oculta: es la X blanca (`c_nightmarex`, aditivo) que
   hay que fotografiar. Recorrido completo comprobado: intro, 11 X, espejo que se rompe, screamer
   final (`headdy` + grito) y cambio a `c_start`.
+- **`GL_INVALID_OPERATION` en el preludio** (`docs/GL_INVALID_OPERATION.md`): no lo causaba la
+  cámara, sino los lotes de partículas del motor (`CL_DrawParticles`, varios quads en un
+  `Begin`/`End`). En WebGL se dibujaban sobre un buffer de vértices de 1 byte. Arreglo en
+  `gl2_shim.c`, solo para Emscripten: esos lotes se dibujan con índices en memoria del cliente. En el
+  punto de reproducción los dibujos inválidos pasan de 253 a 0, y en GPU real (D3D11) de decenas de
+  errores por segundo a 0. La suite y el preludio completo pasan. El disparador del screamer es el
+  `trigger_once` `*125` (y ≈ -1370): se llega caminando hacia -y desde (-738, -1300, -290).
 
 ## Pendiente
 
-- `GL_INVALID_OPERATION (gl_rmain.c:1015)` cada frame con la cámara de fotos en la mano (también
-  en versiones anteriores).
+- Reempaquetar `dist/` con el arreglo de `gl2_shim` (ya está en `patches/xash3d`; validado en
+  `dist-glfix` del árbol de WSL, falta autorización para publicarlo).
 - X falsas del preludio (`wrong1..11`) sin probar una por una.
 - Diferencias frente al recorrido original en vídeo (`docs/VIDEO_REFERENCE.md`): la cara del
   screamer se ve más pequeña en el port (causa sin demostrar) y el cono de luz del móvil está sin

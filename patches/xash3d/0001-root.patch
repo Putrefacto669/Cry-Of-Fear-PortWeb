@@ -782,10 +782,33 @@ index 5c37607d..0308d7c5 100644
  {
  #if HAVE_STRNLEN
 diff --git a/ref/gl/gl2_shim/gl2_shim.c b/ref/gl/gl2_shim/gl2_shim.c
-index 91541c9b..eb343d15 100644
+index 91541c9b..cfe2fde4 100644
 --- a/ref/gl/gl2_shim/gl2_shim.c
 +++ b/ref/gl/gl2_shim/gl2_shim.c
-@@ -604,7 +604,11 @@ int GL2_ShimInit( void )
+@@ -442,6 +442,11 @@ static gl2wrap_prog_t *GL2_SetProg( const GLuint flags )
+ 
+ #define TRIQUADS_SIZE GL2_MAX_VERTS / 4 * 6
+ 
++#if XASH_EMSCRIPTEN
++// the same 0 1 2 0 2 3... sequence in client memory, for drawing quads from client-side arrays
++static GLushort gl2wrap_triquads_client[TRIQUADS_SIZE];
++#endif
++
+ static void GL2_InitTriQuads( void )
+ {
+ 	for( int i = 0; i < ( !!pglDrawRangeElementsBaseVertex ? 1 : 4 ); i++ )
+@@ -457,6 +462,10 @@ static void GL2_InitTriQuads( void )
+ 			triquads_array[j * 6 + 4] = j * 4 + 2 + i;
+ 			triquads_array[j * 6 + 5] = j * 4 + 3 + i;
+ 		}
++#if XASH_EMSCRIPTEN
++		if( i == 0 )
++			memcpy( gl2wrap_triquads_client, triquads_array, sizeof( triquads_array ));
++#endif
+ 		pglGenBuffersARB( 1, &gl2wrap.triquads_ibo[i] );
+ 		rpglBindBufferARB( GL_ELEMENT_ARRAY_BUFFER_ARB, gl2wrap.triquads_ibo[i] );
+ 		pglBufferDataARB( GL_ELEMENT_ARRAY_BUFFER_ARB, sizeof( triquads_array ), triquads_array, GL_STATIC_DRAW_ARB );
+@@ -604,7 +613,11 @@ int GL2_ShimInit( void )
  	if( gEngfuncs.Sys_CheckParm( "-noincremental" ))
  		gl2wrap_config.incremental = gl2wrap_config.buf_storage = false;
  
@@ -797,6 +820,25 @@ index 91541c9b..eb343d15 100644
  	if( gEngfuncs.Sys_CheckParm( "-minshaders" ))
  		gl2wrap_config.version = 100;
  	if( gl2wrap_config.buf_storage )
+@@ -953,6 +966,18 @@ static void GL2_FlushPrims( void )
+ 		// simple case, one quad may draw like polygon(4)
+ 		if( count == 4 )
+ 			rpglDrawArrays( GL_TRIANGLE_FAN, startindex, count );
++#if XASH_EMSCRIPTEN
++		else if( !gl2wrap_config.vao_mandatory )
++		{
++			// The attributes are client-side arrays here (already offset to this batch). Emscripten's
++			// glDrawRangeElements ignores the range, and with an index buffer bound its glDrawElements
++			// cannot read the indices, so it uploads no vertices at all: WebGL then reads past the end
++			// of a 1-byte buffer (GL_INVALID_OPERATION on D3D11). Indices from client memory let it
++			// count and upload the vertices this draw uses.
++			pglBindBufferARB( GL_ELEMENT_ARRAY_BUFFER_ARB, 0 );
++			rpglDrawElements( GL_TRIANGLES, Q_min( count / 4 * 6, TRIQUADS_SIZE ), GL_UNSIGNED_SHORT, gl2wrap_triquads_client );
++		}
++#endif
+ 		else if( pglDrawRangeElementsBaseVertex )
+ 		{
+ 			/*
 diff --git a/ref/gl/gl_decals.c b/ref/gl/gl_decals.c
 index 1b3fc6df..05d2e24c 100644
 --- a/ref/gl/gl_decals.c

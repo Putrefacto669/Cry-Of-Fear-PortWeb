@@ -1,0 +1,24 @@
+##### BEFORE (dist-fix, no shim fix)
+PHASE camera in hand (start room): drawElements=2072 tooSmallBuffers=0 
+PHASE noclip -620 800 40 facing spott1: drawElements=3036 tooSmallBuffers=253 {"count":972,"loc":0,"bytes":1}
+exit=0
+OUT=/root/cof-glerr/quads-before-200350
+##### AFTER (dist-gldiag, shim fix + log)
+PHASE camera in hand (start room): drawElements=2520 tooSmallBuffers=0 
+PHASE noclip -620 800 40 facing spott1: drawElements=2472 tooSmallBuffers=0 
+[20:07:22] GL2DBG quads count=648 tex=*particle ent=101 model=*56
+[20:07:22] GL2DBG quads count=648 tex=*particle ent=101 model=*56
+[20:07:22] GL2DBG quads count=648 tex=*particle ent=101 model=*56
+[20:07:22] GL2DBG quads count=648 tex=*particle ent=101 model=*56
+[20:07:22] GL2DBG quads count=648 tex=*particle ent=101 model=*56
+[20:07:22] GL2DBG quads count=648 tex=*particle ent=101 model=*56
+[20:07:22] GL2DBG quads count=648 tex=*particle ent=101 model=*56
+[20:07:22] GL2DBG quads count=648 tex=*particle ent=101 model=*56
+[20:07:22] GL2DBG quads count=648 tex=*particle ent=101 model=*56
+[20:07:22] GL2DBG quads count=648 tex=*particle ent=101 model=*56
+[20:07:22] GL2DBG quads count=648 tex=*particle ent=101 model=*56
+[20:07:22] GL2DBG quads count=648 tex=*particle ent=101 model=*56
+exit=0
+OUT=/root/cof-glerr/quads-after-200540
+
+[exited with code 0]
