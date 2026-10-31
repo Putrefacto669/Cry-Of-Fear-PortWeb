@@ -26,9 +26,110 @@
     footer summary { display: inline; cursor: pointer; color: var(--fg); text-decoration: underline; }
     #about { max-width: 72ch; margin: 8px 0 2px; color: var(--fg); }
     #about p { margin: 0 0 6px; }
+
+    /* Launcher: cover shown without ?map= (loader.js); the engine starts on "Jugar" */
+    #launcher { --lb-text: #d8d2c8; --lb-dim: #9a9184; --lb-accent: #c9a57a; --lb-link: #e0b989;
+                --lb-card: rgba(8, 7, 6, .74); --lb-line: rgba(176, 140, 100, .2);
+                --lb-red: rgba(110, 24, 16, .88); --lb-red-hi: rgba(150, 32, 20, .96);
+                position: fixed; inset: 0; z-index: 100; overflow-y: auto; color: var(--lb-text);
+                background: #070605 url("launcher/background.jpg") center / cover no-repeat fixed;
+                font: 15px/1.55 "Trebuchet MS", "Segoe UI", system-ui, sans-serif; }
+    #launcher[hidden] { display: none; }
+    #launcher::before { content: ""; position: fixed; inset: 0; pointer-events: none;
+                        background: radial-gradient(ellipse at 50% 28%, rgba(0, 0, 0, .3), rgba(0, 0, 0, .9) 72%); }
+    .lb-wrap { position: relative; max-width: 980px; margin: 0 auto; padding: 56px 16px 32px; }
+    .lb-hero { text-align: center; }
+    .lb-logo { width: min(560px, 100%); height: auto; filter: drop-shadow(0 4px 18px rgba(0, 0, 0, .95)); }
+    .lb-tag { margin: 12px 0 30px; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--lb-dim); }
+    .lb-play { padding: 16px 64px; font: 700 20px/1 "Trebuchet MS", sans-serif; letter-spacing: .32em;
+               text-transform: uppercase; color: #f2ece2; background: var(--lb-red); border: 1px solid #b0402c;
+               cursor: pointer; box-shadow: 0 10px 30px rgba(0, 0, 0, .65); transition: background .2s, transform .2s; }
+    .lb-play:hover, .lb-play:focus-visible { background: var(--lb-red-hi); transform: translateY(-1px); outline: 1px solid #e3a08c; }
+    .lb-note { margin: 14px 0 0; font-size: 13px; color: var(--lb-dim); }
+    .lb-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 48px; }
+    .lb-card { padding: 16px 18px; background: var(--lb-card); border: 1px solid var(--lb-line); }
+    .lb-card h2 { margin: 0 0 12px; font: 700 13px/1.2 "Trebuchet MS", sans-serif; letter-spacing: .22em;
+                  text-transform: uppercase; color: var(--lb-accent); }
+    .lb-card ul { margin: 0; padding-left: 18px; }
+    .lb-card li { margin: 4px 0; }
+    .lb-keys { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; margin: 0; }
+    .lb-keys dt { white-space: nowrap; }
+    .lb-keys dd { margin: 0; }
+    .lb-next { margin: 12px 0 0; font-size: 13px; color: var(--lb-dim); }
+    #launcher kbd { padding: 0 6px; font: 12px/1.6 ui-monospace, Consolas, monospace; color: var(--lb-text);
+                    background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .2);
+                    border-bottom-width: 2px; border-radius: 3px; }
+    .lb-credits { margin-top: 14px; padding: 14px 18px; font-size: 13px; color: #b5ab9d;
+                  background: var(--lb-card); border: 1px solid var(--lb-line); }
+    .lb-credits p { margin: 0 0 6px; }
+    .lb-credits p:last-child { margin: 0; }
+    #launcher a { color: var(--lb-link); }
+    @media (max-width: 760px) {
+      .lb-grid { grid-template-columns: 1fr; }
+      .lb-wrap { padding-top: 32px; }
+      .lb-play { padding: 14px 40px; }
+    }
   </style>
 </head>
 <body>
+  <section id="launcher" hidden aria-label="Cry of Fear Web">
+    <div class="lb-wrap">
+      <div class="lb-hero">
+        <img class="lb-logo" src="launcher/logo.png" alt="Cry of Fear" width="512" height="66">
+        <p class="lb-tag">Port web no oficial · Alpha</p>
+        <button id="play" class="lb-play" type="button">Jugar</button>
+        <p class="lb-note">La primera vez se descargan unos 300 MB; después el juego queda guardado en el navegador.</p>
+      </div>
+      <div class="lb-grid">
+        <article class="lb-card">
+          <h2>Controles</h2>
+          <dl class="lb-keys">
+            <dt><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></dt><dd>Moverse</dd>
+            <dt><kbd>Shift</kbd></dt><dd>Correr</dd>
+            <dt><kbd>Ctrl</kbd> <kbd>Espacio</kbd></dt><dd>Agacharse y saltar</dd>
+            <dt><kbd>E</kbd></dt><dd>Usar y coger objetos</dd>
+            <dt><kbd>F</kbd></dt><dd>Linterna del teléfono</dd>
+            <dt><kbd>Tab</kbd></dt><dd>Bolso (inventario)</dd>
+            <dt><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd></dt><dd>Selección rápida</dd>
+            <dt><kbd>R</kbd></dt><dd>Recargar</dd>
+            <dt>Clic izq. / der.</dt><dd>Atacar y acción secundaria</dd>
+            <dt><kbd>Esc</kbd></dt><dd>Menú y soltar el ratón</dd>
+          </dl>
+        </article>
+        <article class="lb-card">
+          <h2>Requisitos</h2>
+          <ul>
+            <li>Ordenador con teclado y ratón.</li>
+            <li>Navegador de escritorio con WebGL 2 (probado en Chrome).</li>
+            <li>Unos 300 MB de descarga la primera vez.</li>
+            <li>Auriculares recomendados.</li>
+            <li>Las partidas se guardan con la grabadora de cinta del juego.</li>
+          </ul>
+        </article>
+        <article class="lb-card">
+          <h2>Novedades</h2>
+          <ul>
+            <li>Prólogo, preludio y capítulo 1 completos.</li>
+            <li>Bolso, barras de salud y energía, y teléfono con los SMS en su pantalla, como en el original.</li>
+            <li>Pisadas y sonidos originales.</li>
+            <li>Al cargar partida se conservan escenas, puertas y voces.</li>
+            <li>Cuchillo con cambio de mano y linterna del teléfono.</li>
+          </ul>
+          <p class="lb-next">En desarrollo: combinar armas, el resto del arsenal y el teléfono en las cinemáticas.</p>
+        </article>
+      </div>
+      <div class="lb-credits">
+        <p><strong>Cry of Fear</strong> © Team Psykskallar (Andreas Rönnberg y equipo). Este port se publica con permiso de su autor
+          y no es un producto oficial. Sin fines de lucro: sin anuncios, donaciones ni pagos. Juega al original, gratis, en
+          <a href="http://www.cry-of-fear.com" target="_blank" rel="noopener">cry-of-fear.com</a>.</p>
+        <p>Recursos del juego © Team Psykskallar, distribuidos con su permiso y fuera de la licencia del código.
+          Código del port: GPL-3.0 (<a href="LICENSE.txt">licencia</a> ·
+          <a href="https://github.com/Putrefacto669/Cry-Of-Fear-PortWeb" target="_blank" rel="noopener">código fuente</a>).
+          Motor: <a href="https://github.com/FWGS/xash3d-fwgs" target="_blank" rel="noopener">Xash3D FWGS</a>.
+          Port web: Putrefacto669.</p>
+      </div>
+    </div>
+  </section>
   <header>Cry of Fear · Xash3D FWGS / WebAssembly — <span id="status">Iniciando…</span> <button id="update" hidden>Nueva versión · recargar</button> <button id="fullscreen">Pantalla completa</button> <span id="pointer"></span></header>
   <main><canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas></main>
   <div id="log"></div>
@@ -49,10 +150,10 @@
         <p><strong>Código del port</strong>: GPL-3.0 (<a href="LICENSE.txt">licencia</a>,
           <a href="https://github.com/Putrefacto669/Cry-Of-Fear-PortWeb" target="_blank" rel="noopener">código fuente</a>).
           Motor: <a href="https://github.com/FWGS/xash3d-fwgs" target="_blank" rel="noopener">Xash3D FWGS</a> (GPL-3.0).
-          Lógica de juego provisional: <a href="https://github.com/FWGS/hlsdk-portable" target="_blank" rel="noopener">hlsdk-portable</a>
+          Lógica de juego reimplementada sobre <a href="https://github.com/FWGS/hlsdk-portable" target="_blank" rel="noopener">hlsdk-portable</a>
           (licencia del Half-Life 1 SDK de Valve).</p>
-        <p><strong>Estado:</strong> demo técnica. Se ejecuta la lógica de Half-Life mientras se reimplementa
-          la de Cry of Fear: el mapa se recorre, pero aún faltan enemigos, objetos y las mecánicas propias del juego.</p>
+        <p><strong>Estado:</strong> alpha. Se juegan el prólogo, el preludio y el capítulo 1 con la lógica de
+          Cry of Fear reimplementada; aún faltan armas, mecánicas y el resto de capítulos.</p>
       </div>
     </details>
   </footer>

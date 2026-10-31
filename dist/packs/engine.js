@@ -17,7 +17,7 @@
         // web worker
         PACKAGE_PATH = encodeURIComponent(location.pathname.substring(0, location.pathname.lastIndexOf('/')) + '/');
       }
-      var PACKAGE_NAME = '/root/cof-audits/continuation-20261031/dist-customize/packs/engine.data';
+      var PACKAGE_NAME = '/root/cof-audits/claude-launcher/dist/packs/engine.data';
       var REMOTE_PACKAGE_BASE = 'engine.data';
       var REMOTE_PACKAGE_NAME = Module['locateFile'] ? Module['locateFile'](REMOTE_PACKAGE_BASE, '') : REMOTE_PACKAGE_BASE;
 var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
@@ -143,10 +143,10 @@ Module['FS_createPath']("/", "lib", true, true);
           var files = metadata['files'];
           for (var i = 0; i < files.length; ++i) {
             DataRequest.prototype.requests[files[i].filename].onload();
-          }          Module['removeRunDependency']('datafile_/root/cof-audits/continuation-20261031/dist-customize/packs/engine.data');
+          }          Module['removeRunDependency']('datafile_/root/cof-audits/claude-launcher/dist/packs/engine.data');
 
       };
-      Module['addRunDependency']('datafile_/root/cof-audits/continuation-20261031/dist-customize/packs/engine.data');
+      Module['addRunDependency']('datafile_/root/cof-audits/claude-launcher/dist/packs/engine.data');
 
       Module['preloadResults'] ??= {};
 
