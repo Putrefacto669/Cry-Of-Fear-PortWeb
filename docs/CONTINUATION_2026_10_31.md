@@ -371,6 +371,50 @@ punteros a función que en WASM no se guardan (el mismo problema que Codex corri
 `trigger_once`, puertas y `ambient_generic`). Hay que identificar qué entidades son, porque al
 cargar pueden quedar sin `Think`/`Touch`/`Use`.
 
+## Brazo del techo con la Glock (c_apartment1): E no llegaba
+
+**Síntoma (usuario).** Un brazo cuelga de la trampilla del techo con una pistola y no se puede coger.
+
+**Escena del mapa.**
+- El brazo es `mammabille` (`models/cutscene/armlole1.mdl`). Su `body 0` (`both`, 607 vértices,
+  textura `glockmap.bmp`) sostiene la Glock; el `body 1` (`both2`, 180 vértices) es el brazo solo.
+- Se toma con E sobre la trampilla (`func_button *132`, x −984..−936, y 725..772, altura 232–254),
+  que lanza `multitscene` → `multiscene1_1`:
+  - cámaras, el Taurus (`scene1_1`) y `custimse1`, que pone `body=1`;
+  - a los 15 s el brazo vuelve a verse ya sin pistola y se entregan `giveitem1` (la Glock) y
+    `giveitem2` (llave del pasillo).
+- Lanzada a mano (`cof_fire multitscene`), la escena funcionaba: el problema era alcanzar el botón.
+
+**Causa.**
+- El `PlayerUse` del HLSDK solo busca entidades usables a 64 unidades del origen del cuerpo. El
+  botón está a 82 (origen a 150 de altura) y nunca se encontraba.
+- El original (`hl.dll`, `FUN_100ea630`):
+  1. traza primero 80 unidades desde los ojos (`DAT_101a1f14`) y usa lo que toque si es usable
+     (`ObjectCaps & 0x38`);
+  2. si no, busca a 80 unidades del jugador (`0x42a00000`), no a 64;
+  3. por último, una traza más larga que solo admite la bandera `0x200`.
+- Mirando hacia arriba, la traza desde los ojos llega a la trampilla a 54 unidades.
+
+**Corrección.** `CoF_UseTrace` (`doors.cpp`), llamada al principio de `CoF_PlayerPreThink`, antes
+del `PlayerUse` del HLSDK:
+- si se acaba de pulsar E, traza 80 unidades desde los ojos;
+- si toca algo de uso por pulsación (`FCAP_IMPULSE_USE` o `FCAP_ONOFF_USE`), lo usa como el HLSDK
+  (`USE_SET`, 1);
+- quita `IN_USE` de `m_afButtonPressed`, para que `PlayerUse` no use otra cosa en el mismo
+  fotograma.
+
+El uso continuo y la búsqueda alrededor siguen en `PlayerUse`.
+
+**Pruebas** (dist aislado, puerto 8091, terminada la cinemática de entrada del mapa):
+- **Trampilla:** debajo, mirando arriba y con E, la traza toca `func_button *132` a 54 unidades.
+  La escena se reproduce, el brazo acaba en `body=1` y el bolso recibe `hallkey` y `weapon_glock`.
+- **Regresión en la puerta del apartamento:** la llave desde el bolso desbloquea y E lleva a
+  `3_exit1` (−312, 480).
+
+**Pendiente.** La búsqueda alrededor del jugador sigue siendo de 64 unidades (80 en el original), y
+falta la tercera traza con la bandera `0x200`. Las dos están en el `PlayerUse` del HLSDK
+(`patches/hlsdk`).
+
 ## Límites de la validación
 
 No se modificaron recursos originales, distribución principal, licencias ni

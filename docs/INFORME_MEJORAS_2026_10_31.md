@@ -82,6 +82,13 @@ Cuando el foco funcione:
 - Pendiente: 39 avisos "Invalid function pointer in entity!" al guardar en `c_apartment1`. Hay que
   identificar las entidades y conservar sus funciones como en `sound.cpp` y las puertas.
 
+## 1c. Usar (E)
+
+- Corregido: E no alcanzaba lo que está por encima de la cabeza (la trampilla con la Glock de
+  `c_apartment1`). Ahora traza 80 unidades desde los ojos, como el original.
+- Pendiente: la búsqueda alrededor del jugador es de 64 unidades (80 en el original), y falta la
+  traza de la bandera `0x200` (`PlayerUse` del HLSDK).
+
 ## 2. Llaves y objetos del bolso
 
 - Sin probar en juego: el botón de la cinta de vídeo (`c_apartment3`, `*133`) y la puerta del

@@ -371,6 +371,41 @@ static BOOL UseItemOnEntity( CBaseEntity *pEntity, CBaseEntity *pPlayer, const c
 
 /*
 =====================================================================
+E as in the original (hl.dll FUN_100ea630): first a trace of 80
+units from the eyes, and what it hits is used if it can be; only then
+the search around the player. hlsdk's PlayerUse only does the search,
+64 units from the body, so things above the head were out of reach:
+the ceiling hatch of c_apartment1 (func_button *132, the Glock) is 82
+units from the player's origin and 54 from the eyes. Called from
+CoF_PlayerPreThink, before PlayerUse; a press used here is taken out
+of m_afButtonPressed so PlayerUse does not use something else too.
+=====================================================================
+*/
+void CoF_UseTrace( CBasePlayer *pPlayer )
+{
+	if( !( pPlayer->m_afButtonPressed & IN_USE ) || pPlayer->IsObserver() || pPlayer->m_pTank != 0 )
+		return;
+
+	UTIL_MakeVectors( pPlayer->pev->v_angle );
+	Vector start = pPlayer->pev->origin + pPlayer->pev->view_ofs;
+	TraceResult tr;
+	UTIL_TraceLine( start, start + gpGlobals->v_forward * 80.0f, dont_ignore_monsters, pPlayer->edict(), &tr );
+	CBaseEntity *pHit = tr.pHit ? CBaseEntity::Instance( tr.pHit ) : NULL;
+	if( !pHit || pHit == pPlayer )
+		return;
+
+	int caps = pHit->ObjectCaps();
+	if( !( caps & ( FCAP_IMPULSE_USE | FCAP_ONOFF_USE )))
+		return; // continuous use stays with PlayerUse, which repeats it while E is held
+
+	if( caps & FCAP_CONTINUOUS_USE )
+		pPlayer->m_afPhysicsFlags |= PFLAG_USING;
+	pHit->Use( pPlayer, pPlayer, USE_SET, 1 );
+	pPlayer->m_afButtonPressed &= ~IN_USE;
+}
+
+/*
+=====================================================================
 USE on an item of the bag, the original's "inventoryuse" (hl.dll
 FUN_100e4410): the item's map_name is tried on what the player looks
 at, 80 units from the eyes, and then on what is within 64 units of

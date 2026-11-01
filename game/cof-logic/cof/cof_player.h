@@ -22,6 +22,7 @@ bool CoF_HasItem( CBaseEntity *pActivator, const char *mapName );
 void CoF_RemoveItem( CBaseEntity *pActivator, const char *mapName );
 void CoF_ClearItem( CBaseEntity *pActivator, const char *classname );
 bool CoF_UseItemOn( CBaseEntity *pPlayer, const char *mapName ); // USE in the bag: keys (doors.cpp)
+void CoF_UseTrace( class CBasePlayer *pPlayer );                   // E: trace from the eyes (doors.cpp)
 
 // the phone's light: kept here and drawn by the client as the original's spotlight
 bool CoF_FlashlightIsOn( CBaseEntity *pPlayer );

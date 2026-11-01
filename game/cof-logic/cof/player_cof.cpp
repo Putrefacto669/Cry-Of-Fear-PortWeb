@@ -401,6 +401,8 @@ void CoF_PlayerPreThink( CBasePlayer *pPlayer )
 	if( !s )
 		return;
 
+	CoF_UseTrace( pPlayer ); // E: what is looked at first, like the original (doors.cpp)
+
 	// changelevel and save games move the clock: resend everything
 	float dt = now - s->lastTime;
 	if( dt < 0.0f || dt > 0.5f )
