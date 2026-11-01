@@ -1410,9 +1410,17 @@
     return true;
   };
 
+  // the list is in localStorage and the .sav in /rwdir (IndexedDB, loader.js): a save whose file was
+  // lost would stay in the menu and "load" would do nothing
+  const saveExists = (name) => {
+    try { return FS.analyzePath(`/rwdir/cryoffear/save/${name}.sav`).exists; } catch (_) { return true; }
+  };
+
   const showLoadGame = (onClose) => {
     const body = document.createElement("div");
     const saves = readJson(SAVES_KEY, {});
+    for (const name of Object.keys(saves)) if (!saveExists(name)) delete saves[name];
+    writeJson(SAVES_KEY, saves);
     const names = Object.keys(saves);
     if (!names.length) {
       const p = document.createElement("div");

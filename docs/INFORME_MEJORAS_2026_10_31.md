@@ -75,6 +75,13 @@ Cuando el foco funcione:
 - **no modificar los mapas originales**: si tras arreglar la linterna sigue habiendo zonas
   imposibles, documentarlas con capturas del original antes de decidir nada.
 
+## 1b. Partidas guardadas
+
+- Corregido: la partida se perdía al cerrar la pestaña y Cargar partida se quedaba en el menú
+  (detalle en `CONTINUATION_2026_10_31.md`).
+- Pendiente: 39 avisos "Invalid function pointer in entity!" al guardar en `c_apartment1`. Hay que
+  identificar las entidades y conservar sus funciones como en `sound.cpp` y las puertas.
+
 ## 2. Llaves y objetos del bolso
 
 - Sin probar en juego: el botón de la cinta de vídeo (`c_apartment3`, `*133`) y la puerta del

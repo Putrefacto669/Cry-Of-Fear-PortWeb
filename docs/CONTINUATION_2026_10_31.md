@@ -335,6 +335,42 @@ bandera `0x800`).
 - **Sin probar en juego:** el botón de la cinta de vídeo (`*133`, sin `0x800`: se desbloquea y luego
   se pulsa con E) y la puerta `*96` de `c_apartment4`.
 
+## Cargar partida desde el menú no entraba en el juego
+
+**Síntoma (usuario).** Al elegir la partida guardada en Cargar partida, el juego se quedaba en el menú
+principal.
+
+**Reproducción** (dist aislado, puerto 8091): guardar con la grabadora de `c_apartment1`, recargar la
+página en `c_game_menu1` y cargar. El menú listaba la partida, pero `load cof_last` no hacía nada:
+`/rwdir` no tenía ningún `.sav`.
+
+**Causa.**
+- `loader.js` solo copiaba `/rwdir` (configuración y partidas) a IndexedDB en `pagehide`. `FS.syncfs`
+  es asíncrono y la página solía cerrarse antes de terminar, así que el `.sav` se perdía al cerrar o
+  recargar la pestaña.
+- La lista del menú va en `localStorage`, que persiste al instante. Por eso el menú seguía ofreciendo
+  una partida sin archivo.
+
+**Corrección.**
+- `platform/web/loader.js`: `persistRwdir` hace un solo `syncfs` a la vez y repite si se pidió otro
+  mientras tanto. Se llama:
+  - en cuanto el motor imprime `Saving game to` (el archivo se escribe en ese mismo comando);
+  - al ocultar la pestaña (`visibilitychange`);
+  - en `pagehide`.
+- `platform/web/hud.js`: Cargar partida quita de la lista las partidas cuyo
+  `/rwdir/cryoffear/save/<nombre>.sav` no existe.
+
+**Prueba.**
+- Grabadora de `c_apartment1`: el archivo (202.304 bytes) aparece en IndexedDB al momento, sin salir
+  de la página.
+- Tras recargar en el menú y cargar, entra en `c_apartment1` en menos de 5 s, con el teléfono que
+  llevaba al guardar y sin errores al cargar.
+
+**Pendiente.** Al guardar, el motor escribe 39 veces "Invalid function pointer in entity!":
+punteros a función que en WASM no se guardan (el mismo problema que Codex corrigió en
+`trigger_once`, puertas y `ambient_generic`). Hay que identificar qué entidades son, porque al
+cargar pueden quedar sin `Think`/`Touch`/`Use`.
+
 ## Límites de la validación
 
 No se modificaron recursos originales, distribución principal, licencias ni

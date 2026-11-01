@@ -220,6 +220,20 @@
     if (params.get("mat") === "0") args.push("+host_allow_materials", "0");
     if (map) args.push("+map", map);
 
+    // un solo syncfs a la vez; si se pide otro mientras tanto, se repite al terminar
+    let persisting = false, persistAgain = false;
+    const persistRwdir = () => {
+      if (persisting) { persistAgain = true; return; }
+      persisting = true;
+      try {
+        FS.syncfs(false, (err) => {
+          if (err) log(`IDBFS: ${err}`, "err");
+          persisting = false;
+          if (persistAgain) { persistAgain = false; persistRwdir(); }
+        });
+      } catch (_) { persisting = false; /* runtime no listo */ }
+    };
+
     window.Module = {
       canvas,
       arguments: args,
@@ -258,6 +272,8 @@
         }
         log(t);
         if (debug) console.log(t);
+        // el motor escribe la partida en el mismo comando, justo después de esta línea
+        if (/^Saving game to /.test(line)) setTimeout(persistRwdir, 0);
         const spawn = /^Spawn Server:\s*(\S+)/.exec(line);
         if (spawn) {
           currentMap = spawn[1].toLowerCase();
@@ -286,8 +302,12 @@
       },
     };
 
-    // Guardar /rwdir al salir de la pestaña (configs, partidas)
-    addEventListener("pagehide", () => { try { FS.syncfs(false, () => {}); } catch (_) { /* runtime no listo */ } });
+    // Guardar /rwdir en IndexedDB (configs, partidas). syncfs es asíncrono: solo en pagehide la página
+    // solía cerrarse antes de terminar y la partida se perdía, aunque el menú la siguiera listando
+    // (la lista va en localStorage). Se guarda también en cuanto el motor escribe una partida (print,
+    // "Saving game to") y al ocultar la pestaña.
+    document.addEventListener("visibilitychange", () => { if (document.hidden) persistRwdir(); });
+    addEventListener("pagehide", persistRwdir);
 
     setStatus("Descargando paquetes…");
     const packs = preloaded ? [] : ["engine", "boot", ...(map ? [`map_${map}`] : [])];
