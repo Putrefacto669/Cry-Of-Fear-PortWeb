@@ -1098,7 +1098,7 @@ index 97b12119..973f3ff1 100644
  	R_MarkLeaves();
  	R_DrawFog ();
 diff --git a/ref/gl/gl_rsurf.c b/ref/gl/gl_rsurf.c
-index 18dea062..dc748583 100644
+index 18dea062..3697c417 100644
 --- a/ref/gl/gl_rsurf.c
 +++ b/ref/gl/gl_rsurf.c
 @@ -38,6 +38,171 @@ typedef struct
@@ -1294,14 +1294,23 @@ index 18dea062..dc748583 100644
  	if( surf->dlightframe == tr.framecount && dynamic )
  		R_AddDynamicLights( surf, sample_size, smax, tmax );
  
-@@ -815,6 +987,10 @@ static void R_BuildLightMap( const msurface_t *surf, byte *restrict dest, int st
+@@ -795,6 +967,8 @@ static void R_BuildLightMap( const msurface_t *surf, byte *restrict dest, int st
+ 		{
+ 			const uint *restrict bl = &r_blocklights[(s + (t * smax)) * 3];
+ 			byte *restrict dst = &dest[(t * stride) + (s * 4)];
++			// Keep the luxel index outside the channel loop: its t is brightness.
++			const float *spot = &r_spotlight[(s + t * smax) * 3];
+ 
+ 			for( int i = 0; i < 3; i++ )
+ 			{
+@@ -815,6 +989,10 @@ static void R_BuildLightMap( const msurface_t *surf, byte *restrict dest, int st
  					dst[i] = t >> 2;
  				else
  					dst[i] = lightgammatable[t] >> 2;
 +
 +				// Cry of Fear flashlight: on top of the lightmap, like the original's additive pass
 +				if( r_spotused )
-+					dst[i] = Q_min( 255, dst[i] + (int)( r_spotlight[(s + t * smax) * 3 + i] * 255.0f + 0.5f ));
++					dst[i] = Q_min( 255, dst[i] + (int)( spot[i] * 255.0f + 0.5f ));
  			}
  			dst[3] = 255;
  		}

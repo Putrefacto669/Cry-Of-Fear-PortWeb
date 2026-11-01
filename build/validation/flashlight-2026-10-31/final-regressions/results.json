@@ -1,0 +1,85 @@
+{
+  "basis": "Exit results observed from final-regressions/run.sh in this session",
+  "playwright": "1.64.1",
+  "chromium": "156.0.8078.4",
+  "browser_tests": [
+    {
+      "test": "entities",
+      "result": "PASS",
+      "evidence": "entities.log"
+    },
+    {
+      "test": "campaign_entities",
+      "result": "PASS",
+      "evidence": "campaign_entities.log"
+    },
+    {
+      "test": "motion_entities",
+      "result": "PASS",
+      "evidence": "motion_entities.log"
+    },
+    {
+      "test": "model_entities",
+      "result": "PASS",
+      "evidence": "model_entities.log"
+    },
+    {
+      "test": "manager_entities",
+      "result": "PASS",
+      "evidence": "manager_entities.log"
+    },
+    {
+      "test": "sound_entities",
+      "result": "PASS",
+      "evidence": "sound_entities.log"
+    },
+    {
+      "test": "camera_entities",
+      "result": "PASS",
+      "evidence": "camera_entities.log"
+    },
+    {
+      "test": "train_entities",
+      "result": "PASS",
+      "evidence": "train_entities.log"
+    },
+    {
+      "test": "track_entities",
+      "result": "PASS",
+      "evidence": "track_entities.log"
+    },
+    {
+      "test": "envpos_entities",
+      "result": "PASS",
+      "evidence": "envpos_entities.log"
+    },
+    {
+      "test": "button_entities",
+      "result": "PASS",
+      "evidence": "button_entities.log"
+    },
+    {
+      "test": "changelevel_entities",
+      "result": "PASS",
+      "evidence": "changelevel_entities.log"
+    },
+    {
+      "test": "trigger_persistence",
+      "result": "PASS",
+      "evidence": "trigger_persistence.log"
+    },
+    {
+      "test": "ambient_persistence",
+      "result": "PASS",
+      "evidence": "ambient_persistence.log"
+    }
+  ],
+  "bsp_contracts": 9,
+  "bsp_result": "PASS",
+  "pointer_lock": "PASS",
+  "graphics_default": "PASS",
+  "graphics_slow_frames": "PASS",
+  "graphics_overbright_0": "FAIL: measured gain 4.898933 does not exceed +5 visibility threshold",
+  "main_dist_modified": false,
+  "commits_created": 0
+}

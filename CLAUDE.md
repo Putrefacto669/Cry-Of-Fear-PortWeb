@@ -4,6 +4,21 @@ Guía para Claude Code (y cualquier asistente) que trabaje en este repositorio: 
 cómo se compila y se prueba, qué se hizo hasta ahora y qué trampas ya se conocen. El usuario
 trabaja en español: responder y documentar en español; los comentarios del código van en inglés.
 
+## Continuación de Codex — linterna, 31/10/2026
+
+Ver `docs/INFORME_LINTERNA_2026_10_31_CODEX.md` antes de retomar la linterna. Dos defectos
+corregidos: índice de luxel sombreado por la variable de brillo y renovación del foco después
+de dibujar el mundo. Ahora se renueva desde V_CalcRefdef con la vista final.
+Build validada: `/root/cof-audits/flashlight-20261031/dist-view` (8098). El usuario autorizó
+después su integración en dist/ y publicación: ver `docs/PUBLICACION_LINTERNA_2026_10_31.md`.
+Dos pasadas de 14 pruebas de navegador, 9 contratos BSP y Pointer Lock satisfactorias; se
+verificaron mundo, giro, r_dynamic, frames lentos y save/load. Evidencia separada en
+`build/validation/flashlight-2026-10-31/`.
+El filtro anterior permanece. La prueba exploratoria con gl_overbright=0 conserva un fallo
+de umbral (+4,90 frente a +5); falta contraste visual con el original y GPU física.
+No hacer pasar esa prueba retocando intensidad sin evidencia. La investigación inicial no publicó;
+la integración y publicación posteriores están autorizadas por el usuario.
+
 ## El proyecto
 
 Port de **Cry of Fear** (Team Psykskallar, motor GoldSrc) al navegador con **Xash3D FWGS +

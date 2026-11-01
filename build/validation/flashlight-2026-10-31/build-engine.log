@@ -1,0 +1,11 @@
+Build commands will be stored in ../../build/engine/compile_commands.json
+Waf: Entering directory `/root/cof-audits/audit-D3Kl5uly/build/engine'
+[370/607] Processing ref/gl/gl_rsurf.c
+../../engine/xash3d-fwgs/ref/gl/gl_rsurf.c:4093:6: warning: variable 'nColinElim' set but not used [-Wunused-but-set-variable]
+ 4093 |         int     nColinElim = 0;
+      |                 ^
+1 warning generated.
+
+[607/607] Linking ../../build/engine/ref/gl/libref_gles3compat.wasm
+Waf: Leaving directory `/root/cof-audits/audit-D3Kl5uly/build/engine'
+'build' finished successfully (2.887s)

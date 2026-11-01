@@ -8,6 +8,7 @@
 // hlsdk calls CoF_ClientInit from CHud::Init, CoF_ClientVidInit at each
 // level, CoF_ClientFrame from HUD_DrawNormalTriangles and
 // CoF_ClientDrawTransparent from HUD_DrawTransparentTriangles.
+// V_CalcRefdef refreshes the flashlight before the renderer marks world surfaces.
 
 #include "hud.h"
 #include "cl_util.h"
@@ -447,7 +448,7 @@ static void Flashlight_SetLight( dlight_t *dl, const vec3_t org, float die )
 	dl->dark = false;
 }
 
-static void Flashlight_Frame( float now, float dt )
+static void Flashlight_Frame( float now, float dt, const float *vieworg, const float *viewangles )
 {
 	cl_entity_t *player = gEngfuncs.GetLocalPlayer();
 	vec3_t org, angles, forward, end;
@@ -464,9 +465,8 @@ static void Flashlight_Frame( float now, float dt )
 		return;
 	}
 
-	gEngfuncs.pEventAPI->EV_LocalPlayerViewheight( org );
-	VectorAdd( org, player->origin, org );
-	gEngfuncs.GetViewAngles( angles );
+	VectorCopy( vieworg, org );
+	VectorCopy( viewangles, angles );
 	gEngfuncs.pfnAngleVectors( angles, forward, NULL, NULL );
 	VectorMA( org, 150.0f, forward, end );
 
@@ -543,5 +543,12 @@ void CoF_ClientFrame( void )
 
 	Fog_Frame();
 	Emitters_Frame( dt );
-	Flashlight_Frame( now, dt );
+}
+
+// Dynamic lights must exist before R_PushDlights/R_DrawWorld. Allocating them
+// in HUD_DrawNormalTriangles is too late, and a 0.1 s light expires between
+// frames below 10 FPS. Use the actual view, including scripted cameras.
+void CoF_ClientFlashlightView( const float *org, const float *angles, float dt )
+{
+	Flashlight_Frame( gEngfuncs.GetClientTime(), dt, org, angles );
 }
