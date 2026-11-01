@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForEvent: Timeout 30000ms exceeded while waiting for event "console"
+=========================== logs ===========================
+waiting for event "console"
+============================================================
+    at command (/root/cof-audits/alpha-20261031/sound_entities.mjs:25:12)
+    at loadMap (/root/cof-audits/alpha-20261031/sound_entities.mjs:51:11)
+    at async file:///root/cof-audits/alpha-20261031/sound_entities.mjs:54:3 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

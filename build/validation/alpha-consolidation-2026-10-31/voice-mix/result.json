@@ -1,0 +1,13 @@
+{
+  "humanListeningVerified": false,
+  "naturalProgression": false,
+  "expected": {
+    "len": 22722,
+    "rate": 22050,
+    "hash": 1187988295
+  },
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: No post-panner voice signal with open buses\n    at sample (file:///root/cof-audits/alpha-20261031/voice_mix_probe.mjs:12:732)\n    at async file:///root/cof-audits/alpha-20261031/voice_mix_probe.mjs:13:119",
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

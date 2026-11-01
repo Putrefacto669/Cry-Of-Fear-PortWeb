@@ -20,6 +20,21 @@ No hacer pasar esa prueba retocando intensidad sin evidencia. La investigación 
 la integración y publicación posteriores fueron autorizadas y verificadas en GitHub Pages.
 Build publicada: commit `1c74111`, manifiesto `c42da5797a53`; prueba pública con SW y save/load PASS.
 
+## Consolidación en curso — 01/11/2026
+
+Leer `docs/CONSOLIDACION_ALPHA_2026_11_01.md`. Build aislada nueva:
+`/root/cof-audits/alpha-20261031/dist-glock`, puerto 8104 con argumento de carpeta
+explícito en serve.py (su predeterminado apunta a una build antigua).
+La Glock consumía munición pero usaba el daño 9 mm de Half-Life, configurado a cero;
+ahora registra sk_cof_glock1..4 antes de skill.cfg y pasa el daño CoF explícito.
+Compilación y 14 navegadores + 9 contratos BSP + Pointer Lock satisfactorios.
+Mediciones en los cinco apartamentos y persistencia satisfactorias en sus fixtures;
+la pared anterior con overbright 0 sigue por debajo de +5. No retirar el filtro.
+Evidencia en `build/validation/alpha-consolidation-2026-10-31/`; volcados nativos y
+guardados privados excluidos. No se publicó esta etapa ni se modificó dist/.
+No declarar recorrido completo: los intentos naturales nuevos están documentados
+por separado, sin acreditar progresión mediante fixtures con equipo concedido.
+
 ## El proyecto
 
 Port de **Cry of Fear** (Team Psykskallar, motor GoldSrc) al navegador con **Xash3D FWGS +
@@ -286,3 +301,4 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
   `models/cutscene/blacker.mdl`, visible si `*43` no cierra la puerta.
 - Ojo: Codex dejó servidores abiertos en 8096 (`dist/`) y 8099 (`dist-use`, sin el
   arreglo). Una prueba lanzada contra 8099 no valida las correcciones posteriores.
+

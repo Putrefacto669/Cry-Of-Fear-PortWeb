@@ -1,0 +1,10 @@
+{
+  "map": "c_apartment3",
+  "base": "http://127.0.0.1:8100/",
+  "chromium": "156.0.8078.4",
+  "kind": "automated lighting fixture; no natural progression claim",
+  "initial": "[18:32:07] org ( 26.7656 -132 346.062 )\n[18:32:07] ang ( 4.125 270 -15 )\n[18:32:07] \"gamma\" is \"2.5\" ( \"2.5\" )\n[18:32:07] \"brightness\" is \"1\" ( \"0.0\" )\n[18:32:07] \"gl_overbright\" is \"1\" ( \"1\" )\n[18:32:07] \"gl_vbo\" is \"0\" ( \"0\" )\n[18:32:07] \"r_dynamic\" is \"1\" ( \"1\" )\n[18:32:07] COF/ENTITY !player class=player body=0 solid=3 origin=26.7,-132.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=21.599 effects=0 renderfx=0 modelindex=300 model=models/player.mdl\n[18:32:07] COF/FENCE alpha_3 time=21.599",
+  "survey": [],
+  "result": "FAILED",
+  "failure": "Error: aim did not settle\n    at aim (file:///root/cof-audits/alpha-20261031/flashlight_maps.mjs:37:10)\n    at async file:///root/cof-audits/alpha-20261031/flashlight_maps.mjs:87:4"
+}

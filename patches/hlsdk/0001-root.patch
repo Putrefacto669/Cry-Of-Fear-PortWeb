@@ -491,6 +491,22 @@ index 1f5b4b06..bf913531 100644
  
  #define DOOR_SENTENCEWAIT	6.0f
  #define DOOR_SOUNDWAIT		3.0f
+diff --git a/dlls/game.cpp b/dlls/game.cpp
+index a81ae5a6..15785285 100644
+--- a/dlls/game.cpp
++++ b/dlls/game.cpp
+@@ -465,8 +465,11 @@ cvar_t sv_busters = { "sv_busters", "0" };
+ 
+ // Register your console variables here
+ // This gets called one time when the game is initialied
++extern void CoF_RegisterWeaponSkill( void );
++
+ void GameDLLInit( void )
+ {
++	CoF_RegisterWeaponSkill();
+ 	g_psv_gravity = CVAR_GET_POINTER( "sv_gravity" );
+ 	g_psv_aim = CVAR_GET_POINTER( "sv_aim" );
+ 	g_psv_allow_autoaim = CVAR_GET_POINTER( "sv_allow_autoaim" );
 diff --git a/dlls/glock.cpp b/dlls/glock.cpp
 index d9411d66..8c146245 100644
 --- a/dlls/glock.cpp

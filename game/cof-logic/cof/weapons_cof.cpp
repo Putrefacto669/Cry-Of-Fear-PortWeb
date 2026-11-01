@@ -22,6 +22,28 @@
 #include "shake.h"
 #include "cof_player.h"
 
+// CoF's skill.cfg uses these names, not Half-Life's sk_plr_9mm_bullet.
+// Register before skill.cfg is executed (GameDLLInit). All four original
+// difficulty entries default to 13; the original Glock passes explicit damage.
+static cvar_t cofGlockSkill[] = {
+	{ "sk_cof_glock1", "13" }, { "sk_cof_glock2", "13" },
+	{ "sk_cof_glock3", "13" }, { "sk_cof_glock4", "13" }
+};
+
+void CoF_RegisterWeaponSkill( void )
+{
+	for( unsigned i = 0; i < sizeof(cofGlockSkill) / sizeof(cofGlockSkill[0]); ++i )
+		CVAR_REGISTER( &cofGlockSkill[i] );
+}
+
+static int CoF_GlockDamage( void )
+{
+	int level = (int)CVAR_GET_FLOAT( "skill" );
+	if( level < 1 ) level = 1;
+	if( level > 4 ) level = 4;
+	return (int)CVAR_GET_FLOAT( cofGlockSkill[level - 1].name );
+}
+
 #define WEAPON_COF_SWITCHBLADE  16
 #define WEAPON_COF_GLOCK        17
 #define WEAPON_COF_SYRINGE      18
@@ -286,7 +308,7 @@ void CCofGlock::PrimaryAttack( void )
 
 	UTIL_MakeVectors( m_pPlayer->pev->v_angle + m_pPlayer->pev->punchangle );
 	Vector vecSrc = m_pPlayer->GetGunPosition();
-	m_pPlayer->FireBulletsPlayer( 1, vecSrc, gpGlobals->v_forward, Vector( 0.02f, 0.02f, 0.02f ), 8192, BULLET_PLAYER_9MM, 0, 0, m_pPlayer->pev, m_pPlayer->random_seed );
+	m_pPlayer->FireBulletsPlayer( 1, vecSrc, gpGlobals->v_forward, Vector( 0.02f, 0.02f, 0.02f ), 8192, BULLET_PLAYER_9MM, 0, CoF_GlockDamage(), m_pPlayer->pev, m_pPlayer->random_seed );
 
 	// FireBulletsPlayer leaves the wall marks to client events; draw them here
 	TraceResult tr;

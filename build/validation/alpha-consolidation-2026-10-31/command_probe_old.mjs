@@ -1,0 +1,3 @@
+import {chromium} from 'playwright';
+const b=await chromium.launch({args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});const p=await b.newPage();let ready=false;p.on('console',m=>{let s=m.text();if(s.includes('client connected'))ready=true;if(/COF\/FENCE|Unknown command:|sv_cheats|COF\/WEAPON|bag |changed to/.test(s))console.log(s);});await p.goto('http://127.0.0.1:8103/?map=c_apartment3&sw=0&fx=0&timer=1&debug=1');while(!ready)await p.waitForTimeout(100);for(let i=0;i<3;i++){await p.evaluate(()=>CoFDebug.cmd('sv_cheats 1\nsv_cheats\ncof_fence probe\ncof_dump\ncof_weapon_status'));await p.waitForTimeout(2000);}await b.close();
+

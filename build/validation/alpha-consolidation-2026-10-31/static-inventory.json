@@ -1,0 +1,1445 @@
+{
+  "kind": "static audit; availability does not prove behavior or audibility",
+  "maps": {
+    "c_apartment1": {
+      "arsenal_and_requested_objects": [
+        {
+          "origin": "1091 1116 177",
+          "skill": "0",
+          "customsound": "buttons/button5.wav",
+          "model": "models/items/nyckel1.mdl",
+          "message": "inventoryitems/apartmentkey.txt",
+          "targetname": "ap1_key1",
+          "angles": "0 0 0",
+          "classname": "item_key"
+        },
+        {
+          "origin": "601 242 -40",
+          "frags": "-1",
+          "angles": "0 0 0",
+          "classname": "ammo_glock"
+        },
+        {
+          "origin": "-851 732 195",
+          "custommsg": "You got a handgun.",
+          "message": "weapon_glock",
+          "targetname": "giveitem1",
+          "classname": "cof_giveitems"
+        },
+        {
+          "origin": "-851 718 195",
+          "model": "models/items/nyckel2.mdl",
+          "message": "inventoryitems/hallkey.txt",
+          "targetname": "giveitem2",
+          "spawnflags": "3",
+          "classname": "cof_giveitems"
+        },
+        {
+          "origin": "-1959 2146 0",
+          "frags": "-1",
+          "angles": "0 71 0",
+          "classname": "ammo_glock"
+        },
+        {
+          "origin": "-1139 834 141",
+          "frags": "-1",
+          "angles": "0 0 0",
+          "classname": "ammo_glock"
+        },
+        {
+          "origin": "1120 1200 141",
+          "frags": "-1",
+          "rendercolor": "0 0 0",
+          "angles": "0 0 0",
+          "classname": "weapon_syringe"
+        },
+        {
+          "origin": "-1624 2120 39",
+          "frags": "-1",
+          "rendercolor": "0 0 0",
+          "angles": "0 0 0",
+          "classname": "weapon_syringe"
+        },
+        {
+          "origin": "581 -54 447",
+          "frags": "-1",
+          "angles": "0 0 0",
+          "classname": "ammo_glock"
+        }
+      ],
+      "voices": [],
+      "transitions": [
+        {
+          "model": "*101",
+          "landmark": "land1",
+          "map": "c_apartment2",
+          "targetname": "changelevel1",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*104",
+          "landmark": "land2",
+          "map": "c_apartment2",
+          "targetname": "changelevel2",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*106",
+          "landmark": "land3",
+          "map": "c_apartment2",
+          "targetname": "changelevel3",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*107",
+          "landmark": "land5",
+          "map": "c_apartment5",
+          "targetname": "changelevel5",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*200",
+          "landmark": "ap2la",
+          "map": "c_apartment2",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*204",
+          "landmark": "stla",
+          "map": "c_start",
+          "classname": "trigger_changelevel"
+        }
+      ]
+    },
+    "c_apartment2": {
+      "arsenal_and_requested_objects": [
+        {
+          "origin": "-670 -402 564",
+          "frags": "-1",
+          "rendercolor": "0 0 0",
+          "angles": "0 0 0",
+          "classname": "weapon_syringe"
+        }
+      ],
+      "voices": [],
+      "transitions": [
+        {
+          "model": "*81",
+          "landmark": "land1",
+          "map": "c_apartment1",
+          "targetname": "changelevel1",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*84",
+          "landmark": "land2",
+          "map": "c_apartment1",
+          "targetname": "changelevel2",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*85",
+          "landmark": "land3",
+          "map": "c_apartment1",
+          "targetname": "changelevel3",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*89",
+          "landmark": "land4",
+          "map": "c_apartment1",
+          "targetname": "changelevel4",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*157",
+          "landmark": "ap2la",
+          "map": "c_apartment1",
+          "classname": "trigger_changelevel"
+        }
+      ]
+    },
+    "c_apartment3": {
+      "arsenal_and_requested_objects": [
+        {
+          "origin": "169 -157 306",
+          "frags": "-1",
+          "angles": "0 0 0",
+          "classname": "ammo_glock"
+        }
+      ],
+      "voices": [],
+      "transitions": [
+        {
+          "model": "*66",
+          "landmark": "land1",
+          "map": "c_apartment4",
+          "targetname": "changelevel1",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*69",
+          "landmark": "land2",
+          "map": "c_apartment4",
+          "targetname": "changelevel2",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*71",
+          "landmark": "land3",
+          "map": "c_apartment4",
+          "targetname": "changelevel3",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*109",
+          "landmark": "landfitta",
+          "map": "c_apartmentsick",
+          "targetname": "changefitta",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*166",
+          "landmark": "ap5la",
+          "map": "c_apartment5",
+          "classname": "trigger_changelevel"
+        }
+      ]
+    },
+    "c_apartment4": {
+      "arsenal_and_requested_objects": [
+        {
+          "origin": "-455 836 -149",
+          "target": "objectiveee",
+          "customsound": "buttons/tape_pickup.wav",
+          "model": "models/items/video_tape.mdl",
+          "message": "inventoryitems/Videotape.txt",
+          "angles": "0 -43 0",
+          "classname": "item_key"
+        },
+        {
+          "origin": "-199 674 -181",
+          "frags": "-1",
+          "angles": "0 0 0",
+          "classname": "ammo_glock"
+        },
+        {
+          "origin": "-533 965 -149",
+          "frags": "-1",
+          "rendercolor": "0 0 0",
+          "angles": "0 0 0",
+          "classname": "weapon_syringe"
+        },
+        {
+          "origin": "-516 432 -174",
+          "frags": "-1",
+          "angles": "0 0 0",
+          "classname": "ammo_glock"
+        }
+      ],
+      "voices": [],
+      "transitions": [
+        {
+          "model": "*65",
+          "landmark": "land1",
+          "map": "c_apartment3",
+          "targetname": "changelevel1",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*68",
+          "landmark": "land2",
+          "map": "c_apartment3",
+          "targetname": "changelevel2",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*69",
+          "landmark": "land3",
+          "map": "c_apartment3",
+          "targetname": "changelevel3",
+          "classname": "trigger_changelevel"
+        }
+      ]
+    },
+    "c_apartment5": {
+      "arsenal_and_requested_objects": [
+        {
+          "origin": "191 240 425",
+          "customsound": "buttons/ropepick.wav",
+          "skill": "0",
+          "model": "models/items/rope1.mdl",
+          "message": "inventoryitems/rope.txt",
+          "targetname": "ropeheh",
+          "angles": "0 0 0",
+          "classname": "item_key"
+        },
+        {
+          "origin": "138 302 423",
+          "frags": "-1",
+          "angles": "0 0 0",
+          "classname": "ammo_glock"
+        },
+        {
+          "origin": "168 156 496",
+          "message": "inventoryitems/basementkey.txt",
+          "targetname": "waterkey",
+          "spawnflags": "3",
+          "classname": "cof_giveitems"
+        },
+        {
+          "origin": "216 -25 282",
+          "frags": "-1",
+          "angles": "0 0 0",
+          "classname": "ammo_glock"
+        },
+        {
+          "origin": "-43 119 282",
+          "frags": "-1",
+          "angles": "0 0 0",
+          "classname": "ammo_glock"
+        },
+        {
+          "origin": "145 281 423",
+          "frags": "-1",
+          "angles": "0 -63 0",
+          "classname": "ammo_glock"
+        }
+      ],
+      "voices": [
+        {
+          "origin": "196 131 480",
+          "message": "subtitles/apartment5/sub2.wav",
+          "targetname": "sschub2",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "10",
+          "spawnflags": "52",
+          "classname": "ambient_generic"
+        },
+        {
+          "origin": "204 137 480",
+          "message": "subtitles/apartment5/sub3.wav",
+          "targetname": "sschub3",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "10",
+          "spawnflags": "52",
+          "classname": "ambient_generic"
+        },
+        {
+          "origin": "90 120 480",
+          "message": "subtitles/apartment5/sub1.wav",
+          "targetname": "sschub1",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "10",
+          "spawnflags": "52",
+          "classname": "ambient_generic"
+        }
+      ],
+      "transitions": [
+        {
+          "model": "*23",
+          "landmark": "land5",
+          "map": "c_apartment1",
+          "targetname": "changelevel5",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*51",
+          "landmark": "ap5la",
+          "map": "c_apartment3",
+          "classname": "trigger_changelevel"
+        }
+      ]
+    },
+    "c_apartmentsick": {
+      "arsenal_and_requested_objects": [
+        {
+          "origin": "-2771 2961 306",
+          "frags": "-1",
+          "angles": "0 0 0",
+          "classname": "ammo_glock"
+        },
+        {
+          "origin": "-2497 3063 24",
+          "frags": "-1",
+          "angles": "0 0 0",
+          "classname": "ammo_glock"
+        },
+        {
+          "origin": "-2687 2971 -540",
+          "frags": "-1",
+          "angles": "0 0 0",
+          "classname": "ammo_glock"
+        },
+        {
+          "origin": "-2676 2977 447",
+          "frags": "-1",
+          "angles": "0 0 0",
+          "classname": "ammo_glock"
+        }
+      ],
+      "voices": [],
+      "transitions": [
+        {
+          "model": "*12",
+          "landmark": "landfitta",
+          "map": "c_apartment3",
+          "targetname": "changefitta",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*226",
+          "landmark": "landkuk",
+          "map": "c_basement",
+          "targetname": "changekuk",
+          "classname": "trigger_changelevel"
+        }
+      ]
+    },
+    "c_game_menu1": {
+      "arsenal_and_requested_objects": [],
+      "voices": [],
+      "transitions": []
+    },
+    "c_intro": {
+      "arsenal_and_requested_objects": [],
+      "voices": [
+        {
+          "origin": "-1125 -2944 1355",
+          "message": "subtitles/intro/sub0.wav",
+          "targetname": "sub2222",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "8",
+          "spawnflags": "49",
+          "classname": "ambient_generic"
+        }
+      ],
+      "transitions": [
+        {
+          "model": "*141",
+          "landmark": "landakukej",
+          "map": "c_nightmare",
+          "classname": "trigger_changelevel"
+        }
+      ]
+    },
+    "c_nightmare": {
+      "arsenal_and_requested_objects": [
+        {
+          "origin": "-852 -1121 986",
+          "message": "weapon_camera",
+          "targetname": "kakkaej",
+          "classname": "cof_giveitems"
+        }
+      ],
+      "voices": [
+        {
+          "origin": "1777 -742 1568",
+          "message": "subtitles/intro/sub1.wav",
+          "targetname": "subz1",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "7",
+          "spawnflags": "20",
+          "classname": "ambient_generic"
+        },
+        {
+          "origin": "1738 -623 1539",
+          "message": "subtitles/intro/sub2.wav",
+          "targetname": "subz2",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "7",
+          "spawnflags": "20",
+          "classname": "ambient_generic"
+        },
+        {
+          "origin": "1728 -628 1511",
+          "message": "subtitles/intro/mansub1.wav",
+          "targetname": "subz3",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "7",
+          "spawnflags": "20",
+          "classname": "ambient_generic"
+        }
+      ],
+      "transitions": [
+        {
+          "model": "*57",
+          "landmark": "landea",
+          "map": "c_start",
+          "targetname": "changelevelea",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*65",
+          "landmark": "landakukej",
+          "map": "c_intro",
+          "classname": "trigger_changelevel"
+        }
+      ]
+    },
+    "c_start": {
+      "arsenal_and_requested_objects": [
+        {
+          "origin": "1288.91 -3186.5 -775",
+          "rendercolor": "0 0 0",
+          "angles": "0 0 0",
+          "classname": "weapon_syringe"
+        },
+        {
+          "origin": "-1122.76 1496.91 -345",
+          "rendercolor": "0 0 0",
+          "angles": "0 0 0",
+          "classname": "weapon_syringe"
+        },
+        {
+          "origin": "608 -2759.97 -592.888",
+          "angles": "0 0 0",
+          "message": "weapon_mobile",
+          "targetname": "givemobile",
+          "classname": "cof_giveitems"
+        },
+        {
+          "origin": "608 -2759.97 -607.888",
+          "angles": "0 0 0",
+          "message": "weapon_switchblade",
+          "targetname": "giveswitchblade",
+          "classname": "cof_giveitems"
+        },
+        {
+          "origin": "1800.44 -3271.77 -775",
+          "spawnflags": "1",
+          "angles": "0 17 0",
+          "model": "models/items/cassette_tape.mdl",
+          "message": "inventoryitems/cassettetape.txt",
+          "delay": "0",
+          "classname": "item_key"
+        },
+        {
+          "origin": "1144.75 -1436.03 -736",
+          "rendercolor": "0 0 0",
+          "frags": "-1",
+          "angles": "0 56 0",
+          "classname": "weapon_famas"
+        },
+        {
+          "origin": "1147.08 -1359.63 -736",
+          "rendercolor": "0 0 0",
+          "frags": "-1",
+          "angles": "0 146 0",
+          "classname": "weapon_axe"
+        },
+        {
+          "origin": "1181.31 -1347.59 -736",
+          "spawnflags": "2",
+          "angles": "0 -28 0",
+          "model": "models/items/package.mdl",
+          "message": "inventoryitems/package.txt",
+          "delay": "0",
+          "classname": "item_key"
+        },
+        {
+          "origin": "1212.97 -1351.01 -728",
+          "renderamt": "0",
+          "rendermode": "0",
+          "renderfx": "0",
+          "delay": "0",
+          "skill": "0",
+          "rendercolor": "0 0 0",
+          "frags": "-1",
+          "angles": "0 -163 0",
+          "classname": "weapon_booklaser"
+        },
+        {
+          "origin": "1155.54 -1489.84 -736",
+          "spawnflags": "1",
+          "renderamt": "0",
+          "rendermode": "0",
+          "renderfx": "0",
+          "delay": "0",
+          "skill": "0",
+          "rendercolor": "0 0 0",
+          "frags": "-1",
+          "angles": "0 42 0",
+          "classname": "weapon_camera"
+        },
+        {
+          "origin": "1147 -1384 -734",
+          "rendercolor": "0 0 0",
+          "frags": "330",
+          "angles": "0 40 0",
+          "classname": "weapon_mp5"
+        }
+      ],
+      "voices": [
+        {
+          "origin": "640 -2946.49 -712.799",
+          "spawnflags": "20",
+          "angles": "0 0 0",
+          "cspinup": "0",
+          "lfomodvol": "0",
+          "lfomodpitch": "0",
+          "lforate": "0",
+          "lfotype": "0",
+          "spindown": "0",
+          "spinup": "0",
+          "fadeout": "0",
+          "fadein": "0",
+          "volstart": "0",
+          "preset": "0",
+          "message": "subtitles/sub1.wav",
+          "targetname": "subtitles1",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "5",
+          "classname": "ambient_generic"
+        },
+        {
+          "origin": "641 -2945.49 -712.799",
+          "spawnflags": "20",
+          "angles": "0 0 0",
+          "cspinup": "0",
+          "lfomodvol": "0",
+          "lfomodpitch": "0",
+          "lforate": "0",
+          "lfotype": "0",
+          "spindown": "0",
+          "spinup": "0",
+          "fadeout": "0",
+          "fadein": "0",
+          "volstart": "0",
+          "preset": "0",
+          "message": "subtitles/sub2.wav",
+          "targetname": "subtitles2",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "5",
+          "classname": "ambient_generic"
+        },
+        {
+          "origin": "638 -2941.49 -712.799",
+          "spawnflags": "20",
+          "angles": "0 0 0",
+          "cspinup": "0",
+          "lfomodvol": "0",
+          "lfomodpitch": "0",
+          "lforate": "0",
+          "lfotype": "0",
+          "spindown": "0",
+          "spinup": "0",
+          "fadeout": "0",
+          "fadein": "0",
+          "volstart": "0",
+          "preset": "0",
+          "message": "subtitles/sub3.wav",
+          "targetname": "subtitles3",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "5",
+          "classname": "ambient_generic"
+        },
+        {
+          "origin": "3089.47 -2433 -716.988",
+          "spawnflags": "52",
+          "angles": "0 0 0",
+          "cspinup": "0",
+          "lfomodvol": "0",
+          "lfomodpitch": "0",
+          "lforate": "0",
+          "lfotype": "0",
+          "spindown": "0",
+          "spinup": "0",
+          "fadeout": "0",
+          "fadein": "0",
+          "volstart": "0",
+          "preset": "0",
+          "message": "subtitles/start/sub1.wav",
+          "targetname": "whatthesub",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "7",
+          "classname": "ambient_generic"
+        },
+        {
+          "origin": "3158.13 -3501.6 -733.448",
+          "spawnflags": "49",
+          "angles": "0 0 0",
+          "cspinup": "0",
+          "lfomodvol": "0",
+          "lfomodpitch": "0",
+          "lforate": "0",
+          "lfotype": "0",
+          "spindown": "0",
+          "spinup": "0",
+          "fadeout": "0",
+          "fadein": "0",
+          "volstart": "0",
+          "preset": "0",
+          "message": "subtitles/start/sub5.wav",
+          "targetname": "simon_fall",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "10",
+          "classname": "ambient_generic"
+        },
+        {
+          "origin": "3158.13 -3512.6 -733.448",
+          "spawnflags": "49",
+          "angles": "0 0 0",
+          "cspinup": "0",
+          "lfomodvol": "0",
+          "lfomodpitch": "0",
+          "lforate": "0",
+          "lfotype": "0",
+          "spindown": "0",
+          "spinup": "0",
+          "fadeout": "0",
+          "fadein": "0",
+          "volstart": "0",
+          "preset": "0",
+          "message": "subtitles/start/sub6.wav",
+          "targetname": "simon_kick",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "10",
+          "classname": "ambient_generic"
+        },
+        {
+          "origin": "2639.97 -3528.64 -717.424",
+          "spawnflags": "49",
+          "angles": "0 0 0",
+          "cspinup": "0",
+          "lfomodvol": "0",
+          "lfomodpitch": "0",
+          "lforate": "0",
+          "lfotype": "0",
+          "spindown": "0",
+          "spinup": "0",
+          "fadeout": "0",
+          "fadein": "0",
+          "volstart": "0",
+          "preset": "0",
+          "message": "subtitles/start/sub2.wav",
+          "targetname": "szszub1",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "10",
+          "classname": "ambient_generic"
+        },
+        {
+          "origin": "2639.97 -3561.64 -717.424",
+          "spawnflags": "49",
+          "angles": "0 0 0",
+          "cspinup": "0",
+          "lfomodvol": "0",
+          "lfomodpitch": "0",
+          "lforate": "0",
+          "lfotype": "0",
+          "spindown": "0",
+          "spinup": "0",
+          "fadeout": "0",
+          "fadein": "0",
+          "volstart": "0",
+          "preset": "0",
+          "message": "subtitles/start/sub4.wav",
+          "targetname": "szszub3",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "10",
+          "classname": "ambient_generic"
+        },
+        {
+          "origin": "1126 -1416.35 -699.364",
+          "spawnflags": "49",
+          "angles": "0 0 0",
+          "cspinup": "0",
+          "lfomodvol": "0",
+          "lfomodpitch": "0",
+          "lforate": "0",
+          "lfotype": "0",
+          "spindown": "0",
+          "spinup": "0",
+          "fadeout": "0",
+          "fadein": "0",
+          "volstart": "0",
+          "preset": "0",
+          "message": "subtitles/paining.wav",
+          "targetname": "fittvoice",
+          "pitchstart": "100",
+          "pitch": "100",
+          "channel": "6",
+          "health": "10",
+          "classname": "ambient_generic"
+        }
+      ],
+      "transitions": [
+        {
+          "model": "*58",
+          "angles": "0 0 0",
+          "changedelay": "0",
+          "landmark": "land2b",
+          "map": "c_apartment1",
+          "targetname": "changelevel2b",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*92",
+          "angles": "0 0 0",
+          "changedelay": "0",
+          "landmark": "landea",
+          "map": "c_nightmare",
+          "targetname": "changelevelea",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*97",
+          "angles": "0 0 0",
+          "changedelay": "0",
+          "landmark": "hahaland",
+          "map": "c_start2",
+          "targetname": "haehecl",
+          "classname": "trigger_changelevel"
+        },
+        {
+          "model": "*158",
+          "angles": "0 0 0",
+          "changedelay": "0",
+          "landmark": "stla",
+          "map": "c_apartment1",
+          "classname": "trigger_changelevel"
+        }
+      ]
+    },
+    "c_start2": {
+      "arsenal_and_requested_objects": [],
+      "voices": [],
+      "transitions": [
+        {
+          "model": "*4",
+          "landmark": "hahaland",
+          "map": "c_start",
+          "targetname": "haehecl",
+          "classname": "trigger_changelevel"
+        }
+      ]
+    }
+  },
+  "languages": {
+    "english": {
+      "txtfiles": {
+        "files": 3,
+        "text_utf8": 3,
+        "text_non_utf8": 0,
+        "relative_names": [
+          "subtitles.txt",
+          "hints.txt",
+          "phone_messages.txt"
+        ]
+      },
+      "notes": {
+        "files": 27,
+        "text_utf8": 27,
+        "text_non_utf8": 0,
+        "relative_names": [
+          "cloudyday.txt",
+          "apnote4.txt",
+          "davidspc.txt",
+          "apnote1.txt",
+          "apnote2.txt",
+          "magazine.txt",
+          "unforgettable.txt",
+          "apple45.txt",
+          "leatherhoff45.txt",
+          "jillusername.txt",
+          "excelsior.txt",
+          "jillanddavid.txt",
+          "sewernote.txt",
+          "confuseduser.txt",
+          "janitornote.txt",
+          "ea45.txt",
+          "junesummer.txt",
+          "dorrardavid.txt",
+          "dorrarpc.txt",
+          "apnote3.txt",
+          "marriageinapril.txt",
+          "rosesarered.txt",
+          "thebeatles54.txt",
+          "purnellnote.txt",
+          "subnote.txt",
+          "darkydude/bizarrenote.txt",
+          "darkydude/bizarrenote2.txt"
+        ]
+      },
+      "gfx/vgui/introductions": {
+        "files": 3,
+        "text_utf8": 0,
+        "text_non_utf8": 0,
+        "relative_names": [
+          "english/english_coop.TGA",
+          "english/english_sp.TGA",
+          "english/english_doc.TGA"
+        ]
+      }
+    },
+    "dutch": {
+      "txtfiles": {
+        "files": 9,
+        "text_utf8": 8,
+        "text_non_utf8": 1,
+        "relative_names": [
+          "subtitles.txt",
+          "docconc.txt",
+          "hints.txt",
+          "conclusion2.txt",
+          "conclusion1.txt",
+          "coconc.txt",
+          "phone_messages.txt",
+          "conclusion3.txt",
+          "conclusion4.txt"
+        ]
+      },
+      "notes": {
+        "files": 8,
+        "text_utf8": 8,
+        "text_non_utf8": 0,
+        "relative_names": [
+          "apnote4.txt",
+          "apnote1.txt",
+          "apnote2.txt",
+          "magazine.txt",
+          "sewernote.txt",
+          "apnote3.txt",
+          "purnellnote.txt",
+          "subnote.txt"
+        ]
+      },
+      "gfx/vgui/introductions": {
+        "files": 1,
+        "text_utf8": 0,
+        "text_non_utf8": 0,
+        "relative_names": [
+          "dutch_sp.TGA"
+        ]
+      }
+    },
+    "french": {
+      "txtfiles": {
+        "files": 9,
+        "text_utf8": 0,
+        "text_non_utf8": 9,
+        "relative_names": [
+          "subtitles.txt",
+          "docconc.txt",
+          "hints.txt",
+          "conclusion2.txt",
+          "conclusion1.txt",
+          "coconc.txt",
+          "phone_messages.txt",
+          "conclusion3.txt",
+          "conclusion4.txt"
+        ]
+      },
+      "notes": {
+        "files": 8,
+        "text_utf8": 1,
+        "text_non_utf8": 7,
+        "relative_names": [
+          "apnote4.txt",
+          "apnote1.txt",
+          "apnote2.txt",
+          "magazine.txt",
+          "sewernote.txt",
+          "apnote3.txt",
+          "purnellnote.txt",
+          "subnote.txt"
+        ]
+      },
+      "gfx/vgui/introductions": {
+        "files": 1,
+        "text_utf8": 0,
+        "text_non_utf8": 0,
+        "relative_names": [
+          "french_sp.TGA"
+        ]
+      }
+    },
+    "german": {
+      "txtfiles": {
+        "files": 9,
+        "text_utf8": 0,
+        "text_non_utf8": 9,
+        "relative_names": [
+          "subtitles.txt",
+          "docconc.txt",
+          "hints.txt",
+          "conclusion2.txt",
+          "conclusion1.txt",
+          "coconc.txt",
+          "phone_messages.txt",
+          "conclusion3.txt",
+          "conclusion4.txt"
+        ]
+      },
+      "notes": {
+        "files": 8,
+        "text_utf8": 1,
+        "text_non_utf8": 7,
+        "relative_names": [
+          "apnote4.txt",
+          "apnote1.txt",
+          "apnote2.txt",
+          "magazine.txt",
+          "sewernote.txt",
+          "apnote3.txt",
+          "purnellnote.txt",
+          "subnote.txt"
+        ]
+      },
+      "gfx/vgui/introductions": {
+        "files": 1,
+        "text_utf8": 0,
+        "text_non_utf8": 0,
+        "relative_names": [
+          "german_sp.TGA"
+        ]
+      }
+    },
+    "norwegian": {
+      "txtfiles": {
+        "files": 9,
+        "text_utf8": 0,
+        "text_non_utf8": 9,
+        "relative_names": [
+          "subtitles.txt",
+          "docconc.txt",
+          "hints.txt",
+          "conclusion2.txt",
+          "conclusion1.txt",
+          "coconc.txt",
+          "phone_messages.txt",
+          "conclusion3.txt",
+          "conclusion4.txt"
+        ]
+      },
+      "notes": {
+        "files": 8,
+        "text_utf8": 0,
+        "text_non_utf8": 8,
+        "relative_names": [
+          "apnote4.txt",
+          "apnote1.txt",
+          "apnote2.txt",
+          "magazine.txt",
+          "sewernote.txt",
+          "apnote3.txt",
+          "purnellnote.txt",
+          "subnote.txt"
+        ]
+      },
+      "gfx/vgui/introductions": {
+        "files": 1,
+        "text_utf8": 0,
+        "text_non_utf8": 0,
+        "relative_names": [
+          "norwegian_sp.TGA"
+        ]
+      }
+    },
+    "spanish": {
+      "txtfiles": {
+        "files": 9,
+        "text_utf8": 0,
+        "text_non_utf8": 9,
+        "relative_names": [
+          "subtitles.txt",
+          "docconc.txt",
+          "hints.txt",
+          "conclusion2.txt",
+          "conclusion1.txt",
+          "coconc.txt",
+          "phone_messages.txt",
+          "conclusion3.txt",
+          "conclusion4.txt"
+        ]
+      },
+      "notes": {
+        "files": 8,
+        "text_utf8": 0,
+        "text_non_utf8": 8,
+        "relative_names": [
+          "apnote4.txt",
+          "apnote1.txt",
+          "apnote2.txt",
+          "magazine.txt",
+          "sewernote.txt",
+          "apnote3.txt",
+          "purnellnote.txt",
+          "subnote.txt"
+        ]
+      },
+      "gfx/vgui/introductions": {
+        "files": 2,
+        "text_utf8": 0,
+        "text_non_utf8": 0,
+        "relative_names": [
+          "spanish_sp.TGA",
+          "spanish_doc.TGA"
+        ]
+      }
+    },
+    "swedish": {
+      "txtfiles": {
+        "files": 9,
+        "text_utf8": 0,
+        "text_non_utf8": 9,
+        "relative_names": [
+          "subtitles.txt",
+          "docconc.txt",
+          "hints.txt",
+          "conclusion2.txt",
+          "conclusion1.txt",
+          "coconc.txt",
+          "phone_messages.txt",
+          "conclusion3.txt",
+          "conclusion4.txt"
+        ]
+      },
+      "notes": {
+        "files": 8,
+        "text_utf8": 0,
+        "text_non_utf8": 8,
+        "relative_names": [
+          "apnote4.txt",
+          "apnote1.txt",
+          "apnote2.txt",
+          "magazine.txt",
+          "sewernote.txt",
+          "apnote3.txt",
+          "purnellnote.txt",
+          "subnote.txt"
+        ]
+      },
+      "gfx/vgui/introductions": {
+        "files": 1,
+        "text_utf8": 0,
+        "text_non_utf8": 0,
+        "relative_names": [
+          "swedish_sp.TGA"
+        ]
+      }
+    }
+  },
+  "models": {
+    "switchblade": {
+      "v": {
+        "path": "models/weapons/switchblade/v_switchblade.mdl",
+        "exists": true,
+        "sequences": [
+          "p1idle",
+          "p1draw",
+          "p1holster",
+          "p1attack1",
+          "p1top2",
+          "p2idle",
+          "p2draw",
+          "p2holster",
+          "p2attack1",
+          "p2top1",
+          "p1_sprint_to",
+          "p1_sprint_idle",
+          "p1_sprint_from",
+          "p2_sprint_to",
+          "p2_sprint_idle",
+          "p2_sprint_from",
+          "p1attack2",
+          "p1attack3",
+          "p2attack2",
+          "p2attack3",
+          "p1fidget1",
+          "p1fidget2",
+          "p1fidget3",
+          "p2fidget1",
+          "p2fidget2",
+          "p2fidget3"
+        ]
+      },
+      "w": {
+        "path": "models/weapons/switchblade/w_switchblade.mdl",
+        "exists": true,
+        "sequences": [
+          "idle"
+        ]
+      }
+    },
+    "glock": {
+      "v": {
+        "path": "models/weapons/glock/v_glock.mdl",
+        "exists": true,
+        "sequences": [
+          "idle1",
+          "idle1_noshot",
+          "shoot_1",
+          "shoot_empty_1",
+          "reload",
+          "reload_noshot",
+          "draw",
+          "draw_noshot",
+          "holster",
+          "holster_noshot",
+          "sprint_to",
+          "sprint_to_noshot",
+          "sprint_idle",
+          "sprint_idle_noshot",
+          "sprint_from",
+          "sprint_from_noshot",
+          "suicide",
+          "switch",
+          "switch_noshot",
+          "suicide_noshot",
+          "shoot_noshot",
+          "fidget1",
+          "fidget1_noshot",
+          "fidget2",
+          "fidget2_noshot",
+          "fidget3",
+          "fidget3_noshot",
+          "melee",
+          "melee_noshot",
+          "draw_first",
+          "iron_to",
+          "iron_to_noshot",
+          "iron_idle",
+          "iron_idle_noshot",
+          "iron_shoot",
+          "iron_shoot_noshot",
+          "iron_from",
+          "iron_from_noshot",
+          "iron_shoot_empty",
+          "jump_to",
+          "jump_to_noshot",
+          "jump_from",
+          "jump_from_noshot"
+        ]
+      },
+      "w": {
+        "path": "models/weapons/glock/w_glock.mdl",
+        "exists": true,
+        "sequences": [
+          "idle"
+        ]
+      }
+    },
+    "syringe": {
+      "v": {
+        "path": "models/weapons/syringe/v_syringe.mdl",
+        "exists": true,
+        "sequences": [
+          "idle",
+          "deploy",
+          "holster",
+          "use",
+          "stab",
+          "stab_miss"
+        ]
+      },
+      "w": {
+        "path": "models/weapons/syringe/w_syringe.mdl",
+        "exists": true,
+        "sequences": [
+          "idle"
+        ]
+      }
+    },
+    "mobile": {
+      "v": {
+        "path": "models/weapons/mobile/v_mobile.mdl",
+        "exists": true,
+        "sequences": [
+          "idle_sms",
+          "sms_looksms",
+          "draw_sms",
+          "holster_sms",
+          "smstoflash",
+          "idle_flash",
+          "flash_looksms",
+          "draw_flash",
+          "flashtosms",
+          "holster_flash",
+          "sms_punch",
+          "flash_punch",
+          "raise_sms",
+          "raise_flash",
+          "raise_idle",
+          "lower_sms",
+          "lower_flash"
+        ]
+      },
+      "w": {
+        "path": "models/weapons/mobile/w_mobile.mdl",
+        "exists": true,
+        "sequences": [
+          "idle"
+        ]
+      }
+    },
+    "camera": {
+      "v": {
+        "path": "models/weapons/camera/v_camera.mdl",
+        "exists": true,
+        "sequences": [
+          "idle",
+          "draw_first",
+          "holster",
+          "shoot",
+          "fidget1",
+          "jump_to",
+          "jump_from",
+          "draw",
+          "fidget2",
+          "fidget3",
+          "sprint_to",
+          "sprint_idle",
+          "sprint_from",
+          "melee"
+        ]
+      },
+      "w": {
+        "path": "models/weapons/camera/w_camera.mdl",
+        "exists": true,
+        "sequences": [
+          "idle"
+        ]
+      }
+    },
+    "axe": {
+      "v": {
+        "path": "models/weapons/axe/v_axe.mdl",
+        "exists": true,
+        "sequences": [
+          "draw",
+          "idle",
+          "attack",
+          "holster",
+          "sprint_to",
+          "sprint_idle",
+          "sprint_from"
+        ]
+      },
+      "w": {
+        "path": "models/weapons/axe/w_axe.mdl",
+        "exists": true,
+        "sequences": [
+          "idle"
+        ]
+      }
+    },
+    "mp5": {
+      "v": {
+        "path": "models/weapons/mp5/v_mp5.mdl",
+        "exists": true,
+        "sequences": [
+          "deploy",
+          "idle",
+          "reload_regular",
+          "reload_empty",
+          "shoot1",
+          "shoot2",
+          "shoot3",
+          "shoot_empty",
+          "to_ironsights",
+          "ironsights_idle",
+          "ironsights_shoot",
+          "from_ironsights",
+          "suicide",
+          "sprint_to",
+          "sprint_idle",
+          "sprint_end",
+          "jump",
+          "land",
+          "melee",
+          "holster"
+        ]
+      },
+      "w": {
+        "path": "models/weapons/mp5/w_mp5.mdl",
+        "exists": true,
+        "sequences": [
+          "idle"
+        ]
+      }
+    },
+    "famas": {
+      "v": {
+        "path": "models/weapons/famas/v_famas.mdl",
+        "exists": true,
+        "sequences": [
+          "idle",
+          "draw",
+          "draw_first",
+          "holster",
+          "shoot1",
+          "reload",
+          "reload_empty",
+          "switch",
+          "sprint_to",
+          "sprint_idle",
+          "sprint_from",
+          "melee",
+          "fidget1",
+          "fidget2",
+          "fidget3",
+          "is_to",
+          "is_idle",
+          "is_shoot",
+          "is_from",
+          "suicide",
+          "shoot_nah",
+          "is_shoot_noshot",
+          "jump_to",
+          "jump_from"
+        ]
+      },
+      "w": {
+        "path": "models/weapons/famas/w_famas.mdl",
+        "exists": true,
+        "sequences": [
+          "idle"
+        ]
+      }
+    },
+    "booklaser": {
+      "v": {
+        "path": "models/weapons/booklaser/v_booklaser.mdl",
+        "exists": false
+      },
+      "w": {
+        "path": "models/weapons/booklaser/w_booklaser.mdl",
+        "exists": true,
+        "sequences": [
+          "idle"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+Build commands will be stored in ../../build/engine/compile_commands.json
+Waf: Entering directory `/root/cof-audits/audit-D3Kl5uly/build/engine'
+[376/607] Processing ref/gl/gl_rsurf.c
+../../engine/xash3d-fwgs/ref/gl/gl_rsurf.c:72:84: warning: format specifies type 'int' but the argument has type 'size_t' (aka 'unsigned long') [-Wformat]
+   69 |  gEngfuncs.Con_Printf( "COF/SPOT enabled=%d frame=%d renderframe=%d channels=%d clipped=%d requested=%g retained=%g base=%g cookie=%dx%d bytes=%d lightmapMs=%g spotMs=%g\n",
+      |                                                                                                                                                ~~
+      |                                                                                                                                                %zu
+   70 |   r_cofspot_debug && r_cofspot_debug->value != 0, r_spotstats.frame, tr.framecount,
+   71 |   r_spotstats.channels, r_spotstats.clipped, r_spotstats.requested, r_spotstats.retained, r_spotstats.base,
+   72 |   r_spotcookie ? r_spotcookie->width : 0, r_spotcookie ? r_spotcookie->height : 0, r_spotcookie ? r_spotcookie->size : 0, r_spotstats.lightmapMs, r_spotstats.spotMs );
+      |                                                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl_rsurf.c:4139:6: warning: variable 'nColinElim' set but not used [-Wunused-but-set-variable]
+ 4139 |         int     nColinElim = 0;
+      |                 ^
+2 warnings generated.
+
+[607/607] Linking ../../build/engine/ref/gl/libref_gles3compat.wasm
+Waf: Leaving directory `/root/cof-audits/audit-D3Kl5uly/build/engine'
+'build' finished successfully (1.793s)

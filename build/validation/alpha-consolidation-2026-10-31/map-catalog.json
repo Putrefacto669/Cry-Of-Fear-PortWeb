@@ -1,0 +1,428 @@
+{
+  "c_apartment1": {
+    "source": "/root/cof-audits/audit-D3Kl5uly/stage/maps/c_apartment1/cryoffear/maps/c_apartment1.bsp",
+    "spawns": [
+      {
+        "origin": "-819 -160 321",
+        "angles": "0 0 0",
+        "classname": "info_player_start"
+      }
+    ],
+    "cameras": [
+      {
+        "origin": "-881 808 194",
+        "zangle": "-15",
+        "target": "1_1fokus1",
+        "targetname": "1_1kamera1",
+        "angles": "0 225 0",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "15",
+        "spawnflags": "116",
+        "classname": "trigger_camera"
+      },
+      {
+        "origin": "-859 756 173",
+        "target": "1_1fokus2",
+        "targetname": "1_1kamera2",
+        "angles": "0 180 0",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "5",
+        "spawnflags": "52",
+        "classname": "trigger_camera"
+      },
+      {
+        "origin": "-636 -162 320",
+        "moveto": "apstop1",
+        "speed": "10",
+        "target": "aplolfokus1",
+        "targetname": "aplolkamera1",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "10",
+        "spawnflags": "116",
+        "classname": "trigger_camera"
+      },
+      {
+        "origin": "-674 -194 320",
+        "zangle": "30",
+        "target": "aplolfokus2",
+        "targetname": "aplolkamera2",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "5",
+        "spawnflags": "116",
+        "classname": "trigger_camera"
+      },
+      {
+        "origin": "-1322 339 515",
+        "angles": "0 0 0",
+        "target": "hissfok2",
+        "targetname": "hisskam2",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "13.5",
+        "spawnflags": "116",
+        "classname": "trigger_camera"
+      },
+      {
+        "origin": "-1316 385 52",
+        "angles": "0 315 0",
+        "zangle": "-10",
+        "target": "hissfok1",
+        "targetname": "hisskam1",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "20",
+        "spawnflags": "52",
+        "classname": "trigger_camera"
+      }
+    ],
+    "transitions": [
+      {
+        "model": "*101",
+        "landmark": "land1",
+        "map": "c_apartment2",
+        "targetname": "changelevel1",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*104",
+        "landmark": "land2",
+        "map": "c_apartment2",
+        "targetname": "changelevel2",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*106",
+        "landmark": "land3",
+        "map": "c_apartment2",
+        "targetname": "changelevel3",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*107",
+        "landmark": "land5",
+        "map": "c_apartment5",
+        "targetname": "changelevel5",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*200",
+        "landmark": "ap2la",
+        "map": "c_apartment2",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*204",
+        "landmark": "stla",
+        "map": "c_start",
+        "classname": "trigger_changelevel"
+      }
+    ],
+    "notes": [],
+    "entities": 967
+  },
+  "c_apartment2": {
+    "source": "/root/cof-audits/audit-D3Kl5uly/stage/maps/c_apartment2/cryoffear/maps/c_apartment2.bsp",
+    "spawns": [
+      {
+        "origin": "-351 -253 325",
+        "angles": "0 270 0",
+        "classname": "info_player_start"
+      }
+    ],
+    "cameras": [],
+    "transitions": [
+      {
+        "model": "*81",
+        "landmark": "land1",
+        "map": "c_apartment1",
+        "targetname": "changelevel1",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*84",
+        "landmark": "land2",
+        "map": "c_apartment1",
+        "targetname": "changelevel2",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*85",
+        "landmark": "land3",
+        "map": "c_apartment1",
+        "targetname": "changelevel3",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*89",
+        "landmark": "land4",
+        "map": "c_apartment1",
+        "targetname": "changelevel4",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*157",
+        "landmark": "ap2la",
+        "map": "c_apartment1",
+        "classname": "trigger_changelevel"
+      }
+    ],
+    "notes": [],
+    "entities": 467
+  },
+  "c_apartment3": {
+    "source": "/root/cof-audits/audit-D3Kl5uly/stage/maps/c_apartment3/cryoffear/maps/c_apartment3.bsp",
+    "spawns": [
+      {
+        "origin": "35 -143 321",
+        "angles": "0 270 0",
+        "classname": "info_player_start"
+      }
+    ],
+    "cameras": [
+      {
+        "origin": "2077 898 305",
+        "target": "t_fok5",
+        "targetname": "t_kam2",
+        "angles": "0 90 0",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "43",
+        "spawnflags": "52",
+        "classname": "trigger_camera"
+      },
+      {
+        "origin": "2077 898 305",
+        "target": "t_fok5",
+        "targetname": "t_kam3",
+        "angles": "0 90 0",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "14.5",
+        "spawnflags": "52",
+        "classname": "trigger_camera"
+      },
+      {
+        "origin": "2077 898 305",
+        "target": "t_fok5",
+        "targetname": "t_kam5",
+        "angles": "0 90 0",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "3",
+        "spawnflags": "116",
+        "classname": "trigger_camera"
+      },
+      {
+        "origin": "2220 2701 287",
+        "target": "t_fok1",
+        "targetname": "t_kam1",
+        "angles": "0 90 0",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "40",
+        "spawnflags": "116",
+        "classname": "trigger_camera"
+      },
+      {
+        "origin": "2174 1918 261",
+        "target": "t_fok4",
+        "targetname": "t_kam4",
+        "angles": "0 270 0",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "13.5",
+        "spawnflags": "116",
+        "classname": "trigger_camera"
+      }
+    ],
+    "transitions": [
+      {
+        "model": "*66",
+        "landmark": "land1",
+        "map": "c_apartment4",
+        "targetname": "changelevel1",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*69",
+        "landmark": "land2",
+        "map": "c_apartment4",
+        "targetname": "changelevel2",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*71",
+        "landmark": "land3",
+        "map": "c_apartment4",
+        "targetname": "changelevel3",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*109",
+        "landmark": "landfitta",
+        "map": "c_apartmentsick",
+        "targetname": "changefitta",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*166",
+        "landmark": "ap5la",
+        "map": "c_apartment5",
+        "classname": "trigger_changelevel"
+      }
+    ],
+    "notes": [
+      {
+        "origin": "2109 2825 306",
+        "targetname": "addcode",
+        "iuser1": "2",
+        "classname": "cof_addcodenote"
+      }
+    ],
+    "entities": 632
+  },
+  "c_apartment4": {
+    "source": "/root/cof-audits/audit-D3Kl5uly/stage/maps/c_apartment4/cryoffear/maps/c_apartment4.bsp",
+    "spawns": [
+      {
+        "origin": "-347 -252 320",
+        "angles": "0 270 0",
+        "classname": "info_player_start"
+      }
+    ],
+    "cameras": [],
+    "transitions": [
+      {
+        "model": "*65",
+        "landmark": "land1",
+        "map": "c_apartment3",
+        "targetname": "changelevel1",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*68",
+        "landmark": "land2",
+        "map": "c_apartment3",
+        "targetname": "changelevel2",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*69",
+        "landmark": "land3",
+        "map": "c_apartment3",
+        "targetname": "changelevel3",
+        "classname": "trigger_changelevel"
+      }
+    ],
+    "notes": [],
+    "entities": 512
+  },
+  "c_apartment5": {
+    "source": "/root/cof-audits/audit-D3Kl5uly/stage/maps/c_apartment5/cryoffear/maps/c_apartment5.bsp",
+    "spawns": [
+      {
+        "origin": "37 -68 464",
+        "angles": "0 90 0",
+        "classname": "info_player_start"
+      }
+    ],
+    "cameras": [
+      {
+        "origin": "116 548 446",
+        "angles": "0 246 0",
+        "speed": "7",
+        "moveto": "balstop1",
+        "target": "balfokus1",
+        "targetname": "balkamera1",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "10",
+        "spawnflags": "116",
+        "classname": "trigger_camera"
+      },
+      {
+        "origin": "143 87 500",
+        "angles": "0 36 0",
+        "zangle": "-15",
+        "target": "badfokus3",
+        "targetname": "badkamera3",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "15",
+        "spawnflags": "116",
+        "classname": "trigger_camera"
+      },
+      {
+        "origin": "262 156 447",
+        "angles": "0 215 0",
+        "zangle": "25",
+        "target": "badfokus4",
+        "targetname": "badkamera4",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "8",
+        "spawnflags": "116",
+        "classname": "trigger_camera"
+      },
+      {
+        "origin": "27 63 479",
+        "angles": "0 45 0",
+        "zangle": "5",
+        "target": "badfokus1",
+        "targetname": "badkamera1",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "21",
+        "spawnflags": "116",
+        "classname": "trigger_camera"
+      },
+      {
+        "origin": "271 125 498",
+        "moveto": "ap2stop21",
+        "angles": "0 180 0",
+        "speed": "5",
+        "target": "badfokus5",
+        "targetname": "badkamera5",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "5",
+        "spawnflags": "116",
+        "classname": "trigger_camera"
+      },
+      {
+        "origin": "234 134 455",
+        "moveto": "ap2stop1",
+        "angles": "0 180 0",
+        "speed": "3",
+        "target": "badfokus2",
+        "targetname": "badkamera2",
+        "deceleration": "500",
+        "acceleration": "500",
+        "wait": "18",
+        "spawnflags": "116",
+        "classname": "trigger_camera"
+      }
+    ],
+    "transitions": [
+      {
+        "model": "*23",
+        "landmark": "land5",
+        "map": "c_apartment1",
+        "targetname": "changelevel5",
+        "classname": "trigger_changelevel"
+      },
+      {
+        "model": "*51",
+        "landmark": "ap5la",
+        "map": "c_apartment3",
+        "classname": "trigger_changelevel"
+      }
+    ],
+    "notes": [],
+    "entities": 335
+  }
+}

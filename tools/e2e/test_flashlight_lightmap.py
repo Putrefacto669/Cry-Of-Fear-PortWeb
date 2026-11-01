@@ -7,7 +7,16 @@ import tempfile
 source = Path(os.environ['COF_WORK']) / 'engine/xash3d-fwgs/ref/gl/gl_rsurf.c'
 s = source.read_text()
 start = s.index('\tfor( int t = 0; t < tmax; t++ )', s.index('// add all the dynamic lights'))
-end = s.index('\n}\n', start)
+opening = s.index('{', start)
+depth = 0
+for index in range(opening, len(s)):
+ if s[index] == '{': depth += 1
+ elif s[index] == '}':
+  depth -= 1
+  if depth == 0:
+   end = index + 1
+   break
+else: raise AssertionError('Unbalanced renderer loop')
 loop = s[start:end]
 # The historical loop must fail the same fixture that accepts the corrected one.
 before = loop.replace('\n\t\t\t// Keep the luxel index outside the channel loop: its t is brightness.\n\t\t\tconst float *spot = &r_spotlight[(s + t * smax) * 3];', '').replace('spot[i] * 255.0f', 'r_spotlight[(s + t * smax) * 3 + i] * 255.0f')
@@ -24,6 +33,7 @@ typedef unsigned char byte;
 static uint r_blocklights[3*2*3];
 static float r_spotlight[3*1024*3];
 static unsigned short lightgammatable[1024];
+static void R_CofSpotObserve(int base, int addition) {} // Debug telemetry is orthogonal to pixel arithmetic.
 static void compose(byte *dest, int r_spotused, int linear_gamma) {
 int smax=3,tmax=2,stride=12,lightscale=256,turb=0;
 float litwater_scale=1; int litwater_minlight=0;

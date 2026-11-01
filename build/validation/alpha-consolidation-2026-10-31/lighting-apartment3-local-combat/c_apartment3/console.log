@@ -1,0 +1,2756 @@
+[10:16:13] Console initialized.
+[10:16:13] FS_LoadProgs: filesystem_stdio successfully loaded
+[10:16:13] /rwdir is working directory now
+[10:16:13] Error: game directory "cryoffear" not exist
+[10:16:13] Adding directory: /rodir/
+[10:16:13] Adding directory: ./
+[10:16:13] Program args: ./this.program -game cryoffear -rodir /rodir -ref gles3compat -dll /lib/server.wasm -clientlib /lib/client.wasm -menulib /lib/menu.wasm -windowed -dev 1 -log +exec cof_web.cfg +map c_apartment3 
+[10:16:13] Developer level: 1
+[10:16:13] execing cryoffear/vfs.cfg
+[10:16:13] FS_AddGameHierarchy( valve )
+[10:16:13] Adding directory: /rodir/valve/
+[10:16:13] Adding directory: valve/
+[10:16:13] FS_AddGameHierarchy( cryoffear )
+[10:16:13] Adding directory: /rodir/cryoffear/
+[10:16:13] Adding directory: cryoffear_downloads/
+[10:16:13] Adding directory: cryoffear/
+[10:16:13] Adding directory: cryoffear/custom/
+[10:16:13] Touch_Init()
+[10:16:13] Warning: SV_LoadProgs: couldn't get physics API
+[10:16:13] Dll loaded for game "Half-Life"
+[10:16:13] Error: Delta_ParseField: unable to find field is_donator
+[10:16:13] execing skill.cfg
+[10:16:13] Warning: Unknown command "sk_monster_head4"
+[10:16:13] Warning: Unknown command "sk_monster_chest4"
+[10:16:13] Warning: Unknown command "sk_monster_stomach4"
+[10:16:13] Warning: Unknown command "sk_monster_arm4"
+[10:16:13] Warning: Unknown command "sk_monster_leg4"
+[10:16:13] Warning: Unknown command "sk_player_head4"
+[10:16:13] Warning: Unknown command "sk_player_chest4"
+[10:16:13] Warning: Unknown command "sk_player_stomach4"
+[10:16:13] Warning: Unknown command "sk_player_arm4"
+[10:16:13] Warning: Unknown command "sk_player_leg4"
+[10:16:13] Warning: Unknown command "sk_cof_sledgehammer1"
+[10:16:13] Warning: Unknown command "sk_cof_sledgehammer2"
+[10:16:13] Warning: Unknown command "sk_cof_sledgehammer3"
+[10:16:13] Warning: Unknown command "sk_cof_sledgehammer4"
+[10:16:13] Warning: Unknown command "sk_cof_nightstick1"
+[10:16:13] Warning: Unknown command "sk_cof_nightstick2"
+[10:16:13] Warning: Unknown command "sk_cof_nightstick3"
+[10:16:13] Warning: Unknown command "sk_cof_nightstick4"
+[10:16:13] Warning: Unknown command "sk_cof_2switchblade1"
+[10:16:13] Warning: Unknown command "sk_cof_2switchblade2"
+[10:16:13] Warning: Unknown command "sk_cof_2switchblade3"
+[10:16:13] Warning: Unknown command "sk_cof_2switchblade4"
+[10:16:13] Warning: Unknown command "sk_cof_switchblade1"
+[10:16:13] Warning: Unknown command "sk_cof_switchblade2"
+[10:16:13] Warning: Unknown command "sk_cof_switchblade3"
+[10:16:13] Warning: Unknown command "sk_cof_switchblade4"
+[10:16:13] Warning: Unknown command "sk_cof_punch1"
+[10:16:13] Warning: Unknown command "sk_cof_punch2"
+[10:16:13] Warning: Unknown command "sk_cof_punch3"
+[10:16:13] Warning: Unknown command "sk_cof_punch4"
+[10:16:13] Warning: Unknown command "sk_baby_health1"
+[10:16:13] Warning: Unknown command "sk_baby_health2"
+[10:16:13] Warning: Unknown command "sk_baby_health3"
+[10:16:13] Warning: Unknown command "sk_baby_health4"
+[10:16:13] Warning: Unknown command "sk_baby_damage1"
+[10:16:13] Warning: Unknown command "sk_baby_damage2"
+[10:16:13] Warning: Unknown command "sk_baby_damage3"
+[10:16:13] Warning: Unknown command "sk_baby_damage4"
+[10:16:13] Warning: Unknown command "sk_faster_health1"
+[10:16:13] Warning: Unknown command "sk_faster_health2"
+[10:16:13] Warning: Unknown command "sk_faster_health3"
+[10:16:13] Warning: Unknown command "sk_faster_health4"
+[10:16:13] Warning: Unknown command "sk_faster_dmg_one_slash1"
+[10:16:13] Warning: Unknown command "sk_faster_dmg_one_slash2"
+[10:16:13] Warning: Unknown command "sk_faster_dmg_one_slash3"
+[10:16:13] Warning: Unknown command "sk_faster_dmg_one_slash4"
+[10:16:13] Warning: Unknown command "sk_faster_dmg_both_slash1"
+[10:16:13] Warning: Unknown command "sk_faster_dmg_both_slash2"
+[10:16:13] Warning: Unknown command "sk_faster_dmg_both_slash3"
+[10:16:13] Warning: Unknown command "sk_faster_dmg_both_slash4"
+[10:16:13] Warning: Unknown command "sk_krypande_health1"
+[10:16:13] Warning: Unknown command "sk_krypande_health2"
+[10:16:13] Warning: Unknown command "sk_krypande_health3"
+[10:16:13] Warning: Unknown command "sk_krypande_health4"
+[10:16:13] Warning: Unknown command "sk_krypande_dmg_one_slash1"
+[10:16:13] Warning: Unknown command "sk_krypande_dmg_one_slash2"
+[10:16:13] Warning: Unknown command "sk_krypande_dmg_one_slash3"
+[10:16:13] Warning: Unknown command "sk_krypande_dmg_one_slash4"
+[10:16:13] Warning: Unknown command "sk_syringe_heal1"
+[10:16:13] Warning: Unknown command "sk_syringe_heal2"
+[10:16:13] Warning: Unknown command "sk_syringe_heal3"
+[10:16:13] Warning: Unknown command "sk_syringe_heal4"
+[10:16:13] Warning: Unknown command "sk_chainsawboss_health1"
+[10:16:13] Warning: Unknown command "sk_chainsawboss_health2"
+[10:16:13] Warning: Unknown command "sk_chainsawboss_health3"
+[10:16:13] Warning: Unknown command "sk_chainsawboss_health4"
+[10:16:13] Warning: Unknown command "sk_sewmo_health1"
+[10:16:13] Warning: Unknown command "sk_sewmo_health2"
+[10:16:13] Warning: Unknown command "sk_sewmo_health3"
+[10:16:13] Warning: Unknown command "sk_sewmo_health4"
+[10:16:13] Warning: Unknown command "sk_sewmo_dmg_one_slash1"
+[10:16:13] Warning: Unknown command "sk_sewmo_dmg_one_slash2"
+[10:16:13] Warning: Unknown command "sk_sewmo_dmg_one_slash3"
+[10:16:13] Warning: Unknown command "sk_sewmo_dmg_one_slash4"
+[10:16:13] Warning: Unknown command "sk_sewmo_dmg_both_slash1"
+[10:16:13] Warning: Unknown command "sk_sewmo_dmg_both_slash2"
+[10:16:13] Warning: Unknown command "sk_sewmo_dmg_both_slash3"
+[10:16:13] Warning: Unknown command "sk_sewmo_dmg_both_slash4"
+[10:16:13] Warning: Unknown command "sk_sawrunner_health1"
+[10:16:13] Warning: Unknown command "sk_sawrunner_health2"
+[10:16:13] Warning: Unknown command "sk_sawrunner_health3"
+[10:16:13] Warning: Unknown command "sk_sawrunner_health4"
+[10:16:13] Warning: Unknown command "sk_sawrunner_dmg_one_slash1"
+[10:16:13] Warning: Unknown command "sk_sawrunner_dmg_one_slash2"
+[10:16:13] Warning: Unknown command "sk_sawrunner_dmg_one_slash3"
+[10:16:13] Warning: Unknown command "sk_sawrunner_dmg_one_slash4"
+[10:16:13] Warning: Unknown command "sk_sawrunner_dmg_both_slash1"
+[10:16:13] Warning: Unknown command "sk_sawrunner_dmg_both_slash2"
+[10:16:13] Warning: Unknown command "sk_sawrunner_dmg_both_slash3"
+[10:16:13] Warning: Unknown command "sk_sawrunner_dmg_both_slash4"
+[10:16:13] Warning: Unknown command "sk_zombie_health4"
+[10:16:13] Warning: Unknown command "sk_zombie_dmg_one_slash4"
+[10:16:13] Warning: Unknown command "sk_zombie_dmg_both_slash4"
+[10:16:13] Warning: Unknown command "sk_child_health1"
+[10:16:13] Warning: Unknown command "sk_child_health2"
+[10:16:13] Warning: Unknown command "sk_child_health3"
+[10:16:13] Warning: Unknown command "sk_child_health4"
+[10:16:13] Warning: Unknown command "sk_child_dmg_one_slash1"
+[10:16:13] Warning: Unknown command "sk_child_dmg_one_slash2"
+[10:16:13] Warning: Unknown command "sk_child_dmg_one_slash3"
+[10:16:13] Warning: Unknown command "sk_child_dmg_one_slash4"
+[10:16:13] Warning: Unknown command "sk_child_dmg_both_slash1"
+[10:16:13] Warning: Unknown command "sk_child_dmg_both_slash2"
+[10:16:13] Warning: Unknown command "sk_child_dmg_both_slash3"
+[10:16:13] Warning: Unknown command "sk_child_dmg_both_slash4"
+[10:16:13] Warning: Unknown command "sk_sewerboss_health1"
+[10:16:13] Warning: Unknown command "sk_sewerboss_health2"
+[10:16:13] Warning: Unknown command "sk_sewerboss_health3"
+[10:16:13] Warning: Unknown command "sk_sewerboss_health4"
+[10:16:13] Warning: Unknown command "sk_sewerboss_melee1"
+[10:16:13] Warning: Unknown command "sk_sewerboss_melee2"
+[10:16:13] Warning: Unknown command "sk_sewerboss_melee3"
+[10:16:13] Warning: Unknown command "sk_sewerboss_melee4"
+[10:16:13] Warning: Unknown command "sk_slower3_health1"
+[10:16:13] Warning: Unknown command "sk_slower3_health2"
+[10:16:13] Warning: Unknown command "sk_slower3_health3"
+[10:16:13] Warning: Unknown command "sk_slower3_health4"
+[10:16:13] Warning: Unknown command "sk_slower3_dmg_one_slash1"
+[10:16:13] Warning: Unknown command "sk_slower3_dmg_one_slash2"
+[10:16:13] Warning: Unknown command "sk_slower3_dmg_one_slash3"
+[10:16:13] Warning: Unknown command "sk_slower3_dmg_one_slash4"
+[10:16:13] Warning: Unknown command "sk_slower3_dmg_both_slash1"
+[10:16:13] Warning: Unknown command "sk_slower3_dmg_both_slash2"
+[10:16:13] Warning: Unknown command "sk_slower3_dmg_both_slash3"
+[10:16:13] Warning: Unknown command "sk_slower3_dmg_both_slash4"
+[10:16:13] Warning: Unknown command "sk_flygare_health1"
+[10:16:13] Warning: Unknown command "sk_flygare_health2"
+[10:16:13] Warning: Unknown command "sk_flygare_health3"
+[10:16:13] Warning: Unknown command "sk_flygare_health4"
+[10:16:13] Warning: Unknown command "sk_flygare_acid1"
+[10:16:13] Warning: Unknown command "sk_flygare_acid2"
+[10:16:13] Warning: Unknown command "sk_flygare_acid3"
+[10:16:13] Warning: Unknown command "sk_flygare_acid4"
+[10:16:13] Warning: Unknown command "sk_flygare_melee1"
+[10:16:13] Warning: Unknown command "sk_flygare_melee2"
+[10:16:13] Warning: Unknown command "sk_flygare_melee3"
+[10:16:13] Warning: Unknown command "sk_flygare_melee4"
+[10:16:13] Warning: Unknown command "sk_plr_buckshot4"
+[10:16:13] Warning: Unknown command "sk_rcrazy_health1"
+[10:16:13] Warning: Unknown command "sk_rcrazy_health2"
+[10:16:13] Warning: Unknown command "sk_rcrazy_health3"
+[10:16:13] Warning: Unknown command "sk_rcrazy_health4"
+[10:16:13] Warning: Unknown command "sk_rcrazy_dmg_one_slash1"
+[10:16:13] Warning: Unknown command "sk_rcrazy_dmg_one_slash2"
+[10:16:13] Warning: Unknown command "sk_rcrazy_dmg_one_slash3"
+[10:16:13] Warning: Unknown command "sk_rcrazy_dmg_one_slash4"
+[10:16:13] Warning: Unknown command "sk_rcrazy_dmg_both_slash1"
+[10:16:13] Warning: Unknown command "sk_rcrazy_dmg_both_slash2"
+[10:16:13] Warning: Unknown command "sk_rcrazy_dmg_both_slash3"
+[10:16:13] Warning: Unknown command "sk_rcrazy_dmg_both_slash4"
+[10:16:13] Warning: Unknown command "sk_primary_speed1"
+[10:16:13] Warning: Unknown command "sk_primary_speed2"
+[10:16:13] Warning: Unknown command "sk_primary_speed3"
+[10:16:13] Warning: Unknown command "sk_primary_speed4"
+[10:16:13] Warning: Unknown command "sk_secondary_speed1"
+[10:16:13] Warning: Unknown command "sk_secondary_speed2"
+[10:16:13] Warning: Unknown command "sk_secondary_speed3"
+[10:16:13] Warning: Unknown command "sk_secondary_speed4"
+[10:16:13] Warning: Unknown command "sk_sprint_speed1"
+[10:16:13] Warning: Unknown command "sk_sprint_speed2"
+[10:16:13] Warning: Unknown command "sk_sprint_speed3"
+[10:16:13] Warning: Unknown command "sk_sprint_speed4"
+[10:16:13] Warning: Unknown command "sk_stair_speed1"
+[10:16:13] Warning: Unknown command "sk_stair_speed2"
+[10:16:13] Warning: Unknown command "sk_stair_speed3"
+[10:16:13] Warning: Unknown command "sk_stair_speed4"
+[10:16:13] Warning: Unknown command "bullet_punch_max"
+[10:16:13] Warning: Unknown command "bullet_punch_divide"
+[10:16:13] Warning: Unknown command "blast_punch_max"
+[10:16:13] Warning: Unknown command "blast_punch_divide"
+[10:16:13] Warning: Unknown command "sk_cof_m161"
+[10:16:13] Warning: Unknown command "sk_cof_m162"
+[10:16:13] Warning: Unknown command "sk_cof_m163"
+[10:16:13] Warning: Unknown command "sk_cof_m164"
+[10:16:13] Warning: Unknown command "sk_cof_VP701"
+[10:16:13] Warning: Unknown command "sk_cof_VP702"
+[10:16:13] Warning: Unknown command "sk_cof_VP703"
+[10:16:13] Warning: Unknown command "sk_cof_VP704"
+[10:16:13] Warning: Unknown command "sk_cof_weapon_melee1"
+[10:16:13] Warning: Unknown command "sk_cof_weapon_melee2"
+[10:16:13] Warning: Unknown command "sk_cof_weapon_melee3"
+[10:16:13] Warning: Unknown command "sk_cof_weapon_melee4"
+[10:16:13] Warning: Unknown command "sk_cof_p3451"
+[10:16:13] Warning: Unknown command "sk_cof_p3452"
+[10:16:13] Warning: Unknown command "sk_cof_p3453"
+[10:16:13] Warning: Unknown command "sk_cof_p3454"
+[10:16:13] Warning: Unknown command "sk_cof_g431"
+[10:16:13] Warning: Unknown command "sk_cof_g432"
+[10:16:13] Warning: Unknown command "sk_cof_g433"
+[10:16:13] Warning: Unknown command "sk_cof_g434"
+[10:16:13] Warning: Unknown command "sk_cof_shotgun1"
+[10:16:13] Warning: Unknown command "sk_cof_shotgun2"
+[10:16:13] Warning: Unknown command "sk_cof_shotgun3"
+[10:16:13] Warning: Unknown command "sk_cof_shotgun4"
+[10:16:13] Warning: Unknown command "sk_cof_rifle1"
+[10:16:13] Warning: Unknown command "sk_cof_rifle2"
+[10:16:13] Warning: Unknown command "sk_cof_rifle3"
+[10:16:13] Warning: Unknown command "sk_cof_rifle4"
+[10:16:13] Warning: Unknown command "sk_cof_revolver1"
+[10:16:13] Warning: Unknown command "sk_cof_revolver2"
+[10:16:13] Warning: Unknown command "sk_cof_revolver3"
+[10:16:13] Warning: Unknown command "sk_cof_revolver4"
+[10:16:13] Warning: Unknown command "sk_stranger_health1"
+[10:16:13] Warning: Unknown command "sk_stranger_health2"
+[10:16:13] Warning: Unknown command "sk_stranger_health3"
+[10:16:13] Warning: Unknown command "sk_stranger_health4"
+[10:16:13] Warning: Unknown command "sk_stranger_damage1"
+[10:16:13] Warning: Unknown command "sk_stranger_damage2"
+[10:16:13] Warning: Unknown command "sk_stranger_damage3"
+[10:16:13] Warning: Unknown command "sk_stranger_damage4"
+[10:16:13] Warning: Unknown command "sk_suicider_health1"
+[10:16:13] Warning: Unknown command "sk_suicider_health2"
+[10:16:13] Warning: Unknown command "sk_suicider_health3"
+[10:16:13] Warning: Unknown command "sk_suicider_health4"
+[10:16:13] Warning: Unknown command "sk_suicider_bullet1"
+[10:16:13] Warning: Unknown command "sk_suicider_bullet2"
+[10:16:13] Warning: Unknown command "sk_suicider_bullet3"
+[10:16:13] Warning: Unknown command "sk_suicider_bullet4"
+[10:16:13] Warning: Unknown command "sk_suicider_suicide1"
+[10:16:13] Warning: Unknown command "sk_suicider_suicide2"
+[10:16:13] Warning: Unknown command "sk_suicider_suicide3"
+[10:16:13] Warning: Unknown command "sk_suicider_suicide4"
+[10:16:13] Warning: Unknown command "sk_roofboss_health1"
+[10:16:13] Warning: Unknown command "sk_roofboss_health2"
+[10:16:13] Warning: Unknown command "sk_roofboss_health3"
+[10:16:13] Warning: Unknown command "sk_roofboss_health4"
+[10:16:13] Warning: Unknown command "sk_roofboss_headhit1"
+[10:16:13] Warning: Unknown command "sk_roofboss_headhit2"
+[10:16:13] Warning: Unknown command "sk_roofboss_headhit3"
+[10:16:13] Warning: Unknown command "sk_roofboss_headhit4"
+[10:16:13] Warning: Unknown command "sk_roofboss_headhealth1"
+[10:16:13] Warning: Unknown command "sk_roofboss_headhealth2"
+[10:16:13] Warning: Unknown command "sk_roofboss_headhealth3"
+[10:16:13] Warning: Unknown command "sk_roofboss_headhealth4"
+[10:16:13] Warning: Unknown command "sk_roofboss_attacktime1"
+[10:16:13] Warning: Unknown command "sk_roofboss_attacktime2"
+[10:16:13] Warning: Unknown command "sk_roofboss_attacktime3"
+[10:16:13] Warning: Unknown command "sk_roofboss_attacktime4"
+[10:16:13] Warning: Unknown command "sk_faceless_health1"
+[10:16:13] Warning: Unknown command "sk_faceless_health2"
+[10:16:13] Warning: Unknown command "sk_faceless_health3"
+[10:16:13] Warning: Unknown command "sk_faceless_health4"
+[10:16:13] Warning: Unknown command "sk_faceless_dmg_one_slash1"
+[10:16:13] Warning: Unknown command "sk_faceless_dmg_one_slash2"
+[10:16:13] Warning: Unknown command "sk_faceless_dmg_one_slash3"
+[10:16:13] Warning: Unknown command "sk_faceless_dmg_one_slash4"
+[10:16:13] Warning: Unknown command "sk_faceless_dmg_both_slash1"
+[10:16:13] Warning: Unknown command "sk_faceless_dmg_both_slash2"
+[10:16:13] Warning: Unknown command "sk_faceless_dmg_both_slash3"
+[10:16:13] Warning: Unknown command "sk_faceless_dmg_both_slash4"
+[10:16:13] Warning: Unknown command "sk_cof_branch1"
+[10:16:13] Warning: Unknown command "sk_cof_branch2"
+[10:16:13] Warning: Unknown command "sk_cof_branch3"
+[10:16:13] Warning: Unknown command "sk_cof_branch4"
+[10:16:13] Warning: Unknown command "sk_doctor_health1"
+[10:16:13] Warning: Unknown command "sk_doctor_health2"
+[10:16:13] Warning: Unknown command "sk_doctor_health3"
+[10:16:13] Warning: Unknown command "sk_doctor_health4"
+[10:16:13] Warning: Unknown command "sk_doctor_p3451"
+[10:16:13] Warning: Unknown command "sk_doctor_p3452"
+[10:16:13] Warning: Unknown command "sk_doctor_p3453"
+[10:16:13] Warning: Unknown command "sk_doctor_p3454"
+[10:16:13] Warning: Unknown command "sk_doctor_revolver1"
+[10:16:13] Warning: Unknown command "sk_doctor_revolver2"
+[10:16:13] Warning: Unknown command "sk_doctor_revolver3"
+[10:16:13] Warning: Unknown command "sk_doctor_revolver4"
+[10:16:13] Warning: Unknown command "sk_flare_burn_time1"
+[10:16:13] Warning: Unknown command "sk_flare_burn_time2"
+[10:16:13] Warning: Unknown command "sk_flare_burn_time3"
+[10:16:13] Warning: Unknown command "sk_flare_burn_time4"
+[10:16:13] Warning: Unknown command "sk_taller_health1"
+[10:16:13] Warning: Unknown command "sk_taller_health2"
+[10:16:13] Warning: Unknown command "sk_taller_health3"
+[10:16:13] Warning: Unknown command "sk_taller_health4"
+[10:16:13] Warning: Unknown command "sk_taller_dmg_punch1"
+[10:16:13] Warning: Unknown command "sk_taller_dmg_punch2"
+[10:16:13] Warning: Unknown command "sk_taller_dmg_punch3"
+[10:16:13] Warning: Unknown command "sk_taller_dmg_punch4"
+[10:16:13] Warning: Unknown command "sk_spitter_health1"
+[10:16:13] Warning: Unknown command "sk_spitter_health2"
+[10:16:13] Warning: Unknown command "sk_spitter_health3"
+[10:16:13] Warning: Unknown command "sk_spitter_health4"
+[10:16:13] Warning: Unknown command "sk_aom_pills1"
+[10:16:13] Warning: Unknown command "sk_aom_pills2"
+[10:16:13] Warning: Unknown command "sk_aom_pills3"
+[10:16:13] Warning: Unknown command "sk_aom_pills4"
+[10:16:13] Warning: Unknown command "sk_cof_axe1"
+[10:16:13] Warning: Unknown command "sk_cof_axe2"
+[10:16:13] Warning: Unknown command "sk_cof_axe3"
+[10:16:13] Warning: Unknown command "sk_cof_axe4"
+[10:16:13] Warning: Unknown command "sk_twitcher_health1"
+[10:16:13] Warning: Unknown command "sk_twitcher_health2"
+[10:16:13] Warning: Unknown command "sk_twitcher_health3"
+[10:16:13] Warning: Unknown command "sk_twitcher_health4"
+[10:16:13] Warning: Unknown command "sk_twitcher_dmg_one_slash1"
+[10:16:13] Warning: Unknown command "sk_twitcher_dmg_one_slash2"
+[10:16:13] Warning: Unknown command "sk_twitcher_dmg_one_slash3"
+[10:16:13] Warning: Unknown command "sk_twitcher_dmg_one_slash4"
+[10:16:13] Warning: Unknown command "sk_twitcher_dmg_both_slash1"
+[10:16:13] Warning: Unknown command "sk_twitcher_dmg_both_slash2"
+[10:16:13] Warning: Unknown command "sk_twitcher_dmg_both_slash3"
+[10:16:13] Warning: Unknown command "sk_twitcher_dmg_both_slash4"
+[10:16:13] Warning: Unknown command "sk_twitcher2_health1"
+[10:16:13] Warning: Unknown command "sk_twitcher2_health2"
+[10:16:13] Warning: Unknown command "sk_twitcher2_health3"
+[10:16:13] Warning: Unknown command "sk_twitcher2_health4"
+[10:16:13] Warning: Unknown command "sk_twitcher2_dmg_one_slash1"
+[10:16:13] Warning: Unknown command "sk_twitcher2_dmg_one_slash2"
+[10:16:13] Warning: Unknown command "sk_twitcher2_dmg_one_slash3"
+[10:16:13] Warning: Unknown command "sk_twitcher2_dmg_one_slash4"
+[10:16:13] Warning: Unknown command "sk_twitcher2_dmg_both_slash1"
+[10:16:13] Warning: Unknown command "sk_twitcher2_dmg_both_slash2"
+[10:16:13] Warning: Unknown command "sk_twitcher2_dmg_both_slash3"
+[10:16:13] Warning: Unknown command "sk_twitcher2_dmg_both_slash4"
+[10:16:13] Warning: Unknown command "sk_twitcher3_health1"
+[10:16:13] Warning: Unknown command "sk_twitcher3_health2"
+[10:16:13] Warning: Unknown command "sk_twitcher3_health3"
+[10:16:13] Warning: Unknown command "sk_twitcher3_health4"
+[10:16:13] Warning: Unknown command "sk_twitcher3_dmg_one_slash1"
+[10:16:13] Warning: Unknown command "sk_twitcher3_dmg_one_slash2"
+[10:16:13] Warning: Unknown command "sk_twitcher3_dmg_one_slash3"
+[10:16:13] Warning: Unknown command "sk_twitcher3_dmg_one_slash4"
+[10:16:13] Warning: Unknown command "sk_twitcher3_dmg_both_slash1"
+[10:16:13] Warning: Unknown command "sk_twitcher3_dmg_both_slash2"
+[10:16:13] Warning: Unknown command "sk_twitcher3_dmg_both_slash3"
+[10:16:13] Warning: Unknown command "sk_twitcher3_dmg_both_slash4"
+[10:16:13] Warning: Unknown command "sk_twitcher4_health1"
+[10:16:13] Warning: Unknown command "sk_twitcher4_health2"
+[10:16:13] Warning: Unknown command "sk_twitcher4_health3"
+[10:16:13] Warning: Unknown command "sk_twitcher4_health4"
+[10:16:13] Warning: Unknown command "sk_twitcher4_dmg_one_slash1"
+[10:16:13] Warning: Unknown command "sk_twitcher4_dmg_one_slash2"
+[10:16:13] Warning: Unknown command "sk_twitcher4_dmg_one_slash3"
+[10:16:13] Warning: Unknown command "sk_twitcher4_dmg_one_slash4"
+[10:16:13] Warning: Unknown command "sk_twitcher4_dmg_both_slash1"
+[10:16:13] Warning: Unknown command "sk_twitcher4_dmg_both_slash2"
+[10:16:13] Warning: Unknown command "sk_twitcher4_dmg_both_slash3"
+[10:16:13] Warning: Unknown command "sk_twitcher4_dmg_both_slash4"
+[10:16:13] execing video.cfg
+[10:16:13] Loading renderer: gles3compat -> libref_gles3compat.wasm
+[10:16:13] execing opengl.cfg
+[10:16:13] Trying safe opengl mode 0
+[10:16:13] bpp 24
+[10:16:13] Video: SDL
+[10:16:13] Video driver: emscripten
+[10:16:13] Window size: 800x347 (real 800x347)
+[10:16:13] Window position: 0x0
+[10:16:13] Window mode: windowed
+[10:16:13] Window bordered: true
+[10:16:13] Window resizable: true
+[10:16:13] Window maximized: false
+[10:16:13] Window display index: 0
+[10:16:13] Window display mode: 800x600@0
+WebGL: INVALID_ENUM: getParameter: invalid parameter name
+[10:16:13] Note: GL2_ShimInit: missing BufferStorage
+[10:16:13] Note: GL2_ShimInit: config: ASYNC MAP CYCLE=1 VER=300
+[10:16:13] Note: GL2_ShimInit: 1441792 bytes allocated for vertex buffer
+[10:16:13] Note: GL2_InitProgs: Pre-generating 8 progs, version 300...
+[10:16:13] Note: GL2_GetProg: Generating progs for 0x0001
+[10:16:13] Note: GL2_GetProg: Generated progs for 0x0001
+[10:16:13] Note: GL2_GetProg: Generating progs for 0x0005
+[10:16:13] Note: GL2_GetProg: Generated progs for 0x0005
+[10:16:13] Note: GL2_GetProg: Generating progs for 0x0007
+[10:16:13] Note: GL2_GetProg: Generated progs for 0x0007
+[10:16:13] Note: GL2_GetProg: Generating progs for 0x0015
+[10:16:13] Note: GL2_GetProg: Generated progs for 0x0015
+[10:16:13] Note: GL2_GetProg: Generating progs for 0x0021
+[10:16:13] Note: GL2_GetProg: Generated progs for 0x0021
+[10:16:13] Note: GL2_GetProg: Generating progs for 0x0025
+[10:16:13] Note: GL2_GetProg: Generated progs for 0x0025
+[10:16:13] Note: GL2_GetProg: Generating progs for 0x0027
+[10:16:13] Note: GL2_GetProg: Generated progs for 0x0027
+[10:16:13] Note: GL2_GetProg: Generating progs for 0x0035
+[10:16:13] Note: GL2_GetProg: Generated progs for 0x0035
+[10:16:13] 
+[10:16:13] GL_VENDOR: WebKit
+[10:16:13] GL_RENDERER: WebKit WebGL
+[10:16:13] GL_VERSION: OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))
+[10:16:13] GL_MAX_TEXTURE_SIZE: 8192
+[10:16:13] GL_MAX_TEXTURE_UNITS_ARB: 32
+[10:16:13] GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT: 16.0
+[10:16:13] 
+[10:16:13] MODE: 800x347
+[10:16:13] 
+[10:16:13] Color 24 bits, Alpha 8 bits, Depth 24 bits, Stencil 8 bits
+[10:16:13] OpenGL Error: GL_INVALID_ENUM while uploading *default [2D]
+[10:16:14] UI_ApplyCustomColors: colors.lst not found
+[10:16:14] Rendering Trebuchet MS(11, 500) took 0.009000 seconds
+[10:16:14] Rendering Trebuchet MS(9, 500) took 0.004000 seconds
+[10:16:14] Rendering Trebuchet MS(18, 500) took 0.006000 seconds
+[10:16:14] Rendering Trebuchet MS(11, 1000) took 0.005000 seconds
+[10:16:14] Rendering Trebuchet MS(11, 500) took 0.000000 seconds
+[10:16:14] Rendering Trebuchet MS(11, 500) took 0.014000 seconds
+[10:16:14] Rendering Tahoma(8, 500) took 0.005000 seconds
+[10:16:14] AVI: Not supported
+The ScriptProcessorNode is deprecated. Use AudioWorkletNode instead. (https://bit.ly/audio-worklet)
+[10:16:14] Using SDL audio driver: emscripten @ 44100 Hz
+[10:16:14] Web Audio: 3D channels enabled
+[10:16:14] execing valve.rc
+[10:16:14] Warning: Unknown command "s_refgain"
+[10:16:14] Warning: Unknown command "s_refdelay"
+[10:16:14] Warning: Unknown command "s_occfactor"
+[10:16:14] Warning: Unknown command "s_verbwet"
+[10:16:14] Warning: Unknown command "s_distance"
+[10:16:14] execing language.cfg
+[10:16:14] execing joystick.cfg
+[10:16:14] execing autoexec.cfg
+[10:16:14] Warning: Unknown command "r_dynamiclight"
+[10:16:14] Warning: Unknown command "cl_noiseeffect"
+[10:16:14] Warning: Unknown command "gl_texturemode"
+[10:16:14] Warning: Unknown command "sv_voicecodec"
+[10:16:14] execing config.cfg
+[10:16:14] execing cof_web.cfg
+[10:16:14] Time to first frame: 0.568 seconds
+[10:16:14] Error: Delta_ParseField: unable to find field is_donator
+[10:16:14] Spawn Server: c_apartment3
+[10:16:15] execing maps/c_apartment3_load.cfg
+[10:16:15] 
+GAME SKILL LEVEL:1
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_agrunt_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_agrunt_dmg_punch1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_apache_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_barney_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_bite1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_whip1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_spit1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_gargantua_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_slash1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_fire1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_stomp1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_hassassin_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_headcrab_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_headcrab_dmg_bite1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_kick1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_pellets1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_gspeed1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_houndeye_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_houndeye_dmg_blast1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_islave_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_claw1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_clawrake1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_zap1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_shake1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_leech_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_leech_dmg_bite1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_controller_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgzap1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_controller_speedball1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgball1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_zap1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_scientist_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_snark_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_bite1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_pop1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_turret_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_miniturret_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_sentry_health1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_plr_crowbar1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_plr_9mm_bullet1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_plr_357_bullet1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_bullet1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_grenade1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_client1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_monster1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_plr_rpg1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_plr_gauss1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_narrow1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_wide1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_plr_hand_grenade1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_plr_satchel1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_plr_tripmine1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_12mm_bullet1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_9mmAR_bullet1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_9mm_bullet1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_hornet_dmg1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_suitcharger1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_battery1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_healthcharger1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_healthkit1 **
+
+[10:16:15] 
+
+** GetSkillCVar Got a zero for sk_scientist_heal1 **
+
+[10:16:15] Error: Could not load model models/w_suit.mdl from disk
+[10:16:15] Error: Could not load model models/w_medkit.mdl from disk
+[10:16:15] Error: Could not load model models/w_battery.mdl from disk
+[10:16:15] Error: Could not load model models/w_antidote.mdl from disk
+[10:16:15] Error: Could not load model models/w_security.mdl from disk
+[10:16:15] Error: Could not load model models/w_longjump.mdl from disk
+[10:16:15] Error: Could not load model models/v_shotgun.mdl from disk
+[10:16:15] Error: Could not load model models/w_shotgun.mdl from disk
+[10:16:15] Error: Could not load model models/p_shotgun.mdl from disk
+[10:16:15] Error: Could not load model models/shotgunshell.mdl from disk
+[10:16:15] Error: Could not load model models/w_shotbox.mdl from disk
+[10:16:15] Error: Could not load model models/v_crowbar.mdl from disk
+[10:16:15] Error: Could not load model models/w_crowbar.mdl from disk
+[10:16:15] Error: Could not load model models/p_crowbar.mdl from disk
+[10:16:15] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[10:16:15] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[10:16:15] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[10:16:15] Error: Could not load model models/shell.mdl from disk
+[10:16:15] Error: Could not load model models/w_9mmclip.mdl from disk
+[10:16:15] Error: Could not load model models/v_9mmAR.mdl from disk
+[10:16:15] Error: Could not load model models/w_9mmAR.mdl from disk
+[10:16:15] Error: Could not load model models/p_9mmAR.mdl from disk
+[10:16:15] Error: Could not load model models/shell.mdl from disk
+[10:16:15] Error: Could not load model models/grenade.mdl from disk
+[10:16:15] Error: Could not load model models/w_9mmARclip.mdl from disk
+[10:16:15] Error: Could not load model models/w_9mmARclip.mdl from disk
+[10:16:15] Error: Could not load model models/w_ARgrenade.mdl from disk
+[10:16:15] Error: Could not load model models/w_chainammo.mdl from disk
+[10:16:15] Error: Could not load model models/v_357.mdl from disk
+[10:16:15] Error: Could not load model models/w_357.mdl from disk
+[10:16:15] Error: Could not load model models/p_357.mdl from disk
+[10:16:15] Error: Could not load model models/w_357ammobox.mdl from disk
+[10:16:15] Error: Could not load model models/w_357ammobox.mdl from disk
+[10:16:15] Error: Could not load model models/w_gauss.mdl from disk
+[10:16:15] Error: Could not load model models/v_gauss.mdl from disk
+[10:16:15] Error: Could not load model models/p_gauss.mdl from disk
+[10:16:15] Error: Could not load model sprites/hotglow.spr from disk
+[10:16:15] Error: Could not load model sprites/hotglow.spr from disk
+[10:16:15] Error: Could not load model sprites/smoke.spr from disk
+[10:16:15] Error: Could not load model models/w_gaussammo.mdl from disk
+[10:16:15] Error: Could not load model models/w_rpg.mdl from disk
+[10:16:15] Error: Could not load model models/v_rpg.mdl from disk
+[10:16:15] Error: Could not load model models/p_rpg.mdl from disk
+[10:16:15] Error: Could not load model sprites/laserdot.spr from disk
+[10:16:15] Error: Could not load model models/rpgrocket.mdl from disk
+[10:16:15] Error: Could not load model sprites/smoke.spr from disk
+[10:16:15] Error: Could not load model models/w_rpgammo.mdl from disk
+[10:16:15] Error: Could not load model models/w_crossbow.mdl from disk
+[10:16:15] Error: Could not load model models/v_crossbow.mdl from disk
+[10:16:15] Error: Could not load model models/p_crossbow.mdl from disk
+[10:16:15] Error: Could not load model models/crossbow_bolt.mdl from disk
+[10:16:15] Error: Could not load model sprites/streak.spr from disk
+[10:16:15] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[10:16:15] Error: Could not load model models/w_egon.mdl from disk
+[10:16:15] Error: Could not load model models/v_egon.mdl from disk
+[10:16:15] Error: Could not load model models/p_egon.mdl from disk
+[10:16:15] Error: Could not load model models/w_9mmclip.mdl from disk
+[10:16:15] Error: Could not load model sprites/xbeam1.spr from disk
+[10:16:15] Error: Could not load model models/v_tripmine.mdl from disk
+[10:16:15] Error: Could not load model models/p_tripmine.mdl from disk
+[10:16:15] Error: Could not load model models/v_tripmine.mdl from disk
+[10:16:15] Error: Could not load model models/v_satchel.mdl from disk
+[10:16:15] Error: Could not load model models/v_satchel_radio.mdl from disk
+[10:16:15] Error: Could not load model models/w_satchel.mdl from disk
+[10:16:15] Error: Could not load model models/p_satchel.mdl from disk
+[10:16:15] Error: Could not load model models/p_satchel_radio.mdl from disk
+[10:16:15] Error: Could not load model models/w_satchel.mdl from disk
+[10:16:15] Error: Could not load model models/w_grenade.mdl from disk
+[10:16:15] Error: Could not load model models/v_grenade.mdl from disk
+[10:16:15] Error: Could not load model models/p_grenade.mdl from disk
+[10:16:15] Error: Could not load model models/w_sqknest.mdl from disk
+[10:16:15] Error: Could not load model models/v_squeak.mdl from disk
+[10:16:15] Error: Could not load model models/p_squeak.mdl from disk
+[10:16:15] Error: Could not load model models/w_squeak.mdl from disk
+[10:16:15] Error: Could not load model models/v_hgun.mdl from disk
+[10:16:15] Error: Could not load model models/w_hgun.mdl from disk
+[10:16:15] Error: Could not load model models/p_hgun.mdl from disk
+[10:16:15] Error: Could not load model models/hornet.mdl from disk
+[10:16:15] Error: Could not load model sprites/muz1.spr from disk
+[10:16:15] Error: Could not load model sprites/zerogxplode.spr from disk
+[10:16:15] Error: Could not load model sprites/WXplo1.spr from disk
+[10:16:15] Error: Could not load model sprites/laserdot.spr from disk
+[10:16:15] Error: Could not load model models/grenade.mdl from disk
+[10:16:15] Error: Could not load model sprites/explode1.spr from disk
+[10:16:15] Error: Could not load model models/player.mdl from disk
+[10:16:15] Error: Could not load model models/hgibs.mdl from disk
+[10:16:15] Error: Could not load model models/agibs.mdl from disk
+[10:16:15] Error: No spawn function for "info_texlights"
+[10:16:16] Error: No spawn function for "info_texlights"
+[10:16:16] Error: No spawn function for "cof_developer_commentary"
+[10:16:16] Error: No spawn function for "cof_developer_commentary"
+[10:16:16] Error: No spawn function for "cof_developer_commentary"
+[10:16:16] 
+0 entities inhibited
+[10:16:16] Game started
+[10:16:16] level loaded at 2.24 sec
+[10:16:16] execing spserver.cfg
+[10:16:16] Trying to connect with modern protocol
+[10:16:16] LoadBackground: found steam background in game directory
+[10:16:16] execing mainui.cfg
+[10:16:16] Localize_AddToDict( resource/mainui_english.txt ): couldn't open file. Some strings will not be localized!.
+[10:16:16] Localize_AddToDict( resource/cryoffear_english.txt ): couldn't open file. Some strings will not be localized!.
+[10:16:16] Spooling demo header.
+[10:16:16] 
+BUILD 4221 SERVER (0 CRC)
+Server #1
+[10:16:16] Warning: unexpected end of sprites/hud.txt (211 should be 57)
+[10:16:17] Missing bitmap font: gfx\vgui\fonts\800_Primary Button Text.tga
+[10:16:17] Missing bitmap font: gfx\vgui\fonts\800_CommandMenu Text.tga
+[10:16:17] Missing bitmap font: gfx\vgui\fonts\800_Scoreboard Text.tga
+[10:16:17] Missing bitmap font: gfx\vgui\fonts\800_Scoreboard Title Text.tga
+[10:16:17] Missing bitmap font: gfx\vgui\fonts\800_Scoreboard Small Text.tga
+[10:16:17] Missing bitmap font: gfx\vgui\fonts\800_Title Font.tga
+[10:16:17] Unable to open commandmenu.txt
+[10:16:17] Unable to open spectatormenu.txt
+[10:16:17] Unable to open spectcammenu.txt
+[10:16:17] Verifying and downloading resources...
+[10:16:17] Error: Could not load sound sound/items/smallmedkit1.wav
+[10:16:17] Error: Could not load sound sound/items/9mmclip1.wav
+[10:16:17] Error: Could not load sound sound/weapons/dbarrel1.wav
+[10:16:17] Error: Could not load sound sound/weapons/sbarrel1.wav
+[10:16:17] Error: Could not load sound sound/weapons/reload1.wav
+[10:16:17] Error: Could not load sound sound/weapons/reload3.wav
+[10:16:17] Error: Could not load sound sound/weapons/357_cock1.wav
+[10:16:17] Error: Could not load sound sound/weapons/scock1.wav
+[10:16:17] Error: Could not load sound sound/weapons/cbar_hit1.wav
+[10:16:17] Error: Could not load sound sound/weapons/cbar_hit2.wav
+[10:16:17] Error: Could not load sound sound/weapons/cbar_hitbod1.wav
+[10:16:17] Error: Could not load sound sound/weapons/cbar_hitbod2.wav
+[10:16:17] Error: Could not load sound sound/weapons/cbar_hitbod3.wav
+[10:16:17] Error: Could not load sound sound/weapons/cbar_miss1.wav
+[10:16:17] Error: Could not load sound sound/items/9mmclip2.wav
+[10:16:17] Error: Could not load sound sound/weapons/pl_gun1.wav
+[10:16:17] Error: Could not load sound sound/weapons/pl_gun2.wav
+[10:16:17] Error: Could not load sound sound/weapons/pl_gun3.wav
+[10:16:17] Error: Could not load sound sound/items/clipinsert1.wav
+[10:16:17] Error: Could not load sound sound/items/cliprelease1.wav
+[10:16:17] Error: Could not load sound sound/weapons/hks1.wav
+[10:16:17] Error: Could not load sound sound/weapons/hks2.wav
+[10:16:17] Error: Could not load sound sound/weapons/hks3.wav
+[10:16:17] Error: Could not load sound sound/weapons/glauncher.wav
+[10:16:17] Error: Could not load sound sound/weapons/glauncher2.wav
+[10:16:17] Error: Could not load sound sound/weapons/357_reload1.wav
+[10:16:17] Error: Could not load sound sound/weapons/357_shot1.wav
+[10:16:17] Error: Could not load sound sound/weapons/357_shot2.wav
+[10:16:17] Error: Could not load sound sound/weapons/gauss2.wav
+[10:16:17] Error: Could not load sound sound/weapons/electro4.wav
+[10:16:17] Error: Could not load sound sound/weapons/electro5.wav
+[10:16:17] Error: Could not load sound sound/weapons/electro6.wav
+[10:16:17] Error: Could not load sound sound/ambience/pulsemachine.wav
+[10:16:17] Error: Could not load sound sound/weapons/rocket1.wav
+[10:16:17] Error: Could not load sound sound/weapons/rocketfire1.wav
+[10:16:17] Error: Could not load sound sound/weapons/xbow_fire1.wav
+[10:16:17] Error: Could not load sound sound/weapons/xbow_reload1.wav
+[10:16:17] Error: Could not load sound sound/weapons/xbow_hitbod1.wav
+[10:16:17] Error: Could not load sound sound/weapons/xbow_hitbod2.wav
+[10:16:17] Error: Could not load sound sound/weapons/xbow_fly1.wav
+[10:16:17] Error: Could not load sound sound/weapons/xbow_hit1.wav
+[10:16:17] Error: Could not load sound sound/fvox/beep.wav
+[10:16:17] Error: Could not load sound sound/weapons/egon_off1.wav
+[10:16:17] Error: Could not load sound sound/weapons/egon_run3.wav
+[10:16:17] Error: Could not load sound sound/weapons/egon_windup2.wav
+[10:16:17] Error: Could not load sound sound/weapons/mine_deploy.wav
+[10:16:17] Error: Could not load sound sound/weapons/mine_activate.wav
+[10:16:17] Error: Could not load sound sound/weapons/mine_charge.wav
+[10:16:17] Error: Could not load sound sound/weapons/g_bounce1.wav
+[10:16:17] Error: Could not load sound sound/weapons/g_bounce2.wav
+[10:16:17] Error: Could not load sound sound/weapons/g_bounce3.wav
+[10:16:17] Error: Could not load sound sound/squeek/sqk_hunt2.wav
+[10:16:17] Error: Could not load sound sound/squeek/sqk_hunt3.wav
+[10:16:17] Error: Could not load sound sound/squeek/sqk_blast1.wav
+[10:16:17] Error: Could not load sound sound/common/bodysplat.wav
+[10:16:17] Error: Could not load sound sound/squeek/sqk_die1.wav
+[10:16:17] Error: Could not load sound sound/squeek/sqk_hunt1.wav
+[10:16:17] Error: Could not load sound sound/squeek/sqk_deploy1.wav
+[10:16:17] Error: Could not load sound sound/agrunt/ag_fire1.wav
+[10:16:17] Error: Could not load sound sound/agrunt/ag_fire2.wav
+[10:16:18] Error: Could not load sound sound/agrunt/ag_fire3.wav
+[10:16:18] Error: Could not load sound sound/hornet/ag_buzz1.wav
+[10:16:18] Error: Could not load sound sound/hornet/ag_buzz2.wav
+[10:16:18] Error: Could not load sound sound/hornet/ag_buzz3.wav
+[10:16:18] Error: Could not load sound sound/hornet/ag_hornethit1.wav
+[10:16:18] Error: Could not load sound sound/hornet/ag_hornethit2.wav
+[10:16:18] Error: Could not load sound sound/hornet/ag_hornethit3.wav
+[10:16:18] Error: Could not load sound sound/weapons/debris1.wav
+[10:16:18] Error: Could not load sound sound/weapons/debris2.wav
+[10:16:18] Error: Could not load sound sound/weapons/debris3.wav
+[10:16:18] Error: Could not load sound sound/weapons/grenade_hit1.wav
+[10:16:18] Error: Could not load sound sound/weapons/grenade_hit2.wav
+[10:16:18] Error: Could not load sound sound/weapons/grenade_hit3.wav
+[10:16:18] Error: Could not load sound sound/weapons/bullet_hit1.wav
+[10:16:18] Error: Could not load sound sound/weapons/bullet_hit2.wav
+[10:16:18] Error: Could not load sound sound/items/weapondrop1.wav
+[10:16:18] Error: Could not load sound sound/player/sprayer.wav
+[10:16:18] Error: Could not load sound sound/player/pl_fallpain2.wav
+[10:16:18] Error: Could not load sound sound/player/pl_fallpain3.wav
+[10:16:18] Error: Could not load sound sound/player/pl_step1.wav
+[10:16:18] Error: Could not load sound sound/player/pl_step2.wav
+[10:16:18] Error: Could not load sound sound/player/pl_step3.wav
+[10:16:18] Error: Could not load sound sound/player/pl_step4.wav
+[10:16:18] Error: Could not load sound sound/player/pl_metal1.wav
+[10:16:18] Error: Could not load sound sound/player/pl_metal2.wav
+[10:16:18] Error: Could not load sound sound/player/pl_metal3.wav
+[10:16:18] Error: Could not load sound sound/player/pl_metal4.wav
+[10:16:18] Error: Could not load sound sound/player/pl_dirt1.wav
+[10:16:18] Error: Could not load sound sound/player/pl_dirt2.wav
+[10:16:18] Error: Could not load sound sound/player/pl_dirt3.wav
+[10:16:18] Error: Could not load sound sound/player/pl_dirt4.wav
+[10:16:18] Error: Could not load sound sound/player/pl_duct1.wav
+[10:16:18] Error: Could not load sound sound/player/pl_duct2.wav
+[10:16:18] Error: Could not load sound sound/player/pl_duct3.wav
+[10:16:18] Error: Could not load sound sound/player/pl_duct4.wav
+[10:16:18] Error: Could not load sound sound/player/pl_grate1.wav
+[10:16:18] Error: Could not load sound sound/player/pl_grate2.wav
+[10:16:18] Error: Could not load sound sound/player/pl_grate3.wav
+[10:16:18] Error: Could not load sound sound/player/pl_grate4.wav
+[10:16:18] Error: Could not load sound sound/player/pl_slosh1.wav
+[10:16:18] Error: Could not load sound sound/player/pl_slosh2.wav
+[10:16:18] Error: Could not load sound sound/player/pl_slosh3.wav
+[10:16:18] Error: Could not load sound sound/player/pl_slosh4.wav
+[10:16:18] Error: Could not load sound sound/player/pl_tile1.wav
+[10:16:18] Error: Could not load sound sound/player/pl_tile2.wav
+[10:16:18] Error: Could not load sound sound/player/pl_tile3.wav
+[10:16:18] Error: Could not load sound sound/player/pl_tile4.wav
+[10:16:18] Error: Could not load sound sound/player/pl_tile5.wav
+[10:16:18] Error: Could not load sound sound/player/pl_swim1.wav
+[10:16:18] Error: Could not load sound sound/player/pl_swim2.wav
+[10:16:18] Error: Could not load sound sound/player/pl_swim3.wav
+[10:16:18] Error: Could not load sound sound/player/pl_swim4.wav
+[10:16:18] Error: Could not load sound sound/player/pl_ladder1.wav
+[10:16:18] Error: Could not load sound sound/player/pl_ladder2.wav
+[10:16:18] Error: Could not load sound sound/player/pl_ladder3.wav
+[10:16:18] Error: Could not load sound sound/player/pl_ladder4.wav
+[10:16:18] Error: Could not load sound sound/player/pl_wade1.wav
+[10:16:18] Error: Could not load sound sound/player/pl_wade2.wav
+[10:16:18] Error: Could not load sound sound/player/pl_wade3.wav
+[10:16:18] Error: Could not load sound sound/player/pl_wade4.wav
+[10:16:18] Error: Could not load sound sound/debris/wood1.wav
+[10:16:18] Error: Could not load sound sound/debris/wood2.wav
+[10:16:18] Error: Could not load sound sound/debris/wood3.wav
+[10:16:18] Error: Could not load sound sound/plats/train_use1.wav
+[10:16:18] Error: Could not load sound sound/plats/vehicle_ignition.wav
+[10:16:18] Error: Could not load sound sound/buttons/spark5.wav
+[10:16:18] Error: Could not load sound sound/buttons/spark6.wav
+[10:16:18] Error: Could not load sound sound/debris/glass1.wav
+[10:16:18] Error: Could not load sound sound/debris/glass2.wav
+[10:16:18] Error: Could not load sound sound/debris/glass3.wav
+[10:16:18] Error: Could not load sound sound/items/flashlight1.wav
+[10:16:18] Error: Could not load sound sound/player/pl_pain2.wav
+[10:16:18] Error: Could not load sound sound/player/pl_pain4.wav
+[10:16:18] Error: Could not load sound sound/player/pl_pain5.wav
+[10:16:18] Error: Could not load sound sound/player/pl_pain6.wav
+[10:16:18] Error: Could not load sound sound/player/pl_pain7.wav
+[10:16:18] Error: Could not load sound sound/common/wpn_hudoff.wav
+[10:16:18] Error: Could not load sound sound/common/wpn_hudon.wav
+[10:16:18] Error: Could not load sound sound/common/wpn_moveselect.wav
+[10:16:18] Error: Could not load sound sound/common/wpn_select.wav
+[10:16:18] Error: Could not load sound sound/common/wpn_denyselect.wav
+[10:16:18] Error: Could not load sound sound/player/geiger6.wav
+[10:16:18] Error: Could not load sound sound/player/geiger5.wav
+[10:16:18] Error: Could not load sound sound/player/geiger4.wav
+[10:16:18] Error: Could not load sound sound/player/geiger3.wav
+[10:16:18] Error: Could not load sound sound/player/geiger2.wav
+[10:16:18] Error: Could not load sound sound/player/geiger1.wav
+[10:16:18] Error: Could not load sound sound/common/null.wav
+[10:16:18] Error: Could not load sound sound/items/suitchargeok1.wav
+[10:16:18] Error: Could not load sound sound/common/bodydrop3.wav
+[10:16:18] Error: Could not load sound sound/common/bodydrop4.wav
+[10:16:18] Error: Could not load sound sound/weapons/ric1.wav
+[10:16:18] Error: Could not load sound sound/weapons/ric2.wav
+[10:16:18] Error: Could not load sound sound/weapons/ric3.wav
+[10:16:18] Error: Could not load sound sound/weapons/ric4.wav
+[10:16:18] Error: Could not load sound sound/weapons/ric5.wav
+[10:16:18] Error: Could not load sound sound/buttons/button1.wav
+[10:16:18] Error: Could not load sound sound/debris/bustcrate1.wav
+[10:16:18] Error: Could not load sound sound/debris/bustcrate2.wav
+[10:16:18] Error: Could not load sound sound/buttons/spark1.wav
+[10:16:18] Error: Could not load sound sound/buttons/spark2.wav
+[10:16:18] Error: Could not load sound sound/buttons/spark3.wav
+[10:16:18] Error: Could not load sound sound/buttons/spark4.wav
+[10:16:18] Error: Could not load model models/w_suit.mdl from disk
+[10:16:18] Error: Could not load model models/w_medkit.mdl from disk
+[10:16:18] Error: Could not load model models/w_battery.mdl from disk
+[10:16:18] Error: Could not load model models/w_antidote.mdl from disk
+[10:16:18] Error: Could not load model models/w_security.mdl from disk
+[10:16:18] Error: Could not load model models/w_longjump.mdl from disk
+[10:16:18] Error: Could not load model models/v_shotgun.mdl from disk
+[10:16:18] Error: Could not load model models/w_shotgun.mdl from disk
+[10:16:18] Error: Could not load model models/p_shotgun.mdl from disk
+[10:16:18] Error: Could not load model models/shotgunshell.mdl from disk
+[10:16:18] Error: Could not load model models/w_shotbox.mdl from disk
+[10:16:18] Error: Could not load model models/v_crowbar.mdl from disk
+[10:16:18] Error: Could not load model models/w_crowbar.mdl from disk
+[10:16:18] Error: Could not load model models/p_crowbar.mdl from disk
+[10:16:18] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[10:16:18] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[10:16:18] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[10:16:18] Error: Could not load model models/shell.mdl from disk
+[10:16:18] Error: Could not load model models/w_9mmclip.mdl from disk
+[10:16:18] Error: Could not load model models/v_9mmAR.mdl from disk
+[10:16:18] Error: Could not load model models/w_9mmAR.mdl from disk
+[10:16:18] Error: Could not load model models/p_9mmAR.mdl from disk
+[10:16:18] Error: Could not load model models/grenade.mdl from disk
+[10:16:18] Error: Could not load model models/w_9mmARclip.mdl from disk
+[10:16:18] Error: Could not load model models/w_ARgrenade.mdl from disk
+[10:16:18] Error: Could not load model models/w_chainammo.mdl from disk
+[10:16:18] Error: Could not load model models/v_357.mdl from disk
+[10:16:18] Error: Could not load model models/w_357.mdl from disk
+[10:16:18] Error: Could not load model models/p_357.mdl from disk
+[10:16:18] Error: Could not load model models/w_357ammobox.mdl from disk
+[10:16:18] Error: Could not load model models/w_gauss.mdl from disk
+[10:16:18] Error: Could not load model models/v_gauss.mdl from disk
+[10:16:18] Error: Could not load model models/p_gauss.mdl from disk
+[10:16:18] Error: Could not load model sprites/hotglow.spr from disk
+[10:16:18] Error: Could not load model sprites/smoke.spr from disk
+[10:16:18] Error: Could not load model models/w_gaussammo.mdl from disk
+[10:16:18] Error: Could not load model models/w_rpg.mdl from disk
+[10:16:18] Error: Could not load model models/v_rpg.mdl from disk
+[10:16:18] Error: Could not load model models/p_rpg.mdl from disk
+[10:16:18] Error: Could not load model sprites/laserdot.spr from disk
+[10:16:18] Error: Could not load model models/rpgrocket.mdl from disk
+[10:16:18] Error: Could not load model models/w_rpgammo.mdl from disk
+[10:16:18] Error: Could not load model models/w_crossbow.mdl from disk
+[10:16:18] Error: Could not load model models/v_crossbow.mdl from disk
+[10:16:18] Error: Could not load model models/p_crossbow.mdl from disk
+[10:16:18] Error: Could not load model models/crossbow_bolt.mdl from disk
+[10:16:18] Error: Could not load model sprites/streak.spr from disk
+[10:16:18] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[10:16:18] Error: Could not load model models/w_egon.mdl from disk
+[10:16:18] Error: Could not load model models/v_egon.mdl from disk
+[10:16:18] Error: Could not load model models/p_egon.mdl from disk
+[10:16:18] Error: Could not load model sprites/xbeam1.spr from disk
+[10:16:18] Error: Could not load model models/v_tripmine.mdl from disk
+[10:16:18] Error: Could not load model models/p_tripmine.mdl from disk
+[10:16:18] Error: Could not load model models/v_satchel.mdl from disk
+[10:16:18] Error: Could not load model models/v_satchel_radio.mdl from disk
+[10:16:18] Error: Could not load model models/w_satchel.mdl from disk
+[10:16:18] Error: Could not load model models/p_satchel.mdl from disk
+[10:16:18] Error: Could not load model models/p_satchel_radio.mdl from disk
+[10:16:18] Error: Could not load model models/w_grenade.mdl from disk
+[10:16:18] Error: Could not load model models/v_grenade.mdl from disk
+[10:16:18] Error: Could not load model models/p_grenade.mdl from disk
+[10:16:18] Error: Could not load model models/w_sqknest.mdl from disk
+[10:16:18] Error: Could not load model models/v_squeak.mdl from disk
+[10:16:18] Error: Could not load model models/p_squeak.mdl from disk
+[10:16:18] Error: Could not load model models/w_squeak.mdl from disk
+[10:16:18] Error: Could not load model models/v_hgun.mdl from disk
+[10:16:18] Error: Could not load model models/w_hgun.mdl from disk
+[10:16:18] Error: Could not load model models/p_hgun.mdl from disk
+[10:16:18] Error: Could not load model models/hornet.mdl from disk
+[10:16:18] Error: Could not load model sprites/muz1.spr from disk
+[10:16:18] Error: Could not load model sprites/zerogxplode.spr from disk
+[10:16:18] Error: Could not load model sprites/WXplo1.spr from disk
+[10:16:18] Error: Could not load model sprites/explode1.spr from disk
+[10:16:18] Error: Could not load model models/player.mdl from disk
+[10:16:18] Error: Could not load model models/hgibs.mdl from disk
+[10:16:18] Error: Could not load model models/agibs.mdl from disk
+[10:16:18] Setting up renderer...
+[10:16:18] SKY:  blackrt, blackbk, blacklf, blackft, blackup, blackdn. done
+[10:16:18] Signon network traffic:  28.149 Kb from server, 237 bytes to server
+[10:16:18] client connected at 1.90 sec
+[10:16:18] COF/HUD STAT 100 100 0 0
+[10:16:18] COF/HUD SMSICON 0
+[10:16:18] COF/HUD INV 0
+[10:16:18] COF/HUD QUICK - - -
+[10:16:18] COF/HUD OBJECTIVE 
+[10:16:18] COF/HUD MUSIC 0 1 ap3hall1.mp3
+[10:16:18] Couldn't open file overviews/c_apartment3.txt. Using default values for overiew mode.
+[10:16:18] COF/HUD PADLOCK 0
+[10:16:18] Couldn't open file overviews/c_apartment3.txt. Using default values for overiew mode.
+[10:16:18] Warning: unexpected end of sprites/weapon_glock.txt (10 should be 8)
+[10:16:18] COF/FENCE alpha_1 time=1.266
+[10:16:18] "sv_cheats" changed to "1"
+[10:16:19] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=2.433 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:19] COF/FENCE alpha_2 time=2.433
+[10:16:19] org ( 35.0312 -142.969 346.062 )
+[10:16:19] ang ( 0 270 0 )
+[10:16:19] "gamma" is "2.5" ( "2.5" )
+[10:16:19] "brightness" is "1" ( "0.0" )
+[10:16:19] "gl_overbright" is "1" ( "1" )
+[10:16:19] "gl_vbo" is "0" ( "0" )
+[10:16:19] "r_dynamic" is "1" ( "1" )
+[10:16:19] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=2.451 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:19] COF/FENCE alpha_3 time=2.451
+[10:16:19] COF/HUD PICKUP inventoryitems/weapons/weapon_mobile.txt
+[10:16:19] COF/HUD SMSREAD 0
+[10:16:19] COF/HUD PICKUP inventoryitems/weapons/weapon_switchblade.txt
+[10:16:19] COF/FENCE alpha_4 time=2.467
+[10:16:19] COF/HUD SMSICON 0
+[10:16:19] COF/HUD INV 2 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt
+[10:16:19] COF/HUD QUICK weapon_mobile weapon_switchblade -
+[10:16:19] COF/HUD OBJECTIVE 
+[10:16:19] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:19] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:19] carried 1: weapon_switchblade
+[10:16:19] carried 1: weapon_mobile
+[10:16:19] monster monster_faster health 25 dead 0 dist 522
+[10:16:19] monster monster_faster health 25 dead 0 dist 384
+[10:16:19] monster monstermaker health 0 dead 0 dist 438
+[10:16:19] monster monstermaker health 0 dead 0 dist 176
+[10:16:19] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:19] monster monstermaker health 0 dead 0 dist 318
+[10:16:19] monster monster_generic health 8 dead 0 dist 502
+[10:16:19] monster  health 50 dead 0 dist 297
+[10:16:19] COF/FENCE alpha_5 time=2.483
+[10:16:19] COF/FENCE alpha_6 time=2.53
+[10:16:19] COF/HUD PICKUP inventoryitems/weapons/weapon_glock.txt
+[10:16:19] COF/FENCE alpha_7 time=2.567
+[10:16:19] COF/HUD SMSICON 0
+[10:16:19] COF/HUD INV 3 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt inventoryitems/weapons/weapon_glock.txt
+[10:16:19] COF/HUD QUICK weapon_mobile weapon_switchblade weapon_glock
+[10:16:19] COF/HUD OBJECTIVE 
+[10:16:19] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:19] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:19] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:19] carried 1: weapon_glock
+[10:16:19] carried 1: weapon_switchblade
+[10:16:19] carried 1: weapon_mobile
+[10:16:19] monster monster_faster health 25 dead 0 dist 522
+[10:16:19] monster monster_faster health 25 dead 0 dist 384
+[10:16:19] monster monstermaker health 0 dead 0 dist 438
+[10:16:19] monster monstermaker health 0 dead 0 dist 176
+[10:16:19] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:19] monster monstermaker health 0 dead 0 dist 318
+[10:16:19] monster monster_generic health 8 dead 0 dist 502
+[10:16:19] monster  health 50 dead 0 dist 297
+[10:16:19] COF/FENCE alpha_8 time=2.568
+[10:16:20] COF/FENCE alpha_9 time=2.6
+[10:16:20] "sensitivity" is "3" ( "3" )
+[10:16:20] "m_yaw" is "0.022" ( "0.022" )
+[10:16:20] "m_pitch" is "0.022" ( "0.022" )
+[10:16:20] COF/FENCE alpha_10 time=2.867
+[10:16:20] "skill" is "1" ( "1" )
+[10:16:20] "sk_plr_9mm_bullet1" is "0"
+[10:16:20] "sk_cof_glock1" is "13"
+[10:16:20] COF/FENCE alpha_11 time=2.9
+[10:16:20] org ( 35.0312 -142.969 346.062 )
+[10:16:20] ang ( 0 270 0 )
+[10:16:20] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:20] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:20] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:20] carried 1: weapon_glock
+[10:16:20] carried 1: weapon_switchblade
+[10:16:20] carried 1: weapon_mobile
+[10:16:20] monster monster_faster health 25 dead 0 dist 522
+[10:16:20] monster monster_faster health 25 dead 0 dist 384
+[10:16:20] monster monstermaker health 0 dead 0 dist 438
+[10:16:20] monster monstermaker health 0 dead 0 dist 176
+[10:16:20] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:20] monster monstermaker health 0 dead 0 dist 318
+[10:16:20] monster monster_generic health 8 dead 0 dist 502
+[10:16:20] monster  health 50 dead 0 dist 297
+[10:16:20] COF/LIST monster_faster #255 origin=-485,-176,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:20] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:20] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:20] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:20] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=2.93 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:20] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-0.382 secondary=-0.001 playernext=0.118 reload=0 buttons=0 health=100
+[10:16:20] COF/USEAIM hit= class=trigger_checkbrush fraction=0.952636719
+[10:16:20] COF/USEAIM candidate= class=inter_door dot=-0
+[10:16:20] COF/USEAIM candidate= class=inter_door dot=-0.972110868
+[10:16:20] COF/USEAIM candidate= class=trigger_checkbrush dot=-0
+[10:16:20] COF/FENCE alpha_12 time=2.93
+[10:16:20] Done.
+[10:16:20] Note: GL2_GetProg: Generating progs for 0x0017
+[10:16:20] Note: GL2_GetProg: Generated progs for 0x0017
+[.WebGL-0x534001eee00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+[.WebGL-0x534001eee00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+[10:16:20] org ( 35.0312 -142.969 346.062 )
+[10:16:20] ang ( 27.192 181.824 0 )
+[10:16:20] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:20] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:20] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:20] carried 1: weapon_glock
+[10:16:20] carried 1: weapon_switchblade
+[10:16:20] carried 1: weapon_mobile
+[10:16:20] monster monster_faster health 25 dead 0 dist 522
+[10:16:20] monster monster_faster health 25 dead 0 dist 384
+[10:16:20] monster monstermaker health 0 dead 0 dist 438
+[10:16:20] monster monstermaker health 0 dead 0 dist 176
+[10:16:20] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:20] monster monstermaker health 0 dead 0 dist 318
+[10:16:20] monster monster_generic health 8 dead 0 dist 502
+[10:16:20] COF/LIST monster_faster #255 origin=-485,-176,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:20] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:20] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:20] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:20] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=2.983 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:20] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-0.466 secondary=-0.001 playernext=0.0339999 reload=0 buttons=0 health=100
+[10:16:20] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:20] COF/USEAIM candidate= class=inter_door dot=-0.456960738
+[10:16:20] COF/USEAIM candidate= class=inter_door dot=0.079649128
+[10:16:20] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.456960738
+[10:16:20] COF/FENCE alpha_13 time=2.983
+[10:16:20] COF/HUD STAT 100 100 0 0
+[.WebGL-0x534001eee00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+[.WebGL-0x534001eee00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now. (this message will no longer repeat)
+[10:16:21] org ( 35.0312 -142.969 346.062 )
+[10:16:21] ang ( 25.74 181.824 0 )
+[10:16:21] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:21] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:21] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:21] carried 1: weapon_glock
+[10:16:21] carried 1: weapon_switchblade
+[10:16:21] carried 1: weapon_mobile
+[10:16:21] monster monster_faster health 25 dead 0 dist 522
+[10:16:21] monster monster_faster health 25 dead 0 dist 384
+[10:16:21] monster monstermaker health 0 dead 0 dist 438
+[10:16:21] monster monstermaker health 0 dead 0 dist 176
+[10:16:21] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:21] monster monstermaker health 0 dead 0 dist 318
+[10:16:21] monster monster_generic health 8 dead 0 dist 502
+[10:16:21] COF/LIST monster_faster #255 origin=-485,-176,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:21] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:21] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:21] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:21] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=3.418 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:21] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-0.958 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:21] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:21] COF/USEAIM candidate= class=inter_door dot=-0.434216887
+[10:16:21] COF/USEAIM candidate= class=inter_door dot=0.0739649534
+[10:16:21] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.434216887
+[10:16:21] COF/FENCE alpha_14 time=3.418
+[10:16:21] org ( 35.0312 -142.969 346.062 )
+[10:16:21] ang ( 25.806 181.824 0 )
+[10:16:21] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:21] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:21] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:21] carried 1: weapon_glock
+[10:16:21] carried 1: weapon_switchblade
+[10:16:21] carried 1: weapon_mobile
+[10:16:21] monster monster_faster health 25 dead 0 dist 522
+[10:16:21] monster monster_faster health 25 dead 0 dist 384
+[10:16:21] monster monstermaker health 0 dead 0 dist 438
+[10:16:21] monster monstermaker health 0 dead 0 dist 176
+[10:16:21] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:21] monster monstermaker health 0 dead 0 dist 318
+[10:16:21] monster monster_generic health 8 dead 0 dist 502
+[10:16:21] COF/LIST monster_faster #255 origin=-485,-176,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:21] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:21] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:21] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:21] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=4 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:21] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:21] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:21] COF/USEAIM candidate= class=inter_door dot=-0.435252964
+[10:16:21] COF/USEAIM candidate= class=inter_door dot=0.0742234066
+[10:16:21] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.435252964
+[10:16:21] COF/FENCE alpha_15 time=4
+[10:16:22] org ( 35.0312 -142.969 346.062 )
+[10:16:22] ang ( 25.806 181.824 0 )
+[10:16:22] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:22] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:22] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:22] carried 1: weapon_glock
+[10:16:22] carried 1: weapon_switchblade
+[10:16:22] carried 1: weapon_mobile
+[10:16:22] monster monster_faster health 25 dead 0 dist 493
+[10:16:22] monster monster_faster health 25 dead 0 dist 384
+[10:16:22] monster monstermaker health 0 dead 0 dist 438
+[10:16:22] monster monstermaker health 0 dead 0 dist 176
+[10:16:22] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:22] monster monstermaker health 0 dead 0 dist 318
+[10:16:22] monster monster_generic health 8 dead 0 dist 502
+[10:16:22] COF/LIST monster_faster #255 origin=-455,-175,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:22] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:22] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:22] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:22] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=4.333 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:22] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:22] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:22] COF/USEAIM candidate= class=inter_door dot=-0.435252964
+[10:16:22] COF/USEAIM candidate= class=inter_door dot=0.0742234066
+[10:16:22] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.435252964
+[10:16:22] COF/FENCE alpha_16 time=4.333
+[10:16:22] org ( 35.0312 -142.969 346.062 )
+[10:16:22] ang ( 25.806 181.824 0 )
+[10:16:22] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:22] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:22] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:22] carried 1: weapon_glock
+[10:16:22] carried 1: weapon_switchblade
+[10:16:22] carried 1: weapon_mobile
+[10:16:22] monster monster_faster health 25 dead 0 dist 397
+[10:16:22] monster monster_faster health 25 dead 0 dist 384
+[10:16:22] monster monstermaker health 0 dead 0 dist 438
+[10:16:22] monster monstermaker health 0 dead 0 dist 176
+[10:16:22] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:22] monster monstermaker health 0 dead 0 dist 318
+[10:16:22] monster monster_generic health 8 dead 0 dist 502
+[10:16:22] COF/LIST monster_faster #255 origin=-360,-172,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:22] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:22] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:22] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:22] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=4.796 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:22] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:22] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:22] COF/USEAIM candidate= class=inter_door dot=-0.435252964
+[10:16:22] COF/USEAIM candidate= class=inter_door dot=0.0742234066
+[10:16:22] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.435252964
+[10:16:22] COF/FENCE alpha_17 time=4.796
+[10:16:22] COF/HUD STAT 100 100 0 0
+[10:16:22] org ( 35.0312 -142.969 346.062 )
+[10:16:22] ang ( 25.806 181.824 0 )
+[10:16:22] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:22] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:22] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:22] carried 1: weapon_glock
+[10:16:22] carried 1: weapon_switchblade
+[10:16:22] carried 1: weapon_mobile
+[10:16:22] monster monster_faster health 25 dead 0 dist 331
+[10:16:22] monster monster_faster health 25 dead 0 dist 384
+[10:16:22] monster monstermaker health 0 dead 0 dist 438
+[10:16:22] monster monstermaker health 0 dead 0 dist 176
+[10:16:22] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:22] monster monstermaker health 0 dead 0 dist 318
+[10:16:22] monster monster_generic health 8 dead 0 dist 502
+[10:16:22] COF/LIST monster_faster #255 origin=-293,-169,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:22] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:22] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:22] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:22] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=5.196 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:22] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:22] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:22] COF/USEAIM candidate= class=inter_door dot=-0.435252964
+[10:16:22] COF/USEAIM candidate= class=inter_door dot=0.0742234066
+[10:16:22] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.435252964
+[10:16:22] COF/FENCE alpha_18 time=5.196
+[10:16:23] org ( 35.0312 -142.969 346.062 )
+[10:16:23] ang ( 3.036 184.526 0 )
+[10:16:23] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:23] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:23] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:23] carried 1: weapon_glock
+[10:16:23] carried 1: weapon_switchblade
+[10:16:23] carried 1: weapon_mobile
+[10:16:23] monster monster_faster health 25 dead 0 dist 310
+[10:16:23] monster monster_faster health 25 dead 0 dist 384
+[10:16:23] monster monstermaker health 0 dead 0 dist 438
+[10:16:23] monster monstermaker health 0 dead 0 dist 176
+[10:16:23] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:23] monster monstermaker health 0 dead 0 dist 318
+[10:16:23] monster monster_generic health 8 dead 0 dist 502
+[10:16:23] COF/LIST monster_faster #255 origin=-272,-169,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:23] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:23] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:23] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:23] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=5.458 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:23] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:23] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:23] COF/USEAIM candidate= class=inter_door dot=-0.0528976396
+[10:16:23] COF/USEAIM candidate= class=inter_door dot=-0.0642037541
+[10:16:23] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.0528976396
+[10:16:23] COF/FENCE alpha_19 time=5.458
+[10:16:23] org ( 35.0312 -142.969 346.062 )
+[10:16:23] ang ( 4.488 184.856 0 )
+[10:16:23] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:23] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:23] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:23] carried 1: weapon_glock
+[10:16:23] carried 1: weapon_switchblade
+[10:16:23] carried 1: weapon_mobile
+[10:16:23] monster monster_faster health 25 dead 0 dist 310
+[10:16:23] monster monster_faster health 25 dead 0 dist 384
+[10:16:23] monster monstermaker health 0 dead 0 dist 438
+[10:16:23] monster monstermaker health 0 dead 0 dist 176
+[10:16:23] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:23] monster monstermaker health 0 dead 0 dist 318
+[10:16:23] monster monster_generic health 8 dead 0 dist 502
+[10:16:23] COF/LIST monster_faster #255 origin=-272,-169,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:23] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:23] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:23] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:23] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=5.758 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:23] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:23] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:23] COF/USEAIM candidate= class=inter_door dot=-0.0782488212
+[10:16:23] COF/USEAIM candidate= class=inter_door dot=-0.0636868402
+[10:16:23] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.0782488212
+[10:16:23] COF/FENCE alpha_20 time=5.758
+[10:16:23] org ( 35.0312 -142.969 346.062 )
+[10:16:23] ang ( 4.488 184.856 0 )
+[10:16:23] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:23] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:23] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:23] carried 1: weapon_glock
+[10:16:23] carried 1: weapon_switchblade
+[10:16:23] carried 1: weapon_mobile
+[10:16:23] monster monster_faster health 25 dead 0 dist 310
+[10:16:23] monster monster_faster health 25 dead 0 dist 384
+[10:16:23] monster monstermaker health 0 dead 0 dist 438
+[10:16:23] monster monstermaker health 0 dead 0 dist 176
+[10:16:23] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:23] monster monstermaker health 0 dead 0 dist 318
+[10:16:23] monster monster_generic health 8 dead 0 dist 502
+[10:16:23] COF/LIST monster_faster #255 origin=-272,-169,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:23] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:23] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:23] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:23] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=6.058 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:23] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:23] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:23] COF/USEAIM candidate= class=inter_door dot=-0.0782488212
+[10:16:23] COF/USEAIM candidate= class=inter_door dot=-0.0636868402
+[10:16:23] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.0782488212
+[10:16:23] COF/FENCE alpha_21 time=6.058
+[10:16:25] org ( 35.0312 -142.969 346.062 )
+[10:16:25] ang ( 4.488 184.856 0 )
+[10:16:25] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:25] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:25] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:25] carried 1: weapon_glock
+[10:16:25] carried 1: weapon_switchblade
+[10:16:25] carried 1: weapon_mobile
+[10:16:25] monster monster_faster health 25 dead 0 dist 310
+[10:16:25] monster monster_faster health 25 dead 0 dist 384
+[10:16:25] monster monstermaker health 0 dead 0 dist 438
+[10:16:25] monster monstermaker health 0 dead 0 dist 176
+[10:16:25] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:25] monster monstermaker health 0 dead 0 dist 318
+[10:16:25] monster monster_generic health 8 dead 0 dist 502
+[10:16:25] COF/LIST monster_faster #255 origin=-272,-169,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:25] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:25] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:25] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:25] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=6.528 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:25] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:25] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:25] COF/USEAIM candidate= class=inter_door dot=-0.0782488212
+[10:16:25] COF/USEAIM candidate= class=inter_door dot=-0.0636868402
+[10:16:25] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.0782488212
+[10:16:25] COF/FENCE alpha_22 time=6.528
+[10:16:25] org ( 35.0312 -142.969 346.062 )
+[10:16:25] ang ( 4.488 184.856 0 )
+[10:16:25] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:25] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:25] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:25] carried 1: weapon_glock
+[10:16:25] carried 1: weapon_switchblade
+[10:16:25] carried 1: weapon_mobile
+[10:16:25] monster monster_faster health 25 dead 0 dist 310
+[10:16:25] monster monster_faster health 25 dead 0 dist 384
+[10:16:25] monster monstermaker health 0 dead 0 dist 438
+[10:16:25] monster monstermaker health 0 dead 0 dist 176
+[10:16:25] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:25] monster monstermaker health 0 dead 0 dist 318
+[10:16:25] monster monster_generic health 8 dead 0 dist 502
+[10:16:25] COF/LIST monster_faster #255 origin=-272,-169,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:25] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:25] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:25] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:25] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=6.747 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:25] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:25] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:25] COF/USEAIM candidate= class=inter_door dot=-0.0782488212
+[10:16:25] COF/USEAIM candidate= class=inter_door dot=-0.0636868402
+[10:16:25] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.0782488212
+[10:16:25] COF/FENCE alpha_23 time=6.747
+[10:16:25] COF/HUD STAT 100 100 0 0
+[10:16:25] org ( 35.0312 -142.969 346.062 )
+[10:16:25] ang ( 4.488 184.856 0 )
+[10:16:25] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:25] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:25] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:25] carried 1: weapon_glock
+[10:16:25] carried 1: weapon_switchblade
+[10:16:25] carried 1: weapon_mobile
+[10:16:25] monster monster_faster health 25 dead 0 dist 310
+[10:16:25] monster monster_faster health 25 dead 0 dist 384
+[10:16:25] monster monstermaker health 0 dead 0 dist 438
+[10:16:25] monster monstermaker health 0 dead 0 dist 176
+[10:16:25] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:25] monster monstermaker health 0 dead 0 dist 318
+[10:16:25] monster monster_generic health 8 dead 0 dist 502
+[10:16:25] COF/LIST monster_faster #255 origin=-272,-169,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:25] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:25] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:25] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:25] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=7.082 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:25] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:25] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:25] COF/USEAIM candidate= class=inter_door dot=-0.0782488212
+[10:16:25] COF/USEAIM candidate= class=inter_door dot=-0.0636868402
+[10:16:25] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.0782488212
+[10:16:25] COF/FENCE alpha_24 time=7.082
+[10:16:26] org ( 35.0312 -142.969 346.062 )
+[10:16:26] ang ( 4.488 184.856 0 )
+[10:16:26] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:26] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:26] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:26] carried 1: weapon_glock
+[10:16:26] carried 1: weapon_switchblade
+[10:16:26] carried 1: weapon_mobile
+[10:16:26] monster monster_faster health 25 dead 0 dist 310
+[10:16:26] monster monster_faster health 25 dead 0 dist 384
+[10:16:26] monster monstermaker health 0 dead 0 dist 438
+[10:16:26] monster monstermaker health 0 dead 0 dist 176
+[10:16:26] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:26] monster monstermaker health 0 dead 0 dist 318
+[10:16:26] monster monster_generic health 8 dead 0 dist 502
+[10:16:26] COF/LIST monster_faster #255 origin=-272,-169,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:26] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:26] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:26] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:26] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=7.427 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:26] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:26] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:26] COF/USEAIM candidate= class=inter_door dot=-0.0782488212
+[10:16:26] COF/USEAIM candidate= class=inter_door dot=-0.0636868402
+[10:16:26] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.0782488212
+[10:16:26] COF/FENCE alpha_25 time=7.427
+[10:16:26] org ( 35.0312 -142.969 346.062 )
+[10:16:26] ang ( 4.488 184.856 0 )
+[10:16:26] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:26] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:26] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:26] carried 1: weapon_glock
+[10:16:26] carried 1: weapon_switchblade
+[10:16:26] carried 1: weapon_mobile
+[10:16:26] monster monster_faster health 25 dead 0 dist 310
+[10:16:26] monster monster_faster health 25 dead 0 dist 384
+[10:16:26] monster monstermaker health 0 dead 0 dist 438
+[10:16:26] monster monstermaker health 0 dead 0 dist 176
+[10:16:26] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:26] monster monstermaker health 0 dead 0 dist 318
+[10:16:26] monster monster_generic health 8 dead 0 dist 502
+[10:16:26] COF/LIST monster_faster #255 origin=-272,-169,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:26] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:26] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:26] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:26] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=7.774 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:26] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:26] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:26] COF/USEAIM candidate= class=inter_door dot=-0.0782488212
+[10:16:26] COF/USEAIM candidate= class=inter_door dot=-0.0636868402
+[10:16:26] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.0782488212
+[10:16:26] COF/FENCE alpha_26 time=7.774
+[10:16:26] org ( 35.0312 -142.969 346.062 )
+[10:16:26] ang ( 4.488 184.856 0 )
+[10:16:26] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:26] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:26] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:26] carried 1: weapon_glock
+[10:16:26] carried 1: weapon_switchblade
+[10:16:26] carried 1: weapon_mobile
+[10:16:26] monster monster_faster health 25 dead 0 dist 215
+[10:16:26] monster monster_faster health 25 dead 0 dist 384
+[10:16:26] monster monstermaker health 0 dead 0 dist 438
+[10:16:26] monster monstermaker health 0 dead 0 dist 176
+[10:16:26] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:26] monster monstermaker health 0 dead 0 dist 318
+[10:16:26] monster monster_generic health 8 dead 0 dist 502
+[10:16:26] COF/LIST monster_faster #255 origin=-175,-167,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:26] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:26] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:26] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:26] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=8.221 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:26] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:26] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:26] COF/USEAIM candidate= class=inter_door dot=-0.0782488212
+[10:16:26] COF/USEAIM candidate= class=inter_door dot=-0.0636868402
+[10:16:26] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.0782488212
+[10:16:26] COF/FENCE alpha_27 time=8.221
+[10:16:27] org ( 35.0312 -142.969 346.062 )
+[10:16:27] ang ( 6.6 186.504 0 )
+[10:16:27] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:27] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:27] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:27] carried 1: weapon_glock
+[10:16:27] carried 1: weapon_switchblade
+[10:16:27] carried 1: weapon_mobile
+[10:16:27] monster monster_faster health 25 dead 0 dist 154
+[10:16:27] monster monster_faster health 25 dead 0 dist 384
+[10:16:27] monster monstermaker health 0 dead 0 dist 438
+[10:16:27] monster monstermaker health 0 dead 0 dist 176
+[10:16:27] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:27] monster monstermaker health 0 dead 0 dist 318
+[10:16:27] monster monster_generic health 8 dead 0 dist 502
+[10:16:27] COF/LIST monster_faster #255 origin=-113,-165,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:27] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:27] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:27] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:27] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=8.541 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:27] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:27] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:27] COF/USEAIM candidate= class=inter_door dot=-0.114890166
+[10:16:27] COF/USEAIM candidate= class=inter_door dot=-0.082438536
+[10:16:27] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.114890166
+[10:16:27] COF/FENCE alpha_28 time=8.541
+[10:16:27] org ( 35.0312 -142.969 346.062 )
+[10:16:27] ang ( 9.24 188.481 0 )
+[10:16:27] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:27] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:27] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:27] carried 1: weapon_glock
+[10:16:27] carried 1: weapon_switchblade
+[10:16:27] carried 1: weapon_mobile
+[10:16:27] monster monster_faster health 25 dead 0 dist 146
+[10:16:27] monster monster_faster health 25 dead 0 dist 384
+[10:16:27] monster monstermaker health 0 dead 0 dist 438
+[10:16:27] monster monstermaker health 0 dead 0 dist 176
+[10:16:27] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:27] monster monstermaker health 0 dead 0 dist 318
+[10:16:27] monster monster_generic health 8 dead 0 dist 502
+[10:16:27] COF/LIST monster_faster #255 origin=-105,-164,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:27] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:27] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:27] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:27] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=8.801 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:27] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:27] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:27] COF/USEAIM candidate= class=inter_door dot=-0.160561711
+[10:16:27] COF/USEAIM candidate= class=inter_door dot=-0.10386046
+[10:16:27] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.160561711
+[10:16:27] COF/FENCE alpha_29 time=8.801
+[10:16:27] COF/HUD STAT 100 100 0 0
+[10:16:27] org ( 35.0312 -142.969 346.062 )
+[10:16:27] ang ( 9.636 188.547 0 )
+[10:16:27] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:27] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:27] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:27] carried 1: weapon_glock
+[10:16:27] carried 1: weapon_switchblade
+[10:16:27] carried 1: weapon_mobile
+[10:16:27] monster monster_faster health 25 dead 0 dist 146
+[10:16:27] monster monster_faster health 25 dead 0 dist 384
+[10:16:27] monster monstermaker health 0 dead 0 dist 438
+[10:16:27] monster monstermaker health 0 dead 0 dist 176
+[10:16:27] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:27] monster monstermaker health 0 dead 0 dist 318
+[10:16:27] monster monster_generic health 8 dead 0 dist 502
+[10:16:27] COF/LIST monster_faster #255 origin=-105,-164,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:27] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:27] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:27] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:27] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=9.101 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:27] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:27] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:27] COF/USEAIM candidate= class=inter_door dot=-0.167371199
+[10:16:27] COF/USEAIM candidate= class=inter_door dot=-0.103191592
+[10:16:27] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.167371199
+[10:16:27] COF/FENCE alpha_30 time=9.101
+[10:16:27] org ( 35.0312 -142.969 346.062 )
+[10:16:27] ang ( 9.636 188.547 0 )
+[10:16:27] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:27] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:27] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:27] carried 1: weapon_glock
+[10:16:27] carried 1: weapon_switchblade
+[10:16:27] carried 1: weapon_mobile
+[10:16:27] monster monster_faster health 25 dead 0 dist 146
+[10:16:27] monster monster_faster health 25 dead 0 dist 384
+[10:16:28] monster monstermaker health 0 dead 0 dist 438
+[10:16:28] monster monstermaker health 0 dead 0 dist 176
+[10:16:28] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:28] monster monstermaker health 0 dead 0 dist 318
+[10:16:28] monster monster_generic health 8 dead 0 dist 502
+[10:16:28] COF/LIST monster_faster #255 origin=-105,-164,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:28] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:28] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:28] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:28] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=9.401 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:28] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:28] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:28] COF/USEAIM candidate= class=inter_door dot=-0.167371199
+[10:16:28] COF/USEAIM candidate= class=inter_door dot=-0.103191592
+[10:16:28] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.167371199
+[10:16:28] COF/FENCE alpha_31 time=9.401
+[10:16:28] org ( 35.0312 -142.969 346.062 )
+[10:16:28] ang ( 9.636 188.547 0 )
+[10:16:28] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:28] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:28] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:28] carried 1: weapon_glock
+[10:16:28] carried 1: weapon_switchblade
+[10:16:28] carried 1: weapon_mobile
+[10:16:28] monster monster_faster health 25 dead 0 dist 146
+[10:16:28] monster monster_faster health 25 dead 0 dist 384
+[10:16:28] monster monstermaker health 0 dead 0 dist 438
+[10:16:28] monster monstermaker health 0 dead 0 dist 176
+[10:16:28] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:28] monster monstermaker health 0 dead 0 dist 318
+[10:16:28] monster monster_generic health 8 dead 0 dist 502
+[10:16:28] COF/LIST monster_faster #255 origin=-105,-164,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:28] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:28] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:28] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:28] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=9.667 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:28] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:28] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:28] COF/USEAIM candidate= class=inter_door dot=-0.167371199
+[10:16:28] COF/USEAIM candidate= class=inter_door dot=-0.103191592
+[10:16:28] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.167371199
+[10:16:28] COF/FENCE alpha_32 time=9.667
+[10:16:29] org ( 35.0312 -142.969 346.062 )
+[10:16:29] ang ( 9.636 188.547 0 )
+[10:16:29] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:29] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:29] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:29] carried 1: weapon_glock
+[10:16:29] carried 1: weapon_switchblade
+[10:16:29] carried 1: weapon_mobile
+[10:16:29] monster monster_faster health 25 dead 0 dist 146
+[10:16:29] monster monster_faster health 25 dead 0 dist 384
+[10:16:29] monster monstermaker health 0 dead 0 dist 438
+[10:16:29] monster monstermaker health 0 dead 0 dist 176
+[10:16:29] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:29] monster monstermaker health 0 dead 0 dist 318
+[10:16:29] monster monster_generic health 8 dead 0 dist 502
+[10:16:29] COF/LIST monster_faster #255 origin=-105,-164,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:29] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:29] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:29] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:29] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=10.442 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:29] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:29] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:29] COF/USEAIM candidate= class=inter_door dot=-0.167371199
+[10:16:29] COF/USEAIM candidate= class=inter_door dot=-0.103191592
+[10:16:29] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.167371199
+[10:16:29] COF/FENCE alpha_33 time=10.442
+[10:16:29] org ( 35.0312 -142.969 346.062 )
+[10:16:29] ang ( 9.636 188.547 0 )
+[10:16:29] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:29] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:29] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:29] carried 1: weapon_glock
+[10:16:29] carried 1: weapon_switchblade
+[10:16:29] carried 1: weapon_mobile
+[10:16:29] monster monster_faster health 25 dead 0 dist 146
+[10:16:29] monster monster_faster health 25 dead 0 dist 384
+[10:16:29] monster monstermaker health 0 dead 0 dist 438
+[10:16:29] monster monstermaker health 0 dead 0 dist 176
+[10:16:29] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:29] monster monstermaker health 0 dead 0 dist 318
+[10:16:29] monster monster_generic health 8 dead 0 dist 502
+[10:16:29] COF/LIST monster_faster #255 origin=-105,-164,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:29] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:29] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:29] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:29] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=10.952 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:29] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:29] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:29] COF/USEAIM candidate= class=inter_door dot=-0.167371199
+[10:16:29] COF/USEAIM candidate= class=inter_door dot=-0.103191592
+[10:16:29] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.167371199
+[10:16:29] COF/FENCE alpha_34 time=10.952
+[10:16:29] COF/HUD STAT 100 100 0 0
+[10:16:30] org ( 35.0312 -142.969 346.062 )
+[10:16:30] ang ( 9.636 188.547 0 )
+[10:16:30] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:30] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:30] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:30] carried 1: weapon_glock
+[10:16:30] carried 1: weapon_switchblade
+[10:16:30] carried 1: weapon_mobile
+[10:16:30] monster monster_faster health 25 dead 0 dist 146
+[10:16:30] monster monster_faster health 25 dead 0 dist 384
+[10:16:30] monster monstermaker health 0 dead 0 dist 438
+[10:16:30] monster monstermaker health 0 dead 0 dist 176
+[10:16:30] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:30] monster monstermaker health 0 dead 0 dist 318
+[10:16:30] monster monster_generic health 8 dead 0 dist 502
+[10:16:30] COF/LIST monster_faster #255 origin=-105,-164,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:30] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:30] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:30] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:30] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=11.242 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:30] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:30] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:30] COF/USEAIM candidate= class=inter_door dot=-0.167371199
+[10:16:30] COF/USEAIM candidate= class=inter_door dot=-0.103191592
+[10:16:30] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.167371199
+[10:16:30] COF/FENCE alpha_35 time=11.242
+[10:16:30] org ( 35.0312 -142.969 346.062 )
+[10:16:30] ang ( 9.636 188.547 0 )
+[10:16:30] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:30] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:30] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:30] carried 1: weapon_glock
+[10:16:30] carried 1: weapon_switchblade
+[10:16:30] carried 1: weapon_mobile
+[10:16:30] monster monster_faster health 25 dead 0 dist 87
+[10:16:30] monster monster_faster health 25 dead 0 dist 384
+[10:16:30] monster monstermaker health 0 dead 0 dist 438
+[10:16:30] monster monstermaker health 0 dead 0 dist 176
+[10:16:30] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:30] monster monstermaker health 0 dead 0 dist 318
+[10:16:30] monster monster_generic health 8 dead 0 dist 502
+[10:16:30] COF/LIST monster_faster #255 origin=-44,-156,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:30] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:30] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:30] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:30] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=11.538 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:30] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:30] COF/USEAIM hit= class=monster_faster fraction=0.778663397
+[10:16:30] COF/USEAIM candidate= class=inter_door dot=-0.167371199
+[10:16:30] COF/USEAIM candidate= class=inter_door dot=-0.103191592
+[10:16:30] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.167371199
+[10:16:30] COF/FENCE alpha_36 time=11.538
+[10:16:30] Warning: FS_LoadSound: couldn't load "weapons/ric1"
+[10:16:30] Warning: FS_LoadSound: couldn't load "weapons/ric2"
+[10:16:30] org ( 35.0312 -142.969 346.062 )
+[10:16:30] ang ( 2.734 215.733 0 )
+[10:16:30] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:30] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:30] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:30] carried 1: weapon_glock
+[10:16:30] carried 1: weapon_switchblade
+[10:16:30] carried 1: weapon_mobile
+[10:16:30] monster monster_faster health 25 dead 0 dist 69
+[10:16:30] monster monster_faster health 25 dead 0 dist 384
+[10:16:30] monster monstermaker health 0 dead 0 dist 438
+[10:16:30] monster monstermaker health 0 dead 0 dist 176
+[10:16:30] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:30] monster monstermaker health 0 dead 0 dist 318
+[10:16:30] monster monster_generic health 8 dead 0 dist 502
+[10:16:30] COF/LIST monster_faster #255 origin=-23,-152,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:30] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:30] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:30] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:30] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=11.901 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:30] COF/WEAPON class=weapon_glock clip=14 ammo=0 primary=0.088 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[10:16:30] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:30] COF/USEAIM candidate= class=inter_door dot=-0.0466779731
+[10:16:30] COF/USEAIM candidate= class=inter_door dot=-0.55615598
+[10:16:30] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.0466779731
+[10:16:30] COF/FENCE alpha_37 time=11.901
+[10:16:30] Warning: FS_LoadSound: couldn't load "weapons/ric5"
+[10:16:31] org ( 35.0312 -142.969 346.062 )
+[10:16:31] ang ( 23.76 188.866 0 )
+[10:16:31] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:31] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:31] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:31] carried 1: weapon_glock
+[10:16:31] carried 1: weapon_switchblade
+[10:16:31] carried 1: weapon_mobile
+[10:16:31] monster monster_faster health 25 dead 0 dist 69
+[10:16:31] monster monster_faster health 25 dead 0 dist 384
+[10:16:31] monster monstermaker health 0 dead 0 dist 438
+[10:16:31] monster monstermaker health 0 dead 0 dist 176
+[10:16:31] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:31] monster monstermaker health 0 dead 0 dist 318
+[10:16:31] monster monster_generic health 8 dead 0 dist 502
+[10:16:31] COF/LIST monster_faster #255 origin=-23,-152,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:31] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:31] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:31] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:31] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=12.301 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:31] COF/WEAPON class=weapon_glock clip=13 ammo=0 primary=-0.039 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[10:16:31] COF/USEAIM hit= class=worldspawn fraction=1
+[10:16:31] COF/USEAIM candidate= class=inter_door dot=-0.402873456
+[10:16:31] COF/USEAIM candidate= class=inter_door dot=-0.0426456779
+[10:16:31] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.402873456
+[10:16:31] COF/FENCE alpha_38 time=12.301
+[10:16:31] org ( 35.0312 -142.969 346.062 )
+[10:16:31] ang ( 22.058 188.866 0 )
+[10:16:31] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:31] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:31] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:31] carried 1: weapon_glock
+[10:16:31] carried 1: weapon_switchblade
+[10:16:31] carried 1: weapon_mobile
+[10:16:31] monster monster_faster health 12 dead 0 dist 69
+[10:16:31] monster monster_faster health 25 dead 0 dist 384
+[10:16:31] monster monstermaker health 0 dead 0 dist 438
+[10:16:31] monster monstermaker health 0 dead 0 dist 176
+[10:16:31] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:31] monster monstermaker health 0 dead 0 dist 318
+[10:16:31] monster monster_generic health 8 dead 0 dist 502
+[10:16:31] COF/LIST monster_faster #255 origin=-23,-152,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:31] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:31] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:31] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:31] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=12.501 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:31] COF/WEAPON class=weapon_glock clip=12 ammo=0 primary=0.042 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[10:16:31] COF/USEAIM hit= class=monster_faster fraction=0.610757053
+[10:16:31] COF/USEAIM candidate= class=inter_door dot=-0.375206918
+[10:16:31] COF/USEAIM candidate= class=inter_door dot=-0.0508848503
+[10:16:31] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.375206918
+[10:16:31] COF/FENCE alpha_39 time=12.501
+[10:16:31] org ( 35.0312 -142.969 346.062 )
+[10:16:31] ang ( 20.94 188.866 0 )
+[10:16:31] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:31] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:31] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:31] carried 1: weapon_glock
+[10:16:31] carried 1: weapon_switchblade
+[10:16:31] carried 1: weapon_mobile
+[10:16:31] monster monster_faster health 12 dead 1 dist 69
+[10:16:31] monster monster_faster health 25 dead 0 dist 384
+[10:16:31] monster monstermaker health 0 dead 0 dist 438
+[10:16:31] monster monstermaker health 0 dead 0 dist 176
+[10:16:31] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:31] monster monstermaker health 0 dead 0 dist 318
+[10:16:31] monster monster_generic health 8 dead 0 dist 502
+[10:16:31] COF/LIST monster_faster #255 origin=-23,-152,282 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:31] COF/LIST monster_faster #262 origin=-797,-577,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:31] COF/LIST monster_faster #263 origin=-306,-154,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:31] COF/LIST monster_faster #365 origin=3585,3341,141 effects=0 renderfx=0 rendermode=0 modelindex=337 model=models/faster.mdl killme=0
+[10:16:31] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=12.614 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:31] COF/WEAPON class=weapon_glock clip=11 ammo=0 primary=0.178 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[10:16:31] COF/USEAIM hit= class=monster_faster fraction=0.591759562
+[10:16:31] COF/USEAIM candidate= class=inter_door dot=-0.35568735
+[10:16:31] COF/USEAIM candidate= class=inter_door dot=-0.0566108525
+[10:16:31] COF/USEAIM candidate= class=trigger_checkbrush dot=-0.35568735
+[10:16:31] COF/FENCE alpha_40 time=12.614
+[10:16:32] COF/HUD STAT 100 100 0 0
+[10:16:33] Warning: late precache of faster/faster_suicide.wav
+[10:16:35] Warning: late precache of faster/faster_metalfall.wav
+[10:16:35] COF/HUD STAT 100 100 0 0
+[10:16:35] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[10:16:35] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[10:16:35] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[10:16:35] carried 1: weapon_glock
+[10:16:35] carried 1: weapon_switchblade
+[10:16:35] carried 1: weapon_mobile
+[10:16:35] monster monster_faster health 12 dead 1 dist 69
+[10:16:35] monster monster_faster health 25 dead 0 dist 384
+[10:16:35] monster monstermaker health 0 dead 0 dist 438
+[10:16:35] monster monstermaker health 0 dead 0 dist 176
+[10:16:35] monster monster_slower3 health 20 dead 0 dist 530
+[10:16:35] monster monstermaker health 0 dead 0 dist 318
+[10:16:35] monster monster_generic health 8 dead 0 dist 502
+[10:16:35] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=15.223 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:16:35] COF/FENCE alpha_41 time=15.223
+[10:16:35] COF/FENCE alpha_42 time=15.241
+[10:16:37] COF/FENCE alpha_43 time=16.849
+[10:16:37] COF/HUD STAT 100 100 0 0
+[10:16:38] COF/FENCE alpha_44 time=17.523
+[10:16:38] COF/FENCE alpha_45 time=17.545
+[10:16:38] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:16:38] COF/FENCE alpha_46 time=18.145
+[10:16:39] "sensitivity" is "3" ( "3" )
+[10:16:39] "m_yaw" is "0.022" ( "0.022" )
+[10:16:39] "m_pitch" is "0.022" ( "0.022" )
+[10:16:39] COF/FENCE alpha_47 time=18.712
+[10:16:39] org ( 35.0312 -142.969 346.062 )
+[10:16:39] ang ( -19.206 268.055 0 )
+[10:16:39] COF/FENCE alpha_48 time=18.861
+[10:16:40] COF/HUD STAT 100 100 0 0
+[10:16:40] org ( 35.0312 -142.969 346.062 )
+[10:16:40] ang ( 0.924004 359.989 0 )
+[10:16:40] COF/FENCE alpha_49 time=19.53
+[10:16:40] org ( 35.0312 -142.969 346.062 )
+[10:16:40] ang ( 3.57628e-06 359.989 0 )
+[10:16:40] COF/FENCE alpha_50 time=19.759
+[10:16:43] org ( 35.0312 -142.969 346.062 )
+[10:16:43] ang ( 3.57628e-06 359.989 0 )
+[10:16:43] COF/FENCE alpha_51 time=20.435
+[10:16:43] COF/FENCE alpha_52 time=20.852
+[10:16:43] COF/HUD STAT 100 100 0 0
+[10:16:43] org ( 35.0312 -142.969 346.062 )
+[10:16:43] ang ( 3.57628e-06 359.989 0 )
+[10:16:43] COF/FENCE alpha_53 time=21.5
+[10:16:44] COF/FENCE alpha_54 time=21.544
+[10:16:44] "sensitivity" is "3" ( "3" )
+[10:16:44] "m_yaw" is "0.022" ( "0.022" )
+[10:16:44] "m_pitch" is "0.022" ( "0.022" )
+[10:16:44] COF/FENCE alpha_55 time=22.544
+[10:16:44] org ( 35.0312 -142.969 346.062 )
+[10:16:44] ang ( -13.86 26.3837 0 )
+[10:16:44] COF/FENCE alpha_56 time=22.57
+[10:16:45] org ( 35.0312 -142.969 346.062 )
+[10:16:45] ang ( 0.660005 90.0055 0 )
+[10:16:45] COF/FENCE alpha_57 time=22.744
+[10:16:45] org ( 35.0312 -142.969 346.062 )
+[10:16:45] ang ( 4.64916e-06 90.0055 0 )
+[10:16:45] COF/FENCE alpha_58 time=23.044
+[10:16:45] COF/HUD STAT 100 100 0 0
+[10:16:46] org ( 35.0312 -142.969 346.062 )
+[10:16:46] ang ( 4.64916e-06 90.0055 0 )
+[10:16:46] COF/FENCE alpha_59 time=23.765
+[10:16:46] COF/FENCE alpha_60 time=24
+[10:16:47] org ( 35.0312 -142.969 346.062 )
+[10:16:47] ang ( 4.64916e-06 90.0055 0 )
+[10:16:47] COF/FENCE alpha_61 time=24.687
+[10:16:47] COF/FENCE alpha_62 time=24.768
+[10:16:48] COF/HUD STAT 100 100 0 0
+[10:16:48] "sensitivity" is "3" ( "3" )
+[10:16:48] "m_yaw" is "0.022" ( "0.022" )
+[10:16:48] "m_pitch" is "0.022" ( "0.022" )
+[10:16:48] COF/FENCE alpha_63 time=26.018
+[10:16:48] org ( 35.0312 -142.969 346.062 )
+[10:16:48] ang ( 4.64916e-06 90.0055 0 )
+[10:16:48] COF/FENCE alpha_64 time=26.036
+[10:16:49] org ( 35.0312 -142.969 346.062 )
+[10:16:49] ang ( 4.64916e-06 180.027 0 )
+[10:16:49] COF/FENCE alpha_65 time=26.243
+[10:16:50] org ( 35.0312 -142.969 346.062 )
+[10:16:50] ang ( 4.64916e-06 180.027 0 )
+[10:16:50] COF/FENCE alpha_66 time=26.918
+[10:16:51] COF/HUD STAT 100 100 0 0
+[10:16:51] COF/FENCE alpha_67 time=27.332
+[10:16:54] org ( 35.0312 -142.969 346.062 )
+[10:16:54] ang ( 4.64916e-06 180.027 0 )
+[10:16:54] COF/FENCE alpha_68 time=28
+[10:16:55] COF/FENCE alpha_69 time=28.518
+[10:16:55] COF/HUD STAT 100 100 0 0
+[10:16:56] "sensitivity" is "3" ( "3" )
+[10:16:56] "m_yaw" is "0.022" ( "0.022" )
+[10:16:56] "m_pitch" is "0.022" ( "0.022" )
+[10:16:56] COF/FENCE alpha_70 time=29.519
+[10:16:56] org ( 35.0312 -142.969 346.062 )
+[10:16:56] ang ( 4.64916e-06 180.027 0 )
+[10:16:56] COF/FENCE alpha_71 time=29.618
+[10:16:56] org ( 35.0312 -142.969 346.062 )
+[10:16:56] ang ( 4.64916e-06 269.984 0 )
+[10:16:56] COF/FENCE alpha_72 time=29.918
+[10:16:59] org ( 35.0312 -142.969 346.062 )
+[10:16:59] ang ( 4.64916e-06 269.984 0 )
+[10:16:59] COF/FENCE alpha_73 time=30.699
+[10:16:59] COF/FENCE alpha_74 time=31.138
+[10:16:59] COF/HUD STAT 100 100 0 0
+[10:17:00] org ( 35.0312 -142.969 346.062 )
+[10:17:00] ang ( 4.64916e-06 269.984 0 )
+[10:17:00] COF/FENCE alpha_75 time=31.847
+[10:17:00] COF/FENCE alpha_76 time=31.947
+[10:17:01] "sensitivity" is "3" ( "3" )
+[10:17:01] "m_yaw" is "0.022" ( "0.022" )
+[10:17:01] "m_pitch" is "0.022" ( "0.022" )
+[10:17:01] COF/FENCE alpha_77 time=32.992
+[10:17:01] org ( 35.0312 -142.969 346.062 )
+[10:17:01] ang ( -13.86 296.378 0 )
+[10:17:01] COF/FENCE alpha_78 time=33.008
+[10:17:01] COF/HUD STAT 100 100 0 0
+[10:17:01] org ( 35.0312 -142.969 346.062 )
+[10:17:01] ang ( 0.660006 90.022 0 )
+[10:17:01] COF/FENCE alpha_79 time=33.192
+[10:17:01] org ( 35.0312 -142.969 346.062 )
+[10:17:01] ang ( 5.60284e-06 90.022 0 )
+[10:17:01] COF/FENCE alpha_80 time=33.503
+[10:17:02] COF/FENCE alpha_81 time=34.172
+[10:17:03] org ( 35.0312 -142.969 346.062 )
+[10:17:03] ang ( 5.60284e-06 90.022 0 )
+[10:17:03] COF/FENCE alpha_82 time=35
+[10:17:03] COF/HUD STAT 100 100 0 0
+[10:17:05] COF/FENCE alpha_83 time=36.836
+[10:17:05] COF/HUD STAT 100 100 0 0
+[10:17:06] org ( 35.0312 -142.969 346.062 )
+[10:17:06] ang ( 5.60284e-06 90.022 0 )
+[10:17:06] COF/FENCE alpha_84 time=37.561
+[10:17:08] COF/HUD STAT 100 100 0 0
+[10:17:08] COF/FENCE alpha_85 time=39.844
+[10:17:09] COF/SPOT enabled=1 frame=690 renderframe=690 channels=7012 clipped=31 requested=70841 retained=70558 base=358169 cookie=512x512 bytes=1048576 lightmapMs=0 spotMs=0
+[10:17:09] "r_cofspot_fov" is "74.412498" ( "50" )
+[10:17:09] COF/FENCE alpha_86 time=40.383
+[10:17:09] COF/FENCE alpha_87 time=40.417
+[10:17:09] org ( 35.0312 -142.969 346.062 )
+[10:17:09] ang ( 5.60284e-06 90.022 0 )
+[10:17:09] COF/FENCE alpha_88 time=41.097
+[10:17:09] COF/FENCE alpha_89 time=41.131
+[10:17:10] COF/FENCE alpha_90 time=41.272
+[10:17:10] COF/HUD STAT 100 100 0 0
+[10:17:10] COF/FENCE alpha_91 time=41.91
+[10:17:13] org ( 35.0312 -142.969 346.062 )
+[10:17:13] ang ( 5.60284e-06 90.022 0 )
+[10:17:13] COF/FENCE alpha_92 time=42.728
+[10:17:13] COF/HUD STAT 100 100 0 0
+[10:17:14] COF/FENCE alpha_93 time=44.639
+[10:17:15] org ( 35.0312 -142.969 346.062 )
+[10:17:15] ang ( 5.60284e-06 90.022 0 )
+[10:17:15] COF/FENCE alpha_94 time=45.297
+[10:17:15] COF/HUD STAT 100 100 0 0
+[10:17:17] COF/FENCE alpha_95 time=47.296
+[10:17:17] COF/HUD STAT 100 100 0 0
+[10:17:18] COF/SPOT enabled=1 frame=859 renderframe=859 channels=7012 clipped=8 requested=70841 retained=70833 base=279742 cookie=512x512 bytes=1048576 lightmapMs=2 spotMs=2
+[10:17:18] "r_cofspot_fov" is "74.412498" ( "50" )
+[10:17:18] COF/FENCE alpha_96 time=47.93
+[10:17:18] COF/FENCE alpha_97 time=48
+[10:17:20] org ( 35.0312 -142.969 346.062 )
+[10:17:20] ang ( 5.60284e-06 90.022 0 )
+[10:17:20] COF/FENCE alpha_98 time=48.652
+[10:17:20] COF/FENCE alpha_99 time=49.345
+[10:17:20] COF/HUD STAT 100 100 0 0
+[10:17:21] org ( 35.0312 -142.969 346.062 )
+[10:17:21] ang ( 5.60284e-06 90.022 0 )
+[10:17:21] COF/FENCE alpha_100 time=50.009
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Error: Invalid function pointer in entity!
+[10:17:21] Saving game to save/alpha_light_c_apartment3.sav...
+[10:17:21] COF/FENCE alpha_101 time=50.105
+[10:17:21] Loading game from save/alpha_light_c_apartment3.sav...
+[10:17:22] Error: Delta_ParseField: unable to find field is_donator
+[10:17:22] Spawn Server: c_apartment3
+[10:17:22] Loading game from save/c_apartment3.HL1...
+[10:17:22] execing maps/c_apartment3_unload.cfg
+[10:17:22] execing maps/c_apartment3_load.cfg
+[10:17:22] 
+GAME SKILL LEVEL:1
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_agrunt_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_agrunt_dmg_punch1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_apache_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_barney_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_bite1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_whip1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_spit1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_gargantua_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_slash1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_fire1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_stomp1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_hassassin_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_headcrab_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_headcrab_dmg_bite1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_kick1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_pellets1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_gspeed1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_houndeye_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_houndeye_dmg_blast1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_islave_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_claw1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_clawrake1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_zap1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_shake1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_leech_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_leech_dmg_bite1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_controller_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgzap1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_controller_speedball1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgball1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_zap1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_scientist_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_snark_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_bite1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_pop1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_turret_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_miniturret_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_sentry_health1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_plr_crowbar1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_plr_9mm_bullet1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_plr_357_bullet1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_bullet1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_grenade1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_client1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_monster1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_plr_rpg1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_plr_gauss1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_narrow1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_wide1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_plr_hand_grenade1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_plr_satchel1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_plr_tripmine1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_12mm_bullet1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_9mmAR_bullet1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_9mm_bullet1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_hornet_dmg1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_suitcharger1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_battery1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_healthcharger1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_healthkit1 **
+
+[10:17:22] 
+
+** GetSkillCVar Got a zero for sk_scientist_heal1 **
+
+[10:17:22] Error: Could not load model models/w_suit.mdl from disk
+[10:17:22] Error: Could not load model models/w_medkit.mdl from disk
+[10:17:22] Error: Could not load model models/w_battery.mdl from disk
+[10:17:22] Error: Could not load model models/w_antidote.mdl from disk
+[10:17:22] Error: Could not load model models/w_security.mdl from disk
+[10:17:22] Error: Could not load model models/w_longjump.mdl from disk
+[10:17:22] Error: Could not load model models/v_shotgun.mdl from disk
+[10:17:22] Error: Could not load model models/w_shotgun.mdl from disk
+[10:17:22] Error: Could not load model models/p_shotgun.mdl from disk
+[10:17:22] Error: Could not load model models/shotgunshell.mdl from disk
+[10:17:22] Error: Could not load model models/w_shotbox.mdl from disk
+[10:17:22] Error: Could not load model models/v_crowbar.mdl from disk
+[10:17:22] Error: Could not load model models/w_crowbar.mdl from disk
+[10:17:22] Error: Could not load model models/p_crowbar.mdl from disk
+[10:17:22] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[10:17:22] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[10:17:22] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[10:17:22] Error: Could not load model models/shell.mdl from disk
+[10:17:22] Error: Could not load model models/w_9mmclip.mdl from disk
+[10:17:22] Error: Could not load model models/v_9mmAR.mdl from disk
+[10:17:22] Error: Could not load model models/w_9mmAR.mdl from disk
+[10:17:22] Error: Could not load model models/p_9mmAR.mdl from disk
+[10:17:22] Error: Could not load model models/shell.mdl from disk
+[10:17:22] Error: Could not load model models/grenade.mdl from disk
+[10:17:22] Error: Could not load model models/w_9mmARclip.mdl from disk
+[10:17:22] Error: Could not load model models/w_9mmARclip.mdl from disk
+[10:17:22] Error: Could not load model models/w_ARgrenade.mdl from disk
+[10:17:22] Error: Could not load model models/w_chainammo.mdl from disk
+[10:17:22] Error: Could not load model models/v_357.mdl from disk
+[10:17:22] Error: Could not load model models/w_357.mdl from disk
+[10:17:22] Error: Could not load model models/p_357.mdl from disk
+[10:17:22] Error: Could not load model models/w_357ammobox.mdl from disk
+[10:17:22] Error: Could not load model models/w_357ammobox.mdl from disk
+[10:17:22] Error: Could not load model models/w_gauss.mdl from disk
+[10:17:22] Error: Could not load model models/v_gauss.mdl from disk
+[10:17:22] Error: Could not load model models/p_gauss.mdl from disk
+[10:17:22] Error: Could not load model sprites/hotglow.spr from disk
+[10:17:22] Error: Could not load model sprites/hotglow.spr from disk
+[10:17:22] Error: Could not load model sprites/smoke.spr from disk
+[10:17:22] Error: Could not load model models/w_gaussammo.mdl from disk
+[10:17:22] Error: Could not load model models/w_rpg.mdl from disk
+[10:17:22] Error: Could not load model models/v_rpg.mdl from disk
+[10:17:22] Error: Could not load model models/p_rpg.mdl from disk
+[10:17:22] Error: Could not load model sprites/laserdot.spr from disk
+[10:17:22] Error: Could not load model models/rpgrocket.mdl from disk
+[10:17:22] Error: Could not load model sprites/smoke.spr from disk
+[10:17:22] Error: Could not load model models/w_rpgammo.mdl from disk
+[10:17:22] Error: Could not load model models/w_crossbow.mdl from disk
+[10:17:22] Error: Could not load model models/v_crossbow.mdl from disk
+[10:17:22] Error: Could not load model models/p_crossbow.mdl from disk
+[10:17:22] Error: Could not load model models/crossbow_bolt.mdl from disk
+[10:17:22] Error: Could not load model sprites/streak.spr from disk
+[10:17:22] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[10:17:22] Error: Could not load model models/w_egon.mdl from disk
+[10:17:22] Error: Could not load model models/v_egon.mdl from disk
+[10:17:22] Error: Could not load model models/p_egon.mdl from disk
+[10:17:22] Error: Could not load model models/w_9mmclip.mdl from disk
+[10:17:22] Error: Could not load model sprites/xbeam1.spr from disk
+[10:17:22] Error: Could not load model models/v_tripmine.mdl from disk
+[10:17:22] Error: Could not load model models/p_tripmine.mdl from disk
+[10:17:22] Error: Could not load model models/v_tripmine.mdl from disk
+[10:17:22] Error: Could not load model models/v_satchel.mdl from disk
+[10:17:22] Error: Could not load model models/v_satchel_radio.mdl from disk
+[10:17:22] Error: Could not load model models/w_satchel.mdl from disk
+[10:17:22] Error: Could not load model models/p_satchel.mdl from disk
+[10:17:22] Error: Could not load model models/p_satchel_radio.mdl from disk
+[10:17:22] Error: Could not load model models/w_satchel.mdl from disk
+[10:17:22] Error: Could not load model models/w_grenade.mdl from disk
+[10:17:22] Error: Could not load model models/v_grenade.mdl from disk
+[10:17:22] Error: Could not load model models/p_grenade.mdl from disk
+[10:17:22] Error: Could not load model models/w_sqknest.mdl from disk
+[10:17:22] Error: Could not load model models/v_squeak.mdl from disk
+[10:17:22] Error: Could not load model models/p_squeak.mdl from disk
+[10:17:22] Error: Could not load model models/w_squeak.mdl from disk
+[10:17:22] Error: Could not load model models/v_hgun.mdl from disk
+[10:17:22] Error: Could not load model models/w_hgun.mdl from disk
+[10:17:22] Error: Could not load model models/p_hgun.mdl from disk
+[10:17:22] Error: Could not load model models/hornet.mdl from disk
+[10:17:22] Error: Could not load model sprites/muz1.spr from disk
+[10:17:22] Error: Could not load model sprites/zerogxplode.spr from disk
+[10:17:22] Error: Could not load model sprites/WXplo1.spr from disk
+[10:17:22] Error: Could not load model sprites/laserdot.spr from disk
+[10:17:22] Error: Could not load model models/grenade.mdl from disk
+[10:17:22] Error: Could not load model sprites/explode1.spr from disk
+[10:17:22] Error: Could not load model models/player.mdl from disk
+[10:17:22] Error: Could not load model models/hgibs.mdl from disk
+[10:17:22] Error: Could not load model models/agibs.mdl from disk
+[10:17:22] 
+*Graph Loaded!
+[10:17:22] Error: Could not load model models/player.mdl from disk
+[10:17:22] Error: Could not load model models/player.mdl from disk
+[10:17:22] **Graph Pointers Set!
+[10:17:22] Error: No spawn function for ""
+[10:17:22] NULL Ent in UTIL_PrecacheOther
+[10:17:22] Error: No spawn function for ""
+[10:17:22] NULL Ent in UTIL_PrecacheOther
+[10:17:22] Error: No spawn function for ""
+[10:17:22] NULL Ent in UTIL_PrecacheOther
+[10:17:22] Game started
+[10:17:22] level loaded at 0.25 sec
+[10:17:22] execing spserver.cfg
+[10:17:22] Server changing, reconnecting
+[10:17:22] Trying to connect with modern protocol
+[10:17:22] Spooling demo header.
+[10:17:22] 
+BUILD 4221 SERVER (0 CRC)
+Server #2
+[10:17:22] Verifying and downloading resources...
+[10:17:22] Error: Could not load sound sound/items/smallmedkit1.wav
+[10:17:22] Error: Could not load sound sound/items/9mmclip1.wav
+[10:17:22] Error: Could not load sound sound/weapons/dbarrel1.wav
+[10:17:22] Error: Could not load sound sound/weapons/sbarrel1.wav
+[10:17:22] Error: Could not load sound sound/weapons/reload1.wav
+[10:17:22] Error: Could not load sound sound/weapons/reload3.wav
+[10:17:22] Error: Could not load sound sound/weapons/357_cock1.wav
+[10:17:22] Error: Could not load sound sound/weapons/scock1.wav
+[10:17:22] Error: Could not load sound sound/weapons/cbar_hit1.wav
+[10:17:22] Error: Could not load sound sound/weapons/cbar_hit2.wav
+[10:17:22] Error: Could not load sound sound/weapons/cbar_hitbod1.wav
+[10:17:22] Error: Could not load sound sound/weapons/cbar_hitbod2.wav
+[10:17:22] Error: Could not load sound sound/weapons/cbar_hitbod3.wav
+[10:17:22] Error: Could not load sound sound/weapons/cbar_miss1.wav
+[10:17:22] Error: Could not load sound sound/items/9mmclip2.wav
+[10:17:22] Error: Could not load sound sound/weapons/pl_gun1.wav
+[10:17:22] Error: Could not load sound sound/weapons/pl_gun2.wav
+[10:17:22] Error: Could not load sound sound/weapons/pl_gun3.wav
+[10:17:22] Error: Could not load sound sound/items/clipinsert1.wav
+[10:17:22] Error: Could not load sound sound/items/cliprelease1.wav
+[10:17:22] Error: Could not load sound sound/weapons/hks1.wav
+[10:17:22] Error: Could not load sound sound/weapons/hks2.wav
+[10:17:22] Error: Could not load sound sound/weapons/hks3.wav
+[10:17:22] Error: Could not load sound sound/weapons/glauncher.wav
+[10:17:22] Error: Could not load sound sound/weapons/glauncher2.wav
+[10:17:22] Error: Could not load sound sound/weapons/357_reload1.wav
+[10:17:22] Error: Could not load sound sound/weapons/357_shot1.wav
+[10:17:22] Error: Could not load sound sound/weapons/357_shot2.wav
+[10:17:22] Error: Could not load sound sound/weapons/gauss2.wav
+[10:17:22] Error: Could not load sound sound/weapons/electro4.wav
+[10:17:22] Error: Could not load sound sound/weapons/electro5.wav
+[10:17:22] Error: Could not load sound sound/weapons/electro6.wav
+[10:17:22] Error: Could not load sound sound/ambience/pulsemachine.wav
+[10:17:22] Error: Could not load sound sound/weapons/rocket1.wav
+[10:17:22] Error: Could not load sound sound/weapons/rocketfire1.wav
+[10:17:22] Error: Could not load sound sound/weapons/xbow_fire1.wav
+[10:17:22] Error: Could not load sound sound/weapons/xbow_reload1.wav
+[10:17:22] Error: Could not load sound sound/weapons/xbow_hitbod1.wav
+[10:17:22] Error: Could not load sound sound/weapons/xbow_hitbod2.wav
+[10:17:22] Error: Could not load sound sound/weapons/xbow_fly1.wav
+[10:17:22] Error: Could not load sound sound/weapons/xbow_hit1.wav
+[10:17:22] Error: Could not load sound sound/fvox/beep.wav
+[10:17:22] Error: Could not load sound sound/weapons/egon_off1.wav
+[10:17:22] Error: Could not load sound sound/weapons/egon_run3.wav
+[10:17:22] Error: Could not load sound sound/weapons/egon_windup2.wav
+[10:17:22] Error: Could not load sound sound/weapons/mine_deploy.wav
+[10:17:22] Error: Could not load sound sound/weapons/mine_activate.wav
+[10:17:22] Error: Could not load sound sound/weapons/mine_charge.wav
+[10:17:22] Error: Could not load sound sound/weapons/g_bounce1.wav
+[10:17:22] Error: Could not load sound sound/weapons/g_bounce2.wav
+[10:17:22] Error: Could not load sound sound/weapons/g_bounce3.wav
+[10:17:22] Error: Could not load sound sound/squeek/sqk_hunt2.wav
+[10:17:22] Error: Could not load sound sound/squeek/sqk_hunt3.wav
+[10:17:22] Error: Could not load sound sound/squeek/sqk_blast1.wav
+[10:17:22] Error: Could not load sound sound/common/bodysplat.wav
+[10:17:22] Error: Could not load sound sound/squeek/sqk_die1.wav
+[10:17:22] Error: Could not load sound sound/squeek/sqk_hunt1.wav
+[10:17:22] Error: Could not load sound sound/squeek/sqk_deploy1.wav
+[10:17:22] Error: Could not load sound sound/agrunt/ag_fire1.wav
+[10:17:22] Error: Could not load sound sound/agrunt/ag_fire2.wav
+[10:17:22] Error: Could not load sound sound/agrunt/ag_fire3.wav
+[10:17:22] Error: Could not load sound sound/hornet/ag_buzz1.wav
+[10:17:22] Error: Could not load sound sound/hornet/ag_buzz2.wav
+[10:17:22] Error: Could not load sound sound/hornet/ag_buzz3.wav
+[10:17:22] Error: Could not load sound sound/hornet/ag_hornethit1.wav
+[10:17:22] Error: Could not load sound sound/hornet/ag_hornethit2.wav
+[10:17:22] Error: Could not load sound sound/hornet/ag_hornethit3.wav
+[10:17:22] Error: Could not load sound sound/weapons/debris1.wav
+[10:17:22] Error: Could not load sound sound/weapons/debris2.wav
+[10:17:22] Error: Could not load sound sound/weapons/debris3.wav
+[10:17:22] Error: Could not load sound sound/weapons/grenade_hit1.wav
+[10:17:22] Error: Could not load sound sound/weapons/grenade_hit2.wav
+[10:17:22] Error: Could not load sound sound/weapons/grenade_hit3.wav
+[10:17:22] Error: Could not load sound sound/weapons/bullet_hit1.wav
+[10:17:22] Error: Could not load sound sound/weapons/bullet_hit2.wav
+[10:17:22] Error: Could not load sound sound/items/weapondrop1.wav
+[10:17:22] Error: Could not load sound sound/player/sprayer.wav
+[10:17:22] Error: Could not load sound sound/player/pl_fallpain2.wav
+[10:17:22] Error: Could not load sound sound/player/pl_fallpain3.wav
+[10:17:22] Error: Could not load sound sound/player/pl_step1.wav
+[10:17:22] Error: Could not load sound sound/player/pl_step2.wav
+[10:17:22] Error: Could not load sound sound/player/pl_step3.wav
+[10:17:22] Error: Could not load sound sound/player/pl_step4.wav
+[10:17:22] Error: Could not load sound sound/player/pl_metal1.wav
+[10:17:22] Error: Could not load sound sound/player/pl_metal2.wav
+[10:17:22] Error: Could not load sound sound/player/pl_metal3.wav
+[10:17:22] Error: Could not load sound sound/player/pl_metal4.wav
+[10:17:22] Error: Could not load sound sound/player/pl_dirt1.wav
+[10:17:22] Error: Could not load sound sound/player/pl_dirt2.wav
+[10:17:22] Error: Could not load sound sound/player/pl_dirt3.wav
+[10:17:22] Error: Could not load sound sound/player/pl_dirt4.wav
+[10:17:22] Error: Could not load sound sound/player/pl_duct1.wav
+[10:17:22] Error: Could not load sound sound/player/pl_duct2.wav
+[10:17:22] Error: Could not load sound sound/player/pl_duct3.wav
+[10:17:22] Error: Could not load sound sound/player/pl_duct4.wav
+[10:17:22] Error: Could not load sound sound/player/pl_grate1.wav
+[10:17:22] Error: Could not load sound sound/player/pl_grate2.wav
+[10:17:22] Error: Could not load sound sound/player/pl_grate3.wav
+[10:17:22] Error: Could not load sound sound/player/pl_grate4.wav
+[10:17:22] Error: Could not load sound sound/player/pl_slosh1.wav
+[10:17:22] Error: Could not load sound sound/player/pl_slosh2.wav
+[10:17:22] Error: Could not load sound sound/player/pl_slosh3.wav
+[10:17:22] Error: Could not load sound sound/player/pl_slosh4.wav
+[10:17:22] Error: Could not load sound sound/player/pl_tile1.wav
+[10:17:22] Error: Could not load sound sound/player/pl_tile2.wav
+[10:17:22] Error: Could not load sound sound/player/pl_tile3.wav
+[10:17:22] Error: Could not load sound sound/player/pl_tile4.wav
+[10:17:22] Error: Could not load sound sound/player/pl_tile5.wav
+[10:17:22] Error: Could not load sound sound/player/pl_swim1.wav
+[10:17:22] Error: Could not load sound sound/player/pl_swim2.wav
+[10:17:22] Error: Could not load sound sound/player/pl_swim3.wav
+[10:17:22] Error: Could not load sound sound/player/pl_swim4.wav
+[10:17:22] Error: Could not load sound sound/player/pl_ladder1.wav
+[10:17:22] Error: Could not load sound sound/player/pl_ladder2.wav
+[10:17:22] Error: Could not load sound sound/player/pl_ladder3.wav
+[10:17:22] Error: Could not load sound sound/player/pl_ladder4.wav
+[10:17:22] Error: Could not load sound sound/player/pl_wade1.wav
+[10:17:22] Error: Could not load sound sound/player/pl_wade2.wav
+[10:17:22] Error: Could not load sound sound/player/pl_wade3.wav
+[10:17:22] Error: Could not load sound sound/player/pl_wade4.wav
+[10:17:22] Error: Could not load sound sound/debris/wood1.wav
+[10:17:22] Error: Could not load sound sound/debris/wood2.wav
+[10:17:22] Error: Could not load sound sound/debris/wood3.wav
+[10:17:22] Error: Could not load sound sound/plats/train_use1.wav
+[10:17:22] Error: Could not load sound sound/plats/vehicle_ignition.wav
+[10:17:22] Error: Could not load sound sound/buttons/spark5.wav
+[10:17:22] Error: Could not load sound sound/buttons/spark6.wav
+[10:17:22] Error: Could not load sound sound/debris/glass1.wav
+[10:17:22] Error: Could not load sound sound/debris/glass2.wav
+[10:17:22] Error: Could not load sound sound/debris/glass3.wav
+[10:17:22] Error: Could not load sound sound/items/flashlight1.wav
+[10:17:22] Error: Could not load sound sound/player/pl_pain2.wav
+[10:17:22] Error: Could not load sound sound/player/pl_pain4.wav
+[10:17:22] Error: Could not load sound sound/player/pl_pain5.wav
+[10:17:22] Error: Could not load sound sound/player/pl_pain6.wav
+[10:17:22] Error: Could not load sound sound/player/pl_pain7.wav
+[10:17:22] Error: Could not load sound sound/common/wpn_hudoff.wav
+[10:17:22] Error: Could not load sound sound/common/wpn_hudon.wav
+[10:17:22] Error: Could not load sound sound/common/wpn_moveselect.wav
+[10:17:22] Error: Could not load sound sound/common/wpn_select.wav
+[10:17:22] Error: Could not load sound sound/common/wpn_denyselect.wav
+[10:17:22] Error: Could not load sound sound/player/geiger6.wav
+[10:17:22] Error: Could not load sound sound/player/geiger5.wav
+[10:17:22] Error: Could not load sound sound/player/geiger4.wav
+[10:17:22] Error: Could not load sound sound/player/geiger3.wav
+[10:17:22] Error: Could not load sound sound/player/geiger2.wav
+[10:17:22] Error: Could not load sound sound/player/geiger1.wav
+[10:17:22] Error: Could not load sound sound/common/null.wav
+[10:17:22] Error: Could not load sound sound/items/suitchargeok1.wav
+[10:17:22] Error: Could not load sound sound/common/bodydrop3.wav
+[10:17:22] Error: Could not load sound sound/common/bodydrop4.wav
+[10:17:22] Error: Could not load sound sound/weapons/ric1.wav
+[10:17:22] Error: Could not load sound sound/weapons/ric2.wav
+[10:17:22] Error: Could not load sound sound/weapons/ric3.wav
+[10:17:22] Error: Could not load sound sound/weapons/ric4.wav
+[10:17:22] Error: Could not load sound sound/weapons/ric5.wav
+[10:17:22] Error: Could not load sound sound/buttons/button1.wav
+[10:17:22] Error: Could not load sound sound/debris/bustcrate1.wav
+[10:17:22] Error: Could not load sound sound/debris/bustcrate2.wav
+[10:17:22] Error: Could not load sound sound/buttons/spark1.wav
+[10:17:22] Error: Could not load sound sound/buttons/spark2.wav
+[10:17:22] Error: Could not load sound sound/buttons/spark3.wav
+[10:17:22] Error: Could not load sound sound/buttons/spark4.wav
+[10:17:22] Error: Could not load model models/w_suit.mdl from disk
+[10:17:22] Error: Could not load model models/w_medkit.mdl from disk
+[10:17:22] Error: Could not load model models/w_battery.mdl from disk
+[10:17:22] Error: Could not load model models/w_antidote.mdl from disk
+[10:17:22] Error: Could not load model models/w_security.mdl from disk
+[10:17:22] Error: Could not load model models/w_longjump.mdl from disk
+[10:17:22] Error: Could not load model models/v_shotgun.mdl from disk
+[10:17:22] Error: Could not load model models/w_shotgun.mdl from disk
+[10:17:22] Error: Could not load model models/p_shotgun.mdl from disk
+[10:17:22] Error: Could not load model models/shotgunshell.mdl from disk
+[10:17:22] Error: Could not load model models/w_shotbox.mdl from disk
+[10:17:22] Error: Could not load model models/v_crowbar.mdl from disk
+[10:17:22] Error: Could not load model models/w_crowbar.mdl from disk
+[10:17:22] Error: Could not load model models/p_crowbar.mdl from disk
+[10:17:22] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[10:17:22] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[10:17:22] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[10:17:22] Error: Could not load model models/shell.mdl from disk
+[10:17:22] Error: Could not load model models/w_9mmclip.mdl from disk
+[10:17:22] Error: Could not load model models/v_9mmAR.mdl from disk
+[10:17:22] Error: Could not load model models/w_9mmAR.mdl from disk
+[10:17:22] Error: Could not load model models/p_9mmAR.mdl from disk
+[10:17:22] Error: Could not load model models/grenade.mdl from disk
+[10:17:22] Error: Could not load model models/w_9mmARclip.mdl from disk
+[10:17:22] Error: Could not load model models/w_ARgrenade.mdl from disk
+[10:17:22] Error: Could not load model models/w_chainammo.mdl from disk
+[10:17:22] Error: Could not load model models/v_357.mdl from disk
+[10:17:22] Error: Could not load model models/w_357.mdl from disk
+[10:17:22] Error: Could not load model models/p_357.mdl from disk
+[10:17:22] Error: Could not load model models/w_357ammobox.mdl from disk
+[10:17:22] Error: Could not load model models/w_gauss.mdl from disk
+[10:17:22] Error: Could not load model models/v_gauss.mdl from disk
+[10:17:22] Error: Could not load model models/p_gauss.mdl from disk
+[10:17:22] Error: Could not load model sprites/hotglow.spr from disk
+[10:17:22] Error: Could not load model sprites/smoke.spr from disk
+[10:17:22] Error: Could not load model models/w_gaussammo.mdl from disk
+[10:17:22] Error: Could not load model models/w_rpg.mdl from disk
+[10:17:22] Error: Could not load model models/v_rpg.mdl from disk
+[10:17:22] Error: Could not load model models/p_rpg.mdl from disk
+[10:17:22] Error: Could not load model sprites/laserdot.spr from disk
+[10:17:22] Error: Could not load model models/rpgrocket.mdl from disk
+[10:17:22] Error: Could not load model models/w_rpgammo.mdl from disk
+[10:17:22] Error: Could not load model models/w_crossbow.mdl from disk
+[10:17:22] Error: Could not load model models/v_crossbow.mdl from disk
+[10:17:22] Error: Could not load model models/p_crossbow.mdl from disk
+[10:17:22] Error: Could not load model models/crossbow_bolt.mdl from disk
+[10:17:22] Error: Could not load model sprites/streak.spr from disk
+[10:17:22] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[10:17:22] Error: Could not load model models/w_egon.mdl from disk
+[10:17:22] Error: Could not load model models/v_egon.mdl from disk
+[10:17:22] Error: Could not load model models/p_egon.mdl from disk
+[10:17:22] Error: Could not load model sprites/xbeam1.spr from disk
+[10:17:22] Error: Could not load model models/v_tripmine.mdl from disk
+[10:17:22] Error: Could not load model models/p_tripmine.mdl from disk
+[10:17:22] Error: Could not load model models/v_satchel.mdl from disk
+[10:17:22] Error: Could not load model models/v_satchel_radio.mdl from disk
+[10:17:22] Error: Could not load model models/w_satchel.mdl from disk
+[10:17:22] Error: Could not load model models/p_satchel.mdl from disk
+[10:17:22] Error: Could not load model models/p_satchel_radio.mdl from disk
+[10:17:22] Error: Could not load model models/w_grenade.mdl from disk
+[10:17:22] Error: Could not load model models/v_grenade.mdl from disk
+[10:17:22] Error: Could not load model models/p_grenade.mdl from disk
+[10:17:22] Error: Could not load model models/w_sqknest.mdl from disk
+[10:17:22] Error: Could not load model models/v_squeak.mdl from disk
+[10:17:22] Error: Could not load model models/p_squeak.mdl from disk
+[10:17:22] Error: Could not load model models/w_squeak.mdl from disk
+[10:17:22] Error: Could not load model models/v_hgun.mdl from disk
+[10:17:22] Error: Could not load model models/w_hgun.mdl from disk
+[10:17:22] Error: Could not load model models/p_hgun.mdl from disk
+[10:17:22] Error: Could not load model models/hornet.mdl from disk
+[10:17:22] Error: Could not load model sprites/muz1.spr from disk
+[10:17:22] Error: Could not load model sprites/zerogxplode.spr from disk
+[10:17:22] Error: Could not load model sprites/WXplo1.spr from disk
+[10:17:22] Error: Could not load model sprites/explode1.spr from disk
+[10:17:22] Error: Could not load model models/player.mdl from disk
+[10:17:22] Error: Could not load model models/hgibs.mdl from disk
+[10:17:22] Error: Could not load model models/agibs.mdl from disk
+[10:17:22] Setting up renderer...
+[10:17:22] SKY:  blackrt, blackbk, blacklf, blackft, blackup, blackdn. done
+[10:17:23] Loading decals from c_apartment4
+[10:17:23] Loading decals from c_apartment4
+[10:17:23] Loading decals from c_apartment4
+[10:17:23] Loading decals from c_apartmentsick
+[10:17:23] Loading decals from c_apartment5
+[10:17:23] Signon network traffic:  27.934 Kb from server, 199 bytes to server
+[10:17:23] client connected at 0.63 sec
+[10:17:23] COF/HUD STAT 100 100 0 0
+[10:17:23] COF/HUD SMSICON 0
+[10:17:23] COF/HUD INV 3 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt inventoryitems/weapons/weapon_glock.txt
+[10:17:23] COF/HUD QUICK weapon_mobile weapon_switchblade weapon_glock
+[10:17:23] COF/HUD OBJECTIVE 
+[10:17:23] COF/HUD PADLOCK 0
+[10:17:23] Couldn't open file overviews/c_apartment3.txt. Using default values for overiew mode.
+[10:17:23] org ( 35.0312 -142.969 346.062 )
+[10:17:23] ang ( 0 90.022 0 )
+[10:17:23] COF/FENCE alpha_102 time=50.222
+[10:17:25] COF/HUD STAT 100 100 0 0
+[10:17:27] org ( 35.0312 -142.969 346.062 )
+[10:17:27] ang ( 0 90.022 0 )
+[10:17:27] COF/FENCE alpha_103 time=52.802
+[10:17:28] COF/FENCE alpha_104 time=53.678
+[10:17:28] COF/HUD STAT 100 100 0 0
+[10:17:28] org ( 35.0312 -142.969 346.062 )
+[10:17:28] ang ( 0 90.022 0 )
+[10:17:28] COF/FENCE alpha_105 time=54.334
+[10:17:28] COF/ENTITY !player class=player body=0 solid=3 origin=35.0,-143.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=54.405 effects=0 renderfx=0 modelindex=300 model=models/player.mdl
+[10:17:28] COF/FENCE alpha_106 time=54.405
+[10:17:28] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[10:17:28] COF/FENCE alpha_107 time=54.502

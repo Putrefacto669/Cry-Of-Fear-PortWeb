@@ -1,0 +1,10 @@
+AssertionError [ERR_ASSERTION]: No post-panner voice signal with open buses
+    at sample (file:///root/cof-audits/alpha-20261031/voice_mix_probe.mjs:12:732)
+    at async file:///root/cof-audits/alpha-20261031/voice_mix_probe.mjs:13:119 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

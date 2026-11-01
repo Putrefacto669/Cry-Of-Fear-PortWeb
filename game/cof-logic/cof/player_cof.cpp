@@ -536,6 +536,18 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
 					pNear->pev->health, pNear->pev->deadflag, ( pNear->pev->origin - pPlayer->pev->origin ).Length());
 		return true;
 	}
+	if( FStrEq( pcmd, "cof_weapon_status" ))
+	{
+		CBasePlayerItem *item = pPlayer->m_pActiveItem;
+		CBasePlayerWeapon *weapon = item && item->GetWeaponPtr() ? (CBasePlayerWeapon *)item->GetWeaponPtr() : NULL;
+		int ammo = weapon ? weapon->m_iPrimaryAmmoType : -1;
+		ALERT( at_console, "COF/WEAPON class=%s clip=%d ammo=%d primary=%g secondary=%g playernext=%g reload=%d buttons=%d health=%g\n",
+			item ? STRING( item->pev->classname ) : "none", weapon ? weapon->m_iClip : -1,
+			ammo >= 0 && ammo < MAX_AMMO_SLOTS ? pPlayer->m_rgAmmo[ammo] : -1,
+			weapon ? weapon->m_flNextPrimaryAttack : 0, weapon ? weapon->m_flNextSecondaryAttack : 0,
+			pPlayer->m_flNextAttack, weapon ? weapon->m_fInReload : 0, pPlayer->pev->button, pPlayer->pev->health );
+		return true;
+	}
 	if( FStrEq( pcmd, "cof_face" ))
 	{
 		// turns to the nearest living monster, eyes on its chest
