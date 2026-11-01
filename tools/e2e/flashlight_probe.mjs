@@ -61,7 +61,7 @@ const turnTo = async yaw => {
   throw Error('Could not aim with relative mouse input');
 };
 try {
-  await page.goto(`${base}?map=c_apartment1&timer=1&fx=1&sw=0&prefetch=0&debug=1`);
+  await page.goto(`${base}?map=c_apartment1&timer=1&fx=1&sw=${process.env.COF_SW === '1' ? '1' : '0'}&prefetch=0&debug=1`);
   await page.waitForFunction(() => typeof CoFDebug !== 'undefined' && document.querySelector('canvas')?.width > 0,
     {}, { timeout: 180000 });
   await until(() => logs.some(s => s.includes('client connected')), 180000);
@@ -152,6 +152,15 @@ try {
     result.restoredOn = await capture('restored-on');
   }
   await cmd('flashlight'); result.wallOffAgain = await settleCapture('wall-off-again');
+  result.serviceWorkerControlled = await page.evaluate(() => !!navigator.serviceWorker.controller);
+  result.loadedModules = await page.evaluate(async () => {
+    const pairs = await Promise.all(['/lib/client.wasm', '/lib/server.wasm', '/lib/libref_gles3compat.wasm'].map(async path => {
+      const digest = await crypto.subtle.digest('SHA-256', FS.readFile(path));
+      return [path, Array.from(new Uint8Array(digest), b => b.toString(16).padStart(2, '0')).join('')];
+    }));
+    return Object.fromEntries(pairs);
+  });
+  if (process.env.COF_SW === '1') assert.ok(result.serviceWorkerControlled, 'Service Worker must control the published page');
   result.errors = errors;
   fs.writeFileSync(`${out}/result.json`, JSON.stringify(result, null, 2));
   console.log(JSON.stringify(result, null, 2));

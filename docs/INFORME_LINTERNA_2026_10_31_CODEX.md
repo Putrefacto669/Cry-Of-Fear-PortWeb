@@ -1,5 +1,7 @@
 # Linterna dinámica — investigación y correcciones de Codex
 
+Actualización posterior autorizada: estas correcciones ya se incorporaron a dist/ y se publicaron y verificaron en GitHub Pages. Véase PUBLICACION_LINTERNA_2026_10_31.md. El resto de este informe conserva los resultados y el estado de la investigación previa a esa publicación.
+
 Fecha: 31 de octubre de 2026. Estado: dos defectos corregidos y verificados; **no se acredita todavía un reemplazo visual completo de la linterna del original**. Se conserva el filtro anterior.
 
 ## 1. Estado recuperado y procedencia

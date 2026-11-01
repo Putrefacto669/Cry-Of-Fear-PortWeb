@@ -17,7 +17,8 @@ verificaron mundo, giro, r_dynamic, frames lentos y save/load. Evidencia separad
 El filtro anterior permanece. La prueba exploratoria con gl_overbright=0 conserva un fallo
 de umbral (+4,90 frente a +5); falta contraste visual con el original y GPU física.
 No hacer pasar esa prueba retocando intensidad sin evidencia. La investigación inicial no publicó;
-la integración y publicación posteriores están autorizadas por el usuario.
+la integración y publicación posteriores fueron autorizadas y verificadas en GitHub Pages.
+Build publicada: commit `1c74111`, manifiesto `c42da5797a53`; prueba pública con SW y save/load PASS.
 
 ## El proyecto
 
