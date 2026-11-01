@@ -32,6 +32,9 @@ Mediciones en los cinco apartamentos y persistencia satisfactorias en sus fixtur
 la pared anterior con overbright 0 sigue por debajo de +5. No retirar el filtro.
 Evidencia en `build/validation/alpha-consolidation-2026-10-31/`; volcados nativos y
 guardados privados excluidos. No se publicó esta etapa ni se modificó dist/.
+Integración posterior autorizada: ver `docs/INTEGRACION_ALPHA_2026_11_01.md`;
+la build validada ya se incorporó a dist/ y se comprobó desde el puerto 8105.
+Solo commits locales en esta integración; sin push ni despliegue.
 No declarar recorrido completo: los intentos naturales nuevos están documentados
 por separado, sin acreditar progresión mediante fixtures con equipo concedido.
 
@@ -301,4 +304,5 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
   `models/cutscene/blacker.mdl`, visible si `*43` no cierra la puerta.
 - Ojo: Codex dejó servidores abiertos en 8096 (`dist/`) y 8099 (`dist-use`, sin el
   arreglo). Una prueba lanzada contra 8099 no valida las correcciones posteriores.
+
 
