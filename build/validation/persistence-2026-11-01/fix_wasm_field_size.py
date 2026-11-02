@@ -1,0 +1,2 @@
+from pathlib import Path
+p=Path('/root/cof-audits/audit-D3Kl5uly/game/hlsdk-portable/dlls/util.cpp');s=p.read_text();anchor='#if GNUC\n\tsizeof(void *) * 2,\t// FIELD_FUNCTION';assert anchor in s;s=s.replace(anchor,'#if defined(__EMSCRIPTEN__)\n\tsizeof(BASEPTR),\t\t// Clang/WASM member pointers contain function and this adjustment\n#elif GNUC\n\tsizeof(void *) * 2,\t// FIELD_FUNCTION',1);p.write_text(s)

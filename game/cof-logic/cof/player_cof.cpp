@@ -611,6 +611,8 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
  else if( FStrEq( pcmd, "cof_fence" ))
 		ALERT( at_console, "COF/FENCE %s time=%g\n", arg, gpGlobals->time );
 #ifdef __EMSCRIPTEN__
+	else if( FStrEq( pcmd, "cof_callbacks" ))
+		CoF_DumpCallbacks();
 	else if( FStrEq( pcmd, "cof_sky_sync" ))
 		CoF_SendEnvpos( pPlayer );
 	else if( FStrEq( pcmd, "cof_train" ))

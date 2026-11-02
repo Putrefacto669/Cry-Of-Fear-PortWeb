@@ -92,3 +92,10 @@ public:
 	}
 };
 LINK_ENTITY_TO_CLASS( trigger_cofteleport, CCofTriggerTeleport )
+
+#ifdef __EMSCRIPTEN__
+void CoF_RegisterTeleportCallbacks(void)
+{
+ COF_SAVE_TOUCH(CCofTriggerTeleport,TeleportTouch);
+}
+#endif

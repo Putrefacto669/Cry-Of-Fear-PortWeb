@@ -1,0 +1,9 @@
+page.waitForEvent: Timeout 30000ms exceeded while waiting for event "console"
+=========================== logs ===========================
+waiting for event "console"
+============================================================
+    at Object.cmd (/root/cof-audits/persistence-20261101/callback_behavior.mjs:7:94)
+    at /root/cof-audits/persistence-20261101/callback_behavior.mjs:32:102 {
+  log: [],
+  name: 'TimeoutError'
+}

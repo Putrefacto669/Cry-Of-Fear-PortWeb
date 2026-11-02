@@ -347,3 +347,10 @@ void CFuncShine::Spawn( void )
 		pev->scale = 1.0f;
 	pev->renderfx = kRenderFxNone;
 }
+
+#ifdef __EMSCRIPTEN__
+void CoF_RegisterFogCallbacks(void)
+{
+ COF_SAVE_THINK(CEnvFog,FogThink);
+}
+#endif

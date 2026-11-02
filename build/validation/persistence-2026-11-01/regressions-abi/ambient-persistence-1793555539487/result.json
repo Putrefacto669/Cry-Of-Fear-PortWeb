@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "caseName": "voice",
+  "scenario": {
+    "target": "whatthesub",
+    "resource": "/rodir/cryoffear/sound/subtitles/start/sub1.wav"
+  },
+  "expected": {
+    "len": 22722,
+    "rate": 22050,
+    "hash": 1187988295
+  },
+  "before": "[11:52:23] COF/ENTITY whatthesub class=ambient_generic body=0 solid=0 origin=3089.5,-2433.0,-717.0 gate=0 speed=0.0 spawn=52 touch=0 target= frozen=0 stairs=-1 use=1 think=1 toggle=0 next=0 now=1.384 effects=0 renderfx=0 modelindex=0 model=-\n[11:52:23] COF/FENCE audio_2 time=1.384",
+  "after": "[11:52:24] COF/ENTITY whatthesub class=ambient_generic body=0 solid=0 origin=3089.5,-2433.0,-717.0 gate=0 speed=0.0 spawn=52 touch=0 target= frozen=0 stairs=-1 use=1 think=1 toggle=0 next=0 now=1.542 effects=0 renderfx=0 modelindex=0 model=-\n[11:52:24] COF/FENCE audio_5 time=1.542",
+  "a": {
+    "starts": [],
+    "context": "suspended",
+    "master": 1,
+    "world": 1,
+    "voices": 8
+  },
+  "b": {
+    "starts": [
+      {
+        "at": 0,
+        "state": "running",
+        "offset": 0
+      }
+    ],
+    "context": "running",
+    "master": 0.958629846572876,
+    "world": 1,
+    "voices": 9
+  },
+  "c": {
+    "starts": [
+      {
+        "at": 0,
+        "state": "running",
+        "offset": 0
+      },
+      {
+        "at": 0.893968253968254,
+        "state": "running",
+        "offset": 0
+      }
+    ],
+    "context": "running",
+    "master": 0.800000011920929,
+    "world": 1,
+    "voices": 8
+  },
+  "d": {
+    "starts": [
+      {
+        "at": 0,
+        "state": "running",
+        "offset": 0
+      },
+      {
+        "at": 0.893968253968254,
+        "state": "running",
+        "offset": 0
+      },
+      {
+        "at": 1.0797278911564625,
+        "state": "running",
+        "offset": 0
+      }
+    ],
+    "context": "running",
+    "master": 0.800000011920929,
+    "world": 1,
+    "voices": 8
+  },
+  "completedBefore": {
+    "starts": [
+      {
+        "at": 0,
+        "state": "running",
+        "offset": 0
+      },
+      {
+        "at": 0.893968253968254,
+        "state": "running",
+        "offset": 0
+      },
+      {
+        "at": 1.0797278911564625,
+        "state": "running",
+        "offset": 0
+      }
+    ],
+    "context": "running",
+    "master": 0.800000011920929,
+    "world": 1,
+    "voices": 7
+  },
+  "completedAfter": {
+    "starts": [
+      {
+        "at": 0,
+        "state": "running",
+        "offset": 0
+      },
+      {
+        "at": 0.893968253968254,
+        "state": "running",
+        "offset": 0
+      },
+      {
+        "at": 1.0797278911564625,
+        "state": "running",
+        "offset": 0
+      }
+    ],
+    "context": "running",
+    "master": 0.800000011920929,
+    "world": 1,
+    "voices": 7
+  },
+  "errors": [],
+  "browser": "156.0.8078.4",
+  "humanListeningVerified": false
+}

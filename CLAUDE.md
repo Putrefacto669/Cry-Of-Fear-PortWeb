@@ -38,6 +38,21 @@ Solo commits locales en esta integración; sin push ni despliegue.
 No declarar recorrido completo: los intentos naturales nuevos están documentados
 por separado, sin acreditar progresión mediante fixtures con equipo concedido.
 
+## Auditoría de callbacks — 01/11/2026
+
+Ver `docs/PERSISTENCIA_ENTIDADES_2026_11_01.md`. Los 39 avisos de c_apartment1
+son 39 callbacks de 27 entidades; se reprodujeron en dist/ antes de corregir.
+El fallback de nombres estables se inicializa en GameDLLInit y FIELD_FUNCTION
+usa sizeof(BASEPTR) en WASM (GNUC estaba ausente y seleccionaba 4 en vez de 8 bytes).
+También se guarda el estado propio de cof_camerazoom. No duplicar las soluciones
+previas de sound/puertas/botones/cámaras/trenes. Build aislada:
+`/root/cof-audits/persistence-20261101/dist-fixed-abi`, puerto 8108.
+0 avisos/pérdidas a 3/20/55 s; callbacks, contactos, zoom y restauración en frío
+verificados; 14 navegadores + 9 contratos + Pointer Lock PASS. Sigue un aviso
+temprano del constructor anónimo CTestHull: no declararlo inocuo ni silenciarlo.
+No se modificó dist/ ni se hicieron commits/push/despliegue en esta auditoría.
+Las pruebas tienen salida de audio silenciada; el volumen del producto no cambió.
+
 ## El proyecto
 
 Port de **Cry of Fear** (Team Psykskallar, motor GoldSrc) al navegador con **Xash3D FWGS +
@@ -304,5 +319,6 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
   `models/cutscene/blacker.mdl`, visible si `*43` no cierra la puerta.
 - Ojo: Codex dejó servidores abiertos en 8096 (`dist/`) y 8099 (`dist-use`, sin el
   arreglo). Una prueba lanzada contra 8099 no valida las correcciones posteriores.
+
 
 

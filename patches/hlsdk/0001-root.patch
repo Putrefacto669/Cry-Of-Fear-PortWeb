@@ -166,7 +166,7 @@ index 8815a3fb..6b7fc218 100644
  		'public/safe_snprintf.c',
  		'pm_shared/*.c',
 diff --git a/dlls/buttons.cpp b/dlls/buttons.cpp
-index 9c7d5d39..885a0615 100644
+index 9c7d5d39..765f50a0 100644
 --- a/dlls/buttons.cpp
 +++ b/dlls/buttons.cpp
 @@ -259,6 +259,9 @@ void CMultiSource::Register( void )
@@ -293,8 +293,21 @@ index 9c7d5d39..885a0615 100644
  	m_hActivator = pActivator;
  	if( m_toggle_state == TS_AT_TOP )
  	{
+@@ -1328,3 +1411,12 @@ int CButtonTarget::TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker,
+ 
+ 	return 1;
+ }
++
++#ifdef __EMSCRIPTEN__
++void CoF_RegisterSparkCallbacks(void)
++{
++ COF_SAVE_THINK(CEnvSpark,SparkThink);
++ COF_SAVE_USE(CEnvSpark,SparkStart);
++ COF_SAVE_USE(CEnvSpark,SparkStop);
++}
++#endif
 diff --git a/dlls/cbase.cpp b/dlls/cbase.cpp
-index d1e7aadd..492424fd 100644
+index d1e7aadd..c01459cb 100644
 --- a/dlls/cbase.cpp
 +++ b/dlls/cbase.cpp
 @@ -192,6 +192,20 @@ void DispatchKeyValue( edict_t *pentKeyvalue, KeyValueData *pkvd )
@@ -358,11 +371,112 @@ index d1e7aadd..492424fd 100644
  		}
  
  		pTable->location = pSaveData->size;		// Remember entity position for file I/O
+@@ -584,6 +624,35 @@ CBaseEntity *CBaseEntity::GetNextTarget( void )
+ 	return Instance( pTarget );
+ }
+ 
++#ifdef __EMSCRIPTEN__
++// Diagnostic labels only: never serialize process-local pointer bytes.
++cvar_t cof_save_debug = { "cof_save_debug", "0" };
++struct CofCallbackLabel { unsigned words[2]; const char *name; };
++static CofCallbackLabel cofCallbackLabels[1024];
++static unsigned cofCallbackCount;
++void CoF_RecordCallback(const void *value, unsigned size, const char *name)
++{
++ if(size!=sizeof(cofCallbackLabels[0].words))return;
++ unsigned words[2];memcpy(words,value,size);if(!words[0]&&!words[1])return;
++ for(unsigned i=0;i<cofCallbackCount;++i)
++  if(!memcmp(words,cofCallbackLabels[i].words,size)&&!strcmp(name,cofCallbackLabels[i].name))return;
++ if(cofCallbackCount==1024)return;
++ memcpy(cofCallbackLabels[cofCallbackCount].words,words,size);
++ cofCallbackLabels[cofCallbackCount++].name=name;
++}
++void CoF_DumpCallbacks(void)
++{
++ for(unsigned i=0;i<cofCallbackCount;++i)
++  ALERT(at_console,"COF/REG raw=%x:%x name=%s\n",cofCallbackLabels[i].words[0],cofCallbackLabels[i].words[1],cofCallbackLabels[i].name);
++ for(int i=0;i<gpGlobals->maxEntities;++i){edict_t *ed=INDEXENT(i);if(!ed||ed->free||!ed->pvPrivateData)continue;
++  CBaseEntity *e=CBaseEntity::Instance(ed);unsigned f[4][2];
++  memcpy(f[0],&e->m_pfnThink,8);memcpy(f[1],&e->m_pfnTouch,8);memcpy(f[2],&e->m_pfnUse,8);memcpy(f[3],&e->m_pfnBlocked,8);
++  ALERT(at_console,"COF/STATE id=%d class=%s target=%s model=%s think=%x:%x touch=%x:%x use=%x:%x blocked=%x:%x next=%g now=%g health=%g dead=%d sequence=%d frame=%g origin=%g,%g,%g\n",
++   i,STRING(e->pev->classname),STRING(e->pev->targetname),STRING(e->pev->model),f[0][0],f[0][1],f[1][0],f[1][1],f[2][0],f[2][1],f[3][0],f[3][1],e->pev->nextthink,gpGlobals->time,e->pev->health,e->pev->deadflag,e->pev->sequence,e->pev->frame,e->pev->origin.x,e->pev->origin.y,e->pev->origin.z);
++ }
++}
++#endif
++
+ // Global Savedata for Delay
+ TYPEDESCRIPTION	CBaseEntity::m_SaveData[] =
+ {
 diff --git a/dlls/cbase.h b/dlls/cbase.h
-index d7ec85fd..5fe31734 100644
+index d7ec85fd..3bfa1ba4 100644
 --- a/dlls/cbase.h
 +++ b/dlls/cbase.h
-@@ -724,6 +724,15 @@ public:
+@@ -362,6 +362,25 @@ public:
+ 	int m_fireState;
+ };
+ 
++#if defined(__EMSCRIPTEN__) && !defined(CLIENT_DLL)
++void CoF_AddSavedCallback(const char *name,const void *value,unsigned size);
++const char *CoF_SavedCallbackName(const void *value,unsigned size);
++bool CoF_RestoreSavedCallback(const char *name,void *value,unsigned size);
++template<class T> inline void CoF_RegisterSavedCallback(const char *name,T value)
++{ CoF_AddSavedCallback(name,&value,sizeof(value)); }
++#define COF_SAVE_THINK(C,M) CoF_RegisterSavedCallback("cof::" #C "::" #M,static_cast<BASEPTR>(&C::M))
++#define COF_SAVE_TOUCH(C,M) CoF_RegisterSavedCallback("cof::" #C "::" #M,static_cast<ENTITYFUNCPTR>(&C::M))
++#define COF_SAVE_USE(C,M) CoF_RegisterSavedCallback("cof::" #C "::" #M,static_cast<USEPTR>(&C::M))
++void CoF_RecordCallback(const void *value, unsigned size, const char *name);
++void CoF_DumpCallbacks(void);
++extern cvar_t cof_save_debug;
++template<class T> inline T CoF_ObserveCallback(T value, const char *name)
++{
++ CoF_RecordCallback(&value, sizeof(value), name);
++ return value;
++}
++#endif
++
+ // Ugly technique to override base member functions
+ // Normally it's illegal to cast a pointer to a member function of a derived class to a pointer to a 
+ // member function of a base class.  static_cast is a sleezy way around that problem.
+@@ -376,10 +395,26 @@ public:
+ 
+ #else
+ 
++#if defined(__EMSCRIPTEN__) && !defined(CLIENT_DLL)
++#define SetThink( a ) m_pfnThink = CoF_ObserveCallback(static_cast <void (CBaseEntity::*)(void)> (a), #a)
++#else
+ #define SetThink( a ) m_pfnThink = static_cast <void (CBaseEntity::*)(void)> (a)
++#endif
++#if defined(__EMSCRIPTEN__) && !defined(CLIENT_DLL)
++#define SetTouch( a ) m_pfnTouch = CoF_ObserveCallback(static_cast <void (CBaseEntity::*)(CBaseEntity *)> (a), #a)
++#else
+ #define SetTouch( a ) m_pfnTouch = static_cast <void (CBaseEntity::*)(CBaseEntity *)> (a)
++#endif
++#if defined(__EMSCRIPTEN__) && !defined(CLIENT_DLL)
++#define SetUse( a ) m_pfnUse = CoF_ObserveCallback(static_cast <void (CBaseEntity::*)( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )> (a), #a)
++#else
+ #define SetUse( a ) m_pfnUse = static_cast <void (CBaseEntity::*)( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )> (a)
++#endif
++#if defined(__EMSCRIPTEN__) && !defined(CLIENT_DLL)
++#define SetBlocked( a ) m_pfnBlocked = CoF_ObserveCallback(static_cast <void (CBaseEntity::*)(CBaseEntity *)> (a), #a)
++#else
+ #define SetBlocked( a ) m_pfnBlocked = static_cast <void (CBaseEntity::*)(CBaseEntity *)> (a)
++#endif
+ #define ResetThink( ) m_pfnThink = static_cast <void (CBaseEntity::*)(void)> (NULL)
+ #define ResetTouch( ) m_pfnTouch = static_cast <void (CBaseEntity::*)(CBaseEntity *)> (NULL)
+ #define ResetUse( ) m_pfnUse = static_cast <void (CBaseEntity::*)( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )> (NULL)
+@@ -559,7 +594,11 @@ public:
+ 							// the button will be allowed to operate. Otherwise, it will be
+ 							// deactivated.
+ };
++#if defined(__EMSCRIPTEN__) && !defined(CLIENT_DLL)
++#define SetMoveDone( a ) m_pfnCallWhenMoveDone = CoF_ObserveCallback(static_cast <void (CBaseToggle::*)(void)> (a), #a)
++#else
+ #define SetMoveDone( a ) m_pfnCallWhenMoveDone = static_cast <void (CBaseToggle::*)(void)> (a)
++#endif
+ 
+ 
+ 
+@@ -724,6 +763,15 @@ public:
  	BYTE m_bUnlockedSound;	
  	BYTE m_bUnlockedSentence;
  	int m_sounds;
@@ -492,18 +606,26 @@ index 1f5b4b06..bf913531 100644
  #define DOOR_SENTENCEWAIT	6.0f
  #define DOOR_SOUNDWAIT		3.0f
 diff --git a/dlls/game.cpp b/dlls/game.cpp
-index a81ae5a6..15785285 100644
+index a81ae5a6..12021131 100644
 --- a/dlls/game.cpp
 +++ b/dlls/game.cpp
-@@ -465,8 +465,11 @@ cvar_t sv_busters = { "sv_busters", "0" };
+@@ -465,8 +465,19 @@ cvar_t sv_busters = { "sv_busters", "0" };
  
  // Register your console variables here
  // This gets called one time when the game is initialied
 +extern void CoF_RegisterWeaponSkill( void );
++#ifdef __EMSCRIPTEN__
++extern cvar_t cof_save_debug;
++extern void CoF_RegisterPersistenceCallbacks(void);
++#endif
 +
  void GameDLLInit( void )
  {
 +	CoF_RegisterWeaponSkill();
++#ifdef __EMSCRIPTEN__
++	CVAR_REGISTER(&cof_save_debug);
++	CoF_RegisterPersistenceCallbacks();
++#endif
  	g_psv_gravity = CVAR_GET_POINTER( "sv_gravity" );
  	g_psv_aim = CVAR_GET_POINTER( "sv_aim" );
  	g_psv_allow_autoaim = CVAR_GET_POINTER( "sv_allow_autoaim" );
@@ -521,6 +643,23 @@ index d9411d66..8c146245 100644
  LINK_ENTITY_TO_CLASS( weapon_9mmhandgun, CGlock )
  
  void CGlock::Spawn()
+diff --git a/dlls/monstermaker.cpp b/dlls/monstermaker.cpp
+index 38173d41..bb9fa3f6 100644
+--- a/dlls/monstermaker.cpp
++++ b/dlls/monstermaker.cpp
+@@ -287,3 +287,12 @@ void CMonsterMaker::DeathNotice( entvars_t *pevChild )
+ 		pevChild->owner = NULL;
+ 	}
+ }
++
++#ifdef __EMSCRIPTEN__
++void CoF_RegisterMakerCallbacks(void)
++{
++ COF_SAVE_THINK(CMonsterMaker,MakerThink);
++ COF_SAVE_USE(CMonsterMaker,ToggleUse);
++ COF_SAVE_USE(CMonsterMaker,CyclicUse);
++}
++#endif
 diff --git a/dlls/mp5.cpp b/dlls/mp5.cpp
 index 53323a74..2a7e7083 100644
 --- a/dlls/mp5.cpp
@@ -1230,7 +1369,7 @@ index 7b5dde0f..baf18068 100644
  		{
  			SET_VIEW( m_hPlayer->edict(), m_hPlayer->edict() );
 diff --git a/dlls/util.cpp b/dlls/util.cpp
-index 27c7ffe8..40cdfb3b 100644
+index 27c7ffe8..18c3b6c7 100644
 --- a/dlls/util.cpp
 +++ b/dlls/util.cpp
 @@ -306,6 +306,8 @@ TYPEDESCRIPTION	gEntvarsDescription[] =
@@ -1242,6 +1381,64 @@ index 27c7ffe8..40cdfb3b 100644
  };
  
  #define ENTVARS_COUNT		( sizeof(gEntvarsDescription) / sizeof(gEntvarsDescription[0]) )
+@@ -1590,7 +1592,9 @@ static int gSizes[FIELD_TYPECOUNT] =
+ 	sizeof(float) * 3,	// FIELD_POSITION_VECTOR
+ 	sizeof(void *),		// FIELD_POINTER
+ 	sizeof(int),		// FIELD_INTEGER
+-#if GNUC
++#if defined(__EMSCRIPTEN__)
++	sizeof(BASEPTR),		// Clang/WASM member pointers contain function and this adjustment
++#elif GNUC
+ 	sizeof(void *) * 2,	// FIELD_FUNCTION
+ #else
+ 	sizeof(void *),		// FIELD_FUNCTION	
+@@ -1897,10 +1901,20 @@ void CSave::WriteFunction( const char *pname, void **data, int count )
+ 	const char *functionName;
+ 
+ 	functionName = NAME_FOR_FUNCTION( *data );
++#ifdef __EMSCRIPTEN__
++	if(!functionName)functionName=CoF_SavedCallbackName(data,gSizes[FIELD_FUNCTION]);
++#endif
+ 	if( functionName )
+ 		BufferField( pname, strlen( functionName ) + 1, functionName );
+ 	else
++	{
+ 		ALERT( at_error, "Invalid function pointer in entity!\n" );
++#ifdef __EMSCRIPTEN__
++        // Keep the declared field count aligned even when a callback is unknown.
++        // It stays explicitly null on restore and the original warning remains.
++        BufferField(pname,1,"");
++#endif
++	}
+ }
+ 
+ void EntvarsKeyvalue( entvars_t *pev, KeyValueData *pkvd )
+@@ -2048,6 +2062,12 @@ int CSave::WriteFields( const char *pname, void *pBaseData, TYPEDESCRIPTION *pFi
+ 			WriteInt( pTest->fieldName, (int *)(char *)pOutputData, pTest->fieldSize );
+ 			break;
+ 		case FIELD_FUNCTION:
++#ifdef __EMSCRIPTEN__
++            if(cof_save_debug.value){
++             CBaseEntity *entity=(CBaseEntity*)pBaseData;unsigned words[2];memcpy(words,pOutputData,8);
++             ALERT(at_console,"COF/SAVEFN id=%d class=%s target=%s model=%s section=%s field=%s raw=%x:%x named=%d\n",entity->entindex(),STRING(entity->pev->classname),STRING(entity->pev->targetname),STRING(entity->pev->model),pname,pTest->fieldName,words[0],words[1],NAME_FOR_FUNCTION(*(void**)pOutputData)!=NULL);
++            }
++#endif
+ 			WriteFunction( pTest->fieldName, (void **)pOutputData, pTest->fieldSize );
+ 			break;
+ 		default:
+@@ -2298,6 +2318,12 @@ int CRestore::ReadField( void *pBaseData, TYPEDESCRIPTION *pFields, int fieldCou
+ 						*( (void**)pOutputData ) = (void*)ULittleToHost( *(size_t *)pInputData );
+ 						break;
+ 					case FIELD_FUNCTION:
++#ifdef __EMSCRIPTEN__
++                        if(!strncmp((char*)pInputData,"cof::",5)){
++                         if(!CoF_RestoreSavedCallback((char*)pInputData,pOutputData,gSizes[FIELD_FUNCTION]))return -1;
++                         break;
++                        }
++#endif
+ 						if( ( (char *)pInputData )[0] == '\0' )
+ 							*( (void**)pOutputData ) = 0;
+ 						else
 diff --git a/dlls/weapons.cpp b/dlls/weapons.cpp
 index 3ff1a15f..4509abb6 100644
 --- a/dlls/weapons.cpp

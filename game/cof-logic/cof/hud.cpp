@@ -11,6 +11,7 @@
 #include "cbase.h"
 #include "player.h"
 #include "gamerules.h"
+#include "saverestore.h"
 #include "cof_player.h"
 
 class CCofLogo : public CBaseEntity
@@ -168,6 +169,9 @@ public:
 	virtual void KeyValue( KeyValueData *pkvd );
 	virtual void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value );
 	void EXPORT ReturnFOV( void );
+	int Save( CSave &save );
+	int Restore( CRestore &restore );
+	static TYPEDESCRIPTION m_SaveData[];
 
 	float m_flZoomFov;
 	float m_flZoomTime;
@@ -176,6 +180,15 @@ public:
 };
 
 LINK_ENTITY_TO_CLASS( cof_camerazoom, CCofCameraZoom )
+
+TYPEDESCRIPTION CCofCameraZoom::m_SaveData[] =
+{
+	DEFINE_FIELD( CCofCameraZoom, m_flZoomFov, FIELD_FLOAT ),
+	DEFINE_FIELD( CCofCameraZoom, m_flZoomTime, FIELD_FLOAT ),
+	DEFINE_FIELD( CCofCameraZoom, m_flReturnTime, FIELD_FLOAT ),
+	DEFINE_FIELD( CCofCameraZoom, m_hPlayer, FIELD_EHANDLE ),
+};
+IMPLEMENT_SAVERESTORE( CCofCameraZoom, CBaseEntity )
 
 void CCofCameraZoom::Spawn( void )
 {
@@ -431,3 +444,10 @@ void CCofHint::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useT
 	if( !FStringNull( pev->message ))
 		CoF_HudPrint( "COF/HUD HINT %s\n", STRING( pev->message ));
 }
+
+#ifdef __EMSCRIPTEN__
+void CoF_RegisterZoomCallbacks(void)
+{
+ COF_SAVE_THINK(CCofCameraZoom,ReturnFOV);
+}
+#endif

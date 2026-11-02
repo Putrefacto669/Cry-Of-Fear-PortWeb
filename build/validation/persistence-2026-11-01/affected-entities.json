@@ -1,0 +1,479 @@
+[
+  {
+    "id": 247,
+    "classname": "env_fog",
+    "targetname": "ingenfog",
+    "model": "",
+    "origin": "-770,-448,204",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CEnvFog::FogThink"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 287,
+    "classname": "monster_child",
+    "targetname": "",
+    "model": "models/children.mdl",
+    "origin": "-195,680,141.031",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CBaseMonster::CallMonsterThink"
+        ]
+      },
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CBaseMonster::MonsterUse"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 288,
+    "classname": "ammo_glock",
+    "targetname": "",
+    "model": "models/ammo/clip.mdl",
+    "origin": "601,242,-40",
+    "callbacks": [
+      {
+        "field": "m_pfnTouch",
+        "functions": [
+          "CBasePlayerAmmo::DefaultTouch"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 289,
+    "classname": "monstermaker",
+    "targetname": "spawnm2",
+    "model": "",
+    "origin": "709,-156,25",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CBaseEntity::SUB_DoNothing"
+        ]
+      },
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CMonsterMaker::ToggleUse"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 304,
+    "classname": "trigger_cofteleport",
+    "targetname": "",
+    "model": "*127",
+    "origin": "0,0,0",
+    "callbacks": [
+      {
+        "field": "m_pfnTouch",
+        "functions": [
+          "CCofTriggerTeleport::TeleportTouch"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 324,
+    "classname": "ammo_glock",
+    "targetname": "",
+    "model": "models/ammo/clip.mdl",
+    "origin": "-1959,2146,0",
+    "callbacks": [
+      {
+        "field": "m_pfnTouch",
+        "functions": [
+          "CBasePlayerAmmo::DefaultTouch"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 338,
+    "classname": "monster_child",
+    "targetname": "",
+    "model": "models/children.mdl",
+    "origin": "446,-150,447.031",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CBaseMonster::CallMonsterThink"
+        ]
+      },
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CBaseMonster::MonsterUse"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 346,
+    "classname": "ammo_glock",
+    "targetname": "",
+    "model": "models/ammo/clip.mdl",
+    "origin": "-1139,834,141",
+    "callbacks": [
+      {
+        "field": "m_pfnTouch",
+        "functions": [
+          "CBasePlayerAmmo::DefaultTouch"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 353,
+    "classname": "monstermaker",
+    "targetname": "spawnm3",
+    "model": "",
+    "origin": "815,1568,159",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CBaseEntity::SUB_DoNothing"
+        ]
+      },
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CMonsterMaker::ToggleUse"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 357,
+    "classname": "monstermaker",
+    "targetname": "horankes",
+    "model": "",
+    "origin": "-767,-160,2",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CBaseEntity::SUB_DoNothing"
+        ]
+      },
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CMonsterMaker::ToggleUse"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 379,
+    "classname": "monstermaker",
+    "targetname": "ss1mm",
+    "model": "",
+    "origin": "-568,751,142",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CBaseEntity::SUB_DoNothing"
+        ]
+      },
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CMonsterMaker::ToggleUse"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 402,
+    "classname": "env_spark",
+    "targetname": "sparkzz2",
+    "model": "",
+    "origin": "-310,-161,251",
+    "callbacks": [
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CEnvSpark::SparkStart"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 406,
+    "classname": "monstermaker",
+    "targetname": "monsterro",
+    "model": "",
+    "origin": "-13,-162,143",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CBaseEntity::SUB_DoNothing"
+        ]
+      },
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CMonsterMaker::ToggleUse"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 407,
+    "classname": "env_spark",
+    "targetname": "sparkzz1",
+    "model": "",
+    "origin": "-54,-161,251",
+    "callbacks": [
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CEnvSpark::SparkStart"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 412,
+    "classname": "weapon_syringe",
+    "targetname": "",
+    "model": "models/weapons/syringe/w_syringe.mdl",
+    "origin": "1120,1200,141",
+    "callbacks": [
+      {
+        "field": "m_pfnTouch",
+        "functions": [
+          "CBasePlayerItem::DefaultTouch"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 413,
+    "classname": "weapon_syringe",
+    "targetname": "",
+    "model": "models/weapons/syringe/w_syringe.mdl",
+    "origin": "-1624,2120,39",
+    "callbacks": [
+      {
+        "field": "m_pfnTouch",
+        "functions": [
+          "CBasePlayerItem::DefaultTouch"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 427,
+    "classname": "monster_child",
+    "targetname": "",
+    "model": "models/children.mdl",
+    "origin": "-613,578,142.031",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CBaseMonster::CallMonsterThink"
+        ]
+      },
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CBaseMonster::MonsterUse"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 442,
+    "classname": "env_spark",
+    "targetname": "sparkalossheh",
+    "model": "",
+    "origin": "765,1348,252",
+    "callbacks": [
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CEnvSpark::SparkStart"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 501,
+    "classname": "env_spark",
+    "targetname": "sprakaeleoie",
+    "model": "",
+    "origin": "1067,1155,252",
+    "callbacks": [
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CEnvSpark::SparkStart"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 510,
+    "classname": "monster_baby",
+    "targetname": "",
+    "model": "models/baby.mdl",
+    "origin": "715,-68,165.031",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CBaseMonster::CallMonsterThink"
+        ]
+      },
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CBaseMonster::MonsterUse"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 511,
+    "classname": "monster_baby",
+    "targetname": "",
+    "model": "models/baby.mdl",
+    "origin": "724,-168,165.031",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CBaseMonster::CallMonsterThink"
+        ]
+      },
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CBaseMonster::MonsterUse"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 539,
+    "classname": "ammo_glock",
+    "targetname": "",
+    "model": "models/ammo/clip.mdl",
+    "origin": "581,-54,447",
+    "callbacks": [
+      {
+        "field": "m_pfnTouch",
+        "functions": [
+          "CBasePlayerAmmo::DefaultTouch"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 540,
+    "classname": "env_dynlight",
+    "targetname": "kalashaha",
+    "model": "",
+    "origin": "1067,1157,250",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CEnvDynLight::LightThink"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 541,
+    "classname": "env_dynlight",
+    "targetname": "kostymkuk2",
+    "model": "",
+    "origin": "766,1349,250",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CEnvDynLight::LightThink"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 548,
+    "classname": "env_dynlight",
+    "targetname": "cutljus",
+    "model": "",
+    "origin": "-806,-160,296",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CEnvDynLight::LightThink"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 670,
+    "classname": "monstermaker",
+    "targetname": "ss2mm",
+    "model": "",
+    "origin": "-1908,2181,3",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CBaseEntity::SUB_DoNothing"
+        ]
+      },
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CMonsterMaker::ToggleUse"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 673,
+    "classname": "monstermaker",
+    "targetname": "spawnsyringe",
+    "model": "",
+    "origin": "-576,499,180",
+    "callbacks": [
+      {
+        "field": "m_pfnThink",
+        "functions": [
+          "CBaseEntity::SUB_DoNothing"
+        ]
+      },
+      {
+        "field": "m_pfnUse",
+        "functions": [
+          "CMonsterMaker::ToggleUse"
+        ]
+      }
+    ]
+  }
+]

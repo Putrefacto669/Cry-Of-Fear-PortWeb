@@ -421,3 +421,10 @@ void CRainSettings::RainThink( void )
 		m_iSent = drips;
 	}
 }
+
+#ifdef __EMSCRIPTEN__
+void CoF_RegisterDynLightCallbacks(void)
+{
+ COF_SAVE_THINK(CEnvDynLight,LightThink);
+}
+#endif

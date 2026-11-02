@@ -1,0 +1,123 @@
+{
+  "base_commit": "ed102e3",
+  "server_sha256": "622c1fdf54279da29ed0cfc458e720e58937b1bf496884ba803a35f93d520ef0",
+  "bsp_contracts": 9,
+  "pointer_lock": "PASS",
+  "browser_regressions": [
+    {
+      "name": "entities",
+      "result": "PASS",
+      "sha256": "b247376447da037f0284cd48e16a2cc0a13c3500ff151ffc221d8f5c8ff5fec5"
+    },
+    {
+      "name": "campaign_entities",
+      "result": "PASS",
+      "sha256": "1a10ffc43718b38cf5e66c25520ba674ac7b6fcf783946205429691f624ca109"
+    },
+    {
+      "name": "motion_entities",
+      "result": "PASS",
+      "sha256": "79f51aeec7aa2e3c6c84c0a5fafb37bd97dc1306fdee1fbc24dd04160249c3c6"
+    },
+    {
+      "name": "model_entities",
+      "result": "PASS",
+      "sha256": "76279c839e0d58f53cef3f3e784c1f6cb081b052a2957f8e6407109242e8334e"
+    },
+    {
+      "name": "manager_entities",
+      "result": "PASS",
+      "sha256": "1ed74bf6de435051de39b6c0fc2a240bc0c4fdd2606f66b4bf4c21606add2e5d"
+    },
+    {
+      "name": "sound_entities",
+      "result": "PASS",
+      "sha256": "258b806f961a37ef089b4d51896896f51528e2706ac3e6f8b1c8ce44e64d8aab"
+    },
+    {
+      "name": "camera_entities",
+      "result": "PASS",
+      "sha256": "0f38296a6efd54ab10e813153e8176544a2523140403ef2b726d02f6761ffd81"
+    },
+    {
+      "name": "train_entities",
+      "result": "PASS",
+      "sha256": "16411b1cccdc611bd8ac2577e7cf8d103b8873c9ef43e2c3da831ca24bee9398"
+    },
+    {
+      "name": "track_entities",
+      "result": "PASS",
+      "sha256": "04d32d33cfdf4f93ea3a87ce7079fd28cd1cb7b394dfc2a52a423fb04517e4d2"
+    },
+    {
+      "name": "envpos_entities",
+      "result": "PASS",
+      "sha256": "e0ff2f34880dde72d52ae822f7632b5e314a133903eebce1a8d2c84b64322cf5"
+    },
+    {
+      "name": "button_entities",
+      "result": "PASS",
+      "sha256": "901ea7fbf636d8a14d284c7b75dc4f8bfe0f098139b9d1f5b5ffd83498d43b49"
+    },
+    {
+      "name": "changelevel_entities",
+      "result": "PASS",
+      "sha256": "4abfd9f48258242a2cbcfc4d81df01ccec582b241913a2fe5b35b26091e90628"
+    },
+    {
+      "name": "trigger_persistence",
+      "result": "PASS",
+      "sha256": "ce3331e59978a4c9fd3b6189c447df845d35182c8d7f8ebdd32a4a14d844906b"
+    },
+    {
+      "name": "ambient_persistence",
+      "result": "PASS",
+      "sha256": "9d6ca6ec365c76d231c168fed67c56a93efa9dba389455bca84a28653e33770f"
+    }
+  ],
+  "observations": {
+    "3": {
+      "warnings": 0,
+      "lost_callbacks": 0
+    },
+    "20": {
+      "warnings": 0,
+      "lost_callbacks": 0
+    },
+    "55": {
+      "warnings": 0,
+      "lost_callbacks": 0
+    }
+  },
+  "behavior-before/result.json": {
+    "passed": true,
+    "expected_loss": true,
+    "ammo_collected": false,
+    "callbacks": null,
+    "cold_callbacks": null,
+    "animated": null,
+    "spawned": null,
+    "transition": null
+  },
+  "behavior-fixed-complete/result.json": {
+    "passed": true,
+    "expected_loss": false,
+    "ammo_collected": true,
+    "callbacks": 39,
+    "cold_callbacks": 39,
+    "animated": 5,
+    "spawned": 1,
+    "transition": null
+  },
+  "behavior-transition-use/result.json": {
+    "passed": true,
+    "expected_loss": false,
+    "ammo_collected": true,
+    "callbacks": 39,
+    "cold_callbacks": 39,
+    "animated": 5,
+    "spawned": 1,
+    "transition": "c_apartment2"
+  },
+  "early_unresolved_warnings": 1
+}
