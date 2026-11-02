@@ -1,0 +1,11 @@
+AssertionError [ERR_ASSERTION]: extras state timeout
+    at wait (file:///root/cof-audits/extras-20261101/extras_entities.mjs:12:86)
+    at async map (file:///root/cof-audits/extras-20261101/extras_entities.mjs:16:99)
+    at async file:///root/cof-audits/extras-20261101/extras_entities.mjs:21:2 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

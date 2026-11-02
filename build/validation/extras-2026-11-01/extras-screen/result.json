@@ -1,0 +1,143 @@
+{
+  "naturalProgression": false,
+  "commentaries": [
+    {
+      "map": "c_start",
+      "id": 753,
+      "event": "[16:05:13] COF/HUD COMMENTARY 753 0 72 0 commentary/James/start_2.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_start",
+      "id": 744,
+      "event": "[16:05:15] COF/HUD COMMENTARY 744 0 95 0 commentary/James/start_3.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_start",
+      "id": 745,
+      "event": "[16:05:16] COF/HUD COMMENTARY 745 0 54 1 commentary/Andreas/start_1.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_start",
+      "id": 780,
+      "event": "[16:05:17] COF/HUD COMMENTARY 780 0 34 0 commentary/James/start_j1.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_nightmare",
+      "id": 491,
+      "event": "[16:05:21] COF/HUD COMMENTARY 491 0 65 1 commentary/Andreas/nightmare_1.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_nightmare",
+      "id": 492,
+      "event": "[16:05:22] COF/HUD COMMENTARY 492 0 31 0 commentary/James/nightmare_2.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_nightmare",
+      "id": 497,
+      "event": "[16:05:22] COF/HUD COMMENTARY 497 0 49 4 commentary/Lasse/nightmare_l1.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_nightmare",
+      "id": 498,
+      "event": "[16:05:23] COF/HUD COMMENTARY 498 0 54 3 commentary/Stig/nightmare_1s.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_start2",
+      "id": 377,
+      "event": "[16:05:32] COF/HUD COMMENTARY 377 0 65 1 commentary/Andreas/start2_1.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_start2",
+      "id": 378,
+      "event": "[16:05:32] COF/HUD COMMENTARY 378 0 27 0 commentary/James/start2_j1.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_apartment1",
+      "id": 675,
+      "event": "[16:05:41] COF/HUD COMMENTARY 675 0 28 0 commentary/James/apartment1_j1.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_apartment1",
+      "id": 676,
+      "event": "[16:05:41] COF/HUD COMMENTARY 676 0 12 0 commentary/James/apartment1_j2.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_apartment1",
+      "id": 677,
+      "event": "[16:05:44] COF/HUD COMMENTARY 677 0 43 0 commentary/James/apartment1_j3.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_apartment1",
+      "id": 678,
+      "event": "[16:05:46] COF/HUD COMMENTARY 678 0 30 1 commentary/Andreas/apartment1_1.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_apartment3",
+      "id": 496,
+      "event": "[16:05:53] COF/HUD COMMENTARY 496 0 43 0 commentary/James/apartment1_j3.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_apartment3",
+      "id": 497,
+      "event": "[16:05:54] COF/HUD COMMENTARY 497 0 78 1 commentary/Andreas/apartment3_1.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_apartment3",
+      "id": 498,
+      "event": "[16:05:54] COF/HUD COMMENTARY 498 0 72 1 commentary/Andreas/apartment3_2.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_apartment4",
+      "id": 419,
+      "event": "[16:06:06] COF/HUD COMMENTARY 419 0 35 1 commentary/Andreas/apartment4_1.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_apartment5",
+      "id": 300,
+      "event": "[16:06:13] COF/HUD COMMENTARY 300 0 105 1 commentary/Andreas/apartment5_1.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_apartment5",
+      "id": 301,
+      "event": "[16:06:15] COF/HUD COMMENTARY 301 0 33 3 commentary/Stig/apartment5_1s.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_apartmentsick",
+      "id": 423,
+      "event": "[16:06:19] COF/HUD COMMENTARY 423 0 42 1 commentary/Andreas/apartmentsick_1.wav -",
+      "passed": true
+    },
+    {
+      "map": "c_apartmentsick",
+      "id": 424,
+      "event": "[16:06:20] COF/HUD COMMENTARY 424 0 37 0 commentary/James/apartmentsick_j1.wav -",
+      "passed": true
+    }
+  ],
+  "commentaryRestored": "[16:05:15] COF/EXTRAS unlocks=20971520 costume=0 nightOwned=0 nightState=0 deadline=0 stored=0 commentary=1\n[16:05:15] COF/FENCE extras_12 time=1.8",
+  "hoodie": true,
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: extras state timeout\n    at wait (file:///root/cof-audits/extras-20261101/extras_entities.mjs:12:86)\n    at async file:///root/cof-audits/extras-20261101/extras_entities.mjs:55:2",
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

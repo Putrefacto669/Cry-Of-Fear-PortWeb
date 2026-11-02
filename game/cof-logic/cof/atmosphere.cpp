@@ -23,6 +23,7 @@ static int gmsgCoFEmit = 0;
 static int gmsgCoFLight = 0;
 
 void CoF_LinkDecalMessages( void ); // static_decal.cpp
+void CoF_LinkExtrasMessages( void );
 
 // called from hlsdk's LinkUserMessages, with the messages of Half-Life
 void CoF_LinkUserMessages( void )
@@ -34,6 +35,7 @@ void CoF_LinkUserMessages( void )
 		gmsgCoFLight = REG_USER_MSG( "CoFLight", 1 );
 	}
 	CoF_LinkDecalMessages();
+	CoF_LinkExtrasMessages();
 }
 
 // the phone's light on or off (player_cof.cpp); the client projects it (cof_client.cpp)

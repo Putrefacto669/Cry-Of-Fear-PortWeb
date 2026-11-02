@@ -1,0 +1,17 @@
+OK c_intro: real unnamed manager auto-activates; empty channels have no motion
+OK position mode 0: real server state and frame-time scaling
+OK position mode 1: real server state and frame-time scaling
+OK position mode 2: real server state and frame-time scaling
+OK position mode 3: real server state and frame-time scaling
+OK facing mode 0: real server angles/angular velocity
+OK facing mode 1: real server angles/angular velocity
+OK facing mode 2: real server angles/angular velocity
+OK facing mode 3: real server angles/angular velocity
+OK zero direction preserves angles
+OK *locus selects the actual activator
+OK every targetname match receives an independent worker
+OK configuration snapshot; worker survives manager removal and stops with target
+OK locus removal disposes workers; repeated Use creates separate workers
+OK invalid/unsupported expressions, modes, flags and absent targets have no side effects
+OK save/restore: live handles, manager configuration and worker count without auto-start duplication
+OK map load clears level-local workers; no JavaScript errors

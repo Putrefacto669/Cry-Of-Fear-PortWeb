@@ -86,6 +86,7 @@ BOOT_FILES = ["liblist.gam", "valve.rc", "delta.lst","titles.txt", "skill.cfg", 
               "gfx/palette.lmp", "gfx/palette.bmp", "gfx/colormap.lmp", "gfx/conback.lmp",
               "gfx/flashlight.tga",  # cookie de la linterna para platform/web/postfx.js
               "gfx/decals/decalinfo.txt"]  # grupos de env_static_decal (static_decal.cpp)
+BOOT_FILES += ["sound/unlockables/nv_on.wav", "sound/unlockables/nv_off.wav"]
 # inventoryitems/*.txt describen cada objeto del bolso (nombre, imágenes, sonido de recogida)
 # txtfiles/languages: subtítulos, pistas, SMS y conclusiones de los 6 idiomas traducidos (274 KB)
 BOOT_DIRS = ["gfx/shell", "resource", "sprites", "events", "inventoryitems", "txtfiles/languages",
@@ -112,6 +113,9 @@ MONSTER_ASSETS = {
     "door_prop_view": ["models/null.mdl"],
     "cof_passwordnote": ["models/items/generic_note.mdl"],
     "cof_computer": ["models/props/inomhusd/cafe_monitor.mdl"],
+    "cof_developer_commentary": ["models/developer_commentary.mdl"],
+    "cof_hoodie": ["models/costumes/hoodie.mdl", "sound/player/find_note.wav"],
+    "item_nightvision": ["models/items/w_nightvision.mdl", "sound/weapons/item_get.wav"],
 }
 ITEM_FIELD_RE = re.compile(r'"([^"]+)"\s*\{\s*data\s+"([^"]*)"\s*\}')
 
@@ -185,8 +189,12 @@ def map_dependencies(game: Path, bsp: Path) -> tuple[set[str], list[str]]:
         if cls.startswith("weapon_"):
             short = cls[len("weapon_"):]
             deps.add(f"models/weapons/{short}/w_{short}.mdl")
-        for value in ent.values():
+        for key, value in ent.items():
             v = value.replace("\\", "/").lower()
+            if cls == "cof_developer_commentary" and key == "noise":
+                # PlayMP3 resolves these WAV recordings under mp3/, not sound/.
+                deps.add(f"mp3/{v}")
+                continue
             if v.endswith((".mdl", ".spr")):
                 deps.add(v)
             elif v.endswith(".wav"):
@@ -312,6 +320,13 @@ def main() -> int:
     boot = boot_set(game)
     size = copy_set(game, boot, args.stage / "boot")
     print(f"boot: {len(boot)} archivos, {size / 2**20:.1f} MiB")
+
+    # Costume textures are shared across levels and cold restores. Keep them in a
+    # separate pack so boot.data stays below the repository's per-file limit.
+    costumes = {p.relative_to(game).as_posix() for p in (game / "models/costumes").rglob("*")
+                if p.is_file() and p.suffix.lower() == ".tga"}
+    if costumes:
+        copy_set(game, costumes, args.stage / "shared_extras")
 
     if args.boot_only:
         return 0

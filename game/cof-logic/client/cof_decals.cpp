@@ -31,6 +31,18 @@ struct cof_render_api_t
 
 static cof_render_api_t *g_renderApi;
 
+// Reuse the negotiated engine API for the original external costume textures.
+int CoF_LoadExtraTexture(const char *path)
+{
+ if(!g_renderApi)return 0;
+ int length=0;
+ unsigned char *bytes=gEngfuncs.COM_LoadFile((char*)path,5,&length);
+ if(!bytes)return 0;
+ int texture=g_renderApi->GL_LoadTexture(path,bytes,length,0);
+ gEngfuncs.COM_FreeFile(bytes);
+ return texture;
+}
+
 // The engine keeps a pointer to its own render_api_t; render_interface_t (the custom renderer
 // callbacks) stays empty, so the engine keeps drawing everything itself.
 extern "C" int DLLEXPORT HUD_GetRenderInterface( int version, struct render_api_s *renderfuncs, struct render_interface_s *callback )

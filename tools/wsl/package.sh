@@ -25,7 +25,7 @@ mkdir -p "$DIST/packs" "$STAGE/lib"
 # xash3d.html es la página por defecto de emcc (sin paquetes ni argumentos); index.html es la buena
 cp "$B/engine/engine/xash3d.html" "$B/engine/engine/xash3d.js" "$B/engine/engine/xash3d.wasm" "$DIST/"
 rm -f "$DIST/xash.js" "$DIST/xash.wasm"
-cp "$WEB/index.html" "$WEB/loader.js" "$WEB/postfx.js" "$WEB/hud.js" "$WEB/gpustats.js" "$WEB/debug.js" "$WEB/sw.js" "$DIST/"
+cp "$WEB/index.html" "$WEB/loader.js" "$WEB/postfx.js" "$WEB/hud.js" "$WEB/extras.js" "$WEB/gpustats.js" "$WEB/debug.js" "$WEB/sw.js" "$DIST/"
 # portada del launcher (index.html #launcher): logo y fondo del menú original, convertidos a PNG/JPEG
 mkdir -p "$DIST/launcher" && cp "$WEB/launcher/logo.png" "$WEB/launcher/background.jpg" "$DIST/launcher/"
 cp "$WEB/transitions.json" "$DIST/packs/"
@@ -80,6 +80,12 @@ EOF
 
 pack engine "$STAGE/lib" /lib
 pack boot "$STAGE/boot" /rodir
+if [ -d "$STAGE/shared_extras" ]; then
+    pack extras "$STAGE/shared_extras" /rodir
+    printf '["extras"]\n' > "$DIST/packs/shared.json"
+else
+    printf '[]\n' > "$DIST/packs/shared.json"
+fi
 maps=("$@")
 [ ${#maps[@]} -eq 0 ] && mapfile -t maps < <(ls "$STAGE/maps" 2>/dev/null)
 for m in "${maps[@]}"; do

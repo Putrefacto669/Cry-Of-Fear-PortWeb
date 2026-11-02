@@ -492,10 +492,14 @@ static void Flashlight_Frame( float now, float dt, const float *vieworg, const f
 }
 
 void CoF_DecalsInit( void );    // cof_decals.cpp
+void CoF_ClientExtrasInit();
+void CoF_ClientExtrasReset();
+void CoF_ClientExtrasView(const float *,float);
 void CoF_DecalsVidInit( void );
 void CoF_ClientInit( void )
 {
 	CoF_DecalsInit();
+	CoF_ClientExtrasInit();
  gEngfuncs.pfnHookUserMsg("Padlock",PadlockMessage);
  gEngfuncs.pfnAddCommand("cof_padlock_render",PadlockRenderStatus);
  gEngfuncs.pfnRegisterVariable("cof_padlock_trace","0",0);
@@ -524,6 +528,7 @@ void CoF_ClientVidInit( void )
 {
  SkyLevel();
 	CoF_DecalsVidInit();
+	CoF_ClientExtrasReset();
 	for( int j = 0; j < MAX_PARTICLES; j++ )
 		g_particles[j].emitter = -1;
 	memset( &g_fog, 0, sizeof( g_fog ));
@@ -551,4 +556,5 @@ void CoF_ClientFrame( void )
 void CoF_ClientFlashlightView( const float *org, const float *angles, float dt )
 {
 	Flashlight_Frame( gEngfuncs.GetClientTime(), dt, org, angles );
+	CoF_ClientExtrasView(org,dt);
 }

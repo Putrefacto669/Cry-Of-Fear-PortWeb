@@ -1,0 +1,7 @@
+OK c_start: named initial sequences, flag 1 selects Off, five real models animate
+OK static prop with only a numeric sequence remains static and preserves body/skin
+OK action 0 clamps/stops; action 1 loops; typed Use is idempotent and can restart a stopped model
+OK action 2 switches to the other named state in both directions after completion
+OK absent named channel preserves sequence; unknown label reports and falls back to sequence 0
+OK real c_start multi_managers select open_door and walk and advance their frames
+OK save/restore: frame, body, skin, animation state and named configuration; playback resumes and Use works

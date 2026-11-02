@@ -1,3 +1,37 @@
+diff --git a/cl_dll/StudioModelRenderer.cpp b/cl_dll/StudioModelRenderer.cpp
+index 53d320a4..6e1884a6 100644
+--- a/cl_dll/StudioModelRenderer.cpp
++++ b/cl_dll/StudioModelRenderer.cpp
+@@ -54,6 +54,9 @@ Init
+ 
+ ====================
+ */
++extern void CoF_CostumeBegin(model_t *model, void *header);
++extern void CoF_CostumeEnd();
++
+ void CStudioModelRenderer::Init( void )
+ {
+ 	// Set up some variables shared with engine
+@@ -1612,7 +1615,9 @@ void CStudioModelRenderer::StudioRenderFinal_Software( void )
+ 		for( i = 0; i < m_pStudioHeader->numbodyparts; i++ )
+ 		{
+ 			IEngineStudio.StudioSetupModel( i, (void **)&m_pBodyPart, (void **)&m_pSubModel );
++			CoF_CostumeBegin(m_pRenderModel, m_pStudioHeader);
+ 			IEngineStudio.StudioDrawPoints();
++			CoF_CostumeEnd();
+ 		}
+ 	}
+ 
+@@ -1666,7 +1671,9 @@ void CStudioModelRenderer::StudioRenderFinal_Hardware( void )
+ 			}
+ 
+ 			IEngineStudio.GL_SetRenderMode( rendermode );
++			CoF_CostumeBegin(m_pRenderModel, m_pStudioHeader);
+ 			IEngineStudio.StudioDrawPoints();
++			CoF_CostumeEnd();
+ 			IEngineStudio.GL_StudioDrawShadow();
+ 		}
+ 	}
 diff --git a/cl_dll/cl_util.h b/cl_dll/cl_util.h
 index 80f4cdae..1fda8f1e 100644
 --- a/cl_dll/cl_util.h
@@ -606,10 +640,10 @@ index 1f5b4b06..bf913531 100644
  #define DOOR_SENTENCEWAIT	6.0f
  #define DOOR_SOUNDWAIT		3.0f
 diff --git a/dlls/game.cpp b/dlls/game.cpp
-index a81ae5a6..12021131 100644
+index a81ae5a6..2ee14539 100644
 --- a/dlls/game.cpp
 +++ b/dlls/game.cpp
-@@ -465,8 +465,19 @@ cvar_t sv_busters = { "sv_busters", "0" };
+@@ -465,8 +465,21 @@ cvar_t sv_busters = { "sv_busters", "0" };
  
  // Register your console variables here
  // This gets called one time when the game is initialied
@@ -617,6 +651,7 @@ index a81ae5a6..12021131 100644
 +#ifdef __EMSCRIPTEN__
 +extern cvar_t cof_save_debug;
 +extern void CoF_RegisterPersistenceCallbacks(void);
++extern void CoF_RegisterExtras(void);
 +#endif
 +
  void GameDLLInit( void )
@@ -625,6 +660,7 @@ index a81ae5a6..12021131 100644
 +#ifdef __EMSCRIPTEN__
 +	CVAR_REGISTER(&cof_save_debug);
 +	CoF_RegisterPersistenceCallbacks();
++	CoF_RegisterExtras();
 +#endif
  	g_psv_gravity = CVAR_GET_POINTER( "sv_gravity" );
  	g_psv_aim = CVAR_GET_POINTER( "sv_aim" );
@@ -835,7 +871,7 @@ index 35eb3fba..3d05b4f0 100644
  
  void CFuncTrackTrain::KeyValue( KeyValueData *pkvd )
 diff --git a/dlls/player.cpp b/dlls/player.cpp
-index bbb68ea6..5f83e41d 100644
+index bbb68ea6..61f169c4 100644
 --- a/dlls/player.cpp
 +++ b/dlls/player.cpp
 @@ -21,6 +21,7 @@
@@ -891,7 +927,18 @@ index bbb68ea6..5f83e41d 100644
  }
  
  LINK_ENTITY_TO_CLASS( player, CBasePlayer )
-@@ -1591,7 +1607,18 @@ void CBasePlayer::PlayerUse( void )
+@@ -423,8 +439,10 @@ void CBasePlayer::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector ve
+ #define ARMOR_RATIO	0.2	// Armor Takes 80% of the damage
+ #define ARMOR_BONUS	0.5	// Each Point of Armor is work 1/x points of health
+ 
++extern bool CoF_ExtrasBlocksDamage(CBasePlayer *player);
+ int CBasePlayer::TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, float flDamage, int bitsDamageType )
+ {
++	if (CoF_ExtrasBlocksDamage(this)) return 0;
+ 	// have suit diagnose the problem - ie: report damage type
+ 	int bitsDamage = bitsDamageType;
+ 	int ffound = TRUE;
+@@ -1591,7 +1609,18 @@ void CBasePlayer::PlayerUse( void )
  			vecLOS = UTIL_ClampVectorToBox( vecLOS, pObject->pev->size * 0.5 );
  
  			flDot = DotProduct( vecLOS , gpGlobals->v_forward );
@@ -911,7 +958,7 @@ index bbb68ea6..5f83e41d 100644
  			{
  				// only if the item is in front of the user
  				pClosest = pObject;
-@@ -1891,6 +1918,8 @@ void CBasePlayer::PreThink( void )
+@@ -1891,6 +1920,8 @@ void CBasePlayer::PreThink( void )
  
  	UTIL_MakeVectors( pev->v_angle );             // is this still used?
  
@@ -920,7 +967,7 @@ index bbb68ea6..5f83e41d 100644
  	ItemPreFrame();
  	WaterMove();
  
-@@ -2998,6 +3027,7 @@ void CBasePlayer::Spawn( void )
+@@ -2998,6 +3029,7 @@ void CBasePlayer::Spawn( void )
  
  	SET_VIEW(edict(), edict());
  
@@ -928,7 +975,7 @@ index bbb68ea6..5f83e41d 100644
  	g_pGameRules->PlayerSpawn( this );
  }
  
-@@ -3997,6 +4027,10 @@ ForceClientDllUpdate to ensure the demo gets messages
+@@ -3997,6 +4029,10 @@ ForceClientDllUpdate to ensure the demo gets messages
  reflecting all of the HUD state info.
  =========================================================
  */
@@ -939,7 +986,7 @@ index bbb68ea6..5f83e41d 100644
  void CBasePlayer::UpdateClientData( void )
  {
  	if( m_fInitHUD )
-@@ -4007,6 +4041,9 @@ void CBasePlayer::UpdateClientData( void )
+@@ -4007,6 +4043,9 @@ void CBasePlayer::UpdateClientData( void )
  		MESSAGE_BEGIN( MSG_ONE, gmsgResetHUD, NULL, pev );
  			WRITE_BYTE( 0 );
  		MESSAGE_END();

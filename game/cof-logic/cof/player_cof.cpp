@@ -21,6 +21,7 @@
 #include "weapons.h"
 #include "saverestore.h"
 #include "cof_player.h"
+#include "cof_extras.h"
 
 #ifdef __EMSCRIPTEN__
 extern void CoF_SetManagerTrace( int enabled );
@@ -324,6 +325,7 @@ void CoF_PlayerSpawn( CBasePlayer *pPlayer )
 
 	memset( s, 0, sizeof( *s ));
 	s->stamina = COF_STAMINA_MAX;
+	CoF_ExtrasSpawn(pPlayer);
 	CoF_PuzzlesNewGame();
 	s->sentHealth = s->sentStamina = s->sentSprint = s->sentHide = s->sentFlashlight = -1;
 	s->invDirty = TRUE;
@@ -402,6 +404,7 @@ void CoF_PlayerPreThink( CBasePlayer *pPlayer )
 		return;
 
 	CoF_UseTrace( pPlayer ); // E: what is looked at first, like the original (doors.cpp)
+	CoF_ExtrasFrame(pPlayer);
 
 	// changelevel and save games move the clock: resend everything
 	float dt = now - s->lastTime;
@@ -768,6 +771,7 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
 
 bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd )
 {
+	if(CoF_ExtrasCommand(pPlayer,pcmd))return true;
 	cof_player_t *s = CoF_State( pPlayer );
 	if( !s )
 		return false;
@@ -1093,6 +1097,7 @@ public:
 	BOOL m_fMobileFlash;
 	BOOL m_fMobileDual;
 	BOOL m_fFlashlight;
+	cof_extra_player_t m_Extras;
 };
 
 LINK_ENTITY_TO_CLASS( cof_playerstate, CCofPlayerState )
@@ -1113,6 +1118,11 @@ TYPEDESCRIPTION CCofPlayerState::m_SaveData[] =
 	DEFINE_FIELD( CCofPlayerState, m_fMobileFlash, FIELD_BOOLEAN ),
 	DEFINE_FIELD( CCofPlayerState, m_fMobileDual, FIELD_BOOLEAN ),
 	DEFINE_FIELD( CCofPlayerState, m_fFlashlight, FIELD_BOOLEAN ),
+	DEFINE_FIELD( CCofPlayerState, m_Extras.costume, FIELD_INTEGER ),
+	DEFINE_FIELD( CCofPlayerState, m_Extras.nightOwned, FIELD_INTEGER ),
+	DEFINE_FIELD( CCofPlayerState, m_Extras.nightState, FIELD_INTEGER ),
+	DEFINE_FIELD( CCofPlayerState, m_Extras.nightTime, FIELD_TIME ),
+	DEFINE_FIELD( CCofPlayerState, m_Extras.nightWeapon, FIELD_EHANDLE ),
 };
 
 void CCofPlayerState::Spawn( void )
@@ -1141,6 +1151,7 @@ int CCofPlayerState::Save( CSave &save )
 	m_fMobileFlash = s->phone.flash;
 	m_fMobileDual = s->phone.dual;
 	m_fFlashlight = s->flashlight;
+	m_Extras=CoF_ExtrasPrimaryState();
 	char code[16];
 	m_iPassword = CoF_GetPuzzleState( code, sizeof( code ));
 	m_iszCode = ALLOC_STRING( code );
@@ -1176,6 +1187,8 @@ int CCofPlayerState::Restore( CRestore &restore )
 	s->phone.flash = m_fMobileFlash;
 	s->phone.dual = m_fMobileDual;
 	s->flashlight = m_fFlashlight;
+	CoF_ExtrasPrimaryState()=m_Extras;
+	CoF_ExtrasRestored();
 	s->sentFlashlight = -1;
 	CoF_SetPuzzleState( m_iPassword, FStringNull( m_iszCode ) ? "" : STRING( m_iszCode ));
  if(!FStringNull(m_iszPadlockCode)) CoF_SetPadlockCode(STRING(m_iszPadlockCode));

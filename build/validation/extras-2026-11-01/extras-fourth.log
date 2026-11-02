@@ -1,0 +1,94 @@
+OK commentary c_start 753
+OK commentary c_start 744
+OK commentary c_start 745
+OK commentary c_start 780
+OK commentary c_nightmare 491
+OK commentary c_nightmare 492
+OK commentary c_nightmare 497
+OK commentary c_nightmare 498
+OK commentary c_start2 377
+OK commentary c_start2 378
+OK commentary c_apartment1 675
+OK commentary c_apartment1 676
+OK commentary c_apartment1 677
+OK commentary c_apartment1 678
+OK commentary c_apartment3 496
+OK commentary c_apartment3 497
+OK commentary c_apartment3 498
+OK commentary c_apartment4 419
+OK commentary c_apartment5 300
+OK commentary c_apartment5 301
+OK commentary c_apartmentsick 423
+OK commentary c_apartmentsick 424
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('[data-close]')
+    - locator resolved to <button data-close="1">Exit</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - performing click action
+      - <header>…</header> intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - performing click action
+      - <header>…</header> intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    51 × waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - performing click action
+       - <header>…</header> intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - performing click action
+
+    at /root/cof-audits/extras-20261101/extras_entities.mjs:66:37 {
+  log: [
+    "  - waiting for locator('[data-close]')",
+    '    - locator resolved to <button data-close="1">Exit</button>',
+    '  - attempting click action',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is visible, enabled and stable',
+    '      - scrolling into view if needed',
+    '      - done scrolling',
+    '      - performing click action',
+    '      - <header>…</header> intercepts pointer events',
+    '    - retrying click action',
+    '    - waiting 20ms',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is visible, enabled and stable',
+    '      - scrolling into view if needed',
+    '      - done scrolling',
+    '      - performing click action',
+    '      - <header>…</header> intercepts pointer events',
+    '    - retrying click action',
+    '      - waiting 100ms',
+    '    51 × waiting for element to be visible, enabled and stable',
+    '       - element is visible, enabled and stable',
+    '       - scrolling into view if needed',
+    '       - done scrolling',
+    '       - performing click action',
+    '       - <header>…</header> intercepts pointer events',
+    '     - retrying click action',
+    '       - waiting 500ms',
+    '    - waiting for element to be visible, enabled and stable',
+    '    - element is visible, enabled and stable',
+    '    - scrolling into view if needed',
+    '    - done scrolling',
+    '    - performing click action'
+  ],
+  name: 'TimeoutError'
+}

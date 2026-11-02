@@ -635,6 +635,8 @@ void UTIL_PrecacheOtherWeapon( const char *szClassname ); // weapons.cpp, not in
 // these, because the player carries them from one level to the next
 void CoF_PrecacheWeapons( void )
 {
+	PRECACHE_SOUND("unlockables/nv_on.wav");
+	PRECACHE_SOUND("unlockables/nv_off.wav");
 	UTIL_PrecacheOtherWeapon( "weapon_switchblade" );
 	UTIL_PrecacheOtherWeapon( "weapon_glock" );
 	UTIL_PrecacheOtherWeapon( "weapon_syringe" );

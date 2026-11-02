@@ -1,0 +1,16 @@
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /class=weapon_glock/. Input:
+
+'[15:34:40] COF/WEAPON class=none clip=-1 ammo=-1 primary=0 secondary=0 playernext=0.165 reload=0 buttons=0 health=100\n' +
+  '[15:34:40] COF/PHONE mode=0 light=0 dual=0 message=0\n' +
+  '[15:34:40] COF/FENCE extra_persist_25 time=3.836'
+
+    at file:///root/cof-audits/extras-20261101/extras_persistence.mjs:30:95 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '[15:34:40] COF/WEAPON class=none clip=-1 ammo=-1 primary=0 secondary=0 playernext=0.165 reload=0 buttons=0 health=100\n' +
+    '[15:34:40] COF/PHONE mode=0 light=0 dual=0 message=0\n' +
+    '[15:34:40] COF/FENCE extra_persist_25 time=3.836',
+  expected: /class=weapon_glock/,
+  operator: 'match',
+  diff: 'simple'
+}

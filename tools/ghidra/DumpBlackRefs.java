@@ -7,7 +7,7 @@ import java.util.*;
 // Read-only: functions that reference the black-and-white strings, decompiled
 public class DumpBlackRefs extends GhidraScript {
  public void run() throws Exception {
-  String[] keys = getScriptArgs()[1].split(",");
+  String[] keys = getScriptArgs()[1].toLowerCase(Locale.ROOT).split("[+,]");
   DecompInterface d=new DecompInterface();d.openProgram(currentProgram);Set<Function> seen=new HashSet<>();
   try(PrintWriter out=new PrintWriter(getScriptArgs()[0])) {
    DataIterator it=currentProgram.getListing().getDefinedData(true);

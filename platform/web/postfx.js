@@ -189,7 +189,8 @@
     gl.uniform1f(loc.uFlashlightGain, settings.flashlightGain);
     gl.uniform1f(loc.uFlashlightSize, settings.flashlightSize);
     gl.uniform3fv(loc.uFlashlightTint, settings.flashlightTint);
-    gl.uniform1f(loc.uGrey, settings.grey);
+    // Native client.dll gl_grayscale override while nightvision is visible: 0.6.
+    gl.uniform1f(loc.uGrey, settings.nightvision ? 0.6 : settings.grey);
     gl.uniform1f(loc.uGrain, settings.grain);
     gl.uniform1f(loc.uVignette, settings.vignette);
     gl.uniform1f(loc.uBlur, settings.blur);

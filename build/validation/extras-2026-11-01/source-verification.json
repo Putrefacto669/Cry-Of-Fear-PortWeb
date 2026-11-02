@@ -1,0 +1,28 @@
+{
+  "head": "2c371e74bab5687df67c5c2678e1f53c61900bf9",
+  "originalResourcesUnchanged": 23,
+  "originalMapsUnchanged": 11,
+  "originalLibrariesUnchanged": 2,
+  "packagedModules": {
+    "client.wasm": "fe8925dcece899f01d3ed1416e526fce008b91466abb9f61dc8310ba218ee946",
+    "filesystem_stdio.wasm": "85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95",
+    "libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec",
+    "menu.wasm": "bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051",
+    "server.wasm": "ab7ee69d08e9eb0dccfbb686ee66c759b62780594442ced70c52018ed2419dae"
+  },
+  "mountedModules": {
+    "server.wasm": "ab7ee69d08e9eb0dccfbb686ee66c759b62780594442ced70c52018ed2419dae",
+    "client.wasm": "fe8925dcece899f01d3ed1416e526fce008b91466abb9f61dc8310ba218ee946",
+    "libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec"
+  },
+  "compileSources": [
+    "../../game/cof-logic/cof/extras.cpp",
+    "../../game/cof-logic/client/cof_extras.cpp"
+  ],
+  "privateDist": "/root/cof-audits/extras-20261101/dist-fifth",
+  "privateManifest": "92df7219eaa6",
+  "sharedPacks": [
+    "extras"
+  ],
+  "principalDistChanged": false
+}

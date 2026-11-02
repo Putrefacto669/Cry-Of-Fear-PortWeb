@@ -1,0 +1,19 @@
+{
+  "diagnosticOnly": true,
+  "modules": {
+    "server.wasm": "ab7ee69d08e9eb0dccfbb686ee66c759b62780594442ced70c52018ed2419dae",
+    "client.wasm": "fe8925dcece899f01d3ed1416e526fce008b91466abb9f61dc8310ba218ee946",
+    "libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec"
+  },
+  "hrtf": false,
+  "hatchBefore": "[15:56:11] COF/ENTITY *132 class=func_button body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=161 touch=0 target=multitscene frozen=0 stairs=-1 use=1 think=0 toggle=1 next=0 now=18.469 effects=0 renderfx=0 modelindex=133 model=*132\n[15:56:11] COF/USEAIM hit= class=func_button fraction=0.624607921\n[15:56:11] COF/USEAIM candidate=door_office class=inter_door dot=-0.0106156068\n[15:56:11] COF/USEAIM candidate=gay1 class=func_button dot=-0.0104359509\n[15:56:11] COF/FENCE extra_input_3 time=18.469",
+  "hatchAfter": "[15:56:11] COF/HUD STAT 100 100 0 8\n[15:56:11] COF/ENTITY *132 class=func_button body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=161 touch=0 target=multitscene frozen=0 stairs=-1 use=1 think=0 toggle=0 next=-1 now=19.056 effects=0 renderfx=0 modelindex=133 model=*132\n[15:56:11] COF/ENTITY weapon_glock missing\n[15:56:11] COF/FENCE extra_input_4 time=19.056",
+  "keyCollected": "[15:56:14] bag 0: apartmentkey (inventoryitems/apartmentkey.txt) count -1\n[15:56:14] COF/FENCE extra_input_6 time=21.754",
+  "doorAfter": "[15:56:15] COF/ENTITY *66 class=inter_door body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=0 target=3_exit1 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=22.784 effects=0 renderfx=0 modelindex=67 model=*66\n[15:56:15] COF/FENCE extra_input_8 time=22.784",
+  "bagAfter": "[15:56:15] monster monster_child health 20 dead 0 dist 498\n[15:56:15] monster monstermaker health 0 dead 0 dist 54\n[15:56:15] COF/FENCE extra_input_9 time=22.805",
+  "afterReload": "[15:56:22] COF/ENTITY !player class=player body=0 solid=3 origin=36.0,-155.0,164.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=24.273 effects=0 renderfx=0 modelindex=328 model=models/player.mdl\n[15:56:22] COF/FENCE extra_input_12 time=24.273",
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Expected \"actual\" to be strictly unequal to:\n\n'36.0,-155.0,164.0'\n    at file:///root/cof-audits/extras-20261101/extras_interactions.mjs:23:461",
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

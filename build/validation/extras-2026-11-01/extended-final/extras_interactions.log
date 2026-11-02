@@ -1,0 +1,14 @@
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /locked=1/. Input:
+
+'[15:52:21] COF/DOOR *66 missing\n' +
+  '[15:52:21] COF/FENCE extra_input_8 time=22.031'
+
+    at file:///root/cof-audits/extras-20261101/extras_interactions.mjs:19:57 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '[15:52:21] COF/DOOR *66 missing\n' +
+    '[15:52:21] COF/FENCE extra_input_8 time=22.031',
+  expected: /locked=1/,
+  operator: 'match',
+  diff: 'simple'
+}
