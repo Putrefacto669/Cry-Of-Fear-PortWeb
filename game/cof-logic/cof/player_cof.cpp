@@ -538,6 +538,7 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
 	}
 	if( FStrEq( pcmd, "cof_weapon_status" ))
 	{
+		cof_player_t *state = CoF_State( pPlayer );
 		CBasePlayerItem *item = pPlayer->m_pActiveItem;
 		CBasePlayerWeapon *weapon = item && item->GetWeaponPtr() ? (CBasePlayerWeapon *)item->GetWeaponPtr() : NULL;
 		int ammo = weapon ? weapon->m_iPrimaryAmmoType : -1;
@@ -546,6 +547,9 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
 			ammo >= 0 && ammo < MAX_AMMO_SLOTS ? pPlayer->m_rgAmmo[ammo] : -1,
 			weapon ? weapon->m_flNextPrimaryAttack : 0, weapon ? weapon->m_flNextSecondaryAttack : 0,
 			pPlayer->m_flNextAttack, weapon ? weapon->m_fInReload : 0, pPlayer->pev->button, pPlayer->pev->health );
+		ALERT( at_console, "COF/PHONE mode=%d light=%d dual=%d message=%d\n",
+			state ? state->phone.flash : 0, state ? state->flashlight : 0,
+			state ? state->phone.dual : 0, state ? state->phone.message : 0 );
 		return true;
 	}
 	if( FStrEq( pcmd, "cof_face" ))

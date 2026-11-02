@@ -4,6 +4,27 @@ Guía para Claude Code (y cualquier asistente) que trabaje en este repositorio: 
 cómo se compila y se prueba, qué se hizo hasta ahora y qué trampas ya se conocen. El usuario
 trabaja en español: responder y documentar en español; los comentarios del código van en inglés.
 
+## Continuación de teléfono y HUD — 01/11/2026
+
+Leer `docs/CONTINUACION_TELEFONO_HUD_2026_11_01.md`. Partida limpia en `9588f8f`.
+Build aislada `/root/cof-audits/phone-hud-20261101/dist-controls`, puerto 8111,
+manifiesto `2f88e7b98c18`, servidor `07e7ef5c…`.
+Se retiró la alternancia DOM de F que encendía el filtro postfx incluso en modo SMS;
+el servidor y CoFLight siguen controlando el foco. El filtro permanece disponible por API
+para diagnóstico. No se cambió intensidad, gamma, motor ni renderizador.
+El clic derecho original es un puñetazo (10053a70, animaciones 10/11), todavía pendiente;
+no se reprodujo que cambiara la luz. No declarar resuelto todo el síntoma del usuario.
+HUD visible tras cámara con navaja, pausa, bolso, restauración, transición A1→A2 y SW.
+14 navegadores + 9 BSP + Pointer Lock PASS; callbacks 39/39 en sesión/frío, zoom y cinco
+mediciones de apartamentos repetidos. Logs nuevos separados; los fallos se conservaron.
+Extras: 22 comentarios + hoodie/ropa/nightvision siguen pendientes; faltan en staging
+las 21 grabaciones de comentarios y los modelos developer_commentary y w_nightvision.
+El HUD de munición original usa sprites de cargador; no quitar sin más el requisito HEV
+del Draw de Half-Life para inventar su interfaz. PlayerUse original busca a 80 unidades,
+inventoryuse a 64: no confundirlos. No se modificó dist/ ni se publicó esta etapa.
+Integración posterior autorizada por el usuario: ver `docs/PUBLICACION_TELEFONO_HUD_2026_11_01.md`;
+la build validada se promueve a dist/ y se publica con ese mismo manifiesto.
+
 ## Continuación de Codex — linterna, 31/10/2026
 
 Ver `docs/INFORME_LINTERNA_2026_10_31_CODEX.md` antes de retomar la linterna. Dos defectos

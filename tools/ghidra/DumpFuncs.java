@@ -22,7 +22,17 @@ public class DumpFuncs extends GhidraScript {
   d = new DecompInterface(); d.openProgram(currentProgram);
   int depth = a.length > 3 ? Integer.parseInt(a[3]) : 0;
   try { out = new PrintWriter(a[0]);
-   if (!a[1].isEmpty()) for (String s : a[1].split("[+]")) dump(getFunctionAt(toAddr(s)), depth);
+   if (!a[1].isEmpty()) for (String s : a[1].split("[+]")) {
+    if (s.matches("[0-9a-fA-F]{8}")) dump(getFunctionAt(toAddr(s)), depth);
+    else {
+     boolean found = false;
+     for (Symbol sym : currentProgram.getSymbolTable().getSymbols(s)) {
+      Function f = getFunctionAt(sym.getAddress());
+      if (f != null) { dump(f, depth); found = true; }
+     }
+     if (!found) out.println("MISSING FUNCTION " + s);
+    }
+   }
    if (a.length > 2 && !a[2].isEmpty()) for (String name : a[2].split("[+]")) {
     for (Symbol sym : currentProgram.getSymbolTable().getSymbols(name)) {
      out.println("SYMBOL " + name + " " + sym.getAddress());

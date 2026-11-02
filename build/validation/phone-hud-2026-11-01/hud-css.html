@@ -1,0 +1,21 @@
+<!doctype html><meta charset="utf-8"><title>HUD CSS diagnostic</title>
+<style>
+body { margin: 20px; font: 18px monospace; background: #171717; color: white; }
+.row { display: flex; gap: 6px; height: 300px; }
+.cof-bar { --u: clamp(1, calc(100vh / 480px), 2.4); position:relative;
+ width:calc(32px * var(--u)); height:calc(160px * var(--u)); background: red; }
+.cof-bar span { position:absolute; inset: 2px; background: white; }
+.control { width: 40px; height: 200px; background: #1b8; }
+</style>
+<h1>HUD CSS diagnostic — isolated profile</h1>
+<div class="row"><div class="cof-bar"><span></span></div><div class="control"></div></div>
+<pre id="result"></pre>
+<script>
+setTimeout(() => {
+ const bar = document.querySelector('.cof-bar'), rect = bar.getBoundingClientRect();
+ const result = { userAgent: navigator.userAgent,
+   supports: CSS.supports('width', 'calc(32px * clamp(1, calc(100vh / 480px), 2.4))'),
+   width: rect.width, height: rect.height, expectedNonzero: true };
+ document.querySelector('#result').textContent = JSON.stringify(result, null, 2);
+}, 50);
+</script>

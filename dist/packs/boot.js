@@ -17,7 +17,7 @@
         // web worker
         PACKAGE_PATH = encodeURIComponent(location.pathname.substring(0, location.pathname.lastIndexOf('/')) + '/');
       }
-      var PACKAGE_NAME = '/root/cof-audits/claude-launcher/dist/packs/boot.data';
+      var PACKAGE_NAME = '/root/cof-audits/phone-hud-20261101/dist-controls/packs/boot.data';
       var REMOTE_PACKAGE_BASE = 'boot.data';
       var REMOTE_PACKAGE_NAME = Module['locateFile'] ? Module['locateFile'](REMOTE_PACKAGE_BASE, '') : REMOTE_PACKAGE_BASE;
 var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
@@ -297,10 +297,10 @@ Module['FS_createPath']("/rodir", "valve", true, true);
           var files = metadata['files'];
           for (var i = 0; i < files.length; ++i) {
             DataRequest.prototype.requests[files[i].filename].onload();
-          }          Module['removeRunDependency']('datafile_/root/cof-audits/claude-launcher/dist/packs/boot.data');
+          }          Module['removeRunDependency']('datafile_/root/cof-audits/phone-hud-20261101/dist-controls/packs/boot.data');
 
       };
-      Module['addRunDependency']('datafile_/root/cof-audits/claude-launcher/dist/packs/boot.data');
+      Module['addRunDependency']('datafile_/root/cof-audits/phone-hud-20261101/dist-controls/packs/boot.data');
 
       Module['preloadResults'] ??= {};
 

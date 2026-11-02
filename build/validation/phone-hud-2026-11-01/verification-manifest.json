@@ -1,0 +1,199 @@
+{
+  "head": "9588f8f",
+  "server": "07e7ef5cb6df07708b5c3c15abb7fd18e6a3bcb17d60efb5ad0e6605c2d37ee1",
+  "modulesActuallyMounted": {
+    "/lib/server.wasm": "07e7ef5cb6df07708b5c3c15abb7fd18e6a3bcb17d60efb5ad0e6605c2d37ee1",
+    "/lib/client.wasm": "e0bc9af55fa19c19b085c88da63eb425f8606976da408425db28fac2517b2222",
+    "/lib/libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec"
+  },
+  "distUnchanged": true,
+  "originalRightClickIssueResolved": false,
+  "independentKeyFFilterFixed": true,
+  "originalExtrasImplemented": false,
+  "regressions": {
+    "ambient_persistence": {
+      "last": "OK voice: exact PCM emission before/after restore, active source restoration and finished-source silence with default autoplay policy",
+      "sha256": "9d6ca6ec365c76d231c168fed67c56a93efa9dba389455bca84a28653e33770f"
+    },
+    "button_entities": {
+      "last": "OK actual keyboard typing and Enter reach server validation",
+      "sha256": "1632cfc16ee933d7a272f5b9196ff2c7545a65b0c321e9e6a17cbda63983765e"
+    },
+    "camera_entities": {
+      "last": "OK real ckamera3: idle Use, active save/load, natural completion, control return and reuse",
+      "sha256": "0f38296a6efd54ab10e813153e8176544a2523140403ef2b726d02f6761ffd81"
+    },
+    "campaign_entities": {
+      "last": "OK cof_bosshealthbar: real boss, max health, half health, hidden on death",
+      "sha256": "1a10ffc43718b38cf5e66c25520ba674ac7b6fcf783946205429691f624ca109"
+    },
+    "changelevel_entities": {
+      "last": "OK original transition round trip 2",
+      "sha256": "4abfd9f48258242a2cbcfc4d81df01ccec582b241913a2fe5b35b26091e90628"
+    },
+    "entities": {
+      "last": "OK inventory, game save and JavaScript runtime",
+      "sha256": "b247376447da037f0284cd48e16a2cc0a13c3500ff151ffc221d8f5c8ff5fec5"
+    },
+    "envpos_entities": {
+      "last": "OK transition without markers clears client and renderer state",
+      "sha256": "39fa3e777453d9eb2dc32ef405b8112b67f22c3d69667d096a883ed9f6a7dd52"
+    },
+    "manager_entities": {
+      "last": "OK threaded clones resume independently, dispose themselves and leave source reusable",
+      "sha256": "1ed74bf6de435051de39b6c0fc2a240bc0c4fdd2606f66b4bf4c21606add2e5d"
+    },
+    "model_entities": {
+      "last": "OK save/restore: frame, body, skin, animation state and named configuration; playback resumes and Use works",
+      "sha256": "76279c839e0d58f53cef3f3e784c1f6cb081b052a2957f8e6407109242e8334e"
+    },
+    "motion_entities": {
+      "last": "OK map load clears level-local workers; no JavaScript errors",
+      "sha256": "79f51aeec7aa2e3c6c84c0a5fafb37bd97dc1306fdee1fbc24dd04160249c3c6"
+    },
+    "pointer_lock": {
+      "last": "OK pointer lock: raw movement, unsupported fallback, rejection preserved, legacy APIs and ignored SDL promises",
+      "sha256": "17038dedf36749217cbfa4392ea0e4eb6e58af3418b5abce9831b4ea3c2ae129"
+    },
+    "sound_entities": {
+      "last": "OK c_apartment1 missing roomtype defaults to 0; new map contacts work",
+      "sha256": "258b806f961a37ef089b4d51896896f51528e2706ac3e6f8b1c8ce44e64d8aab"
+    },
+    "test_entity_maps": {
+      "last": "OK",
+      "sha256": "35ab445ab7e9181a449837361fbd8b935125f1f35d57135be93a2c0fed3554a5"
+    },
+    "test_envpos_maps": {
+      "last": "OK",
+      "sha256": "e92b0ffd03bb5447a0dbd23d6627ba8b9193e54e2b435416328ff01c3080cf06"
+    },
+    "test_padlock_maps": {
+      "last": "OK",
+      "sha256": "a41e08b8782ccff561fc04da1c4aa92b79d00989913c15ae6639e0c2e9b7e03c"
+    },
+    "track_entities": {
+      "last": "OK tracktrain stopped state remains idle and an explicit normal Use resumes the same track",
+      "sha256": "04d32d33cfdf4f93ea3a87ce7079fd28cd1cb7b394dfc2a52a423fb04517e4d2"
+    },
+    "train_entities": {
+      "last": "OK moving restore reaches next node then honors the original teleport/retrigger flags and target order",
+      "sha256": "16411b1cccdc611bd8ac2577e7cf8d103b8873c9ef43e2c3da831ca24bee9398"
+    },
+    "trigger_persistence": {
+      "last": "OK real c_start trigger callbacks survive three restores; rotating door preserves idle state, moving completion and stopped clock without firing the scene",
+      "sha256": "ce3331e59978a4c9fd3b6189c447df845d35182c8d7f8ebdd32a4a14d844906b"
+    }
+  },
+  "lighting": [
+    {
+      "map": "c_apartment1",
+      "yaw": 270,
+      "profiles": [
+        {
+          "overbright": 0,
+          "off": 43.49218697916829,
+          "on": 56.90388461538567,
+          "gain": 13.411697636217383,
+          "negativeControlError": 0.0
+        },
+        {
+          "overbright": 1,
+          "off": 46.45437991186065,
+          "on": 60.404084238781635,
+          "gain": 13.949704326920987,
+          "negativeControlError": 0.0
+        }
+      ]
+    },
+    {
+      "map": "c_apartment2",
+      "yaw": 0,
+      "profiles": [
+        {
+          "overbright": 0,
+          "off": 12.621551955130682,
+          "on": 33.42687120993896,
+          "gain": 20.805319254808275,
+          "negativeControlError": 0.0
+        },
+        {
+          "overbright": 1,
+          "off": 12.338012435899941,
+          "on": 38.460341450322254,
+          "gain": 26.122329014422313,
+          "negativeControlError": 0.0
+        }
+      ]
+    },
+    {
+      "map": "c_apartment3",
+      "yaw": 90,
+      "profiles": [
+        {
+          "overbright": 0,
+          "off": 8.696950673078751,
+          "on": 16.39528687499758,
+          "gain": 7.6983362019188295,
+          "negativeControlError": 0.0
+        },
+        {
+          "overbright": 1,
+          "off": 8.8771829887841,
+          "on": 19.13389388621484,
+          "gain": 10.25671089743074,
+          "negativeControlError": 0.0
+        }
+      ]
+    },
+    {
+      "map": "c_apartment4",
+      "yaw": 0,
+      "profiles": [
+        {
+          "overbright": 0,
+          "off": 0.9421443669871812,
+          "on": 21.665452956731603,
+          "gain": 20.72330858974442,
+          "negativeControlError": 0.0
+        },
+        {
+          "overbright": 1,
+          "off": 0.9377779086538477,
+          "on": 26.990904775641805,
+          "gain": 26.05312686698796,
+          "negativeControlError": 0.0
+        }
+      ]
+    },
+    {
+      "map": "c_apartment5",
+      "yaw": 0,
+      "profiles": [
+        {
+          "overbright": 0,
+          "off": 17.176188549679345,
+          "on": 31.72751825320519,
+          "gain": 14.551329703525845,
+          "negativeControlError": 0.0
+        },
+        {
+          "overbright": 1,
+          "off": 17.180125649038224,
+          "on": 34.712080496795565,
+          "gain": 17.53195484775734,
+          "negativeControlError": 0.0
+        }
+      ]
+    }
+  ],
+  "runtimeMaps": 11,
+  "missingCommentaryRecordings": 21,
+  "sameSessionCallbacks": 39,
+  "coldCallbacks": 39,
+  "animationCount": 5,
+  "warningsAt3And20": [
+    0,
+    0
+  ],
+  "preservedLightingFailure": "lighting/c_apartment3: attacker perturbed aiming; repeated after normal combat"
+}

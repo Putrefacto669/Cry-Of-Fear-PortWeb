@@ -8,9 +8,9 @@
 //
 // API: CoFPostFX.set({ flashlight: true, grain: 0.06, grey: 0, vignette: 0.35 })
 //      CoFPostFX.stats()  -> coste medio por frame en ms (CPU, incluye la copia)
-// Tecla F: enciende/apaga la linterna (hasta que la lógica de CoF la controle).
-// Se mantiene mientras el foco del renderer (gl_rsurf.c, COF_SPOT_KEY) no ilumine el mundo: este cono
-// multiplica el frame ya iluminado y no puede aclarar lo negro (docs/INFORME_MEJORAS_2026_10_31.md).
+// The legacy screen-space flashlight remains available through set() for diagnostics.
+// Gameplay input belongs to the server: CoFLight drives the renderer's COF_SPOT_KEY.
+// A separate KeyF toggle diverges from the phone's SMS mode and from restored saves.
 (() => {
   "use strict";
 
@@ -205,9 +205,6 @@
     if (!document.pointerLockElement) return;
     swayVel[0] -= e.movementX * 0.002;
     swayVel[1] += e.movementY * 0.002;
-  });
-  addEventListener("keydown", (e) => {
-    if (e.code === "KeyF" && document.pointerLockElement) settings.flashlight = !settings.flashlight;
   });
 
   window.CoFPostFX = {

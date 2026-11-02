@@ -1,0 +1,12 @@
+{
+  "map": "c_apartment3",
+  "base": "http://127.0.0.1:8111/",
+  "chromium": "156.0.8078.4",
+  "kind": "automated lighting fixture; no natural progression claim",
+  "serverHash": "07e7ef5cb6df07708b5c3c15abb7fd18e6a3bcb17d60efb5ad0e6605c2d37ee1",
+  "initial": "[21:08:51] org ( 28.8203 -132 346.062 )\n[21:08:51] ang ( 4.125 270 -15.25 )\n[21:08:51] \"gamma\" is \"2.5\" ( \"2.5\" )\n[21:08:51] \"brightness\" is \"1\" ( \"0.0\" )\n[21:08:51] \"gl_overbright\" is \"1\" ( \"1\" )\n[21:08:51] \"gl_vbo\" is \"0\" ( \"0\" )\n[21:08:51] \"r_dynamic\" is \"1\" ( \"1\" )\n[21:08:51] COF/ENTITY !player class=player body=0 solid=3 origin=28.8,-132.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=21.382 effects=0 renderfx=0 modelindex=300 model=models/player.mdl\n[21:08:51] COF/FENCE alpha_3 time=21.382",
+  "healthBefore": "[21:08:52] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=64\n[21:08:52] COF/PHONE mode=0 light=0 dual=0 message=0\n[21:08:52] COF/FENCE alpha_10 time=22.949",
+  "survey": [],
+  "result": "FAILED",
+  "failure": "Error: aim did not settle\n    at aim (file:///root/cof-audits/phone-hud-20261101/flashlight_maps.mjs:37:10)\n    at async file:///root/cof-audits/phone-hud-20261101/flashlight_maps.mjs:156:4"
+}
