@@ -1,0 +1,453 @@
+{
+  "base": "https://putrefacto669.github.io/Cry-Of-Fear-PortWeb/",
+  "chromium": "156.0.8078.4",
+  "modules": {
+    "/lib/server.wasm": "07e7ef5cb6df07708b5c3c15abb7fd18e6a3bcb17d60efb5ad0e6605c2d37ee1",
+    "/lib/client.wasm": "e0bc9af55fa19c19b085c88da63eb425f8606976da408425db28fac2517b2222",
+    "/lib/libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec"
+  },
+  "serviceWorkerControlled": true,
+  "results": [
+    {
+      "name": "phone-before",
+      "state": "[21:44:26] \"r_cofspot_fov\" is \"50\" ( \"50\" )\n[21:44:26] \"MOUSE2\" = \"+attack2\"\n[21:44:26] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[21:44:26] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[21:44:26] carried 1: weapon_switchblade\n[21:44:26] carried 1: weapon_mobile\n[21:44:26] monster monstermaker health 0 dead 0 dist 320\n[21:44:26] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[21:44:26] COF/PHONE mode=1 light=1 dual=0 message=0\n[21:44:26] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=24.994 effects=0 renderfx=0 modelindex=328 model=models/player.mdl\n[21:44:26] COF/FENCE phone_5 time=24.994",
+      "phone": {
+        "mode": 1,
+        "light": 1,
+        "dual": 0,
+        "message": 0
+      },
+      "ui": {
+        "fx": {
+          "flashlight": false,
+          "flashlightGain": 12,
+          "flashlightSize": 0.5,
+          "flashlightTint": [
+            1,
+            0.93,
+            0.8
+          ],
+          "grey": 0,
+          "grain": 0.06,
+          "vignette": 0.35,
+          "blur": 0
+        },
+        "pointer": true,
+        "bars": [
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 20,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          },
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 66,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          }
+        ]
+      },
+      "pixels": {
+        "mean": 48.501012837645504,
+        "glError": 0
+      }
+    },
+    {
+      "name": "phone-after-right",
+      "state": "[21:44:34] \"r_cofspot_fov\" is \"67.245209\" ( \"50\" )\n[21:44:34] \"MOUSE2\" = \"+attack2\"\n[21:44:34] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[21:44:34] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[21:44:34] carried 1: weapon_switchblade\n[21:44:34] carried 1: weapon_mobile\n[21:44:34] monster monstermaker health 0 dead 0 dist 320\n[21:44:34] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[21:44:34] COF/PHONE mode=1 light=1 dual=0 message=0\n[21:44:34] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=27.617 effects=0 renderfx=0 modelindex=328 model=models/player.mdl\n[21:44:34] COF/FENCE phone_6 time=27.617",
+      "phone": {
+        "mode": 1,
+        "light": 1,
+        "dual": 0,
+        "message": 0
+      },
+      "ui": {
+        "fx": {
+          "flashlight": false,
+          "flashlightGain": 12,
+          "flashlightSize": 0.5,
+          "flashlightTint": [
+            1,
+            0.93,
+            0.8
+          ],
+          "grey": 0,
+          "grain": 0.06,
+          "vignette": 0.35,
+          "blur": 0
+        },
+        "pointer": true,
+        "bars": [
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 20,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          },
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 66,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          }
+        ]
+      },
+      "pixels": {
+        "mean": 74.24085658764452,
+        "glError": 0
+      }
+    },
+    {
+      "name": "phone-other-mode",
+      "state": "[21:44:38] \"r_cofspot_fov\" is \"67.424103\" ( \"50\" )\n[21:44:38] \"MOUSE2\" = \"+attack2\"\n[21:44:38] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[21:44:38] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[21:44:38] carried 1: weapon_switchblade\n[21:44:38] carried 1: weapon_mobile\n[21:44:38] monster monstermaker health 0 dead 0 dist 320\n[21:44:38] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-0.03 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[21:44:38] COF/PHONE mode=0 light=0 dual=0 message=0\n[21:44:38] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=30.172 effects=0 renderfx=0 modelindex=328 model=models/player.mdl\n[21:44:38] COF/FENCE phone_7 time=30.172",
+      "phone": {
+        "mode": 0,
+        "light": 0,
+        "dual": 0,
+        "message": 0
+      },
+      "ui": {
+        "fx": {
+          "flashlight": false,
+          "flashlightGain": 12,
+          "flashlightSize": 0.5,
+          "flashlightTint": [
+            1,
+            0.93,
+            0.8
+          ],
+          "grey": 0,
+          "grain": 0.06,
+          "vignette": 0.35,
+          "blur": 0
+        },
+        "pointer": true,
+        "bars": [
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 20,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          },
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 66,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          }
+        ]
+      },
+      "pixels": {
+        "mean": 72.88361995689652,
+        "glError": 0
+      }
+    },
+    {
+      "name": "phone-other-after-right",
+      "state": "[21:44:40] \"r_cofspot_fov\" is \"67.424103\" ( \"50\" )\n[21:44:40] \"MOUSE2\" = \"+attack2\"\n[21:44:40] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[21:44:40] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[21:44:40] carried 1: weapon_switchblade\n[21:44:40] carried 1: weapon_mobile\n[21:44:40] monster monstermaker health 0 dead 0 dist 320\n[21:44:40] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[21:44:40] COF/PHONE mode=0 light=0 dual=0 message=0\n[21:44:40] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=32.396 effects=0 renderfx=0 modelindex=328 model=models/player.mdl\n[21:44:40] COF/FENCE phone_8 time=32.396",
+      "phone": {
+        "mode": 0,
+        "light": 0,
+        "dual": 0,
+        "message": 0
+      },
+      "ui": {
+        "fx": {
+          "flashlight": false,
+          "flashlightGain": 12,
+          "flashlightSize": 0.5,
+          "flashlightTint": [
+            1,
+            0.93,
+            0.8
+          ],
+          "grey": 0,
+          "grain": 0.06,
+          "vignette": 0.35,
+          "blur": 0
+        },
+        "pointer": true,
+        "bars": [
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 20,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          },
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 66,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          }
+        ]
+      },
+      "pixels": {
+        "mean": 77.87409122126493,
+        "glError": 0
+      }
+    },
+    {
+      "name": "phone-after-f",
+      "state": "[21:44:43] \"r_cofspot_fov\" is \"67.424103\" ( \"50\" )\n[21:44:43] \"MOUSE2\" = \"+attack2\"\n[21:44:43] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[21:44:43] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[21:44:43] carried 1: weapon_switchblade\n[21:44:43] carried 1: weapon_mobile\n[21:44:43] monster monstermaker health 0 dead 0 dist 320\n[21:44:43] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[21:44:43] COF/PHONE mode=0 light=0 dual=0 message=0\n[21:44:43] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=34.775 effects=0 renderfx=0 modelindex=328 model=models/player.mdl\n[21:44:43] COF/FENCE phone_9 time=34.775",
+      "phone": {
+        "mode": 0,
+        "light": 0,
+        "dual": 0,
+        "message": 0
+      },
+      "ui": {
+        "fx": {
+          "flashlight": false,
+          "flashlightGain": 12,
+          "flashlightSize": 0.5,
+          "flashlightTint": [
+            1,
+            0.93,
+            0.8
+          ],
+          "grey": 0,
+          "grain": 0.06,
+          "vignette": 0.35,
+          "blur": 0
+        },
+        "pointer": true,
+        "bars": [
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 20,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          },
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 66,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          }
+        ]
+      },
+      "pixels": {
+        "mean": 77.85001418103532,
+        "glError": 0
+      }
+    },
+    {
+      "name": "knife-before",
+      "state": "[21:44:45] \"r_cofspot_fov\" is \"67.424103\" ( \"50\" )\n[21:44:45] \"MOUSE2\" = \"+attack2\"\n[21:44:45] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[21:44:45] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[21:44:45] carried 1: weapon_switchblade\n[21:44:45] carried 1: weapon_mobile\n[21:44:45] monster monstermaker health 0 dead 0 dist 320\n[21:44:45] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[21:44:45] COF/PHONE mode=0 light=0 dual=0 message=0\n[21:44:45] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=37.282 effects=0 renderfx=0 modelindex=328 model=models/player.mdl\n[21:44:45] COF/FENCE phone_11 time=37.282",
+      "phone": {
+        "mode": 0,
+        "light": 0,
+        "dual": 0,
+        "message": 0
+      },
+      "ui": {
+        "fx": {
+          "flashlight": false,
+          "flashlightGain": 12,
+          "flashlightSize": 0.5,
+          "flashlightTint": [
+            1,
+            0.93,
+            0.8
+          ],
+          "grey": 0,
+          "grain": 0.06,
+          "vignette": 0.35,
+          "blur": 0
+        },
+        "pointer": true,
+        "bars": [
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 20,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          },
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 66,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          }
+        ]
+      },
+      "pixels": {
+        "mean": 79.40449221982792,
+        "glError": 0
+      }
+    },
+    {
+      "name": "knife-after-f",
+      "state": "[21:44:47] \"r_cofspot_fov\" is \"69.549995\" ( \"50\" )\n[21:44:47] \"MOUSE2\" = \"+attack2\"\n[21:44:47] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[21:44:47] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[21:44:47] carried 1: weapon_switchblade\n[21:44:47] carried 1: weapon_mobile\n[21:44:47] monster monstermaker health 0 dead 0 dist 320\n[21:44:47] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[21:44:47] COF/PHONE mode=0 light=1 dual=0 message=0\n[21:44:47] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=39.231 effects=0 renderfx=0 modelindex=328 model=models/player.mdl\n[21:44:47] COF/FENCE phone_12 time=39.231",
+      "phone": {
+        "mode": 0,
+        "light": 1,
+        "dual": 0,
+        "message": 0
+      },
+      "ui": {
+        "fx": {
+          "flashlight": false,
+          "flashlightGain": 12,
+          "flashlightSize": 0.5,
+          "flashlightTint": [
+            1,
+            0.93,
+            0.8
+          ],
+          "grey": 0,
+          "grain": 0.06,
+          "vignette": 0.35,
+          "blur": 0
+        },
+        "pointer": true,
+        "bars": [
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 20,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          },
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 66,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          }
+        ]
+      },
+      "pixels": {
+        "mean": 87.17918267959507,
+        "glError": 0
+      }
+    },
+    {
+      "name": "knife-after-second-f",
+      "state": "[21:44:49] \"r_cofspot_fov\" is \"69.549995\" ( \"50\" )\n[21:44:49] \"MOUSE2\" = \"+attack2\"\n[21:44:49] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[21:44:49] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[21:44:49] carried 1: weapon_switchblade\n[21:44:49] carried 1: weapon_mobile\n[21:44:49] monster monstermaker health 0 dead 0 dist 320\n[21:44:49] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[21:44:49] COF/PHONE mode=0 light=0 dual=0 message=0\n[21:44:49] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,318.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=40.731 effects=0 renderfx=0 modelindex=328 model=models/player.mdl\n[21:44:49] COF/FENCE phone_13 time=40.731",
+      "phone": {
+        "mode": 0,
+        "light": 0,
+        "dual": 0,
+        "message": 0
+      },
+      "ui": {
+        "fx": {
+          "flashlight": false,
+          "flashlightGain": 12,
+          "flashlightSize": 0.5,
+          "flashlightTint": [
+            1,
+            0.93,
+            0.8
+          ],
+          "grey": 0,
+          "grain": 0.06,
+          "vignette": 0.35,
+          "blur": 0
+        },
+        "pointer": true,
+        "bars": [
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 20,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          },
+          {
+            "classes": "cof-bar on",
+            "display": "block",
+            "opacity": "1",
+            "bounds": {
+              "x": 66,
+              "y": 162.875,
+              "width": 40,
+              "height": 200
+            }
+          }
+        ]
+      },
+      "pixels": {
+        "mean": 79.37366933189736,
+        "glError": 0
+      }
+    }
+  ],
+  "errors": []
+}

@@ -24,6 +24,9 @@ del Draw de Half-Life para inventar su interfaz. PlayerUse original busca a 80 u
 inventoryuse a 64: no confundirlos. No se modificó dist/ ni se publicó esta etapa.
 Integración posterior autorizada por el usuario: ver `docs/PUBLICACION_TELEFONO_HUD_2026_11_01.md`;
 la build validada se promueve a dist/ y se publica con ese mismo manifiesto.
+Publicación comprobada: build `db41375`, Pages run `41384389487` success; ocho recursos
+públicos idénticos y fixture real con SW, módulos esperados, controles/barras y cero errores JS/GL.
+Las evidencias posteriores no cambian dist/. No ampliar ese resultado a todo el síntoma del clic derecho.
 
 ## Continuación de Codex — linterna, 31/10/2026
 
