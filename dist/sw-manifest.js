@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "923e39bbbe7d",
+ "version": "c09506da15f1",
  "coi": false,
  "precache": [
   "LICENSE.txt",
@@ -42,7 +42,7 @@ self.COF_MANIFEST = {
   "index.html": "932d514c4492",
   "launcher/background.jpg": "d385a9ca8c75",
   "launcher/logo.png": "8d7bb7601333",
-  "loader.js": "35de4e6c5513",
+  "loader.js": "530ec4ff0bde",
   "mp3/2aphall1.mp3": "70a02fded189",
   "mp3/ap3hall1.mp3": "23be860ec5a8",
   "mp3/ap3hall1end.mp3": "6da929c405e7",

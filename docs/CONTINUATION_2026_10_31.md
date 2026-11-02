@@ -415,6 +415,40 @@ El uso continuo y la búsqueda alrededor siguen en `PlayerUse`.
 falta la tercera traza con la bandera `0x200`. Las dos están en el `PlayerUse` del HLSDK
 (`patches/hlsdk`).
 
+## Voces de Simon: HRTF las tapaba
+
+**Síntoma (usuario).** No se oye a Simon al principio de `c_start` ni en los apartamentos, aunque
+salgan sus subtítulos.
+
+**Qué voces tiene el original.**
+- Solo 16 líneas tienen voz grabada: 9 en `c_start`, 3 en `c_nightmare` y 3 en `c_apartment5`, más
+  el vómito de `c_apartmentsick`. Todas las reproducen `ambient_generic` del mapa.
+- El resto de frases de Simon son solo texto, también en el original: en `c_apartment1`, el cuerpo,
+  la pistola y el techo.
+- Comprobado en `hl.dll` y `client.dll` (solo lectura):
+  - `subtitle_main` y `subtitle_linechange` solo cambian el texto;
+  - el `HUD_StudioEvent` del cliente solo atiende eventos a partir de 5000, así que los `1004` de los
+    `env_model` tampoco suenan en el original.
+
+**Medición.**
+- Las voces se emiten, igual cargando `c_start` directamente que llegando por cambio de nivel desde
+  `c_nightmare`.
+- "Where am I?" (`subtitles/sub1.wav`, radio medio, volumen 5) sale a −35,5 dB, mientras
+  `music1.mp3` suena a unos −27,6 dB: unos 8 dB por debajo.
+- Con la configuración original del usuario (`volume 0.6`, `MP3Volume 0.7`) la diferencia
+  estimada en GoldSrc es parecida, unos 9 dB, pero GoldSrc solo reparte volumen entre los oídos. El
+  port usaba HRTF, que colorea el sonido y lo hace sonar apagado.
+
+**Prueba A/B del usuario** (en su equipo, con `?audio=sinhrtf` y `?audio=motor`): oye a Simon **sin
+HRTF**.
+
+**Corrección.** `platform/web/loader.js` arranca con `snd_webaudio_hrtf 0` (panorama
+equal-power). Se conservan:
+- `?audio=hrtf`, el modo anterior;
+- `?audio=motor`, el mezclador del motor.
+
+Las dos cvars se guardan en `config.cfg`, así que el loader las fija en cada arranque.
+
 ## Límites de la validación
 
 No se modificaron recursos originales, distribución principal, licencias ni

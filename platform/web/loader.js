@@ -15,9 +15,9 @@
 //   &timer=1             mueve el bucle con temporizadores en vez de requestAnimationFrame
 //                        (pestañas ocultas, pruebas automáticas); el motor fija rAF vía vsync
 //   &prefetch=0          no precarga en segundo plano el siguiente mapa
-//   &audio=sinhrtf       sonido 3D de Web Audio sin HRTF (panorama equal-power)
+//   &audio=hrtf          sonido 3D de Web Audio con HRTF (por defecto: panorama equal-power)
 //   &audio=motor         mezclador del motor (cálculo de GoldSrc) en vez de Web Audio
-//                        (pruebas A/B de las voces de Simon; sin el parámetro, Web Audio con HRTF)
+//                        (pruebas A/B de las voces de Simon, docs/CONTINUATION_2026_10_31.md)
 (() => {
   "use strict";
 
@@ -219,11 +219,11 @@
     ];
     // controles del CoF original (platform/game/cof_web.cfg): TAB bolso, SHIFT correr, CTRL/C agacharse
     args.push("+exec", "cof_web.cfg");
-    // modos de audio para comparar a oído (&audio=). Las dos cvars se guardan en config.cfg, así que
-    // se fijan en cada arranque: sin el parámetro vuelve el modo normal
+    // Sonido: Web Audio con panorama equal-power. GoldSrc solo reparte volumen entre los oídos; con
+    // HRTF las voces de Simon quedaban apagadas bajo la música (prueba A/B del usuario, 01/11/2026).
+    // Las dos cvars se guardan en config.cfg, así que se fijan en cada arranque.
     const audio = params.get("audio");
-    args.push("+snd_webaudio", audio === "motor" ? "0" : "1", "+snd_webaudio_hrtf", audio === "sinhrtf" ? "0" : "1");
-    if (audio === "motor" || audio === "sinhrtf") log(`audio de prueba: ${audio === "motor" ? "mezclador del motor" : "Web Audio sin HRTF"}`);
+    args.push("+snd_webaudio", audio === "motor" ? "0" : "1", "+snd_webaudio_hrtf", audio === "hrtf" ? "1" : "0");
     // &mat=0: sin texturas DDS de materials/ (para comparar VRAM con las del BSP/WAD sin comprimir)
     if (params.get("mat") === "0") args.push("+host_allow_materials", "0");
     if (map) args.push("+map", map);
