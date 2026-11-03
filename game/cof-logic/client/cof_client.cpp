@@ -494,6 +494,7 @@ static void Flashlight_Frame( float now, float dt, const float *vieworg, const f
 void CoF_DecalsInit( void );    // cof_decals.cpp
 void CoF_ClientExtrasInit();
 void CoF_ClientHandsInit();void CoF_ClientHandsReset();
+void CoF_ClientPhonePunchInit();void CoF_ClientPhonePunchReset();
 void CoF_ClientExtrasReset();
 void CoF_ClientExtrasView(const float *,float);
 void CoF_DecalsVidInit( void );
@@ -502,6 +503,7 @@ void CoF_ClientInit( void )
 	CoF_DecalsInit();
 	CoF_ClientExtrasInit();
  CoF_ClientHandsInit();
+ CoF_ClientPhonePunchInit();
  gEngfuncs.pfnHookUserMsg("Padlock",PadlockMessage);
  gEngfuncs.pfnAddCommand("cof_padlock_render",PadlockRenderStatus);
  gEngfuncs.pfnRegisterVariable("cof_padlock_trace","0",0);
@@ -532,6 +534,7 @@ void CoF_ClientVidInit( void )
 	CoF_DecalsVidInit();
 	CoF_ClientExtrasReset();
  CoF_ClientHandsReset();
+ CoF_ClientPhonePunchReset();
 	for( int j = 0; j < MAX_PARTICLES; j++ )
 		g_particles[j].emitter = -1;
 	memset( &g_fog, 0, sizeof( g_fog ));

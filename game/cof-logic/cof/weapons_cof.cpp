@@ -690,10 +690,12 @@ void CCofPunchHit::Think()
  }
  UTIL_Remove(this);
 }
+static void PhonePunchEvent(CBasePlayer *p);
 void CCofMobile::SecondaryAttack()
 {
  if(m_flNextPrimaryAttack>0 || m_flNextSecondaryAttack>0 || m_fInReload)return;
  cof_phone_t *phone=CoF_Phone(m_pPlayer);
+ PhonePunchEvent(m_pPlayer);
  Anim(phone && phone->flash?MOBILE_PUNCH_FLASH:MOBILE_PUNCH_SMS,1.0f);
  m_flNextPrimaryAttack=m_flNextSecondaryAttack=UTIL_WeaponTimeBase()+1.0f;
  CCofPunchHit *hit=(CCofPunchHit*)CBaseEntity::Create("cof_punch_hit",g_vecZero,g_vecZero,NULL);
@@ -751,8 +753,9 @@ void CoF_MobileNewMessage( CBasePlayer *pPlayer )
 }
 
 // Two hands share the existing inventory weapons, ammo and reload state. No duplicate guns.
-static int gmsgCoFHands;
-void CoF_LinkHandsMessages(){if(!gmsgCoFHands)gmsgCoFHands=REG_USER_MSG("CoFHands",12);}
+static int gmsgCoFHands,gmsgCoFPhonePunch;
+void CoF_LinkHandsMessages(){if(!gmsgCoFHands)gmsgCoFHands=REG_USER_MSG("CoFHands",12);if(!gmsgCoFPhonePunch)gmsgCoFPhonePunch=REG_USER_MSG("CoFPunch",6);}
+static void PhonePunchEvent(CBasePlayer *p){MESSAGE_BEGIN(MSG_ONE,gmsgCoFPhonePunch,NULL,p->pev);WRITE_COORD(1);WRITE_COORD(1);WRITE_COORD(3);MESSAGE_END();}
 static float g_handsSend[33];
 static int g_handsVisible[33],g_handsSerial[33];
 static int DualKind(CBasePlayer *p)

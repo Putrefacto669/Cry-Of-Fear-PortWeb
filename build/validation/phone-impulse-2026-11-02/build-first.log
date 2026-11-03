@@ -1,0 +1,17 @@
+Build commands will be stored in ../../build/game/compile_commands.json
+Waf: Entering directory `/root/cof-audits/audit-D3Kl5uly/build/game'
+[ 53/260] Compiling ../cof-logic/cof/weapons_cof.cpp
+[183/260] Compiling cl_dll/view.cpp
+[194/260] Compiling ../cof-logic/client/cof_phone_punch.cpp
+[256/260] Compiling ../cof-logic/client/cof_client.cpp
+../../game/cof-logic/client/cof_client.cpp:497:2: error: a type specifier is required for all declarations
+  497 |  CoF_ClientPhonePunchInit();void CoF_ClientHandsReset();
+      |  ^
+../../game/cof-logic/client/cof_client.cpp:498:2: error: a type specifier is required for all declarations
+  498 |  CoF_ClientPhonePunchReset();
+      |  ^
+2 errors generated.
+
+Waf: Leaving directory `/root/cof-audits/audit-D3Kl5uly/build/game'
+Build failed
+ -> task in 'client' failed with exit status 1 (run with -v to display more information)

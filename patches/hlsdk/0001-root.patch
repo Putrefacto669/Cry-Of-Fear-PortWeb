@@ -194,10 +194,26 @@ index ffa101fc..71ca7b6f 100644
  	// root->getSurfaceBase()->setEmulatedCursorVisible( true );
  
 diff --git a/cl_dll/view.cpp b/cl_dll/view.cpp
-index 3b3187de..5090edee 100644
+index 3b3187de..f920fe11 100644
 --- a/cl_dll/view.cpp
 +++ b/cl_dll/view.cpp
-@@ -1533,6 +1533,8 @@ void V_CalcSpectatorRefdef( struct ref_params_s * pparams )
+@@ -90,6 +90,7 @@ qboolean v_resetCamera = 1;
+ 
+ vec3_t v_client_aimangles;
+ vec3_t g_ev_punchangle;
++void CoF_ClientPhonePunchView(float *,float);
+ 
+ cvar_t	*scr_ofsx;
+ cvar_t	*scr_ofsy;
+@@ -632,6 +633,7 @@ void V_CalcNormalRefdef( struct ref_params_s *pparams )
+ 	VectorAdd( pparams->viewangles, (float *)&g_ev_punchangle, pparams->viewangles );
+ 
+ 	V_DropPunchAngle( pparams->frametime, (float *)&g_ev_punchangle );
++	CoF_ClientPhonePunchView(pparams->viewangles,pparams->frametime);
+ 
+ 	// smooth out stair step ups
+ #if 1
+@@ -1533,6 +1535,8 @@ void V_CalcSpectatorRefdef( struct ref_params_s * pparams )
  	VectorCopy( v_origin, pparams->vieworg );
  }
  
@@ -206,7 +222,7 @@ index 3b3187de..5090edee 100644
  void DLLEXPORT V_CalcRefdef( struct ref_params_s *pparams )
  {
  	// intermission / finale rendering
-@@ -1548,6 +1550,7 @@ void DLLEXPORT V_CalcRefdef( struct ref_params_s *pparams )
+@@ -1548,6 +1552,7 @@ void DLLEXPORT V_CalcRefdef( struct ref_params_s *pparams )
  	{
  		V_CalcNormalRefdef( pparams );
  	}
