@@ -11,7 +11,7 @@ Esta publicación incorpora los commits locales de extras (`9899747`), combinaci
 - Cliente: **fac7e66382a9915f33534030eab35ab0c8a9e846304e0200000bb300f8cde585**.
 - Renderizador conservado: **8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec**.
 
-`build/validation/publication-2026-11-02/plan.json` enumera los 42 archivos diferentes respecto de la publicación anterior. Incluye frontend, módulos portables empaquetados, el paquete de extras y los paquetes de recursos re-staged que requieren las entidades ya validadas. No se publican DLL nativas ni proyectos/volcados Ghidra, partidas, BSP, modelos o sonidos sueltos. Se conservan los créditos y las licencias existentes.
+`build/validation/publication-2026-11-02/plan.json` enumera los 43 archivos diferentes respecto de la publicación anterior. Incluye frontend, módulos portables empaquetados, el paquete de extras y los paquetes de recursos re-staged que requieren las entidades ya validadas. No se publican DLL nativas ni proyectos/volcados Ghidra, partidas, BSP, modelos o sonidos sueltos. Se conservan los créditos y las licencias existentes.
 
 Se verificaron **109 archivos, 90 hashes del manifiesto y todos los pares gzip**, además del frontend frente a su fuente. La comparación inicial de index.html falló porque la plantilla contiene `__SOURCE_URL__`; package.sh lo sustituye por la URL del repositorio. Se corrigió el verificador para comprobar esa transformación prevista, sin modificar producto ni omitir contenido distinto. El primer intento se conserva en promotion.log; la verificación satisfactoria está en promotion-final.log y promotion.json. El segundo pase no necesitó copiar de nuevo los archivos ya promovidos.
 
@@ -32,3 +32,29 @@ La batería previa de 14 suites, nueve contratos BSP, Pointer Lock, audio, callb
 Se registrarán a continuación el commit subido, la ejecución de Actions y la verificación de recursos/módulos públicos. Una subida de Git no se considera por sí sola prueba de despliegue satisfactorio.
 
 La prueba de actualización conserva una sesión pública con la versión anterior hasta que se verifique el despliegue. Comprueba el aviso y botón reales de actualización y la ausencia de mezcla de módulos antes de aceptarlo. Se preserva un primer arranque de ese arnés detenido para corregir la espera de navegación, antes de publicar; no fue un fallo del juego ni del despliegue.
+### Despliegue verificado
+
+- Commit publicado: `15f945f58aef22722281ab59fb051e6731084782`, push fast-forward de los cinco commits pendientes a `portweb/main` (repositorio `Putrefacto669/Cry-Of-Fear-PortWeb`).
+- [Actions 41579931407](https://github.com/Putrefacto669/Cry-Of-Fear-PortWeb/actions/runs/41579931407): **success**, terminado el 3 de noviembre de 2026 a las 04:48:22 UTC (2 de noviembre, 22:48:22 en México).
+- [Web pública](https://putrefacto669.github.io/Cry-Of-Fear-PortWeb/).
+- `live-assets.json`: todas las respuestas HTTP comprobadas coinciden byte por byte con los archivos promovidos, incluida la descompresión de los paquetes modificados. Manifiesto público **03fd8c160749**. No se acreditó la publicación solo por el estado de Actions.
+- GitHub aceptó los paquetes de menos de 100 MiB; emitió avisos no bloqueantes para los mayores de 50 MiB. No se cambió el mecanismo de empaquetado ni se introdujo LFS.
+
+Las pruebas públicas siguientes usan la URL de Pages real, Playwright 1.64.1 / Chromium 156, audio silenciado y Service Worker activo. No se aumentaron los límites de los comandos ni se retiraron escenas para esta publicación.
+
+- `live-sp`: **PASS**, impulso SP, recurrencia nativa, vista y persistencia normal/fría. Servidor y cliente montados con los SHA-256 indicados arriba; `errors: []`.
+- `live-hands`: **PASS**, bolso real, celular/cuchillo, celular/Glock, cambio independiente de luz, disparo, recarga pendiente y restauración normal/fría, sin duplicar inventario. Servidor y cliente con los SHA-256 promovidos; Chromium 156.0.8078.4, `errors: []`.
+- Ambas páginas estuvieron controladas por `https://putrefacto669.github.io/Cry-Of-Fear-PortWeb/sw.js` y registraron el manifiesto esperado.
+- `live-extras`: **PASS**, perfil persistente, partida anterior al desbloqueo, restauración durante la transición de visión nocturna y restauración fría. SW y manifiesto públicos esperados; `errors: []`.
+
+Estas son pruebas automatizadas funcionales con instrumentación de diagnóstico. No equivalen a completar manualmente la campaña ni acreditan armas aún no implementadas. La compilación publicada es exactamente la que ya superó las regresiones de desarrollo; esta tarea de promoción no recompila ni modifica el motor.
+
+### Limitación: migración de una sesión pública antigua
+
+La sesión conservada arrancó antes de publicar con manifiesto `2f88e7b98c18` y los módulos antiguos registrados en `cache-update-final/ready.json`. Tras verificar los 34 recursos HTTP públicos se emitió la señal de despliegue. La consulta del manifiesto nuevo pasó, pero `ServiceWorkerRegistration.update()` (pages_update.mjs:9) no devolvió confirmación. Se interrumpió manualmente el arnés a las 22:58 de México, después de varios minutos sin respuesta. El cierre deliberado produjo `Target page, context or browser has been closed`; no debe interpretarse como un cierre espontáneo del juego.
+
+Se conserva `cache-update-final/result.json` con `passed: false`, su engine.log y cache-update-final.log. La página antigua siguió emitiendo sus estados HUD y no registró errores JavaScript (`errors: []`). No se llegó a acreditar el botón de actualización ni el montaje de los módulos nuevos en esa sesión. La causa de la falta de confirmación sigue sin determinarse; no se modificó el Service Worker ni se ocultó este resultado. Esto queda como diagnóstico pendiente separado de las tres ejecuciones satisfactorias con la versión pública nueva.
+
+Los logs se conservan en sus bytes originales, incluidos CRLF/espacios emitidos por herramientas y motor. La comprobación de espacios de código/documentación pasa; no se normalizan registros históricos para satisfacer git diff --check.
+
+La subida final de este informe y sus evidencias no modifica `dist/`: el despliegue comprobado corresponde al commit de producto `15f945f`. La rama local conserva su nombre `codex/c-start-padlock`; el destino remoto publicado es `portweb/main`.
