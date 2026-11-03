@@ -17,7 +17,7 @@
         // web worker
         PACKAGE_PATH = encodeURIComponent(location.pathname.substring(0, location.pathname.lastIndexOf('/')) + '/');
       }
-      var PACKAGE_NAME = '/root/cof-audits/phone-hud-20261101/dist-controls/packs/engine.data';
+      var PACKAGE_NAME = '/root/cof-audits/dual-20261102/dist-phone-sp-predict/packs/engine.data';
       var REMOTE_PACKAGE_BASE = 'engine.data';
       var REMOTE_PACKAGE_NAME = Module['locateFile'] ? Module['locateFile'](REMOTE_PACKAGE_BASE, '') : REMOTE_PACKAGE_BASE;
 var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
@@ -143,10 +143,10 @@ Module['FS_createPath']("/", "lib", true, true);
           var files = metadata['files'];
           for (var i = 0; i < files.length; ++i) {
             DataRequest.prototype.requests[files[i].filename].onload();
-          }          Module['removeRunDependency']('datafile_/root/cof-audits/phone-hud-20261101/dist-controls/packs/engine.data');
+          }          Module['removeRunDependency']('datafile_/root/cof-audits/dual-20261102/dist-phone-sp-predict/packs/engine.data');
 
       };
-      Module['addRunDependency']('datafile_/root/cof-audits/phone-hud-20261101/dist-controls/packs/engine.data');
+      Module['addRunDependency']('datafile_/root/cof-audits/dual-20261102/dist-phone-sp-predict/packs/engine.data');
 
       Module['preloadResults'] ??= {};
 
@@ -166,6 +166,6 @@ Module['FS_createPath']("/", "lib", true, true);
     }
 
     }
-    loadPackage({"files": [{"filename": "/lib/client.wasm", "start": 0, "end": 721419}, {"filename": "/lib/filesystem_stdio.wasm", "start": 721419, "end": 789611}, {"filename": "/lib/libref_gles3compat.wasm", "start": 789611, "end": 1068706}, {"filename": "/lib/menu.wasm", "start": 1068706, "end": 1460122}, {"filename": "/lib/server.wasm", "start": 1460122, "end": 2845610}], "remote_package_size": 2845610});
+    loadPackage({"files": [{"filename": "/lib/client.wasm", "start": 0, "end": 729337}, {"filename": "/lib/filesystem_stdio.wasm", "start": 729337, "end": 797529}, {"filename": "/lib/libref_gles3compat.wasm", "start": 797529, "end": 1076624}, {"filename": "/lib/menu.wasm", "start": 1076624, "end": 1468040}, {"filename": "/lib/server.wasm", "start": 1468040, "end": 2876888}], "remote_package_size": 2876888});
 
   })();

@@ -1,0 +1,277 @@
+{
+  "manifest": "03fd8c160749",
+  "modules": {
+    "/lib/client.wasm": "fac7e66382a9915f33534030eab35ab0c8a9e846304e0200000bb300f8cde585",
+    "/lib/filesystem_stdio.wasm": "85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95",
+    "/lib/libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec",
+    "/lib/menu.wasm": "bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051",
+    "/lib/server.wasm": "c2d9d984a416e6a8552f1a75939c065c0bd983263b0d8206e60c5f5d9e6a69a5"
+  },
+  "source": "/root/cof-audits/dual-20261102/dist-phone-sp-predict",
+  "destination": "/mnt/c/Users/josue/OneDrive/Desktop/Cry Of Fear Web Alpha Version/Cry-Of-Fear-Port-Web/dist",
+  "changes": [
+    {
+      "file": "extras.js",
+      "bytes": 7247,
+      "before": null,
+      "after": "32eba15df1bae502024b7af0149744e599e3bc141dbc756b9a8175aff6c9415f"
+    },
+    {
+      "file": "hud.js",
+      "bytes": 77141,
+      "before": "9b9b7a620e56004bfb881eb6a25f7303c1e8d57e96846bf5ddf51eda018412d1",
+      "after": "57497cb103d5ca2011ef61e295cc51eccbbf6fd5aeadeb4a86709d2a610b6dd9"
+    },
+    {
+      "file": "index.html",
+      "bytes": 10795,
+      "before": "932d514c449265e487f65c742458d8d310b4bad29c7f51561b71424630553bc6",
+      "after": "ee1bd26a9e0edc1393ce5866c9d0d38b8e70bad5014c1dd4448c746a1cb0be47"
+    },
+    {
+      "file": "loader.js",
+      "bytes": 20627,
+      "before": "530ec4ff0bdebc394c88816324caa25be94d9f42ba55172d921d7759f57fb7fb",
+      "after": "c80880feef48e0e4b93a566a48a0a775f850f446f013288ee19a91d68dfeab59"
+    },
+    {
+      "file": "packs/boot.data",
+      "bytes": 86513283,
+      "before": "3b4d5e36de3e46fe3c4acdac2a3fe4280a3b324d97eba7496841a2b9d2b2b306",
+      "after": "fe6d6285fd16d03a78644c8677b616dd5bca37dd814613cf1f156778147f5cd4"
+    },
+    {
+      "file": "packs/boot.data.gz",
+      "bytes": 22839412,
+      "before": "a124704651a1ce12b4cf5c008baede4a22b9a3322029120818c30687732dedfe",
+      "after": "4b8ead451871321b220dae78227e8b66f1bd0eac1471060e2efe47fc90f66cba"
+    },
+    {
+      "file": "packs/boot.js",
+      "bytes": 119830,
+      "before": "90d79efd101e381f425a3b9af5f7e707c848bc3df4b7a771a75ddedd93411d34",
+      "after": "60dba3f72d7b3c7ccc5e2271d9c38276987a67d82a6e972331a7f51463ebc7db"
+    },
+    {
+      "file": "packs/engine.data",
+      "bytes": 2876888,
+      "before": "037ec1a8d5f57451cffa20879bdbfee6a695761613224a89b1ed52342a0f3f9c",
+      "after": "f6017f6e937f9f6b14f3ca6f8dee1eb523ba3be002977bc0fc242d6a30c7bf84"
+    },
+    {
+      "file": "packs/engine.data.gz",
+      "bytes": 959538,
+      "before": "cd9b9a9d56c59cda6d43dfff4b5b9b6e81f0f8e70847c1b9b6459b78beded9bd",
+      "after": "c15af1ed106592bf036ca0f3f5da23c1c992dd096a2f07e5fd087ff97e384ed9"
+    },
+    {
+      "file": "packs/engine.js",
+      "bytes": 7165,
+      "before": "91eb8d7263eb246615dc7b5561adf89128af4ec1459c333895e39e007ddb6122",
+      "after": "de9ab1151e3f2c724a80c591078d9057ad9cd9ccf46d5d84e771aef38dadc9da"
+    },
+    {
+      "file": "packs/extras.data",
+      "bytes": 22807804,
+      "before": null,
+      "after": "a15519e27758ebe2098724a1f27523cc0eeb0dbaaa14287e6c5ca734a6c22921"
+    },
+    {
+      "file": "packs/extras.data.gz",
+      "bytes": 7589497,
+      "before": null,
+      "after": "d662f8623d850654b805fa5150ce529a8d414ed7ba9b19fa38d2df1d622696c0"
+    },
+    {
+      "file": "packs/extras.js",
+      "bytes": 11234,
+      "before": null,
+      "after": "8e94f1070e1304f5c7d4bfd1807eeaf352eea5c1eda6a8d53dacf314edea4c68"
+    },
+    {
+      "file": "packs/map_c_apartment1.data",
+      "bytes": 56883652,
+      "before": "c9f774131e6da64860002400b7c6bd876215ac792f81f6d2458ac2280883a8c6",
+      "after": "8a2ae128e83012ee59c8f28663c5ad575b6b3223e4636e9f8084ffff900c8381"
+    },
+    {
+      "file": "packs/map_c_apartment1.data.gz",
+      "bytes": 32884885,
+      "before": "fe06eda1975aa8358dd9683c9a4bd274e28a92f3301c221e08deec04b03a7dd3",
+      "after": "709fe545c6aa435b9ecf5010f070dc5605834b5ff4a316a8ba8ad7a69c988bdd"
+    },
+    {
+      "file": "packs/map_c_apartment1.js",
+      "bytes": 50699,
+      "before": "448c8c49dd250067409c57182a3455af2829d343b491a75492a041b184575b49",
+      "after": "a878ac47eaa837c2037b72a12a3d1b3474dd4a700e85ba1f9521e49c82ab94f7"
+    },
+    {
+      "file": "packs/map_c_apartment2.js",
+      "bytes": 38927,
+      "before": "1ff9a1faf03a9193c250c1f3c1fba0051e336345881bd838b1aa3d7cdd84af25",
+      "after": "b5751b57f2e546c0b5d2042a173c6f40795856b57e970e5b846f500e54162844"
+    },
+    {
+      "file": "packs/map_c_apartment3.data",
+      "bytes": 61763460,
+      "before": "20c22cbe6f4cd208000791803f200383d672107f52e369684ed588ea5ea8c3f0",
+      "after": "41cf45035108b3459aed1c61b8bd573540646628bb32dd19abd1c6af2c95a250"
+    },
+    {
+      "file": "packs/map_c_apartment3.data.gz",
+      "bytes": 35471435,
+      "before": "02f6f5a65aad2dfceffe7e73f0522303174783ccc5bd4dbe6eb78cb2fed52d60",
+      "after": "da52c98fd161ccb95578212aef918c3d1645030449d26bf96bf2d47571e12fff"
+    },
+    {
+      "file": "packs/map_c_apartment3.js",
+      "bytes": 53370,
+      "before": "504e8e3c7049e0bc2072c21fd52100001ecf9835b8ac3962a05ac7cbe276c6e6",
+      "after": "1fe3a4be42540c34c44d29e5de1734be6bc203b855320eb40fd872fd4a9dcdb2"
+    },
+    {
+      "file": "packs/map_c_apartment4.data",
+      "bytes": 40422083,
+      "before": "d9f0978f0ca231e9b5ec0a599319990a8e5d2cc2167bab15c087a1d4daae4b23",
+      "after": "55997a5b5ba6db3a4d32f648764ab36094f2b78b769cb52104d5578015f21acc"
+    },
+    {
+      "file": "packs/map_c_apartment4.data.gz",
+      "bytes": 21151066,
+      "before": "63281563ccae6dc73829c0c0e373965882c9f827f9ff84a623399578531403f9",
+      "after": "82342cc5d06d54e301d0eb4ac4cf123068d39e1e3c2e3c104b70c4cdbba530dd"
+    },
+    {
+      "file": "packs/map_c_apartment4.js",
+      "bytes": 42698,
+      "before": "465ab8034b1203e3c7fa7465a3cdd858bb8061fcf9e19f2fc2b918ea3235e99f",
+      "after": "87588ad3d14f202468a720a5d131f312c4250ee28c0bfee3a5d20221ae3e2295"
+    },
+    {
+      "file": "packs/map_c_apartment5.data",
+      "bytes": 36061566,
+      "before": "c98c0fd97724bfa8d8db731f82fb655afdec9f238b503883c665400bfbf58ec1",
+      "after": "4e46309e984c56d6c47b8ec4ded2413de290dbba5e72f41f7cb19fd03e949e5a"
+    },
+    {
+      "file": "packs/map_c_apartment5.data.gz",
+      "bytes": 20991465,
+      "before": "00d278dc64ab168ce2bbc5aaa5053ccfc600cbbd305dc2dbe213644b8ce8abf5",
+      "after": "59c80779311a3162a0bb2cf5855fafa6ec17a86c40c7754fe5f69a13215e39f8"
+    },
+    {
+      "file": "packs/map_c_apartment5.js",
+      "bytes": 35699,
+      "before": "9c212aabe49d68f41ece093cc6a190a4b49b16777392365f48f9e2da52d50e08",
+      "after": "a23c6f9f6378eae0b756c3b767b6674ff955676a4dadc641ac57b2568479dae0"
+    },
+    {
+      "file": "packs/map_c_apartmentsick.data",
+      "bytes": 28671265,
+      "before": "75813d82361a7d26cd46e48403caa4badcc7e46e3e02ea9a99c4f542b510da61",
+      "after": "6564b8d6f2c9c024d25df67debe66aa29cc30fc7d85b7e139731109cefde6356"
+    },
+    {
+      "file": "packs/map_c_apartmentsick.data.gz",
+      "bytes": 15664727,
+      "before": "e1c57ca5bfac854a9943c17b5048c03f27ee780eda3848c1cac25b579857d445",
+      "after": "599bc4e4a3056ff256a9211bbada6eb7e7841aa3b775d2026ebe0969804f6b77"
+    },
+    {
+      "file": "packs/map_c_apartmentsick.js",
+      "bytes": 22159,
+      "before": "712468140cde26ce62069b36ded8a5cdae4fb066e247555a3a4792bf9c28f30d",
+      "after": "2ce2b0d2f4916020cd5af44340df9739e2ce08212cf82c7de11a4aa4365c96f4"
+    },
+    {
+      "file": "packs/map_c_game_menu1.js",
+      "bytes": 13056,
+      "before": "f3804fb8ba084f1d93828093fb6d2027046aa48c5a7eeceb91540340820c1f15",
+      "after": "8c3f9814619270d7353fc0e14d658d90783eb3d3e10dd7b88b0fb4da38afd412"
+    },
+    {
+      "file": "packs/map_c_intro.js",
+      "bytes": 24144,
+      "before": "06b8be35035ed83829fda8a91f52932c09d8b02ff509db52f4769d9a98bb5840",
+      "after": "5dcf21447febc15394227a653199dd23a44f441d4fa07c8d4767132a32a1659f"
+    },
+    {
+      "file": "packs/map_c_nightmare.data",
+      "bytes": 41828940,
+      "before": "2737687a6e6918256f56ba3e582188e411f3ad63ff7046a11cbca85834dac64e",
+      "after": "94c54bd2661efdf02391c196fe98a239b6973086788a5d3c50240baa5db8d437"
+    },
+    {
+      "file": "packs/map_c_nightmare.data.gz",
+      "bytes": 25655064,
+      "before": "7af15363ee4a52abdc823a21ee133c30996e2e8cb5dce12ad4fc0e084cef0f34",
+      "after": "47d8c896f4bbc80982afb5164d6e86a57ace6d7a9ddda31f36a65235e9b49907"
+    },
+    {
+      "file": "packs/map_c_nightmare.js",
+      "bytes": 29105,
+      "before": "19daeaccc575194598668e3460650e04716ad3c6c7b198334ec6b4e8a7245de8",
+      "after": "c0c7a68d9b704b7a0d1c0ad02716d1d3137cd9bf5cd20ee57751dd91f964f491"
+    },
+    {
+      "file": "packs/map_c_start.data",
+      "bytes": 75332660,
+      "before": "1f7e4dbf91dd9cc1257261be21fbc4a5b599ae27c646fc24892274d5d9a926c1",
+      "after": "5268d902ae9bb26d8aa5e8921ddf12eebcf590b8430abaa83689970d8f2292bc"
+    },
+    {
+      "file": "packs/map_c_start.data.gz",
+      "bytes": 39890844,
+      "before": "61018226675cd248c17611789465566ab56fb898c6a28d924563551711e8cdec",
+      "after": "b0c10d72d351d5c02be975a4a7ad40d3f40d27c4a1bf8369714c641e7927d6ca"
+    },
+    {
+      "file": "packs/map_c_start.js",
+      "bytes": 39964,
+      "before": "a9164ec0368312dd36f3b6ff87b410d8abbbcb70112e3b8aa14308611ec48c38",
+      "after": "d65e39a19f5b0cee97db01b68efd5c5aaeca1710dc02d4f1a7d14a3bc8403f85"
+    },
+    {
+      "file": "packs/map_c_start2.data",
+      "bytes": 56960767,
+      "before": "0558e5332920b6da1206cd2187fa46a896af32b23852fa8486a076cd6d92f6f2",
+      "after": "c74f146eb41ead5e0ba753dd86d51842830d79139d072774df9582d1879fd550"
+    },
+    {
+      "file": "packs/map_c_start2.data.gz",
+      "bytes": 32286826,
+      "before": "f3d91c8f467475cb910bae279c157a988b292d78be3518e8058e5c2787e77d7c",
+      "after": "e9c97bda85230cf2d35e4c1944d2b65a8664eec576fd99fa496f9ca30a406344"
+    },
+    {
+      "file": "packs/map_c_start2.js",
+      "bytes": 36564,
+      "before": "2c09b47d8f8888f5c51867578cc2b2321e96eacf7cbf9557e13b9fd6f8032620",
+      "after": "90279426700f88a293a3de208605d1160bbc53357d7e8b400c8f3f9fd987cfd6"
+    },
+    {
+      "file": "packs/shared.json",
+      "bytes": 11,
+      "before": null,
+      "after": "ff92c721887ad193996da7c53918da97048235b36483307527f69ffdd0d99104"
+    },
+    {
+      "file": "postfx.js",
+      "bytes": 10077,
+      "before": "13a5a0fed3dc945aa49656245990176aa08a64efd7715399903f01dcb1fdad84",
+      "after": "17106552fd8ea39481228c429d4e7dec631a1b278109435b29452b8130866bde"
+    },
+    {
+      "file": "sw-manifest.js",
+      "bytes": 5747,
+      "before": "1f958c4094fdfbd042a5100fbefe4940ed52a3c6be226ed5116bb9536bf59c45",
+      "after": "19c7c8f5581d9e8f52e7e49f1268b00e7b0c865eb18f2eec371c0249d68fbe54"
+    }
+  ],
+  "changedInVerificationPass": 0,
+  "filesVerified": 109,
+  "manifestFilesVerified": 90,
+  "gzipVerified": true,
+  "frontendMatchesSource": true
+}

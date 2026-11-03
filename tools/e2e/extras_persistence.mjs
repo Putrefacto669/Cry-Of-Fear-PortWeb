@@ -2,6 +2,12 @@
 import assert from 'node:assert/strict';import fs from 'node:fs';import {chromium} from 'playwright';
 const [base,out]=process.argv.slice(2);assert.ok(base&&out&&!fs.existsSync(out));fs.mkdirSync(out,{recursive:true});
 const b=await chromium.launch({args:['--mute-audio','--use-angle=swiftshader','--enable-unsafe-swiftshader']}),ctx=await b.newContext(),logs=[],errors=[],result={naturalProgression:false};let p,serial=0;
+const deployment=async page=>{
+ const d=await page.evaluate(async()=>{const text=await(await fetch('sw-manifest.js',{cache:'no-store'})).text();const manifest=JSON.parse(text.match(/=\s*(\{[\s\S]*\});/)[1]);return {manifest:manifest.version,controller:navigator.serviceWorker?.controller?.scriptURL||null};});
+ if(process.env.COF_SW==='1')assert.ok(d.controller,'Service Worker must control the actual runtime');
+ if(process.env.COF_EXPECT_MANIFEST)assert.equal(d.manifest,process.env.COF_EXPECT_MANIFEST);
+ return d;
+};
 try {
  const attach=async()=>{p=await ctx.newPage();p.on('console',m=>logs.push(m.text()));p.on('pageerror',e=>errors.push(e.message));};await attach();
  const wait=async fn=>{const t=Date.now();while(!await fn()){assert.ok(Date.now()-t<60000,'extras persistence timeout');await p.waitForTimeout(25);}};
@@ -10,12 +16,12 @@ try {
  const load=async name=>{const n=count();await p.evaluate(n=>CoFDebug.cmd(`load ${n}`),name);await wait(()=>count()>n);await cmd('r_norefresh 1');};
  const map=async name=>{await p.evaluate(n=>CoFPreload(n),name);const n=count();await p.evaluate(n=>CoFDebug.cmd(`map ${n}`),name);await wait(()=>count()>n);await cmd('sv_cheats 1\nr_norefresh 1');};
  const status=()=>cmd('cof_extras_status');
- await p.goto(`${base}?map=c_start&sw=0&fx=0&timer=1&prefetch=0&debug=1`);await wait(()=>count()>0);await cmd('sv_cheats 1\nr_norefresh 1');await p.waitForTimeout(350);
+ await p.goto(`${base}?map=c_start&sw=${process.env.COF_SW||'0'}&fx=0&timer=1&prefetch=0&debug=1`);await wait(()=>count()>0);result.deployment=await deployment(p);await cmd('sv_cheats 1\nr_norefresh 1');await p.waitForTimeout(350);
  assert.match(await cmd('cof_count cof_developer_commentary\ncof_count item_nightvision'),/cof_developer_commentary 0[\s\S]*item_nightvision 0/);
  await cmd('save extras_before_unlock');await cmd('cof_extras_unlock 0x1400000');
  await map('c_apartment1');const h=await cmd('cof_list cof_hoodie'),hid=h.match(/cof_hoodie #(\d+)/)?.[1];assert.ok(hid);await cmd(`cof_use #${hid} toggle`);
  assert.match(await status(),/unlocks=20975616/);await p.waitForTimeout(1000);
- await p.close();const n=count();await attach();await p.goto(`${base}?map=c_apartment1&sw=0&fx=0&timer=1&prefetch=0&debug=1`);await wait(()=>count()>n);await cmd('sv_cheats 1\nr_norefresh 1');
+ await p.close();const n=count();await attach();await p.goto(`${base}?map=c_apartment1&sw=${process.env.COF_SW||'0'}&fx=0&timer=1&prefetch=0&debug=1`);await wait(()=>count()>n);await cmd('sv_cheats 1\nr_norefresh 1');
  result.coldProfile=await status();assert.match(result.coldProfile,/unlocks=20975616/);await p.waitForTimeout(350);assert.match(await cmd('cof_count cof_hoodie'),/cof_hoodie 0/);
  await p.evaluate(()=>CoFPreload('c_start'));await load('extras_before_unlock');result.oldSave=await status();assert.match(result.oldSave,/unlocks=20975616/);
  await map('c_start');
@@ -33,7 +39,7 @@ try {
  await wait(async()=>/nightState=1(?:\s|$)/.test(await status()));await wait(async()=>/class=weapon_glock/.test(await cmd('cof_weapon_status')));
  result.after=await status();
  await p.waitForTimeout(1000);await p.close();const coldConnections=count();await attach();
- await p.goto(`${base}?map=c_game_menu1&sw=0&fx=0&timer=1&prefetch=0&debug=1`);await wait(()=>count()>coldConnections);
+ await p.goto(`${base}?map=c_game_menu1&sw=${process.env.COF_SW||'0'}&fx=0&timer=1&prefetch=0&debug=1`);await wait(()=>count()>coldConnections);
  await cmd('sv_cheats 1\nr_norefresh 1');await p.evaluate(()=>CoFPreload('c_start'));await load('extras_pending');
  result.coldPending=await status();assert.match(result.coldPending,/nightState=101 .*stored=1/);
  assert.match(await cmd('cof_count multi_manager'),/multi_manager 29/);

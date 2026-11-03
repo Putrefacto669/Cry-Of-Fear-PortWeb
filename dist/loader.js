@@ -275,6 +275,7 @@
         const hud = /^\s*COF\/HUD\s+(.+?)\s*$/.exec(line);
         if (hud) {
           if (window.CoFHUD) CoFHUD.handle(hud[1]);
+          if (/^EXTRASPROFILE /.test(hud[1])) setTimeout(persistRwdir, 0);
           if (debug) console.log(t);
           return;
         }
@@ -318,7 +319,8 @@
     addEventListener("pagehide", persistRwdir);
 
     setStatus("Descargando paquetes…");
-    const packs = preloaded ? [] : ["engine", "boot", ...(map ? [`map_${map}`] : [])];
+    const sharedPacks = preloaded ? [] : await fetch("packs/shared.json").then(r => r.ok ? r.json() : []);
+    const packs = preloaded ? [] : ["engine", "boot", ...sharedPacks, ...(map ? [`map_${map}`] : [])];
     if (debug) await loadScript("debug.js");
     for (const p of packs) await loadScript(`packs/${p}.js`);
     await loadScript("xash3d.js");

@@ -590,6 +590,12 @@
   // The mp3 files are served next to the page (package.sh -> dist/mp3/) and streamed by <audio>,
   // so they never take engine memory. One player per channel ("frags" of the entity).
   const music = new Map();
+  let commentaryPlaying = false;
+  const commentaryPaused = new Set();
+  window.CoFExtras?.setHooks({
+    begin() { commentaryPlaying = true; for (const audio of music.values()) { if (!audio.paused) commentaryPaused.add(audio); audio.pause(); } },
+    end() { commentaryPlaying = false; for (const audio of commentaryPaused) if ([...music.values()].includes(audio)) audio.play().catch(() => {}); commentaryPaused.clear(); }
+  });
   let musicVolume = 0.8;   // Options panel
 
   const fadeOut = (audio, ms = 600) => {
@@ -608,6 +614,7 @@
     audio.loop = loop;
     audio.volume = musicVolume;
     music.set(channel, audio);
+    if (commentaryPlaying) { commentaryPaused.add(audio); return; }
     audio.play().catch((e) => {
       if (e.name !== "NotAllowedError") { console.warn(`cof music ${file}:`, e.message); return; }
       // autoplay blocked until the page gets a click or a key (the menu music on first load)
@@ -777,6 +784,7 @@
 
   // loader.js reports every map the server spawns
   const onMap = (name) => {
+    window.CoFExtras?.onMap();
     updateBoss(0, 0, "-", "-");
     if (!optionsApplied) applyOptions();
     if (typeof setRain === "function" && rain.canvas) setRain(0, 0, 0);
@@ -1351,6 +1359,7 @@
     engineCmd(`volume ${options.volume}`);
     engineCmd(`brightness ${options.brightness}`);
     musicVolume = options.music;
+    window.CoFExtras?.setVolume(musicVolume);
     for (const audio of music.values()) audio.volume = musicVolume;
     optionsApplied = true;
   };
@@ -1533,6 +1542,7 @@
   };
 
   window.CoFHUD = {
+    resolvePath: resolveCi,
     get bagOpen() { return bag.open; },
     get menuOpen() { return menu.visible; },
     get paused() { return pause.open; },
@@ -1541,7 +1551,12 @@
       if (!languageSynced) syncLanguage();  // the first server line: the engine is up
       const [cmd, ...args] = line.trim().split(/\s+/);
       const rest = line.trim().slice(cmd.length).trim();
+      window.CoFExtras?.handle(cmd, args);
       switch (cmd) {
+        case "DUALSELECT":
+          bag.dualFrom = -1;closeMenu();
+          if(args[0] === "1" && bag.open)toggleBag(false);
+          break;
         case "BOSS":
           updateBoss(Number(args[0]) || 0, Number(args[1]) || 0, args[2], args[3]);
           break;

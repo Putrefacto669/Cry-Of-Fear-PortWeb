@@ -1,9 +1,10 @@
 self.COF_MANIFEST = {
- "version": "2f88e7b98c18",
+ "version": "03fd8c160749",
  "coi": false,
  "precache": [
   "LICENSE.txt",
   "debug.js",
+  "extras.js",
   "gpustats.js",
   "hud.js",
   "index.html",
@@ -12,6 +13,7 @@ self.COF_MANIFEST = {
   "loader.js",
   "packs/boot.js",
   "packs/engine.js",
+  "packs/extras.js",
   "packs/map_c_apartment1.js",
   "packs/map_c_apartment2.js",
   "packs/map_c_apartment3.js",
@@ -24,6 +26,7 @@ self.COF_MANIFEST = {
   "packs/map_c_start.js",
   "packs/map_c_start2.js",
   "packs/maps.json",
+  "packs/shared.json",
   "packs/transitions.json",
   "postfx.js",
   "shaders/black.frag.glsl",
@@ -37,12 +40,13 @@ self.COF_MANIFEST = {
  "files": {
   "LICENSE.txt": "230184f60bae",
   "debug.js": "40590135a97a",
+  "extras.js": "32eba15df1ba",
   "gpustats.js": "70aaa1f28265",
-  "hud.js": "9b9b7a620e56",
-  "index.html": "932d514c4492",
+  "hud.js": "57497cb103d5",
+  "index.html": "ee1bd26a9e0e",
   "launcher/background.jpg": "d385a9ca8c75",
   "launcher/logo.png": "8d7bb7601333",
-  "loader.js": "530ec4ff0bde",
+  "loader.js": "c80880feef48",
   "mp3/2aphall1.mp3": "70a02fded189",
   "mp3/ap3hall1.mp3": "23be860ec5a8",
   "mp3/ap3hall1end.mp3": "6da929c405e7",
@@ -83,35 +87,38 @@ self.COF_MANIFEST = {
   "mp3/tv_noise.mp3": "3e7347b88a61",
   "mp3/unlockables.mp3": "4ce75cbcd963",
   "mp3/watercorridor.mp3": "ba8c97aa265b",
-  "packs/boot.data": "3b4d5e36de3e",
-  "packs/boot.js": "90d79efd101e",
-  "packs/engine.data": "037ec1a8d5f5",
-  "packs/engine.js": "91eb8d7263eb",
-  "packs/map_c_apartment1.data": "c9f774131e6d",
-  "packs/map_c_apartment1.js": "448c8c49dd25",
+  "packs/boot.data": "fe6d6285fd16",
+  "packs/boot.js": "60dba3f72d7b",
+  "packs/engine.data": "f6017f6e937f",
+  "packs/engine.js": "de9ab1151e3f",
+  "packs/extras.data": "a15519e27758",
+  "packs/extras.js": "8e94f1070e13",
+  "packs/map_c_apartment1.data": "8a2ae128e830",
+  "packs/map_c_apartment1.js": "a878ac47eaa8",
   "packs/map_c_apartment2.data": "d9c0dd5a14b5",
-  "packs/map_c_apartment2.js": "1ff9a1faf03a",
-  "packs/map_c_apartment3.data": "20c22cbe6f4c",
-  "packs/map_c_apartment3.js": "504e8e3c7049",
-  "packs/map_c_apartment4.data": "d9f0978f0ca2",
-  "packs/map_c_apartment4.js": "465ab8034b12",
-  "packs/map_c_apartment5.data": "c98c0fd97724",
-  "packs/map_c_apartment5.js": "9c212aabe49d",
-  "packs/map_c_apartmentsick.data": "75813d82361a",
-  "packs/map_c_apartmentsick.js": "712468140cde",
+  "packs/map_c_apartment2.js": "b5751b57f2e5",
+  "packs/map_c_apartment3.data": "41cf45035108",
+  "packs/map_c_apartment3.js": "1fe3a4be4254",
+  "packs/map_c_apartment4.data": "55997a5b5ba6",
+  "packs/map_c_apartment4.js": "87588ad3d14f",
+  "packs/map_c_apartment5.data": "4e46309e984c",
+  "packs/map_c_apartment5.js": "a23c6f9f6378",
+  "packs/map_c_apartmentsick.data": "6564b8d6f2c9",
+  "packs/map_c_apartmentsick.js": "2ce2b0d2f491",
   "packs/map_c_game_menu1.data": "ae0666489e26",
-  "packs/map_c_game_menu1.js": "f3804fb8ba08",
+  "packs/map_c_game_menu1.js": "8c3f98146192",
   "packs/map_c_intro.data": "95524a3f0d7a",
-  "packs/map_c_intro.js": "06b8be35035e",
-  "packs/map_c_nightmare.data": "2737687a6e69",
-  "packs/map_c_nightmare.js": "19daeaccc575",
-  "packs/map_c_start.data": "1f7e4dbf91dd",
-  "packs/map_c_start.js": "a9164ec03683",
-  "packs/map_c_start2.data": "0558e5332920",
-  "packs/map_c_start2.js": "2c09b47d8f88",
+  "packs/map_c_intro.js": "5dcf21447feb",
+  "packs/map_c_nightmare.data": "94c54bd2661e",
+  "packs/map_c_nightmare.js": "c0c7a68d9b70",
+  "packs/map_c_start.data": "5268d902ae9b",
+  "packs/map_c_start.js": "d65e39a19f5b",
+  "packs/map_c_start2.data": "c74f146eb41e",
+  "packs/map_c_start2.js": "90279426700f",
   "packs/maps.json": "0e0c426dc0e3",
+  "packs/shared.json": "ff92c721887a",
   "packs/transitions.json": "79671f300407",
-  "postfx.js": "13a5a0fed3dc",
+  "postfx.js": "17106552fd8e",
   "shaders/black.frag.glsl": "84e7d1f5f6e7",
   "shaders/black.vert.glsl": "6f062c22dfc3",
   "shaders/postfx.frag.glsl": "680279e9144c",
@@ -124,36 +131,40 @@ self.COF_MANIFEST = {
  },
  "gz": {
   "packs/boot.data": {
-   "size": 86275547,
-   "gzSize": 22662320
+   "size": 86513283,
+   "gzSize": 22839412
   },
   "packs/engine.data": {
-   "size": 2845610,
-   "gzSize": 949980
+   "size": 2876888,
+   "gzSize": 959538
+  },
+  "packs/extras.data": {
+   "size": 22807804,
+   "gzSize": 7589497
   },
   "packs/map_c_apartment1.data": {
-   "size": 51495602,
-   "gzSize": 28388590
+   "size": 56883652,
+   "gzSize": 32884885
   },
   "packs/map_c_apartment2.data": {
    "size": 37484890,
    "gzSize": 19016743
   },
   "packs/map_c_apartment3.data": {
-   "size": 53156824,
-   "gzSize": 28104509
+   "size": 61763460,
+   "gzSize": 35471435
   },
   "packs/map_c_apartment4.data": {
-   "size": 38714885,
-   "gzSize": 19854564
+   "size": 40422083,
+   "gzSize": 21151066
   },
   "packs/map_c_apartment5.data": {
-   "size": 29862286,
-   "gzSize": 15900981
+   "size": 36061566,
+   "gzSize": 20991465
   },
   "packs/map_c_apartmentsick.data": {
-   "size": 25074929,
-   "gzSize": 12642828
+   "size": 28671265,
+   "gzSize": 15664727
   },
   "packs/map_c_game_menu1.data": {
    "size": 16485833,
@@ -164,16 +175,16 @@ self.COF_MANIFEST = {
    "gzSize": 20470014
   },
   "packs/map_c_nightmare.data": {
-   "size": 32868224,
-   "gzSize": 18193168
+   "size": 41828940,
+   "gzSize": 25655064
   },
   "packs/map_c_start.data": {
-   "size": 63677012,
-   "gzSize": 29923845
+   "size": 75332660,
+   "gzSize": 39890844
   },
   "packs/map_c_start2.data": {
-   "size": 52792141,
-   "gzSize": 28846673
+   "size": 56960767,
+   "gzSize": 32286826
   },
   "xash3d.wasm": {
    "size": 4681929,

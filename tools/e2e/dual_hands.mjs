@@ -3,12 +3,18 @@ import assert from 'node:assert/strict';import fs from 'node:fs';import {chromiu
 const [base,out]=process.argv.slice(2);assert.ok(base&&out&&!fs.existsSync(out));fs.mkdirSync(out,{recursive:true});
 const browser=await chromium.launch({args:['--mute-audio','--use-angle=swiftshader','--enable-unsafe-swiftshader']}),ctx=await browser.newContext({viewport:{width:800,height:600},screen:{width:800,height:600}}),p=await ctx.newPage(),logs=[],errors=[],r={diagnosticOnly:true};let serial=0;
 p.on('console',m=>logs.push(m.text()));p.on('pageerror',e=>errors.push(e.message));
+const deployment=async page=>{
+ const d=await page.evaluate(async()=>{const text=await(await fetch('sw-manifest.js',{cache:'no-store'})).text();const manifest=JSON.parse(text.match(/=\s*(\{[\s\S]*\});/)[1]);return {manifest:manifest.version,controller:navigator.serviceWorker?.controller?.scriptURL||null};});
+ if(process.env.COF_SW==='1')assert.ok(d.controller,'Service Worker must control the actual runtime');
+ if(process.env.COF_EXPECT_MANIFEST)assert.equal(d.manifest,process.env.COF_EXPECT_MANIFEST);
+ return d;
+};
 try{
  const wait=async fn=>{const t=Date.now();while(!await fn()){assert.ok(Date.now()-t<60000,'hands state timeout');await p.waitForTimeout(100);}};
  const cmd=async text=>{const i=logs.length,t=`hands_${++serial}`;await Promise.all([p.waitForEvent('console',{predicate:m=>m.text().includes(`COF/FENCE ${t} `),timeout:30000}),p.evaluate(c=>CoFDebug.cmd(c),`${text}\ncof_fence ${t}`)]);return logs.slice(i).join('\n');};
  const weapon=()=>cmd('cof_weapon_status');
  const load=async name=>{const n=logs.filter(l=>l.includes('client connected')).length;await p.evaluate(n=>CoFDebug.cmd(`load ${n}`),name);await wait(()=>logs.filter(l=>l.includes('client connected')).length>n);};
- await p.goto(`${base}?map=c_apartment1&sw=0&fx=0&timer=1&prefetch=0&debug=1`);await wait(()=>logs.some(l=>l.includes('client connected')));await cmd('sv_cheats 1\nr_norefresh 1\ncof_weapon_debug 1');await wait(async()=>/frozen=0 /.test(await cmd('cof_inspect !player')));
+ await p.goto(`${base}?map=c_apartment1&sw=${process.env.COF_SW||'0'}&fx=0&timer=1&prefetch=0&debug=1`);await wait(()=>logs.some(l=>l.includes('client connected')));r.deployment=await deployment(p);await cmd('sv_cheats 1\nr_norefresh 1\ncof_weapon_debug 1');await wait(async()=>/frozen=0 /.test(await cmd('cof_inspect !player')));
  // Real gameplay starts with mouse capture. Acquire it while unarmed so this click
  // cannot change phone mode or consume a pistol round before the inventory fixture.
  await p.mouse.click(400,200);await p.waitForFunction(()=>document.pointerLockElement?.id==='canvas');
@@ -36,7 +42,7 @@ try{
  const snapshot=await p.evaluate(()=>FS.readdir('/rwdir/cryoffear/save').filter(n=>/\.(sav|HL[123])$/i.test(n)).map(n=>[n,[...FS.readFile(`/rwdir/cryoffear/save/${n}`)]]));
  await wait(async()=>/mode=0 light=0 dual=1/.test(await weapon()));
  const beforeCold=logs.filter(l=>l.includes('client connected')).length;
- await p.goto(`${base}?map=c_game_menu1&sw=0&fx=0&timer=1&prefetch=0&debug=1`);await wait(()=>logs.filter(l=>l.includes('client connected')).length>beforeCold);
+ await p.goto(`${base}?map=c_game_menu1&sw=${process.env.COF_SW||'0'}&fx=0&timer=1&prefetch=0&debug=1`);await wait(()=>logs.filter(l=>l.includes('client connected')).length>beforeCold);
  await cmd('sv_cheats 1\nr_norefresh 1');
  assert.ok(await p.evaluate(()=>CoFPreload('c_apartment1')));
  await p.evaluate(files=>{FS.mkdirTree('/rwdir/cryoffear/save');for(const[n,b]of files)FS.writeFile(`/rwdir/cryoffear/save/${n}`,new Uint8Array(b));},snapshot);
@@ -48,7 +54,7 @@ try{
  await cmd(`cof_goto #${ammo.match(/id=(\d+)/)[1]}`);await wait(async()=>/ammo=[1-9]/.test(await weapon()));r.beforeReload=await weapon();const total=+r.beforeReload.match(/clip=(\d+)/)[1]+ +r.beforeReload.match(/ammo=(\d+)/)[1];
  await p.keyboard.press('r');await wait(async()=>/reload=1 /.test(await weapon()));r.reloadSave=await cmd('save hands_reload');const reloadFiles=await p.evaluate(()=>FS.readdir('/rwdir/cryoffear/save').filter(n=>/\.(sav|HL[123])$/i.test(n)).map(n=>[n,[...FS.readFile(`/rwdir/cryoffear/save/${n}`)]]));await load('hands_reload');await wait(async()=>/clip=15 .*reload=0 /.test(await weapon()));r.reloaded=await weapon();assert.equal(+r.reloaded.match(/ammo=(\d+)/)[1],total-15);assert.match(r.reloaded,/dual=1/);assert.match(await cmd('cof_hands_render'),/on=1 right=2/);
  const coldReloadCount=logs.filter(l=>l.includes('client connected')).length;
- await p.goto(`${base}?map=c_game_menu1&sw=0&fx=0&timer=1&prefetch=0&debug=1`);await wait(()=>logs.filter(l=>l.includes('client connected')).length>coldReloadCount);await cmd('sv_cheats 1\nr_norefresh 1');assert.ok(await p.evaluate(()=>CoFPreload('c_apartment1')));
+ await p.goto(`${base}?map=c_game_menu1&sw=${process.env.COF_SW||'0'}&fx=0&timer=1&prefetch=0&debug=1`);await wait(()=>logs.filter(l=>l.includes('client connected')).length>coldReloadCount);await cmd('sv_cheats 1\nr_norefresh 1');assert.ok(await p.evaluate(()=>CoFPreload('c_apartment1')));
  await p.evaluate(files=>{FS.mkdirTree('/rwdir/cryoffear/save');for(const[n,b]of files)FS.writeFile(`/rwdir/cryoffear/save/${n}`,new Uint8Array(b));},reloadFiles);await load('hands_reload');r.coldReloadPending=await weapon();assert.match(r.coldReloadPending,/reload=1 /);assert.ok(+r.coldReloadPending.match(/playernext=([-\d.e+]+)/)[1]>0);
  await wait(async()=>/clip=15 .*reload=0 /.test(await weapon()));r.coldReloaded=await weapon();assert.equal(+r.coldReloaded.match(/ammo=(\d+)/)[1],total-15);assert.match(r.coldReloaded,/dual=1/);
  // Explicit single equip exits dual mode; returning to the phone restores its own right-hand view.
