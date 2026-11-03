@@ -21,10 +21,15 @@
 #include "skill.h"
 #include "shake.h"
 #include "cof_player.h"
+#include "saverestore.h"
 
 // CoF's skill.cfg uses these names, not Half-Life's sk_plr_9mm_bullet.
 // Register before skill.cfg is executed (GameDLLInit). All four original
 // difficulty entries default to 13; the original Glock passes explicit damage.
+static cvar_t cofPunchSkill[] = {
+ {"sk_cof_punch1","5"},{"sk_cof_punch2","5"},{"sk_cof_punch3","5"},{"sk_cof_punch4","5"}
+};
+static cvar_t cofWeaponDebug={"cof_weapon_debug","0",0};
 static cvar_t cofGlockSkill[] = {
 	{ "sk_cof_glock1", "13" }, { "sk_cof_glock2", "13" },
 	{ "sk_cof_glock3", "13" }, { "sk_cof_glock4", "13" }
@@ -32,6 +37,8 @@ static cvar_t cofGlockSkill[] = {
 
 void CoF_RegisterWeaponSkill( void )
 {
+ CVAR_REGISTER(&cofWeaponDebug);
+ for(unsigned i=0;i<4;++i)CVAR_REGISTER(&cofPunchSkill[i]);
 	for( unsigned i = 0; i < sizeof(cofGlockSkill) / sizeof(cofGlockSkill[0]); ++i )
 		CVAR_REGISTER( &cofGlockSkill[i] );
 }
@@ -73,7 +80,7 @@ public:
 
 	void Anim( int sequence, float seconds )
 	{
-		SendWeaponAnim( sequence, 0 );
+		if(!CoF_RouteMobileAnimation(m_pPlayer,this,sequence))SendWeaponAnim( sequence, 0 );
 		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + seconds;
 	}
 };
@@ -106,10 +113,26 @@ public:
 	void SecondaryAttack( void );
 	void WeaponIdle( void );
 
-	int m_iHand;  // 1: right, 2: left
+	void ItemPostFrame(){if(!CoF_DualPostFrame(m_pPlayer,this))CCofWeapon::ItemPostFrame();}
+ int Save(CSave&);int Restore(CRestore&);static TYPEDESCRIPTION m_SaveData[];
+ int m_iHand;  // 1: right, 2: left
 };
 
 LINK_ENTITY_TO_CLASS( weapon_switchblade, CCofSwitchblade )
+TYPEDESCRIPTION CCofSwitchblade::m_SaveData[]={DEFINE_FIELD(CCofSwitchblade,m_iHand,FIELD_INTEGER)};
+int CCofSwitchblade::Save(CSave &save)
+{
+ if(!CCofWeapon::Save(save))return 0;
+ return save.WriteFields("CCofSwitchblade",this,m_SaveData,ARRAYSIZE(m_SaveData));
+}
+int CCofSwitchblade::Restore(CRestore &restore)
+{
+ if(!CCofWeapon::Restore(restore))return 0;
+ m_iHand=1;
+ // Older port saves contain only the SDK base fields; the optional block rewinds on absence.
+ restore.ReadFields("CCofSwitchblade",this,m_SaveData,ARRAYSIZE(m_SaveData));
+ return 1;
+}
 
 BOOL CCofSwitchblade::Deploy( void )
 {
@@ -118,7 +141,7 @@ BOOL CCofSwitchblade::Deploy( void )
 	// dual wielded with the phone: its light stays on in the other hand
 	cof_phone_t *phone = CoF_Phone( m_pPlayer );
 	if( phone && phone->dual )
-		CoF_SetFlashlight( m_pPlayer, true );
+		{m_iHand=1;CoF_SetFlashlight( m_pPlayer, phone->flash!=0 );}
 	return DefaultDeploy( "models/weapons/switchblade/v_switchblade.mdl", "",
 		m_iHand == 2 ? BLADE_DRAW_LEFT : BLADE_DRAW, "crowbar" );
 }
@@ -246,6 +269,9 @@ enum glock_e
 class CCofGlock : public CCofWeapon
 {
 public:
+ int Save(CSave&);int Restore(CRestore&);static TYPEDESCRIPTION m_SaveData[];
+ float m_flReloadRemaining; // relative CLIENT_WEAPONS player deadline, not world time
+ void ItemPostFrame(){if(!CoF_DualPostFrame(m_pPlayer,this))CCofWeapon::ItemPostFrame();}
 	void Spawn( void );
 	void Precache( void );
 	int GetItemInfo( ItemInfo *p );
@@ -257,6 +283,26 @@ public:
 };
 
 LINK_ENTITY_TO_CLASS( weapon_glock, CCofGlock )
+// The SDK base saves the clip but omits its pending-reload flag. Keep this local
+// to the CoF Glock; reload completion still uses the normal ItemPostFrame path.
+TYPEDESCRIPTION CCofGlock::m_SaveData[]={
+ DEFINE_FIELD(CCofGlock,m_fInReload,FIELD_BOOLEAN),
+ DEFINE_FIELD(CCofGlock,m_flReloadRemaining,FIELD_FLOAT)
+};
+int CCofGlock::Save(CSave &save)
+{
+ m_flReloadRemaining=m_fInReload && m_pPlayer?m_pPlayer->m_flNextAttack:0;
+ if(!CCofWeapon::Save(save))return 0;
+ return save.WriteFields("COFGLOCK",this,m_SaveData,ARRAYSIZE(m_SaveData));
+}
+int CCofGlock::Restore(CRestore &restore)
+{
+ if(!CCofWeapon::Restore(restore))return 0;
+ m_fInReload=FALSE;m_flReloadRemaining=0;
+ int ok=restore.ReadFields("COFGLOCK",this,m_SaveData,ARRAYSIZE(m_SaveData));
+ if(ok && m_fInReload && m_pPlayer)m_pPlayer->m_flNextAttack=m_flReloadRemaining;
+ return 1; // no COFGLOCK block in saves created before this persistence fix
+}
 
 void CCofGlock::Spawn( void )
 {
@@ -484,7 +530,7 @@ screen1..7 submodel) and a flashlight. It starts with the message;
 enum mobile_e
 {
 	MOBILE_IDLE_SMS = 0, MOBILE_LOOK_SMS = 1, MOBILE_DRAW_SMS = 2, MOBILE_HOLSTER_SMS = 3, MOBILE_SMS_TO_FLASH = 4,
-	MOBILE_IDLE_FLASH = 5, MOBILE_LOOK_FLASH = 6, MOBILE_DRAW_FLASH = 7, MOBILE_FLASH_TO_SMS = 8, MOBILE_HOLSTER_FLASH = 9
+	MOBILE_IDLE_FLASH = 5, MOBILE_LOOK_FLASH = 6, MOBILE_DRAW_FLASH = 7, MOBILE_FLASH_TO_SMS = 8, MOBILE_HOLSTER_FLASH = 9, MOBILE_PUNCH_SMS=10, MOBILE_PUNCH_FLASH=11
 };
 
 class CCofMobile : public CCofWeapon
@@ -496,14 +542,31 @@ public:
 	BOOL Deploy( void );
 	void Holster( int skiplocal = 0 );
 	void PrimaryAttack( void );
+ void SecondaryAttack( void );
 	void WeaponIdle( void );
 	void ItemPostFrame( void );
 	void LookAtMessage( void );
+ void UpdatePhone();
+ int Save(CSave&);int Restore(CRestore&);static TYPEDESCRIPTION m_SaveData[];
 
 	float m_flLightSwitch;  // the flashlight follows the switch animation (FlashToggle of the original)
 };
 
 LINK_ENTITY_TO_CLASS( weapon_mobile, CCofMobile )
+TYPEDESCRIPTION CCofMobile::m_SaveData[]={DEFINE_FIELD(CCofMobile,m_flLightSwitch,FIELD_TIME)};
+int CCofMobile::Save(CSave &save)
+{
+ if(!CCofWeapon::Save(save))return 0;
+ return save.WriteFields("CCofMobile",this,m_SaveData,ARRAYSIZE(m_SaveData));
+}
+int CCofMobile::Restore(CRestore &restore)
+{
+ if(!CCofWeapon::Restore(restore))return 0;
+ m_flLightSwitch=0;
+ // Older port saves contain only the SDK base fields; the optional block rewinds on absence.
+ restore.ReadFields("CCofMobile",this,m_SaveData,ARRAYSIZE(m_SaveData));
+ return 1;
+}
 
 void CCofMobile::Spawn( void )
 {
@@ -519,6 +582,8 @@ void CCofMobile::Precache( void )
 	PRECACHE_MODEL( "models/weapons/mobile/v_mobile.mdl" );
 	PRECACHE_MODEL( "models/weapons/mobile/w_mobile.mdl" );
 	PRECACHE_SOUND( "weapons/mobile/mobile_sms.wav" );
+ PRECACHE_SOUND("weapons/mobile/punch_swing.wav");
+ PRECACHE_SOUND("weapons/mobile/punch_smack.wav");
 	PRECACHE_SOUND( "phone/phone_vibrate.wav" );
 }
 
@@ -581,6 +646,62 @@ void CCofMobile::PrimaryAttack( void )
 		CoF_HudPrint( "COF/HUD SMSREAD %d\n", phone->message );
 }
 
+// MeleeHitThinkPunch (native 100e7af0): line, head hull, BSP corner refinement.
+extern void FindHullIntersection(const Vector&,TraceResult&,float*,float*,edict_t*);
+class CCofPunchHit : public CPointEntity
+{
+public:
+ void Think(); int Save(CSave&);int Restore(CRestore&);static TYPEDESCRIPTION m_SaveData[];
+ EHANDLE m_hPlayer;
+};
+LINK_ENTITY_TO_CLASS(cof_punch_hit,CCofPunchHit)
+TYPEDESCRIPTION CCofPunchHit::m_SaveData[]={DEFINE_FIELD(CCofPunchHit,m_hPlayer,FIELD_EHANDLE)};
+IMPLEMENT_SAVERESTORE(CCofPunchHit,CPointEntity)
+void CCofPunchHit::Think()
+{
+ CBaseEntity *actor=m_hPlayer;
+ if(actor && actor->IsPlayer() && actor->IsAlive()) {
+  CBasePlayer *player=(CBasePlayer*)actor;
+  UTIL_MakeVectors(player->pev->v_angle);
+  Vector start=player->GetGunPosition(),end=start+gpGlobals->v_forward*32;
+  TraceResult tr;UTIL_TraceLine(start,end,dont_ignore_monsters,player->edict(),&tr);
+  if(tr.flFraction>=1) {
+   UTIL_TraceHull(start,end,dont_ignore_monsters,head_hull,player->edict(),&tr);
+   if(tr.flFraction<1) {
+    CBaseEntity *hit=CBaseEntity::Instance(tr.pHit);
+    if(!hit || hit->IsBSPModel()) {
+     Vector mins=VEC_DUCK_HULL_MIN,maxs=VEC_DUCK_HULL_MAX;
+     FindHullIntersection(start,tr,(float*)&mins,(float*)&maxs,player->edict());
+    }
+   }
+  }
+  if(tr.flFraction<1) {
+   CBaseEntity *hit=CBaseEntity::Instance(tr.pHit);
+   int level=(int)CVAR_GET_FLOAT("skill");if(level<1)level=1;if(level>4)level=4;
+   float damage=CVAR_GET_FLOAT(cofPunchSkill[level-1].name);
+   ClearMultiDamage();if(hit)hit->TraceAttack(player->pev,damage,gpGlobals->v_forward,&tr,0x04001000);
+   ApplyMultiDamage(player->pev,player->pev);
+   if(!hit || hit->Classify()==CLASS_NONE || hit->Classify()==CLASS_MACHINE)
+    UTIL_ScreenShake(player->pev->origin,2,0.25f,0.15f,2);
+   EMIT_SOUND_DYN(player->edict(),CHAN_WEAPON,"weapons/mobile/punch_smack.wav",1,ATTN_NORM,0,100+RANDOM_LONG(-10,10));
+   UTIL_ScreenShake(player->pev->origin,1,0.25f,0.1f,2);
+   if(cofWeaponDebug.value)ALERT(at_console,"COF/PUNCH impact target=%s id=%d damage=%g hitgroup=%d time=%g\n",hit?STRING(hit->pev->classname):"world",hit?hit->entindex():0,damage,tr.iHitgroup,gpGlobals->time);
+  } else if(cofWeaponDebug.value)ALERT(at_console,"COF/PUNCH miss time=%g\n",gpGlobals->time);
+ }
+ UTIL_Remove(this);
+}
+void CCofMobile::SecondaryAttack()
+{
+ if(m_flNextPrimaryAttack>0 || m_flNextSecondaryAttack>0 || m_fInReload)return;
+ cof_phone_t *phone=CoF_Phone(m_pPlayer);
+ Anim(phone && phone->flash?MOBILE_PUNCH_FLASH:MOBILE_PUNCH_SMS,1.0f);
+ m_flNextPrimaryAttack=m_flNextSecondaryAttack=UTIL_WeaponTimeBase()+1.0f;
+ CCofPunchHit *hit=(CCofPunchHit*)CBaseEntity::Create("cof_punch_hit",g_vecZero,g_vecZero,NULL);
+ if(hit){hit->m_hPlayer=m_pPlayer;hit->pev->nextthink=gpGlobals->time+0.133f;}
+ EMIT_SOUND(m_pPlayer->edict(),CHAN_AUTO,"weapons/mobile/punch_swing.wav",1,ATTN_NORM);
+ if(cofWeaponDebug.value)ALERT(at_console,"COF/PUNCH begin seq=%d impact=%g now=%g\n",m_pPlayer->pev->weaponanim,gpGlobals->time+0.133f,gpGlobals->time);
+}
+
 // a new message with the phone in the hand: Simon looks at it (sms_looksms / flash_looksms, 53 frames at 35 fps)
 void CCofMobile::LookAtMessage( void )
 {
@@ -594,7 +715,7 @@ void CCofMobile::LookAtMessage( void )
 	CoF_HudPrint( "COF/HUD SMSREAD %d\n", phone->message );
 }
 
-void CCofMobile::ItemPostFrame( void )
+void CCofMobile::UpdatePhone()
 {
 	cof_phone_t *phone = CoF_Phone( m_pPlayer );
 
@@ -608,8 +729,8 @@ void CCofMobile::ItemPostFrame( void )
 		// the message is on the screen in the hand: read
 		phone->unread = FALSE;
 	}
-	CCofWeapon::ItemPostFrame();
 }
+void CCofMobile::ItemPostFrame(){UpdatePhone();CCofWeapon::ItemPostFrame();}
 
 void CCofMobile::WeaponIdle( void )
 {
@@ -629,6 +750,100 @@ void CoF_MobileNewMessage( CBasePlayer *pPlayer )
 		((CCofMobile *)pPlayer->m_pActiveItem)->LookAtMessage();
 }
 
+// Two hands share the existing inventory weapons, ammo and reload state. No duplicate guns.
+static int gmsgCoFHands;
+void CoF_LinkHandsMessages(){if(!gmsgCoFHands)gmsgCoFHands=REG_USER_MSG("CoFHands",12);}
+static float g_handsSend[33];
+static int g_handsVisible[33],g_handsSerial[33];
+static int DualKind(CBasePlayer *p)
+{
+ cof_phone_t *s=CoF_Phone(p);if(!s || !s->dual || !p->m_pActiveItem)return 0;
+ int selected=s->dualWeapon?s->dualWeapon:WEAPON_COF_SWITCHBLADE;
+ const char *name=STRING(p->m_pActiveItem->pev->classname);
+ if(selected==WEAPON_COF_SWITCHBLADE && FStrEq(name,"weapon_switchblade"))return 1;
+ if(selected==WEAPON_COF_GLOCK && FStrEq(name,"weapon_glock"))return 2;
+ return 0;
+}
+static CBasePlayerItem *FindCarried(CBasePlayer *p,const char *name)
+{
+ for(int slot=0;slot<MAX_ITEM_TYPES;++slot)
+  for(CBasePlayerItem *item=p->m_rgpPlayerItems[slot];item;item=item->m_pNext)
+   if(FClassnameIs(item->pev,name))return item;
+ return NULL;
+}
+static CCofMobile *CarriedMobile(CBasePlayer *p)
+{
+ return (CCofMobile*)FindCarried(p,"weapon_mobile");
+}
+static void HandAnimation(CBasePlayer *p,int seq)
+{
+ cof_phone_t *s=CoF_Phone(p);if(!s)return;
+ s->dualSequence=seq;s->dualAnimTime=gpGlobals->time;++s->dualSerial;
+}
+bool CoF_RouteMobileAnimation(CBasePlayer *p,CBaseEntity *weapon,int seq)
+{
+ if(!p || !weapon || !DualKind(p) || !FClassnameIs(weapon->pev,"weapon_mobile"))return false;
+ HandAnimation(p,seq);return true;
+}
+void CoF_DualCancel(CBasePlayer *p)
+{
+ cof_phone_t *s=CoF_Phone(p);if(!s)return;
+ if(s->dual && !(p->m_pActiveItem && FClassnameIs(p->m_pActiveItem->pev,"weapon_mobile")))CoF_SetFlashlight(p,false);
+ s->dual=0;s->dualWeapon=0;
+}
+bool CoF_DualSelect(CBasePlayer *p,const char *a,const char *b)
+{
+ const char *weapon=NULL;
+ if(FStrEq(a,"weapon_mobile"))weapon=b;else if(FStrEq(b,"weapon_mobile"))weapon=a;
+ if(!weapon || (!FStrEq(weapon,"weapon_switchblade") && !FStrEq(weapon,"weapon_glock"))) {
+  CoF_CenterPrint("This combination is not available.");return false;
+ }
+ CCofMobile *mobile=CarriedMobile(p);CBasePlayerItem *right=FindCarried(p,weapon);
+ if(!mobile || !right)return false;
+ cof_phone_t *s=CoF_Phone(p);if(!s)return false;
+ s->dual=1;s->dualWeapon=FStrEq(weapon,"weapon_glock")?WEAPON_COF_GLOCK:WEAPON_COF_SWITCHBLADE;
+ if(p->m_pActiveItem!=right)p->SelectItem(weapon);else right->Deploy();
+ HandAnimation(p,s->flash?MOBILE_DRAW_FLASH:MOBILE_DRAW_SMS);
+ g_handsVisible[p->entindex()]=0; // a user-selected new pair starts both draw animations
+ return p->m_pActiveItem==right;
+}
+bool CoF_DualPostFrame(CBasePlayer *p,CBasePlayerWeapon *weapon)
+{
+ if(!DualKind(p))return false;
+ CCofMobile *mobile=CarriedMobile(p);if(!mobile)return false;
+ int buttons=p->pev->button;
+ // Both attacks are independent. The right mouse button operates the left phone,
+ // never the knife's hand swap or a synthetic second copy of the pistol.
+ if((buttons&IN_ATTACK2) && mobile->m_flNextPrimaryAttack<=0 && mobile->m_flNextSecondaryAttack<=0)
+  mobile->PrimaryAttack();
+ p->pev->button&=~IN_ATTACK2;
+ weapon->CBasePlayerWeapon::ItemPostFrame();
+ p->pev->button|=buttons&IN_ATTACK2;
+ return true;
+}
+void CoF_DualFrame(CBasePlayer *p)
+{
+ int index=p->entindex();if(index<1 || index>32)return;
+ CoF_LinkHandsMessages();
+ cof_phone_t *s=CoF_Phone(p);if(!s)return;
+ int kind=DualKind(p);CCofMobile *mobile=CarriedMobile(p);if(!mobile)kind=0;
+ if(kind) {
+  if(g_handsVisible[index]!=kind)CoF_SetFlashlight(p,s->flash!=0);
+  mobile->UpdatePhone();
+  float duration=(s->dualSequence==MOBILE_DRAW_SMS||s->dualSequence==MOBILE_DRAW_FLASH)?0.5f:1.0f;
+  if(s->dualSequence!=MOBILE_IDLE_SMS && s->dualSequence!=MOBILE_IDLE_FLASH && gpGlobals->time>=s->dualAnimTime+duration)
+   HandAnimation(p,s->flash?MOBILE_IDLE_FLASH:MOBILE_IDLE_SMS);
+ } else if(g_handsVisible[index] && !(p->m_pActiveItem && FClassnameIs(p->m_pActiveItem->pev,"weapon_mobile")))CoF_SetFlashlight(p,false);
+ if(kind!=g_handsVisible[index] || s->dualSerial!=g_handsSerial[index] || gpGlobals->time>=g_handsSend[index] || g_handsSend[index]>gpGlobals->time+2) {
+  union {float f;int i;} age;age.f=Q_max(0.0f,gpGlobals->time-s->dualAnimTime);
+  MESSAGE_BEGIN(MSG_ONE,gmsgCoFHands,NULL,p->pev);
+  WRITE_BYTE(kind!=0);WRITE_BYTE(s->dualSequence);WRITE_BYTE(s->message);WRITE_BYTE(kind);
+  WRITE_LONG(age.i);WRITE_LONG(s->dualSerial);MESSAGE_END();
+  if(cofWeaponDebug.value)ALERT(at_console,"COF/HANDS active=%d right=%d phoneSeq=%d serial=%d age=%g time=%g\n",kind!=0,kind,s->dualSequence,s->dualSerial,age.f,gpGlobals->time);
+  g_handsSend[index]=gpGlobals->time+2;g_handsSerial[index]=s->dualSerial;
+ }
+ g_handsVisible[index]=kind;
+}
 void UTIL_PrecacheOtherWeapon( const char *szClassname ); // weapons.cpp, not in a header
 
 // called at the end of hlsdk's W_Precache: every level registers and precaches

@@ -39,7 +39,10 @@ typedef struct
 	int message;   // bodynumber of the last trigger_cofmobile
 	int unread;    // UnreadSMS of the original: the HUD icon until the phone is taken out
 	int flash;     // held as a flashlight instead of showing the message (the original starts with the message)
-	int dual;      // dual wielded with the knife: the light stays on in the other hand (CDualWeapon)
+	int dual;      // selected native-style pair: phone left, supported weapon right
+ int dualWeapon; // port weapon id; old dual saves without this field mean switchblade
+ int dualSequence,dualSerial;
+ float dualAnimTime;
 } cof_phone_t;
 
 cof_phone_t *CoF_Phone( CBaseEntity *pPlayer );
@@ -72,3 +75,10 @@ void CoF_InspectChangeLevel(const char *name);
 
 void CoF_InspectInterDoor(const char *name);
 void CoF_InspectCustomize(CBaseEntity *entity, const char *name);
+
+// Independent hands for the implemented first-chapter phone pairs.
+bool CoF_DualSelect(CBasePlayer*,const char*,const char*);
+void CoF_DualCancel(CBasePlayer*);
+void CoF_DualFrame(CBasePlayer*);
+bool CoF_DualPostFrame(CBasePlayer*,class CBasePlayerWeapon*);
+bool CoF_RouteMobileAnimation(CBasePlayer*,CBaseEntity*,int);

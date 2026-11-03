@@ -1,0 +1,13 @@
+// Observe actual mouse secondary input on the real server; diagnostic equipment is not progression.
+import assert from 'node:assert/strict';import fs from 'node:fs';import {chromium} from 'playwright';
+const [base,out]=process.argv.slice(2);assert.ok(base&&out&&!fs.existsSync(out));fs.mkdirSync(out,{recursive:true});
+const b=await chromium.launch({args:['--mute-audio','--use-angle=swiftshader','--enable-unsafe-swiftshader']}),p=await b.newPage({viewport:{width:800,height:600}}),logs=[],errors=[],r={diagnosticOnly:true};let serial=0;p.on('console',m=>logs.push(m.text()));p.on('pageerror',e=>errors.push(e.message));
+try{
+const wait=async fn=>{const t=Date.now();while(!await fn()){assert.ok(Date.now()-t<60000,'punch state timeout');await p.waitForTimeout(50);}};
+const cmd=async text=>{const i=logs.length,t=`punch_${++serial}`;await Promise.all([p.waitForEvent('console',{predicate:m=>m.text().includes(`COF/FENCE ${t} `),timeout:30000}),p.evaluate(c=>CoFDebug.cmd(c),`${text}\ncof_fence ${t}`)]);return logs.slice(i).join('\n');};
+await p.goto(`${base}?map=c_apartment1&sw=0&fx=0&timer=1&prefetch=0&debug=1`);await wait(()=>logs.some(l=>l.includes('client connected')));await cmd('sv_cheats 1\nr_norefresh 1');await wait(async()=>/frozen=0 /.test(await cmd('cof_inspect !player')));await cmd('cof_give weapon_mobile\nweapon_mobile');await p.waitForTimeout(1300);
+await p.mouse.click(400,200);await p.waitForTimeout(1200);r.ui=await p.evaluate(()=>({pointer:document.pointerLockElement?.id,paused:CoFHUD.paused,menu:CoFHUD.menuOpen}));r.before=await cmd('cof_weapon_status\ncof_inspect !player\nbind MOUSE2');if(process.env.COF_PUNCH_VISUAL==='1')await cmd('r_norefresh 0');await p.mouse.down({button:'right'});await p.waitForTimeout(65);r.during=await cmd('cof_weapon_status');await p.mouse.up({button:'right'});if(process.env.COF_PUNCH_VISUAL==='1')await p.screenshot({path:out+'/phone-punch.png'});
+const secondary=+r.during.match(/secondary=([-\d.e+]+)/)?.[1];assert.ok(Number.isFinite(secondary));
+assert.match(r.before,/mode=1 /);assert.equal(secondary>0,process.env.COF_EXPECT_PUNCH!=='0');
+assert.deepEqual(errors,[]);r.passed=true;console.log(`PASS observed secondary: expected=${process.env.COF_EXPECT_PUNCH!=='0'} cooldown=${secondary}`);
+}catch(e){r.passed=false;r.failure=String(e.stack||e);console.error(e);process.exitCode=1;}finally{r.errors=errors;r.chromium=b.version();fs.writeFileSync(`${out}/result.json`,JSON.stringify(r,null,2));fs.writeFileSync(`${out}/engine.log`,logs.join('\n'));await b.close();}

@@ -1,0 +1,2721 @@
+[17:08:14] Console initialized.
+[17:08:14] FS_LoadProgs: filesystem_stdio successfully loaded
+[17:08:14] /rwdir is working directory now
+[17:08:14] Error: game directory "cryoffear" not exist
+[17:08:14] Adding directory: /rodir/
+[17:08:14] Adding directory: ./
+[17:08:14] Program args: ./this.program -game cryoffear -rodir /rodir -ref gles3compat -dll /lib/server.wasm -clientlib /lib/client.wasm -menulib /lib/menu.wasm -windowed -dev 1 -log +exec cof_web.cfg +snd_webaudio 1 +snd_webaudio_hrtf 0 +map c_apartment1 
+[17:08:14] Developer level: 1
+[17:08:14] execing cryoffear/vfs.cfg
+[17:08:14] FS_AddGameHierarchy( valve )
+[17:08:14] Adding directory: /rodir/valve/
+[17:08:14] Adding directory: valve/
+[17:08:14] FS_AddGameHierarchy( cryoffear )
+[17:08:14] Adding directory: /rodir/cryoffear/
+[17:08:14] Adding directory: cryoffear_downloads/
+[17:08:14] Adding directory: cryoffear/
+[17:08:14] Adding directory: cryoffear/custom/
+[17:08:14] Touch_Init()
+[17:08:14] Warning: SV_LoadProgs: couldn't get physics API
+[17:08:14] Dll loaded for game "Half-Life"
+[17:08:14] Error: Delta_ParseField: unable to find field is_donator
+[17:08:14] execing skill.cfg
+[17:08:14] Warning: Unknown command "sk_monster_head4"
+[17:08:14] Warning: Unknown command "sk_monster_chest4"
+[17:08:14] Warning: Unknown command "sk_monster_stomach4"
+[17:08:14] Warning: Unknown command "sk_monster_arm4"
+[17:08:14] Warning: Unknown command "sk_monster_leg4"
+[17:08:14] Warning: Unknown command "sk_player_head4"
+[17:08:14] Warning: Unknown command "sk_player_chest4"
+[17:08:14] Warning: Unknown command "sk_player_stomach4"
+[17:08:14] Warning: Unknown command "sk_player_arm4"
+[17:08:14] Warning: Unknown command "sk_player_leg4"
+[17:08:14] Warning: Unknown command "sk_cof_sledgehammer1"
+[17:08:14] Warning: Unknown command "sk_cof_sledgehammer2"
+[17:08:14] Warning: Unknown command "sk_cof_sledgehammer3"
+[17:08:14] Warning: Unknown command "sk_cof_sledgehammer4"
+[17:08:14] Warning: Unknown command "sk_cof_nightstick1"
+[17:08:14] Warning: Unknown command "sk_cof_nightstick2"
+[17:08:14] Warning: Unknown command "sk_cof_nightstick3"
+[17:08:14] Warning: Unknown command "sk_cof_nightstick4"
+[17:08:14] Warning: Unknown command "sk_cof_2switchblade1"
+[17:08:14] Warning: Unknown command "sk_cof_2switchblade2"
+[17:08:14] Warning: Unknown command "sk_cof_2switchblade3"
+[17:08:14] Warning: Unknown command "sk_cof_2switchblade4"
+[17:08:14] Warning: Unknown command "sk_cof_switchblade1"
+[17:08:14] Warning: Unknown command "sk_cof_switchblade2"
+[17:08:14] Warning: Unknown command "sk_cof_switchblade3"
+[17:08:14] Warning: Unknown command "sk_cof_switchblade4"
+[17:08:14] Warning: Unknown command "sk_baby_health1"
+[17:08:14] Warning: Unknown command "sk_baby_health2"
+[17:08:14] Warning: Unknown command "sk_baby_health3"
+[17:08:14] Warning: Unknown command "sk_baby_health4"
+[17:08:14] Warning: Unknown command "sk_baby_damage1"
+[17:08:14] Warning: Unknown command "sk_baby_damage2"
+[17:08:14] Warning: Unknown command "sk_baby_damage3"
+[17:08:14] Warning: Unknown command "sk_baby_damage4"
+[17:08:14] Warning: Unknown command "sk_faster_health1"
+[17:08:14] Warning: Unknown command "sk_faster_health2"
+[17:08:14] Warning: Unknown command "sk_faster_health3"
+[17:08:14] Warning: Unknown command "sk_faster_health4"
+[17:08:14] Warning: Unknown command "sk_faster_dmg_one_slash1"
+[17:08:14] Warning: Unknown command "sk_faster_dmg_one_slash2"
+[17:08:14] Warning: Unknown command "sk_faster_dmg_one_slash3"
+[17:08:14] Warning: Unknown command "sk_faster_dmg_one_slash4"
+[17:08:14] Warning: Unknown command "sk_faster_dmg_both_slash1"
+[17:08:14] Warning: Unknown command "sk_faster_dmg_both_slash2"
+[17:08:14] Warning: Unknown command "sk_faster_dmg_both_slash3"
+[17:08:14] Warning: Unknown command "sk_faster_dmg_both_slash4"
+[17:08:14] Warning: Unknown command "sk_krypande_health1"
+[17:08:14] Warning: Unknown command "sk_krypande_health2"
+[17:08:14] Warning: Unknown command "sk_krypande_health3"
+[17:08:14] Warning: Unknown command "sk_krypande_health4"
+[17:08:14] Warning: Unknown command "sk_krypande_dmg_one_slash1"
+[17:08:14] Warning: Unknown command "sk_krypande_dmg_one_slash2"
+[17:08:14] Warning: Unknown command "sk_krypande_dmg_one_slash3"
+[17:08:14] Warning: Unknown command "sk_krypande_dmg_one_slash4"
+[17:08:14] Warning: Unknown command "sk_syringe_heal1"
+[17:08:14] Warning: Unknown command "sk_syringe_heal2"
+[17:08:14] Warning: Unknown command "sk_syringe_heal3"
+[17:08:14] Warning: Unknown command "sk_syringe_heal4"
+[17:08:14] Warning: Unknown command "sk_chainsawboss_health1"
+[17:08:14] Warning: Unknown command "sk_chainsawboss_health2"
+[17:08:14] Warning: Unknown command "sk_chainsawboss_health3"
+[17:08:14] Warning: Unknown command "sk_chainsawboss_health4"
+[17:08:14] Warning: Unknown command "sk_sewmo_health1"
+[17:08:14] Warning: Unknown command "sk_sewmo_health2"
+[17:08:14] Warning: Unknown command "sk_sewmo_health3"
+[17:08:14] Warning: Unknown command "sk_sewmo_health4"
+[17:08:14] Warning: Unknown command "sk_sewmo_dmg_one_slash1"
+[17:08:14] Warning: Unknown command "sk_sewmo_dmg_one_slash2"
+[17:08:14] Warning: Unknown command "sk_sewmo_dmg_one_slash3"
+[17:08:14] Warning: Unknown command "sk_sewmo_dmg_one_slash4"
+[17:08:14] Warning: Unknown command "sk_sewmo_dmg_both_slash1"
+[17:08:14] Warning: Unknown command "sk_sewmo_dmg_both_slash2"
+[17:08:14] Warning: Unknown command "sk_sewmo_dmg_both_slash3"
+[17:08:14] Warning: Unknown command "sk_sewmo_dmg_both_slash4"
+[17:08:14] Warning: Unknown command "sk_sawrunner_health1"
+[17:08:14] Warning: Unknown command "sk_sawrunner_health2"
+[17:08:14] Warning: Unknown command "sk_sawrunner_health3"
+[17:08:14] Warning: Unknown command "sk_sawrunner_health4"
+[17:08:14] Warning: Unknown command "sk_sawrunner_dmg_one_slash1"
+[17:08:14] Warning: Unknown command "sk_sawrunner_dmg_one_slash2"
+[17:08:14] Warning: Unknown command "sk_sawrunner_dmg_one_slash3"
+[17:08:14] Warning: Unknown command "sk_sawrunner_dmg_one_slash4"
+[17:08:14] Warning: Unknown command "sk_sawrunner_dmg_both_slash1"
+[17:08:14] Warning: Unknown command "sk_sawrunner_dmg_both_slash2"
+[17:08:14] Warning: Unknown command "sk_sawrunner_dmg_both_slash3"
+[17:08:14] Warning: Unknown command "sk_sawrunner_dmg_both_slash4"
+[17:08:14] Warning: Unknown command "sk_zombie_health4"
+[17:08:14] Warning: Unknown command "sk_zombie_dmg_one_slash4"
+[17:08:14] Warning: Unknown command "sk_zombie_dmg_both_slash4"
+[17:08:14] Warning: Unknown command "sk_child_health1"
+[17:08:14] Warning: Unknown command "sk_child_health2"
+[17:08:14] Warning: Unknown command "sk_child_health3"
+[17:08:14] Warning: Unknown command "sk_child_health4"
+[17:08:14] Warning: Unknown command "sk_child_dmg_one_slash1"
+[17:08:14] Warning: Unknown command "sk_child_dmg_one_slash2"
+[17:08:14] Warning: Unknown command "sk_child_dmg_one_slash3"
+[17:08:14] Warning: Unknown command "sk_child_dmg_one_slash4"
+[17:08:14] Warning: Unknown command "sk_child_dmg_both_slash1"
+[17:08:14] Warning: Unknown command "sk_child_dmg_both_slash2"
+[17:08:14] Warning: Unknown command "sk_child_dmg_both_slash3"
+[17:08:14] Warning: Unknown command "sk_child_dmg_both_slash4"
+[17:08:14] Warning: Unknown command "sk_sewerboss_health1"
+[17:08:14] Warning: Unknown command "sk_sewerboss_health2"
+[17:08:14] Warning: Unknown command "sk_sewerboss_health3"
+[17:08:14] Warning: Unknown command "sk_sewerboss_health4"
+[17:08:14] Warning: Unknown command "sk_sewerboss_melee1"
+[17:08:14] Warning: Unknown command "sk_sewerboss_melee2"
+[17:08:14] Warning: Unknown command "sk_sewerboss_melee3"
+[17:08:14] Warning: Unknown command "sk_sewerboss_melee4"
+[17:08:14] Warning: Unknown command "sk_slower3_health1"
+[17:08:14] Warning: Unknown command "sk_slower3_health2"
+[17:08:14] Warning: Unknown command "sk_slower3_health3"
+[17:08:14] Warning: Unknown command "sk_slower3_health4"
+[17:08:14] Warning: Unknown command "sk_slower3_dmg_one_slash1"
+[17:08:14] Warning: Unknown command "sk_slower3_dmg_one_slash2"
+[17:08:14] Warning: Unknown command "sk_slower3_dmg_one_slash3"
+[17:08:14] Warning: Unknown command "sk_slower3_dmg_one_slash4"
+[17:08:14] Warning: Unknown command "sk_slower3_dmg_both_slash1"
+[17:08:14] Warning: Unknown command "sk_slower3_dmg_both_slash2"
+[17:08:14] Warning: Unknown command "sk_slower3_dmg_both_slash3"
+[17:08:14] Warning: Unknown command "sk_slower3_dmg_both_slash4"
+[17:08:14] Warning: Unknown command "sk_flygare_health1"
+[17:08:14] Warning: Unknown command "sk_flygare_health2"
+[17:08:14] Warning: Unknown command "sk_flygare_health3"
+[17:08:14] Warning: Unknown command "sk_flygare_health4"
+[17:08:14] Warning: Unknown command "sk_flygare_acid1"
+[17:08:14] Warning: Unknown command "sk_flygare_acid2"
+[17:08:14] Warning: Unknown command "sk_flygare_acid3"
+[17:08:14] Warning: Unknown command "sk_flygare_acid4"
+[17:08:14] Warning: Unknown command "sk_flygare_melee1"
+[17:08:14] Warning: Unknown command "sk_flygare_melee2"
+[17:08:14] Warning: Unknown command "sk_flygare_melee3"
+[17:08:14] Warning: Unknown command "sk_flygare_melee4"
+[17:08:14] Warning: Unknown command "sk_plr_buckshot4"
+[17:08:14] Warning: Unknown command "sk_rcrazy_health1"
+[17:08:14] Warning: Unknown command "sk_rcrazy_health2"
+[17:08:14] Warning: Unknown command "sk_rcrazy_health3"
+[17:08:14] Warning: Unknown command "sk_rcrazy_health4"
+[17:08:14] Warning: Unknown command "sk_rcrazy_dmg_one_slash1"
+[17:08:14] Warning: Unknown command "sk_rcrazy_dmg_one_slash2"
+[17:08:14] Warning: Unknown command "sk_rcrazy_dmg_one_slash3"
+[17:08:14] Warning: Unknown command "sk_rcrazy_dmg_one_slash4"
+[17:08:14] Warning: Unknown command "sk_rcrazy_dmg_both_slash1"
+[17:08:14] Warning: Unknown command "sk_rcrazy_dmg_both_slash2"
+[17:08:14] Warning: Unknown command "sk_rcrazy_dmg_both_slash3"
+[17:08:14] Warning: Unknown command "sk_rcrazy_dmg_both_slash4"
+[17:08:14] Warning: Unknown command "sk_primary_speed1"
+[17:08:14] Warning: Unknown command "sk_primary_speed2"
+[17:08:14] Warning: Unknown command "sk_primary_speed3"
+[17:08:14] Warning: Unknown command "sk_primary_speed4"
+[17:08:14] Warning: Unknown command "sk_secondary_speed1"
+[17:08:14] Warning: Unknown command "sk_secondary_speed2"
+[17:08:14] Warning: Unknown command "sk_secondary_speed3"
+[17:08:14] Warning: Unknown command "sk_secondary_speed4"
+[17:08:14] Warning: Unknown command "sk_sprint_speed1"
+[17:08:14] Warning: Unknown command "sk_sprint_speed2"
+[17:08:14] Warning: Unknown command "sk_sprint_speed3"
+[17:08:14] Warning: Unknown command "sk_sprint_speed4"
+[17:08:14] Warning: Unknown command "sk_stair_speed1"
+[17:08:14] Warning: Unknown command "sk_stair_speed2"
+[17:08:14] Warning: Unknown command "sk_stair_speed3"
+[17:08:14] Warning: Unknown command "sk_stair_speed4"
+[17:08:14] Warning: Unknown command "bullet_punch_max"
+[17:08:14] Warning: Unknown command "bullet_punch_divide"
+[17:08:14] Warning: Unknown command "blast_punch_max"
+[17:08:14] Warning: Unknown command "blast_punch_divide"
+[17:08:14] Warning: Unknown command "sk_cof_m161"
+[17:08:14] Warning: Unknown command "sk_cof_m162"
+[17:08:14] Warning: Unknown command "sk_cof_m163"
+[17:08:14] Warning: Unknown command "sk_cof_m164"
+[17:08:14] Warning: Unknown command "sk_cof_VP701"
+[17:08:14] Warning: Unknown command "sk_cof_VP702"
+[17:08:14] Warning: Unknown command "sk_cof_VP703"
+[17:08:14] Warning: Unknown command "sk_cof_VP704"
+[17:08:14] Warning: Unknown command "sk_cof_weapon_melee1"
+[17:08:14] Warning: Unknown command "sk_cof_weapon_melee2"
+[17:08:14] Warning: Unknown command "sk_cof_weapon_melee3"
+[17:08:14] Warning: Unknown command "sk_cof_weapon_melee4"
+[17:08:14] Warning: Unknown command "sk_cof_p3451"
+[17:08:14] Warning: Unknown command "sk_cof_p3452"
+[17:08:14] Warning: Unknown command "sk_cof_p3453"
+[17:08:14] Warning: Unknown command "sk_cof_p3454"
+[17:08:14] Warning: Unknown command "sk_cof_g431"
+[17:08:14] Warning: Unknown command "sk_cof_g432"
+[17:08:14] Warning: Unknown command "sk_cof_g433"
+[17:08:14] Warning: Unknown command "sk_cof_g434"
+[17:08:14] Warning: Unknown command "sk_cof_shotgun1"
+[17:08:14] Warning: Unknown command "sk_cof_shotgun2"
+[17:08:14] Warning: Unknown command "sk_cof_shotgun3"
+[17:08:14] Warning: Unknown command "sk_cof_shotgun4"
+[17:08:14] Warning: Unknown command "sk_cof_rifle1"
+[17:08:14] Warning: Unknown command "sk_cof_rifle2"
+[17:08:14] Warning: Unknown command "sk_cof_rifle3"
+[17:08:14] Warning: Unknown command "sk_cof_rifle4"
+[17:08:14] Warning: Unknown command "sk_cof_revolver1"
+[17:08:14] Warning: Unknown command "sk_cof_revolver2"
+[17:08:14] Warning: Unknown command "sk_cof_revolver3"
+[17:08:14] Warning: Unknown command "sk_cof_revolver4"
+[17:08:14] Warning: Unknown command "sk_stranger_health1"
+[17:08:14] Warning: Unknown command "sk_stranger_health2"
+[17:08:14] Warning: Unknown command "sk_stranger_health3"
+[17:08:14] Warning: Unknown command "sk_stranger_health4"
+[17:08:14] Warning: Unknown command "sk_stranger_damage1"
+[17:08:14] Warning: Unknown command "sk_stranger_damage2"
+[17:08:14] Warning: Unknown command "sk_stranger_damage3"
+[17:08:14] Warning: Unknown command "sk_stranger_damage4"
+[17:08:14] Warning: Unknown command "sk_suicider_health1"
+[17:08:14] Warning: Unknown command "sk_suicider_health2"
+[17:08:14] Warning: Unknown command "sk_suicider_health3"
+[17:08:14] Warning: Unknown command "sk_suicider_health4"
+[17:08:14] Warning: Unknown command "sk_suicider_bullet1"
+[17:08:14] Warning: Unknown command "sk_suicider_bullet2"
+[17:08:14] Warning: Unknown command "sk_suicider_bullet3"
+[17:08:14] Warning: Unknown command "sk_suicider_bullet4"
+[17:08:14] Warning: Unknown command "sk_suicider_suicide1"
+[17:08:14] Warning: Unknown command "sk_suicider_suicide2"
+[17:08:14] Warning: Unknown command "sk_suicider_suicide3"
+[17:08:14] Warning: Unknown command "sk_suicider_suicide4"
+[17:08:14] Warning: Unknown command "sk_roofboss_health1"
+[17:08:14] Warning: Unknown command "sk_roofboss_health2"
+[17:08:14] Warning: Unknown command "sk_roofboss_health3"
+[17:08:14] Warning: Unknown command "sk_roofboss_health4"
+[17:08:14] Warning: Unknown command "sk_roofboss_headhit1"
+[17:08:14] Warning: Unknown command "sk_roofboss_headhit2"
+[17:08:14] Warning: Unknown command "sk_roofboss_headhit3"
+[17:08:14] Warning: Unknown command "sk_roofboss_headhit4"
+[17:08:14] Warning: Unknown command "sk_roofboss_headhealth1"
+[17:08:14] Warning: Unknown command "sk_roofboss_headhealth2"
+[17:08:14] Warning: Unknown command "sk_roofboss_headhealth3"
+[17:08:14] Warning: Unknown command "sk_roofboss_headhealth4"
+[17:08:14] Warning: Unknown command "sk_roofboss_attacktime1"
+[17:08:14] Warning: Unknown command "sk_roofboss_attacktime2"
+[17:08:14] Warning: Unknown command "sk_roofboss_attacktime3"
+[17:08:14] Warning: Unknown command "sk_roofboss_attacktime4"
+[17:08:14] Warning: Unknown command "sk_faceless_health1"
+[17:08:14] Warning: Unknown command "sk_faceless_health2"
+[17:08:14] Warning: Unknown command "sk_faceless_health3"
+[17:08:14] Warning: Unknown command "sk_faceless_health4"
+[17:08:14] Warning: Unknown command "sk_faceless_dmg_one_slash1"
+[17:08:14] Warning: Unknown command "sk_faceless_dmg_one_slash2"
+[17:08:14] Warning: Unknown command "sk_faceless_dmg_one_slash3"
+[17:08:14] Warning: Unknown command "sk_faceless_dmg_one_slash4"
+[17:08:14] Warning: Unknown command "sk_faceless_dmg_both_slash1"
+[17:08:14] Warning: Unknown command "sk_faceless_dmg_both_slash2"
+[17:08:14] Warning: Unknown command "sk_faceless_dmg_both_slash3"
+[17:08:14] Warning: Unknown command "sk_faceless_dmg_both_slash4"
+[17:08:14] Warning: Unknown command "sk_cof_branch1"
+[17:08:14] Warning: Unknown command "sk_cof_branch2"
+[17:08:14] Warning: Unknown command "sk_cof_branch3"
+[17:08:14] Warning: Unknown command "sk_cof_branch4"
+[17:08:14] Warning: Unknown command "sk_doctor_health1"
+[17:08:14] Warning: Unknown command "sk_doctor_health2"
+[17:08:14] Warning: Unknown command "sk_doctor_health3"
+[17:08:14] Warning: Unknown command "sk_doctor_health4"
+[17:08:14] Warning: Unknown command "sk_doctor_p3451"
+[17:08:14] Warning: Unknown command "sk_doctor_p3452"
+[17:08:14] Warning: Unknown command "sk_doctor_p3453"
+[17:08:14] Warning: Unknown command "sk_doctor_p3454"
+[17:08:14] Warning: Unknown command "sk_doctor_revolver1"
+[17:08:14] Warning: Unknown command "sk_doctor_revolver2"
+[17:08:14] Warning: Unknown command "sk_doctor_revolver3"
+[17:08:14] Warning: Unknown command "sk_doctor_revolver4"
+[17:08:14] Warning: Unknown command "sk_flare_burn_time1"
+[17:08:14] Warning: Unknown command "sk_flare_burn_time2"
+[17:08:14] Warning: Unknown command "sk_flare_burn_time3"
+[17:08:14] Warning: Unknown command "sk_flare_burn_time4"
+[17:08:14] Warning: Unknown command "sk_taller_health1"
+[17:08:14] Warning: Unknown command "sk_taller_health2"
+[17:08:14] Warning: Unknown command "sk_taller_health3"
+[17:08:14] Warning: Unknown command "sk_taller_health4"
+[17:08:14] Warning: Unknown command "sk_taller_dmg_punch1"
+[17:08:14] Warning: Unknown command "sk_taller_dmg_punch2"
+[17:08:14] Warning: Unknown command "sk_taller_dmg_punch3"
+[17:08:14] Warning: Unknown command "sk_taller_dmg_punch4"
+[17:08:14] Warning: Unknown command "sk_spitter_health1"
+[17:08:14] Warning: Unknown command "sk_spitter_health2"
+[17:08:14] Warning: Unknown command "sk_spitter_health3"
+[17:08:14] Warning: Unknown command "sk_spitter_health4"
+[17:08:14] Warning: Unknown command "sk_aom_pills1"
+[17:08:14] Warning: Unknown command "sk_aom_pills2"
+[17:08:14] Warning: Unknown command "sk_aom_pills3"
+[17:08:14] Warning: Unknown command "sk_aom_pills4"
+[17:08:14] Warning: Unknown command "sk_cof_axe1"
+[17:08:14] Warning: Unknown command "sk_cof_axe2"
+[17:08:14] Warning: Unknown command "sk_cof_axe3"
+[17:08:14] Warning: Unknown command "sk_cof_axe4"
+[17:08:14] Warning: Unknown command "sk_twitcher_health1"
+[17:08:14] Warning: Unknown command "sk_twitcher_health2"
+[17:08:14] Warning: Unknown command "sk_twitcher_health3"
+[17:08:14] Warning: Unknown command "sk_twitcher_health4"
+[17:08:14] Warning: Unknown command "sk_twitcher_dmg_one_slash1"
+[17:08:14] Warning: Unknown command "sk_twitcher_dmg_one_slash2"
+[17:08:14] Warning: Unknown command "sk_twitcher_dmg_one_slash3"
+[17:08:14] Warning: Unknown command "sk_twitcher_dmg_one_slash4"
+[17:08:14] Warning: Unknown command "sk_twitcher_dmg_both_slash1"
+[17:08:14] Warning: Unknown command "sk_twitcher_dmg_both_slash2"
+[17:08:14] Warning: Unknown command "sk_twitcher_dmg_both_slash3"
+[17:08:14] Warning: Unknown command "sk_twitcher_dmg_both_slash4"
+[17:08:14] Warning: Unknown command "sk_twitcher2_health1"
+[17:08:14] Warning: Unknown command "sk_twitcher2_health2"
+[17:08:14] Warning: Unknown command "sk_twitcher2_health3"
+[17:08:14] Warning: Unknown command "sk_twitcher2_health4"
+[17:08:14] Warning: Unknown command "sk_twitcher2_dmg_one_slash1"
+[17:08:14] Warning: Unknown command "sk_twitcher2_dmg_one_slash2"
+[17:08:14] Warning: Unknown command "sk_twitcher2_dmg_one_slash3"
+[17:08:14] Warning: Unknown command "sk_twitcher2_dmg_one_slash4"
+[17:08:14] Warning: Unknown command "sk_twitcher2_dmg_both_slash1"
+[17:08:14] Warning: Unknown command "sk_twitcher2_dmg_both_slash2"
+[17:08:14] Warning: Unknown command "sk_twitcher2_dmg_both_slash3"
+[17:08:14] Warning: Unknown command "sk_twitcher2_dmg_both_slash4"
+[17:08:14] Warning: Unknown command "sk_twitcher3_health1"
+[17:08:14] Warning: Unknown command "sk_twitcher3_health2"
+[17:08:14] Warning: Unknown command "sk_twitcher3_health3"
+[17:08:14] Warning: Unknown command "sk_twitcher3_health4"
+[17:08:14] Warning: Unknown command "sk_twitcher3_dmg_one_slash1"
+[17:08:14] Warning: Unknown command "sk_twitcher3_dmg_one_slash2"
+[17:08:14] Warning: Unknown command "sk_twitcher3_dmg_one_slash3"
+[17:08:14] Warning: Unknown command "sk_twitcher3_dmg_one_slash4"
+[17:08:14] Warning: Unknown command "sk_twitcher3_dmg_both_slash1"
+[17:08:14] Warning: Unknown command "sk_twitcher3_dmg_both_slash2"
+[17:08:14] Warning: Unknown command "sk_twitcher3_dmg_both_slash3"
+[17:08:14] Warning: Unknown command "sk_twitcher3_dmg_both_slash4"
+[17:08:14] Warning: Unknown command "sk_twitcher4_health1"
+[17:08:14] Warning: Unknown command "sk_twitcher4_health2"
+[17:08:14] Warning: Unknown command "sk_twitcher4_health3"
+[17:08:14] Warning: Unknown command "sk_twitcher4_health4"
+[17:08:14] Warning: Unknown command "sk_twitcher4_dmg_one_slash1"
+[17:08:14] Warning: Unknown command "sk_twitcher4_dmg_one_slash2"
+[17:08:14] Warning: Unknown command "sk_twitcher4_dmg_one_slash3"
+[17:08:14] Warning: Unknown command "sk_twitcher4_dmg_one_slash4"
+[17:08:14] Warning: Unknown command "sk_twitcher4_dmg_both_slash1"
+[17:08:14] Warning: Unknown command "sk_twitcher4_dmg_both_slash2"
+[17:08:14] Warning: Unknown command "sk_twitcher4_dmg_both_slash3"
+[17:08:14] Warning: Unknown command "sk_twitcher4_dmg_both_slash4"
+[17:08:14] execing video.cfg
+[17:08:14] Loading renderer: gles3compat -> libref_gles3compat.wasm
+[17:08:14] execing opengl.cfg
+[17:08:14] Trying safe opengl mode 0
+[17:08:14] bpp 24
+[17:08:14] Video: SDL
+[17:08:14] Video driver: emscripten
+[17:08:14] Window size: 800x347 (real 800x347)
+[17:08:14] Window position: 0x0
+[17:08:14] Window mode: windowed
+[17:08:14] Window bordered: true
+[17:08:14] Window resizable: true
+[17:08:14] Window maximized: false
+[17:08:14] Window display index: 0
+[17:08:14] Window display mode: 800x600@0
+WebGL: INVALID_ENUM: getParameter: invalid parameter name
+[17:08:14] Note: GL2_ShimInit: missing BufferStorage
+[17:08:14] Note: GL2_ShimInit: config: ASYNC MAP CYCLE=1 VER=300
+[17:08:14] Note: GL2_ShimInit: 1441792 bytes allocated for vertex buffer
+[17:08:14] Note: GL2_InitProgs: Pre-generating 8 progs, version 300...
+[17:08:14] Note: GL2_GetProg: Generating progs for 0x0001
+[17:08:14] Note: GL2_GetProg: Generated progs for 0x0001
+[17:08:14] Note: GL2_GetProg: Generating progs for 0x0005
+[17:08:14] Note: GL2_GetProg: Generated progs for 0x0005
+[17:08:14] Note: GL2_GetProg: Generating progs for 0x0007
+[17:08:14] Note: GL2_GetProg: Generated progs for 0x0007
+[17:08:14] Note: GL2_GetProg: Generating progs for 0x0015
+[17:08:14] Note: GL2_GetProg: Generated progs for 0x0015
+[17:08:14] Note: GL2_GetProg: Generating progs for 0x0021
+[17:08:14] Note: GL2_GetProg: Generated progs for 0x0021
+[17:08:14] Note: GL2_GetProg: Generating progs for 0x0025
+[17:08:14] Note: GL2_GetProg: Generated progs for 0x0025
+[17:08:14] Note: GL2_GetProg: Generating progs for 0x0027
+[17:08:14] Note: GL2_GetProg: Generated progs for 0x0027
+[17:08:14] Note: GL2_GetProg: Generating progs for 0x0035
+[17:08:14] Note: GL2_GetProg: Generated progs for 0x0035
+[17:08:14] 
+[17:08:14] GL_VENDOR: WebKit
+[17:08:14] GL_RENDERER: WebKit WebGL
+[17:08:14] GL_VERSION: OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))
+[17:08:14] GL_MAX_TEXTURE_SIZE: 8192
+[17:08:14] GL_MAX_TEXTURE_UNITS_ARB: 32
+[17:08:14] GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT: 16.0
+[17:08:14] 
+[17:08:14] MODE: 800x347
+[17:08:14] 
+[17:08:14] Color 24 bits, Alpha 8 bits, Depth 24 bits, Stencil 8 bits
+[17:08:14] OpenGL Error: GL_INVALID_ENUM while uploading *default [2D]
+[17:08:14] UI_ApplyCustomColors: colors.lst not found
+[17:08:14] Rendering Trebuchet MS(11, 500) took 0.010000 seconds
+[17:08:14] Rendering Trebuchet MS(9, 500) took 0.006000 seconds
+[17:08:14] Rendering Trebuchet MS(18, 500) took 0.006000 seconds
+[17:08:14] Rendering Trebuchet MS(11, 1000) took 0.004000 seconds
+[17:08:14] Rendering Trebuchet MS(11, 500) took 0.001000 seconds
+[17:08:14] Rendering Trebuchet MS(11, 500) took 0.018000 seconds
+[17:08:14] Rendering Tahoma(8, 500) took 0.006000 seconds
+[17:08:14] AVI: Not supported
+The ScriptProcessorNode is deprecated. Use AudioWorkletNode instead. (https://bit.ly/audio-worklet)
+[17:08:14] Using SDL audio driver: emscripten @ 44100 Hz
+[17:08:14] Web Audio: 3D channels enabled
+[17:08:14] execing valve.rc
+[17:08:14] Warning: Unknown command "s_refgain"
+[17:08:14] Warning: Unknown command "s_refdelay"
+[17:08:14] Warning: Unknown command "s_occfactor"
+[17:08:14] Warning: Unknown command "s_verbwet"
+[17:08:14] Warning: Unknown command "s_distance"
+[17:08:14] execing language.cfg
+[17:08:14] execing joystick.cfg
+[17:08:14] execing autoexec.cfg
+[17:08:14] Warning: Unknown command "r_dynamiclight"
+[17:08:14] Warning: Unknown command "cl_noiseeffect"
+[17:08:14] Warning: Unknown command "gl_texturemode"
+[17:08:14] Warning: Unknown command "sv_voicecodec"
+[17:08:14] execing config.cfg
+[17:08:14] execing cof_web.cfg
+[17:08:14] Time to first frame: 0.595 seconds
+[17:08:14] Error: Delta_ParseField: unable to find field is_donator
+[17:08:14] Spawn Server: c_apartment1
+[17:08:15] execing maps/c_apartment1_load.cfg
+[17:08:15] 
+GAME SKILL LEVEL:1
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_agrunt_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_agrunt_dmg_punch1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_apache_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_barney_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_bite1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_whip1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_spit1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_gargantua_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_slash1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_fire1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_stomp1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_hassassin_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_headcrab_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_headcrab_dmg_bite1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_kick1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_pellets1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_gspeed1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_houndeye_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_houndeye_dmg_blast1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_islave_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_claw1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_clawrake1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_zap1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_shake1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_leech_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_leech_dmg_bite1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_controller_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgzap1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_controller_speedball1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgball1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_zap1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_scientist_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_snark_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_bite1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_pop1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_turret_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_miniturret_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_sentry_health1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_plr_crowbar1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_plr_9mm_bullet1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_plr_357_bullet1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_bullet1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_grenade1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_client1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_monster1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_plr_rpg1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_plr_gauss1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_narrow1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_wide1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_plr_hand_grenade1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_plr_satchel1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_plr_tripmine1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_12mm_bullet1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_9mmAR_bullet1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_9mm_bullet1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_hornet_dmg1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_suitcharger1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_battery1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_healthcharger1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_healthkit1 **
+
+[17:08:15] 
+
+** GetSkillCVar Got a zero for sk_scientist_heal1 **
+
+[17:08:15] Error: Could not load model models/w_suit.mdl from disk
+[17:08:15] Error: Could not load model models/w_medkit.mdl from disk
+[17:08:15] Error: Could not load model models/w_battery.mdl from disk
+[17:08:15] Error: Could not load model models/w_antidote.mdl from disk
+[17:08:15] Error: Could not load model models/w_security.mdl from disk
+[17:08:15] Error: Could not load model models/w_longjump.mdl from disk
+[17:08:15] Error: Could not load model models/v_shotgun.mdl from disk
+[17:08:15] Error: Could not load model models/w_shotgun.mdl from disk
+[17:08:15] Error: Could not load model models/p_shotgun.mdl from disk
+[17:08:15] Error: Could not load model models/shotgunshell.mdl from disk
+[17:08:15] Error: Could not load model models/w_shotbox.mdl from disk
+[17:08:15] Error: Could not load model models/v_crowbar.mdl from disk
+[17:08:15] Error: Could not load model models/w_crowbar.mdl from disk
+[17:08:15] Error: Could not load model models/p_crowbar.mdl from disk
+[17:08:15] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[17:08:15] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[17:08:15] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[17:08:15] Error: Could not load model models/shell.mdl from disk
+[17:08:15] Error: Could not load model models/w_9mmclip.mdl from disk
+[17:08:15] Error: Could not load model models/v_9mmAR.mdl from disk
+[17:08:15] Error: Could not load model models/w_9mmAR.mdl from disk
+[17:08:15] Error: Could not load model models/p_9mmAR.mdl from disk
+[17:08:15] Error: Could not load model models/shell.mdl from disk
+[17:08:15] Error: Could not load model models/grenade.mdl from disk
+[17:08:15] Error: Could not load model models/w_9mmARclip.mdl from disk
+[17:08:15] Error: Could not load model models/w_9mmARclip.mdl from disk
+[17:08:15] Error: Could not load model models/w_ARgrenade.mdl from disk
+[17:08:15] Error: Could not load model models/w_chainammo.mdl from disk
+[17:08:15] Error: Could not load model models/v_357.mdl from disk
+[17:08:15] Error: Could not load model models/w_357.mdl from disk
+[17:08:15] Error: Could not load model models/p_357.mdl from disk
+[17:08:15] Error: Could not load model models/w_357ammobox.mdl from disk
+[17:08:15] Error: Could not load model models/w_357ammobox.mdl from disk
+[17:08:15] Error: Could not load model models/w_gauss.mdl from disk
+[17:08:15] Error: Could not load model models/v_gauss.mdl from disk
+[17:08:15] Error: Could not load model models/p_gauss.mdl from disk
+[17:08:15] Error: Could not load model sprites/hotglow.spr from disk
+[17:08:15] Error: Could not load model sprites/hotglow.spr from disk
+[17:08:15] Error: Could not load model sprites/smoke.spr from disk
+[17:08:15] Error: Could not load model models/w_gaussammo.mdl from disk
+[17:08:15] Error: Could not load model models/w_rpg.mdl from disk
+[17:08:15] Error: Could not load model models/v_rpg.mdl from disk
+[17:08:15] Error: Could not load model models/p_rpg.mdl from disk
+[17:08:15] Error: Could not load model sprites/laserdot.spr from disk
+[17:08:15] Error: Could not load model models/rpgrocket.mdl from disk
+[17:08:15] Error: Could not load model sprites/smoke.spr from disk
+[17:08:15] Error: Could not load model models/w_rpgammo.mdl from disk
+[17:08:15] Error: Could not load model models/w_crossbow.mdl from disk
+[17:08:15] Error: Could not load model models/v_crossbow.mdl from disk
+[17:08:15] Error: Could not load model models/p_crossbow.mdl from disk
+[17:08:15] Error: Could not load model models/crossbow_bolt.mdl from disk
+[17:08:15] Error: Could not load model sprites/streak.spr from disk
+[17:08:15] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[17:08:15] Error: Could not load model models/w_egon.mdl from disk
+[17:08:15] Error: Could not load model models/v_egon.mdl from disk
+[17:08:15] Error: Could not load model models/p_egon.mdl from disk
+[17:08:15] Error: Could not load model models/w_9mmclip.mdl from disk
+[17:08:15] Error: Could not load model sprites/xbeam1.spr from disk
+[17:08:15] Error: Could not load model models/v_tripmine.mdl from disk
+[17:08:15] Error: Could not load model models/p_tripmine.mdl from disk
+[17:08:15] Error: Could not load model models/v_tripmine.mdl from disk
+[17:08:15] Error: Could not load model models/v_satchel.mdl from disk
+[17:08:15] Error: Could not load model models/v_satchel_radio.mdl from disk
+[17:08:15] Error: Could not load model models/w_satchel.mdl from disk
+[17:08:15] Error: Could not load model models/p_satchel.mdl from disk
+[17:08:15] Error: Could not load model models/p_satchel_radio.mdl from disk
+[17:08:15] Error: Could not load model models/w_satchel.mdl from disk
+[17:08:15] Error: Could not load model models/w_grenade.mdl from disk
+[17:08:15] Error: Could not load model models/v_grenade.mdl from disk
+[17:08:15] Error: Could not load model models/p_grenade.mdl from disk
+[17:08:15] Error: Could not load model models/w_sqknest.mdl from disk
+[17:08:15] Error: Could not load model models/v_squeak.mdl from disk
+[17:08:15] Error: Could not load model models/p_squeak.mdl from disk
+[17:08:15] Error: Could not load model models/w_squeak.mdl from disk
+[17:08:15] Error: Could not load model models/v_hgun.mdl from disk
+[17:08:15] Error: Could not load model models/w_hgun.mdl from disk
+[17:08:15] Error: Could not load model models/p_hgun.mdl from disk
+[17:08:15] Error: Could not load model models/hornet.mdl from disk
+[17:08:15] Error: Could not load model sprites/muz1.spr from disk
+[17:08:15] Error: Could not load model sprites/zerogxplode.spr from disk
+[17:08:15] Error: Could not load model sprites/WXplo1.spr from disk
+[17:08:15] Error: Could not load model sprites/laserdot.spr from disk
+[17:08:15] Error: Could not load model models/grenade.mdl from disk
+[17:08:15] Error: Could not load model sprites/explode1.spr from disk
+[17:08:16] Error: Could not load model models/player.mdl from disk
+[17:08:16] Error: Could not load model models/hgibs.mdl from disk
+[17:08:16] Error: Could not load model models/agibs.mdl from disk
+[17:08:16] Error: No spawn function for "info_texlights"
+[17:08:16] Error: Could not load model models/glassgibs.mdl from disk
+[17:08:16] 
+0 entities inhibited
+[17:08:16] Game started
+[17:08:16] level loaded at 2.05 sec
+[17:08:16] execing spserver.cfg
+[17:08:16] Trying to connect with modern protocol
+[17:08:16] LoadBackground: found steam background in game directory
+[17:08:16] execing mainui.cfg
+[17:08:16] Localize_AddToDict( resource/mainui_english.txt ): couldn't open file. Some strings will not be localized!.
+[17:08:16] Localize_AddToDict( resource/cryoffear_english.txt ): couldn't open file. Some strings will not be localized!.
+[17:08:17] Spooling demo header.
+[17:08:17] 
+BUILD 4221 SERVER (0 CRC)
+Server #1
+[17:08:17] Warning: unexpected end of sprites/hud.txt (211 should be 57)
+[17:08:17] Missing bitmap font: gfx\vgui\fonts\800_Primary Button Text.tga
+[17:08:17] Missing bitmap font: gfx\vgui\fonts\800_CommandMenu Text.tga
+[17:08:17] Missing bitmap font: gfx\vgui\fonts\800_Scoreboard Text.tga
+[17:08:17] Missing bitmap font: gfx\vgui\fonts\800_Scoreboard Title Text.tga
+[17:08:17] Missing bitmap font: gfx\vgui\fonts\800_Scoreboard Small Text.tga
+[17:08:17] Missing bitmap font: gfx\vgui\fonts\800_Title Font.tga
+[17:08:17] Unable to open commandmenu.txt
+[17:08:17] Unable to open spectatormenu.txt
+[17:08:17] Unable to open spectcammenu.txt
+[17:08:17] Verifying and downloading resources...
+[17:08:18] Error: Could not load sound sound/items/smallmedkit1.wav
+[17:08:18] Error: Could not load sound sound/items/9mmclip1.wav
+[17:08:18] Error: Could not load sound sound/weapons/dbarrel1.wav
+[17:08:18] Error: Could not load sound sound/weapons/sbarrel1.wav
+[17:08:18] Error: Could not load sound sound/weapons/reload1.wav
+[17:08:18] Error: Could not load sound sound/weapons/reload3.wav
+[17:08:18] Error: Could not load sound sound/weapons/357_cock1.wav
+[17:08:18] Error: Could not load sound sound/weapons/scock1.wav
+[17:08:18] Error: Could not load sound sound/weapons/cbar_hit1.wav
+[17:08:18] Error: Could not load sound sound/weapons/cbar_hit2.wav
+[17:08:18] Error: Could not load sound sound/weapons/cbar_hitbod1.wav
+[17:08:18] Error: Could not load sound sound/weapons/cbar_hitbod2.wav
+[17:08:18] Error: Could not load sound sound/weapons/cbar_hitbod3.wav
+[17:08:18] Error: Could not load sound sound/weapons/cbar_miss1.wav
+[17:08:18] Error: Could not load sound sound/items/9mmclip2.wav
+[17:08:18] Error: Could not load sound sound/weapons/pl_gun1.wav
+[17:08:18] Error: Could not load sound sound/weapons/pl_gun2.wav
+[17:08:18] Error: Could not load sound sound/weapons/pl_gun3.wav
+[17:08:18] Error: Could not load sound sound/items/clipinsert1.wav
+[17:08:18] Error: Could not load sound sound/items/cliprelease1.wav
+[17:08:18] Error: Could not load sound sound/weapons/hks1.wav
+[17:08:18] Error: Could not load sound sound/weapons/hks2.wav
+[17:08:18] Error: Could not load sound sound/weapons/hks3.wav
+[17:08:18] Error: Could not load sound sound/weapons/glauncher.wav
+[17:08:18] Error: Could not load sound sound/weapons/glauncher2.wav
+[17:08:18] Error: Could not load sound sound/weapons/357_reload1.wav
+[17:08:18] Error: Could not load sound sound/weapons/357_shot1.wav
+[17:08:18] Error: Could not load sound sound/weapons/357_shot2.wav
+[17:08:18] Error: Could not load sound sound/weapons/gauss2.wav
+[17:08:18] Error: Could not load sound sound/weapons/electro4.wav
+[17:08:18] Error: Could not load sound sound/weapons/electro5.wav
+[17:08:18] Error: Could not load sound sound/weapons/electro6.wav
+[17:08:18] Error: Could not load sound sound/ambience/pulsemachine.wav
+[17:08:18] Error: Could not load sound sound/weapons/rocket1.wav
+[17:08:18] Error: Could not load sound sound/weapons/rocketfire1.wav
+[17:08:18] Error: Could not load sound sound/weapons/xbow_fire1.wav
+[17:08:18] Error: Could not load sound sound/weapons/xbow_reload1.wav
+[17:08:18] Error: Could not load sound sound/weapons/xbow_hitbod1.wav
+[17:08:18] Error: Could not load sound sound/weapons/xbow_hitbod2.wav
+[17:08:18] Error: Could not load sound sound/weapons/xbow_fly1.wav
+[17:08:18] Error: Could not load sound sound/weapons/xbow_hit1.wav
+[17:08:18] Error: Could not load sound sound/fvox/beep.wav
+[17:08:18] Error: Could not load sound sound/weapons/egon_off1.wav
+[17:08:18] Error: Could not load sound sound/weapons/egon_run3.wav
+[17:08:18] Error: Could not load sound sound/weapons/egon_windup2.wav
+[17:08:18] Error: Could not load sound sound/weapons/mine_deploy.wav
+[17:08:18] Error: Could not load sound sound/weapons/mine_activate.wav
+[17:08:18] Error: Could not load sound sound/weapons/mine_charge.wav
+[17:08:18] Error: Could not load sound sound/weapons/g_bounce1.wav
+[17:08:18] Error: Could not load sound sound/weapons/g_bounce2.wav
+[17:08:18] Error: Could not load sound sound/weapons/g_bounce3.wav
+[17:08:18] Error: Could not load sound sound/squeek/sqk_hunt2.wav
+[17:08:18] Error: Could not load sound sound/squeek/sqk_hunt3.wav
+[17:08:18] Error: Could not load sound sound/squeek/sqk_blast1.wav
+[17:08:18] Error: Could not load sound sound/common/bodysplat.wav
+[17:08:18] Error: Could not load sound sound/squeek/sqk_die1.wav
+[17:08:18] Error: Could not load sound sound/squeek/sqk_hunt1.wav
+[17:08:18] Error: Could not load sound sound/squeek/sqk_deploy1.wav
+[17:08:18] Error: Could not load sound sound/agrunt/ag_fire1.wav
+[17:08:18] Error: Could not load sound sound/agrunt/ag_fire2.wav
+[17:08:18] Error: Could not load sound sound/agrunt/ag_fire3.wav
+[17:08:18] Error: Could not load sound sound/hornet/ag_buzz1.wav
+[17:08:18] Error: Could not load sound sound/hornet/ag_buzz2.wav
+[17:08:18] Error: Could not load sound sound/hornet/ag_buzz3.wav
+[17:08:18] Error: Could not load sound sound/hornet/ag_hornethit1.wav
+[17:08:18] Error: Could not load sound sound/hornet/ag_hornethit2.wav
+[17:08:18] Error: Could not load sound sound/hornet/ag_hornethit3.wav
+[17:08:18] Error: Could not load sound sound/weapons/debris1.wav
+[17:08:18] Error: Could not load sound sound/weapons/debris2.wav
+[17:08:18] Error: Could not load sound sound/weapons/debris3.wav
+[17:08:18] Error: Could not load sound sound/weapons/grenade_hit1.wav
+[17:08:18] Error: Could not load sound sound/weapons/grenade_hit2.wav
+[17:08:18] Error: Could not load sound sound/weapons/grenade_hit3.wav
+[17:08:18] Error: Could not load sound sound/weapons/bullet_hit1.wav
+[17:08:18] Error: Could not load sound sound/weapons/bullet_hit2.wav
+[17:08:18] Error: Could not load sound sound/items/weapondrop1.wav
+[17:08:18] Error: Could not load sound sound/player/sprayer.wav
+[17:08:18] Error: Could not load sound sound/player/pl_fallpain2.wav
+[17:08:18] Error: Could not load sound sound/player/pl_fallpain3.wav
+[17:08:18] Error: Could not load sound sound/player/pl_step1.wav
+[17:08:18] Error: Could not load sound sound/player/pl_step2.wav
+[17:08:18] Error: Could not load sound sound/player/pl_step3.wav
+[17:08:18] Error: Could not load sound sound/player/pl_step4.wav
+[17:08:18] Error: Could not load sound sound/player/pl_metal1.wav
+[17:08:18] Error: Could not load sound sound/player/pl_metal2.wav
+[17:08:18] Error: Could not load sound sound/player/pl_metal3.wav
+[17:08:18] Error: Could not load sound sound/player/pl_metal4.wav
+[17:08:18] Error: Could not load sound sound/player/pl_dirt1.wav
+[17:08:18] Error: Could not load sound sound/player/pl_dirt2.wav
+[17:08:18] Error: Could not load sound sound/player/pl_dirt3.wav
+[17:08:18] Error: Could not load sound sound/player/pl_dirt4.wav
+[17:08:18] Error: Could not load sound sound/player/pl_duct1.wav
+[17:08:18] Error: Could not load sound sound/player/pl_duct2.wav
+[17:08:18] Error: Could not load sound sound/player/pl_duct3.wav
+[17:08:18] Error: Could not load sound sound/player/pl_duct4.wav
+[17:08:18] Error: Could not load sound sound/player/pl_grate1.wav
+[17:08:18] Error: Could not load sound sound/player/pl_grate2.wav
+[17:08:18] Error: Could not load sound sound/player/pl_grate3.wav
+[17:08:18] Error: Could not load sound sound/player/pl_grate4.wav
+[17:08:18] Error: Could not load sound sound/player/pl_slosh1.wav
+[17:08:18] Error: Could not load sound sound/player/pl_slosh2.wav
+[17:08:18] Error: Could not load sound sound/player/pl_slosh3.wav
+[17:08:18] Error: Could not load sound sound/player/pl_slosh4.wav
+[17:08:18] Error: Could not load sound sound/player/pl_tile1.wav
+[17:08:18] Error: Could not load sound sound/player/pl_tile2.wav
+[17:08:18] Error: Could not load sound sound/player/pl_tile3.wav
+[17:08:18] Error: Could not load sound sound/player/pl_tile4.wav
+[17:08:18] Error: Could not load sound sound/player/pl_tile5.wav
+[17:08:18] Error: Could not load sound sound/player/pl_swim1.wav
+[17:08:18] Error: Could not load sound sound/player/pl_swim2.wav
+[17:08:18] Error: Could not load sound sound/player/pl_swim3.wav
+[17:08:18] Error: Could not load sound sound/player/pl_swim4.wav
+[17:08:18] Error: Could not load sound sound/player/pl_ladder1.wav
+[17:08:18] Error: Could not load sound sound/player/pl_ladder2.wav
+[17:08:18] Error: Could not load sound sound/player/pl_ladder3.wav
+[17:08:18] Error: Could not load sound sound/player/pl_ladder4.wav
+[17:08:18] Error: Could not load sound sound/player/pl_wade1.wav
+[17:08:18] Error: Could not load sound sound/player/pl_wade2.wav
+[17:08:18] Error: Could not load sound sound/player/pl_wade3.wav
+[17:08:18] Error: Could not load sound sound/player/pl_wade4.wav
+[17:08:18] Error: Could not load sound sound/debris/wood1.wav
+[17:08:18] Error: Could not load sound sound/debris/wood2.wav
+[17:08:18] Error: Could not load sound sound/debris/wood3.wav
+[17:08:18] Error: Could not load sound sound/plats/train_use1.wav
+[17:08:18] Error: Could not load sound sound/plats/vehicle_ignition.wav
+[17:08:18] Error: Could not load sound sound/buttons/spark5.wav
+[17:08:18] Error: Could not load sound sound/buttons/spark6.wav
+[17:08:18] Error: Could not load sound sound/debris/glass1.wav
+[17:08:18] Error: Could not load sound sound/debris/glass2.wav
+[17:08:18] Error: Could not load sound sound/debris/glass3.wav
+[17:08:18] Error: Could not load sound sound/items/flashlight1.wav
+[17:08:18] Error: Could not load sound sound/player/pl_pain2.wav
+[17:08:18] Error: Could not load sound sound/player/pl_pain4.wav
+[17:08:18] Error: Could not load sound sound/player/pl_pain5.wav
+[17:08:18] Error: Could not load sound sound/player/pl_pain6.wav
+[17:08:18] Error: Could not load sound sound/player/pl_pain7.wav
+[17:08:18] Error: Could not load sound sound/common/wpn_hudoff.wav
+[17:08:18] Error: Could not load sound sound/common/wpn_hudon.wav
+[17:08:18] Error: Could not load sound sound/common/wpn_moveselect.wav
+[17:08:18] Error: Could not load sound sound/common/wpn_select.wav
+[17:08:18] Error: Could not load sound sound/common/wpn_denyselect.wav
+[17:08:18] Error: Could not load sound sound/player/geiger6.wav
+[17:08:18] Error: Could not load sound sound/player/geiger5.wav
+[17:08:18] Error: Could not load sound sound/player/geiger4.wav
+[17:08:18] Error: Could not load sound sound/player/geiger3.wav
+[17:08:18] Error: Could not load sound sound/player/geiger2.wav
+[17:08:18] Error: Could not load sound sound/player/geiger1.wav
+[17:08:18] Error: Could not load sound sound/common/null.wav
+[17:08:18] Error: Could not load sound sound/items/suitchargeok1.wav
+[17:08:18] Error: Could not load sound sound/common/bodydrop3.wav
+[17:08:18] Error: Could not load sound sound/common/bodydrop4.wav
+[17:08:18] Error: Could not load sound sound/weapons/ric1.wav
+[17:08:18] Error: Could not load sound sound/weapons/ric2.wav
+[17:08:18] Error: Could not load sound sound/weapons/ric3.wav
+[17:08:18] Error: Could not load sound sound/weapons/ric4.wav
+[17:08:18] Error: Could not load sound sound/weapons/ric5.wav
+[17:08:18] Error: Could not load sound sound/buttons/button1.wav
+[17:08:18] Error: Could not load sound sound/debris/bustglass1.wav
+[17:08:18] Error: Could not load sound sound/debris/bustglass2.wav
+[17:08:18] Error: Could not load sound sound/buttons/spark1.wav
+[17:08:18] Error: Could not load sound sound/buttons/spark2.wav
+[17:08:18] Error: Could not load sound sound/buttons/spark3.wav
+[17:08:18] Error: Could not load sound sound/buttons/spark4.wav
+[17:08:18] Error: Could not load model models/w_suit.mdl from disk
+[17:08:18] Error: Could not load model models/w_medkit.mdl from disk
+[17:08:18] Error: Could not load model models/w_battery.mdl from disk
+[17:08:18] Error: Could not load model models/w_antidote.mdl from disk
+[17:08:18] Error: Could not load model models/w_security.mdl from disk
+[17:08:18] Error: Could not load model models/w_longjump.mdl from disk
+[17:08:18] Error: Could not load model models/v_shotgun.mdl from disk
+[17:08:18] Error: Could not load model models/w_shotgun.mdl from disk
+[17:08:18] Error: Could not load model models/p_shotgun.mdl from disk
+[17:08:18] Error: Could not load model models/shotgunshell.mdl from disk
+[17:08:18] Error: Could not load model models/w_shotbox.mdl from disk
+[17:08:18] Error: Could not load model models/v_crowbar.mdl from disk
+[17:08:18] Error: Could not load model models/w_crowbar.mdl from disk
+[17:08:18] Error: Could not load model models/p_crowbar.mdl from disk
+[17:08:18] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[17:08:18] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[17:08:18] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[17:08:18] Error: Could not load model models/shell.mdl from disk
+[17:08:18] Error: Could not load model models/w_9mmclip.mdl from disk
+[17:08:18] Error: Could not load model models/v_9mmAR.mdl from disk
+[17:08:18] Error: Could not load model models/w_9mmAR.mdl from disk
+[17:08:18] Error: Could not load model models/p_9mmAR.mdl from disk
+[17:08:18] Error: Could not load model models/grenade.mdl from disk
+[17:08:18] Error: Could not load model models/w_9mmARclip.mdl from disk
+[17:08:18] Error: Could not load model models/w_ARgrenade.mdl from disk
+[17:08:18] Error: Could not load model models/w_chainammo.mdl from disk
+[17:08:18] Error: Could not load model models/v_357.mdl from disk
+[17:08:18] Error: Could not load model models/w_357.mdl from disk
+[17:08:18] Error: Could not load model models/p_357.mdl from disk
+[17:08:18] Error: Could not load model models/w_357ammobox.mdl from disk
+[17:08:18] Error: Could not load model models/w_gauss.mdl from disk
+[17:08:18] Error: Could not load model models/v_gauss.mdl from disk
+[17:08:18] Error: Could not load model models/p_gauss.mdl from disk
+[17:08:18] Error: Could not load model sprites/hotglow.spr from disk
+[17:08:18] Error: Could not load model sprites/smoke.spr from disk
+[17:08:18] Error: Could not load model models/w_gaussammo.mdl from disk
+[17:08:18] Error: Could not load model models/w_rpg.mdl from disk
+[17:08:18] Error: Could not load model models/v_rpg.mdl from disk
+[17:08:18] Error: Could not load model models/p_rpg.mdl from disk
+[17:08:18] Error: Could not load model sprites/laserdot.spr from disk
+[17:08:18] Error: Could not load model models/rpgrocket.mdl from disk
+[17:08:18] Error: Could not load model models/w_rpgammo.mdl from disk
+[17:08:18] Error: Could not load model models/w_crossbow.mdl from disk
+[17:08:18] Error: Could not load model models/v_crossbow.mdl from disk
+[17:08:18] Error: Could not load model models/p_crossbow.mdl from disk
+[17:08:18] Error: Could not load model models/crossbow_bolt.mdl from disk
+[17:08:18] Error: Could not load model sprites/streak.spr from disk
+[17:08:18] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[17:08:18] Error: Could not load model models/w_egon.mdl from disk
+[17:08:18] Error: Could not load model models/v_egon.mdl from disk
+[17:08:18] Error: Could not load model models/p_egon.mdl from disk
+[17:08:18] Error: Could not load model sprites/xbeam1.spr from disk
+[17:08:18] Error: Could not load model models/v_tripmine.mdl from disk
+[17:08:18] Error: Could not load model models/p_tripmine.mdl from disk
+[17:08:18] Error: Could not load model models/v_satchel.mdl from disk
+[17:08:18] Error: Could not load model models/v_satchel_radio.mdl from disk
+[17:08:18] Error: Could not load model models/w_satchel.mdl from disk
+[17:08:18] Error: Could not load model models/p_satchel.mdl from disk
+[17:08:18] Error: Could not load model models/p_satchel_radio.mdl from disk
+[17:08:18] Error: Could not load model models/w_grenade.mdl from disk
+[17:08:18] Error: Could not load model models/v_grenade.mdl from disk
+[17:08:18] Error: Could not load model models/p_grenade.mdl from disk
+[17:08:18] Error: Could not load model models/w_sqknest.mdl from disk
+[17:08:18] Error: Could not load model models/v_squeak.mdl from disk
+[17:08:18] Error: Could not load model models/p_squeak.mdl from disk
+[17:08:18] Error: Could not load model models/w_squeak.mdl from disk
+[17:08:18] Error: Could not load model models/v_hgun.mdl from disk
+[17:08:18] Error: Could not load model models/w_hgun.mdl from disk
+[17:08:18] Error: Could not load model models/p_hgun.mdl from disk
+[17:08:18] Error: Could not load model models/hornet.mdl from disk
+[17:08:18] Error: Could not load model sprites/muz1.spr from disk
+[17:08:18] Error: Could not load model sprites/zerogxplode.spr from disk
+[17:08:18] Error: Could not load model sprites/WXplo1.spr from disk
+[17:08:18] Error: Could not load model sprites/explode1.spr from disk
+[17:08:18] Error: Could not load model models/player.mdl from disk
+[17:08:18] Error: Could not load model models/hgibs.mdl from disk
+[17:08:18] Error: Could not load model models/agibs.mdl from disk
+[17:08:18] Error: Could not load model models/glassgibs.mdl from disk
+[17:08:18] Setting up renderer...
+[17:08:18] SKY:  blackrt, blackbk, blacklf, blackft, blackup, blackdn. done
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+[17:08:18] Signon network traffic:  31.152 Kb from server, 237 bytes to server
+[17:08:18] client connected at 1.21 sec
+[17:08:18] COF/HUD EXTRAS 0 0 0 0
+[17:08:18] COF/HUD STAT 100 100 0 0
+[17:08:18] COF/HUD SMSICON 0
+[17:08:18] COF/HUD INV 0
+[17:08:18] COF/HUD QUICK - - -
+[17:08:18] COF/HUD OBJECTIVE 
+[17:08:18] Couldn't open file overviews/c_apartment1.txt. Using default values for overiew mode.
+[17:08:18] COF/HUD PADLOCK 0
+[17:08:18] Couldn't open file overviews/c_apartment1.txt. Using default values for overiew mode.
+[17:08:18] Warning: unexpected end of sprites/weapon_glock.txt (10 should be 8)
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+[17:08:18] COF/HUD NIGHTVISION 0
+[17:08:18] Note: GL2_GetProg: Generating progs for 0x0017
+[17:08:18] Note: GL2_GetProg: Generated progs for 0x0017
+[.WebGL-0x514001e7000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+[.WebGL-0x514001e7000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+[.WebGL-0x514001e7000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+[.WebGL-0x514001e7000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now. (this message will no longer repeat)
+[17:08:18] COF/HUD STAT 100 100 0 8
+[17:08:18] COF/FENCE hands_1 time=1.2
+[17:08:18] "sv_cheats" changed to "1"
+[17:08:18] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=1.3 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:18] COF/FENCE hands_2 time=1.3
+[17:08:18] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=1.429 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:18] COF/FENCE hands_3 time=1.429
+[17:08:19] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=1.546 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:19] COF/FENCE hands_4 time=1.546
+[17:08:19] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=1.663 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:19] COF/FENCE hands_5 time=1.663
+[17:08:19] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=1.779 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:19] COF/FENCE hands_6 time=1.779
+[17:08:19] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=1.9 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:19] COF/FENCE hands_7 time=1.9
+[17:08:19] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.013 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:19] COF/FENCE hands_8 time=2.013
+[17:08:19] COF/HUD MUSIC 0 1 2aphall1.mp3
+[17:08:19] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.13 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:19] COF/FENCE hands_9 time=2.13
+[17:08:19] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.246 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:19] COF/FENCE hands_10 time=2.246
+[17:08:19] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.363 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:19] COF/FENCE hands_11 time=2.363
+[17:08:20] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.47997 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:20] COF/FENCE hands_12 time=2.47997
+[17:08:20] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.6 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:20] COF/FENCE hands_13 time=2.6
+[17:08:20] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.713 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:20] COF/FENCE hands_14 time=2.713
+[17:08:20] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.829 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:20] COF/FENCE hands_15 time=2.829
+[17:08:20] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.946 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:20] COF/FENCE hands_16 time=2.946
+[17:08:20] Done.
+[17:08:20] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.996 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:20] COF/FENCE hands_17 time=2.996
+[17:08:20] COF/HUD EXTRAS 0 0 0 0
+[17:08:20] COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=3.264 time=3.264
+[17:08:20] COF/HUD STAT 100 100 0 8
+[17:08:21] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=3.343 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:21] COF/FENCE hands_18 time=3.343
+[17:08:21] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=3.464 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:21] COF/FENCE hands_19 time=3.464
+[17:08:21] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=3.576 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:21] COF/FENCE hands_20 time=3.576
+[17:08:21] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=3.692 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:21] COF/FENCE hands_21 time=3.692
+[17:08:21] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=3.809 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:21] COF/FENCE hands_22 time=3.809
+[17:08:21] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=3.928 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:21] COF/FENCE hands_23 time=3.928
+[17:08:21] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.043 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:21] COF/FENCE hands_24 time=4.043
+[17:08:21] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.164 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:21] COF/FENCE hands_25 time=4.164
+[17:08:21] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.277 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:21] COF/FENCE hands_26 time=4.277
+[17:08:22] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.392 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:22] COF/FENCE hands_27 time=4.392
+[17:08:22] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.509 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:22] COF/FENCE hands_28 time=4.509
+[17:08:22] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.626 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:22] COF/FENCE hands_29 time=4.626
+[17:08:22] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.742 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:22] COF/FENCE hands_30 time=4.742
+[17:08:22] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.864 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:22] COF/FENCE hands_31 time=4.864
+[17:08:22] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.976 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:22] COF/FENCE hands_32 time=4.976
+[17:08:22] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=5.092 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:22] COF/FENCE hands_33 time=5.092
+[17:08:22] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=5.209 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:22] COF/FENCE hands_34 time=5.209
+[17:08:22] COF/HUD EXTRAS 0 0 0 0
+[17:08:22] COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=5.276 time=5.276
+[17:08:22] COF/HUD STAT 100 100 0 8
+[17:08:23] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=5.326 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:23] COF/FENCE hands_35 time=5.326
+[17:08:23] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=5.442 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:23] COF/FENCE hands_36 time=5.442
+[17:08:23] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=5.564 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:23] COF/FENCE hands_37 time=5.564
+[17:08:23] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=5.676 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:23] COF/FENCE hands_38 time=5.676
+[17:08:23] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=5.792 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:23] COF/FENCE hands_39 time=5.792
+[17:08:23] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=5.909 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:23] COF/FENCE hands_40 time=5.909
+[17:08:23] COF/HUD ZOOM 60 666
+[17:08:23] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.033 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:23] COF/FENCE hands_41 time=6.033
+[17:08:23] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.143 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:23] COF/FENCE hands_42 time=6.143
+[17:08:23] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.264 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:23] COF/FENCE hands_43 time=6.264
+[17:08:24] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.376 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:24] COF/FENCE hands_44 time=6.376
+[17:08:24] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.492 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:24] COF/FENCE hands_45 time=6.492
+[17:08:24] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.609 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:24] COF/FENCE hands_46 time=6.609
+[17:08:24] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.733 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:24] COF/FENCE hands_47 time=6.733
+[17:08:24] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.842 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:24] COF/FENCE hands_48 time=6.842
+[17:08:24] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.964 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:24] COF/FENCE hands_49 time=6.964
+[17:08:24] COF/HUD SUB 19
+[17:08:24] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=7.077 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:24] COF/FENCE hands_50 time=7.077
+[17:08:24] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=7.192 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:24] COF/FENCE hands_51 time=7.192
+[17:08:24] COF/HUD EXTRAS 0 0 0 0
+[17:08:24] COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=7.276 time=7.276
+[17:08:24] COF/HUD STAT 100 100 0 8
+[17:08:25] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=7.309 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:25] COF/FENCE hands_52 time=7.309
+[17:08:25] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=7.433 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:25] COF/FENCE hands_53 time=7.433
+[17:08:25] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=7.542 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:25] COF/FENCE hands_54 time=7.542
+[17:08:25] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=7.664 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:25] COF/FENCE hands_55 time=7.664
+[17:08:25] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=7.776 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:25] COF/FENCE hands_56 time=7.776
+[17:08:25] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=7.893 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:25] COF/FENCE hands_57 time=7.893
+[17:08:25] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.009 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:25] COF/FENCE hands_58 time=8.009
+[17:08:25] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.133 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:25] COF/FENCE hands_59 time=8.133
+[17:08:25] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.242 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:25] COF/FENCE hands_60 time=8.242
+[17:08:26] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.364 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:26] COF/FENCE hands_61 time=8.364
+[17:08:26] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.476 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:26] COF/FENCE hands_62 time=8.476
+[17:08:26] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.592 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:26] COF/FENCE hands_63 time=8.592
+[17:08:26] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.709 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:26] COF/FENCE hands_64 time=8.709
+[17:08:26] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.833 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:26] COF/FENCE hands_65 time=8.833
+[17:08:26] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.942 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:26] COF/FENCE hands_66 time=8.942
+[17:08:26] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.064 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:26] COF/FENCE hands_67 time=9.064
+[17:08:26] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.176 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:26] COF/FENCE hands_68 time=9.176
+[17:08:26] COF/HUD EXTRAS 0 0 0 0
+[17:08:26] COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=9.276 time=9.276
+[17:08:26] COF/HUD STAT 100 100 0 8
+[17:08:27] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.292 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:27] COF/FENCE hands_69 time=9.292
+[17:08:27] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.409 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:27] COF/FENCE hands_70 time=9.409
+[17:08:27] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.533 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:27] COF/FENCE hands_71 time=9.533
+[17:08:27] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.643 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:27] COF/FENCE hands_72 time=9.643
+[17:08:27] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.764 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:27] COF/FENCE hands_73 time=9.764
+[17:08:27] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.876 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:27] COF/FENCE hands_74 time=9.876
+[17:08:27] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.992 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:27] COF/FENCE hands_75 time=9.992
+[17:08:27] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=10.109 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:27] COF/FENCE hands_76 time=10.109
+[17:08:27] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=10.233 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:27] COF/FENCE hands_77 time=10.233
+[17:08:28] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=10.342 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:28] COF/FENCE hands_78 time=10.342
+[17:08:28] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=10.464 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:28] COF/FENCE hands_79 time=10.464
+[17:08:28] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=10.576 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:28] COF/FENCE hands_80 time=10.576
+[17:08:28] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=10.692 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:28] COF/FENCE hands_81 time=10.692
+[17:08:28] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=10.809 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:28] COF/FENCE hands_82 time=10.809
+[17:08:28] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=10.933 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:28] COF/FENCE hands_83 time=10.933
+[17:08:28] COF/HUD UNZOOM
+[17:08:28] COF/ENTITY !player class=player body=0 solid=3 origin=-819.0,-160.0,321.9 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=11.042 effects=0 renderfx=0 modelindex=328 model=models/player.mdl
+[17:08:28] COF/FENCE hands_84 time=11.042
+[17:08:28] COF/HUD STAT 100 100 0 0
+[17:08:28] COF/HUD PICKUP inventoryitems/weapons/weapon_mobile.txt
+[17:08:28] COF/HUD SMSREAD 0
+[17:08:28] COF/HUD PICKUP inventoryitems/weapons/weapon_switchblade.txt
+[17:08:28] COF/HUD PICKUP inventoryitems/weapons/weapon_glock.txt
+[17:08:28] COF/FENCE hands_85 time=11.064
+[17:08:28] COF/HUD SMSICON 0
+[17:08:28] COF/HUD INV 3 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt inventoryitems/weapons/weapon_glock.txt
+[17:08:28] COF/HUD QUICK weapon_mobile weapon_switchblade weapon_glock
+[17:08:28] COF/HUD OBJECTIVE 
+[17:08:28] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1
+[17:08:28] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1
+[17:08:28] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1
+[17:08:28] carried 1: weapon_glock
+[17:08:28] carried 1: weapon_switchblade
+[17:08:28] carried 1: weapon_mobile
+[17:08:28] monster monstermaker health 0 dead 0 dist 323
+[17:08:28] COF/FENCE hands_86 time=11.077
+[17:08:28] COF/HUD INV 3 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt inventoryitems/weapons/weapon_glock.txt
+[17:08:28] COF/HUD QUICK weapon_mobile weapon_switchblade weapon_glock
+[17:08:28] COF/HUD INVTOGGLE
+[17:08:28] COF/HUD EXTRAS 0 0 0 0
+[17:08:28] COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=11.293 time=11.293
+[17:08:29] COF/HUD DUALSELECT 1
+[17:08:29] COF/HANDS active=1 right=1 phoneSeq=2 serial=1 age=0.033 time=11.449
+[17:08:29] COF/HUD SMSICON 0
+[17:08:29] COF/HUD INV 3 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt inventoryitems/weapons/weapon_glock.txt
+[17:08:29] COF/HUD QUICK weapon_mobile weapon_switchblade weapon_glock
+[17:08:29] COF/HUD OBJECTIVE 
+[17:08:29] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-0.382 secondary=-0.001 playernext=0.467 reload=0 buttons=0 health=100
+[17:08:29] COF/PHONE mode=0 light=0 dual=1 message=0
+[17:08:29] COF/FENCE hands_87 time=11.449
+[17:08:29] COF/FENCE hands_88 time=11.464
+[17:08:29] COF/HANDS active=1 right=1 phoneSeq=0 serial=2 age=0 time=11.925
+[17:08:30] COF/HANDSCLIENT on=1 right=1 phoneSeq=0 body=0 serial=2 age=1.108 draws=24 mirrors=24
+[17:08:30] COF/FENCE hands_89 time=12.969
+[17:08:30] COF/HUD STAT 100 100 0 0
+[17:08:31] COF/HUD EXTRAS 0 0 0 0
+[17:08:35] COF/HANDS active=1 right=1 phoneSeq=0 serial=2 age=2.015 time=13.94
+[17:08:36] COF/HANDS active=1 right=1 phoneSeq=4 serial=3 age=0.0270004 time=14.485
+[17:08:36] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[17:08:36] COF/PHONE mode=1 light=0 dual=1 message=0
+[17:08:36] COF/FENCE hands_90 time=14.547
+[17:08:36] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[17:08:36] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:36] COF/FENCE hands_91 time=14.678
+[17:08:36] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[17:08:36] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:36] COF/FENCE hands_92 time=14.747
+[17:08:36] COF/HUD DUALSELECT 0
+[17:08:36] Warning: late precache of inventory/inventory_no.wav
+[17:08:36] COF/FENCE hands_93 time=14.778
+[17:08:36] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[17:08:36] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:36] COF/FENCE hands_94 time=14.847
+[17:08:36] COF/HUD DUALSELECT 1
+[17:08:36] COF/FENCE hands_95 time=14.947
+[17:08:36] COF/HANDS active=1 right=2 phoneSeq=7 serial=4 age=0.0679979 time=15.015
+[17:08:36] COF/HUD SMSICON 0
+[17:08:36] COF/HUD INV 3 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt inventoryitems/weapons/weapon_glock.txt
+[17:08:36] COF/HUD QUICK weapon_mobile weapon_switchblade weapon_glock
+[17:08:36] COF/HUD OBJECTIVE 
+[17:08:36] COF/HUD STAT 100 100 0 0
+[17:08:37] COF/HUD EXTRAS 0 0 0 0
+[17:08:37] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=0 time=15.456
+[17:08:38] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[17:08:38] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:38] COF/FENCE hands_96 time=16.247
+[17:08:38] COF/HANDSCLIENT on=1 right=2 phoneSeq=5 body=0 serial=5 age=0.896 draws=69 mirrors=69
+[17:08:38] COF/FENCE hands_97 time=16.347
+[17:08:40] COF/HUD STAT 100 100 0 0
+[17:08:40] COF/HUD EXTRAS 0 0 0 0
+[17:08:40] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=2.012 time=17.468
+[17:08:41] COF/FENCE hands_98 time=17.801
+[17:08:41] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100
+[17:08:41] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:41] COF/FENCE hands_99 time=17.863
+[17:08:41] Warning: FS_LoadSound: couldn't load "weapons/ric5"
+[17:08:41] Warning: FS_LoadSound: couldn't load "weapons/ric3"
+[17:08:41] COF/WEAPON class=weapon_glock clip=13 ammo=0 primary=0.233 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:41] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:41] COF/FENCE hands_100 time=18.163
+[17:08:41] COF/WEAPON class=weapon_glock clip=13 ammo=0 primary=0.116 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:41] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:41] COF/FENCE hands_101 time=18.269
+[17:08:41] COF/WEAPON class=weapon_glock clip=13 ammo=0 primary=-2.79397e-09 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:41] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:41] COF/FENCE hands_102 time=18.386
+[17:08:41] COF/WEAPON class=weapon_glock clip=12 ammo=0 primary=0.132 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:41] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:41] COF/FENCE hands_103 time=18.501
+[17:08:41] COF/WEAPON class=weapon_glock clip=12 ammo=0 primary=0.016 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:41] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:41] COF/FENCE hands_104 time=18.618
+[17:08:41] Warning: FS_LoadSound: couldn't load "weapons/ric2"
+[17:08:41] Warning: FS_LoadSound: couldn't load "weapons/ric1"
+[17:08:42] COF/WEAPON class=weapon_glock clip=11 ammo=0 primary=0.15 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:42] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:42] COF/FENCE hands_105 time=18.736
+[17:08:42] COF/WEAPON class=weapon_glock clip=11 ammo=0 primary=0.033 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:42] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:42] COF/FENCE hands_106 time=18.863
+[17:08:42] Warning: FS_LoadSound: couldn't load "weapons/ric4"
+[17:08:42] COF/WEAPON class=weapon_glock clip=10 ammo=0 primary=0.177 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:42] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:42] COF/FENCE hands_107 time=18.97
+[17:08:42] COF/WEAPON class=weapon_glock clip=10 ammo=0 primary=0.061 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:42] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:42] COF/FENCE hands_108 time=19.1
+[17:08:42] COF/HUD STAT 100 100 0 0
+[17:08:42] COF/WEAPON class=weapon_glock clip=9 ammo=0 primary=0.2 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:42] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:42] COF/FENCE hands_109 time=19.202
+[17:08:42] COF/WEAPON class=weapon_glock clip=9 ammo=0 primary=0.083 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:42] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:42] COF/FENCE hands_110 time=19.319
+[17:08:42] COF/HUD EXTRAS 0 0 0 0
+[17:08:42] COF/WEAPON class=weapon_glock clip=8 ammo=0 primary=0.217 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:42] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:42] COF/FENCE hands_111 time=19.435
+[17:08:42] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=4.012 time=19.468
+[17:08:42] COF/WEAPON class=weapon_glock clip=8 ammo=0 primary=0.1 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:42] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:42] COF/FENCE hands_112 time=19.563
+[17:08:42] COF/WEAPON class=weapon_glock clip=7 ammo=0 primary=0.232 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:42] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:42] COF/FENCE hands_113 time=19.669
+[17:08:43] COF/WEAPON class=weapon_glock clip=7 ammo=0 primary=0.118 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:43] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:43] COF/FENCE hands_114 time=19.785
+[17:08:43] COF/WEAPON class=weapon_glock clip=7 ammo=0 primary=0.00099997 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:43] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:43] COF/FENCE hands_115 time=19.901
+[17:08:43] COF/WEAPON class=weapon_glock clip=6 ammo=0 primary=0.13 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:43] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:43] COF/FENCE hands_116 time=20.019
+[17:08:43] COF/WEAPON class=weapon_glock clip=6 ammo=0 primary=0.017 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:43] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:43] COF/FENCE hands_117 time=20.135
+[17:08:43] COF/WEAPON class=weapon_glock clip=5 ammo=0 primary=0.15 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:43] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:43] COF/FENCE hands_118 time=20.263
+[17:08:43] COF/WEAPON class=weapon_glock clip=5 ammo=0 primary=0.034 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:43] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:43] COF/FENCE hands_119 time=20.368
+[17:08:43] COF/WEAPON class=weapon_glock clip=4 ammo=0 primary=0.167 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:43] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:43] COF/FENCE hands_120 time=20.485
+[17:08:43] COF/WEAPON class=weapon_glock clip=4 ammo=0 primary=0.05 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:43] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:43] COF/FENCE hands_121 time=20.602
+[17:08:44] COF/WEAPON class=weapon_glock clip=3 ammo=0 primary=0.184 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:44] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:44] COF/FENCE hands_122 time=20.718
+[17:08:44] COF/WEAPON class=weapon_glock clip=3 ammo=0 primary=0.067 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:44] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:44] COF/FENCE hands_123 time=20.835
+[17:08:44] COF/WEAPON class=weapon_glock clip=2 ammo=0 primary=0.2 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:44] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:44] COF/FENCE hands_124 time=20.963
+[17:08:44] COF/WEAPON class=weapon_glock clip=2 ammo=0 primary=0.083 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:44] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:44] COF/FENCE hands_125 time=21.068
+[17:08:44] COF/HUD STAT 100 100 0 0
+[17:08:44] COF/WEAPON class=weapon_glock clip=1 ammo=0 primary=0.216 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:44] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:44] COF/FENCE hands_126 time=21.2
+[17:08:44] COF/WEAPON class=weapon_glock clip=1 ammo=0 primary=0.1 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:44] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:44] COF/FENCE hands_127 time=21.301
+[17:08:44] COF/HUD EXTRAS 0 0 0 0
+[17:08:44] COF/WEAPON class=weapon_glock clip=1 ammo=0 primary=-0.019 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:44] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:44] COF/FENCE hands_128 time=21.385
+[17:08:44] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=6.018 time=21.474
+[17:08:44] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.137 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:44] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:44] COF/FENCE hands_129 time=21.535
+[17:08:44] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.019 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:44] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:44] COF/FENCE hands_130 time=21.663
+[17:08:45] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.254 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:45] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:45] COF/FENCE hands_131 time=21.763
+[17:08:45] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.139 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:45] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:45] COF/FENCE hands_132 time=21.863
+[17:08:45] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.03 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:45] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:45] COF/FENCE hands_133 time=22
+[17:08:45] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.248 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:45] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:45] COF/FENCE hands_134 time=22.101
+[17:08:45] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.13 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:45] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:45] COF/FENCE hands_135 time=22.218
+[17:08:45] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.015 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:45] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:45] COF/FENCE hands_136 time=22.335
+[17:08:45] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.283 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:45] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:45] COF/FENCE hands_137 time=22.368
+[17:08:45] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.101 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:45] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:45] COF/FENCE hands_138 time=22.563
+[17:08:45] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.016 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:45] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:45] COF/FENCE hands_139 time=22.668
+[17:08:46] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.184 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:46] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:46] COF/FENCE hands_140 time=22.785
+[17:08:46] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.067 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:46] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:46] COF/FENCE hands_141 time=22.901
+[17:08:46] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.253 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:46] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:46] COF/FENCE hands_142 time=23.018
+[17:08:46] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.22 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:46] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:46] COF/FENCE hands_143 time=23.063
+[17:08:46] COF/HUD STAT 100 100 0 0
+[17:08:46] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.038 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:46] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:46] COF/FENCE hands_144 time=23.235
+[17:08:46] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.226 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:46] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:46] COF/FENCE hands_145 time=23.363
+[17:08:46] COF/HUD EXTRAS 0 0 0 0
+[17:08:46] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=8.029 time=23.485
+[17:08:46] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.11 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:46] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:46] COF/FENCE hands_146 time=23.468
+[17:08:46] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.266 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:46] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:46] COF/FENCE hands_147 time=23.618
+[17:08:47] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.15 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:47] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:47] COF/FENCE hands_148 time=23.735
+[17:08:47] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.032 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:47] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:47] COF/FENCE hands_149 time=23.863
+[17:08:47] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.226 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:47] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:47] COF/FENCE hands_150 time=23.971
+[17:08:47] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.108 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:47] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:47] COF/FENCE hands_151 time=24.085
+[17:08:47] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.00799997 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:47] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:47] COF/FENCE hands_152 time=24.201
+[17:08:47] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.183 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:47] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:47] COF/FENCE hands_153 time=24.318
+[17:08:47] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.117 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:47] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:47] COF/FENCE hands_154 time=24.386
+[17:08:47] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.272 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:47] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:47] COF/FENCE hands_155 time=24.536
+[17:08:47] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.223 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:47] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:47] COF/FENCE hands_156 time=24.585
+[17:08:48] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.141 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:48] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:48] COF/FENCE hands_157 time=24.663
+[17:08:48] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.24 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:48] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:48] COF/FENCE hands_158 time=24.884
+[17:08:48] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.123 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:48] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:48] COF/FENCE hands_159 time=25.01
+[17:08:48] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.01 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:48] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:48] COF/FENCE hands_160 time=25.136
+[17:08:48] COF/HUD STAT 100 100 0 0
+[17:08:48] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.19 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:48] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:48] COF/FENCE hands_161 time=25.185
+[17:08:48] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.083 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:48] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:48] COF/FENCE hands_162 time=25.363
+[17:08:48] COF/HUD EXTRAS 0 0 0 0
+[17:08:48] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=10.03 time=25.486
+[17:08:48] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.283 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:48] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:48] COF/FENCE hands_163 time=25.469
+[17:08:48] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.151 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:48] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:48] COF/FENCE hands_164 time=25.601
+[17:08:49] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.035 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:49] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:49] COF/FENCE hands_165 time=25.718
+[17:08:49] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.235 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:49] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:49] COF/FENCE hands_166 time=25.835
+[17:08:49] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.117 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:49] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:49] COF/FENCE hands_167 time=25.963
+[17:08:49] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=1.86265e-09 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:49] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:49] COF/FENCE hands_168 time=26.068
+[17:08:49] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.185 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:49] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:49] COF/FENCE hands_169 time=26.185
+[17:08:49] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.068 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:49] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:49] COF/FENCE hands_170 time=26.304
+[17:08:49] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.251 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:49] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:49] COF/FENCE hands_171 time=26.418
+[17:08:49] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.135 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:49] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:49] COF/FENCE hands_172 time=26.536
+[17:08:49] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.019 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:49] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:49] COF/FENCE hands_173 time=26.663
+[17:08:50] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.231 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:50] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:50] COF/FENCE hands_174 time=26.768
+[17:08:50] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.115 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:50] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:50] COF/FENCE hands_175 time=26.9
+[17:08:50] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.00199998 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:50] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:50] COF/FENCE hands_176 time=27.001
+[17:08:50] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.184 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:50] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:50] COF/FENCE hands_177 time=27.118
+[17:08:50] COF/HUD STAT 100 100 0 0
+[17:08:50] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.068 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:50] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:50] COF/FENCE hands_178 time=27.236
+[17:08:50] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.267 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:50] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:50] COF/FENCE hands_179 time=27.363
+[17:08:50] COF/HUD EXTRAS 0 0 0 0
+[17:08:50] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.151 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:50] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:50] COF/FENCE hands_180 time=27.468
+[17:08:50] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=12.046 time=27.502
+[17:08:50] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.035 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:50] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:50] COF/FENCE hands_181 time=27.585
+[17:08:51] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.231 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:51] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:51] COF/FENCE hands_182 time=27.701
+[17:08:51] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.199 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:51] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:51] COF/FENCE hands_183 time=27.735
+[17:08:51] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.087 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:51] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:51] COF/FENCE hands_184 time=27.763
+[17:08:51] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.258 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:51] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:51] COF/FENCE hands_185 time=27.863
+[17:08:51] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.01 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:51] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:51] COF/FENCE hands_186 time=28.032
+[17:08:51] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.104 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:51] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:51] COF/FENCE hands_187 time=28.282
+[17:08:52] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.016 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:52] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:52] COF/FENCE hands_188 time=28.512
+[17:08:52] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.184 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:52] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:52] COF/FENCE hands_189 time=28.632
+[17:08:52] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.248 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:52] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:52] COF/FENCE hands_190 time=28.9
+[17:08:52] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.138 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:52] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:52] COF/FENCE hands_191 time=29.107
+[17:08:52] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.021 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:52] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:52] COF/FENCE hands_192 time=29.217
+[17:08:52] COF/HUD STAT 100 100 0 0
+[17:08:52] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.24 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:52] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:52] COF/FENCE hands_193 time=29.343
+[17:08:52] COF/HUD EXTRAS 0 0 0 0
+[17:08:52] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.14 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:52] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:52] COF/FENCE hands_194 time=29.434
+[17:08:52] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=14.079 time=29.535
+[17:08:53] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.028 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:53] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:53] COF/FENCE hands_195 time=29.507
+[17:08:53] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.052 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:53] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:53] COF/FENCE hands_196 time=29.869
+[17:08:53] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.259 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:53] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:53] COF/FENCE hands_197 time=29.969
+[17:08:53] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.143 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:53] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:53] COF/FENCE hands_198 time=30.084
+[17:08:53] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.026 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:53] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:53] COF/FENCE hands_199 time=30.201
+[17:08:53] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.216 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:53] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:53] COF/FENCE hands_200 time=30.318
+[17:08:53] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.1 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:53] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:53] COF/FENCE hands_201 time=30.434
+[17:08:53] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.066 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:53] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:53] COF/FENCE hands_202 time=30.469
+[17:08:53] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.174 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:53] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:53] COF/FENCE hands_203 time=30.669
+[17:08:54] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.062 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:54] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:54] COF/FENCE hands_204 time=30.8
+[17:08:54] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.251 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:54] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:54] COF/FENCE hands_205 time=30.9
+[17:08:54] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.134 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:54] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:54] COF/FENCE hands_206 time=31.018
+[17:08:54] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.018 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:54] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:54] COF/FENCE hands_207 time=31.134
+[17:08:54] COF/HUD STAT 100 100 0 0
+[17:08:54] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.201 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:54] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:54] COF/FENCE hands_208 time=31.25
+[17:08:54] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.085 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:54] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:54] COF/FENCE hands_209 time=31.369
+[17:08:54] COF/HUD EXTRAS 0 0 0 0
+[17:08:54] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.285 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:54] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:54] COF/FENCE hands_210 time=31.484
+[17:08:54] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=16.092 time=31.548
+[17:08:54] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.167 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:54] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:54] COF/FENCE hands_211 time=31.6
+[17:08:55] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.067 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:55] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:55] COF/FENCE hands_212 time=31.7
+[17:08:55] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.235 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:55] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:55] COF/FENCE hands_213 time=31.844
+[17:08:55] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.118 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:55] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:55] COF/FENCE hands_214 time=31.951
+[17:08:55] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.00100001 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:55] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:55] COF/FENCE hands_215 time=32.069
+[17:08:55] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.2 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:55] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:55] COF/FENCE hands_216 time=32.184
+[17:08:55] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.084 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:55] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:55] COF/FENCE hands_217 time=32.3
+[17:08:55] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.265 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:55] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:55] COF/FENCE hands_218 time=32.417
+[17:08:55] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.15 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:55] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:55] COF/FENCE hands_219 time=32.534
+[17:08:55] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.034 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:55] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:55] COF/FENCE hands_220 time=32.65
+[17:08:56] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.23 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:56] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:56] COF/FENCE hands_221 time=32.769
+[17:08:56] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.115 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:56] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:56] COF/FENCE hands_222 time=32.9
+[17:08:56] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.00200004 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:56] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:56] COF/FENCE hands_223 time=33.003
+[17:08:56] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.185 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:56] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:56] COF/FENCE hands_224 time=33.117
+[17:08:56] COF/HUD STAT 100 100 0 0
+[17:08:56] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.07 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:56] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:56] COF/FENCE hands_225 time=33.237
+[17:08:56] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.00300002 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:56] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:56] COF/FENCE hands_226 time=33.3
+[17:08:56] COF/HUD EXTRAS 0 0 0 0
+[17:08:56] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.103 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:56] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:56] COF/FENCE hands_227 time=33.469
+[17:08:56] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=18.107 time=33.563
+[17:08:56] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.00199999 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:56] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:56] COF/FENCE hands_228 time=33.634
+[17:08:57] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.284 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:57] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:57] COF/FENCE hands_229 time=33.651
+[17:08:57] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.164 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:57] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:57] COF/FENCE hands_230 time=33.669
+[17:08:57] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.244 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:57] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:57] COF/FENCE hands_231 time=33.912
+[17:08:57] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.135 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:57] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:57] COF/FENCE hands_232 time=34.124
+[17:08:57] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.00100002 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:57] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:57] COF/FENCE hands_233 time=34.25
+[17:08:57] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.201 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:57] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:57] COF/FENCE hands_234 time=34.367
+[17:08:57] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.085 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:57] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:57] COF/FENCE hands_235 time=34.484
+[17:08:57] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.267 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:57] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:57] COF/FENCE hands_236 time=34.6
+[17:08:58] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.15 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:58] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:58] COF/FENCE hands_237 time=34.724
+[17:08:58] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.035 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:58] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:58] COF/FENCE hands_238 time=34.834
+[17:08:58] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.015 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:58] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:58] COF/FENCE hands_239 time=34.884
+[17:08:58] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.116 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:58] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:58] COF/FENCE hands_240 time=35.067
+[17:08:58] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=9.31323e-10 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:58] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:58] COF/FENCE hands_241 time=35.185
+[17:08:58] COF/HUD STAT 100 100 0 0
+[17:08:58] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.184 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:58] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:58] COF/FENCE hands_242 time=35.3
+[17:08:58] COF/HUD EXTRAS 0 0 0 0
+[17:08:58] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.066 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:58] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:58] COF/FENCE hands_243 time=35.424
+[17:08:58] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.267 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:58] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:58] COF/FENCE hands_244 time=35.534
+[17:08:58] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=20.111 time=35.567
+[17:08:58] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.15 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:58] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:58] COF/FENCE hands_245 time=35.65
+[17:08:59] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.033 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:59] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:59] COF/FENCE hands_246 time=35.767
+[17:08:59] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.224 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:59] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:59] COF/FENCE hands_247 time=35.9
+[17:08:59] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.107 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:59] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:59] COF/FENCE hands_248 time=36
+[17:08:59] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.00899997 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:59] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:59] COF/FENCE hands_249 time=36.124
+[17:08:59] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.184 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:59] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:59] COF/FENCE hands_250 time=36.235
+[17:08:59] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.066 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:59] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:59] COF/FENCE hands_251 time=36.351
+[17:08:59] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.249 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:59] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:59] COF/FENCE hands_252 time=36.467
+[17:08:59] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.134 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:08:59] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:08:59] COF/FENCE hands_253 time=36.584
+[17:09:00] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.286 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:00] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:00] COF/FENCE hands_254 time=36.735
+[17:09:00] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.168 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:00] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:00] COF/FENCE hands_255 time=36.85
+[17:09:00] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.118 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:00] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:00] COF/FENCE hands_256 time=36.9
+[17:09:00] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.044 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:00] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:00] COF/FENCE hands_257 time=36.924
+[17:09:00] COF/HUD STAT 100 100 0 0
+[17:09:00] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.082 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:00] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:00] COF/FENCE hands_258 time=37.124
+[17:09:00] COF/HUD EXTRAS 0 0 0 0
+[17:09:00] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.233 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:00] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:00] COF/FENCE hands_259 time=37.417
+[17:09:00] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=22.111 time=37.567
+[17:09:00] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.101 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:00] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:00] COF/FENCE hands_260 time=37.551
+[17:09:00] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.268 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:00] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:00] COF/FENCE hands_261 time=37.7
+[17:09:01] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.153 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:01] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:01] COF/FENCE hands_262 time=37.8
+[17:09:01] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.035 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:01] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:01] COF/FENCE hands_263 time=37.917
+[17:09:01] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.232 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:01] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:01] COF/FENCE hands_264 time=38.034
+[17:09:01] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.117 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:01] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:01] COF/FENCE hands_265 time=38.15
+[17:09:01] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-7.45058e-09 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:01] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:01] COF/FENCE hands_266 time=38.271
+[17:09:01] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.184 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:01] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:01] COF/FENCE hands_267 time=38.384
+[17:09:01] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.066 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:01] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:01] COF/FENCE hands_268 time=38.5
+[17:09:01] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.251 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:01] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:01] COF/FENCE hands_269 time=38.617
+[17:09:02] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.135 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:02] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:02] COF/FENCE hands_270 time=38.734
+[17:09:02] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.016 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:02] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:02] COF/FENCE hands_271 time=38.85
+[17:09:02] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.199 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:02] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:02] COF/FENCE hands_272 time=38.971
+[17:09:02] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.083 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:02] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:02] COF/FENCE hands_273 time=39.086
+[17:09:02] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.267 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:02] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:02] COF/FENCE hands_274 time=39.2
+[17:09:02] COF/HUD STAT 100 100 0 0
+[17:09:02] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.15 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:02] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:02] COF/FENCE hands_275 time=39.317
+[17:09:02] COF/HUD EXTRAS 0 0 0 0
+[17:09:02] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.034 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:02] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:02] COF/FENCE hands_276 time=39.434
+[17:09:02] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=24.111 time=39.567
+[17:09:02] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.233 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:02] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:02] COF/FENCE hands_277 time=39.55
+[17:09:02] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.115 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:02] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:02] COF/FENCE hands_278 time=39.671
+[17:09:03] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.00199999 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:03] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:03] COF/FENCE hands_279 time=39.7999
+[17:09:03] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.184 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:03] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:03] COF/FENCE hands_280 time=39.9
+[17:09:03] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.067 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:03] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:03] COF/FENCE hands_281 time=40.017
+[17:09:03] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.25 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:03] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:03] COF/FENCE hands_282 time=40.134
+[17:09:03] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.116 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:03] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:03] COF/FENCE hands_283 time=40.271
+[17:09:03] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=9.31323e-09 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:03] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:03] COF/FENCE hands_284 time=40.3999
+[17:09:03] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.183 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:03] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:03] COF/FENCE hands_285 time=40.5
+[17:09:03] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.067 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:03] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:03] COF/FENCE hands_286 time=40.617
+[17:09:04] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.251 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:04] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:04] COF/FENCE hands_287 time=40.734
+[17:09:04] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.133 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:04] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:04] COF/FENCE hands_288 time=40.85
+[17:09:04] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.016 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:04] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:04] COF/FENCE hands_289 time=40.9709
+[17:09:04] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.226 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:04] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:04] COF/FENCE hands_290 time=41.084
+[17:09:04] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.109 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:04] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:04] COF/FENCE hands_291 time=41.205
+[17:09:04] COF/HUD STAT 100 100 0 0
+[17:09:04] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.00799999 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:04] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:04] COF/FENCE hands_292 time=41.318
+[17:09:04] COF/HUD EXTRAS 0 0 0 0
+[17:09:04] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.184 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:04] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:04] COF/FENCE hands_293 time=41.434
+[17:09:04] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=26.111 time=41.567
+[17:09:04] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.068 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:04] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:04] COF/FENCE hands_294 time=41.551
+[17:09:04] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.267 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:04] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:04] COF/FENCE hands_295 time=41.6709
+[17:09:05] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.151 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:05] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:05] COF/FENCE hands_296 time=41.784
+[17:09:05] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.101 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:05] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:05] COF/FENCE hands_297 time=41.834
+[17:09:05] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.011 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:05] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:05] COF/FENCE hands_298 time=41.8709
+[17:09:05] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.207 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:05] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:05] COF/FENCE hands_299 time=41.9709
+[17:09:05] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.27 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:05] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:05] COF/FENCE hands_300 time=42.206
+[17:09:05] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.148 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:05] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:05] COF/FENCE hands_301 time=42.434
+[17:09:06] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.18 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:06] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:06] COF/FENCE hands_302 time=42.628
+[17:09:06] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.084 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:06] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:06] COF/FENCE hands_303 time=42.8
+[17:09:06] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.266 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:06] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:06] COF/FENCE hands_304 time=42.828
+[17:09:06] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.00999997 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:06] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:06] COF/FENCE hands_305 time=43.119
+[17:09:06] COF/HUD STAT 100 100 0 0
+[17:09:06] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.17 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:06] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:06] COF/FENCE hands_306 time=43.337
+[17:09:06] COF/HUD EXTRAS 0 0 0 0
+[17:09:06] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.053 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:06] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:06] COF/FENCE hands_307 time=43.467
+[17:09:06] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=28.111 time=43.567
+[17:09:06] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.25 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:06] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:06] COF/FENCE hands_308 time=43.586
+[17:09:07] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.133 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:07] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:07] COF/FENCE hands_309 time=43.7
+[17:09:09] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.016 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:09] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:09] COF/FENCE hands_310 time=43.817
+[17:09:09] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.007 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:09] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:09] COF/FENCE hands_311 time=44.159
+[17:09:09] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.182 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:09] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:09] COF/FENCE hands_312 time=44.284
+[17:09:10] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.064 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:10] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:10] COF/FENCE hands_313 time=44.392
+[17:09:10] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.251 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:10] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:10] COF/FENCE hands_314 time=44.51
+[17:09:10] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.133 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:10] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:10] COF/FENCE hands_315 time=44.626
+[17:09:10] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.017 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:10] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:10] COF/FENCE hands_316 time=44.742
+[17:09:10] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.182 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:10] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:10] COF/FENCE hands_317 time=44.884
+[17:09:10] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.065 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:10] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:10] COF/FENCE hands_318 time=44.993
+[17:09:10] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.25 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:10] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:10] COF/FENCE hands_319 time=45.109
+[17:09:10] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.134 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:10] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:10] COF/FENCE hands_320 time=45.226
+[17:09:10] COF/HUD STAT 100 100 0 0
+[17:09:10] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.017 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:10] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:10] COF/FENCE hands_321 time=45.342
+[17:09:11] COF/HUD EXTRAS 0 0 0 0
+[17:09:11] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.201 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:11] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:11] COF/FENCE hands_322 time=45.484
+[17:09:11] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=30.119 time=45.575
+[17:09:11] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.083 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:11] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:11] COF/FENCE hands_323 time=45.597
+[17:09:11] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.266 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:11] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:11] COF/FENCE hands_324 time=45.709
+[17:09:11] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.15 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:11] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:11] COF/FENCE hands_325 time=45.825
+[17:09:11] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.032 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:11] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:11] COF/FENCE hands_326 time=45.942
+[17:09:11] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.221 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:11] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:11] COF/FENCE hands_327 time=46.061
+[17:09:11] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.105 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:11] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:11] COF/FENCE hands_328 time=46.184
+[17:09:11] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.014 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:11] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:11] COF/FENCE hands_329 time=46.292
+[17:09:12] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.186 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:12] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:12] COF/FENCE hands_330 time=46.41
+[17:09:12] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.068 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:12] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:12] COF/FENCE hands_331 time=46.525
+[17:09:12] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.014 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:12] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:12] COF/FENCE hands_332 time=46.61
+[17:09:12] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.18 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:12] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:12] COF/FENCE hands_333 time=46.684
+[17:09:12] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.04 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:12] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:12] COF/FENCE hands_334 time=46.784
+[17:09:12] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.232 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:12] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:12] COF/FENCE hands_335 time=46.887
+[17:09:12] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.1 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:12] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:12] COF/FENCE hands_336 time=47.023
+[17:09:12] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.016 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:12] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:12] COF/FENCE hands_337 time=47.158
+[17:09:12] COF/HUD STAT 100 100 0 0
+[17:09:13] COF/HUD EXTRAS 0 0 0 0
+[17:09:13] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.094 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:13] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:13] COF/FENCE hands_338 time=47.385
+[17:09:13] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=32.119 time=47.575
+[17:09:13] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.00100002 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:13] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:13] COF/FENCE hands_339 time=47.559
+[17:09:13] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.197 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:13] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:13] COF/FENCE hands_340 time=47.693
+[17:09:13] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.081 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:13] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:13] COF/FENCE hands_341 time=47.809
+[17:09:13] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.267 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:13] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:13] COF/FENCE hands_342 time=47.926
+[17:09:13] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.148 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:13] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:13] COF/FENCE hands_343 time=48.042
+[17:09:13] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.034 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:13] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:13] COF/FENCE hands_344 time=48.159
+[17:09:13] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.227 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:13] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:13] COF/FENCE hands_345 time=48.285
+[17:09:14] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.111 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:14] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:14] COF/FENCE hands_346 time=48.393
+[17:09:14] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.005 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:14] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:14] COF/FENCE hands_347 time=48.509
+[17:09:14] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.231 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:14] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:14] COF/FENCE hands_348 time=48.585
+[17:09:14] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.149 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:14] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:14] COF/FENCE hands_349 time=48.593
+[17:09:14] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.041 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:14] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:14] COF/FENCE hands_350 time=48.685
+[17:09:14] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.23 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:14] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:14] COF/FENCE hands_351 time=48.785
+[17:09:14] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.07 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:14] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:14] COF/FENCE hands_352 time=48.927
+[17:09:14] COF/HUD STAT 100 100 0 0
+[17:09:15] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.086 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:15] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:15] COF/FENCE hands_353 time=49.254
+[17:09:15] COF/HUD EXTRAS 0 0 0 0
+[17:09:15] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.266 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:15] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:15] COF/FENCE hands_354 time=49.493
+[17:09:15] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=34.139 time=49.595
+[17:09:15] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.129 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:15] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:15] COF/FENCE hands_355 time=49.586
+[17:09:15] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.284 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:15] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:15] COF/FENCE hands_356 time=49.792
+[17:09:15] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.168 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:15] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:15] COF/FENCE hands_357 time=49.909
+[17:09:15] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.099 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:15] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:15] COF/FENCE hands_358 time=49.986
+[17:09:15] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.253 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:15] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:15] COF/FENCE hands_359 time=50.086
+[17:09:15] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.137 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:15] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:15] COF/FENCE hands_360 time=50.286
+[17:09:16] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.021 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:16] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:16] COF/FENCE hands_361 time=50.392
+[17:09:16] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.217 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:16] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:16] COF/FENCE hands_362 time=50.509
+[17:09:16] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.172 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:16] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:16] COF/FENCE hands_363 time=50.559
+[17:09:16] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.096 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:16] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:16] COF/FENCE hands_364 time=50.586
+[17:09:16] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.267 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:16] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:16] COF/FENCE hands_365 time=50.686
+[17:09:16] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.087 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:16] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:16] COF/FENCE hands_366 time=50.786
+[17:09:16] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.192 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:16] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:16] COF/FENCE hands_367 time=50.967
+[17:09:16] COF/HUD STAT 100 100 0 0
+[17:09:17] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.044 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:17] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:17] COF/FENCE hands_368 time=51.185
+[17:09:17] COF/HUD EXTRAS 0 0 0 0
+[17:09:17] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.13 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:17] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:17] COF/FENCE hands_369 time=51.469
+[17:09:17] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=36.153 time=51.609
+[17:09:17] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.0140001 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:17] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:17] COF/FENCE hands_370 time=51.675
+[17:09:17] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.201 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:17] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:17] COF/FENCE hands_371 time=51.7999
+[17:09:17] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.083 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:17] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:17] COF/FENCE hands_372 time=51.909
+[17:09:17] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.266 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:17] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:17] COF/FENCE hands_373 time=52.025
+[17:09:17] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.148 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:17] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:17] COF/FENCE hands_374 time=52.142
+[17:09:17] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.034 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:17] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:17] COF/FENCE hands_375 time=52.275
+[17:09:18] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.216 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:18] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:18] COF/FENCE hands_376 time=52.376
+[17:09:18] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.1 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:18] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:18] COF/FENCE hands_377 time=52.492
+[17:09:18] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.281 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:18] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:18] COF/FENCE hands_378 time=52.609
+[17:09:18] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.167 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:18] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:18] COF/FENCE hands_379 time=52.725
+[17:09:18] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.051 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:18] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:18] COF/FENCE hands_380 time=52.842
+[17:09:18] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.247 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:18] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:18] COF/FENCE hands_381 time=52.975
+[17:09:18] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.13 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:18] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:18] COF/FENCE hands_382 time=53.075
+[17:09:18] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.012 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:18] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:18] COF/FENCE hands_383 time=53.192
+[17:09:18] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.201 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:18] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:18] COF/FENCE hands_384 time=53.309
+[17:09:18] COF/HUD STAT 100 100 0 0
+[17:09:19] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.084 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:19] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:19] COF/FENCE hands_385 time=53.425
+[17:09:19] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.034 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:19] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:19] COF/FENCE hands_386 time=53.475
+[17:09:19] COF/HUD EXTRAS 0 0 0 0
+[17:09:19] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=38.169 time=53.625
+[17:09:19] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.16 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:19] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:19] COF/FENCE hands_387 time=53.675
+[17:09:19] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.043 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:19] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:19] COF/FENCE hands_388 time=53.778
+[17:09:19] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.236 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:19] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:19] COF/FENCE hands_389 time=53.8999
+[17:09:19] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.12 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:19] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:19] COF/FENCE hands_390 time=54.009
+[17:09:19] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.003 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:19] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:19] COF/FENCE hands_391 time=54.125
+[17:09:19] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.203 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:19] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:19] COF/FENCE hands_392 time=54.242
+[17:09:19] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.087 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:19] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:19] COF/FENCE hands_393 time=54.375
+[17:09:20] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.284 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:20] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:20] COF/FENCE hands_394 time=54.476
+[17:09:20] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.167 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:20] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:20] COF/FENCE hands_395 time=54.592
+[17:09:20] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.05 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:20] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:20] COF/FENCE hands_396 time=54.709
+[17:09:20] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.25 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:20] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:20] COF/FENCE hands_397 time=54.825
+[17:09:20] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.117 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:20] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:20] COF/FENCE hands_398 time=54.9749
+[17:09:20] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-1.86265e-09 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:20] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:20] COF/FENCE hands_399 time=55.075
+[17:09:20] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.167 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:20] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:20] COF/FENCE hands_400 time=55.209
+[17:09:20] COF/HUD STAT 100 100 0 0
+[17:09:20] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.05 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:20] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:20] COF/FENCE hands_401 time=55.326
+[17:09:21] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.244 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:21] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:21] COF/FENCE hands_402 time=55.443
+[17:09:21] COF/HUD EXTRAS 0 0 0 0
+[17:09:21] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.128 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:21] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:21] COF/FENCE hands_403 time=55.5749
+[17:09:21] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=40.169 time=55.625
+[17:09:21] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.011 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:21] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:21] COF/FENCE hands_404 time=55.675
+[17:09:21] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.2 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:21] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:21] COF/FENCE hands_405 time=55.792
+[17:09:21] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.15 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:21] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:21] COF/FENCE hands_406 time=55.842
+[17:09:21] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.283 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:21] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:21] COF/FENCE hands_407 time=56.025
+[17:09:21] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.167 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:21] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:21] COF/FENCE hands_408 time=56.144
+[17:09:21] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.051 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:21] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:21] COF/FENCE hands_409 time=56.2749
+[17:09:22] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.216 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:22] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:22] COF/FENCE hands_410 time=56.392
+[17:09:22] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.1 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:22] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:22] COF/FENCE hands_411 time=56.509
+[17:09:22] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.282 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:22] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:22] COF/FENCE hands_412 time=56.625
+[17:09:22] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.162 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:22] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:22] COF/FENCE hands_413 time=56.742
+[17:09:22] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.05 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:22] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:22] COF/FENCE hands_414 time=56.8749
+[17:09:22] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.243 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:22] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:22] COF/FENCE hands_415 time=56.976
+[17:09:22] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.126 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:22] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:22] COF/FENCE hands_416 time=57.0749
+[17:09:22] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.026 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:22] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:22] COF/FENCE hands_417 time=57.1999
+[17:09:23] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.219 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:23] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:23] COF/FENCE hands_418 time=57.2749
+[17:09:23] COF/HUD STAT 100 100 0 0
+[17:09:23] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.083 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:23] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:23] COF/FENCE hands_419 time=57.3749
+[17:09:23] COF/HUD EXTRAS 0 0 0 0
+[17:09:23] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=42.189 time=57.645
+[17:09:23] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.206 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:23] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:23] COF/FENCE hands_420 time=57.4749
+[17:09:23] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.27 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:23] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:23] COF/FENCE hands_421 time=57.645
+[17:09:24] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.022 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:24] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:24] COF/FENCE hands_422 time=57.892
+[17:09:24] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.192 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:24] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:24] COF/FENCE hands_423 time=58.392
+[17:09:24] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.089 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:24] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:24] COF/FENCE hands_424 time=58.714
+[17:09:24] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.281 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:24] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:24] COF/FENCE hands_425 time=58.817
+[17:09:24] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.233 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:24] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:24] COF/FENCE hands_426 time=58.867
+[17:09:24] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.135 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:24] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:24] COF/FENCE hands_427 time=58.914
+[17:09:25] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.023 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:25] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:25] COF/FENCE hands_428 time=59.014
+[17:09:25] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.186 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:25] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:25] COF/FENCE hands_429 time=59.114
+[17:09:25] COF/HUD STAT 100 100 0 0
+[17:09:25] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.272 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:25] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:25] COF/FENCE hands_430 time=59.246
+[17:09:25] COF/HUD EXTRAS 0 0 0 0
+[17:09:25] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=44.207 time=59.663
+[17:09:25] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.08 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:25] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:25] COF/FENCE hands_431 time=59.471
+[17:09:25] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.263 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:25] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:25] COF/FENCE hands_432 time=59.665
+[17:09:25] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.047 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:25] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:25] COF/FENCE hands_433 time=59.928
+[17:09:25] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.233 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:25] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:25] COF/FENCE hands_434 time=60.138
+[17:09:26] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.116 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:26] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:26] COF/FENCE hands_435 time=60.251
+[17:09:26] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=5.58794e-09 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:26] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:26] COF/FENCE hands_436 time=60.367
+[17:09:26] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.181 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:26] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:26] COF/FENCE hands_437 time=60.4999
+[17:09:26] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.068 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:26] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:26] COF/FENCE hands_438 time=60.601
+[17:09:26] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.266 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:26] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:26] COF/FENCE hands_439 time=60.734
+[17:09:26] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.15 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:26] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:26] COF/FENCE hands_440 time=60.834
+[17:09:26] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.034 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:26] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:26] COF/FENCE hands_441 time=60.951
+[17:09:26] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.241 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:26] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:26] COF/FENCE hands_442 time=61.068
+[17:09:26] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.125 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:26] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:26] COF/FENCE hands_443 time=61.184
+[17:09:27] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.009 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:27] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:27] COF/FENCE hands_444 time=61.301
+[17:09:27] COF/HUD STAT 100 100 0 0
+[17:09:27] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.199 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:27] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:27] COF/FENCE hands_445 time=61.434
+[17:09:27] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.149 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:27] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:27] COF/FENCE hands_446 time=61.467
+[17:09:27] COF/HUD EXTRAS 0 0 0 0
+[17:09:27] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.033 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:27] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:27] COF/FENCE hands_447 time=61.534
+[17:09:27] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=46.236 time=61.692
+[17:09:27] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.168 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:27] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:27] COF/FENCE hands_448 time=61.634
+[17:09:28] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.238 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:28] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:28] COF/FENCE hands_449 time=61.782
+[17:09:28] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.00999999 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:28] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:28] COF/FENCE hands_450 time=62.032
+[17:09:28] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.052 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:28] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:28] COF/FENCE hands_451 time=62.282
+[17:09:29] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.114 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:29] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:29] COF/FENCE hands_452 time=62.532
+[17:09:29] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.176 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:29] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:29] COF/FENCE hands_453 time=62.782
+[17:09:30] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.238 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:30] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:30] COF/FENCE hands_454 time=63.032
+[17:09:30] COF/HUD STAT 100 100 0 0
+[17:09:31] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.00999999 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:31] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:31] COF/FENCE hands_455 time=63.282
+[17:09:31] COF/HUD EXTRAS 0 0 0 0
+[17:09:31] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=48.262 time=63.718
+[17:09:32] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.052 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:32] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:32] COF/FENCE hands_456 time=63.532
+[17:09:32] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.114 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:32] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:32] COF/FENCE hands_457 time=63.782
+[17:09:32] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.024 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:32] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:32] COF/FENCE hands_458 time=64.282
+[17:09:32] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.208 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:32] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:32] COF/FENCE hands_459 time=64.538
+[17:09:32] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.072 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:32] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:32] COF/FENCE hands_460 time=64.635
+[17:09:33] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.265 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:33] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:33] COF/FENCE hands_461 time=64.735
+[17:09:33] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.093 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:33] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:33] COF/FENCE hands_462 time=64.835
+[17:09:33] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.261 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:33] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:33] COF/FENCE hands_463 time=65.008
+[17:09:33] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.121 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:33] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:33] COF/FENCE hands_464 time=65.164
+[17:09:33] COF/HUD STAT 100 100 0 0
+[17:09:33] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.2 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:33] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:33] COF/FENCE hands_465 time=65.431
+[17:09:33] COF/HUD EXTRAS 0 0 0 0
+[17:09:33] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.128 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:33] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:33] COF/FENCE hands_466 time=65.5999
+[17:09:33] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=50.279 time=65.735
+[17:09:33] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.25 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:33] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:33] COF/FENCE hands_467 time=65.736
+[17:09:34] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.132 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:34] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:34] COF/FENCE hands_468 time=65.8999
+[17:09:34] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.013 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:34] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:34] COF/FENCE hands_469 time=66.004
+[17:09:34] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.2 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:34] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:34] COF/FENCE hands_470 time=66.132
+[17:09:34] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.082 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:34] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:34] COF/FENCE hands_471 time=66.241
+[17:09:34] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.267 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:34] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:34] COF/FENCE hands_472 time=66.354
+[17:09:34] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.15 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:34] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:34] COF/FENCE hands_473 time=66.471
+[17:09:34] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.034 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:34] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:34] COF/FENCE hands_474 time=66.588
+[17:09:34] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.231 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:34] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:34] COF/FENCE hands_475 time=66.704
+[17:09:34] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.115 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:34] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:34] COF/FENCE hands_476 time=66.832
+[17:09:35] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.00100001 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:35] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:35] COF/FENCE hands_477 time=66.938
+[17:09:35] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.183 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:35] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:35] COF/FENCE hands_478 time=67.054
+[17:09:35] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.066 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:35] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:35] COF/FENCE hands_479 time=67.171
+[17:09:35] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.25 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:35] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:35] COF/FENCE hands_480 time=67.288
+[17:09:35] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.133 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:35] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:35] COF/FENCE hands_481 time=67.405
+[17:09:35] COF/HUD STAT 100 100 0 0
+[17:09:35] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.016 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:35] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:35] COF/FENCE hands_482 time=67.532
+[17:09:35] COF/HUD EXTRAS 0 0 0 0
+[17:09:35] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.2 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:35] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:35] COF/FENCE hands_483 time=67.64
+[17:09:35] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=52.284 time=67.74
+[17:09:35] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.114 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:35] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:35] COF/FENCE hands_484 time=67.732
+[17:09:36] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.272 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:36] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:36] COF/FENCE hands_485 time=67.871
+[17:09:36] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.156 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:36] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:36] COF/FENCE hands_486 time=68
+[17:09:36] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.039 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:36] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:36] COF/FENCE hands_487 time=68.104
+[17:09:36] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.227 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:36] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:36] COF/FENCE hands_488 time=68.232
+[17:09:36] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.113 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:36] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:36] COF/FENCE hands_489 time=68.338
+[17:09:36] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.00399998 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:36] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:36] COF/FENCE hands_490 time=68.457
+[17:09:36] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.183 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:36] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:36] COF/FENCE hands_491 time=68.573
+[17:09:36] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.068 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:36] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:36] COF/FENCE hands_492 time=68.689
+[17:09:36] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.234 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:36] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:36] COF/FENCE hands_493 time=68.8319
+[17:09:37] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.118 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:37] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:37] COF/FENCE hands_494 time=68.938
+[17:09:37] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.001 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:37] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:37] COF/FENCE hands_495 time=69.054
+[17:09:37] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.199 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:37] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:37] COF/FENCE hands_496 time=69.171
+[17:09:37] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.085 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:37] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:37] COF/FENCE hands_497 time=69.288
+[17:09:37] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.285 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:37] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:37] COF/FENCE hands_498 time=69.406
+[17:09:37] COF/HUD STAT 100 100 0 0
+[17:09:37] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.168 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:37] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:37] COF/FENCE hands_499 time=69.5319
+[17:09:37] COF/HUD EXTRAS 0 0 0 0
+[17:09:37] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.052 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:37] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:37] COF/FENCE hands_500 time=69.638
+[17:09:37] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=54.291 time=69.747
+[17:09:37] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.231 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:37] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:37] COF/FENCE hands_501 time=69.747
+[17:09:38] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.116 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:38] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:38] COF/FENCE hands_502 time=69.871
+[17:09:38] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.00100002 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:38] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:38] COF/FENCE hands_503 time=70
+[17:09:38] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.201 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:38] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:38] COF/FENCE hands_504 time=70.104
+[17:09:38] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.084 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:38] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:38] COF/FENCE hands_505 time=70.2319
+[17:09:38] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.267 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:38] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:38] COF/FENCE hands_506 time=70.338
+[17:09:38] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.15 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:38] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:38] COF/FENCE hands_507 time=70.454
+[17:09:38] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.033 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:38] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:38] COF/FENCE hands_508 time=70.574
+[17:09:38] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.282 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:38] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:38] COF/FENCE hands_509 time=70.6319
+[17:09:39] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.074 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:39] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:39] COF/FENCE hands_510 time=70.8319
+[17:09:39] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.27 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:39] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:39] COF/FENCE hands_511 time=70.954
+[17:09:39] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.153 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:39] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:39] COF/FENCE hands_512 time=71.071
+[17:09:39] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.036 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:39] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:39] COF/FENCE hands_513 time=71.188
+[17:09:39] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.232 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:39] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:39] COF/FENCE hands_514 time=71.304
+[17:09:39] COF/HUD STAT 100 100 0 0
+[17:09:39] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.115 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:39] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:39] COF/FENCE hands_515 time=71.4319
+[17:09:39] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.000999997 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:39] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:39] COF/FENCE hands_516 time=71.538
+[17:09:39] COF/HUD EXTRAS 0 0 0 0
+[17:09:39] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.182 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:39] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:39] COF/FENCE hands_517 time=71.654
+[17:09:39] COF/HANDS active=1 right=2 phoneSeq=5 serial=5 age=56.298 time=71.754
+[17:09:39] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.1 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:39] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:39] COF/FENCE hands_518 time=71.738
+[17:09:40] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.265 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:40] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:40] COF/FENCE hands_519 time=71.871
+[17:09:40] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.15 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:40] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:40] COF/FENCE hands_520 time=72
+[17:09:40] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.033 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:40] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:40] COF/FENCE hands_521 time=72.104
+[17:09:40] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.216 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:40] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:40] COF/FENCE hands_522 time=72.2319
+[17:09:40] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.1 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:40] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:40] COF/FENCE hands_523 time=72.338
+[17:09:40] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.283 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:40] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:40] COF/FENCE hands_524 time=72.454
+[17:09:40] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.166 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:40] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:40] COF/FENCE hands_525 time=72.575
+[17:09:40] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.117 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:40] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:40] COF/FENCE hands_526 time=72.6319
+[17:09:40] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.227 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:40] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:40] COF/FENCE hands_527 time=72.8319
+[17:09:41] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.111 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:41] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:41] COF/FENCE hands_528 time=72.938
+[17:09:41] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=-0.00599999 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:41] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:41] COF/FENCE hands_529 time=73.054
+[17:09:41] COF/WEAPON class=weapon_glock clip=0 ammo=0 primary=0.183 secondary=-0.001 playernext=-0.001 reload=0 buttons=1 health=100
+[17:09:41] COF/PHONE mode=1 light=1 dual=1 message=0
+[17:09:41] COF/FENCE hands_530 time=73.171

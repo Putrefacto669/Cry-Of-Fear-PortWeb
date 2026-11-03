@@ -1553,6 +1553,10 @@
       const rest = line.trim().slice(cmd.length).trim();
       window.CoFExtras?.handle(cmd, args);
       switch (cmd) {
+        case "DUALSELECT":
+          bag.dualFrom = -1;closeMenu();
+          if(args[0] === "1" && bag.open)toggleBag(false);
+          break;
         case "BOSS":
           updateBoss(Number(args[0]) || 0, Number(args[1]) || 0, args[2], args[3]);
           break;

@@ -1,0 +1,16 @@
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /buttons=2048/. Input:
+
+'[16:27:57] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-0.284 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n' +
+  '[16:27:57] COF/PHONE mode=1 light=1 dual=0 message=0\n' +
+  '[16:27:57] COF/FENCE punch_4 time=21.299'
+
+    at file:///root/cof-audits/dual-20261102/phone_punch.mjs:11:8 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '[16:27:57] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-0.284 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n' +
+    '[16:27:57] COF/PHONE mode=1 light=1 dual=0 message=0\n' +
+    '[16:27:57] COF/FENCE punch_4 time=21.299',
+  expected: /buttons=2048/,
+  operator: 'match',
+  diff: 'simple'
+}

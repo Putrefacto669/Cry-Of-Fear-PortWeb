@@ -1,0 +1,4 @@
+from pathlib import Path
+r=Path('/mnt/c/Users/josue/OneDrive/Desktop/Cry Of Fear Web Alpha Version/Cry-Of-Fear-Port-Web')
+p=r/'game/cof-logic/cof/weapons_cof.cpp';s=p.read_text();i=s.index('void UTIL_PrecacheOtherWeapon(');s=s[:i]+(r/'build/validation/dual-wield-2026-11-02/server-hands.inc').read_text()+'\n'+s[i:];p.write_text(s)
+p=r/'game/cof-logic/cof/player_cof.cpp';s=p.read_text().replace(' CoF_DualCancel(pPlayer);\n\tif( name[0]', '\tif( name[0]');s=s.replace('pPlayer->HasNamedPlayerItem( name ))\n\t\tpPlayer->SelectItem( name );','pPlayer->HasNamedPlayerItem( name ))\n {CoF_DualCancel(pPlayer);pPlayer->SelectItem( name );}');p.write_text(s)

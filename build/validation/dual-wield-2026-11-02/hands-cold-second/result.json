@@ -1,0 +1,14 @@
+{
+  "diagnosticOnly": true,
+  "bagBefore": "[17:08:28] COF/HUD SMSICON 0\n[17:08:28] COF/HUD INV 3 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt inventoryitems/weapons/weapon_glock.txt\n[17:08:28] COF/HUD QUICK weapon_mobile weapon_switchblade weapon_glock\n[17:08:28] COF/HUD OBJECTIVE \n[17:08:28] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[17:08:28] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[17:08:28] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1\n[17:08:28] carried 1: weapon_glock\n[17:08:28] carried 1: weapon_switchblade\n[17:08:28] carried 1: weapon_mobile\n[17:08:28] monster monstermaker health 0 dead 0 dist 323\n[17:08:28] COF/FENCE hands_86 time=11.077",
+  "blade": "[17:08:29] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-0.382 secondary=-0.001 playernext=0.467 reload=0 buttons=0 health=100\n[17:08:29] COF/PHONE mode=0 light=0 dual=1 message=0\n[17:08:29] COF/FENCE hands_87 time=11.449",
+  "bladeRender": "[17:08:30] COF/HANDSCLIENT on=1 right=1 phoneSeq=0 body=0 serial=2 age=1.108 draws=24 mirrors=24\n[17:08:30] COF/FENCE hands_89 time=12.969",
+  "afterPhoneToggle": "[17:08:36] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[17:08:36] COF/PHONE mode=1 light=1 dual=1 message=0\n[17:08:36] COF/FENCE hands_92 time=14.747",
+  "invalid": "[17:08:36] COF/HUD DUALSELECT 0\n[17:08:36] Warning: late precache of inventory/inventory_no.wav\n[17:08:36] COF/FENCE hands_93 time=14.778",
+  "glock": "[17:08:38] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[17:08:38] COF/PHONE mode=1 light=1 dual=1 message=0\n[17:08:38] COF/FENCE hands_96 time=16.247",
+  "glockRender": "[17:08:38] COF/HANDSCLIENT on=1 right=2 phoneSeq=5 body=0 serial=5 age=0.896 draws=69 mirrors=69\n[17:08:38] COF/FENCE hands_97 time=16.347",
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: hands state timeout\n    at wait (file:///root/cof-audits/dual-20261102/dual_hands.mjs:7:69)\n    at async file:///root/cof-audits/dual-20261102/dual_hands.mjs:25:65",
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

@@ -1,0 +1,8 @@
+{
+  "diagnosticOnly": true,
+  "bagBefore": "[20:54:12] COF/HUD SMSICON 0\n[20:54:12] COF/HUD INV 3 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt inventoryitems/weapons/weapon_glock.txt\n[20:54:12] COF/HUD QUICK weapon_mobile weapon_switchblade weapon_glock\n[20:54:12] COF/HUD OBJECTIVE \n[20:54:12] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[20:54:12] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[20:54:12] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1\n[20:54:12] carried 1: weapon_glock\n[20:54:12] carried 1: weapon_switchblade\n[20:54:12] carried 1: weapon_mobile\n[20:54:12] monster monstermaker health 0 dead 0 dist 320\n[20:54:12] COF/FENCE hands_84 time=11.158",
+  "passed": false,
+  "failure": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#cof-bag.on') to be visible\u001b[22m\n\n    at /root/cof-audits/dual-20261102/dual_hands.mjs:15:63",
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

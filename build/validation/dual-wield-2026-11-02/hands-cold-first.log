@@ -1,0 +1,12 @@
+page.waitForEvent: Timeout 30000ms exceeded while waiting for event "console"
+=========================== logs ===========================
+waiting for event "console"
+============================================================
+    at cmd (/root/cof-audits/dual-20261102/dual_hands.mjs:8:88)
+    at weapon (/root/cof-audits/dual-20261102/dual_hands.mjs:9:19)
+    at /root/cof-audits/dual-20261102/dual_hands.mjs:39:84
+    at wait (/root/cof-audits/dual-20261102/dual_hands.mjs:7:56)
+    at /root/cof-audits/dual-20261102/dual_hands.mjs:39:35 {
+  log: [],
+  name: 'TimeoutError'
+}

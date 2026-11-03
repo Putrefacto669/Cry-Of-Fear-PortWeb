@@ -1,33 +1,64 @@
+diff --git a/cl_dll/GameStudioModelRenderer.cpp b/cl_dll/GameStudioModelRenderer.cpp
+index 3a720ff3..150931fd 100644
+--- a/cl_dll/GameStudioModelRenderer.cpp
++++ b/cl_dll/GameStudioModelRenderer.cpp
+@@ -66,9 +66,11 @@ R_StudioDrawModel
+ 
+ ====================
+ */
++extern void CoF_DrawOffhand(int flags);
+ int R_StudioDrawModel( int flags )
+ {
+-	return g_StudioRenderer.StudioDrawModel( flags );
++	int result=g_StudioRenderer.StudioDrawModel(flags);
++ CoF_DrawOffhand(flags);return result;
+ }
+ 
+ /*
 diff --git a/cl_dll/StudioModelRenderer.cpp b/cl_dll/StudioModelRenderer.cpp
-index 53d320a4..6e1884a6 100644
+index 53d320a4..3833e237 100644
 --- a/cl_dll/StudioModelRenderer.cpp
 +++ b/cl_dll/StudioModelRenderer.cpp
-@@ -54,6 +54,9 @@ Init
+@@ -54,6 +54,11 @@ Init
  
  ====================
  */
 +extern void CoF_CostumeBegin(model_t *model, void *header);
 +extern void CoF_CostumeEnd();
++extern void CoF_HandsMirror(float (*matrix)[4]);
++extern void CoF_HandsBeforePoints();extern void CoF_HandsAfterPoints();
 +
  void CStudioModelRenderer::Init( void )
  {
  	// Set up some variables shared with engine
-@@ -1612,7 +1615,9 @@ void CStudioModelRenderer::StudioRenderFinal_Software( void )
+@@ -536,6 +541,7 @@ void CStudioModelRenderer::StudioSetUpTransform( int trivial_accept )
+ 
+ 	angles[PITCH] = -angles[PITCH];
+ 	AngleMatrix( angles, ( *m_protationmatrix ) );
++ CoF_HandsMirror(*m_protationmatrix);
+ 
+ 	if( !IEngineStudio.IsHardware() )
+ 	{
+@@ -1612,7 +1618,11 @@ void CStudioModelRenderer::StudioRenderFinal_Software( void )
  		for( i = 0; i < m_pStudioHeader->numbodyparts; i++ )
  		{
  			IEngineStudio.StudioSetupModel( i, (void **)&m_pBodyPart, (void **)&m_pSubModel );
 +			CoF_CostumeBegin(m_pRenderModel, m_pStudioHeader);
++			CoF_HandsBeforePoints();
  			IEngineStudio.StudioDrawPoints();
++			CoF_HandsAfterPoints();
 +			CoF_CostumeEnd();
  		}
  	}
  
-@@ -1666,7 +1671,9 @@ void CStudioModelRenderer::StudioRenderFinal_Hardware( void )
+@@ -1666,7 +1676,11 @@ void CStudioModelRenderer::StudioRenderFinal_Hardware( void )
  			}
  
  			IEngineStudio.GL_SetRenderMode( rendermode );
 +			CoF_CostumeBegin(m_pRenderModel, m_pStudioHeader);
++			CoF_HandsBeforePoints();
  			IEngineStudio.StudioDrawPoints();
++			CoF_HandsAfterPoints();
 +			CoF_CostumeEnd();
  			IEngineStudio.GL_StudioDrawShadow();
  		}

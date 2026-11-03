@@ -391,7 +391,7 @@ static void CoF_SyncCounts( CBasePlayer *pPlayer, cof_player_t *s )
 static void CoF_Equip( CBasePlayer *pPlayer, const char *name )
 {
 	if( name[0] && CoF_IsRealWeapon( name ) && pPlayer->HasNamedPlayerItem( name ))
-		pPlayer->SelectItem( name );
+ {CoF_DualCancel(pPlayer);pPlayer->SelectItem( name );}
 }
 
 void CoF_PlayerPreThink( CBasePlayer *pPlayer )
@@ -405,6 +405,7 @@ void CoF_PlayerPreThink( CBasePlayer *pPlayer )
 
 	CoF_UseTrace( pPlayer ); // E: what is looked at first, like the original (doors.cpp)
 	CoF_ExtrasFrame(pPlayer);
+ CoF_DualFrame(pPlayer);
 
 	// changelevel and save games move the clock: resend everything
 	float dt = now - s->lastTime;
@@ -834,23 +835,13 @@ bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd )
 		if( pPlayer->HasNamedPlayerItem( "weapon_mobile" ) && !( pActive && FClassnameIs( pActive->pev, "weapon_mobile" )))
 			CoF_SetFlashlight( pPlayer, !CoF_FlashlightIsOn( pPlayer ));
 	}
-	// DUAL WIELD in the bag: the phone and the knife together, light in one hand and knife in the other
-	else if( FStrEq( pcmd, "cof_dualwield" ) && CMD_ARGC() == 3 )
-	{
-		int a = atoi( CMD_ARGV( 1 )), b = atoi( CMD_ARGV( 2 ));
-		cof_phone_t *phone = CoF_Phone( pPlayer );
-		if( phone )
-		{
-			const char *x = ( a >= 0 && a < s->numItems ) ? s->names[a] : "";
-			const char *y = ( b >= 0 && b < s->numItems ) ? s->names[b] : "";
-			phone->dual = ( !stricmp( x, "weapon_mobile" ) && !stricmp( y, "weapon_switchblade" )) ||
-				( !stricmp( x, "weapon_switchblade" ) && !stricmp( y, "weapon_mobile" ));
-			CBasePlayerItem *pActive = pPlayer->m_pActiveItem;
-			if( phone->dual && pActive && FClassnameIs( pActive->pev, "weapon_switchblade" ))
-				CoF_SetFlashlight( pPlayer, true );
-			s->invDirty = TRUE;
-		}
-	}
+ // DUAL WIELD validates ownership and never clears a working pair on an invalid request.
+ else if(FStrEq(pcmd,"cof_dualwield") && CMD_ARGC()==3) {
+  int a=atoi(CMD_ARGV(1)),b=atoi(CMD_ARGV(2));
+  if(a>=0 && a<s->numItems && b>=0 && b<s->numItems && a!=b && CoF_DualSelect(pPlayer,s->names[a],s->names[b])) {
+   s->invDirty=TRUE;CoF_HudPrint("COF/HUD DUALSELECT 1\n");
+  } else {CoF_HudPrint("COF/HUD DUALSELECT 0\n");EMIT_SOUND(pPlayer->edict(),CHAN_ITEM,"inventory/inventory_no.wav",1,ATTN_NORM);}
+ }
 	// binds of the original config.cfg that do nothing yet: keep them out of the console
 	else if( FStrEq( pcmd, "+dodge" ) || FStrEq( pcmd, "-dodge" ) || FStrEq( pcmd, "adlib" ) ||
 		FStrEq( pcmd, "cancelselect" ) || FStrEq( pcmd, "weapontoggle" ) ||
@@ -1096,6 +1087,8 @@ public:
 	BOOL m_fSmsUnread;
 	BOOL m_fMobileFlash;
 	BOOL m_fMobileDual;
+ int m_iDualWeapon,m_iDualSequence,m_iDualSerial;
+ float m_flDualAnimTime;
 	BOOL m_fFlashlight;
 	cof_extra_player_t m_Extras;
 };
@@ -1117,6 +1110,10 @@ TYPEDESCRIPTION CCofPlayerState::m_SaveData[] =
 	DEFINE_FIELD( CCofPlayerState, m_fSmsUnread, FIELD_BOOLEAN ),
 	DEFINE_FIELD( CCofPlayerState, m_fMobileFlash, FIELD_BOOLEAN ),
 	DEFINE_FIELD( CCofPlayerState, m_fMobileDual, FIELD_BOOLEAN ),
+ DEFINE_FIELD(CCofPlayerState,m_iDualWeapon,FIELD_INTEGER),
+ DEFINE_FIELD(CCofPlayerState,m_iDualSequence,FIELD_INTEGER),
+ DEFINE_FIELD(CCofPlayerState,m_iDualSerial,FIELD_INTEGER),
+ DEFINE_FIELD(CCofPlayerState,m_flDualAnimTime,FIELD_TIME),
 	DEFINE_FIELD( CCofPlayerState, m_fFlashlight, FIELD_BOOLEAN ),
 	DEFINE_FIELD( CCofPlayerState, m_Extras.costume, FIELD_INTEGER ),
 	DEFINE_FIELD( CCofPlayerState, m_Extras.nightOwned, FIELD_INTEGER ),
@@ -1150,6 +1147,7 @@ int CCofPlayerState::Save( CSave &save )
 	m_fSmsUnread = s->phone.unread;
 	m_fMobileFlash = s->phone.flash;
 	m_fMobileDual = s->phone.dual;
+ m_iDualWeapon=s->phone.dualWeapon;m_iDualSequence=s->phone.dualSequence;m_iDualSerial=s->phone.dualSerial;m_flDualAnimTime=s->phone.dualAnimTime;
 	m_fFlashlight = s->flashlight;
 	m_Extras=CoF_ExtrasPrimaryState();
 	char code[16];
@@ -1186,6 +1184,7 @@ int CCofPlayerState::Restore( CRestore &restore )
 	s->phone.unread = m_fSmsUnread;
 	s->phone.flash = m_fMobileFlash;
 	s->phone.dual = m_fMobileDual;
+ s->phone.dualWeapon=m_iDualWeapon;s->phone.dualSequence=m_iDualSequence;s->phone.dualSerial=m_iDualSerial;s->phone.dualAnimTime=m_flDualAnimTime;
 	s->flashlight = m_fFlashlight;
 	CoF_ExtrasPrimaryState()=m_Extras;
 	CoF_ExtrasRestored();

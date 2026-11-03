@@ -1,0 +1,12 @@
+AssertionError [ERR_ASSERTION]: pending impact must restore and execute exactly once
+
+0 !== 1
+
+    at file:///root/cof-audits/dual-20261102/phone_punch_impact.mjs:19:464 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

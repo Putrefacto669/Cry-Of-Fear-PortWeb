@@ -1,0 +1,26 @@
+{
+  "diagnosticOnly": true,
+  "bagBefore": "[17:17:55] COF/HUD SMSICON 0\n[17:17:55] COF/HUD INV 3 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt inventoryitems/weapons/weapon_glock.txt\n[17:17:55] COF/HUD QUICK weapon_mobile weapon_switchblade weapon_glock\n[17:17:55] COF/HUD OBJECTIVE \n[17:17:55] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[17:17:55] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[17:17:55] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1\n[17:17:55] carried 1: weapon_glock\n[17:17:55] carried 1: weapon_switchblade\n[17:17:55] carried 1: weapon_mobile\n[17:17:55] monster monstermaker health 0 dead 0 dist 320\n[17:17:55] COF/FENCE hands_83 time=11.197",
+  "blade": "[17:17:55] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-0.516 secondary=-0.001 playernext=0.466 reload=0 buttons=0 health=100\n[17:17:55] COF/PHONE mode=0 light=0 dual=1 message=0\n[17:17:55] COF/FENCE hands_84 time=11.703",
+  "bladeRender": "[17:17:57] COF/HANDSCLIENT on=1 right=1 phoneSeq=0 body=0 serial=2 age=1.068 draws=21 mirrors=21\n[17:17:57] COF/FENCE hands_86 time=13.207",
+  "afterPhoneToggle": "[17:18:01] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[17:18:01] COF/PHONE mode=1 light=1 dual=1 message=0\n[17:18:01] COF/FENCE hands_89 time=15.057",
+  "invalid": "[17:18:01] COF/HUD DUALSELECT 0\n[17:18:01] Warning: late precache of inventory/inventory_no.wav\n[17:18:01] COF/FENCE hands_90 time=15.063",
+  "glock": "[17:18:02] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[17:18:02] COF/PHONE mode=1 light=1 dual=1 message=0\n[17:18:02] COF/FENCE hands_93 time=16.495",
+  "glockRender": "[17:18:02] COF/HANDSCLIENT on=1 right=2 phoneSeq=5 body=0 serial=5 age=0.894001 draws=64 mirrors=64\n[17:18:02] COF/FENCE hands_94 time=16.557",
+  "shot": "[17:18:06] COF/WEAPON class=weapon_glock clip=14 ammo=0 primary=0.151 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[17:18:06] COF/PHONE mode=1 light=1 dual=1 message=0\n[17:18:06] COF/FENCE hands_97 time=18.21",
+  "shotClip": 14,
+  "restored": "[17:18:10] COF/WEAPON class=weapon_glock clip=14 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[17:18:10] COF/PHONE mode=1 light=1 dual=1 message=0\n[17:18:10] COF/FENCE hands_99 time=20.543",
+  "bagAfter": "[17:18:10] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[17:18:10] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[17:18:10] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1\n[17:18:10] carried 1: weapon_glock\n[17:18:10] carried 1: weapon_switchblade\n[17:18:10] carried 1: weapon_mobile\n[17:18:10] monster monstermaker health 0 dead 0 dist 320\n[17:18:10] COF/FENCE hands_101 time=20.581",
+  "pendingSave": "[17:18:11] Saving game to save/hands_switch.sav...\n[17:18:11] COF/FENCE hands_102 time=20.727",
+  "cold": "[17:18:29] COF/WEAPON class=weapon_glock clip=14 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[17:18:29] COF/PHONE mode=0 light=0 dual=1 message=0\n[17:18:29] COF/FENCE hands_106 time=23.378",
+  "gl": {
+    "lost": false,
+    "error": 0
+  },
+  "beforeReload": "[17:18:31] COF/WEAPON class=weapon_glock clip=14 ammo=15 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[17:18:31] COF/PHONE mode=0 light=0 dual=1 message=0\n[17:18:31] COF/FENCE hands_113 time=24.362",
+  "reloadSave": "[17:18:31] Saving game to save/hands_reload.sav...\n[17:18:31] COF/FENCE hands_115 time=25.083",
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: hands state timeout\n    at wait (file:///root/cof-audits/dual-20261102/dual_hands.mjs:7:69)\n    at async file:///root/cof-audits/dual-20261102/dual_hands.mjs:46:155",
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

@@ -1,0 +1,610 @@
+{
+  "mobile": {
+    "sha256": "35e2bca29b8085f6418553d6dc8f93ad405fe3f239143390cfb1e6a6fa6f9ec7",
+    "sequences": [
+      {
+        "id": 0,
+        "name": "idle_sms",
+        "fps": 15.0,
+        "frames": 101
+      },
+      {
+        "id": 1,
+        "name": "sms_looksms",
+        "fps": 35.0,
+        "frames": 53
+      },
+      {
+        "id": 2,
+        "name": "draw_sms",
+        "fps": 30.0,
+        "frames": 15
+      },
+      {
+        "id": 3,
+        "name": "holster_sms",
+        "fps": 30.0,
+        "frames": 15
+      },
+      {
+        "id": 4,
+        "name": "smstoflash",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 5,
+        "name": "idle_flash",
+        "fps": 15.0,
+        "frames": 100
+      },
+      {
+        "id": 6,
+        "name": "flash_looksms",
+        "fps": 35.0,
+        "frames": 53
+      },
+      {
+        "id": 7,
+        "name": "draw_flash",
+        "fps": 30.0,
+        "frames": 15
+      },
+      {
+        "id": 8,
+        "name": "flashtosms",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 9,
+        "name": "holster_flash",
+        "fps": 60.0,
+        "frames": 31
+      },
+      {
+        "id": 10,
+        "name": "sms_punch",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 11,
+        "name": "flash_punch",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 12,
+        "name": "raise_sms",
+        "fps": 30.0,
+        "frames": 15
+      },
+      {
+        "id": 13,
+        "name": "raise_flash",
+        "fps": 30.0,
+        "frames": 15
+      },
+      {
+        "id": 14,
+        "name": "raise_idle",
+        "fps": 30.0,
+        "frames": 50
+      },
+      {
+        "id": 15,
+        "name": "lower_sms",
+        "fps": 30.0,
+        "frames": 15
+      },
+      {
+        "id": 16,
+        "name": "lower_flash",
+        "fps": 30.0,
+        "frames": 15
+      }
+    ],
+    "bodyparts": [
+      {
+        "name": "body",
+        "base": 1,
+        "models": [
+          "fuck_butt"
+        ]
+      },
+      {
+        "name": "nerds",
+        "base": 1,
+        "models": [
+          "screen1",
+          "screen2",
+          "screen3",
+          "screen4",
+          "screen5",
+          "screen6",
+          "screen7",
+          "screen_off",
+          "screen_lowbat"
+        ]
+      },
+      {
+        "name": "screen",
+        "base": 9,
+        "models": [
+          "mobile_buttons",
+          "blank"
+        ]
+      }
+    ]
+  },
+  "glock": {
+    "sha256": "80cc917866e61fbb23337f6a990dc72f42277f2bd3d5a1d77201d1d57a406ffe",
+    "sequences": [
+      {
+        "id": 0,
+        "name": "idle1",
+        "fps": 30.0,
+        "frames": 101
+      },
+      {
+        "id": 1,
+        "name": "idle1_noshot",
+        "fps": 30.0,
+        "frames": 101
+      },
+      {
+        "id": 2,
+        "name": "shoot_1",
+        "fps": 30.0,
+        "frames": 20
+      },
+      {
+        "id": 3,
+        "name": "shoot_empty_1",
+        "fps": 30.0,
+        "frames": 20
+      },
+      {
+        "id": 4,
+        "name": "reload",
+        "fps": 30.0,
+        "frames": 80
+      },
+      {
+        "id": 5,
+        "name": "reload_noshot",
+        "fps": 30.0,
+        "frames": 105
+      },
+      {
+        "id": 6,
+        "name": "draw",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 7,
+        "name": "draw_noshot",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 8,
+        "name": "holster",
+        "fps": 30.0,
+        "frames": 15
+      },
+      {
+        "id": 9,
+        "name": "holster_noshot",
+        "fps": 30.0,
+        "frames": 15
+      },
+      {
+        "id": 10,
+        "name": "sprint_to",
+        "fps": 30.0,
+        "frames": 10
+      },
+      {
+        "id": 11,
+        "name": "sprint_to_noshot",
+        "fps": 30.0,
+        "frames": 10
+      },
+      {
+        "id": 12,
+        "name": "sprint_idle",
+        "fps": 30.0,
+        "frames": 20
+      },
+      {
+        "id": 13,
+        "name": "sprint_idle_noshot",
+        "fps": 30.0,
+        "frames": 20
+      },
+      {
+        "id": 14,
+        "name": "sprint_from",
+        "fps": 30.0,
+        "frames": 10
+      },
+      {
+        "id": 15,
+        "name": "sprint_from_noshot",
+        "fps": 30.0,
+        "frames": 10
+      },
+      {
+        "id": 16,
+        "name": "suicide",
+        "fps": 30.0,
+        "frames": 115
+      },
+      {
+        "id": 17,
+        "name": "switch",
+        "fps": 30.0,
+        "frames": 20
+      },
+      {
+        "id": 18,
+        "name": "switch_noshot",
+        "fps": 30.0,
+        "frames": 20
+      },
+      {
+        "id": 19,
+        "name": "suicide_noshot",
+        "fps": 30.0,
+        "frames": 90
+      },
+      {
+        "id": 20,
+        "name": "shoot_noshot",
+        "fps": 30.0,
+        "frames": 15
+      },
+      {
+        "id": 21,
+        "name": "fidget1",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 22,
+        "name": "fidget1_noshot",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 23,
+        "name": "fidget2",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 24,
+        "name": "fidget2_noshot",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 25,
+        "name": "fidget3",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 26,
+        "name": "fidget3_noshot",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 27,
+        "name": "melee",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 28,
+        "name": "melee_noshot",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 29,
+        "name": "draw_first",
+        "fps": 30.0,
+        "frames": 70
+      },
+      {
+        "id": 30,
+        "name": "iron_to",
+        "fps": 30.0,
+        "frames": 6
+      },
+      {
+        "id": 31,
+        "name": "iron_to_noshot",
+        "fps": 30.0,
+        "frames": 6
+      },
+      {
+        "id": 32,
+        "name": "iron_idle",
+        "fps": 30.0,
+        "frames": 2
+      },
+      {
+        "id": 33,
+        "name": "iron_idle_noshot",
+        "fps": 30.0,
+        "frames": 2
+      },
+      {
+        "id": 34,
+        "name": "iron_shoot",
+        "fps": 30.0,
+        "frames": 20
+      },
+      {
+        "id": 35,
+        "name": "iron_shoot_noshot",
+        "fps": 30.0,
+        "frames": 15
+      },
+      {
+        "id": 36,
+        "name": "iron_from",
+        "fps": 30.0,
+        "frames": 6
+      },
+      {
+        "id": 37,
+        "name": "iron_from_noshot",
+        "fps": 30.0,
+        "frames": 6
+      },
+      {
+        "id": 38,
+        "name": "iron_shoot_empty",
+        "fps": 30.0,
+        "frames": 20
+      },
+      {
+        "id": 39,
+        "name": "jump_to",
+        "fps": 30.0,
+        "frames": 10
+      },
+      {
+        "id": 40,
+        "name": "jump_to_noshot",
+        "fps": 30.0,
+        "frames": 10
+      },
+      {
+        "id": 41,
+        "name": "jump_from",
+        "fps": 30.0,
+        "frames": 10
+      },
+      {
+        "id": 42,
+        "name": "jump_from_noshot",
+        "fps": 30.0,
+        "frames": 10
+      }
+    ],
+    "bodyparts": [
+      {
+        "name": "studio",
+        "base": 1,
+        "models": [
+          "ref_hands"
+        ]
+      },
+      {
+        "name": "studio",
+        "base": 1,
+        "models": [
+          "ref_glock"
+        ]
+      },
+      {
+        "name": "taclight",
+        "base": 1,
+        "models": [
+          "ref_nothing",
+          "ref_lightoff",
+          "ref_lighton"
+        ]
+      }
+    ]
+  },
+  "switchblade": {
+    "sha256": "196b0a5c14e37e427ab39dd664624926f5ade8b335cde3bd23af6fb41b1bda0d",
+    "sequences": [
+      {
+        "id": 0,
+        "name": "p1idle",
+        "fps": 30.0,
+        "frames": 2
+      },
+      {
+        "id": 1,
+        "name": "p1draw",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 2,
+        "name": "p1holster",
+        "fps": 30.0,
+        "frames": 15
+      },
+      {
+        "id": 3,
+        "name": "p1attack1",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 4,
+        "name": "p1top2",
+        "fps": 30.0,
+        "frames": 35
+      },
+      {
+        "id": 5,
+        "name": "p2idle",
+        "fps": 30.0,
+        "frames": 2
+      },
+      {
+        "id": 6,
+        "name": "p2draw",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 7,
+        "name": "p2holster",
+        "fps": 30.0,
+        "frames": 15
+      },
+      {
+        "id": 8,
+        "name": "p2attack1",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 9,
+        "name": "p2top1",
+        "fps": 30.0,
+        "frames": 35
+      },
+      {
+        "id": 10,
+        "name": "p1_sprint_to",
+        "fps": 30.0,
+        "frames": 10
+      },
+      {
+        "id": 11,
+        "name": "p1_sprint_idle",
+        "fps": 30.0,
+        "frames": 20
+      },
+      {
+        "id": 12,
+        "name": "p1_sprint_from",
+        "fps": 30.0,
+        "frames": 10
+      },
+      {
+        "id": 13,
+        "name": "p2_sprint_to",
+        "fps": 30.0,
+        "frames": 10
+      },
+      {
+        "id": 14,
+        "name": "p2_sprint_idle",
+        "fps": 30.0,
+        "frames": 20
+      },
+      {
+        "id": 15,
+        "name": "p2_sprint_from",
+        "fps": 30.0,
+        "frames": 10
+      },
+      {
+        "id": 16,
+        "name": "p1attack2",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 17,
+        "name": "p1attack3",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 18,
+        "name": "p2attack2",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 19,
+        "name": "p2attack3",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 20,
+        "name": "p1fidget1",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 21,
+        "name": "p1fidget2",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 22,
+        "name": "p1fidget3",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 23,
+        "name": "p2fidget1",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 24,
+        "name": "p2fidget2",
+        "fps": 30.0,
+        "frames": 30
+      },
+      {
+        "id": 25,
+        "name": "p2fidget3",
+        "fps": 30.0,
+        "frames": 30
+      }
+    ],
+    "bodyparts": [
+      {
+        "name": "dicks",
+        "base": 1,
+        "models": [
+          "ref_hands"
+        ]
+      },
+      {
+        "name": "blood",
+        "base": 1,
+        "models": [
+          "reference1",
+          "reference2",
+          "reference3",
+          "reference4"
+        ]
+      }
+    ]
+  },
+  "nativeMirrorScale": -1.0
+}

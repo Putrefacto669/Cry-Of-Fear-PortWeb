@@ -1,0 +1,35 @@
+Build commands will be stored in ../../build/game/compile_commands.json
+Waf: Entering directory `/root/cof-audits/audit-D3Kl5uly/build/game'
+[ 53/259] Compiling ../cof-logic/cof/weapons_cof.cpp
+[ 65/259] Compiling ../cof-logic/cof/puzzles.cpp
+[ 67/259] Compiling ../cof-logic/cof/player_cof.cpp
+[ 71/259] Compiling ../cof-logic/cof/padlock.cpp
+[ 74/259] Compiling ../cof-logic/cof/monsters.cpp
+[ 76/259] Compiling ../cof-logic/cof/hud.cpp
+[ 80/259] Compiling ../cof-logic/cof/extras.cpp
+[ 84/259] Compiling ../cof-logic/cof/effects_cof.cpp
+[ 87/259] Compiling ../cof-logic/cof/doors.cpp
+[ 88/259] Compiling ../cof-logic/cof/checkbrush.cpp
+[ 91/259] Compiling ../cof-logic/cof/bossbar.cpp
+[ 95/259] Compiling ../cof-logic/cof/atmosphere.cpp
+[198/259] Compiling ../cof-logic/client/cof_client.cpp
+[237/259] Compiling cl_dll/GameStudioModelRenderer.cpp
+[249/259] Compiling cl_dll/StudioModelRenderer.cpp
+[250/259] Compiling ../cof-logic/client/cof_hands.cpp
+../../game/cof-logic/client/cof_hands.cpp:37:64: warning: first argument in call to 'memset' is a pointer to non-trivially copyable type 'cl_entity_t' (aka 'cl_entity_s') [-Wnontrivial-memcall]
+   37 |  g_on=0;g_serial=-1;g_drawing=false;g_draws=g_mirrors=0;memset(&g_offhand,0,sizeof(g_offhand));
+      |                                                                ^
+../../game/cof-logic/client/cof_hands.cpp:37:64: note: explicitly cast the pointer to silence this warning
+   37 |  g_on=0;g_serial=-1;g_drawing=false;g_draws=g_mirrors=0;memset(&g_offhand,0,sizeof(g_offhand));
+      |                                                                ^
+      |                                                                (void*)
+1 warning generated.
+
+../../game/cof-logic/cof/weapons_cof.cpp:748:55: error: cannot initialize a variable of type 'CBasePlayerItem *' with an rvalue of type 'BOOL' (aka 'int')
+  748 |  CCofMobile *mobile=CarriedMobile(p);CBasePlayerItem *right=p->HasNamedPlayerItem(weapon);
+      |                                                       ^     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+
+Waf: Leaving directory `/root/cof-audits/audit-D3Kl5uly/build/game'
+Build failed
+ -> task in 'server' failed with exit status 1 (run with -v to display more information)
