@@ -755,7 +755,21 @@ void CoF_MobileNewMessage( CBasePlayer *pPlayer )
 // Two hands share the existing inventory weapons, ammo and reload state. No duplicate guns.
 static int gmsgCoFHands,gmsgCoFPhonePunch;
 void CoF_LinkHandsMessages(){if(!gmsgCoFHands)gmsgCoFHands=REG_USER_MSG("CoFHands",12);if(!gmsgCoFPhonePunch)gmsgCoFPhonePunch=REG_USER_MSG("CoFPunch",6);}
-static void PhonePunchEvent(CBasePlayer *p){MESSAGE_BEGIN(MSG_ONE,gmsgCoFPhonePunch,NULL,p->pev);WRITE_COORD(1);WRITE_COORD(1);WRITE_COORD(3);MESSAGE_END();}
+#ifdef __EMSCRIPTEN__
+extern "C" void CoF_PunchSetTrace(int,int);
+#endif
+static void PhonePunchEvent(CBasePlayer *p)
+{
+ if(gpGlobals->maxClients<=1){
+  p->pev->vuser3.x-=20;p->pev->vuser3.y+=20;p->pev->vuser3.z+=60;
+#ifdef __EMSCRIPTEN__
+  if(cofWeaponDebug.value)CoF_PunchSetTrace(p->entindex()-1,8);
+#endif
+  if(cofWeaponDebug.value)ALERT(at_console,"COF/SPPUNCH impulse angle=%g,%g,%g velocity=%g,%g,%g\n",p->pev->punchangle.x,p->pev->punchangle.y,p->pev->punchangle.z,p->pev->vuser3.x,p->pev->vuser3.y,p->pev->vuser3.z);
+  return;
+ }
+ MESSAGE_BEGIN(MSG_ONE,gmsgCoFPhonePunch,NULL,p->pev);WRITE_COORD(1);WRITE_COORD(1);WRITE_COORD(3);MESSAGE_END();
+}
 static float g_handsSend[33];
 static int g_handsVisible[33],g_handsSerial[33];
 static int DualKind(CBasePlayer *p)

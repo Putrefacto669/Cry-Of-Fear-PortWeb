@@ -9,7 +9,10 @@ try{
  const weapon=()=>cmd('cof_weapon_status');
  const load=async name=>{const n=logs.filter(l=>l.includes('client connected')).length;await p.evaluate(n=>CoFDebug.cmd(`load ${n}`),name);await wait(()=>logs.filter(l=>l.includes('client connected')).length>n);};
  await p.goto(`${base}?map=c_apartment1&sw=0&fx=0&timer=1&prefetch=0&debug=1`);await wait(()=>logs.some(l=>l.includes('client connected')));await cmd('sv_cheats 1\nr_norefresh 1\ncof_weapon_debug 1');await wait(async()=>/frozen=0 /.test(await cmd('cof_inspect !player')));
- await cmd('cof_give weapon_mobile\ncof_give weapon_switchblade\ncof_give weapon_glock');r.bagBefore=await cmd('cof_dump');
+ // Real gameplay starts with mouse capture. Acquire it while unarmed so this click
+ // cannot change phone mode or consume a pistol round before the inventory fixture.
+ await p.mouse.click(400,200);await p.waitForFunction(()=>document.pointerLockElement?.id==='canvas');
+ await cmd('cof_give weapon_mobile\ncof_give weapon_switchblade\ncof_give weapon_glock');r.bagBefore=await cmd('cof_dump\ncof_weapon_status\ncl_lw');
  const slots=Object.fromEntries([...r.bagBefore.matchAll(/bag (\d+): (weapon_\w+)/g)].map(m=>[m[2],+m[1]]));assert.equal(Object.keys(slots).length,3);
  // Actual inventory DUAL WIELD, then the other item. Neither slot is consumed.
  await p.locator('canvas').focus();await p.keyboard.press('Tab');await p.locator('#cof-bag.on').waitFor();await p.locator(`[data-item="${slots.weapon_mobile}"]`).click();await p.locator('#cof-bag .menu.on [data-act="dual"]').click();await p.locator(`[data-item="${slots.weapon_switchblade}"]`).click();await p.locator('#cof-bag.on').waitFor({state:'hidden'});

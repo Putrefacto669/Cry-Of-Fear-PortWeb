@@ -1,0 +1,261 @@
+INFO  Using log config file: jar:file:/C:/Users/josue/cof-re-tools/ghidra_12.2_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\application.log (LoggingInitialization)  
+INFO  Loading user preferences: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (884 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (DefaultSSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: SHA1PRNG (SecureRandomFactory)  
+INFO  Loaded 53 trusted CA certificates from the OS trust store. (DefaultTrustManagerFactory)  
+INFO  Loaded 118 trusted CA certificates from the Java default trust store. (DefaultTrustManagerFactory)  
+INFO  Headless startup complete (3155 ms) (AnalyzeHeadless)  
+INFO  Class searcher loaded 60 extension points (19 false positives) (ClassSearcher)  
+INFO  HEADLESS Script Paths:
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\MicrosoftCodeAnalyzer\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Processors\JVM\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\PDB\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\Decompiler\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\BSim\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\PyGhidra\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Processors\DATA\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\BytePatterns\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\WildcardAssembler\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\Base\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\FileFormats\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\VersionTracking\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Debug\Debugger\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Debug\Debugger-rmi-trace\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\GnuDemangler\ghidra_scripts
+    C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web\tools\ghidra
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\FunctionID\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\SystemEmulation\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\DecompilerDependent\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\Swift\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Processors\8051\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Processors\Atmel\ghidra_scripts
+    C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Processors\PIC\ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+INFO  Creating project: C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web\build\native-sp-engine\cof_singleplayer (HeadlessAnalyzer)  
+INFO  Creating project: C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web\build\native-sp-engine\cof_singleplayer (DefaultProject)  
+INFO  REPORT: Processing input files:  (HeadlessAnalyzer)  
+INFO       project: C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web\build\native-sp-engine\cof_singleplayer (HeadlessAnalyzer)  
+INFO  IMPORTING: file:///C:/Users/josue/cof-re-tools/hw.dll (HeadlessAnalyzer)  
+INFO  Using Loader: Portable Executable (PE) (ProgramLoader)  
+INFO  Using Language/Compiler: x86:LE:32:default:windows (ProgramLoader)  
+INFO  Using Library Search Path: [., C:\WINDOWS\SysWOW64, C:\Users\josue\cof-re-tools\jdk-25.0.4.1+1\bin, C:\WINDOWS\Sun\Java\bin, C:\WINDOWS\system32, C:\WINDOWS, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\powershell, C:\Users\josue\.codex\tmp\arg0-windows\codex-arg00B9RBh, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\libheif\libheif\bin, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\jxrlib\jxrlib\bin, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\poppler\Library\bin, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\bin\override, C:\Program Files\Microsoft\jdk-21.0.11.10-hotspot\bin, C:\Program Files (x86)\Common Files\Oracle\Java\java8path, C:\Program Files (x86)\Common Files\Oracle\Java\javapath, C:\WINDOWS\System32\Wbem, C:\WINDOWS\System32\WindowsPowerShell\v1.0\, C:\WINDOWS\System32\OpenSSH\, C:\Program Files (x86)\Microsoft SQL Server\160\Tools\Binn\, C:\Program Files\Microsoft SQL Server\160\Tools\Binn\, C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\, C:\Program Files\Microsoft SQL Server\160\DTS\Binn\, C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR, C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common, C:\Program Files\Microsoft SQL Server\150\Tools\Binn\, C:\Program Files\dotnet\, C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\, C:\Program Files\nodejs\, C:\Program Files\Git\cmd, C:\Program Files\GitHub CLI\, C:\xampp\php, C:\Users\josue\.cargo\bin, C:\Ruby40-x64\bin, C:\Users\josue\AppData\Local\Microsoft\WindowsApps, C:\Users\josue\AppData\Local\Programs\Microsoft VS Code\bin, C:\Users\josue\.dotnet\tools, C:\Users\josue\AppData\Roaming\npm, C:\Users\josue\AppData\Local\Programs\Antigravity IDE\bin, C:\Users\josue\AppData\Local\Microsoft\WinGet\Packages\hpjansson.Chafa_Microsoft.Winget.Source_8wekyb3d8bbwe\chafa-1.18.2-1-x86_64-win, C:\Users\josue\AppData\Local\Programs\Ollama, C:\Users\josue\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\bin\fallback, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin, C:\Users\josue\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\git\cmd, C:\Users\josue\AppData\Local\OpenAI\Codex\bin\57159798136552f4, C:\Users\josue\AppData\Local\OpenAI\Codex\bin\22cfb1d302613eae] (ProgramLoader)  
+INFO  TLS callbacks at 100057cc (TLSDirectory)  
+INFO  TLS callbacks at 10006fe4 (TLSDirectory)  
+WARN  Invalid or missing function at 1008f108 (ExportDataDirectory)  
+WARN  Invalid or missing function at 100dcd7c (ExportDataDirectory)  
+INFO  TLS callbacks at 100237d0 (TLSDirectory)  
+WARN  Invalid or missing function at 10048488 (ExportDataDirectory)  
+WARN  Invalid or missing function at 52e820e8 (ExportDataDirectory)  
+INFO  Additional info:
+Loading file:///C:/Users/josue/cof-re-tools/hw.dll?MD5=b2d22dec0f83d196c901315f6fc8bae8...
+------------------------------------------------
+
+Searching 44 paths for library ADVAPI32.DLL...
+Loading file:///C:/Windows/SysWOW64/advapi32.dll?MD5=6f319acb447453b1365b3c508cf6b344...
+Using existing exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\advapi32.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 44 paths for library DDRAW.DLL...
+Loading file:///C:/Windows/SysWOW64/ddraw.dll?MD5=67e322bbe5fc8edfeb801240cdbdf70c...
+Created exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\ddraw.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 44 paths for library DINPUT.DLL...
+Loading file:///C:/Windows/SysWOW64/dinput.dll?MD5=6940250083d43fede2f664ff73f38e38...
+Created exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\dinput.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 44 paths for library GDI32.DLL...
+Loading file:///C:/Windows/SysWOW64/gdi32.dll?MD5=37002dbb23f87dae9ebd7dd7b5051995...
+Created exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\gdi32.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 44 paths for library KERNEL32.DLL...
+Loading file:///C:/Windows/SysWOW64/kernel32.dll?MD5=770414a520903821a02bbcad3ca69fcc...
+Using existing exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\kernel32.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 44 paths for library MSS32.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 44 paths for library OLE32.DLL...
+Loading file:///C:/Windows/SysWOW64/ole32.dll?MD5=d1ff0e61ad5f77f5661664728a6b2eaf...
+[ole32.dll]: failed to create WEVTResource at 10139740: Failed to resolve data length for WEVTResource
+Created exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\ole32.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 44 paths for library OLEAUT32.DLL...
+Loading file:///C:/Windows/SysWOW64/oleaut32.dll?MD5=5e87103ae474f375ce2f3dfbf5406104...
+Created exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\oleaut32.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 44 paths for library STEAM_API_C.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 44 paths for library USER32.DLL...
+Loading file:///C:/Windows/SysWOW64/user32.dll?MD5=a87613d5a9420564cc848130252fed2b...
+[user32.dll]: failed to create WEVTResource at 100fba70: Failed to resolve data length for WEVTResource
+Using existing exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\user32.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 44 paths for library VERSION.DLL...
+Loading file:///C:/Windows/SysWOW64/version.dll?MD5=e540ee5a5c515d5c3005f0cd6d133124...
+Created exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\version.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 44 paths for library VGUI.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 44 paths for library WININET.DLL...
+Loading file:///C:/Windows/SysWOW64/wininet.dll?MD5=67910f6a6fbd891adf847af3f3996120...
+Created exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\wininet.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 44 paths for library WINMM.DLL...
+Loading file:///C:/Windows/SysWOW64/winmm.dll?MD5=75d3005314fd1d51e05457c52583792f...
+[winmm.dll]: failed to create WEVTResource at 1002c310: Failed to resolve data length for WEVTResource
+Using existing exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\winmm.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 44 paths for library WS2_32.DLL...
+Loading file:///C:/Windows/SysWOW64/ws2_32.dll?MD5=638e35821e4c0a4f32eb78089af56184...
+[ws2_32.dll]: failed to create WEVTResource at 100524b8: Failed to resolve data length for WEVTResource
+Created exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\ws2_32.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 44 paths for library WSOCK32.DLL...
+Loading file:///C:/Windows/SysWOW64/wsock32.dll?MD5=37f04524570f79e3a206d307af4a0e92...
+Using existing exports file: C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\wsock32.exports
+Library not saved to project.
+------------------------------------------------
+
+Applying cached symbols from DINPUT.DLL
+Applying cached symbols from DDRAW.DLL
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\winmm.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\wsock32.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\kernel32.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\user32.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\gdi32.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\advapi32.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\ole32.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\version.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\wininet.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\oleaut32.exports
+Applying C:\Users\josue\AppData\Roaming\ghidra\ghidra_12.2_PUBLIC\symbols\win32\ws2_32.exports
+Linking the External Programs of 'hw.dll' to imported libraries...
+  [DINPUT.DLL] -> not found in project
+  [DDRAW.DLL] -> not found in project
+  [WINMM.DLL] -> not found in project
+  [WSOCK32.DLL] -> not found in project
+  [KERNEL32.DLL] -> not found in project
+  [USER32.DLL] -> not found in project
+  [GDI32.DLL] -> not found in project
+  [ADVAPI32.DLL] -> not found in project
+  [OLE32.DLL] -> not found in project
+  [VERSION.DLL] -> not found in project
+  [VGUI.DLL] -> not found in project
+  [MSS32.DLL] -> not found in project
+  [WININET.DLL] -> not found in project
+  [STEAM_API_C.DLL] -> not found in project
+  [OLEAUT32.DLL] -> not found in project
+  [WS2_32.DLL] -> not found in project
+------------------------------------------------
+
+ (ProgramLoader)  
+INFO  IMPORTING: Loaded 0 additional files (HeadlessAnalyzer)  
+INFO  ANALYZING all memory and code: file:///C:/Users/josue/cof-re-tools/hw.dll (HeadlessAnalyzer)  
+WARN  Ignoring leading '_' chars on no-return name '___raise_securityfailure' specified in file: C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\Base\data\PEFunctionsThatDoNotReturn (NoReturnFunctionAnalyzer)  
+WARN  Ignoring leading '_' chars on no-return name '___report_rangecheckfailure' specified in file: C:\Users\josue\cof-re-tools\ghidra_12.2_PUBLIC\Ghidra\Features\Base\data\PEFunctionsThatDoNotReturn (NoReturnFunctionAnalyzer)  
+INFO  Unable to find DWARF information, skipping DWARF analysis (DWARFAnalyzer)  
+INFO  Skipping PDB processing: failed to locate PDB file in configured locations (PdbUniversalAnalyzer)  
+INFO  Use a script to set the PDB file location. I.e.,
+    PdbAnalyzer.setPdbFileOption(currentProgram, new File("/path/to/pdb/file.pdb")); or
+    PdbUniversalAnalyzer.setPdbFileOption(currentProgram, new File("/path/to/pdb/file.pdb"));
+Or set the symbol server search configuration using:    PdbPlugin.saveSymbolServerServiceConfig(...);
+ This must be done using a pre-script (prior to analysis). (PdbUniversalAnalyzer)  
+INFO  Packed database cache: C:\Users\josue\AppData\Local\ghidra\packed-db-cache (PackedDatabaseCache)  
+WARN  Decompiling 01e1339c: Unable to read bytes at ram:72756f53 (DecompileCallback)  
+WARN  Decompiling 01e1339c, pcode error at 44334143: Could not follow disassembly flow into non-existing memory at 44334143 (DecompileCallback)  
+WARN  Decompiling 01e1339c: Unable to read bytes at ram:72756f53 (DecompileCallback)  
+WARN  Decompiling 01e1339c, pcode error at 44334143: Could not follow disassembly flow into non-existing memory at 44334143 (DecompileCallback)  
+WARN  Decompiling 01e1339c: Unable to read bytes at ram:72756f53 (DecompileCallback)  
+ERROR Couldn't create TypeDescriptor data @ 01ed55c8. TypeDescriptor data type at 01ed55c8 doesn't have a valid type name. (CreateTypeDescriptorBackgroundCmd)  
+ERROR Couldn't create TypeDescriptor data @ 01ed6780. TypeDescriptor data type at 01ed6780 doesn't have a valid type name. (CreateTypeDescriptorBackgroundCmd)  
+ERROR Couldn't create TypeDescriptor data @ 01ed6810. TypeDescriptor data type at 01ed6810 doesn't have a valid type name. (CreateTypeDescriptorBackgroundCmd)  
+INFO  Applied data type archive: windows_vs12_32 (ApplyDataArchiveAnalyzer)  
+INFO  Applied data type archive: windows_vs12_32 (ApplyDataArchiveAnalyzer)  
+INFO  No functions detected that make variadic function calls with format strings containing format specifiers (FormatStringAnalyzer)  
+INFO  -----------------------------------------------------
+    ASCII Strings                              1.176 secs
+    Apply Data Archives                        0.315 secs
+    Call Convention ID                         0.007 secs
+    Call-Fixup Installer                       0.216 secs
+    Create Address Tables                      0.622 secs
+    Create Address Tables - One Time           1.214 secs
+    Create Function                            6.276 secs
+    DWARF                                      0.019 secs
+    Data Reference                             1.036 secs
+    Decompiler Switch Analysis                32.630 secs
+    Demangler Microsoft                        0.497 secs
+    Disassemble                               20.704 secs
+    Disassemble Entry Points                   0.813 secs
+    Embedded Media                             0.424 secs
+    External Entry References                  0.006 secs
+    Function ID                                6.430 secs
+    Function Start Pre Search                  0.042 secs
+    Function Start Search                      2.595 secs
+    Function Start Search After Code           0.391 secs
+    Function Start Search After Data           0.337 secs
+    Function Start Search delayed - One Time   0.004 secs
+    Non-Returning Functions - Discovered       6.584 secs
+    Non-Returning Functions - Known            0.115 secs
+    PDB Universal                              0.024 secs
+    Reference                                  1.495 secs
+    Scalar Operand References                 13.554 secs
+    Shared Return Calls                        2.388 secs
+    Source Language Support                    0.005 secs
+    Stack                                     14.216 secs
+    Subroutine References                      1.448 secs
+    Subroutine References - One Time           0.015 secs
+    Variadic Function Signature Override       0.456 secs
+    Windows x86 PE Exception Handling          4.184 secs
+    Windows x86 PE RTTI Analyzer               3.775 secs
+    Windows x86 Thread Environment Block (TEB) Analyzer     0.012 secs
+    WindowsResourceReference                   1.570 secs
+    X86 Function Callee Purge                  6.381 secs
+    x86 Constant Reference Analyzer           22.613 secs
+-----------------------------------------------------
+     Total Time   154 secs
+-----------------------------------------------------
+ (AutoAnalysisManager)  
+INFO  REPORT: Analysis succeeded for file: file:///C:/Users/josue/cof-re-tools/hw.dll (HeadlessAnalyzer)  
+INFO  REPORT: Execute script: DumpProgramInfo.java 'C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web/build/validation/phone-singleplayer-2026-11-02/engine-identity.json'  (HeadlessAnalyzer)  
+INFO  SCRIPT: C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web\tools\ghidra\DumpProgramInfo.java (HeadlessAnalyzer)  
+INFO  REPORT: Execute script: DumpBlackRefs.java 'C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web/build/validation/phone-singleplayer-2026-11-02/native-engine-punch.txt' 'punchangle+punchvel+viewpunch'  (HeadlessAnalyzer)  
+INFO  SCRIPT: C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web\tools\ghidra\DumpBlackRefs.java (HeadlessAnalyzer)  
+INFO  REPORT: Execute script: DumpScalarUse.java 'C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web/build/validation/phone-singleplayer-2026-11-02/native-engine-fields.txt' '0x280' '-'  (HeadlessAnalyzer)  
+INFO  SCRIPT: C:\Users\josue\OneDrive\Desktop\Cry Of Fear Web Alpha Version\Cry-Of-Fear-Port-Web\tools\ghidra\DumpScalarUse.java (HeadlessAnalyzer)  
+INFO  ANALYZING changes made by post scripts: file:///C:/Users/josue/cof-re-tools/hw.dll (HeadlessAnalyzer)  
+INFO  REPORT: Post-analysis succeeded for file: file:///C:/Users/josue/cof-re-tools/hw.dll (HeadlessAnalyzer)  
+INFO  /hw.dll: file created (josue) (LocalFileSystem)  
+INFO  REPORT: Save succeeded for: /hw.dll (cof_singleplayer:/hw.dll) (HeadlessAnalyzer)  
+INFO  REPORT: Import succeeded (HeadlessAnalyzer)  

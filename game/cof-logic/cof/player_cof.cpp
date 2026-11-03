@@ -554,9 +554,10 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
 		ALERT( at_console, "COF/PHONE mode=%d light=%d dual=%d message=%d\n",
 			state ? state->phone.flash : 0, state ? state->flashlight : 0,
 			state ? state->phone.dual : 0, state ? state->phone.message : 0 );
-		return true;
-	}
-	if( FStrEq( pcmd, "cof_face" ))
+  if(CVAR_GET_FLOAT("cof_weapon_debug"))ALERT(at_console,"COF/SPPUNCH state angle=%g,%g,%g velocity=%g,%g,%g maxclients=%d\n",pPlayer->pev->punchangle.x,pPlayer->pev->punchangle.y,pPlayer->pev->punchangle.z,pPlayer->pev->vuser3.x,pPlayer->pev->vuser3.y,pPlayer->pev->vuser3.z,gpGlobals->maxClients);
+  return true;
+ }
+ if( FStrEq( pcmd, "cof_face" ))
 	{
 		// turns to the nearest living monster, eyes on its chest
 		CBaseEntity *pNear = NULL, *pBest = NULL;
@@ -1087,6 +1088,7 @@ public:
 	BOOL m_fSmsUnread;
 	BOOL m_fMobileFlash;
 	BOOL m_fMobileDual;
+ Vector m_vecPunchVelocity;
  int m_iDualWeapon,m_iDualSequence,m_iDualSerial;
  float m_flDualAnimTime;
 	BOOL m_fFlashlight;
@@ -1110,6 +1112,7 @@ TYPEDESCRIPTION CCofPlayerState::m_SaveData[] =
 	DEFINE_FIELD( CCofPlayerState, m_fSmsUnread, FIELD_BOOLEAN ),
 	DEFINE_FIELD( CCofPlayerState, m_fMobileFlash, FIELD_BOOLEAN ),
 	DEFINE_FIELD( CCofPlayerState, m_fMobileDual, FIELD_BOOLEAN ),
+ DEFINE_FIELD(CCofPlayerState,m_vecPunchVelocity,FIELD_VECTOR),
  DEFINE_FIELD(CCofPlayerState,m_iDualWeapon,FIELD_INTEGER),
  DEFINE_FIELD(CCofPlayerState,m_iDualSequence,FIELD_INTEGER),
  DEFINE_FIELD(CCofPlayerState,m_iDualSerial,FIELD_INTEGER),
@@ -1147,6 +1150,8 @@ int CCofPlayerState::Save( CSave &save )
 	m_fSmsUnread = s->phone.unread;
 	m_fMobileFlash = s->phone.flash;
 	m_fMobileDual = s->phone.dual;
+ CBaseEntity *actor=UTIL_PlayerByIndex(1);m_vecPunchVelocity=actor?actor->pev->vuser3:g_vecZero;
+ if(actor && CVAR_GET_FLOAT("cof_weapon_debug"))ALERT(at_console,"COF/SPPUNCH saved angle=%g,%g,%g velocity=%g,%g,%g\n",actor->pev->punchangle.x,actor->pev->punchangle.y,actor->pev->punchangle.z,m_vecPunchVelocity.x,m_vecPunchVelocity.y,m_vecPunchVelocity.z);
  m_iDualWeapon=s->phone.dualWeapon;m_iDualSequence=s->phone.dualSequence;m_iDualSerial=s->phone.dualSerial;m_flDualAnimTime=s->phone.dualAnimTime;
 	m_fFlashlight = s->flashlight;
 	m_Extras=CoF_ExtrasPrimaryState();
@@ -1184,6 +1189,7 @@ int CCofPlayerState::Restore( CRestore &restore )
 	s->phone.unread = m_fSmsUnread;
 	s->phone.flash = m_fMobileFlash;
 	s->phone.dual = m_fMobileDual;
+ CBaseEntity *actor=UTIL_PlayerByIndex(1);if(actor){actor->pev->vuser3=m_vecPunchVelocity;if(CVAR_GET_FLOAT("cof_weapon_debug"))ALERT(at_console,"COF/SPPUNCH restored angle=%g,%g,%g velocity=%g,%g,%g\n",actor->pev->punchangle.x,actor->pev->punchangle.y,actor->pev->punchangle.z,m_vecPunchVelocity.x,m_vecPunchVelocity.y,m_vecPunchVelocity.z);}
  s->phone.dualWeapon=m_iDualWeapon;s->phone.dualSequence=m_iDualSequence;s->phone.dualSerial=m_iDualSerial;s->phone.dualAnimTime=m_flDualAnimTime;
 	s->flashlight = m_fFlashlight;
 	CoF_ExtrasPrimaryState()=m_Extras;

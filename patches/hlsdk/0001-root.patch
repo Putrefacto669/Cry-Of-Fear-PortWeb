@@ -78,6 +78,23 @@ index 80f4cdae..1fda8f1e 100644
  	int i;
  
  	if( width < 640 )
+diff --git a/cl_dll/entity.cpp b/cl_dll/entity.cpp
+index f0d2c86a..8203046d 100644
+--- a/cl_dll/entity.cpp
++++ b/cl_dll/entity.cpp
+@@ -219,7 +219,11 @@ void DLLEXPORT HUD_TxferPredictionData( struct entity_state_s *ps, const struct
+ 
+ 	VectorCopy( ppcd->vuser1, pcd->vuser1 );
+ 	VectorCopy( ppcd->vuser2, pcd->vuser2 );
+-	VectorCopy( ppcd->vuser3, pcd->vuser3 );
++#ifdef __EMSCRIPTEN__
++ // SP vuser3 is authoritative movement state, not predicted ammo metadata.
++ if(gEngfuncs.GetMaxClients()>1)
++#endif
++ VectorCopy( ppcd->vuser3, pcd->vuser3 );
+ 	VectorCopy( ppcd->vuser4, pcd->vuser4 );
+ 
+ 	memcpy( wd, pwd, MAX_WEAPONS * sizeof(weapon_data_t) );
 diff --git a/cl_dll/hud.cpp b/cl_dll/hud.cpp
 index 45967b72..e7502ef8 100644
 --- a/cl_dll/hud.cpp
@@ -194,14 +211,14 @@ index ffa101fc..71ca7b6f 100644
  	// root->getSurfaceBase()->setEmulatedCursorVisible( true );
  
 diff --git a/cl_dll/view.cpp b/cl_dll/view.cpp
-index 3b3187de..f920fe11 100644
+index 3b3187de..8156e3de 100644
 --- a/cl_dll/view.cpp
 +++ b/cl_dll/view.cpp
 @@ -90,6 +90,7 @@ qboolean v_resetCamera = 1;
  
  vec3_t v_client_aimangles;
  vec3_t g_ev_punchangle;
-+void CoF_ClientPhonePunchView(float *,float);
++void CoF_ClientPhonePunchView(float *,float,const float *);
  
  cvar_t	*scr_ofsx;
  cvar_t	*scr_ofsy;
@@ -209,7 +226,7 @@ index 3b3187de..f920fe11 100644
  	VectorAdd( pparams->viewangles, (float *)&g_ev_punchangle, pparams->viewangles );
  
  	V_DropPunchAngle( pparams->frametime, (float *)&g_ev_punchangle );
-+	CoF_ClientPhonePunchView(pparams->viewangles,pparams->frametime);
++	CoF_ClientPhonePunchView(pparams->viewangles,pparams->frametime,pparams->punchangle);
  
  	// smooth out stair step ups
  #if 1
@@ -574,7 +591,7 @@ index d7ec85fd..3bfa1ba4 100644
  
  //
 diff --git a/dlls/client.cpp b/dlls/client.cpp
-index da2e9e1d..0db5b553 100644
+index da2e9e1d..547658f6 100644
 --- a/dlls/client.cpp
 +++ b/dlls/client.cpp
 @@ -465,6 +465,9 @@ called each time a player uses a "cmd" command
@@ -607,6 +624,18 @@ index da2e9e1d..0db5b553 100644
  			{
  				return 0;
  			}
+@@ -1802,6 +1809,11 @@ void UpdateClientData( const struct edict_s *ent, int sendweapons, struct client
+ 		}
+ 	}
+ #endif
++#ifdef __EMSCRIPTEN__
++ // CoF uses cl_lw=0: preserve SP angular velocity for movement prediction,
++ // instead of the stock weapon-prediction ammo encoding in vuser3.z.
++ if(gpGlobals->maxClients<=1 && !sendweapons)cd->vuser3=pev->vuser3;
++#endif
+ }
+ 
+ /*
 diff --git a/dlls/doors.cpp b/dlls/doors.cpp
 index 1f5b4b06..bf913531 100644
 --- a/dlls/doors.cpp
@@ -1573,7 +1602,7 @@ index 3f2758cd..a08a02d2 100644
  					'pm_shared/*.c',
  					'public/safe_snprintf.c',
 diff --git a/pm_shared/pm_shared.c b/pm_shared/pm_shared.c
-index 925d040c..c33e2bff 100644
+index 925d040c..9844f2f6 100644
 --- a/pm_shared/pm_shared.c
 +++ b/pm_shared/pm_shared.c
 @@ -16,6 +16,7 @@
@@ -1820,8 +1849,7 @@ index 925d040c..c33e2bff 100644
 -		// right foot
 -		case 0:
 -			pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade1.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
-+		if( pmove->waterlevel > 2 )
- 			break;
+-			break;
 -		case 1:
 -			pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade2.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
 -			break;
@@ -1831,7 +1859,8 @@ index 925d040c..c33e2bff 100644
 -			break;
 -		case 3:
 -			pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade4.wav", fvol, ATTN_NORM, 0, PITCH_NORM );
--			break;
++		if( pmove->waterlevel > 2 )
+ 			break;
 -		}
 +		snprintf( sample, sizeof( sample ), "player/footsteps/wade%d.wav", irand + 1 );
 +		pmove->PM_PlaySound( CHAN_BODY, sample, fvol, ATTN_NORM, 0, 80 );
@@ -1947,3 +1976,42 @@ index 925d040c..c33e2bff 100644
  	}
  }
  
+@@ -2888,9 +2808,37 @@ PM_DropPunchAngle
+ 
+ =============
+ */
++#ifdef __EMSCRIPTEN__
++// CoF SP: PM vuser3 is angular punch velocity (original 10005260).
++// Debug counters are outside movement/save state and never affect the recurrence.
++static int cofPunchTrace[32];
++void CoF_PunchSetTrace(int player, int frames)
++{
++ if(player>=0 && player<32)cofPunchTrace[player]=frames<0?0:frames>8?8:frames;
++}
++#endif
+ void PM_DropPunchAngle( vec3_t punchangle )
+ {
+-	float len;
++ float len;
++#ifdef __EMSCRIPTEN__
++ if(!pmove->multiplayer) {
++  float dt=pmove->frametime,damping,spring;int i;
++  vec3_t before,velocity;
++  if(pmove->dead)pmove->vuser3[2]=670.0f;
++  if(atoi(pmove->PM_Info_ValueForKey(pmove->physinfo,"chr"))==2)pmove->vuser3[0]=670.0f;
++  if((double)Length(punchangle)<=0.001 && (double)Length(pmove->vuser3)<=0.001)return;
++  VectorCopy(punchangle,before);VectorCopy(pmove->vuser3,velocity);
++  VectorMA(punchangle,dt,pmove->vuser3,punchangle);
++  damping=max(0.0f,1.0f-9.0f*dt);VectorScale(pmove->vuser3,damping,pmove->vuser3);
++  spring=min(2.0f,max(0.0f,65.0f*dt));VectorMA(pmove->vuser3,-spring,punchangle,pmove->vuser3);
++  for(i=0;i<3;i++){float limit=i==1?179.0f:89.0f;punchangle[i]=min(limit,max(-limit,punchangle[i]));}
++  if(pmove->server && pmove->player_index>=0 && pmove->player_index<32 && cofPunchTrace[pmove->player_index]>0) {
++   --cofPunchTrace[pmove->player_index];
++   pmove->Con_Printf("COF/SPPUNCH step dt=%.9g before=%.9g,%.9g,%.9g velocity=%.9g,%.9g,%.9g after=%.9g,%.9g,%.9g next=%.9g,%.9g,%.9g\n",dt,before[0],before[1],before[2],velocity[0],velocity[1],velocity[2],punchangle[0],punchangle[1],punchangle[2],pmove->vuser3[0],pmove->vuser3[1],pmove->vuser3[2]);
++  }
++  return;
++ }
++#endif
+ 	
+ 	len = VectorNormalize( punchangle );
+ 	len -= ( 10.0f + len * 0.5f ) * pmove->frametime;

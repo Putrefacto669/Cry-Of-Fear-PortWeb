@@ -4,7 +4,7 @@
 #include "cl_util.h"
 #include "parsemsg.h"
 #include <math.h>
-static float angle[3],velocity[3],peak[3],lastApplied[3];
+static float angle[3],velocity[3],peak[3],lastApplied[3],serverAngle[3],serverPeak[3];
 static unsigned kicks,frames,traceFrames;
 static cvar_t *trace;
 static int PunchMessage(const char*,int size,void *data)
@@ -15,7 +15,7 @@ static int PunchMessage(const char*,int size,void *data)
 }
 static void PunchStatus()
 {
- gEngfuncs.Con_Printf("COF/PHONEPUNCH state kicks=%u frames=%u angle=%g,%g,%g velocity=%g,%g,%g applied=%g,%g,%g peak=%g,%g,%g\n",kicks,frames,angle[0],angle[1],angle[2],velocity[0],velocity[1],velocity[2],lastApplied[0],lastApplied[1],lastApplied[2],peak[0],peak[1],peak[2]);
+ gEngfuncs.Con_Printf("COF/PHONEPUNCH state kicks=%u frames=%u angle=%g,%g,%g velocity=%g,%g,%g applied=%g,%g,%g peak=%g,%g,%g native=%g,%g,%g nativePeak=%g,%g,%g\n",kicks,frames,angle[0],angle[1],angle[2],velocity[0],velocity[1],velocity[2],lastApplied[0],lastApplied[1],lastApplied[2],peak[0],peak[1],peak[2],serverAngle[0],serverAngle[1],serverAngle[2],serverPeak[0],serverPeak[1],serverPeak[2]);
 }
 void CoF_ClientPhonePunchInit()
 {
@@ -25,11 +25,12 @@ void CoF_ClientPhonePunchInit()
 }
 void CoF_ClientPhonePunchReset()
 {
- for(int i=0;i<3;++i)angle[i]=velocity[i]=peak[i]=lastApplied[i]=0;
+ for(int i=0;i<3;++i)angle[i]=velocity[i]=peak[i]=lastApplied[i]=serverAngle[i]=serverPeak[i]=0;
  kicks=frames=traceFrames=0;
 }
-void CoF_ClientPhonePunchView(float *view,float dt)
+void CoF_ClientPhonePunchView(float *view,float dt,const float *native)
 {
+ for(int i=0;i<3;++i){serverAngle[i]=native[i];serverPeak[i]=fmaxf(serverPeak[i],fabsf(native[i]));}
  for(int i=0;i<3;++i){lastApplied[i]=angle[i];view[i]+=angle[i];peak[i]=fmaxf(peak[i],fabsf(angle[i]));}
  // The original applies the previous angle to this frame, then advances the spring.
  float a2=0,v2=0;for(int i=0;i<3;++i){a2+=angle[i]*angle[i];v2+=velocity[i]*velocity[i];}
