@@ -1,0 +1,48 @@
+{
+  "checks": [
+    {
+      "name": "open game defers update with original modules and save"
+    },
+    {
+      "name": "accept from active game upgrades frontend without changing native save",
+      "version": "d071fd1b614e"
+    },
+    {
+      "name": "native save restores after legacy-to-candidate update"
+    },
+    {
+      "name": "normal reload retains candidate modules and IndexedDB save"
+    },
+    {
+      "name": "old network HTML falls back to coherent cached candidate"
+    },
+    {
+      "name": "browser close/reopen retains registration, five module hashes and native save"
+    },
+    {
+      "name": "blocked multi-tab acceptance resets real update button"
+    },
+    {
+      "name": "browser-storage failure prevents reload and allows retry"
+    },
+    {
+      "name": "accept from menu flushes pending IDBFS before controller change",
+      "version": "787fbb09d6fc"
+    },
+    {
+      "name": "save loads after menu update"
+    }
+  ],
+  "modules": {
+    "server.wasm": "c2d9d984a416e6a8552f1a75939c065c0bd983263b0d8206e60c5f5d9e6a69a5",
+    "client.wasm": "fac7e66382a9915f33534030eab35ab0c8a9e846304e0200000bb300f8cde585",
+    "libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec",
+    "filesystem_stdio.wasm": "85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95",
+    "menu.wasm": "bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051"
+  },
+  "save": "1b19946dfc02c2ceba700dc6a4b4441e5a35e31cdc53e0968509853a22de40b1",
+  "candidateVersion": "d071fd1b614e",
+  "nextVersion": "787fbb09d6fc",
+  "passed": true,
+  "errors": []
+}

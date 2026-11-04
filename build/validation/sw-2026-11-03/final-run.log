@@ -1,0 +1,34 @@
+PASS failed precache preserves active version and cached engine
+PASS failed installation retries successfully
+PASS another open client prevents unconsented activation
+PASS single consenting client can activate candidate
+PASS poisoned cache entry is evicted and repaired from verified bytes
+PASS interrupted gzip is not cached; retry recovers
+PASS cache miss rejects a different release instead of mixing engine modules
+PASS correct release recovers after revision mismatch
+PASS held update-script request explains a pending promise without stopping active client
+PASS declining update keeps old controller and coherent cached resources
+PASS failed precache preserves active version and cached engine
+PASS failed installation retries successfully
+PASS another open client prevents unconsented activation
+PASS single consenting client can activate candidate
+PASS poisoned cache entry is evicted and repaired from verified bytes
+PASS interrupted gzip is not cached; retry recovers
+PASS cache miss rejects a different release instead of mixing engine modules
+PASS correct release recovers after revision mismatch
+PASS held update-script request explains a pending promise without stopping active client
+PASS declining update keeps old controller and coherent cached resources
+PASS open game defers update with original modules and save
+PASS accept from active game upgrades frontend without changing native save
+PASS native save restores after legacy-to-candidate update
+PASS normal reload retains candidate modules and IndexedDB save
+PASS old network HTML falls back to coherent cached candidate
+PASS browser close/reopen retains registration, five module hashes and native save
+PASS blocked multi-tab acceptance resets real update button
+PASS browser-storage failure prevents reload and allows retry
+PASS accept from menu flushes pending IDBFS before controller change
+PASS save loads after menu update
+PASS phone_singleplayer_punch
+PASS dual_hands
+PASS extras_persistence
+OK pointer lock: raw movement, unsupported fallback, rejection preserved, legacy APIs and ignored SDL promises

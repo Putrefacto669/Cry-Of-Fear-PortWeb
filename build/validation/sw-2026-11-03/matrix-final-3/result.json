@@ -1,0 +1,47 @@
+{
+  "checks": [
+    {
+      "name": "failed precache preserves active version and cached engine"
+    },
+    {
+      "name": "failed installation retries successfully"
+    },
+    {
+      "name": "another open client prevents unconsented activation"
+    },
+    {
+      "name": "single consenting client can activate candidate"
+    },
+    {
+      "name": "poisoned cache entry is evicted and repaired from verified bytes"
+    },
+    {
+      "name": "interrupted gzip is not cached; retry recovers"
+    },
+    {
+      "name": "cache miss rejects a different release instead of mixing engine modules"
+    },
+    {
+      "name": "correct release recovers after revision mismatch"
+    },
+    {
+      "name": "held update-script request explains a pending promise without stopping active client",
+      "active": "activated",
+      "update": "pending"
+    },
+    {
+      "name": "declining update keeps old controller and coherent cached resources"
+    }
+  ],
+  "held": {
+    "active": "activated",
+    "update": "pending"
+  },
+  "passed": true,
+  "errors": [],
+  "finalState": {
+    "waiting": "installed",
+    "active": "activated",
+    "update": "resolved"
+  }
+}

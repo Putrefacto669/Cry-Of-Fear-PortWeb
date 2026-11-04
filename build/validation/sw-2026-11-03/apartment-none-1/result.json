@@ -1,0 +1,42 @@
+{
+  "mode": "apartment-none",
+  "modulesBefore": {
+    "server.wasm": "07e7ef5cb6df07708b5c3c15abb7fd18e6a3bcb17d60efb5ad0e6605c2d37ee1",
+    "client.wasm": "e0bc9af55fa19c19b085c88da63eb425f8606976da408425db28fac2517b2222",
+    "libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec"
+  },
+  "before": {
+    "active": "activated",
+    "controller": "http://127.0.0.1:8130/sw.js"
+  },
+  "update": "pending after 30 seconds",
+  "pendingRequests": [
+    {
+      "url": "http://127.0.0.1:8130/mp3/2aphall1.mp3",
+      "worker": false,
+      "range": "bytes=0-"
+    }
+  ],
+  "browserState": {
+    "readyState": "complete",
+    "audio": [
+      {
+        "src": "http://127.0.0.1:8130/mp3/2aphall1.mp3",
+        "paused": false,
+        "networkState": 1,
+        "readyState": 4,
+        "buffered": 1
+      }
+    ]
+  },
+  "after": {
+    "active": "activated",
+    "controller": "http://127.0.0.1:8130/sw.js"
+  },
+  "modulesWaiting": {
+    "server.wasm": "07e7ef5cb6df07708b5c3c15abb7fd18e6a3bcb17d60efb5ad0e6605c2d37ee1",
+    "client.wasm": "e0bc9af55fa19c19b085c88da63eb425f8606976da408425db28fac2517b2222",
+    "libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec"
+  },
+  "errors": []
+}

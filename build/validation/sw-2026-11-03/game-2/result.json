@@ -1,0 +1,38 @@
+{
+  "checks": [
+    {
+      "name": "open game defers update with original modules and save"
+    },
+    {
+      "name": "accept from active game upgrades frontend without changing native save",
+      "version": "32ada0996fc1"
+    },
+    {
+      "name": "native save restores after legacy-to-candidate update"
+    },
+    {
+      "name": "normal reload retains candidate modules and IndexedDB save"
+    },
+    {
+      "name": "old network HTML falls back to coherent cached candidate"
+    },
+    {
+      "name": "browser close/reopen retains registration, five module hashes and native save"
+    },
+    {
+      "name": "blocked multi-tab acceptance resets real update button"
+    }
+  ],
+  "modules": {
+    "server.wasm": "c2d9d984a416e6a8552f1a75939c065c0bd983263b0d8206e60c5f5d9e6a69a5",
+    "client.wasm": "fac7e66382a9915f33534030eab35ab0c8a9e846304e0200000bb300f8cde585",
+    "libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec",
+    "filesystem_stdio.wasm": "85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95",
+    "menu.wasm": "bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051"
+  },
+  "save": "cfbbad81bfbf8d25bfe7070e88dd8bffe33d663d4c0b39aac376fbeb9f02f3b9",
+  "candidateVersion": "32ada0996fc1",
+  "passed": false,
+  "failure": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#update')\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"update\">Nueva versión · recargar</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing click action\u001b[22m\n\u001b[2m      - <header>…</header> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing click action\u001b[22m\n\u001b[2m      - <header>…</header> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    13 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - performing click action\u001b[22m\n\u001b[2m       - <header>…</header> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n    at /root/cof-audits/sw-20261103/sw_game_update.mjs:52:39\n    at ready (/root/cof-audits/sw-20261103/sw_game_update.mjs:29:54)\n    at /root/cof-audits/sw-20261103/sw_game_update.mjs:52:8",
+  "errors": []
+}

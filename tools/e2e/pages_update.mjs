@@ -6,7 +6,20 @@ const modules=()=>p.evaluate(async()=>{const o={};for(const n of['server.wasm','
 try{
  await p.goto(`${base}?map=c_game_menu1&sw=1&timer=1&fx=0&prefetch=0&debug=1`);await p.waitForFunction(()=>window.CoFRuntimeReady&&window.CoFCurrentMap?.()==='c_game_menu1'&&navigator.serviceWorker.controller,null,{timeout:180000});await p.waitForTimeout(1000);r.beforeVersion=await manifest();assert.equal(r.beforeVersion,'2f88e7b98c18');r.beforeModules=await modules();fs.writeFileSync(`${out}/ready.json`,JSON.stringify({version:r.beforeVersion,modules:r.beforeModules},null,2));console.log('READY: old public runtime and Service Worker loaded');
  const start=Date.now();while(!fs.existsSync(signal)){assert.ok(Date.now()-start<1800000,'deployment signal not received');await p.waitForTimeout(1000);}
- assert.equal(await manifest(),'03fd8c160749');await p.evaluate(async()=>{const reg=await navigator.serviceWorker.getRegistration();await reg.update();});
+ assert.equal(await manifest(),'03fd8c160749');
+ // Observe the update without trapping the protocol call on an unbounded promise.
+ // Preserve historical versions and lifecycle limits; add a separate 30 s ACK.
+ await p.evaluate(()=>{
+  window.CoFTestSWUpdate={phase:'registration'};
+  const emit=(phase,data={})=>{window.CoFTestSWUpdate={phase,...data};console.log('COF/SWUPDATE '+JSON.stringify(window.CoFTestSWUpdate));};
+  navigator.serviceWorker.addEventListener('controllerchange',()=>console.log('COF/SWUPDATE controllerchange'));
+  navigator.serviceWorker.getRegistration().then(reg=>{
+   reg.addEventListener('updatefound',()=>{console.log('COF/SWUPDATE updatefound');const w=reg.installing;w?.addEventListener('statechange',()=>console.log('COF/SWUPDATE state '+w.state));});
+   emit('update-start');reg.update().then(()=>emit('resolved'),e=>emit('rejected',{error:String(e)}));
+  },e=>emit('rejected',{error:String(e)}));
+ });
+ await p.waitForFunction(()=>['resolved','rejected'].includes(window.CoFTestSWUpdate?.phase),null,{timeout:30000});
+ r.updateAck=await p.evaluate(()=>window.CoFTestSWUpdate);assert.equal(r.updateAck.phase,'resolved',JSON.stringify(r.updateAck));
  await p.waitForFunction(async()=>{const reg=await navigator.serviceWorker.getRegistration();return !!reg?.waiting;},null,{timeout:120000});await p.locator('#update').waitFor({state:'visible',timeout:30000});r.waitingModules=await modules();assert.deepEqual(r.waitingModules,r.beforeModules,'old running game must retain its modules until user accepts update');
  await Promise.all([p.waitForNavigation({waitUntil:'domcontentloaded',timeout:30000}),p.locator('#update').click()]);await p.waitForFunction(()=>window.CoFRuntimeReady&&window.CoFCurrentMap?.()==='c_game_menu1'&&navigator.serviceWorker.controller,null,{timeout:180000});await p.waitForTimeout(1000);r.afterVersion=await manifest();r.afterModules=await modules();assert.equal(r.afterVersion,'03fd8c160749');assert.equal(r.afterModules['server.wasm'],'c2d9d984a416e6a8552f1a75939c065c0bd983263b0d8206e60c5f5d9e6a69a5');assert.equal(r.afterModules['client.wasm'],'fac7e66382a9915f33534030eab35ab0c8a9e846304e0200000bb300f8cde585');assert.deepEqual(errors,[]);r.passed=true;console.log('PASS old cached public session updates via actual Update button to verified new WASM modules');
 }catch(e){r.passed=false;r.failure=String(e.stack||e);console.error(e);process.exitCode=1;}finally{r.errors=errors;fs.writeFileSync(`${out}/result.json`,JSON.stringify(r,null,2));fs.writeFileSync(`${out}/engine.log`,logs.join('\n'));await b.close();}

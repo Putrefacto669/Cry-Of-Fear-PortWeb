@@ -44,6 +44,7 @@
   window.CoFStderr = { add: (fn) => stderrHooks.add(fn), remove: (fn) => stderrHooks.delete(fn) };
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  let flushForUpdate = async () => {};
 
   // Service Worker (sw.js): caché por revisión entre visitas. En la primera visita se espera a que
   // controle la página antes de pedir .wasm y .data, así se guardan mientras se descargan (una sola
@@ -55,10 +56,23 @@
     const offerUpdate = (worker) => {
       const btn = document.getElementById("update");
       btn.hidden = false;
-      btn.onclick = () => { updating = true; btn.disabled = true; worker.postMessage("skip-waiting"); };
+      btn.onclick = async () => {
+        btn.disabled = true;
+        try {
+          await flushForUpdate();
+          updating = true;
+          worker.postMessage("skip-waiting");
+        } catch (e) {
+          btn.disabled = false;
+          setStatus("No se pudo guardar en el navegador; vuelve a intentar la actualización");
+          log(`IDBFS: ${e.message}`, "err");
+        }
+      };
     };
     try {
-      const reg = await sw.register("sw.js");
+      // Pages caches sw-manifest.js for ten minutes. It is imported by an
+      // otherwise unchanged worker, so update checks must revalidate its bytes.
+      const reg = await sw.register("sw.js", { updateViaCache: "none" });
       if (reg.waiting && sw.controller) offerUpdate(reg.waiting);
       reg.addEventListener("updatefound", () => {
         const w = reg.installing;
@@ -67,14 +81,22 @@
         });
       });
       sw.addEventListener("controllerchange", () => { if (updating) location.reload(); });
+      sw.addEventListener("message", (event) => {
+        if (event.data?.type !== "cof-update-blocked") return;
+        updating = false;
+        document.getElementById("update").disabled = false;
+        setStatus("Cierra las otras pestañas del juego antes de actualizar");
+      });
       if (!sw.controller) {
         setStatus("Preparando caché…");
         await Promise.race([new Promise((r) => sw.addEventListener("controllerchange", r, { once: true })), sleep(5000)]);
+        if (!sw.controller) throw new Error("No se pudo preparar la caché; recarga para reintentar");
       }
       // sin esto el navegador puede vaciar la caché cuando le falta espacio
       if (navigator.storage && navigator.storage.persist) navigator.storage.persist();
     } catch (e) {
       log(`service worker: ${e.message}`, "err");
+      if (!sw.controller) throw e;
     }
   }
 
@@ -230,6 +252,10 @@
 
     // un solo syncfs a la vez; si se pide otro mientras tanto, se repite al terminar
     let persisting = false, persistAgain = false;
+    const persistWaiters = [];
+    const finishPersist = (err) => {
+      for (const { resolve, reject } of persistWaiters.splice(0)) err ? reject(err) : resolve();
+    };
     const persistRwdir = () => {
       if (persisting) { persistAgain = true; return; }
       persisting = true;
@@ -238,9 +264,14 @@
           if (err) log(`IDBFS: ${err}`, "err");
           persisting = false;
           if (persistAgain) { persistAgain = false; persistRwdir(); }
+          else finishPersist(err);
         });
-      } catch (_) { persisting = false; /* runtime no listo */ }
+      } catch (err) { persisting = false; finishPersist(err); /* runtime no listo */ }
     };
+    flushForUpdate = () => new Promise((resolve, reject) => {
+      persistWaiters.push({ resolve, reject });
+      persistRwdir();
+    });
 
     window.Module = {
       canvas,

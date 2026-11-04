@@ -47,13 +47,7 @@ const fetchFresh = (path) => fetch(new URL(path, scope).href, { cache: "no-store
 
 self.addEventListener("install", (event) => {
   event.waitUntil((async () => {
-    const cache = await caches.open(CACHE);
-    await Promise.all(M.precache.map(async (path) => {
-      if (await cache.match(toKey(path))) return;
-      const res = await fetchFresh(path);
-      if (!res.ok) throw new Error(`precache ${path}: ${res.status}`);
-      await cache.put(toKey(path), res);
-    }));
+    await Promise.all(M.precache.map(path => cacheFirst(path)));
     // primera instalación: no hay versión anterior a la que esperar
     if (!self.registration.active) await self.skipWaiting();
   })());
@@ -74,11 +68,37 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("message", (event) => {
-  if (event.data === "skip-waiting") self.skipWaiting();
+  if (event.data === "cof-version") {
+    event.ports[0]?.postMessage({ version: M.version });
+    return;
+  }
+  if (event.data !== "skip-waiting" || !event.source) return;
+  event.waitUntil((async () => {
+    // clients.claim() also changes the controller of other open games. Their players
+    // have not accepted a reload: keep waiting until only the requesting tab remains.
+    const others = (await self.clients.matchAll({ type: "window", includeUncontrolled: true }))
+      .filter(c => c.id !== event.source.id && c.url.startsWith(scope.href));
+    if (others.length) {
+      event.source.postMessage({ type: "cof-update-blocked", reason: "other-tabs" });
+      return;
+    }
+    await self.skipWaiting();
+  })());
 });
 
 const MIME = { ".wasm": "application/wasm", ".data": "application/octet-stream" };
 const gzipOk = typeof DecompressionStream === "function";
+
+// URLs on a static host may already contain a newer release. Never label those
+// bytes with this worker's old revision, including entries left by older workers.
+const checked = async (res, path) => {
+  if (res.status !== 200) throw new Error(`resource ${path}: ${res.status}`);
+  const bytes = await res.clone().arrayBuffer();
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  const hash = Array.from(new Uint8Array(digest), b => b.toString(16).padStart(2, "0")).join("");
+  if (!hash.startsWith(M.files[path])) throw new Error(`revision mismatch: ${path}`);
+  return res;
+};
 
 // la copia .gz en caché -> respuesta con el contenido original, como la esperan file_packager e
 // instantiateStreaming. Si el hosting ya la sirvió con Content-Encoding, el navegador la
@@ -98,12 +118,16 @@ const cacheFirst = async (path) => {
   const packed = gzipOk && M.gz && M.gz[path];
   const key = packed ? `${toKey(path)}&gz` : toKey(path);
   const hit = await cache.match(key);
-  if (hit) return packed ? inflate(hit, path) : hit;
+  if (hit) {
+    try { return await checked(packed ? inflate(hit, path) : hit, path); }
+    catch (_) { await cache.delete(key); }
+  }
 
   const res = await fetchFresh(packed ? `${path}.gz` : path);
   // solo respuestas completas: una 206 o un error no se guardan
-  if (res.status !== 200) return packed ? fetchFresh(path) : res;
+  if (res.status !== 200) return packed ? checked(await fetchFresh(path), path) : checked(res, path);
   if (!packed) {
+    await checked(res, path);
     await cache.put(key, res.clone());
     return res;
   }
@@ -112,6 +136,7 @@ const cacheFirst = async (path) => {
   const stored = new Response(await res.arrayBuffer(), {
     headers: { "x-cof-encoding": stillGzip ? "gzip" : "identity" },
   });
+  await checked(inflate(stored.clone(), path), path);
   await cache.put(key, stored.clone());
   return inflate(stored, path);
 };
@@ -123,11 +148,12 @@ const networkFirst = async (request, path) => {
       fetch(request),
       new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), 3000)),
     ]);
+    if (M.files[path]) await checked(res, path);
     if (res.ok && M.files[path]) await cache.put(toKey(path), res.clone());
     return res;
   } catch (_) {
     const hit = M.files[path] && await cache.match(toKey(path));
-    if (hit) return hit;
+    if (hit) return checked(hit, path);
     throw _;
   }
 };

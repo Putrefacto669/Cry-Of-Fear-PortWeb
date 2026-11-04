@@ -1,0 +1,431 @@
+[18:10:09] Console initialized.
+[18:10:09] FS_LoadProgs: filesystem_stdio successfully loaded
+[18:10:09] /rwdir is working directory now
+[18:10:09] Error: game directory "cryoffear" not exist
+[18:10:09] Adding directory: /rodir/
+[18:10:09] Adding directory: ./
+[18:10:09] Program args: ./this.program -game cryoffear -rodir /rodir -ref gles3compat -dll /lib/server.wasm -clientlib /lib/client.wasm -menulib /lib/menu.wasm -windowed -dev 1 -log +exec cof_web.cfg +snd_webaudio 1 +snd_webaudio_hrtf 0 +map c_game_menu1 
+[18:10:09] Developer level: 1
+[18:10:09] execing cryoffear/vfs.cfg
+[18:10:09] FS_AddGameHierarchy( valve )
+[18:10:09] Adding directory: /rodir/valve/
+[18:10:09] Adding directory: valve/
+[18:10:09] FS_AddGameHierarchy( cryoffear )
+[18:10:09] Adding directory: /rodir/cryoffear/
+[18:10:09] Adding directory: cryoffear_downloads/
+[18:10:09] Adding directory: cryoffear/
+[18:10:09] Adding directory: cryoffear/custom/
+[18:10:09] Touch_Init()
+[18:10:09] Warning: SV_LoadProgs: couldn't get physics API
+[18:10:09] Dll loaded for game "Half-Life"
+[18:10:09] Error: Delta_ParseField: unable to find field is_donator
+[18:10:09] execing skill.cfg
+[18:10:09] Warning: Unknown command "sk_monster_head4"
+[18:10:09] Warning: Unknown command "sk_monster_chest4"
+[18:10:09] Warning: Unknown command "sk_monster_stomach4"
+[18:10:09] Warning: Unknown command "sk_monster_arm4"
+[18:10:09] Warning: Unknown command "sk_monster_leg4"
+[18:10:09] Warning: Unknown command "sk_player_head4"
+[18:10:09] Warning: Unknown command "sk_player_chest4"
+[18:10:09] Warning: Unknown command "sk_player_stomach4"
+[18:10:09] Warning: Unknown command "sk_player_arm4"
+[18:10:09] Warning: Unknown command "sk_player_leg4"
+[18:10:09] Warning: Unknown command "sk_cof_sledgehammer1"
+[18:10:09] Warning: Unknown command "sk_cof_sledgehammer2"
+[18:10:09] Warning: Unknown command "sk_cof_sledgehammer3"
+[18:10:09] Warning: Unknown command "sk_cof_sledgehammer4"
+[18:10:09] Warning: Unknown command "sk_cof_nightstick1"
+[18:10:09] Warning: Unknown command "sk_cof_nightstick2"
+[18:10:09] Warning: Unknown command "sk_cof_nightstick3"
+[18:10:09] Warning: Unknown command "sk_cof_nightstick4"
+[18:10:09] Warning: Unknown command "sk_cof_2switchblade1"
+[18:10:09] Warning: Unknown command "sk_cof_2switchblade2"
+[18:10:09] Warning: Unknown command "sk_cof_2switchblade3"
+[18:10:09] Warning: Unknown command "sk_cof_2switchblade4"
+[18:10:09] Warning: Unknown command "sk_cof_switchblade1"
+[18:10:09] Warning: Unknown command "sk_cof_switchblade2"
+[18:10:09] Warning: Unknown command "sk_cof_switchblade3"
+[18:10:09] Warning: Unknown command "sk_cof_switchblade4"
+[18:10:09] Warning: Unknown command "sk_baby_health1"
+[18:10:09] Warning: Unknown command "sk_baby_health2"
+[18:10:09] Warning: Unknown command "sk_baby_health3"
+[18:10:09] Warning: Unknown command "sk_baby_health4"
+[18:10:09] Warning: Unknown command "sk_baby_damage1"
+[18:10:09] Warning: Unknown command "sk_baby_damage2"
+[18:10:09] Warning: Unknown command "sk_baby_damage3"
+[18:10:09] Warning: Unknown command "sk_baby_damage4"
+[18:10:09] Warning: Unknown command "sk_faster_health1"
+[18:10:09] Warning: Unknown command "sk_faster_health2"
+[18:10:09] Warning: Unknown command "sk_faster_health3"
+[18:10:09] Warning: Unknown command "sk_faster_health4"
+[18:10:09] Warning: Unknown command "sk_faster_dmg_one_slash1"
+[18:10:09] Warning: Unknown command "sk_faster_dmg_one_slash2"
+[18:10:09] Warning: Unknown command "sk_faster_dmg_one_slash3"
+[18:10:09] Warning: Unknown command "sk_faster_dmg_one_slash4"
+[18:10:09] Warning: Unknown command "sk_faster_dmg_both_slash1"
+[18:10:09] Warning: Unknown command "sk_faster_dmg_both_slash2"
+[18:10:09] Warning: Unknown command "sk_faster_dmg_both_slash3"
+[18:10:09] Warning: Unknown command "sk_faster_dmg_both_slash4"
+[18:10:09] Warning: Unknown command "sk_krypande_health1"
+[18:10:09] Warning: Unknown command "sk_krypande_health2"
+[18:10:09] Warning: Unknown command "sk_krypande_health3"
+[18:10:09] Warning: Unknown command "sk_krypande_health4"
+[18:10:09] Warning: Unknown command "sk_krypande_dmg_one_slash1"
+[18:10:09] Warning: Unknown command "sk_krypande_dmg_one_slash2"
+[18:10:09] Warning: Unknown command "sk_krypande_dmg_one_slash3"
+[18:10:09] Warning: Unknown command "sk_krypande_dmg_one_slash4"
+[18:10:09] Warning: Unknown command "sk_syringe_heal1"
+[18:10:09] Warning: Unknown command "sk_syringe_heal2"
+[18:10:09] Warning: Unknown command "sk_syringe_heal3"
+[18:10:09] Warning: Unknown command "sk_syringe_heal4"
+[18:10:09] Warning: Unknown command "sk_chainsawboss_health1"
+[18:10:09] Warning: Unknown command "sk_chainsawboss_health2"
+[18:10:09] Warning: Unknown command "sk_chainsawboss_health3"
+[18:10:09] Warning: Unknown command "sk_chainsawboss_health4"
+[18:10:09] Warning: Unknown command "sk_sewmo_health1"
+[18:10:09] Warning: Unknown command "sk_sewmo_health2"
+[18:10:09] Warning: Unknown command "sk_sewmo_health3"
+[18:10:09] Warning: Unknown command "sk_sewmo_health4"
+[18:10:09] Warning: Unknown command "sk_sewmo_dmg_one_slash1"
+[18:10:09] Warning: Unknown command "sk_sewmo_dmg_one_slash2"
+[18:10:09] Warning: Unknown command "sk_sewmo_dmg_one_slash3"
+[18:10:09] Warning: Unknown command "sk_sewmo_dmg_one_slash4"
+[18:10:09] Warning: Unknown command "sk_sewmo_dmg_both_slash1"
+[18:10:09] Warning: Unknown command "sk_sewmo_dmg_both_slash2"
+[18:10:09] Warning: Unknown command "sk_sewmo_dmg_both_slash3"
+[18:10:09] Warning: Unknown command "sk_sewmo_dmg_both_slash4"
+[18:10:09] Warning: Unknown command "sk_sawrunner_health1"
+[18:10:09] Warning: Unknown command "sk_sawrunner_health2"
+[18:10:09] Warning: Unknown command "sk_sawrunner_health3"
+[18:10:09] Warning: Unknown command "sk_sawrunner_health4"
+[18:10:09] Warning: Unknown command "sk_sawrunner_dmg_one_slash1"
+[18:10:09] Warning: Unknown command "sk_sawrunner_dmg_one_slash2"
+[18:10:09] Warning: Unknown command "sk_sawrunner_dmg_one_slash3"
+[18:10:09] Warning: Unknown command "sk_sawrunner_dmg_one_slash4"
+[18:10:09] Warning: Unknown command "sk_sawrunner_dmg_both_slash1"
+[18:10:09] Warning: Unknown command "sk_sawrunner_dmg_both_slash2"
+[18:10:09] Warning: Unknown command "sk_sawrunner_dmg_both_slash3"
+[18:10:09] Warning: Unknown command "sk_sawrunner_dmg_both_slash4"
+[18:10:09] Warning: Unknown command "sk_zombie_health4"
+[18:10:09] Warning: Unknown command "sk_zombie_dmg_one_slash4"
+[18:10:09] Warning: Unknown command "sk_zombie_dmg_both_slash4"
+[18:10:09] Warning: Unknown command "sk_child_health1"
+[18:10:09] Warning: Unknown command "sk_child_health2"
+[18:10:09] Warning: Unknown command "sk_child_health3"
+[18:10:09] Warning: Unknown command "sk_child_health4"
+[18:10:09] Warning: Unknown command "sk_child_dmg_one_slash1"
+[18:10:09] Warning: Unknown command "sk_child_dmg_one_slash2"
+[18:10:09] Warning: Unknown command "sk_child_dmg_one_slash3"
+[18:10:09] Warning: Unknown command "sk_child_dmg_one_slash4"
+[18:10:09] Warning: Unknown command "sk_child_dmg_both_slash1"
+[18:10:09] Warning: Unknown command "sk_child_dmg_both_slash2"
+[18:10:09] Warning: Unknown command "sk_child_dmg_both_slash3"
+[18:10:09] Warning: Unknown command "sk_child_dmg_both_slash4"
+[18:10:09] Warning: Unknown command "sk_sewerboss_health1"
+[18:10:09] Warning: Unknown command "sk_sewerboss_health2"
+[18:10:09] Warning: Unknown command "sk_sewerboss_health3"
+[18:10:09] Warning: Unknown command "sk_sewerboss_health4"
+[18:10:09] Warning: Unknown command "sk_sewerboss_melee1"
+[18:10:09] Warning: Unknown command "sk_sewerboss_melee2"
+[18:10:09] Warning: Unknown command "sk_sewerboss_melee3"
+[18:10:09] Warning: Unknown command "sk_sewerboss_melee4"
+[18:10:09] Warning: Unknown command "sk_slower3_health1"
+[18:10:09] Warning: Unknown command "sk_slower3_health2"
+[18:10:09] Warning: Unknown command "sk_slower3_health3"
+[18:10:09] Warning: Unknown command "sk_slower3_health4"
+[18:10:09] Warning: Unknown command "sk_slower3_dmg_one_slash1"
+[18:10:09] Warning: Unknown command "sk_slower3_dmg_one_slash2"
+[18:10:09] Warning: Unknown command "sk_slower3_dmg_one_slash3"
+[18:10:09] Warning: Unknown command "sk_slower3_dmg_one_slash4"
+[18:10:09] Warning: Unknown command "sk_slower3_dmg_both_slash1"
+[18:10:09] Warning: Unknown command "sk_slower3_dmg_both_slash2"
+[18:10:09] Warning: Unknown command "sk_slower3_dmg_both_slash3"
+[18:10:09] Warning: Unknown command "sk_slower3_dmg_both_slash4"
+[18:10:09] Warning: Unknown command "sk_flygare_health1"
+[18:10:09] Warning: Unknown command "sk_flygare_health2"
+[18:10:09] Warning: Unknown command "sk_flygare_health3"
+[18:10:09] Warning: Unknown command "sk_flygare_health4"
+[18:10:09] Warning: Unknown command "sk_flygare_acid1"
+[18:10:09] Warning: Unknown command "sk_flygare_acid2"
+[18:10:09] Warning: Unknown command "sk_flygare_acid3"
+[18:10:09] Warning: Unknown command "sk_flygare_acid4"
+[18:10:09] Warning: Unknown command "sk_flygare_melee1"
+[18:10:09] Warning: Unknown command "sk_flygare_melee2"
+[18:10:09] Warning: Unknown command "sk_flygare_melee3"
+[18:10:09] Warning: Unknown command "sk_flygare_melee4"
+[18:10:09] Warning: Unknown command "sk_plr_buckshot4"
+[18:10:09] Warning: Unknown command "sk_rcrazy_health1"
+[18:10:09] Warning: Unknown command "sk_rcrazy_health2"
+[18:10:09] Warning: Unknown command "sk_rcrazy_health3"
+[18:10:09] Warning: Unknown command "sk_rcrazy_health4"
+[18:10:09] Warning: Unknown command "sk_rcrazy_dmg_one_slash1"
+[18:10:09] Warning: Unknown command "sk_rcrazy_dmg_one_slash2"
+[18:10:09] Warning: Unknown command "sk_rcrazy_dmg_one_slash3"
+[18:10:09] Warning: Unknown command "sk_rcrazy_dmg_one_slash4"
+[18:10:09] Warning: Unknown command "sk_rcrazy_dmg_both_slash1"
+[18:10:09] Warning: Unknown command "sk_rcrazy_dmg_both_slash2"
+[18:10:09] Warning: Unknown command "sk_rcrazy_dmg_both_slash3"
+[18:10:09] Warning: Unknown command "sk_rcrazy_dmg_both_slash4"
+[18:10:09] Warning: Unknown command "sk_primary_speed1"
+[18:10:09] Warning: Unknown command "sk_primary_speed2"
+[18:10:09] Warning: Unknown command "sk_primary_speed3"
+[18:10:09] Warning: Unknown command "sk_primary_speed4"
+[18:10:09] Warning: Unknown command "sk_secondary_speed1"
+[18:10:09] Warning: Unknown command "sk_secondary_speed2"
+[18:10:09] Warning: Unknown command "sk_secondary_speed3"
+[18:10:09] Warning: Unknown command "sk_secondary_speed4"
+[18:10:09] Warning: Unknown command "sk_sprint_speed1"
+[18:10:09] Warning: Unknown command "sk_sprint_speed2"
+[18:10:09] Warning: Unknown command "sk_sprint_speed3"
+[18:10:09] Warning: Unknown command "sk_sprint_speed4"
+[18:10:09] Warning: Unknown command "sk_stair_speed1"
+[18:10:09] Warning: Unknown command "sk_stair_speed2"
+[18:10:09] Warning: Unknown command "sk_stair_speed3"
+[18:10:09] Warning: Unknown command "sk_stair_speed4"
+[18:10:09] Warning: Unknown command "bullet_punch_max"
+[18:10:09] Warning: Unknown command "bullet_punch_divide"
+[18:10:09] Warning: Unknown command "blast_punch_max"
+[18:10:09] Warning: Unknown command "blast_punch_divide"
+[18:10:09] Warning: Unknown command "sk_cof_m161"
+[18:10:09] Warning: Unknown command "sk_cof_m162"
+[18:10:09] Warning: Unknown command "sk_cof_m163"
+[18:10:09] Warning: Unknown command "sk_cof_m164"
+[18:10:09] Warning: Unknown command "sk_cof_VP701"
+[18:10:09] Warning: Unknown command "sk_cof_VP702"
+[18:10:09] Warning: Unknown command "sk_cof_VP703"
+[18:10:09] Warning: Unknown command "sk_cof_VP704"
+[18:10:09] Warning: Unknown command "sk_cof_weapon_melee1"
+[18:10:09] Warning: Unknown command "sk_cof_weapon_melee2"
+[18:10:09] Warning: Unknown command "sk_cof_weapon_melee3"
+[18:10:09] Warning: Unknown command "sk_cof_weapon_melee4"
+[18:10:09] Warning: Unknown command "sk_cof_p3451"
+[18:10:09] Warning: Unknown command "sk_cof_p3452"
+[18:10:09] Warning: Unknown command "sk_cof_p3453"
+[18:10:09] Warning: Unknown command "sk_cof_p3454"
+[18:10:09] Warning: Unknown command "sk_cof_g431"
+[18:10:09] Warning: Unknown command "sk_cof_g432"
+[18:10:09] Warning: Unknown command "sk_cof_g433"
+[18:10:09] Warning: Unknown command "sk_cof_g434"
+[18:10:09] Warning: Unknown command "sk_cof_shotgun1"
+[18:10:09] Warning: Unknown command "sk_cof_shotgun2"
+[18:10:09] Warning: Unknown command "sk_cof_shotgun3"
+[18:10:09] Warning: Unknown command "sk_cof_shotgun4"
+[18:10:09] Warning: Unknown command "sk_cof_rifle1"
+[18:10:09] Warning: Unknown command "sk_cof_rifle2"
+[18:10:09] Warning: Unknown command "sk_cof_rifle3"
+[18:10:09] Warning: Unknown command "sk_cof_rifle4"
+[18:10:09] Warning: Unknown command "sk_cof_revolver1"
+[18:10:09] Warning: Unknown command "sk_cof_revolver2"
+[18:10:09] Warning: Unknown command "sk_cof_revolver3"
+[18:10:09] Warning: Unknown command "sk_cof_revolver4"
+[18:10:09] Warning: Unknown command "sk_stranger_health1"
+[18:10:09] Warning: Unknown command "sk_stranger_health2"
+[18:10:09] Warning: Unknown command "sk_stranger_health3"
+[18:10:09] Warning: Unknown command "sk_stranger_health4"
+[18:10:09] Warning: Unknown command "sk_stranger_damage1"
+[18:10:09] Warning: Unknown command "sk_stranger_damage2"
+[18:10:09] Warning: Unknown command "sk_stranger_damage3"
+[18:10:09] Warning: Unknown command "sk_stranger_damage4"
+[18:10:09] Warning: Unknown command "sk_suicider_health1"
+[18:10:09] Warning: Unknown command "sk_suicider_health2"
+[18:10:09] Warning: Unknown command "sk_suicider_health3"
+[18:10:09] Warning: Unknown command "sk_suicider_health4"
+[18:10:09] Warning: Unknown command "sk_suicider_bullet1"
+[18:10:09] Warning: Unknown command "sk_suicider_bullet2"
+[18:10:09] Warning: Unknown command "sk_suicider_bullet3"
+[18:10:09] Warning: Unknown command "sk_suicider_bullet4"
+[18:10:09] Warning: Unknown command "sk_suicider_suicide1"
+[18:10:09] Warning: Unknown command "sk_suicider_suicide2"
+[18:10:09] Warning: Unknown command "sk_suicider_suicide3"
+[18:10:09] Warning: Unknown command "sk_suicider_suicide4"
+[18:10:09] Warning: Unknown command "sk_roofboss_health1"
+[18:10:09] Warning: Unknown command "sk_roofboss_health2"
+[18:10:09] Warning: Unknown command "sk_roofboss_health3"
+[18:10:09] Warning: Unknown command "sk_roofboss_health4"
+[18:10:09] Warning: Unknown command "sk_roofboss_headhit1"
+[18:10:09] Warning: Unknown command "sk_roofboss_headhit2"
+[18:10:09] Warning: Unknown command "sk_roofboss_headhit3"
+[18:10:09] Warning: Unknown command "sk_roofboss_headhit4"
+[18:10:09] Warning: Unknown command "sk_roofboss_headhealth1"
+[18:10:09] Warning: Unknown command "sk_roofboss_headhealth2"
+[18:10:09] Warning: Unknown command "sk_roofboss_headhealth3"
+[18:10:09] Warning: Unknown command "sk_roofboss_headhealth4"
+[18:10:09] Warning: Unknown command "sk_roofboss_attacktime1"
+[18:10:09] Warning: Unknown command "sk_roofboss_attacktime2"
+[18:10:09] Warning: Unknown command "sk_roofboss_attacktime3"
+[18:10:09] Warning: Unknown command "sk_roofboss_attacktime4"
+[18:10:09] Warning: Unknown command "sk_faceless_health1"
+[18:10:09] Warning: Unknown command "sk_faceless_health2"
+[18:10:09] Warning: Unknown command "sk_faceless_health3"
+[18:10:09] Warning: Unknown command "sk_faceless_health4"
+[18:10:09] Warning: Unknown command "sk_faceless_dmg_one_slash1"
+[18:10:09] Warning: Unknown command "sk_faceless_dmg_one_slash2"
+[18:10:09] Warning: Unknown command "sk_faceless_dmg_one_slash3"
+[18:10:09] Warning: Unknown command "sk_faceless_dmg_one_slash4"
+[18:10:09] Warning: Unknown command "sk_faceless_dmg_both_slash1"
+[18:10:09] Warning: Unknown command "sk_faceless_dmg_both_slash2"
+[18:10:09] Warning: Unknown command "sk_faceless_dmg_both_slash3"
+[18:10:09] Warning: Unknown command "sk_faceless_dmg_both_slash4"
+[18:10:09] Warning: Unknown command "sk_cof_branch1"
+[18:10:09] Warning: Unknown command "sk_cof_branch2"
+[18:10:09] Warning: Unknown command "sk_cof_branch3"
+[18:10:09] Warning: Unknown command "sk_cof_branch4"
+[18:10:09] Warning: Unknown command "sk_doctor_health1"
+[18:10:09] Warning: Unknown command "sk_doctor_health2"
+[18:10:09] Warning: Unknown command "sk_doctor_health3"
+[18:10:09] Warning: Unknown command "sk_doctor_health4"
+[18:10:09] Warning: Unknown command "sk_doctor_p3451"
+[18:10:09] Warning: Unknown command "sk_doctor_p3452"
+[18:10:09] Warning: Unknown command "sk_doctor_p3453"
+[18:10:09] Warning: Unknown command "sk_doctor_p3454"
+[18:10:09] Warning: Unknown command "sk_doctor_revolver1"
+[18:10:09] Warning: Unknown command "sk_doctor_revolver2"
+[18:10:09] Warning: Unknown command "sk_doctor_revolver3"
+[18:10:09] Warning: Unknown command "sk_doctor_revolver4"
+[18:10:09] Warning: Unknown command "sk_flare_burn_time1"
+[18:10:09] Warning: Unknown command "sk_flare_burn_time2"
+[18:10:09] Warning: Unknown command "sk_flare_burn_time3"
+[18:10:09] Warning: Unknown command "sk_flare_burn_time4"
+[18:10:09] Warning: Unknown command "sk_taller_health1"
+[18:10:09] Warning: Unknown command "sk_taller_health2"
+[18:10:09] Warning: Unknown command "sk_taller_health3"
+[18:10:09] Warning: Unknown command "sk_taller_health4"
+[18:10:09] Warning: Unknown command "sk_taller_dmg_punch1"
+[18:10:09] Warning: Unknown command "sk_taller_dmg_punch2"
+[18:10:09] Warning: Unknown command "sk_taller_dmg_punch3"
+[18:10:09] Warning: Unknown command "sk_taller_dmg_punch4"
+[18:10:09] Warning: Unknown command "sk_spitter_health1"
+[18:10:09] Warning: Unknown command "sk_spitter_health2"
+[18:10:09] Warning: Unknown command "sk_spitter_health3"
+[18:10:09] Warning: Unknown command "sk_spitter_health4"
+[18:10:09] Warning: Unknown command "sk_aom_pills1"
+[18:10:09] Warning: Unknown command "sk_aom_pills2"
+[18:10:09] Warning: Unknown command "sk_aom_pills3"
+[18:10:09] Warning: Unknown command "sk_aom_pills4"
+[18:10:09] Warning: Unknown command "sk_cof_axe1"
+[18:10:09] Warning: Unknown command "sk_cof_axe2"
+[18:10:09] Warning: Unknown command "sk_cof_axe3"
+[18:10:09] Warning: Unknown command "sk_cof_axe4"
+[18:10:09] Warning: Unknown command "sk_twitcher_health1"
+[18:10:09] Warning: Unknown command "sk_twitcher_health2"
+[18:10:09] Warning: Unknown command "sk_twitcher_health3"
+[18:10:09] Warning: Unknown command "sk_twitcher_health4"
+[18:10:09] Warning: Unknown command "sk_twitcher_dmg_one_slash1"
+[18:10:09] Warning: Unknown command "sk_twitcher_dmg_one_slash2"
+[18:10:09] Warning: Unknown command "sk_twitcher_dmg_one_slash3"
+[18:10:09] Warning: Unknown command "sk_twitcher_dmg_one_slash4"
+[18:10:09] Warning: Unknown command "sk_twitcher_dmg_both_slash1"
+[18:10:09] Warning: Unknown command "sk_twitcher_dmg_both_slash2"
+[18:10:09] Warning: Unknown command "sk_twitcher_dmg_both_slash3"
+[18:10:09] Warning: Unknown command "sk_twitcher_dmg_both_slash4"
+[18:10:09] Warning: Unknown command "sk_twitcher2_health1"
+[18:10:09] Warning: Unknown command "sk_twitcher2_health2"
+[18:10:09] Warning: Unknown command "sk_twitcher2_health3"
+[18:10:09] Warning: Unknown command "sk_twitcher2_health4"
+[18:10:09] Warning: Unknown command "sk_twitcher2_dmg_one_slash1"
+[18:10:09] Warning: Unknown command "sk_twitcher2_dmg_one_slash2"
+[18:10:09] Warning: Unknown command "sk_twitcher2_dmg_one_slash3"
+[18:10:09] Warning: Unknown command "sk_twitcher2_dmg_one_slash4"
+[18:10:09] Warning: Unknown command "sk_twitcher2_dmg_both_slash1"
+[18:10:09] Warning: Unknown command "sk_twitcher2_dmg_both_slash2"
+[18:10:09] Warning: Unknown command "sk_twitcher2_dmg_both_slash3"
+[18:10:09] Warning: Unknown command "sk_twitcher2_dmg_both_slash4"
+[18:10:09] Warning: Unknown command "sk_twitcher3_health1"
+[18:10:09] Warning: Unknown command "sk_twitcher3_health2"
+[18:10:09] Warning: Unknown command "sk_twitcher3_health3"
+[18:10:09] Warning: Unknown command "sk_twitcher3_health4"
+[18:10:09] Warning: Unknown command "sk_twitcher3_dmg_one_slash1"
+[18:10:09] Warning: Unknown command "sk_twitcher3_dmg_one_slash2"
+[18:10:09] Warning: Unknown command "sk_twitcher3_dmg_one_slash3"
+[18:10:09] Warning: Unknown command "sk_twitcher3_dmg_one_slash4"
+[18:10:09] Warning: Unknown command "sk_twitcher3_dmg_both_slash1"
+[18:10:09] Warning: Unknown command "sk_twitcher3_dmg_both_slash2"
+[18:10:09] Warning: Unknown command "sk_twitcher3_dmg_both_slash3"
+[18:10:09] Warning: Unknown command "sk_twitcher3_dmg_both_slash4"
+[18:10:09] Warning: Unknown command "sk_twitcher4_health1"
+[18:10:09] Warning: Unknown command "sk_twitcher4_health2"
+[18:10:09] Warning: Unknown command "sk_twitcher4_health3"
+[18:10:09] Warning: Unknown command "sk_twitcher4_health4"
+[18:10:09] Warning: Unknown command "sk_twitcher4_dmg_one_slash1"
+[18:10:09] Warning: Unknown command "sk_twitcher4_dmg_one_slash2"
+[18:10:09] Warning: Unknown command "sk_twitcher4_dmg_one_slash3"
+[18:10:09] Warning: Unknown command "sk_twitcher4_dmg_one_slash4"
+[18:10:09] Warning: Unknown command "sk_twitcher4_dmg_both_slash1"
+[18:10:09] Warning: Unknown command "sk_twitcher4_dmg_both_slash2"
+[18:10:09] Warning: Unknown command "sk_twitcher4_dmg_both_slash3"
+[18:10:09] Warning: Unknown command "sk_twitcher4_dmg_both_slash4"
+[18:10:09] execing video.cfg
+[18:10:09] Loading renderer: gles3compat -> libref_gles3compat.wasm
+[18:10:09] execing opengl.cfg
+[18:10:09] Trying safe opengl mode 0
+[18:10:09] bpp 24
+[18:10:10] Video: SDL
+[18:10:10] Video driver: emscripten
+[18:10:10] Window size: 1280x452 (real 1280x452)
+[18:10:10] Window position: 0x0
+[18:10:10] Window mode: windowed
+[18:10:10] Window bordered: true
+[18:10:10] Window resizable: true
+[18:10:10] Window maximized: false
+[18:10:10] Window display index: 0
+[18:10:10] Window display mode: 1280x720@0
+WebGL: INVALID_ENUM: getParameter: invalid parameter name
+[18:10:10] Note: GL2_ShimInit: missing BufferStorage
+[18:10:10] Note: GL2_ShimInit: config: ASYNC MAP CYCLE=1 VER=300
+[18:10:10] Note: GL2_ShimInit: 1441792 bytes allocated for vertex buffer
+[18:10:10] Note: GL2_InitProgs: Pre-generating 8 progs, version 300...
+[18:10:10] Note: GL2_GetProg: Generating progs for 0x0001
+[18:10:10] Note: GL2_GetProg: Generated progs for 0x0001
+[18:10:10] Note: GL2_GetProg: Generating progs for 0x0005
+[18:10:10] Note: GL2_GetProg: Generated progs for 0x0005
+[18:10:10] Note: GL2_GetProg: Generating progs for 0x0007
+[18:10:10] Note: GL2_GetProg: Generated progs for 0x0007
+[18:10:10] Note: GL2_GetProg: Generating progs for 0x0015
+[18:10:10] Note: GL2_GetProg: Generated progs for 0x0015
+[18:10:10] Note: GL2_GetProg: Generating progs for 0x0021
+[18:10:10] Note: GL2_GetProg: Generated progs for 0x0021
+[18:10:10] Note: GL2_GetProg: Generating progs for 0x0025
+[18:10:10] Note: GL2_GetProg: Generated progs for 0x0025
+[18:10:10] Note: GL2_GetProg: Generating progs for 0x0027
+[18:10:10] Note: GL2_GetProg: Generated progs for 0x0027
+[18:10:10] Note: GL2_GetProg: Generating progs for 0x0035
+[18:10:10] Note: GL2_GetProg: Generated progs for 0x0035
+[18:10:10] 
+[18:10:10] GL_VENDOR: WebKit
+[18:10:10] GL_RENDERER: WebKit WebGL
+[18:10:10] GL_VERSION: OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))
+[18:10:10] GL_MAX_TEXTURE_SIZE: 8192
+[18:10:10] GL_MAX_TEXTURE_UNITS_ARB: 32
+[18:10:10] GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT: 16.0
+[18:10:10] 
+[18:10:10] MODE: 1280x452
+[18:10:10] 
+[18:10:10] Color 24 bits, Alpha 8 bits, Depth 24 bits, Stencil 8 bits
+[18:10:10] OpenGL Error: GL_INVALID_ENUM while uploading *default [2D]
+[18:10:10] UI_ApplyCustomColors: colors.lst not found
+[18:10:10] Rendering Trebuchet MS(15, 500) took 0.010000 seconds
+[18:10:10] Rendering Trebuchet MS(11, 500) took 0.005000 seconds
+[18:10:10] Rendering Trebuchet MS(23, 500) took 0.008000 seconds
+[18:10:10] Rendering Trebuchet MS(15, 1000) took 0.005000 seconds
+[18:10:10] Rendering Trebuchet MS(15, 500) took 0.009000 seconds
+[18:10:10] Rendering Trebuchet MS(15, 500) took 0.033000 seconds
+[18:10:10] Rendering Tahoma(10, 500) took 0.007000 seconds
+[18:10:10] AVI: Not supported
+The ScriptProcessorNode is deprecated. Use AudioWorkletNode instead. (https://bit.ly/audio-worklet)
+[18:10:10] Using SDL audio driver: emscripten @ 44100 Hz
+[18:10:10] Web Audio: 3D channels enabled
+[18:10:10] execing valve.rc
+[18:10:10] Warning: Unknown command "s_refgain"
+[18:10:10] Warning: Unknown command "s_refdelay"
+[18:10:10] Warning: Unknown command "s_occfactor"
+[18:10:10] Warning: Unknown command "s_verbwet"
+[18:10:10] Warning: Unknown command "s_distance"
+[18:10:10] execing language.cfg
+[18:10:10] execing joystick.cfg
+[18:10:10] execing autoexec.cfg
+[18:10:10] Warning: Unknown command "r_dynamiclight"
+[18:10:10] Warning: Unknown command "cl_noiseeffect"
+[18:10:10] Warning: Unknown command "gl_texturemode"
+[18:10:10] Warning: Unknown command "sv_voicecodec"
+[18:10:10] execing config.cfg
+[18:10:10] execing cof_web.cfg
