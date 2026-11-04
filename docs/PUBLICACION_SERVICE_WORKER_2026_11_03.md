@@ -41,3 +41,27 @@ Se preparó otro árbol privado en `/root/cof-audits/sw-pin-20261103`, conservan
 `pin_build.py` ejecuta el bloque real de sustitución de `package.sh` y compara su salida con el worker probado. El primer verificador detectó una diferencia de normalización de saltos de línea; se conservó en `pin-build.log` y no se promovió esa salida. Se ajustó el empaquetado para preservar bytes y `pin-build-verified.log` confirma igualdad exacta y las 90 revisiones intactas. Esta corrección posterior modifica únicamente `dist/sw.js`; no cambia módulos, paquetes ni partidas.
 
 La causa de la promesa intermitente pendiente sigue abierta. Fijar la URL de importación resuelve la reutilización del manifiesto HTTP antiguo comprobada durante esta publicación; no se presenta como solución de aquel otro atasco.
+
+### Despliegue con importación versionada
+
+El commit **bd883c1** incorpora la corrección adicional y se subió a `main`. [Actions 41751440096](https://github.com/Putrefacto669/Cry-Of-Fear-PortWeb/actions/runs/41751440096) terminó con **success**. El manifiesto de recursos continúa siendo **d071fd1b614e**; el worker publicado tiene SHA-256 **9712ce939c7b33c6087454ff345eeadb1f1490101ac25598fc022eec575e6e47**.
+
+`public-pinned-assets.json` comprueba siete respuestas HTTP, incluida `sw-manifest.js?release=d071fd1b614e`, el worker final, el loader, el paquete de motor y el WASM principal. Todos coinciden con los bytes promovidos; los gzip también se comparan después de descomprimir. `git-byte-proof-pinned.json` verifica su identidad con los blobs del commit.
+
+`upgrade-pinned-live/result.json`: **PASS**. Una sesión pública iniciada antes del segundo despliegue conservó sus cinco módulos mientras el worker esperaba; el botón real activó el nuevo worker y recargó. El controlador efectivo respondió **d071fd1b614e**, los cinco hashes montados permanecieron iguales y no hubo errores JavaScript. Esta transición pública comprueba el worker anterior sin URL fijada hacia el final con URL fijada, ambos con el mismo grafo de recursos; no se presenta como una nueva sesión pública del grafo histórico 03fd8c160749.
+
+La comprobación privada `pin-validation/legacy-game` detectó y preparó la actualización desde 03fd8c160749 con el juego real y cabeceras de 600 s, pero agotó 30 s esperando navegación tras el clic. Se conserva con **passed: false**, sin errores JavaScript; no acredita migración completa ni se atribuye una causa sin otra prueba. Las pruebas privadas del manifiesto efectivo con caché heredada y la transición pública anterior siguen registradas por separado.
+
+La repetición sin cambiar código ni plazos, `pin-validation/legacy-game-retry`, completó la migración real **03fd8c160749 → d071fd1b614e** con cabeceras de 600 s: **PASS**, cinco módulos iguales antes/después, botón real, recarga y manifiesto efectivo correcto, `errors: []`. No se descarta ni se convierte en satisfactorio el intento anterior; esta prueba confirma una transición correcta, no estabilidad universal de todas las interacciones del cliente antiguo.
+
+### Cierre de verificación pública
+
+`pinned-live-regressions/` repite las tres suites contra la publicación final con el worker de importación versionada:
+
+- `phone_singleplayer_punch`: **PASS**, impulso SP y persistencia normal/fría.
+- `dual_hands`: **PASS**, bolso real, combinaciones, disparo, recarga y restauraciones sin duplicar inventario.
+- `extras_persistence`: **PASS**, perfil, guardado antiguo y transición pendiente de visión nocturna, con escenas originales.
+
+Las tres registran el controlador público `sw.js`, manifiesto **d071fd1b614e** y `errors: []`. Playwright 1.64.1 / Chromium 156.0.8078.4, con audio silenciado. No se ampliaron plazos ni se quitaron entidades.
+
+`verify_final.py` consolida estas evidencias en `final-summary.json`, comprueba el commit de Actions, los bytes publicados, el empaquetado del worker y las transiciones correctas, y exige conservar los intentos fallidos. La promesa intermitente pendiente del informe de investigación sigue expresamente sin resolver. La última subida de informe y evidencias no modifica `dist/`; el despliegue de producto comprobado corresponde a **bd883c1**.
