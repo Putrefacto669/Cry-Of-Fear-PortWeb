@@ -30,6 +30,9 @@ m['version'] = hashlib.sha256(json.dumps(m['files'], sort_keys=True).encode()).h
 tmp = fixed/'manifest.candidate'
 tmp.write_text('self.COF_MANIFEST = '+json.dumps(m, indent=1)+';\n')
 tmp.replace(fixed/'sw-manifest.js')
+tmp = fixed/'worker.candidate'
+tmp.write_bytes((repo/'platform/web/sw.js').read_bytes().replace(b'__COF_SW_VERSION__', m['version'].encode()))
+tmp.replace(fixed/'sw.js')
 summary['fixed'] = {'version': m['version'], 'base': '03fd8c160749', 'changed': ['loader.js', 'sw.js']}
 # Synthetic next release only for lifecycle tests: identical game bytes, one debug
 # script comment. Historical old/new above remain exact and independently verified.
@@ -48,6 +51,9 @@ m['version'] = hashlib.sha256(json.dumps(m['files'], sort_keys=True).encode()).h
 tmp = next_tree/'manifest.candidate'
 tmp.write_text('self.COF_MANIFEST = '+json.dumps(m, indent=1)+';\n')
 tmp.replace(next_tree/'sw-manifest.js')
+tmp = next_tree/'worker.candidate'
+tmp.write_bytes((repo/'platform/web/sw.js').read_bytes().replace(b'__COF_SW_VERSION__', m['version'].encode()))
+tmp.replace(next_tree/'sw.js')
 summary['next'] = {'version': m['version'], 'synthetic': True, 'changed': ['debug.js comment only']}
 for tree in (fixed, next_tree):
     manifest = json.loads(re.search(r'=\s*(\{.*\});', (tree/'sw-manifest.js').read_text(), re.S)[1])

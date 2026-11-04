@@ -20,7 +20,9 @@
 //     cabeceras (GitHub Pages). Solo hace falta si se activan hilos (SharedArrayBuffer).
 "use strict";
 
-importScripts("sw-manifest.js");
+// package.sh replaces the token after calculating the resource graph. Older
+// clients still use updateViaCache=imports: a new URL must bypass their old HTTP entry.
+importScripts("sw-manifest.js?release=d071fd1b614e");
 
 const M = self.COF_MANIFEST;
 const CACHE = "cof-web-v1"; // esquema de caché, no versión del juego

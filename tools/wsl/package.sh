@@ -121,6 +121,10 @@ precache = [f for f in files if not f.endswith((".wasm", ".data", ".mp3")) and f
 version = hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()[:12]
 manifest = {"version": version, "coi": coi, "precache": precache, "files": files, "gz": gz}
 (dist / "sw-manifest.js").write_text("self.COF_MANIFEST = " + json.dumps(manifest, indent=1) + ";\n")
+worker = dist / "sw.js"
+template = worker.read_bytes()
+assert b"__COF_SW_VERSION__" in template, "missing SW release token"
+worker.write_bytes(template.replace(b"__COF_SW_VERSION__", version.encode()))
 raw = sum((dist / f).stat().st_size for f in files)
 wire = raw - sum(v["size"] - v["gzSize"] for v in gz.values())
 print(f"  sw-manifest   versión {version}, {len(files)} archivos: {raw / 2**20:.0f} MiB, "

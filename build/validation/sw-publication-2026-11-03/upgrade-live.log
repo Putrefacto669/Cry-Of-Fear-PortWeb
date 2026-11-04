@@ -1,0 +1,14 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ '03fd8c160749'
+- 'd071fd1b614e'
+
+    at file:///root/cof-audits/sw-20261103/sw_live_publish.mjs:18:313 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '03fd8c160749',
+  expected: 'd071fd1b614e',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
