@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "d071fd1b614e",
+ "version": "b591c193f94d",
  "coi": false,
  "precache": [
   "LICENSE.txt",
@@ -42,7 +42,7 @@ self.COF_MANIFEST = {
   "debug.js": "40590135a97a",
   "extras.js": "32eba15df1ba",
   "gpustats.js": "70aaa1f28265",
-  "hud.js": "57497cb103d5",
+  "hud.js": "9ba7204f0483",
   "index.html": "ee1bd26a9e0e",
   "launcher/background.jpg": "d385a9ca8c75",
   "launcher/logo.png": "8d7bb7601333",

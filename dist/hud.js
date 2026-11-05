@@ -237,17 +237,18 @@
     const style = document.createElement("style");
     style.textContent = `
       #cof-status { position:absolute; left:2.5%; bottom:6%; display:flex; gap:6px; pointer-events:none; z-index:11; }
-      .cof-bar { --u: clamp(1, calc(100vh / 480px), 2.4); position:relative; width:calc(32px * var(--u));
-                 height:calc(160px * var(--u)); opacity:0; transition:opacity .4s ease; }
+      /* Length/length division in --u is unsupported in Gecko and collapses the bars to height 0.
+         These lengths preserve the original 1..2.4 scale without typed CSS arithmetic. */
+      .cof-bar { position:relative; width:clamp(32px, 6.6666666667vh, 76.8px);
+                 height:clamp(160px, 33.3333333333vh, 384px); opacity:0; transition:opacity .4s ease; }
       .cof-bar.on { opacity:1; }
       .cof-bar img { position:absolute; display:block; }
       .cof-bar .frame { inset:0; width:100%; height:100%; }
-      .cof-bar .fill { position:absolute; left:calc(10px * var(--u)); top:calc(3px * var(--u));
-                       width:calc(11px * var(--u)); height:calc(118px * var(--u)); }
+      .cof-bar .fill { position:absolute; left:31.25%; top:1.875%; width:34.375%; height:73.75%; }
       .cof-bar .empty { left:0; top:0; width:100%; height:100%; }
       .cof-bar .clip { position:absolute; left:0; bottom:0; width:100%; height:100%; overflow:hidden;
                        transition:height .15s linear; }
-      .cof-bar .full { left:0; bottom:0; width:100%; height:calc(118px * var(--u)); }
+      .cof-bar .full { left:0; bottom:0; width:100%; height:clamp(118px, 24.5833333333vh, 283.2px); }
     `;
     document.head.appendChild(style);
     const box = document.createElement("div");
