@@ -1,0 +1,20 @@
+// Keep an actual pre-publication session, then exercise the real update button.
+import assert from 'node:assert/strict';import fs from 'node:fs';import{chromium}from'playwright';
+const[base,out,signal,oldVersion,newVersion]=process.argv.slice(2);assert.ok(!fs.existsSync(out));fs.mkdirSync(out,{recursive:true});
+const trace=(event,data={})=>fs.appendFileSync(`${out}/trace.jsonl`,JSON.stringify({time:Date.now(),event,...data})+'\n');
+const b=await chromium.launch({executablePath:'/root/cof-audits/browser-1.64.1/browsers/chromium-1248/chrome-linux64/chrome',args:['--mute-audio','--use-angle=swiftshader','--enable-unsafe-swiftshader']}),p=await b.newPage({viewport:{width:800,height:600}}),errors=[],r={origin:base};let connections=0;
+p.on('console',m=>{const text=m.text();if(text.includes('client connected'))connections++;fs.appendFileSync(`${out}/engine.log`,text+'\n');});p.on('pageerror',e=>errors.push(e.message));
+const manifest=()=>p.evaluate(async()=>{const s=await(await fetch('sw-manifest.js',{cache:'no-store',signal:AbortSignal.timeout(30000)})).text();return JSON.parse(s.match(/=\s*(\{[\s\S]*\});/)[1]).version;});
+const modules=()=>p.evaluate(async()=>{const o={};for(const n of['server.wasm','client.wasm','libref_gles3compat.wasm','filesystem_stdio.wasm','menu.wasm'])o[n]=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',FS.readFile('/lib/'+n))),v=>v.toString(16).padStart(2,'0')).join('');return o;});
+const poll=async(fn,limit=30000)=>{const t=Date.now();while(!await fn()){assert.ok(Date.now()-t<limit,'bounded publication check');await new Promise(r=>setTimeout(r,100));}};
+try{
+ await p.goto(`${base}?map=c_game_menu1&sw=1&timer=1&fx=0&prefetch=0&debug=1`);await poll(()=>connections>0,60000);assert.equal(await manifest(),oldVersion);r.before=await modules();fs.writeFileSync(`${out}/ready.json`,JSON.stringify({version:oldVersion,modules:r.before},null,2));trace('ready');
+ await poll(()=>fs.existsSync(signal),1800000);assert.equal(await manifest(),newVersion);
+ await p.evaluate(()=>{window.updateAck='pending';navigator.serviceWorker.addEventListener('controllerchange',()=>console.log('SW controllerchange'));navigator.serviceWorker.getRegistration().then(reg=>{reg.addEventListener('updatefound',()=>console.log('SW updatefound'));return reg.update();}).then(()=>window.updateAck='resolved',e=>window.updateAck=String(e));});trace('update-start');
+ await poll(()=>p.evaluate(()=>window.updateAck!=='pending'));r.updateAck=await p.evaluate(()=>window.updateAck);assert.equal(r.updateAck,'resolved');
+ await poll(()=>p.evaluate(async()=>!!(await navigator.serviceWorker.getRegistration()).waiting));await p.locator('#update').waitFor({state:'visible',timeout:30000});r.waiting=await modules();assert.deepEqual(r.waiting,r.before);trace('waiting-old-modules-retained');
+ if(await p.evaluate(()=>!!document.pointerLockElement))await p.evaluate(()=>document.exitPointerLock());const n=connections;
+ await Promise.all([p.waitForNavigation({waitUntil:'domcontentloaded',timeout:30000}),p.locator('#update').click({timeout:30000})]);await poll(()=>connections>n,60000);r.after=await modules();assert.deepEqual(r.after,r.before);
+ r.version=await p.evaluate(()=>new Promise((resolve,reject)=>{const c=new MessageChannel(),t=setTimeout(()=>reject(Error('version acknowledgement timeout')),30000);c.port1.onmessage=e=>{clearTimeout(t);resolve(e.data.version);};navigator.serviceWorker.controller.postMessage('cof-version',[c.port2]);}));assert.equal(r.version,newVersion);assert.deepEqual(errors,[]);r.passed=true;trace('PASS',{version:r.version});
+}catch(e){r.passed=false;r.failure=String(e.stack);console.error(e);process.exitCode=1;}
+finally{r.errors=errors;fs.writeFileSync(`${out}/result.json`,JSON.stringify(r,null,2));await b.close();}

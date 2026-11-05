@@ -28,3 +28,17 @@ Se conserva una sesión pública anterior al despliegue para comprobar el aviso 
 El contador original de munición sigue pendiente. No se introduce el HUD de Half-Life quitando la condición de traje HEV ni se inventa una interfaz de cargadores. El diagnóstico completo de esta corrección está en [HUD_GECKO_2026_11_04.md](HUD_GECKO_2026_11_04.md).
 
 Evidencias propias de publicación: `build/validation/hud-publication-2026-11-04/`. Los resultados de Actions, comprobación de bytes públicos, sesión anterior y prueba pública nueva se añaden al completar el despliegue.
+
+## Resultado público
+
+El commit **4ef16969a351c3027b851e841f3401cf7e7efb92** se subió a `main` de `Putrefacto669/Cry-Of-Fear-PortWeb`. [GitHub Actions 41942938775](https://github.com/Putrefacto669/Cry-Of-Fear-PortWeb/actions/runs/41942938775) terminó con **success**. El sitio conserva su URL: https://putrefacto669.github.io/Cry-Of-Fear-PortWeb/.
+
+- `git-byte-proof.json`: los blobs del commit coinciden con los bytes de la candidata; solo cambian los tres archivos declarados de `dist/`. Se conservan los CRLF del worker original; la comprobación de whitespace admite CR-at-EOL para estos bytes protegidos.
+- `public-assets.json`: **PASS**, nueve respuestas públicas comparadas byte a byte, incluido el manifiesto con importación versionada, HUD, loader, HTML, metadatos del motor, paquete de motor y WASM principal. Los gzip se comparan también después de descomprimir.
+- `upgrade-live/result.json`: **PASS**, sesión pública iniciada en `d071fd1b614e`, worker nuevo esperando y cinco módulos antiguos intactos; botón real de actualización, recarga y controlador efectivo **b591c193f94d**, con los cinco hashes montados iguales y `errors: []`. No se aumentaron los límites de la API ni se forzó la activación desde el arnés.
+- `public-native/result.json`: **PASS**, sesión pública nueva de `c_apartment1`, controlador efectivo **b591c193f94d**, módulos correctos, imágenes de barras cargadas, opacidad 1 y guardado/carga nativos con barras visibles. Cero errores JavaScript.
+- `public-css/result.json`: **PASS**, fuente descargada de Pages y verificada por hash; prueba del script real con fixtures TGA sintéticos en Chromium 156 y Firefox 157. Se conserva el baseline anterior que colapsa en Gecko. Esta comprobación de presentación no certifica toda la campaña WASM en Firefox.
+
+Las comprobaciones de actualización describen esta transición pública satisfactoria; el bloqueo intermitente investigado anteriormente no se declara resuelto. Las anotaciones de Actions sobre versiones de Node/imagen de runner no impidieron el despliegue; no se cambió el workflow durante esta corrección.
+
+Para recibir la versión nueva se usa el aviso existente «Nueva versión · recargar», después de guardar la partida mediante la mecánica original. No se necesita borrar IndexedDB ni los guardados. La corrección publicada cubre vida/energía; el sistema original de munición permanece pendiente.
