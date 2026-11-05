@@ -1,0 +1,30 @@
+{
+  "diagnosticOnly": true,
+  "deployment": {
+    "manifest": "d89b15c1f62e",
+    "controller": "http://127.0.0.1:8139/sw.js"
+  },
+  "before": "[20:44:55] COF/PHONEPUNCH state kicks=0 frames=0 angle=0,0,0 velocity=0,0,0 applied=0,0,0 peak=0,0,0 native=0,0,0 nativePeak=0,0,0\n[20:44:55] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-0.232 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[20:44:55] COF/PHONE mode=1 light=1 dual=0 message=0\n[20:44:55] COF/SPPUNCH state angle=0,0,0 velocity=0,0,0 maxclients=1\n[20:44:55] COF/FENCE sp_102 time=13.648",
+  "saved": "[20:44:56] COF/SPPUNCH saved angle=-0.6,0.6,1.8 velocity=-13.43,13.43,40.29",
+  "active": "[20:44:59] COF/PHONEPUNCH state kicks=0 frames=0 angle=0,0,0 velocity=0,0,0 applied=0,0,0 peak=0,0,0 native=0,0,0 nativePeak=1.25,1.25,4\n[20:44:59] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[20:44:59] COF/PHONE mode=1 light=1 dual=0 message=0\n[20:44:59] COF/SPPUNCH state angle=-3.77664e-07,3.77664e-07,1.13298e-06 velocity=-0.000285593,0.000285593,0.000856779 maxclients=1\n[20:44:59] COF/FENCE sp_103 time=16.079",
+  "steps": [
+    "[20:44:55] COF/SPPUNCH step dt=0.0299999993 before=0,0,0 velocity=-20,20,60 after=-0.599999964,0.599999964,1.79999995 next=-13.4300003,13.4300003,40.2900047",
+    "[20:44:56] COF/SPPUNCH step dt=0.0270000007 before=-0.599999964,0.599999964,1.79999995 velocity=-13.4300003,13.4300003,40.2900047 after=-0.962610006,0.962610006,2.88783026 next=-8.47712898,8.47712898,25.4313908",
+    "[20:44:56] COF/SPPUNCH step dt=0.0270000007 before=-0.962610006,0.962610006,2.88783026 velocity=-8.47712898,8.47712898,25.4313908 after=-1.19149256,1.19149256,3.57447791 next=-4.32611656,4.32611656,12.9783535",
+    "[20:44:56] COF/SPPUNCH step dt=0.0270000007 before=-1.19149256,1.19149256,3.57447791 velocity=-4.32611656,4.32611656,12.9783535 after=-1.30829775,1.30829775,3.92489338 next=-0.978807688,0.978807688,2.93642569",
+    "[20:44:56] COF/SPPUNCH step dt=0.0270000007 before=-1.30829775,1.30829775,3.92489338 velocity=-0.978807688,0.978807688,2.93642569 after=-1.33472562,1.33472562,4.00417709 next=1.60148609,-1.60148609,-4.80445671",
+    "[20:44:57] COF/SPPUNCH step dt=0.0309999995 before=-1.33472562,1.33472562,4.00417709 velocity=1.60148609,-1.60148609,-4.80445671 after=-1.2850796,1.2850796,3.85523891 next=3.72483063,-3.72483063,-11.1744909",
+    "[20:44:57] COF/SPPUNCH step dt=0.0309999995 before=-1.2850796,1.2850796,3.85523891 velocity=3.72483063,-3.72483063,-11.1744909 after=-1.1696099,1.1696099,3.50882959 next=5.02482271,-5.02482271,-15.0744677",
+    "[20:44:57] COF/SPPUNCH step dt=0.0309999995 before=-1.1696099,1.1696099,3.50882959 velocity=5.02482271,-5.02482271,-15.0744677 after=-1.01384044,1.01384044,3.04152107 next=5.65057802,-5.65057802,-16.9517326"
+  ],
+  "restored": "[20:45:01] COF/SPPUNCH restored angle=-0.6,0.6,1.8 velocity=-13.43,13.43,40.29",
+  "settled": "[20:45:05] COF/PHONEPUNCH state kicks=0 frames=0 angle=0,0,0 velocity=0,0,0 applied=0,0,0 peak=0,0,0 native=0,0,0 nativePeak=1.5,1.5,4.5\n[20:45:05] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[20:45:05] COF/PHONE mode=1 light=1 dual=0 message=0\n[20:45:05] COF/SPPUNCH state angle=-1.35834e-05,1.35834e-05,4.07503e-05 velocity=-0.000270563,0.000270563,0.000811688 maxclients=1\n[20:45:05] COF/FENCE sp_104 time=16.98",
+  "cold": "[20:45:15] COF/SPPUNCH restored angle=-0.6,0.6,1.8 velocity=-13.43,13.43,40.29",
+  "coldSettled": "[20:45:20] COF/PHONEPUNCH state kicks=0 frames=0 angle=0,0,0 velocity=0,0,0 applied=0,0,0 peak=0,0,0 native=0,0,0 nativePeak=1.25,1.25,4\n[20:45:20] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[20:45:20] COF/PHONE mode=1 light=1 dual=0 message=0\n[20:45:20] COF/SPPUNCH state angle=-8.94664e-05,8.94664e-05,0.000268399 velocity=-0.00026194,0.00026194,0.000785823 maxclients=1\n[20:45:20] COF/FENCE sp_106 time=17",
+  "modules": {
+    "server.wasm": "c2d9d984a416e6a8552f1a75939c065c0bd983263b0d8206e60c5f5d9e6a69a5",
+    "client.wasm": "5e9d0053e3d2baf50673362bfcf555e5667224838f223ebde01679d84fe38c26"
+  },
+  "passed": true,
+  "errors": []
+}

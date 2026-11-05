@@ -435,7 +435,7 @@
   // Links with ?map= (tests, shortcuts) go straight to the game as before.
   const launcher = document.getElementById("launcher");
   if (launcher && !params.has("map")) {
-    setStatus("En el launcher");
+    setStatus(window.CoFLauncher?.t("status") || "En el launcher");
     launcher.hidden = false;
     document.getElementById("play").addEventListener("click", () => {
       launcher.hidden = true;

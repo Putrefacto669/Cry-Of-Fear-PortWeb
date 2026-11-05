@@ -1,0 +1,7 @@
+Remember to build the main file with `-sFORCE_FILESYSTEM` so that it includes support for loading this file package
+  sw-manifest   versión b3bae766b87d, 91 archivos: 648 MiB, 357 MiB a descargar con el SW (15 en .gz)
+Traceback (most recent call last):
+  File "/mnt/c/Users/josue/OneDrive/Desktop/Cry Of Fear Web Alpha Version/Cry-Of-Fear-Port-Web/build/validation/ammo-hud-2026-11-04/prepare.py", line 44, in <module>
+    assert all(new[n]==sha for n,sha in old.items() if n!='client.wasm')
+                                        ^^^^^^^^^
+AttributeError: 'PosixPath' object has no attribute 'items'. Did you mean: 'stem'?

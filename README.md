@@ -1,137 +1,201 @@
-# Cry of Fear Web
+<p align="center">
+  <img src="platform/web/launcher/logo.png#gh-dark-mode-only" width="512" alt="Cry of Fear — logo original">
+</p>
 
-Port no oficial de **Cry of Fear** al navegador (WebAssembly + WebGL 2) sobre el motor de código
-abierto [Xash3D FWGS](https://github.com/FWGS/xash3d-fwgs).
+<p align="center">
+  <img src="docs/images/simon-header.jpg" width="720" alt="Simon en el arte original de Cry of Fear, con el logo del juego">
+</p>
 
-> **Estado: alfa.** El motor, el renderizado, el audio 3D y la carga de mapas funcionan en el
-> navegador. Sobre la lógica de Half-Life (hlsdk-portable) ya hay parte de la de Cry of Fear
-> (`game/cof-logic/cof/`): menú principal original, puertas `inter_door` con llaves, sprint con
-> energía, barras de salud y energía, bolso (TAB), música, títulos de capítulo, objetivos y ayudas.
-> Se empaquetan el Prólogo, el Preludio y el Capítulo 1 ("Lost in a city"). Faltan los enemigos,
-> las armas de CoF y el resto de mecánicas.
+<h1 align="center">Cry of Fear Web</h1>
 
-**Controles** (los del juego original, `platform/game/cof_web.cfg`): **WASD** moverse, **SHIFT**
-correr, **CTRL** o **C** agacharse, **E** usar, **TAB** bolso, **F** linterna, **Esc** menú.
+<p align="center">
+  Horror psicológico en el navegador · Alpha no oficial · Sin fines de lucro<br>
+  <strong>WebAssembly · WebGL 2 · Xash3D FWGS</strong>
+</p>
 
-## Créditos
+<p align="center">
+  <a href="https://putrefacto669.github.io/Cry-Of-Fear-PortWeb/"><strong>▶ JUGAR LA ALPHA</strong></a>
+  &nbsp;·&nbsp; <a href="#estado-real-del-port">Estado del port</a>
+  &nbsp;·&nbsp; <a href="#controles">Controles</a>
+  &nbsp;·&nbsp; <a href="#ejecutar-en-local">Ejecutar en local</a>
+  &nbsp;·&nbsp; <a href="#créditos-y-permisos">Créditos</a>
+</p>
 
-- **Cry of Fear** © **Team Psykskallar** (Andreas Rönnberg y equipo) — <http://www.cry-of-fear.com>.
-  Este port se publica **con permiso de su autor** y no es un producto oficial de Team Psykskallar.
-- **Xash3D FWGS** — motor compatible con GoldSrc, por el equipo FWGS.
-- **hlsdk-portable** — lógica de Half-Life portable, por el equipo FWGS a partir del SDK de Valve.
-- **Emscripten**, **SDL2**, **stb_dxt** (Fabian Giesen / Sean Barrett) y el resto de dependencias
-  listadas en [Licencias](#licencias).
+> **Una Alpha en construcción.** Este proyecto adapta Cry of Fear a navegadores de escritorio
+> conservando sus recursos y mecánicas originales. No es un lanzamiento oficial de Team Psykskallar
+> ni una campaña completa certificada como jugable de principio a fin.
+>
+> Esta distribución es **`636f6f29424d`**: conserva la corrección de vida/energía para Gecko,
+> incorpora la presentación original comprobada de la Glock y permite elegir entre siete idiomas
+> al entrar al launcher. Los cargadores individuales de `AmmoInv` y el HUD de otras armas siguen pendientes.
 
-## Condiciones de publicación
+## Estado real del port
 
-El permiso de Team Psykskallar para distribuir los assets va ligado a tres condiciones que este
-proyecto se compromete a mantener:
-
-1. **Créditos visibles** a Team Psykskallar en la página del juego (pie y panel "Acerca de").
-2. **Código abierto**: todo el código del port se publica bajo GPL-3.0.
-3. **Sin fines de lucro**: sin anuncios, donaciones, pagos, muros de pago ni monetización de ningún
-   tipo, tampoco en forks que reutilicen los assets.
-
-Quien haga un fork que incluya los assets de Cry of Fear necesita su propio permiso de
-Team Psykskallar; el de este proyecto no se transfiere.
-
-## Licencias
-
-| Parte | Licencia |
+| Sistema | Estado y alcance |
 |---|---|
-| Código de este repositorio (herramientas, página web, parches, `game/cof-logic`) | [GPL-3.0](LICENSE) |
-| Parches sobre Xash3D FWGS (`patches/xash3d/`) | GPL-3.0, como el motor |
-| Parches sobre hlsdk-portable (`patches/hlsdk/`) | Licencia del Half-Life 1 SDK de Valve, como el SDK |
-| Assets de Cry of Fear (mapas, modelos, texturas, sonidos, música) | © Team Psykskallar, todos los derechos reservados; **no** están bajo GPL y no se incluyen en este repositorio |
-| `tools/texcomp/stb_dxt.h` | Dominio público |
-| Emscripten · SDL2 | MIT/UIUC · zlib |
+| Motor y renderizado | Xash3D FWGS en WebAssembly y WebGL 2; cliente, servidor y renderizador separados. |
+| Mapas | **11 mapas preparados** del prólogo, preludio y primer capítulo. Empaquetado no equivale a recorrido natural completo. |
+| Teléfono y combate | Teléfono, navaja y Glock; combinaciones con el teléfono y puñetazo de un jugador comprobados. |
+| Equipo | Cámara digital y morfina, con los límites de sus informes de validación. |
+| Inventario | Bolso, selección rápida, llaves y objetos de progresión implementados. |
+| Persistencia | Pruebas de guardado/carga, callbacks, cámaras, entidades móviles, voces e inventario. |
+| HUD | Vida y energía compatibles con Gecko; indicador original de Glock probado en Chromium y Firefox. Cargadores individuales de AmmoInv pendientes. |
+| Extras | Comentarios, ropa y visión nocturna con pruebas específicas; no implica desbloquearlos automáticamente. |
+| Idiomas | Siete idiomas originales de subtítulos. Selector inicial del launcher en los mismos siete idiomas; recuerda la elección sin cambiar las preferencias del juego. |
+| Próximos capítulos | Más armas, mapas y validación de progresión; distribución inmutable probada únicamente en localhost. |
 
-La lógica de juego provisional (hlsdk-portable) se carga como módulo separado del motor, igual que
-en las distribuciones de Xash3D FWGS. La licencia del Half-Life 1 SDK solo permite distribuir gratis
-y habla de juegos sobre el motor de Half-Life; usarla con Xash3D es lo habitual en la comunidad,
-pero es una zona gris. El plan es que `game/cof-logic` la sustituya por código propio bajo GPL-3.0.
+Las recogidas parciales de **FAMAS, MP5A3, Axe y Simon’s Book** no significan que esas armas estén
+completamente implementadas. El siguiente arsenal de historia debe reconstruirse y probarse con
+su contrato original; no se sustituye por armas de Half-Life con otra apariencia.
+
+La ruta principal de pruebas utiliza Chromium. La presentación de las barras se comprobó también
+con Firefox/Gecko; eso no certifica toda la campaña en cada navegador. **Android/iOS y controles
+táctiles todavía no están acreditados con dispositivos físicos.**
+
+## Antes de jugar
+
+- Usa un ordenador con **teclado, ratón y WebGL 2**.
+- La descarga depende del mapa y de lo que ya conserve la caché. No hace falta instalar Steam
+  ni una DLL nativa para jugar a la versión web.
+- Las partidas permanecen en **este navegador y este origen**. No existe sincronización en la nube.
+- Guarda mediante la grabadora original antes de aceptar **«Nueva versión · recargar»**.
+- No borres los datos del sitio para actualizar: también podrías borrar tus partidas.
+
+El bloqueo intermitente de `registration.update()` sigue investigándose. Las comprobaciones
+públicas satisfactorias no se presentan como una garantía de actualización en todas las sesiones.
+
+## Controles
+
+| Entrada | Acción |
+|---|---|
+| **W A S D** | Moverse |
+| **Shift** | Correr |
+| **Ctrl / C** | Agacharse |
+| **Espacio** | Saltar |
+| **E** | Usar y recoger |
+| **Tab** | Abrir/cerrar el bolso |
+| **1 · 2 · 3** | Selección rápida |
+| **F** | Linterna, según el equipo y su estado |
+| **R** | Recargar |
+| **Clic izquierdo / derecho** | Ataque y acción secundaria del equipo actual |
+| **Esc** | Menú y liberación del ratón |
+
+La lista de referencia vive en [cof_web.cfg](platform/game/cof_web.cfg). La disponibilidad de
+cada acción depende del arma, la escena y las reglas del juego original.
+
+## Idiomas
+
+**Español · English · Français · Deutsch · Nederlands · Norsk · Svenska**
+
+El launcher presenta estos siete idiomas al entrar por primera vez al launcher y permite
+cambiarlos después con su botón de idioma. La preferencia del launcher se guarda por separado:
+los subtítulos y textos originales del juego se eligen en su propio menú.
+
+## Ejecutar en local
+
+Para probar la distribución ya preparada:
+
+```powershell
+git clone https://github.com/Putrefacto669/Cry-Of-Fear-PortWeb.git
+cd Cry-Of-Fear-PortWeb
+python tools/serve.py dist --port 8080
+```
+
+Abre [localhost:8080](http://localhost:8080/). Se necesita un servidor HTTP; abrir `index.html`
+con `file://` no reproduce las condiciones del juego web. La descarga del repositorio es grande
+porque `dist/` contiene la distribución autorizada y versionada.
+
+## Compilar y preparar recursos
+
+Para desarrollo se utilizan WSL2, Python, Emscripten y los clones de Xash3D FWGS/hlsdk-portable.
+El staging lee una instalación local autorizada de Cry of Fear; **no modifica los originales**.
+
+```powershell
+wsl -- bash "<repo-WSL>/tools/wsl/setup_toolchain.sh"
+wsl -- bash "<repo-WSL>/tools/wsl/patches.sh" apply
+wsl -- bash "<repo-WSL>/tools/wsl/build_engine.sh"
+wsl -- bash "<repo-WSL>/tools/wsl/build_game.sh"
+wsl -- bash "<repo-WSL>/tools/wsl/build_tools.sh"
+```
+
+Preparar un mapa y empaquetar:
+
+```powershell
+wsl -- python3 "<repo-WSL>/tools/stage_map.py" "<juego-original-WSL>" c_start /root/cof-web/stage --texcomp /root/cof-web/build/tools/texcomp
+wsl -- bash "<repo-WSL>/tools/wsl/package.sh"
+```
+
+`<repo-WSL>` representa la ruta completa del repositorio vista desde Linux. El empaquetado deja
+por defecto una carpeta privada en `~/cof-web/dist`; no debe copiarse sobre la distribución
+principal ni publicarse sin revisar y autorizar el resultado.
+
+## Validación y depuración
+
+| Área | Herramientas o evidencia |
+|---|---|
+| Navegador y caché | [tools/e2e](tools/e2e), [build/validation](build/validation) |
+| Corrección de barras en Gecko | [Diagnóstico](docs/HUD_GECKO_2026_11_04.md) · [Publicación verificada](docs/PUBLICACION_HUD_2026_11_04.md) |
+| Publicación actual | [Distribución y comprobaciones públicas](docs/PUBLICACION_ALPHA_HUD_IDIOMAS_2026_11_04.md) |
+| HUD de munición y siete idiomas del launcher | [Implementación, pruebas y límites](docs/HUD_MUNICION_Y_LAUNCHER_2026_11_04.md) |
+| Armas y prioridades de historia | [Variante SP y arsenal](docs/VARIANTE_UN_JUGADOR_Y_ARMAS_2026_11_02.md) |
+| Persistencia de extras | [Informe de extras](docs/EXTRAS_2026_11_02.md) |
+| Memoria y errores nativos | `tools/wsl/build_asan.sh`, `build_native_asan.sh`, `leak_growth.sh` |
+
+`?debug=1` activa las herramientas conservadas de diagnóstico. Los comandos de prueba no se
+utilizan para acreditar progresión natural. Se distinguen pruebas de presentación, contratos de
+entidades, ejecuciones con WASM y recorridos manuales; una compilación correcta no sustituye la
+validación del juego.
 
 ## Estructura
 
-```
-platform/web/      página, loader, Service Worker, post-proceso y shaders GLSL ES 3.00
-patches/           cambios sobre Xash3D FWGS y hlsdk-portable (se aplican con tools/wsl/patches.sh)
-game/cof-logic/    base de la reimplementación de la lógica de Cry of Fear (capa Win32 -> POSIX)
-tools/             inventario y staging de assets, compresor de texturas, builds, ASan, e2e, despliegue
-deploy/            cabeceras para Cloudflare Pages / Netlify / Vercel
-```
-
-Los assets no se versionan: `tools/stage_map.py` los toma de una instalación de Cry of Fear.
-
-## Compilar
-
-Requisitos: WSL2 con Ubuntu 24.04 y una instalación de Cry of Fear. Todo se ejecuta desde PowerShell.
-
-```bash
-wsl -d Ubuntu -- bash "<repo>/tools/wsl/setup_toolchain.sh"
+```text
+platform/web/      launcher, HUD, loader, Service Worker y shaders
+game/cof-logic/    lógica y adaptaciones propias de Cry of Fear
+patches/           integración con Xash3D FWGS y hlsdk-portable
+tools/             staging, builds, análisis y pruebas
+docs/              informes, límites y decisiones de compatibilidad
+dist/              Alpha autorizada y preparada para servir
+build/validation/  resultados conservados de ejecuciones y regresiones
 ```
 
-```bash
-wsl -d Ubuntu -- bash "<repo>/tools/wsl/patches.sh" apply
-```
+## Publicación
 
-```bash
-wsl -d Ubuntu -- bash "<repo>/tools/wsl/build_engine.sh"
-```
+[GitHub Pages](https://putrefacto669.github.io/Cry-Of-Fear-PortWeb/) publica `dist/` mediante
+[el workflow existente](.github/workflows/pages.yml), al actualizar esos archivos en `main`.
+Actions no recompila el juego: sube los bytes previamente verificados. Todos los cambios de
+publicación requieren autorización; las pruebas experimentales permanecen separadas.
 
-```bash
-wsl -d Ubuntu -- bash "<repo>/tools/wsl/build_game.sh"
-```
+La ampliación de capítulos requiere revisar espacio, retención y coherencia de versiones. No se
+promete que la campaña completa quepa en el alojamiento actual ni se cambia el proveedor como
+parte de una corrección de jugabilidad.
 
-```bash
-wsl -d Ubuntu -- bash "<repo>/tools/wsl/build_tools.sh"
-```
+## Créditos y permisos
 
-```bash
-wsl -d Ubuntu -- python3 "<repo>/tools/stage_map.py" "<ruta de Cry of Fear>" c_cof_forest1 /root/cof-web/stage --texcomp /root/cof-web/build/tools/texcomp
-```
+- **Cry of Fear, Simon y los recursos originales:** © **Team Psykskallar**, Andreas Rönnberg y equipo.
+  [Sitio del juego](http://www.cry-of-fear.com/). Este port se publica con permiso de su autor;
+  **no es un producto oficial**.
+- **Xash3D FWGS:** motor compatible con GoldSrc, por el equipo [FWGS](https://github.com/FWGS/xash3d-fwgs).
+- **hlsdk-portable:** adaptación portable del SDK de Valve, por FWGS.
+- **Emscripten, SDL2 y stb_dxt:** herramientas y dependencias de la implementación web.
+- **Port web:** Putrefacto669, con las contribuciones documentadas en el repositorio.
 
-```bash
-wsl -d Ubuntu -- bash "<repo>/tools/wsl/package.sh"
-```
+El permiso de publicación exige **créditos visibles, código abierto y ausencia de monetización**:
+sin anuncios, donaciones, pagos ni muros de pago, también en forks que reutilicen los recursos.
+Un fork necesita su propio permiso de Team Psykskallar; el de este proyecto no se transfiere.
 
-```bash
-wsl -d Ubuntu -- python3 "<repo>/tools/serve.py"
-```
+El arte promocional de Simon y el logo conservan su autoría. Véase
+[la procedencia de las imágenes](docs/images/README.md).
 
-Después abre <http://localhost:8080/>. `<repo>` es la ruta de este repositorio vista desde WSL
-(por ejemplo `/mnt/c/Users/<usuario>/Desktop/cof web`).
+## Licencias
 
-## Pruebas y depuración
+| Parte | Condiciones |
+|---|---|
+| Código propio del port y herramientas | [GPL-3.0](LICENSE) |
+| Xash3D FWGS y sus parches | GPL-3.0, conforme al motor |
+| hlsdk-portable y sus adaptaciones | Licencia del Half-Life 1 SDK de Valve; conservar sus avisos |
+| Mapas, modelos, texturas, sonidos, música e imágenes originales | © Team Psykskallar; **no son GPL**. Se conservan las condiciones del permiso de distribución |
+| `tools/texcomp/stb_dxt.h` | Dominio público |
+| Emscripten / SDL2 | MIT/UIUC / zlib, según cada componente |
 
-- `tools/wsl/e2e.sh` — prueba de humo en Chromium sin interfaz: carga, caché del Service Worker,
-  recarga y arranque sin conexión (instalar antes con `e2e_setup.sh`).
-- `tools/wsl/build_native_asan.sh` + `leak_growth.sh` — ASan/LSan/UBSan en nativo y fugas que crecen
-  con cada carga de mapa.
-- `tools/wsl/build_asan.sh` — build web con ASan; en la página, `?debug=1` y `CoFDebug.leakTest()`.
-
-## Publicar
-
-`package.sh` deja en `~/cof-web/dist` todo lo necesario. Antes de subirlo:
-
-- La página enlaza el código fuente desde "Acerca de", como exige la GPL. Por defecto apunta a
-  <https://github.com/Putrefacto669/Cry-Of-Fear-PortWeb>; un fork debe cambiarlo con `COF_SOURCE_URL`.
-- Copia la configuración de `deploy/` que corresponda al hosting (`_headers` para Cloudflare Pages y
-  Netlify, `vercel.json` para Vercel).
-- Comprueba límites y cabeceras con `tools/deploy_check.py` (y `--url` una vez publicado).
-
-### GitHub Pages (despliegue actual)
-
-`.github/workflows/pages.yml` publica la carpeta `dist/` del repositorio en cada push a `main` que la
-cambie (o a mano desde Actions). No compila nada: `dist/` ya está versionado. Para activarlo una vez:
-Settings → Pages → Build and deployment → Source: **GitHub Actions**. La web queda en
-<https://putrefacto669.github.io/Cry-Of-Fear-PortWeb/>.
-
-- Encaja en los límites: 822 MiB de sitio (máximo 1 GB) y ningún archivo de más de 100 MB.
-- No hacen falta cabeceras: el motor no usa hilos (`"coi": false`). Los `.data` viajan como `.gz`
-  que descomprime `sw.js`, porque Pages no comprime `application/octet-stream`.
-- Todas las URL son relativas, así que funciona bajo la subruta `/Cry-Of-Fear-PortWeb/`.
-- Límite blando de tráfico: 100 GB al mes, unos 300 jugadores nuevos (309 MiB cada uno la primera
-  vez). Con más capítulos el sitio pasará de 1 GB y habrá que llevar los paquetes a otro sitio.
-
-Cloudflare Pages ya no sirve tal cual: limita cada archivo a 25 MiB y 14 paquetes lo superan.
+El cliente y el servidor se cargan como módulos separados. La licencia del código del repositorio
+no sustituye las licencias del SDK, el motor o los recursos del juego.

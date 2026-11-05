@@ -185,4 +185,3 @@ Los tres contratos de generación pasan: determinismo y conservación de entrada
 **Estado:** la coexistencia y la descarga por mapas quedan demostradas dentro del laboratorio. La adopción de guardados entre módulos diferentes se bloquea de forma conservadora; no se ha demostrado compatibilidad binaria entre esos dos SDK ni se han migrado partidas. La publicación y la compatibilidad móvil siguen pendientes de los trabajos enumerados.
 
 Mientras concluía la etapa, el usuario informó un fallo del HUD público. Se investigó por separado y se corrigió únicamente CSS de `platform/web/hud.js`; véase [HUD_GECKO_2026_11_04.md](HUD_GECKO_2026_11_04.md). Esa candidata local no se incorporó retroactivamente a los dos árboles históricos ni se publicó. Las comprobaciones de distribución de este informe corresponden a los manifiestos finales indicados y a Chromium; no certifican el HUD histórico en Gecko.
-

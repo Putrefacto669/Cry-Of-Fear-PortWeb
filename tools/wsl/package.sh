@@ -26,6 +26,7 @@ mkdir -p "$DIST/packs" "$STAGE/lib"
 cp "$B/engine/engine/xash3d.html" "$B/engine/engine/xash3d.js" "$B/engine/engine/xash3d.wasm" "$DIST/"
 rm -f "$DIST/xash.js" "$DIST/xash.wasm"
 cp "$WEB/index.html" "$WEB/loader.js" "$WEB/postfx.js" "$WEB/hud.js" "$WEB/extras.js" "$WEB/gpustats.js" "$WEB/debug.js" "$WEB/sw.js" "$DIST/"
+cp "$WEB/launcher.js" "$DIST/"
 # portada del launcher (index.html #launcher): logo y fondo del menú original, convertidos a PNG/JPEG
 mkdir -p "$DIST/launcher" && cp "$WEB/launcher/logo.png" "$WEB/launcher/background.jpg" "$DIST/launcher/"
 cp "$WEB/transitions.json" "$DIST/packs/"

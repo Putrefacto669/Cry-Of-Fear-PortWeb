@@ -493,6 +493,7 @@ static void Flashlight_Frame( float now, float dt, const float *vieworg, const f
 
 void CoF_DecalsInit( void );    // cof_decals.cpp
 void CoF_ClientExtrasInit();
+void CoF_ClientAmmoInit();void CoF_ClientAmmoReset();
 void CoF_ClientHandsInit();void CoF_ClientHandsReset();
 void CoF_ClientPhonePunchInit();void CoF_ClientPhonePunchReset();
 void CoF_ClientExtrasReset();
@@ -502,6 +503,7 @@ void CoF_ClientInit( void )
 {
 	CoF_DecalsInit();
 	CoF_ClientExtrasInit();
+ CoF_ClientAmmoInit();
  CoF_ClientHandsInit();
  CoF_ClientPhonePunchInit();
  gEngfuncs.pfnHookUserMsg("Padlock",PadlockMessage);
@@ -533,6 +535,7 @@ void CoF_ClientVidInit( void )
  SkyLevel();
 	CoF_DecalsVidInit();
 	CoF_ClientExtrasReset();
+ CoF_ClientAmmoReset();
  CoF_ClientHandsReset();
  CoF_ClientPhonePunchReset();
 	for( int j = 0; j < MAX_PARTICLES; j++ )

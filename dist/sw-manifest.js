@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "b591c193f94d",
+ "version": "636f6f29424d",
  "coi": false,
  "precache": [
   "LICENSE.txt",
@@ -10,6 +10,7 @@ self.COF_MANIFEST = {
   "index.html",
   "launcher/background.jpg",
   "launcher/logo.png",
+  "launcher.js",
   "loader.js",
   "packs/boot.js",
   "packs/engine.js",
@@ -43,10 +44,11 @@ self.COF_MANIFEST = {
   "extras.js": "32eba15df1ba",
   "gpustats.js": "70aaa1f28265",
   "hud.js": "9ba7204f0483",
-  "index.html": "ee1bd26a9e0e",
+  "index.html": "3b6817e5bbde",
   "launcher/background.jpg": "d385a9ca8c75",
   "launcher/logo.png": "8d7bb7601333",
-  "loader.js": "5e3b3ddcf2d9",
+  "launcher.js": "4f29b7f65403",
+  "loader.js": "ae55eeb111a2",
   "mp3/2aphall1.mp3": "70a02fded189",
   "mp3/ap3hall1.mp3": "23be860ec5a8",
   "mp3/ap3hall1end.mp3": "6da929c405e7",
@@ -89,8 +91,8 @@ self.COF_MANIFEST = {
   "mp3/watercorridor.mp3": "ba8c97aa265b",
   "packs/boot.data": "fe6d6285fd16",
   "packs/boot.js": "60dba3f72d7b",
-  "packs/engine.data": "f6017f6e937f",
-  "packs/engine.js": "de9ab1151e3f",
+  "packs/engine.data": "ca350e429d0d",
+  "packs/engine.js": "a0b1ce41da91",
   "packs/extras.data": "a15519e27758",
   "packs/extras.js": "8e94f1070e13",
   "packs/map_c_apartment1.data": "8a2ae128e830",
@@ -135,8 +137,8 @@ self.COF_MANIFEST = {
    "gzSize": 22839412
   },
   "packs/engine.data": {
-   "size": 2876888,
-   "gzSize": 959538
+   "size": 2878952,
+   "gzSize": 960220
   },
   "packs/extras.data": {
    "size": 22807804,

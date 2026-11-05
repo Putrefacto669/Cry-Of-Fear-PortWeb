@@ -1,0 +1,208 @@
+{
+  "engine": "chromium",
+  "diagnosticOnly": true,
+  "checks": [
+    "original camera hides ammo",
+    "original Glock frame 15 and zero reserve",
+    "bag open/close retains actual ammo",
+    "knife does not receive a fictional magazine",
+    "real bag phone/Glock pair has one firearm counter",
+    "actual ammo_glock pickup and original reserve quotient",
+    "shot selects actual frame 14",
+    "pending reload save/load preserves total rounds and UI",
+    "cold runtime reconstructs HUD without weapon respawn"
+  ],
+  "camera": {
+    "text": "[20:34:30] COF/AMMOCLIENT weapon=17 clip=15 reserveRounds=0 fullUnits=0 capacity=15 visible=0 hide=8 draws=0 mag=-1 icon=-1 cross=-1 dualPhone=0\n[20:34:30] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=0 secondary=0 playernext=0.5 reload=0 buttons=0 health=100\n[20:34:30] COF/PHONE mode=0 light=0 dual=0 message=0\n[20:34:30] COF/FENCE ammo_4 time=2.611",
+    "server": {
+      "name": "weapon_glock",
+      "clip": 15,
+      "reserve": 0,
+      "reload": 0
+    },
+    "client": {
+      "id": 17,
+      "clip": 15,
+      "reserve": 0,
+      "units": 0,
+      "capacity": 15,
+      "visible": 0,
+      "hide": 8,
+      "dual": 0
+    }
+  },
+  "loaded": {
+    "text": "[20:34:39] COF/AMMOCLIENT weapon=17 clip=15 reserveRounds=0 fullUnits=0 capacity=15 visible=1 hide=0 draws=2 mag=14 icon=18 cross=20 dualPhone=0\n[20:34:39] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-0.132 secondary=-0.001 playernext=0.368 reload=0 buttons=0 health=100\n[20:34:39] COF/PHONE mode=0 light=0 dual=0 message=0\n[20:34:39] COF/FENCE ammo_60 time=11.246",
+    "server": {
+      "name": "weapon_glock",
+      "clip": 15,
+      "reserve": 0,
+      "reload": 0
+    },
+    "client": {
+      "id": 17,
+      "clip": 15,
+      "reserve": 0,
+      "units": 0,
+      "capacity": 15,
+      "visible": 1,
+      "hide": 0,
+      "dual": 0
+    }
+  },
+  "bag": {
+    "text": "[20:34:40] COF/AMMOCLIENT weapon=17 clip=15 reserveRounds=0 fullUnits=0 capacity=15 visible=1 hide=0 draws=14 mag=14 icon=18 cross=20 dualPhone=0\n[20:34:40] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[20:34:40] COF/PHONE mode=0 light=0 dual=0 message=0\n[20:34:40] COF/FENCE ammo_61 time=12.772",
+    "server": {
+      "name": "weapon_glock",
+      "clip": 15,
+      "reserve": 0,
+      "reload": 0
+    },
+    "client": {
+      "id": 17,
+      "clip": 15,
+      "reserve": 0,
+      "units": 0,
+      "capacity": 15,
+      "visible": 1,
+      "hide": 0,
+      "dual": 0
+    }
+  },
+  "knife": {
+    "text": "[20:34:41] COF/AMMOCLIENT weapon=16 clip=-1 reserveRounds=0 fullUnits=0 capacity=15 visible=0 hide=0 draws=15 mag=14 icon=18 cross=20 dualPhone=0\n[20:34:41] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[20:34:41] COF/PHONE mode=0 light=0 dual=0 message=0\n[20:34:41] COF/FENCE ammo_63 time=13.622",
+    "server": {
+      "name": "weapon_switchblade",
+      "clip": -1,
+      "reserve": -1,
+      "reload": 0
+    },
+    "client": {
+      "id": 16,
+      "clip": -1,
+      "reserve": 0,
+      "units": 0,
+      "capacity": 15,
+      "visible": 0,
+      "hide": 0,
+      "dual": 0
+    }
+  },
+  "dual": {
+    "text": "[20:34:45] COF/AMMOCLIENT weapon=17 clip=15 reserveRounds=0 fullUnits=0 capacity=15 visible=1 hide=0 draws=28 mag=14 icon=18 cross=20 dualPhone=1\n[20:34:45] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[20:34:45] COF/PHONE mode=0 light=0 dual=1 message=0\n[20:34:45] COF/FENCE ammo_64 time=17.064",
+    "server": {
+      "name": "weapon_glock",
+      "clip": 15,
+      "reserve": 0,
+      "reload": 0
+    },
+    "client": {
+      "id": 17,
+      "clip": 15,
+      "reserve": 0,
+      "units": 0,
+      "capacity": 15,
+      "visible": 1,
+      "hide": 0,
+      "dual": 1
+    }
+  },
+  "pickup": {
+    "text": "[20:34:46] COF/AMMOCLIENT weapon=17 clip=15 reserveRounds=15 fullUnits=1 capacity=15 visible=1 hide=0 draws=38 mag=14 icon=18 cross=20 dualPhone=1\n[20:34:46] COF/WEAPON class=weapon_glock clip=15 ammo=15 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[20:34:46] COF/PHONE mode=0 light=0 dual=1 message=0\n[20:34:46] COF/FENCE ammo_68 time=18.298",
+    "server": {
+      "name": "weapon_glock",
+      "clip": 15,
+      "reserve": 15,
+      "reload": 0
+    },
+    "client": {
+      "id": 17,
+      "clip": 15,
+      "reserve": 15,
+      "units": 1,
+      "capacity": 15,
+      "visible": 1,
+      "hide": 0,
+      "dual": 1
+    }
+  },
+  "shot": {
+    "text": "[20:34:46] COF/AMMOCLIENT weapon=17 clip=14 reserveRounds=15 fullUnits=1 capacity=15 visible=1 hide=0 draws=41 mag=14 icon=18 cross=20 dualPhone=1\n[20:34:46] COF/WEAPON class=weapon_glock clip=14 ammo=15 primary=0.184 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[20:34:46] COF/PHONE mode=0 light=0 dual=1 message=0\n[20:34:46] COF/FENCE ammo_70 time=18.517",
+    "server": {
+      "name": "weapon_glock",
+      "clip": 14,
+      "reserve": 15,
+      "reload": 0
+    },
+    "client": {
+      "id": 17,
+      "clip": 14,
+      "reserve": 15,
+      "units": 1,
+      "capacity": 15,
+      "visible": 1,
+      "hide": 0,
+      "dual": 1
+    }
+  },
+  "reloadPending": {
+    "text": "[20:34:47] COF/AMMOCLIENT weapon=17 clip=14 reserveRounds=15 fullUnits=1 capacity=15 visible=1 hide=0 draws=65 mag=14 icon=18 cross=20 dualPhone=1\n[20:34:47] COF/WEAPON class=weapon_glock clip=14 ammo=15 primary=-0.383 secondary=-0.001 playernext=2.53367 reload=1 buttons=0 health=100\n[20:34:47] COF/PHONE mode=0 light=0 dual=1 message=0\n[20:34:47] COF/FENCE ammo_73 time=19.081",
+    "server": {
+      "name": "weapon_glock",
+      "clip": 14,
+      "reserve": 15,
+      "reload": 1
+    },
+    "client": {
+      "id": 17,
+      "clip": 14,
+      "reserve": 15,
+      "units": 1,
+      "capacity": 15,
+      "visible": 1,
+      "hide": 0,
+      "dual": 1
+    }
+  },
+  "reloaded": {
+    "text": "[20:34:50] COF/AMMOCLIENT weapon=17 clip=15 reserveRounds=14 fullUnits=0 capacity=15 visible=1 hide=0 draws=82 mag=14 icon=18 cross=20 dualPhone=1\n[20:34:50] COF/WEAPON class=weapon_glock clip=15 ammo=14 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[20:34:50] COF/PHONE mode=0 light=0 dual=1 message=0\n[20:34:50] COF/FENCE ammo_96 time=21.767",
+    "server": {
+      "name": "weapon_glock",
+      "clip": 15,
+      "reserve": 14,
+      "reload": 0
+    },
+    "client": {
+      "id": 17,
+      "clip": 15,
+      "reserve": 14,
+      "units": 0,
+      "capacity": 15,
+      "visible": 1,
+      "hide": 0,
+      "dual": 1
+    }
+  },
+  "cold": {
+    "text": "[20:34:59] COF/AMMOCLIENT weapon=17 clip=15 reserveRounds=14 fullUnits=0 capacity=15 visible=1 hide=0 draws=26 mag=14 icon=18 cross=20 dualPhone=1\n[20:34:59] COF/WEAPON class=weapon_glock clip=15 ammo=14 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[20:34:59] COF/PHONE mode=0 light=0 dual=1 message=0\n[20:34:59] COF/FENCE ammo_100 time=22.635",
+    "server": {
+      "name": "weapon_glock",
+      "clip": 15,
+      "reserve": 14,
+      "reload": 0
+    },
+    "client": {
+      "id": 17,
+      "clip": 15,
+      "reserve": 14,
+      "units": 0,
+      "capacity": 15,
+      "visible": 1,
+      "hide": 0,
+      "dual": 1
+    }
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: ammo condition deadline\n    at wait (file:///root/cof-audits/ammo-hud-20261104/ammo_hud.mjs:9:82)\n    at async matching (file:///root/cof-audits/ammo-hud-20261104/ammo_hud.mjs:12:33)\n    at async file:///root/cof-audits/ammo-hud-20261104/ammo_hud.mjs:33:273",
+  "errors": [],
+  "browser": "156.0.8078.4"
+}

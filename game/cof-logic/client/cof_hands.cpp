@@ -16,6 +16,8 @@ static int g_on,g_sequence,g_body,g_serial=-1,g_kind;
 static float g_start;
 static bool g_drawing;
 static unsigned g_draws,g_mirrors;
+// Read-only HUD layout query: this port currently supports a phone in the left hand.
+bool CoF_ClientHandsGlockDual(){return g_on && g_kind==2;}
 static int HandsMessage(const char*,int size,void *data)
 {
  BEGIN_READ(data,size);int on=READ_BYTE(),seq=READ_BYTE(),body=READ_BYTE(),kind=READ_BYTE();
