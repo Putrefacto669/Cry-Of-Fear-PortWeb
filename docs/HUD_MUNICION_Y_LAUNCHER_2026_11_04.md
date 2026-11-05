@@ -128,3 +128,7 @@ Los fallos se conservan; no se borran resultados para presentar únicamente éxi
 - No se ejecutó de nuevo toda la suite histórica de entidades/BSP/audio: se ejecutaron las regresiones indicadas en la tabla, y se conservó el servidor publicado byte a byte. No se presenta esa igualdad como sustituto de pruebas no realizadas.
 
 Siguiente trabajo recomendado: reconstruir el contrato completo de cargadores de `AmmoInv` y sus emisores originales, antes de ampliar la interfaz al siguiente arma de historia. Después, validar entrada y recarga con Firefox/Zen en una sesión de escritorio normal. La candidata requiere revisión y autorización independiente antes de commit/publicación; no se hicieron commits, pushes ni despliegues en esta etapa.
+
+## Publicación posterior autorizada
+
+Tras este informe el usuario autorizó commits, push, actualización de dist y despliegue. El seguimiento está en [Publicación de la Alpha](PUBLICACION_ALPHA_HUD_IDIOMAS_2026_11_04.md). Las limitaciones técnicas anteriores se mantienen.

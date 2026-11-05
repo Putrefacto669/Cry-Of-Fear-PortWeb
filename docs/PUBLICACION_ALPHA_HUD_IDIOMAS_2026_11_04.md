@@ -37,3 +37,19 @@ No se anuncia como completa la interfaz de cargadores individuales de `AmmoInv`,
 Sitio de destino: https://putrefacto669.github.io/Cry-Of-Fear-PortWeb/.
 
 Se conserva una sesión pública de `b591c193f94d` anterior al despliegue para comprobar que la versión antigua retiene sus cinco módulos mientras la nueva espera, y que el botón de actualización monta el cliente nuevo manteniendo los otros cuatro módulos. Los resultados de Actions, bytes públicos y ejecución pública se registran al completar la publicación en `build/validation/publicacion-alpha-2026-11-04/`.
+
+
+## Resultado público verificado
+
+El commit de distribución **d1974839167a473d74bed182860d172af33b9cb3** se subió a `main`, junto con el commit **1dbfad5** de investigación y herramientas. [GitHub Actions 41958507514](https://github.com/Putrefacto669/Cry-Of-Fear-PortWeb/actions/runs/41958507514) terminó con **success**. Las advertencias del runner sobre Node/ubuntu-latest no impidieron el despliegue; no se cambió el workflow.
+
+- `git-byte-proof.json`: los blobs del commit coinciden con los bytes de la candidata probada.
+- `public-assets.json`: **PASS**, doce recursos públicos comparados byte a byte, incluidos el HTML, launcher, worker/manifiesto, HUD, par del motor, gzip y WASM principal.
+- `readme-public.json`: **PASS**, README y ambas imágenes accesibles en el repositorio y coincidentes con los archivos de esta revisión.
+- `launcher-public/result.json`: **PASS**, siete idiomas, persistencia, teclado y ancho estrecho en Chromium 156 y Firefox 157; sin errores JavaScript ni descarga del motor al elegir idioma.
+- `upgrade-live/result.json`: **PASS**, sesión pública real de `b591c193f94d`; `registration.update()` confirmó dentro de su límite original de 30 s. Mientras el worker esperaba, los cinco módulos antiguos se conservaron. El botón real de actualización cargó `636f6f29424d`, con el cliente nuevo esperado y los otros cuatro módulos idénticos. `errors: []`. Este éxito no demuestra que el bloqueo intermitente histórico esté resuelto.
+- `ammo-public/result.json`: **PASS**, Glock real en Pages: cámara original oculta el indicador; bolso, navaja sin cargador ficticio, teléfono + Glock, recogida de munición real, disparo 15→14, recarga guardada/restaurada y restauración fría. El cambio de mapa de diagnóstico sin landmark deja el inventario vacío y el HUD lo refleja; no acredita conservación de inventario en una transición natural. Los cinco módulos se registran por hash y `errors: []`.
+
+Las pruebas usan contextos privados de automatización, con audio silenciado; no borran datos del perfil del usuario. Para una pestaña antigua, guardar mediante la mecánica original y aceptar el aviso existente de nueva versión. No hace falta borrar IndexedDB para recibir este lanzamiento.
+
+- `native-public/result.json`: **PASS**, sesión pública nueva con controlador efectivo `636f6f29424d`; los cinco módulos coinciden con la prueba de munición y la sesión actualizada. Vida/energía visibles, imágenes originales cargadas, guardado nativo sincronizado con IDBFS y restauración con barras visibles, sin errores JavaScript.
