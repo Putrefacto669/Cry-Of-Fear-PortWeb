@@ -1,0 +1,38 @@
+{"time":1793837876005,"stage":"pass","name":"release IDs equal full manifest hashes"}
+{"time":1793837876017,"stage":"pass","name":"generated bootstrap bytes agree with pinned manifest and envelope"}
+{"time":1793837876036,"stage":"pass","name":"releases distinct"}
+{"time":1793837878050,"stage":"old-initial-start"}
+{"time":1793837879979,"stage":"pass","name":"initial dependency download contains only selected map"}
+{"time":1793837900354,"stage":"pass","name":"old mounts exact five modules"}
+{"time":1793837900806,"stage":"pass","name":"old native save synchronized"}
+{"time":1793837905345,"stage":"pass","name":"second writer blocked"}
+{"time":1793837905407,"stage":"prepare-new-with-old-open"}
+{"time":1793837913402,"stage":"pass","name":"identical objects reused across releases"}
+{"time":1793837917543,"stage":"pass","name":"old runtime unchanged while new release prepared"}
+{"time":1793837917564,"stage":"pass","name":"two independent worker scopes"}
+{"time":1793837917580,"stage":"pass","name":"session graph fixed"}
+{"time":1793837917593,"stage":"download-faults"}
+{"time":1793837918475,"stage":"pass","name":"missing object not cached"}
+{"time":1793837922140,"stage":"pass","name":"missing download recovers"}
+{"time":1793837924846,"stage":"pass","name":"corrupt object not cached"}
+{"time":1793837926957,"stage":"pass","name":"corrupt download recovers"}
+{"time":1793837928910,"stage":"pass","name":"interrupt object not cached"}
+{"time":1793837931692,"stage":"pass","name":"interrupt download recovers"}
+{"time":1793837931732,"stage":"pass","name":"corrupt cache rejected"}
+{"time":1793837931758,"stage":"pass","name":"corrupt cache evicted and retry recovers"}
+{"time":1793837931807,"stage":"pass","name":"faults never replace mounted old modules"}
+{"time":1793837973064,"stage":"pass","name":"new runtime mounts own exact modules in independent profile"}
+{"time":1793837973076,"stage":"second-map-download"}
+{"time":1793837988271,"stage":"pass","name":"second map downloaded and mounted from pinned graph"}
+{"time":1793837991599,"stage":"pass","name":"new unlock profile and native slot survive route transition"}
+{"time":1793837991618,"stage":"pass","name":"reverse incompatible contract rejected"}
+{"time":1793838028580,"stage":"pass","name":"new release reopens persisted unlock profile"}
+{"time":1793838028839,"stage":"pass","name":"failed IDB sync prevents navigation"}
+{"time":1793838028852,"stage":"cross-release-transition"}
+{"time":1793838030759,"stage":"pass","name":"IndexedDB native slot survives release path change"}
+{"time":1793838030791,"stage":"pass","name":"unverified native save contract blocked before runtime/migration"}
+{"time":1793838030813,"stage":"pass","name":"incompatible transition does not modify save files"}
+{"time":1793838031087,"stage":"cold-reopen"}
+{"time":1793838050548,"stage":"pass","name":"cold reopen preserves old native save"}
+{"time":1793838059688,"stage":"pass","name":"same-release native saved game loads"}
+{"time":1793838059810,"stage":"pass","name":"no new JavaScript page errors"}

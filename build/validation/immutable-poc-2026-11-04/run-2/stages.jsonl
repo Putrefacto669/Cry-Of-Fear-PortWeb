@@ -1,0 +1,26 @@
+{"time":1793837066154,"stage":"pass","name":"release IDs equal full manifest hashes"}
+{"time":1793837066164,"stage":"pass","name":"releases distinct"}
+{"time":1793837066474,"stage":"old-initial-start"}
+{"time":1793837068550,"stage":"pass","name":"initial dependency download contains only selected map"}
+{"time":1793837089502,"stage":"pass","name":"old mounts exact five modules"}
+{"time":1793837089998,"stage":"pass","name":"old native save synchronized"}
+{"time":1793837092004,"stage":"pass","name":"second writer blocked"}
+{"time":1793837092059,"stage":"prepare-new-with-old-open"}
+{"time":1793837097114,"stage":"pass","name":"identical objects reused across releases"}
+{"time":1793837100977,"stage":"pass","name":"old runtime unchanged while new release prepared"}
+{"time":1793837100997,"stage":"pass","name":"two independent worker scopes"}
+{"time":1793837101010,"stage":"pass","name":"session graph fixed"}
+{"time":1793837101020,"stage":"download-faults"}
+{"time":1793837102742,"stage":"pass","name":"missing object not cached"}
+{"time":1793837104834,"stage":"pass","name":"missing download recovers"}
+{"time":1793837106860,"stage":"pass","name":"corrupt object not cached"}
+{"time":1793837109454,"stage":"pass","name":"corrupt download recovers"}
+{"time":1793837111041,"stage":"pass","name":"interrupt object not cached"}
+{"time":1793837112568,"stage":"pass","name":"interrupt download recovers"}
+{"time":1793837112622,"stage":"pass","name":"corrupt cache rejected"}
+{"time":1793837112651,"stage":"pass","name":"corrupt cache evicted and retry recovers"}
+{"time":1793837113398,"stage":"pass","name":"faults never replace mounted old modules"}
+{"time":1793837153215,"stage":"pass","name":"new runtime mounts own exact modules in independent profile"}
+{"time":1793837153224,"stage":"second-map-download"}
+{"time":1793837167640,"stage":"pass","name":"second map downloaded and mounted from pinned graph"}
+{"time":1793837168774,"stage":"failure","error":"page.evaluate: Execution context was destroyed, most likely because of a navigation\n    at /root/cof-audits/immutable-poc-20261104/runner/validate.mjs:76:87\n    at wait (/root/cof-audits/immutable-poc-20261104/runner/validate.mjs:17:73)\n    at /root/cof-audits/immutable-poc-20261104/runner/validate.mjs:76:76"}

@@ -1,0 +1,974 @@
+{
+  "checks": [
+    "release IDs equal full manifest hashes",
+    "releases distinct",
+    "initial dependency download contains only selected map",
+    "old mounts exact five modules",
+    "old native save synchronized",
+    "second writer blocked",
+    "identical objects reused across releases",
+    "old runtime unchanged while new release prepared",
+    "two independent worker scopes",
+    "session graph fixed",
+    "missing object not cached",
+    "missing download recovers",
+    "corrupt object not cached",
+    "corrupt download recovers",
+    "interrupt object not cached",
+    "interrupt download recovers",
+    "corrupt cache rejected",
+    "corrupt cache evicted and retry recovers",
+    "faults never replace mounted old modules",
+    "new runtime mounts own exact modules in independent profile",
+    "second map downloaded and mounted from pinned graph",
+    "new unlock profile and native slot survive route transition",
+    "reverse incompatible contract rejected"
+  ],
+  "errors": [],
+  "naturalProgression": false,
+  "mobilePhysicalTests": false,
+  "browser": "156.0.8078.4",
+  "initialPreparedMs": 2161,
+  "initial": {
+    "metrics": [
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "gpustats.js",
+        "hit": false,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 14.700000000011642,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "postfx.js",
+        "hit": false,
+        "wireBytes": 10194,
+        "decodedBytes": 10194,
+        "ms": 11.799999999988358,
+        "payloadBufferBytes": 10194
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "hud.js",
+        "hit": false,
+        "wireBytes": 76351,
+        "decodedBytes": 76351,
+        "ms": 14.5,
+        "payloadBufferBytes": 76351
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "loader.js",
+        "hit": false,
+        "wireBytes": 20429,
+        "decodedBytes": 20429,
+        "ms": 10.799999999988358,
+        "payloadBufferBytes": 20429
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "debug.js",
+        "hit": false,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 9.700000000011642,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "xash3d.js",
+        "hit": false,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 23.20000000001164,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "xash3d.wasm",
+        "hit": false,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 88.5,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/maps.json",
+        "hit": false,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 8.5,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/transitions.json",
+        "hit": false,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 7.100000000034925,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/engine.js",
+        "hit": false,
+        "wireBytes": 7156,
+        "decodedBytes": 7156,
+        "ms": 6.7999999999883585,
+        "payloadBufferBytes": 7156
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/engine.data",
+        "hit": false,
+        "wireBytes": 949980,
+        "decodedBytes": 2845610,
+        "ms": 46.70000000001164,
+        "payloadBufferBytes": 3795590
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/boot.js",
+        "hit": false,
+        "wireBytes": 119546,
+        "decodedBytes": 119546,
+        "ms": 10.299999999988358,
+        "payloadBufferBytes": 119546
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/boot.data",
+        "hit": false,
+        "wireBytes": 22662320,
+        "decodedBytes": 86275547,
+        "ms": 895.4000000000233,
+        "payloadBufferBytes": 108937867
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": false,
+        "wireBytes": 49545,
+        "decodedBytes": 49545,
+        "ms": 9.300000000046566,
+        "payloadBufferBytes": 49545
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": false,
+        "wireBytes": 28388590,
+        "decodedBytes": 51495602,
+        "ms": 678.0999999999767,
+        "payloadBufferBytes": 79884192
+      }
+    ],
+    "storage": {
+      "quota": 10792020415,
+      "usage": 54602175,
+      "usageDetails": {
+        "caches": 54598144,
+        "serviceWorkerRegistrations": 4031
+      }
+    },
+    "wasmBytes": null
+  },
+  "oldModules": {
+    "/lib/server.wasm": "07e7ef5cb6df07708b5c3c15abb7fd18e6a3bcb17d60efb5ad0e6605c2d37ee1",
+    "/lib/client.wasm": "e0bc9af55fa19c19b085c88da63eb425f8606976da408425db28fac2517b2222",
+    "/lib/libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec",
+    "/lib/filesystem_stdio.wasm": "85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95",
+    "/lib/menu.wasm": "bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051"
+  },
+  "saved": {
+    "/rwdir/cryoffear/save/immutable.sav": "e48ffdc0cda41374794e1d9f4d39bcac1d56393324a03efd356b31976464d13f"
+  },
+  "newPrepared": {
+    "metrics": [
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "gpustats.js",
+        "hit": true,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 2.8999999999650754,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "postfx.js",
+        "hit": false,
+        "wireBytes": 10077,
+        "decodedBytes": 10077,
+        "ms": 7.800000000046566,
+        "payloadBufferBytes": 10077
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "extras.js",
+        "hit": false,
+        "wireBytes": 7247,
+        "decodedBytes": 7247,
+        "ms": 10,
+        "payloadBufferBytes": 7247
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "hud.js",
+        "hit": false,
+        "wireBytes": 77141,
+        "decodedBytes": 77141,
+        "ms": 19.899999999965075,
+        "payloadBufferBytes": 77141
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "loader.js",
+        "hit": false,
+        "wireBytes": 20627,
+        "decodedBytes": 20627,
+        "ms": 8.799999999988358,
+        "payloadBufferBytes": 20627
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "debug.js",
+        "hit": true,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 1.900000000023283,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.js",
+        "hit": true,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 5.399999999965075,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.wasm",
+        "hit": true,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 51.79999999998836,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/maps.json",
+        "hit": true,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 2.6000000000349246,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/shared.json",
+        "hit": false,
+        "wireBytes": 11,
+        "decodedBytes": 11,
+        "ms": 10.100000000034925,
+        "payloadBufferBytes": 11
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/transitions.json",
+        "hit": true,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 1.6000000000349246,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.js",
+        "hit": false,
+        "wireBytes": 7165,
+        "decodedBytes": 7165,
+        "ms": 8.5,
+        "payloadBufferBytes": 7165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.data",
+        "hit": false,
+        "wireBytes": 959538,
+        "decodedBytes": 2876888,
+        "ms": 175.89999999996508,
+        "payloadBufferBytes": 3836426
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.js",
+        "hit": false,
+        "wireBytes": 119830,
+        "decodedBytes": 119830,
+        "ms": 15.299999999988358,
+        "payloadBufferBytes": 119830
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.data",
+        "hit": false,
+        "wireBytes": 22839412,
+        "decodedBytes": 86513283,
+        "ms": 2659.2000000000116,
+        "payloadBufferBytes": 109352695
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.js",
+        "hit": false,
+        "wireBytes": 11234,
+        "decodedBytes": 11234,
+        "ms": 21.600000000034925,
+        "payloadBufferBytes": 11234
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.data",
+        "hit": false,
+        "wireBytes": 7589497,
+        "decodedBytes": 22807804,
+        "ms": 759.1000000000349,
+        "payloadBufferBytes": 30397301
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": false,
+        "wireBytes": 50699,
+        "decodedBytes": 50699,
+        "ms": 17.599999999976717,
+        "payloadBufferBytes": 50699
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": false,
+        "wireBytes": 32884885,
+        "decodedBytes": 56883652,
+        "ms": 2385.0999999999767,
+        "payloadBufferBytes": 89768537
+      }
+    ],
+    "storage": {
+      "quota": 10863215354,
+      "usage": 125797114,
+      "usageDetails": {
+        "caches": 124799488,
+        "indexedDB": 989564,
+        "serviceWorkerRegistrations": 8062
+      }
+    },
+    "wasmBytes": null
+  },
+  "scopes": [
+    {
+      "scope": "http://127.0.0.1:8134/releases/2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15/",
+      "active": "http://127.0.0.1:8134/releases/2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15/sw.js"
+    },
+    {
+      "scope": "http://127.0.0.1:8134/releases/5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64/",
+      "active": "http://127.0.0.1:8134/releases/5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64/sw.js"
+    }
+  ],
+  "faults": [
+    {
+      "map": "c_apartment3",
+      "mode": "missing",
+      "error": "Error: Error: object HTTP 404: packs/map_c_apartment3.data",
+      "recovered": true
+    },
+    {
+      "map": "c_apartment4",
+      "mode": "corrupt",
+      "error": "Error: Error: network object integrity: packs/map_c_apartment4.data",
+      "recovered": true
+    },
+    {
+      "map": "c_apartment5",
+      "mode": "interrupt",
+      "error": "Error: TypeError: Failed to fetch",
+      "recovered": true
+    }
+  ],
+  "newModules": {
+    "/lib/server.wasm": "c2d9d984a416e6a8552f1a75939c065c0bd983263b0d8206e60c5f5d9e6a69a5",
+    "/lib/client.wasm": "fac7e66382a9915f33534030eab35ab0c8a9e846304e0200000bb300f8cde585",
+    "/lib/libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec",
+    "/lib/filesystem_stdio.wasm": "85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95",
+    "/lib/menu.wasm": "bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051"
+  },
+  "secondMapMs": 17133,
+  "newRuntime": {
+    "metrics": [
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "gpustats.js",
+        "hit": false,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 23.20000000001164,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "postfx.js",
+        "hit": false,
+        "wireBytes": 10077,
+        "decodedBytes": 10077,
+        "ms": 14.199999999953434,
+        "payloadBufferBytes": 10077
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "extras.js",
+        "hit": false,
+        "wireBytes": 7247,
+        "decodedBytes": 7247,
+        "ms": 12.899999999965075,
+        "payloadBufferBytes": 7247
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "hud.js",
+        "hit": false,
+        "wireBytes": 77141,
+        "decodedBytes": 77141,
+        "ms": 19.900000000023283,
+        "payloadBufferBytes": 77141
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "loader.js",
+        "hit": false,
+        "wireBytes": 20627,
+        "decodedBytes": 20627,
+        "ms": 14.799999999988358,
+        "payloadBufferBytes": 20627
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "debug.js",
+        "hit": false,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 13.300000000046566,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.js",
+        "hit": false,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 46.70000000001164,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.wasm",
+        "hit": false,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 135.69999999995343,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/maps.json",
+        "hit": false,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 16.300000000046566,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/shared.json",
+        "hit": false,
+        "wireBytes": 11,
+        "decodedBytes": 11,
+        "ms": 10.700000000011642,
+        "payloadBufferBytes": 11
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/transitions.json",
+        "hit": false,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 16.300000000046566,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.js",
+        "hit": false,
+        "wireBytes": 7165,
+        "decodedBytes": 7165,
+        "ms": 18.099999999976717,
+        "payloadBufferBytes": 7165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.data",
+        "hit": false,
+        "wireBytes": 959538,
+        "decodedBytes": 2876888,
+        "ms": 82.20000000001164,
+        "payloadBufferBytes": 3836426
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.js",
+        "hit": false,
+        "wireBytes": 119830,
+        "decodedBytes": 119830,
+        "ms": 8.900000000023283,
+        "payloadBufferBytes": 119830
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.data",
+        "hit": false,
+        "wireBytes": 22839412,
+        "decodedBytes": 86513283,
+        "ms": 1042.4000000000233,
+        "payloadBufferBytes": 109352695
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.js",
+        "hit": false,
+        "wireBytes": 11234,
+        "decodedBytes": 11234,
+        "ms": 12.099999999976717,
+        "payloadBufferBytes": 11234
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.data",
+        "hit": false,
+        "wireBytes": 7589497,
+        "decodedBytes": 22807804,
+        "ms": 710.6000000000349,
+        "payloadBufferBytes": 30397301
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": false,
+        "wireBytes": 50699,
+        "decodedBytes": 50699,
+        "ms": 11.099999999976717,
+        "payloadBufferBytes": 50699
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": false,
+        "wireBytes": 32884885,
+        "decodedBytes": 56883652,
+        "ms": 1313.2999999999884,
+        "payloadBufferBytes": 89768537
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "gpustats.js",
+        "hit": true,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 2.2999999999883585,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "postfx.js",
+        "hit": true,
+        "wireBytes": 10077,
+        "decodedBytes": 10077,
+        "ms": 2.7999999999883585,
+        "payloadBufferBytes": 10077
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "extras.js",
+        "hit": true,
+        "wireBytes": 7247,
+        "decodedBytes": 7247,
+        "ms": 1.7000000000116415,
+        "payloadBufferBytes": 7247
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "hud.js",
+        "hit": true,
+        "wireBytes": 77141,
+        "decodedBytes": 77141,
+        "ms": 2.400000000023283,
+        "payloadBufferBytes": 77141
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "loader.js",
+        "hit": true,
+        "wireBytes": 20627,
+        "decodedBytes": 20627,
+        "ms": 1.7000000000116415,
+        "payloadBufferBytes": 20627
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "debug.js",
+        "hit": true,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 1.8999999999650754,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.js",
+        "hit": true,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 3.3999999999650754,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.wasm",
+        "hit": true,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 50.20000000001164,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/maps.json",
+        "hit": true,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 1.6999999999534339,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/shared.json",
+        "hit": true,
+        "wireBytes": 11,
+        "decodedBytes": 11,
+        "ms": 1.400000000023283,
+        "payloadBufferBytes": 11
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/transitions.json",
+        "hit": true,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 1.2999999999883585,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.js",
+        "hit": true,
+        "wireBytes": 7165,
+        "decodedBytes": 7165,
+        "ms": 1.5,
+        "payloadBufferBytes": 7165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.data",
+        "hit": true,
+        "wireBytes": 959538,
+        "decodedBytes": 2876888,
+        "ms": 27.70000000001164,
+        "payloadBufferBytes": 3836426
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.js",
+        "hit": true,
+        "wireBytes": 119830,
+        "decodedBytes": 119830,
+        "ms": 3.2999999999883585,
+        "payloadBufferBytes": 119830
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.data",
+        "hit": true,
+        "wireBytes": 22839412,
+        "decodedBytes": 86513283,
+        "ms": 761.1000000000349,
+        "payloadBufferBytes": 109352695
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.js",
+        "hit": true,
+        "wireBytes": 11234,
+        "decodedBytes": 11234,
+        "ms": 3.099999999976717,
+        "payloadBufferBytes": 11234
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.data",
+        "hit": true,
+        "wireBytes": 7589497,
+        "decodedBytes": 22807804,
+        "ms": 233,
+        "payloadBufferBytes": 30397301
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": true,
+        "wireBytes": 50699,
+        "decodedBytes": 50699,
+        "ms": 3.7000000000116415,
+        "payloadBufferBytes": 50699
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": true,
+        "wireBytes": 32884885,
+        "decodedBytes": 56883652,
+        "ms": 813,
+        "payloadBufferBytes": 89768537
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "gpustats.js",
+        "hit": true,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 1.599999999976717,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "postfx.js",
+        "hit": true,
+        "wireBytes": 10077,
+        "decodedBytes": 10077,
+        "ms": 3,
+        "payloadBufferBytes": 10077
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "extras.js",
+        "hit": true,
+        "wireBytes": 7247,
+        "decodedBytes": 7247,
+        "ms": 3.2000000000116415,
+        "payloadBufferBytes": 7247
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "hud.js",
+        "hit": true,
+        "wireBytes": 77141,
+        "decodedBytes": 77141,
+        "ms": 2.5,
+        "payloadBufferBytes": 77141
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "loader.js",
+        "hit": true,
+        "wireBytes": 20627,
+        "decodedBytes": 20627,
+        "ms": 1.8999999999650754,
+        "payloadBufferBytes": 20627
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/maps.json",
+        "hit": true,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 1.7999999999883585,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/transitions.json",
+        "hit": true,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 2.400000000023283,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/shared.json",
+        "hit": true,
+        "wireBytes": 11,
+        "decodedBytes": 11,
+        "ms": 2.2999999999883585,
+        "payloadBufferBytes": 11
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "debug.js",
+        "hit": true,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 1.7000000000116415,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.js",
+        "hit": true,
+        "wireBytes": 7165,
+        "decodedBytes": 7165,
+        "ms": 2.1000000000349246,
+        "payloadBufferBytes": 7165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.js",
+        "hit": true,
+        "wireBytes": 119830,
+        "decodedBytes": 119830,
+        "ms": 7.699999999953434,
+        "payloadBufferBytes": 119830
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.data",
+        "hit": true,
+        "wireBytes": 959538,
+        "decodedBytes": 2876888,
+        "ms": 34.40000000002328,
+        "payloadBufferBytes": 3836426
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.js",
+        "hit": true,
+        "wireBytes": 11234,
+        "decodedBytes": 11234,
+        "ms": 14,
+        "payloadBufferBytes": 11234
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": true,
+        "wireBytes": 50699,
+        "decodedBytes": 50699,
+        "ms": 7.400000000023283,
+        "payloadBufferBytes": 50699
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.data",
+        "hit": true,
+        "wireBytes": 22839412,
+        "decodedBytes": 86513283,
+        "ms": 2169,
+        "payloadBufferBytes": 109352695
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.data",
+        "hit": true,
+        "wireBytes": 7589497,
+        "decodedBytes": 22807804,
+        "ms": 2163.100000000035,
+        "payloadBufferBytes": 30397301
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.js",
+        "hit": true,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 2442.100000000035,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.wasm",
+        "hit": true,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 630.2999999999884,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": true,
+        "wireBytes": 32884885,
+        "decodedBytes": 56883652,
+        "ms": 3447.5999999999767,
+        "payloadBufferBytes": 89768537
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "mp3/2aphall1.mp3",
+        "hit": false,
+        "wireBytes": 5603010,
+        "decodedBytes": 5603010,
+        "ms": 343.5,
+        "payloadBufferBytes": 5603010
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment2.js",
+        "hit": false,
+        "wireBytes": 38927,
+        "decodedBytes": 38927,
+        "ms": 75.5,
+        "payloadBufferBytes": 38927
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment2.data",
+        "hit": false,
+        "wireBytes": 19016743,
+        "decodedBytes": 37484890,
+        "ms": 1892.7999999999884,
+        "payloadBufferBytes": 56501633
+      }
+    ],
+    "storage": {
+      "quota": 10829040492,
+      "usage": 91622252,
+      "usageDetails": {
+        "caches": 91544493,
+        "indexedDB": 73728,
+        "serviceWorkerRegistrations": 4031
+      }
+    },
+    "wasmBytes": 193331200
+  },
+  "newProfileSaved": {
+    "/rwdir/cryoffear/save/immutable.sav": "20b7c682a6ba98df8837b03b8063ee5eb64c698a6737891f593cff3a77705a63",
+    "/rwdir/cryoffear/cof_extras_profile.cfg": "92dfe7348e6c9534ef042b7763f19cbadda5fba4b70e2961284d920430828827"
+  },
+  "failure": "page.waitForEvent: Timeout 30000ms exceeded while waiting for event \"console\"\n=========================== logs ===========================\nwaiting for event \"console\"\n============================================================\n    at cmd (/root/cof-audits/immutable-poc-20261104/runner/validate.mjs:35:110)\n    at /root/cof-audits/immutable-poc-20261104/runner/validate.mjs:78:259",
+  "rssSumPeakBytes": 4178780160,
+  "rssSampleCount": 384
+}

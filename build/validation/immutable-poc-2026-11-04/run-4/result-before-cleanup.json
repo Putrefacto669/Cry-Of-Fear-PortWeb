@@ -1,0 +1,990 @@
+{
+  "checks": [
+    "release IDs equal full manifest hashes",
+    "releases distinct",
+    "initial dependency download contains only selected map",
+    "old mounts exact five modules",
+    "old native save synchronized",
+    "second writer blocked",
+    "identical objects reused across releases",
+    "old runtime unchanged while new release prepared",
+    "two independent worker scopes",
+    "session graph fixed",
+    "missing object not cached",
+    "missing download recovers",
+    "corrupt object not cached",
+    "corrupt download recovers",
+    "interrupt object not cached",
+    "interrupt download recovers",
+    "corrupt cache rejected",
+    "corrupt cache evicted and retry recovers",
+    "faults never replace mounted old modules",
+    "new runtime mounts own exact modules in independent profile",
+    "second map downloaded and mounted from pinned graph",
+    "new unlock profile and native slot survive route transition",
+    "reverse incompatible contract rejected",
+    "new release reopens persisted unlock profile",
+    "failed IDB sync prevents navigation",
+    "IndexedDB native slot survives release path change",
+    "unverified native save contract blocked before runtime/migration",
+    "incompatible transition does not modify save files",
+    "cold reopen preserves old native save",
+    "same-release native saved game loads",
+    "no new JavaScript page errors"
+  ],
+  "errors": [],
+  "naturalProgression": false,
+  "mobilePhysicalTests": false,
+  "browser": "156.0.8078.4",
+  "initialPreparedMs": 1683,
+  "initial": {
+    "metrics": [
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "gpustats.js",
+        "hit": false,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 6.299999999930151,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "postfx.js",
+        "hit": false,
+        "wireBytes": 10194,
+        "decodedBytes": 10194,
+        "ms": 4.699999999953434,
+        "payloadBufferBytes": 10194
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "hud.js",
+        "hit": false,
+        "wireBytes": 76351,
+        "decodedBytes": 76351,
+        "ms": 10,
+        "payloadBufferBytes": 76351
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "loader.js",
+        "hit": false,
+        "wireBytes": 20429,
+        "decodedBytes": 20429,
+        "ms": 7.199999999953434,
+        "payloadBufferBytes": 20429
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "debug.js",
+        "hit": false,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 4.199999999953434,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "xash3d.js",
+        "hit": false,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 11.099999999976717,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "xash3d.wasm",
+        "hit": false,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 56.800000000046566,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/maps.json",
+        "hit": false,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 6.799999999930151,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/transitions.json",
+        "hit": false,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 4.099999999976717,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/engine.js",
+        "hit": false,
+        "wireBytes": 7156,
+        "decodedBytes": 7156,
+        "ms": 4.199999999953434,
+        "payloadBufferBytes": 7156
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/engine.data",
+        "hit": false,
+        "wireBytes": 949980,
+        "decodedBytes": 2845610,
+        "ms": 36.10000000009313,
+        "payloadBufferBytes": 3795590
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/boot.js",
+        "hit": false,
+        "wireBytes": 119546,
+        "decodedBytes": 119546,
+        "ms": 10.099999999976717,
+        "payloadBufferBytes": 119546
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/boot.data",
+        "hit": false,
+        "wireBytes": 22662320,
+        "decodedBytes": 86275547,
+        "ms": 659.2999999999302,
+        "payloadBufferBytes": 108937867
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": false,
+        "wireBytes": 49545,
+        "decodedBytes": 49545,
+        "ms": 6.300000000046566,
+        "payloadBufferBytes": 49545
+      },
+      {
+        "release": "2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": false,
+        "wireBytes": 28388590,
+        "decodedBytes": 51495602,
+        "ms": 528.5,
+        "payloadBufferBytes": 79884192
+      }
+    ],
+    "storage": {
+      "quota": 10792020415,
+      "usage": 54602175,
+      "usageDetails": {
+        "caches": 54598144,
+        "serviceWorkerRegistrations": 4031
+      }
+    },
+    "wasmBytes": null
+  },
+  "oldModules": {
+    "/lib/server.wasm": "07e7ef5cb6df07708b5c3c15abb7fd18e6a3bcb17d60efb5ad0e6605c2d37ee1",
+    "/lib/client.wasm": "e0bc9af55fa19c19b085c88da63eb425f8606976da408425db28fac2517b2222",
+    "/lib/libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec",
+    "/lib/filesystem_stdio.wasm": "85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95",
+    "/lib/menu.wasm": "bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051"
+  },
+  "saved": {
+    "/rwdir/cryoffear/save/immutable.sav": "e1e2b9d5b8c7903bd3b91b89d0060263f16ef9a1fcb22b1d16631a69bdfe4e99"
+  },
+  "newPrepared": {
+    "metrics": [
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "gpustats.js",
+        "hit": true,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 2.900000000023283,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "postfx.js",
+        "hit": false,
+        "wireBytes": 10077,
+        "decodedBytes": 10077,
+        "ms": 7.099999999976717,
+        "payloadBufferBytes": 10077
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "extras.js",
+        "hit": false,
+        "wireBytes": 7247,
+        "decodedBytes": 7247,
+        "ms": 5.899999999906868,
+        "payloadBufferBytes": 7247
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "hud.js",
+        "hit": false,
+        "wireBytes": 77141,
+        "decodedBytes": 77141,
+        "ms": 7.5,
+        "payloadBufferBytes": 77141
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "loader.js",
+        "hit": false,
+        "wireBytes": 20627,
+        "decodedBytes": 20627,
+        "ms": 5.299999999930151,
+        "payloadBufferBytes": 20627
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "debug.js",
+        "hit": true,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 2.099999999976717,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.js",
+        "hit": true,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 3.400000000023283,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.wasm",
+        "hit": true,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 41.70000000006985,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/maps.json",
+        "hit": true,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 2,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/shared.json",
+        "hit": false,
+        "wireBytes": 11,
+        "decodedBytes": 11,
+        "ms": 8.199999999953434,
+        "payloadBufferBytes": 11
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/transitions.json",
+        "hit": true,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 2.900000000023283,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.js",
+        "hit": false,
+        "wireBytes": 7165,
+        "decodedBytes": 7165,
+        "ms": 7.199999999953434,
+        "payloadBufferBytes": 7165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.data",
+        "hit": false,
+        "wireBytes": 959538,
+        "decodedBytes": 2876888,
+        "ms": 35.40000000002328,
+        "payloadBufferBytes": 3836426
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.js",
+        "hit": false,
+        "wireBytes": 119830,
+        "decodedBytes": 119830,
+        "ms": 7.300000000046566,
+        "payloadBufferBytes": 119830
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.data",
+        "hit": false,
+        "wireBytes": 22839412,
+        "decodedBytes": 86513283,
+        "ms": 726.8000000000466,
+        "payloadBufferBytes": 109352695
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.js",
+        "hit": false,
+        "wireBytes": 11234,
+        "decodedBytes": 11234,
+        "ms": 8.70000000006985,
+        "payloadBufferBytes": 11234
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.data",
+        "hit": false,
+        "wireBytes": 7589497,
+        "decodedBytes": 22807804,
+        "ms": 238,
+        "payloadBufferBytes": 30397301
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": false,
+        "wireBytes": 50699,
+        "decodedBytes": 50699,
+        "ms": 6.900000000023283,
+        "payloadBufferBytes": 50699
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": false,
+        "wireBytes": 32884885,
+        "decodedBytes": 56883652,
+        "ms": 965.8000000000466,
+        "payloadBufferBytes": 89768537
+      }
+    ],
+    "storage": {
+      "quota": 10863231004,
+      "usage": 125812764,
+      "usageDetails": {
+        "caches": 124799488,
+        "indexedDB": 1005214,
+        "serviceWorkerRegistrations": 8062
+      }
+    },
+    "wasmBytes": null
+  },
+  "scopes": [
+    {
+      "scope": "http://127.0.0.1:8134/releases/2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15/",
+      "active": "http://127.0.0.1:8134/releases/2e278cfacdd8090d79b28944a6bd8fe68ea1f7aa431249647cd50fd93914db15/sw.js"
+    },
+    {
+      "scope": "http://127.0.0.1:8134/releases/5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64/",
+      "active": "http://127.0.0.1:8134/releases/5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64/sw.js"
+    }
+  ],
+  "faults": [
+    {
+      "map": "c_apartment3",
+      "mode": "missing",
+      "error": "Error: Error: object HTTP 404: packs/map_c_apartment3.data",
+      "recovered": true
+    },
+    {
+      "map": "c_apartment4",
+      "mode": "corrupt",
+      "error": "Error: Error: network object integrity: packs/map_c_apartment4.data",
+      "recovered": true
+    },
+    {
+      "map": "c_apartment5",
+      "mode": "interrupt",
+      "error": "Error: TypeError: Failed to fetch",
+      "recovered": true
+    }
+  ],
+  "newModules": {
+    "/lib/server.wasm": "c2d9d984a416e6a8552f1a75939c065c0bd983263b0d8206e60c5f5d9e6a69a5",
+    "/lib/client.wasm": "fac7e66382a9915f33534030eab35ab0c8a9e846304e0200000bb300f8cde585",
+    "/lib/libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec",
+    "/lib/filesystem_stdio.wasm": "85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95",
+    "/lib/menu.wasm": "bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051"
+  },
+  "secondMapMs": 15978,
+  "newRuntime": {
+    "metrics": [
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "gpustats.js",
+        "hit": false,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 11.199999999953434,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "postfx.js",
+        "hit": false,
+        "wireBytes": 10077,
+        "decodedBytes": 10077,
+        "ms": 8.5,
+        "payloadBufferBytes": 10077
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "extras.js",
+        "hit": false,
+        "wireBytes": 7247,
+        "decodedBytes": 7247,
+        "ms": 13.70000000006985,
+        "payloadBufferBytes": 7247
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "hud.js",
+        "hit": false,
+        "wireBytes": 77141,
+        "decodedBytes": 77141,
+        "ms": 11.800000000046566,
+        "payloadBufferBytes": 77141
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "loader.js",
+        "hit": false,
+        "wireBytes": 20627,
+        "decodedBytes": 20627,
+        "ms": 6.400000000023283,
+        "payloadBufferBytes": 20627
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "debug.js",
+        "hit": false,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 10,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.js",
+        "hit": false,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 20.099999999976717,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.wasm",
+        "hit": false,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 83.5,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/maps.json",
+        "hit": false,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 7.400000000023283,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/shared.json",
+        "hit": false,
+        "wireBytes": 11,
+        "decodedBytes": 11,
+        "ms": 7.400000000023283,
+        "payloadBufferBytes": 11
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/transitions.json",
+        "hit": false,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 7.599999999976717,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.js",
+        "hit": false,
+        "wireBytes": 7165,
+        "decodedBytes": 7165,
+        "ms": 5.900000000023283,
+        "payloadBufferBytes": 7165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.data",
+        "hit": false,
+        "wireBytes": 959538,
+        "decodedBytes": 2876888,
+        "ms": 57,
+        "payloadBufferBytes": 3836426
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.js",
+        "hit": false,
+        "wireBytes": 119830,
+        "decodedBytes": 119830,
+        "ms": 11.900000000023283,
+        "payloadBufferBytes": 119830
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.data",
+        "hit": false,
+        "wireBytes": 22839412,
+        "decodedBytes": 86513283,
+        "ms": 1025.1000000000931,
+        "payloadBufferBytes": 109352695
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.js",
+        "hit": false,
+        "wireBytes": 11234,
+        "decodedBytes": 11234,
+        "ms": 8.099999999976717,
+        "payloadBufferBytes": 11234
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.data",
+        "hit": false,
+        "wireBytes": 7589497,
+        "decodedBytes": 22807804,
+        "ms": 395.4000000000233,
+        "payloadBufferBytes": 30397301
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": false,
+        "wireBytes": 50699,
+        "decodedBytes": 50699,
+        "ms": 11.400000000023283,
+        "payloadBufferBytes": 50699
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": false,
+        "wireBytes": 32884885,
+        "decodedBytes": 56883652,
+        "ms": 1057,
+        "payloadBufferBytes": 89768537
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "gpustats.js",
+        "hit": true,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 2.400000000023283,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "postfx.js",
+        "hit": true,
+        "wireBytes": 10077,
+        "decodedBytes": 10077,
+        "ms": 1.7000000000698492,
+        "payloadBufferBytes": 10077
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "extras.js",
+        "hit": true,
+        "wireBytes": 7247,
+        "decodedBytes": 7247,
+        "ms": 2.199999999953434,
+        "payloadBufferBytes": 7247
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "hud.js",
+        "hit": true,
+        "wireBytes": 77141,
+        "decodedBytes": 77141,
+        "ms": 2.099999999976717,
+        "payloadBufferBytes": 77141
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "loader.js",
+        "hit": true,
+        "wireBytes": 20627,
+        "decodedBytes": 20627,
+        "ms": 1.7999999999301508,
+        "payloadBufferBytes": 20627
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "debug.js",
+        "hit": true,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 1.7999999999301508,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.js",
+        "hit": true,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 5.400000000023283,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.wasm",
+        "hit": true,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 50.40000000002328,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/maps.json",
+        "hit": true,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 2.200000000069849,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/shared.json",
+        "hit": true,
+        "wireBytes": 11,
+        "decodedBytes": 11,
+        "ms": 2.199999999953434,
+        "payloadBufferBytes": 11
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/transitions.json",
+        "hit": true,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 1.900000000023283,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.js",
+        "hit": true,
+        "wireBytes": 7165,
+        "decodedBytes": 7165,
+        "ms": 1.900000000023283,
+        "payloadBufferBytes": 7165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.data",
+        "hit": true,
+        "wireBytes": 959538,
+        "decodedBytes": 2876888,
+        "ms": 34.89999999990687,
+        "payloadBufferBytes": 3836426
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.js",
+        "hit": true,
+        "wireBytes": 119830,
+        "decodedBytes": 119830,
+        "ms": 5.799999999930151,
+        "payloadBufferBytes": 119830
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.data",
+        "hit": true,
+        "wireBytes": 22839412,
+        "decodedBytes": 86513283,
+        "ms": 910.9000000000233,
+        "payloadBufferBytes": 109352695
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.js",
+        "hit": true,
+        "wireBytes": 11234,
+        "decodedBytes": 11234,
+        "ms": 36.40000000002328,
+        "payloadBufferBytes": 11234
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.data",
+        "hit": true,
+        "wireBytes": 7589497,
+        "decodedBytes": 22807804,
+        "ms": 184.09999999997672,
+        "payloadBufferBytes": 30397301
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": true,
+        "wireBytes": 50699,
+        "decodedBytes": 50699,
+        "ms": 2,
+        "payloadBufferBytes": 50699
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": true,
+        "wireBytes": 32884885,
+        "decodedBytes": 56883652,
+        "ms": 401.5,
+        "payloadBufferBytes": 89768537
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "gpustats.js",
+        "hit": true,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 1.599999999976717,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "postfx.js",
+        "hit": true,
+        "wireBytes": 10077,
+        "decodedBytes": 10077,
+        "ms": 1.400000000023283,
+        "payloadBufferBytes": 10077
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "extras.js",
+        "hit": true,
+        "wireBytes": 7247,
+        "decodedBytes": 7247,
+        "ms": 1.400000000023283,
+        "payloadBufferBytes": 7247
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "hud.js",
+        "hit": true,
+        "wireBytes": 77141,
+        "decodedBytes": 77141,
+        "ms": 1.900000000023283,
+        "payloadBufferBytes": 77141
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "loader.js",
+        "hit": true,
+        "wireBytes": 20627,
+        "decodedBytes": 20627,
+        "ms": 1.599999999976717,
+        "payloadBufferBytes": 20627
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/maps.json",
+        "hit": true,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 1.7999999999301508,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/transitions.json",
+        "hit": true,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 1.599999999976717,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/shared.json",
+        "hit": true,
+        "wireBytes": 11,
+        "decodedBytes": 11,
+        "ms": 2.099999999976717,
+        "payloadBufferBytes": 11
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "debug.js",
+        "hit": true,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 1.3999999999068677,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.js",
+        "hit": true,
+        "wireBytes": 7165,
+        "decodedBytes": 7165,
+        "ms": 1.400000000023283,
+        "payloadBufferBytes": 7165
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.js",
+        "hit": true,
+        "wireBytes": 119830,
+        "decodedBytes": 119830,
+        "ms": 4.900000000023283,
+        "payloadBufferBytes": 119830
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/engine.data",
+        "hit": true,
+        "wireBytes": 959538,
+        "decodedBytes": 2876888,
+        "ms": 24.699999999953434,
+        "payloadBufferBytes": 3836426
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.js",
+        "hit": true,
+        "wireBytes": 11234,
+        "decodedBytes": 11234,
+        "ms": 13.900000000023283,
+        "payloadBufferBytes": 11234
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": true,
+        "wireBytes": 50699,
+        "decodedBytes": 50699,
+        "ms": 121.40000000002328,
+        "payloadBufferBytes": 50699
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/boot.data",
+        "hit": true,
+        "wireBytes": 22839412,
+        "decodedBytes": 86513283,
+        "ms": 736.4000000000233,
+        "payloadBufferBytes": 109352695
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/extras.data",
+        "hit": true,
+        "wireBytes": 7589497,
+        "decodedBytes": 22807804,
+        "ms": 905.4000000000233,
+        "payloadBufferBytes": 30397301
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.js",
+        "hit": true,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 503.69999999995343,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": true,
+        "wireBytes": 32884885,
+        "decodedBytes": 56883652,
+        "ms": 1384.8000000000466,
+        "payloadBufferBytes": 89768537
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "xash3d.wasm",
+        "hit": true,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 455.9000000000233,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "mp3/2aphall1.mp3",
+        "hit": false,
+        "wireBytes": 5603010,
+        "decodedBytes": 5603010,
+        "ms": 127.29999999993015,
+        "payloadBufferBytes": 5603010
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment2.js",
+        "hit": false,
+        "wireBytes": 38927,
+        "decodedBytes": 38927,
+        "ms": 13.300000000046566,
+        "payloadBufferBytes": 38927
+      },
+      {
+        "release": "5cdc2f0e2eb1ed203d880b624d40c7454b8ebb9f93132d8918d0bd8fea091b64",
+        "logical": "packs/map_c_apartment2.data",
+        "hit": false,
+        "wireBytes": 19016743,
+        "decodedBytes": 37484890,
+        "ms": 1042.2999999999302,
+        "payloadBufferBytes": 56501633
+      }
+    ],
+    "storage": {
+      "quota": 10829040492,
+      "usage": 91622252,
+      "usageDetails": {
+        "caches": 91544493,
+        "indexedDB": 73728,
+        "serviceWorkerRegistrations": 4031
+      }
+    },
+    "wasmBytes": 193331200
+  },
+  "newProfileSaved": {
+    "/rwdir/cryoffear/save/immutable.sav": "875313e353aa4af7d9284ab43e74c6bc4a7ca43fc8901d8f2986033586284a8c",
+    "/rwdir/cryoffear/cof_extras_profile.cfg": "92dfe7348e6c9534ef042b7763f19cbadda5fba4b70e2961284d920430828827"
+  },
+  "incompatible": "Error: Save compatibility unverified: no automatic migration",
+  "finalStorage": {
+    "quota": 10941001529,
+    "usage": 203583289,
+    "usageDetails": {
+      "caches": 202548992,
+      "indexedDB": 1026235,
+      "serviceWorkerRegistrations": 8062
+    }
+  },
+  "passed": true
+}

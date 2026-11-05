@@ -1,0 +1,28 @@
+{"time":1793837237039,"stage":"pass","name":"release IDs equal full manifest hashes"}
+{"time":1793837237056,"stage":"pass","name":"releases distinct"}
+{"time":1793837238143,"stage":"old-initial-start"}
+{"time":1793837240338,"stage":"pass","name":"initial dependency download contains only selected map"}
+{"time":1793837265373,"stage":"pass","name":"old mounts exact five modules"}
+{"time":1793837266722,"stage":"pass","name":"old native save synchronized"}
+{"time":1793837269065,"stage":"pass","name":"second writer blocked"}
+{"time":1793837269155,"stage":"prepare-new-with-old-open"}
+{"time":1793837280262,"stage":"pass","name":"identical objects reused across releases"}
+{"time":1793837289001,"stage":"pass","name":"old runtime unchanged while new release prepared"}
+{"time":1793837289024,"stage":"pass","name":"two independent worker scopes"}
+{"time":1793837289044,"stage":"pass","name":"session graph fixed"}
+{"time":1793837289060,"stage":"download-faults"}
+{"time":1793837290794,"stage":"pass","name":"missing object not cached"}
+{"time":1793837294743,"stage":"pass","name":"missing download recovers"}
+{"time":1793837296823,"stage":"pass","name":"corrupt object not cached"}
+{"time":1793837299345,"stage":"pass","name":"corrupt download recovers"}
+{"time":1793837301618,"stage":"pass","name":"interrupt object not cached"}
+{"time":1793837303618,"stage":"pass","name":"interrupt download recovers"}
+{"time":1793837303663,"stage":"pass","name":"corrupt cache rejected"}
+{"time":1793837303692,"stage":"pass","name":"corrupt cache evicted and retry recovers"}
+{"time":1793837304211,"stage":"pass","name":"faults never replace mounted old modules"}
+{"time":1793837352778,"stage":"pass","name":"new runtime mounts own exact modules in independent profile"}
+{"time":1793837352789,"stage":"second-map-download"}
+{"time":1793837369943,"stage":"pass","name":"second map downloaded and mounted from pinned graph"}
+{"time":1793837375073,"stage":"pass","name":"new unlock profile and native slot survive route transition"}
+{"time":1793837375099,"stage":"pass","name":"reverse incompatible contract rejected"}
+{"time":1793837436707,"stage":"failure","error":"page.waitForEvent: Timeout 30000ms exceeded while waiting for event \"console\"\n=========================== logs ===========================\nwaiting for event \"console\"\n============================================================\n    at cmd (/root/cof-audits/immutable-poc-20261104/runner/validate.mjs:35:110)\n    at /root/cof-audits/immutable-poc-20261104/runner/validate.mjs:78:259"}

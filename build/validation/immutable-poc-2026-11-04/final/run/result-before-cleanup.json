@@ -1,0 +1,991 @@
+{
+  "checks": [
+    "release IDs equal full manifest hashes",
+    "generated bootstrap bytes agree with pinned manifest and envelope",
+    "releases distinct",
+    "initial dependency download contains only selected map",
+    "old mounts exact five modules",
+    "old native save synchronized",
+    "second writer blocked",
+    "identical objects reused across releases",
+    "old runtime unchanged while new release prepared",
+    "two independent worker scopes",
+    "session graph fixed",
+    "missing object not cached",
+    "missing download recovers",
+    "corrupt object not cached",
+    "corrupt download recovers",
+    "interrupt object not cached",
+    "interrupt download recovers",
+    "corrupt cache rejected",
+    "corrupt cache evicted and retry recovers",
+    "faults never replace mounted old modules",
+    "new runtime mounts own exact modules in independent profile",
+    "second map downloaded and mounted from pinned graph",
+    "new unlock profile and native slot survive route transition",
+    "reverse incompatible contract rejected",
+    "new release reopens persisted unlock profile",
+    "failed IDB sync prevents navigation",
+    "IndexedDB native slot survives release path change",
+    "unverified native save contract blocked before runtime/migration",
+    "incompatible transition does not modify save files",
+    "cold reopen preserves old native save",
+    "same-release native saved game loads",
+    "no new JavaScript page errors"
+  ],
+  "errors": [],
+  "naturalProgression": false,
+  "mobilePhysicalTests": false,
+  "browser": "156.0.8078.4",
+  "initialPreparedMs": 1897,
+  "initial": {
+    "metrics": [
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "gpustats.js",
+        "hit": false,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 23.600000000093132,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "postfx.js",
+        "hit": false,
+        "wireBytes": 10194,
+        "decodedBytes": 10194,
+        "ms": 5.599999999976717,
+        "payloadBufferBytes": 10194
+      },
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "hud.js",
+        "hit": false,
+        "wireBytes": 76351,
+        "decodedBytes": 76351,
+        "ms": 9.900000000023283,
+        "payloadBufferBytes": 76351
+      },
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "loader.js",
+        "hit": false,
+        "wireBytes": 20429,
+        "decodedBytes": 20429,
+        "ms": 7.099999999976717,
+        "payloadBufferBytes": 20429
+      },
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "debug.js",
+        "hit": false,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 4.699999999953434,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "xash3d.js",
+        "hit": false,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 17.099999999976717,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "xash3d.wasm",
+        "hit": false,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 74.59999999997672,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "packs/maps.json",
+        "hit": false,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 5.5,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "packs/transitions.json",
+        "hit": false,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 4.799999999930151,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "packs/engine.js",
+        "hit": false,
+        "wireBytes": 7156,
+        "decodedBytes": 7156,
+        "ms": 4.799999999930151,
+        "payloadBufferBytes": 7156
+      },
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "packs/engine.data",
+        "hit": false,
+        "wireBytes": 949980,
+        "decodedBytes": 2845610,
+        "ms": 57,
+        "payloadBufferBytes": 3795590
+      },
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "packs/boot.js",
+        "hit": false,
+        "wireBytes": 119546,
+        "decodedBytes": 119546,
+        "ms": 15.099999999976717,
+        "payloadBufferBytes": 119546
+      },
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "packs/boot.data",
+        "hit": false,
+        "wireBytes": 22662320,
+        "decodedBytes": 86275547,
+        "ms": 762,
+        "payloadBufferBytes": 108937867
+      },
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": false,
+        "wireBytes": 49545,
+        "decodedBytes": 49545,
+        "ms": 8.399999999906868,
+        "payloadBufferBytes": 49545
+      },
+      {
+        "release": "a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": false,
+        "wireBytes": 28388590,
+        "decodedBytes": 51495602,
+        "ms": 556.2000000000698,
+        "payloadBufferBytes": 79884192
+      }
+    ],
+    "storage": {
+      "quota": 10792020415,
+      "usage": 54602175,
+      "usageDetails": {
+        "caches": 54598144,
+        "serviceWorkerRegistrations": 4031
+      }
+    },
+    "wasmBytes": null
+  },
+  "oldModules": {
+    "/lib/server.wasm": "07e7ef5cb6df07708b5c3c15abb7fd18e6a3bcb17d60efb5ad0e6605c2d37ee1",
+    "/lib/client.wasm": "e0bc9af55fa19c19b085c88da63eb425f8606976da408425db28fac2517b2222",
+    "/lib/libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec",
+    "/lib/filesystem_stdio.wasm": "85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95",
+    "/lib/menu.wasm": "bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051"
+  },
+  "saved": {
+    "/rwdir/cryoffear/save/immutable.sav": "790ad42570cee1dc85299305a20f19283d13423cd7b3745b04a34f44a0164d4d"
+  },
+  "newPrepared": {
+    "metrics": [
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "gpustats.js",
+        "hit": true,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 3.6000000000931323,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "postfx.js",
+        "hit": false,
+        "wireBytes": 10077,
+        "decodedBytes": 10077,
+        "ms": 11.5,
+        "payloadBufferBytes": 10077
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "extras.js",
+        "hit": false,
+        "wireBytes": 7247,
+        "decodedBytes": 7247,
+        "ms": 9.199999999953434,
+        "payloadBufferBytes": 7247
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "hud.js",
+        "hit": false,
+        "wireBytes": 77141,
+        "decodedBytes": 77141,
+        "ms": 12,
+        "payloadBufferBytes": 77141
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "loader.js",
+        "hit": false,
+        "wireBytes": 20627,
+        "decodedBytes": 20627,
+        "ms": 8.20000000006985,
+        "payloadBufferBytes": 20627
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "debug.js",
+        "hit": true,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 2.1000000000931323,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "xash3d.js",
+        "hit": true,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 5.299999999930151,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "xash3d.wasm",
+        "hit": true,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 47.20000000006985,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/maps.json",
+        "hit": true,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 3.200000000069849,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/shared.json",
+        "hit": false,
+        "wireBytes": 11,
+        "decodedBytes": 11,
+        "ms": 12.199999999953434,
+        "payloadBufferBytes": 11
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/transitions.json",
+        "hit": true,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 2.599999999976717,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/engine.js",
+        "hit": false,
+        "wireBytes": 7165,
+        "decodedBytes": 7165,
+        "ms": 7.300000000046566,
+        "payloadBufferBytes": 7165
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/engine.data",
+        "hit": false,
+        "wireBytes": 959538,
+        "decodedBytes": 2876888,
+        "ms": 55,
+        "payloadBufferBytes": 3836426
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/boot.js",
+        "hit": false,
+        "wireBytes": 119830,
+        "decodedBytes": 119830,
+        "ms": 13.20000000006985,
+        "payloadBufferBytes": 119830
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/boot.data",
+        "hit": false,
+        "wireBytes": 22839412,
+        "decodedBytes": 86513283,
+        "ms": 4259.20000000007,
+        "payloadBufferBytes": 109352695
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/extras.js",
+        "hit": false,
+        "wireBytes": 11234,
+        "decodedBytes": 11234,
+        "ms": 14.5,
+        "payloadBufferBytes": 11234
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/extras.data",
+        "hit": false,
+        "wireBytes": 7589497,
+        "decodedBytes": 22807804,
+        "ms": 330,
+        "payloadBufferBytes": 30397301
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": false,
+        "wireBytes": 50699,
+        "decodedBytes": 50699,
+        "ms": 8.599999999976717,
+        "payloadBufferBytes": 50699
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": false,
+        "wireBytes": 32884885,
+        "decodedBytes": 56883652,
+        "ms": 1058.0999999999767,
+        "payloadBufferBytes": 89768537
+      }
+    ],
+    "storage": {
+      "quota": 10863230688,
+      "usage": 125812448,
+      "usageDetails": {
+        "caches": 124799488,
+        "indexedDB": 1004898,
+        "serviceWorkerRegistrations": 8062
+      }
+    },
+    "wasmBytes": null
+  },
+  "scopes": [
+    {
+      "scope": "http://127.0.0.1:8134/releases/a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58/",
+      "active": "http://127.0.0.1:8134/releases/a27aa1f5ad9b7d22ee764cb744263e2093405584a6efecee4c88e4989db61f58/sw.js"
+    },
+    {
+      "scope": "http://127.0.0.1:8134/releases/88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2/",
+      "active": "http://127.0.0.1:8134/releases/88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2/sw.js"
+    }
+  ],
+  "faults": [
+    {
+      "map": "c_apartment3",
+      "mode": "missing",
+      "error": "Error: Error: object HTTP 404: packs/map_c_apartment3.data",
+      "recovered": true
+    },
+    {
+      "map": "c_apartment4",
+      "mode": "corrupt",
+      "error": "Error: Error: network object integrity: packs/map_c_apartment4.data",
+      "recovered": true
+    },
+    {
+      "map": "c_apartment5",
+      "mode": "interrupt",
+      "error": "Error: TypeError: Failed to fetch",
+      "recovered": true
+    }
+  ],
+  "newModules": {
+    "/lib/server.wasm": "c2d9d984a416e6a8552f1a75939c065c0bd983263b0d8206e60c5f5d9e6a69a5",
+    "/lib/client.wasm": "fac7e66382a9915f33534030eab35ab0c8a9e846304e0200000bb300f8cde585",
+    "/lib/libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec",
+    "/lib/filesystem_stdio.wasm": "85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95",
+    "/lib/menu.wasm": "bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051"
+  },
+  "secondMapMs": 15173,
+  "newRuntime": {
+    "metrics": [
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "gpustats.js",
+        "hit": false,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 10,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "postfx.js",
+        "hit": false,
+        "wireBytes": 10077,
+        "decodedBytes": 10077,
+        "ms": 6.699999999953434,
+        "payloadBufferBytes": 10077
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "extras.js",
+        "hit": false,
+        "wireBytes": 7247,
+        "decodedBytes": 7247,
+        "ms": 8.600000000093132,
+        "payloadBufferBytes": 7247
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "hud.js",
+        "hit": false,
+        "wireBytes": 77141,
+        "decodedBytes": 77141,
+        "ms": 19.199999999953434,
+        "payloadBufferBytes": 77141
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "loader.js",
+        "hit": false,
+        "wireBytes": 20627,
+        "decodedBytes": 20627,
+        "ms": 8.300000000046566,
+        "payloadBufferBytes": 20627
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "debug.js",
+        "hit": false,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 7.100000000093132,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "xash3d.js",
+        "hit": false,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 30.699999999953434,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "xash3d.wasm",
+        "hit": false,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 282,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/maps.json",
+        "hit": false,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 7.800000000046566,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/shared.json",
+        "hit": false,
+        "wireBytes": 11,
+        "decodedBytes": 11,
+        "ms": 6.699999999953434,
+        "payloadBufferBytes": 11
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/transitions.json",
+        "hit": false,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 9.20000000006985,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/engine.js",
+        "hit": false,
+        "wireBytes": 7165,
+        "decodedBytes": 7165,
+        "ms": 7.399999999906868,
+        "payloadBufferBytes": 7165
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/engine.data",
+        "hit": false,
+        "wireBytes": 959538,
+        "decodedBytes": 2876888,
+        "ms": 125.60000000009313,
+        "payloadBufferBytes": 3836426
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/boot.js",
+        "hit": false,
+        "wireBytes": 119830,
+        "decodedBytes": 119830,
+        "ms": 38.90000000002328,
+        "payloadBufferBytes": 119830
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/boot.data",
+        "hit": false,
+        "wireBytes": 22839412,
+        "decodedBytes": 86513283,
+        "ms": 2627.8000000000466,
+        "payloadBufferBytes": 109352695
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/extras.js",
+        "hit": false,
+        "wireBytes": 11234,
+        "decodedBytes": 11234,
+        "ms": 8.599999999976717,
+        "payloadBufferBytes": 11234
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/extras.data",
+        "hit": false,
+        "wireBytes": 7589497,
+        "decodedBytes": 22807804,
+        "ms": 224,
+        "payloadBufferBytes": 30397301
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": false,
+        "wireBytes": 50699,
+        "decodedBytes": 50699,
+        "ms": 6.599999999976717,
+        "payloadBufferBytes": 50699
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": false,
+        "wireBytes": 32884885,
+        "decodedBytes": 56883652,
+        "ms": 953,
+        "payloadBufferBytes": 89768537
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "gpustats.js",
+        "hit": true,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 3.5,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "postfx.js",
+        "hit": true,
+        "wireBytes": 10077,
+        "decodedBytes": 10077,
+        "ms": 3.300000000046566,
+        "payloadBufferBytes": 10077
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "extras.js",
+        "hit": true,
+        "wireBytes": 7247,
+        "decodedBytes": 7247,
+        "ms": 3.199999999953434,
+        "payloadBufferBytes": 7247
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "hud.js",
+        "hit": true,
+        "wireBytes": 77141,
+        "decodedBytes": 77141,
+        "ms": 3.6000000000931323,
+        "payloadBufferBytes": 77141
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "loader.js",
+        "hit": true,
+        "wireBytes": 20627,
+        "decodedBytes": 20627,
+        "ms": 2.900000000023283,
+        "payloadBufferBytes": 20627
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "debug.js",
+        "hit": true,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 3.299999999930151,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "xash3d.js",
+        "hit": true,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 7.799999999930151,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "xash3d.wasm",
+        "hit": true,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 79.5,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/maps.json",
+        "hit": true,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 3.099999999976717,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/shared.json",
+        "hit": true,
+        "wireBytes": 11,
+        "decodedBytes": 11,
+        "ms": 3.099999999976717,
+        "payloadBufferBytes": 11
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/transitions.json",
+        "hit": true,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 2.900000000023283,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/engine.js",
+        "hit": true,
+        "wireBytes": 7165,
+        "decodedBytes": 7165,
+        "ms": 3,
+        "payloadBufferBytes": 7165
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/engine.data",
+        "hit": true,
+        "wireBytes": 959538,
+        "decodedBytes": 2876888,
+        "ms": 61.70000000006985,
+        "payloadBufferBytes": 3836426
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/boot.js",
+        "hit": true,
+        "wireBytes": 119830,
+        "decodedBytes": 119830,
+        "ms": 18.400000000023283,
+        "payloadBufferBytes": 119830
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/boot.data",
+        "hit": true,
+        "wireBytes": 22839412,
+        "decodedBytes": 86513283,
+        "ms": 1046.7999999999302,
+        "payloadBufferBytes": 109352695
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/extras.js",
+        "hit": true,
+        "wireBytes": 11234,
+        "decodedBytes": 11234,
+        "ms": 27.79999999993015,
+        "payloadBufferBytes": 11234
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/extras.data",
+        "hit": true,
+        "wireBytes": 7589497,
+        "decodedBytes": 22807804,
+        "ms": 267.5,
+        "payloadBufferBytes": 30397301
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": true,
+        "wireBytes": 50699,
+        "decodedBytes": 50699,
+        "ms": 2.5,
+        "payloadBufferBytes": 50699
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": true,
+        "wireBytes": 32884885,
+        "decodedBytes": 56883652,
+        "ms": 633.4000000000233,
+        "payloadBufferBytes": 89768537
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "gpustats.js",
+        "hit": true,
+        "wireBytes": 7504,
+        "decodedBytes": 7504,
+        "ms": 1.7999999999301508,
+        "payloadBufferBytes": 7504
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "postfx.js",
+        "hit": true,
+        "wireBytes": 10077,
+        "decodedBytes": 10077,
+        "ms": 1.8000000000465661,
+        "payloadBufferBytes": 10077
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "extras.js",
+        "hit": true,
+        "wireBytes": 7247,
+        "decodedBytes": 7247,
+        "ms": 1.900000000023283,
+        "payloadBufferBytes": 7247
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "hud.js",
+        "hit": true,
+        "wireBytes": 77141,
+        "decodedBytes": 77141,
+        "ms": 2,
+        "payloadBufferBytes": 77141
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "loader.js",
+        "hit": true,
+        "wireBytes": 20627,
+        "decodedBytes": 20627,
+        "ms": 2.299999999930151,
+        "payloadBufferBytes": 20627
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/maps.json",
+        "hit": true,
+        "wireBytes": 165,
+        "decodedBytes": 165,
+        "ms": 2.099999999976717,
+        "payloadBufferBytes": 165
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/transitions.json",
+        "hit": true,
+        "wireBytes": 9136,
+        "decodedBytes": 9136,
+        "ms": 2,
+        "payloadBufferBytes": 9136
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/shared.json",
+        "hit": true,
+        "wireBytes": 11,
+        "decodedBytes": 11,
+        "ms": 2.699999999953434,
+        "payloadBufferBytes": 11
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "debug.js",
+        "hit": true,
+        "wireBytes": 4869,
+        "decodedBytes": 4869,
+        "ms": 1.599999999976717,
+        "payloadBufferBytes": 4869
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/engine.js",
+        "hit": true,
+        "wireBytes": 7165,
+        "decodedBytes": 7165,
+        "ms": 1.900000000023283,
+        "payloadBufferBytes": 7165
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/boot.js",
+        "hit": true,
+        "wireBytes": 119830,
+        "decodedBytes": 119830,
+        "ms": 7.5,
+        "payloadBufferBytes": 119830
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/engine.data",
+        "hit": true,
+        "wireBytes": 959538,
+        "decodedBytes": 2876888,
+        "ms": 25.5,
+        "payloadBufferBytes": 3836426
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/extras.js",
+        "hit": true,
+        "wireBytes": 11234,
+        "decodedBytes": 11234,
+        "ms": 18.100000000093132,
+        "payloadBufferBytes": 11234
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/map_c_apartment1.js",
+        "hit": true,
+        "wireBytes": 50699,
+        "decodedBytes": 50699,
+        "ms": 49.59999999997672,
+        "payloadBufferBytes": 50699
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/boot.data",
+        "hit": true,
+        "wireBytes": 22839412,
+        "decodedBytes": 86513283,
+        "ms": 630.9000000000233,
+        "payloadBufferBytes": 109352695
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/extras.data",
+        "hit": true,
+        "wireBytes": 7589497,
+        "decodedBytes": 22807804,
+        "ms": 789.2999999999302,
+        "payloadBufferBytes": 30397301
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "xash3d.js",
+        "hit": true,
+        "wireBytes": 530771,
+        "decodedBytes": 530771,
+        "ms": 450.29999999993015,
+        "payloadBufferBytes": 530771
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "xash3d.wasm",
+        "hit": true,
+        "wireBytes": 1752419,
+        "decodedBytes": 4681929,
+        "ms": 485.79999999993015,
+        "payloadBufferBytes": 6434348
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/map_c_apartment1.data",
+        "hit": true,
+        "wireBytes": 32884885,
+        "decodedBytes": 56883652,
+        "ms": 1149.6999999999534,
+        "payloadBufferBytes": 89768537
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "mp3/2aphall1.mp3",
+        "hit": false,
+        "wireBytes": 5603010,
+        "decodedBytes": 5603010,
+        "ms": 84.39999999990687,
+        "payloadBufferBytes": 5603010
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/map_c_apartment2.js",
+        "hit": false,
+        "wireBytes": 38927,
+        "decodedBytes": 38927,
+        "ms": 7.800000000046566,
+        "payloadBufferBytes": 38927
+      },
+      {
+        "release": "88a112f67a85d1295f6a442a8d588eed7b0877c5b1c8af6e0b604eb8eb54f7c2",
+        "logical": "packs/map_c_apartment2.data",
+        "hit": false,
+        "wireBytes": 19016743,
+        "decodedBytes": 37484890,
+        "ms": 573,
+        "payloadBufferBytes": 56501633
+      }
+    ],
+    "storage": {
+      "quota": 10829040492,
+      "usage": 91622252,
+      "usageDetails": {
+        "caches": 91544493,
+        "indexedDB": 73728,
+        "serviceWorkerRegistrations": 4031
+      }
+    },
+    "wasmBytes": 193331200
+  },
+  "newProfileSaved": {
+    "/rwdir/cryoffear/save/immutable.sav": "0e4e3ac013453f0e826c8859c571580afac5fff931513023c6be6efdf129d6c5",
+    "/rwdir/cryoffear/cof_extras_profile.cfg": "92dfe7348e6c9534ef042b7763f19cbadda5fba4b70e2961284d920430828827"
+  },
+  "incompatible": "Error: Save compatibility unverified: no automatic migration",
+  "finalStorage": {
+    "quota": 10941001221,
+    "usage": 203582981,
+    "usageDetails": {
+      "caches": 202548992,
+      "indexedDB": 1025927,
+      "serviceWorkerRegistrations": 8062
+    }
+  },
+  "passed": true
+}

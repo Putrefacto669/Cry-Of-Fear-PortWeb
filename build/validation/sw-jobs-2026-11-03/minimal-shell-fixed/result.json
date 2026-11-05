@@ -1,0 +1,57 @@
+{
+  "kind": "minimal",
+  "browserType": "shell",
+  "profile": "-",
+  "initial": "old",
+  "target": "new",
+  "saveMode": "none",
+  "updateLimitMs": 30000,
+  "phases": [
+    {
+      "label": "primary",
+      "complete": true,
+      "state": {
+        "phase": "resolved",
+        "start": 5932.099999999977,
+        "end": 5990.099999999977
+      },
+      "registration": {
+        "scope": "http://127.0.0.1:8133/game/",
+        "updateViaCache": "imports",
+        "active": "activated",
+        "readyState": "complete",
+        "secure": true,
+        "origin": "http://127.0.0.1:8133"
+      },
+      "pendingRequests": []
+    }
+  ],
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "HeadlessChrome/156.0.8078.4",
+    "revision": "@f842f52ef39fd97b449eb27cff414bf05a98ddce",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+    "jsVersion": "15.6.75"
+  },
+  "traceCategories": [],
+  "initialRegistration": {
+    "scope": "http://127.0.0.1:8133/game/",
+    "updateViaCache": "imports",
+    "active": "activated",
+    "readyState": "complete",
+    "secure": true,
+    "origin": "http://127.0.0.1:8133"
+  },
+  "observerRegistration": {
+    "scope": "http://127.0.0.1:8133/game/",
+    "updateViaCache": "imports",
+    "active": "activated",
+    "readyState": "complete",
+    "secure": true,
+    "origin": "http://127.0.0.1:8133"
+  },
+  "observationsComplete": true,
+  "errors": [],
+  "traceEventCount": 5141,
+  "netlogBytes": 721493
+}

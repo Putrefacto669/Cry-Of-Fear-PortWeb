@@ -1,0 +1,638 @@
+{
+  "cause": "unconfirmed",
+  "allUpdateConditionsStable": false,
+  "runs": [
+    {
+      "run": "dual-close-shell",
+      "browser": "HeadlessChrome/156.0.8078.4",
+      "phases": [
+        {
+          "label": "primary",
+          "complete": false,
+          "state": {
+            "phase": "calling",
+            "start": 18497.300000000047
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "active": "activated",
+            "controller": "http://127.0.0.1:8133/game/sw.js",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": [
+            "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+          ]
+        },
+        {
+          "label": "secondary",
+          "complete": false,
+          "state": {
+            "phase": "calling",
+            "start": 31073.79999999993
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "active": "activated",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": [
+            "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+          ]
+        }
+      ],
+      "complete": null,
+      "state": null,
+      "failure": null,
+      "traceError": "Error: trace finish",
+      "errors": [],
+      "modulesUnchanged": null,
+      "scriptNetlogEventsAfterCall": [
+        {
+          "event": "CORS_REQUEST",
+          "delayMs": 63656
+        },
+        {
+          "event": "REQUEST_ALIVE",
+          "delayMs": 63656
+        },
+        {
+          "event": "URL_REQUEST_START_JOB",
+          "delayMs": 63656
+        },
+        {
+          "event": "HTTP_STREAM_JOB_CONTROLLER",
+          "delayMs": 63656
+        }
+      ]
+    },
+    {
+      "run": "dual-minimal-shell",
+      "browser": "HeadlessChrome/156.0.8078.4",
+      "phases": [
+        {
+          "label": "primary",
+          "complete": false,
+          "state": {
+            "phase": "calling",
+            "start": 366.39999999990687
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "active": "activated",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": [
+            "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+          ]
+        },
+        {
+          "label": "secondary",
+          "complete": false,
+          "state": {
+            "phase": "calling",
+            "start": 57561.89999999991
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "active": "activated",
+            "controller": "http://127.0.0.1:8133/game/sw.js",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": [
+            "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+          ]
+        }
+      ],
+      "complete": null,
+      "state": null,
+      "failure": null,
+      "traceError": "Error: trace finish",
+      "errors": [],
+      "modulesUnchanged": true,
+      "scriptNetlogEventsAfterCall": []
+    },
+    {
+      "run": "game-full-1",
+      "browser": "Chrome/156.0.8078.4",
+      "phases": [
+        {
+          "label": "primary",
+          "complete": true,
+          "state": {
+            "phase": "resolved",
+            "start": 20069.5,
+            "end": 20217.70000000007
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "waiting": "installed",
+            "active": "activated",
+            "controller": "http://127.0.0.1:8133/game/sw.js",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": [
+            "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+          ]
+        }
+      ],
+      "complete": null,
+      "state": null,
+      "failure": null,
+      "traceError": null,
+      "errors": [],
+      "modulesUnchanged": true,
+      "scriptNetlogEventsAfterCall": [
+        {
+          "event": "CORS_REQUEST",
+          "delayMs": 4
+        },
+        {
+          "event": "REQUEST_ALIVE",
+          "delayMs": 4
+        },
+        {
+          "event": "URL_REQUEST_START_JOB",
+          "delayMs": 4
+        },
+        {
+          "event": "HTTP_STREAM_JOB_CONTROLLER",
+          "delayMs": 4
+        }
+      ],
+      "traceEventCount": 12924,
+      "registerJobTasks": [
+        {
+          "args": {
+            "src_file": "content/browser/service_worker/service_worker_register_job.cc",
+            "src_func": "Start",
+            "src_line": 190
+          },
+          "cat": "toplevel",
+          "dur": 218,
+          "name": "ThreadControllerImpl::RunTask",
+          "ph": "X",
+          "pid": 1839,
+          "tdur": 220,
+          "tid": 1839,
+          "ts": 818115010,
+          "tts": 1785646
+        }
+      ]
+    },
+    {
+      "run": "game-full-2",
+      "browser": "Chrome/156.0.8078.4",
+      "phases": [
+        {
+          "label": "primary",
+          "complete": true,
+          "state": {
+            "phase": "resolved",
+            "start": 23923.200000000186,
+            "end": 24128.100000000093
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "waiting": "installed",
+            "active": "activated",
+            "controller": "http://127.0.0.1:8133/game/sw.js",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": [
+            "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+          ]
+        }
+      ],
+      "complete": null,
+      "state": null,
+      "failure": null,
+      "traceError": null,
+      "errors": [],
+      "modulesUnchanged": true,
+      "scriptNetlogEventsAfterCall": [
+        {
+          "event": "CORS_REQUEST",
+          "delayMs": 4
+        },
+        {
+          "event": "REQUEST_ALIVE",
+          "delayMs": 4
+        },
+        {
+          "event": "URL_REQUEST_START_JOB",
+          "delayMs": 4
+        },
+        {
+          "event": "HTTP_STREAM_JOB_CONTROLLER",
+          "delayMs": 5
+        }
+      ],
+      "traceEventCount": 14366,
+      "registerJobTasks": [
+        {
+          "args": {
+            "src_file": "content/browser/service_worker/service_worker_register_job.cc",
+            "src_func": "Start",
+            "src_line": 190
+          },
+          "cat": "toplevel",
+          "dur": 262,
+          "name": "ThreadControllerImpl::RunTask",
+          "ph": "X",
+          "pid": 2762,
+          "tdur": 267,
+          "tid": 2762,
+          "ts": 1828839323,
+          "tts": 1188876
+        }
+      ]
+    },
+    {
+      "run": "game-other-shell",
+      "browser": "HeadlessChrome/156.0.8078.4",
+      "phases": [
+        {
+          "label": "primary",
+          "complete": false,
+          "state": {
+            "phase": "calling",
+            "start": 19998.5
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "active": "activated",
+            "controller": "http://127.0.0.1:8133/game/sw.js",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": [
+            "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+          ]
+        },
+        {
+          "label": "secondary",
+          "complete": false,
+          "state": {
+            "phase": "calling",
+            "start": 752.2000000000116
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "active": "activated",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": [
+            "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+          ]
+        }
+      ],
+      "complete": null,
+      "state": null,
+      "failure": null,
+      "traceError": "Error: trace finish",
+      "errors": [],
+      "modulesUnchanged": true,
+      "scriptNetlogEventsAfterCall": []
+    },
+    {
+      "run": "game-other-trace",
+      "browser": "HeadlessChrome/156.0.8078.4",
+      "phases": [
+        {
+          "label": "primary",
+          "complete": false,
+          "state": {
+            "phase": "calling",
+            "start": 19978.199999999953
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "active": "activated",
+            "controller": "http://127.0.0.1:8133/game/sw.js",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": [
+            "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+          ]
+        },
+        {
+          "label": "secondary",
+          "complete": false,
+          "state": {
+            "phase": "calling",
+            "start": 687
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "active": "activated",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": [
+            "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+          ]
+        }
+      ],
+      "complete": null,
+      "state": null,
+      "failure": null,
+      "traceError": "Error: trace finish",
+      "errors": [],
+      "modulesUnchanged": true,
+      "scriptNetlogEventsAfterCall": []
+    },
+    {
+      "run": "game-shell-1",
+      "browser": "HeadlessChrome/156.0.8078.4",
+      "phases": [
+        {
+          "label": "primary",
+          "complete": false,
+          "state": {
+            "phase": "calling",
+            "start": 30974.700000000004
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "active": "activated",
+            "controller": "http://127.0.0.1:8133/game/sw.js",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": [
+            "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+          ]
+        }
+      ],
+      "complete": null,
+      "state": null,
+      "failure": null,
+      "traceError": "Error: trace finish",
+      "errors": [],
+      "modulesUnchanged": true,
+      "scriptNetlogEventsAfterCall": []
+    },
+    {
+      "run": "game-shell-no-sw-network",
+      "browser": "HeadlessChrome/156.0.8078.4",
+      "phases": [
+        {
+          "label": "primary",
+          "complete": false,
+          "state": {
+            "phase": "calling",
+            "start": 19549.90000000014
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "active": "activated",
+            "controller": "http://127.0.0.1:8133/game/sw.js",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": [
+            "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+          ]
+        }
+      ],
+      "complete": null,
+      "state": null,
+      "failure": null,
+      "traceError": "Error: trace finish",
+      "errors": [],
+      "modulesUnchanged": true,
+      "scriptNetlogEventsAfterCall": []
+    },
+    {
+      "run": "minimal-shell-fixed",
+      "browser": "HeadlessChrome/156.0.8078.4",
+      "phases": [
+        {
+          "label": "primary",
+          "complete": true,
+          "state": {
+            "phase": "resolved",
+            "start": 5932.099999999977,
+            "end": 5990.099999999977
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "active": "activated",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": []
+        }
+      ],
+      "complete": null,
+      "state": null,
+      "failure": null,
+      "traceError": null,
+      "errors": [],
+      "modulesUnchanged": null,
+      "scriptNetlogEventsAfterCall": [
+        {
+          "event": "CORS_REQUEST",
+          "delayMs": 1
+        },
+        {
+          "event": "REQUEST_ALIVE",
+          "delayMs": 1
+        },
+        {
+          "event": "URL_REQUEST_START_JOB",
+          "delayMs": 1
+        },
+        {
+          "event": "HTTP_STREAM_JOB_CONTROLLER",
+          "delayMs": 1
+        }
+      ],
+      "traceEventCount": 5141,
+      "registerJobTasks": [
+        {
+          "args": {
+            "src_file": "content/browser/service_worker/service_worker_register_job.cc",
+            "src_func": "Start",
+            "src_line": 190
+          },
+          "cat": "toplevel",
+          "dur": 34,
+          "name": "ThreadControllerImpl::RunTask",
+          "ph": "X",
+          "pid": 1382,
+          "tdur": 34,
+          "tid": 1382,
+          "ts": 517476307,
+          "tts": 92404
+        }
+      ]
+    },
+    {
+      "run": "profile-create",
+      "browser": "Chrome/156.0.8078.4",
+      "phases": [
+        {
+          "label": "primary",
+          "complete": true,
+          "state": {
+            "phase": "resolved",
+            "start": 21692,
+            "end": 21783.699999999953
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "active": "activated",
+            "controller": "http://127.0.0.1:8133/game/sw.js",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": [
+            "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+          ]
+        }
+      ],
+      "complete": null,
+      "state": null,
+      "failure": null,
+      "traceError": null,
+      "errors": [],
+      "modulesUnchanged": true,
+      "scriptNetlogEventsAfterCall": [
+        {
+          "event": "CORS_REQUEST",
+          "delayMs": 2
+        },
+        {
+          "event": "REQUEST_ALIVE",
+          "delayMs": 2
+        },
+        {
+          "event": "URL_REQUEST_START_JOB",
+          "delayMs": 3
+        },
+        {
+          "event": "HTTP_STREAM_JOB_CONTROLLER",
+          "delayMs": 4
+        }
+      ],
+      "traceEventCount": 3700,
+      "registerJobTasks": [
+        {
+          "args": {
+            "src_file": "content/browser/service_worker/service_worker_register_job.cc",
+            "src_func": "Start",
+            "src_line": 190
+          },
+          "cat": "toplevel",
+          "dur": 78,
+          "name": "ThreadControllerImpl::RunTask",
+          "ph": "X",
+          "pid": 3069,
+          "tdur": 79,
+          "tid": 3069,
+          "ts": 1863740653,
+          "tts": 754420
+        }
+      ]
+    },
+    {
+      "run": "profile-reopen",
+      "browser": "Chrome/156.0.8078.4",
+      "phases": [
+        {
+          "label": "primary",
+          "complete": false,
+          "state": {
+            "phase": "calling",
+            "start": 15085.600000000093
+          },
+          "registration": {
+            "scope": "http://127.0.0.1:8133/game/",
+            "updateViaCache": "imports",
+            "active": "activated",
+            "controller": "http://127.0.0.1:8133/game/sw.js",
+            "readyState": "complete",
+            "secure": true,
+            "origin": "http://127.0.0.1:8133"
+          },
+          "pendingRequests": []
+        }
+      ],
+      "complete": null,
+      "state": null,
+      "failure": null,
+      "traceError": null,
+      "errors": [],
+      "modulesUnchanged": true,
+      "scriptNetlogEventsAfterCall": [],
+      "traceEventCount": 125046,
+      "registerJobTasks": []
+    },
+    {
+      "run": "raw-shell-control",
+      "browser": "HeadlessChrome/156.0.8078.4",
+      "phases": null,
+      "complete": null,
+      "state": null,
+      "failure": "Error: CDP command timeout: Runtime.evaluate\n    at Timeout._onTimeout (file:///mnt/c/Users/josue/OneDrive/Desktop/Cry%20Of%20Fear%20Web%20Alpha%20Version/Cry-Of-Fear-Port-Web/tools/e2e/sw_jobs_raw.mjs:24:178)\n    at listOnTimeout (node:internal/timers:635:17)\n    at process.processTimers (node:internal/timers:571:7)",
+      "traceError": null,
+      "errors": null,
+      "modulesUnchanged": null
+    },
+    {
+      "run": "raw-shell-untraced",
+      "browser": "HeadlessChrome/156.0.8078.4",
+      "phases": null,
+      "complete": null,
+      "state": null,
+      "failure": "Error: CDP command timeout: Runtime.evaluate\n    at Timeout._onTimeout (file:///mnt/c/Users/josue/OneDrive/Desktop/Cry%20Of%20Fear%20Web%20Alpha%20Version/Cry-Of-Fear-Port-Web/tools/e2e/sw_jobs_raw.mjs:24:147)\n    at listOnTimeout (node:internal/timers:635:17)\n    at process.processTimers (node:internal/timers:571:7)",
+      "traceError": null,
+      "errors": null,
+      "modulesUnchanged": null
+    }
+  ],
+  "savePersistence": {
+    "acrossReopenIdentical": true,
+    "sha256": {
+      "sw_jobs.bmp": "40019c73749bf647faf0e1d084f36b4b1c17336b9e69d7097ef6a7fbdf4979f9",
+      "sw_jobs.sav": "5fc30eba68f3a95530ed2003b7951e61385e2bfcfbc74036f8d35b154b743ac0"
+    }
+  }
+}

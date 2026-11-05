@@ -1,0 +1,100 @@
+{
+  "kind": "dual-minimal",
+  "browserType": "shell",
+  "profile": "-",
+  "initial": "old",
+  "target": "new",
+  "saveMode": "none",
+  "updateLimitMs": 30000,
+  "phases": [
+    {
+      "label": "primary",
+      "complete": false,
+      "state": {
+        "phase": "calling",
+        "start": 366.39999999990687
+      },
+      "registration": {
+        "scope": "http://127.0.0.1:8133/game/",
+        "updateViaCache": "imports",
+        "active": "activated",
+        "readyState": "complete",
+        "secure": true,
+        "origin": "http://127.0.0.1:8133"
+      },
+      "pendingRequests": [
+        "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+      ]
+    },
+    {
+      "label": "secondary",
+      "complete": false,
+      "state": {
+        "phase": "calling",
+        "start": 57561.89999999991
+      },
+      "registration": {
+        "scope": "http://127.0.0.1:8133/game/",
+        "updateViaCache": "imports",
+        "active": "activated",
+        "controller": "http://127.0.0.1:8133/game/sw.js",
+        "readyState": "complete",
+        "secure": true,
+        "origin": "http://127.0.0.1:8133"
+      },
+      "pendingRequests": [
+        "http://127.0.0.1:8133/game/mp3/2aphall1.mp3"
+      ]
+    }
+  ],
+  "disableServiceWorkerNetworkInspection": null,
+  "harnessSHA256": "a37d2a8cf815ac752457ad954aa7344b630a33639792e4c2640949d2f89c97bc",
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "HeadlessChrome/156.0.8078.4",
+    "revision": "@f842f52ef39fd97b449eb27cff414bf05a98ddce",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+    "jsVersion": "15.6.75"
+  },
+  "commandLineError": "Error: cdpSession.send: Protocol error (Browser.getBrowserCommandLine): Command line not returned because --enable-automation not set.",
+  "traceCategories": [],
+  "modulesBefore": {
+    "server.wasm": "07e7ef5cb6df07708b5c3c15abb7fd18e6a3bcb17d60efb5ad0e6605c2d37ee1",
+    "client.wasm": "e0bc9af55fa19c19b085c88da63eb425f8606976da408425db28fac2517b2222",
+    "libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec",
+    "filesystem_stdio.wasm": "85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95",
+    "menu.wasm": "bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051"
+  },
+  "initialRegistration": {
+    "scope": "http://127.0.0.1:8133/game/",
+    "updateViaCache": "imports",
+    "active": "activated",
+    "controller": "http://127.0.0.1:8133/game/sw.js",
+    "readyState": "complete",
+    "secure": true,
+    "origin": "http://127.0.0.1:8133"
+  },
+  "observerRegistration": {
+    "scope": "http://127.0.0.1:8133/game/",
+    "updateViaCache": "imports",
+    "active": "activated",
+    "readyState": "complete",
+    "secure": true,
+    "origin": "http://127.0.0.1:8133"
+  },
+  "primaryAfterSecondary": {
+    "phase": "calling",
+    "start": 366.39999999990687
+  },
+  "modulesAfter": {
+    "server.wasm": "07e7ef5cb6df07708b5c3c15abb7fd18e6a3bcb17d60efb5ad0e6605c2d37ee1",
+    "client.wasm": "e0bc9af55fa19c19b085c88da63eb425f8606976da408425db28fac2517b2222",
+    "libref_gles3compat.wasm": "8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec",
+    "filesystem_stdio.wasm": "85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95",
+    "menu.wasm": "bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051"
+  },
+  "observationsComplete": true,
+  "errors": [],
+  "traceError": "Error: trace finish",
+  "netlogBytes": 1045242
+}

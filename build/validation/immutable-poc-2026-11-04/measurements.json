@@ -1,0 +1,94 @@
+{
+  "casIntegrity": true,
+  "releaseCount": 2,
+  "uniqueObjects": 117,
+  "uniqueWireBytes": 580179718,
+  "sharedObjects": 59,
+  "sharedWireBytes": 118052869,
+  "separateCopiesWireBytes": 698232587,
+  "initialPrepare": {
+    "elapsedMs": 1683,
+    "verifiedWireBytes": 54588975,
+    "payloadBufferPeakBytes": 108937867,
+    "storageEstimate": {
+      "quota": 10792020415,
+      "usage": 54602175,
+      "usageDetails": {
+        "caches": 54598144,
+        "serviceWorkerRegistrations": 4031
+      }
+    }
+  },
+  "initialThroughRuntime": {
+    "elapsedMs": 23244,
+    "objectResponseBytes": 60191985,
+    "objectResponses": 16,
+    "sampledRssSumPeakBytes": 2363531264
+  },
+  "newPreparationWithOldOpen": {
+    "elapsedMs": 6684,
+    "objectResponseBytes": 64577363,
+    "objectResponses": 13,
+    "sampledRssSumPeakBytes": 3166482432
+  },
+  "secondMap": {
+    "elapsedMs": 16003,
+    "objectResponseBytes": 19055670,
+    "objectResponses": 2,
+    "sampledRssSumPeakBytes": 3865960448
+  },
+  "newPreparationReuseEvents": 6,
+  "newPreparationNetworkObjects": 13,
+  "browserRssSumPeakBytes": 4397666304,
+  "browserRssSamples": 333,
+  "finalStorageEstimate": {
+    "quota": 10941001529,
+    "usage": 203583289,
+    "usageDetails": {
+      "caches": 202548992,
+      "indexedDB": 1026235,
+      "serviceWorkerRegistrations": 8062
+    }
+  },
+  "browser": "156.0.8078.4",
+  "passed": true,
+  "checks": [
+    "release IDs equal full manifest hashes",
+    "releases distinct",
+    "initial dependency download contains only selected map",
+    "old mounts exact five modules",
+    "old native save synchronized",
+    "second writer blocked",
+    "identical objects reused across releases",
+    "old runtime unchanged while new release prepared",
+    "two independent worker scopes",
+    "session graph fixed",
+    "missing object not cached",
+    "missing download recovers",
+    "corrupt object not cached",
+    "corrupt download recovers",
+    "interrupt object not cached",
+    "interrupt download recovers",
+    "corrupt cache rejected",
+    "corrupt cache evicted and retry recovers",
+    "faults never replace mounted old modules",
+    "new runtime mounts own exact modules in independent profile",
+    "second map downloaded and mounted from pinned graph",
+    "new unlock profile and native slot survive route transition",
+    "reverse incompatible contract rejected",
+    "new release reopens persisted unlock profile",
+    "failed IDB sync prevents navigation",
+    "IndexedDB native slot survives release path change",
+    "unverified native save contract blocked before runtime/migration",
+    "incompatible transition does not modify save files",
+    "cold reopen preserves old native save",
+    "same-release native saved game loads",
+    "no new JavaScript page errors"
+  ],
+  "limits": [
+    "RSS summed across processes double-counts shared pages; 500 ms sampling can miss spikes",
+    "payloadBufferPeak counts wire+decoded payload only, not all allocator/copy overhead",
+    "HTTP bytes are response bodies, not protocol/TLS overhead; loopback no TLS",
+    "storage.estimate is browser approximation; software rendering desktop, not mobile"
+  ]
+}
