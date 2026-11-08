@@ -1355,12 +1355,16 @@
     writeJson(SAVES_KEY, saves);
   };
 
-  const options = Object.assign({ sensitivity: 3, volume: 0.8, music: 0.8, brightness: 1 }, readJson(OPTIONS_KEY, {}));
+  // lightBrightness is the original renderer's gl_brightness (0 to 0.3, it clamps there): 0 is the
+  // original picture. The engine's brightness stays at 1, the value of the original config.cfg; the
+  // world lightmaps no longer go through its gamma table (gl_rsurf.c R_CofBuildLightMap).
+  const options = Object.assign({ sensitivity: 3, volume: 0.8, music: 0.8, lightBrightness: 0 }, readJson(OPTIONS_KEY, {}));
   let optionsApplied = false;
   const applyOptions = () => {
     engineCmd(`sensitivity ${options.sensitivity}`);
     engineCmd(`volume ${options.volume}`);
-    engineCmd(`brightness ${options.brightness}`);
+    engineCmd(`brightness 1`);
+    engineCmd(`gl_brightness ${options.lightBrightness}`);
     musicVolume = options.music;
     window.CoFExtras?.setVolume(musicVolume);
     for (const audio of music.values()) audio.volume = musicVolume;
@@ -1521,7 +1525,7 @@
     slider(SPANISH ? "Sensibilidad del ratón" : "Mouse sensitivity", "sensitivity", 0.5, 10, 0.1);
     slider(SPANISH ? "Volumen" : "Volume", "volume", 0, 1, 0.05);
     slider(SPANISH ? "Música" : "Music", "music", 0, 1, 0.05);
-    slider(SPANISH ? "Brillo" : "Brightness", "brightness", 0, 2, 0.05);
+    slider(SPANISH ? "Brillo" : "Brightness", "lightBrightness", 0, 0.3, 0.01);
     const row = document.createElement("div");
     row.className = "row";
     const span = document.createElement("span");

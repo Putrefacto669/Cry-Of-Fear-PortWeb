@@ -210,3 +210,28 @@ Media del fotograma (0–255) / porcentaje de píxeles por debajo de 16:
 
 ### Pruebas
 Ver la sección 5.
+
+## 5. Pruebas de la build con lightmaps fieles
+
+Build combinada: `dist/` publicado más los módulos nuevos. Manifiesto `61bebcaccb10`, renderer `3d0d9d88…`.
+El servidor (`91ca7418…`) y el cliente no cambian.
+
+| Prueba | Resultado |
+|---|---|
+| 18 regresiones de Codex, contratos sin cambios | 18/18 PASS (`claude-launcher/regressions-153416`) |
+| `clock_backwards.mjs` (reloj que retrocede 2 s) | PASS, `level loaded at 2.62 sec` |
+| `fog_entities.mjs` (niebla lineal del BSP) | PASS |
+| `flashlight_probe.mjs` con `COF_EXPECT_FIXED=1 COF_PERSISTENCE=1` | PASS |
+
+Detalle de la linterna: brillo medio del centro de la imagen (SwiftShader, 0–255), sin errores de GL ni de JS.
+
+| Estado | Brillo medio |
+|---|---:|
+| Pared sin linterna | 45,9 |
+| Pared con linterna | 55,9 |
+| Con `r_dynamic 0` | 46,0 |
+| Tras recargar la partida | 55,9 |
+| Al apagar | 45,8 |
+
+Codex conservó por su cuenta la evidencia de esta misma candidata en
+`build/validation/regresiones-2026-11-08/`.
