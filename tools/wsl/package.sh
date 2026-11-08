@@ -29,8 +29,9 @@ cp "$WEB/index.html" "$WEB/loader.js" "$WEB/postfx.js" "$WEB/hud.js" "$WEB/extra
 # buscadores: sitemap para Search Console/Bing y los archivos con que Google y Bing verifican la propiedad
 cp "$WEB/sitemap.xml" "$WEB/googlee1f002228312b1b3.html" "$WEB/BingSiteAuth.xml" "$DIST/"
 cp "$WEB/launcher.js" "$DIST/"
-# portada del launcher (index.html #launcher): logo y fondo del menú original, convertidos a PNG/JPEG
-mkdir -p "$DIST/launcher" && cp "$WEB/launcher/logo.png" "$WEB/launcher/background.jpg" "$DIST/launcher/"
+# portada del launcher (index.html #launcher): logo y fondo del menú original, convertidos a PNG/JPEG; aviso de contenido
+# del primer vídeo de arranque (media/startupvideo1.avi, fotograma fijo)
+mkdir -p "$DIST/launcher" && cp "$WEB/launcher/logo.png" "$WEB/launcher/background.jpg" "$WEB/launcher/disclaimer.jpg" "$DIST/launcher/"
 cp "$WEB/transitions.json" "$DIST/packs/"
 rm -rf "$DIST/shaders" && cp -r "$WEB/shaders" "$DIST/shaders"
 

@@ -118,6 +118,14 @@
     .lb-language-choices button { padding:14px 8px; font:inherit; color:var(--lb-text); cursor:pointer;
       background:#191614; border:1px solid #514337; }
     .lb-language-choices button:hover, .lb-language-choices button:focus-visible { background:#3c221d; outline:2px solid #c9a57a; outline-offset:2px; }
+    /* Warning of the original's first startup video (media/startupvideo1.avi): a still frame on black,
+       4.84 s, fade in 0.3-1.15 s, hold, fade out 3.7-4.6 s; its audio track is silent. */
+    #disclaimer { position: fixed; inset: 0; z-index: 101; display: grid; /* above the HUD and the launcher */ place-items: center; background: #000;
+                  cursor: pointer; }
+    #disclaimer[hidden] { display: none; }
+    #disclaimer img { width: 100%; height: 100%; object-fit: contain; opacity: 0;
+                      animation: cof-disclaimer 4.84s linear forwards; }
+    @keyframes cof-disclaimer { 0%, 6.2% { opacity: 0; } 23.8%, 76.4% { opacity: 1; } 95%, 100% { opacity: 0; } }
     @media (max-width: 760px) {
       .lb-grid { grid-template-columns: 1fr; }
       .lb-wrap { padding-top: 32px; }
@@ -185,6 +193,10 @@
       </div>
     </div>
   </section>
+  <div id="disclaimer" hidden>
+    <img src="launcher/disclaimer.jpg" width="1280" height="720"
+      alt="This game contains violence and gore, and can cause fear, depression, heart failure and suicide. Users and viewers discretion is advised.">
+  </div>
   <header>Cry of Fear · Xash3D FWGS / WebAssembly — <span id="status">Iniciando…</span> <button id="update" hidden>Nueva versión · recargar</button> <button id="fullscreen">Pantalla completa</button> <span id="pointer"></span></header>
   <main><canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas></main>
   <div id="log"></div>

@@ -440,13 +440,40 @@
   // on "Jugar". That click is a user gesture, so the browser lets the game's audio start right away.
   // Links with ?map= (tests, shortcuts) go straight to the game as before.
   const launcher = document.getElementById("launcher");
+
+  // The original game opens with a content warning (its first startup video, index.html #disclaimer).
+  // It plays once, from "Jugar", and like the startup videos it can be skipped with a key or a click.
+  const showDisclaimer = () => {
+    const disclaimer = document.getElementById("disclaimer");
+    if (!disclaimer) { canvas.focus(); return; }
+    const image = disclaimer.querySelector("img");
+    const shownAt = performance.now();
+    const close = () => {
+      if (disclaimer.hidden) return;
+      disclaimer.hidden = true;
+      removeEventListener("keydown", skip, true);
+      canvas.focus();
+    };
+    const skip = (e) => {
+      if (performance.now() - shownAt < 300) return; // the click on "Jugar" itself
+      if (e.type === "keydown") { e.preventDefault(); e.stopPropagation(); }
+      close();
+    };
+    disclaimer.hidden = false;
+    image.addEventListener("animationend", close, { once: true });
+    image.addEventListener("error", close, { once: true });
+    setTimeout(close, 6000); // never leave it up if the animation does not run (hidden tab)
+    disclaimer.addEventListener("click", skip);
+    addEventListener("keydown", skip, true);
+  };
+
   if (launcher && !params.has("map")) {
     setStatus(window.CoFLauncher?.t("status") || "En el launcher");
     launcher.hidden = false;
     document.getElementById("play").addEventListener("click", () => {
       launcher.hidden = true;
-      canvas.focus();
-      run();
+      showDisclaimer();
+      run(); // the engine loads behind the warning
     }, { once: true });
   } else {
     run();

@@ -235,3 +235,38 @@ Detalle de la linterna: brillo medio del centro de la imagen (SwiftShader, 0–2
 
 Codex conservó por su cuenta la evidencia de esta misma candidata en
 `build/validation/regresiones-2026-11-08/`.
+
+## 6. Aviso de contenido al iniciar
+
+Petición del usuario: mostrar el aviso de contenido del original antes de empezar a jugar.
+
+### Origen
+- El juego original abre con dos vídeos de arranque (`media/StartupVids.txt`):
+  - `startupvideo1.avi`: el aviso;
+  - `startupvideo2.avi`: los logos de Team Psykskallar y GoldSrc, y el título.
+- El navegador no reproduce ese AVI (vídeo `CRAM`/MSVC). Se analizó fotograma a fotograma con OpenCV
+  (1280×720, 29,97 fps, 145 fotogramas, 4,84 s):
+  - es una sola imagen fija con fundidos: negro hasta 0,3 s, entrada hasta 1,15 s, imagen fija hasta 3,7 s,
+    salida hasta 4,6 s;
+  - su pista de audio (PCM, 48 kHz) está en silencio: el pico es 0.
+- Por eso se reproduce con el fotograma pleno (`platform/web/launcher/disclaimer.jpg`, 121 KB) y una
+  animación CSS con los mismos tiempos, en vez de convertir el vídeo.
+
+### Comportamiento
+- Sale al pulsar Jugar en el launcher. El motor carga detrás, así que no añade espera.
+- Como los vídeos de arranque, se salta con una tecla o un clic. Al terminar, el teclado pasa al juego.
+- Los enlaces con `?map=` (pruebas, atajos) no lo muestran.
+- Va con `z-index: 101`, por encima del HUD (hasta 17) y del launcher (100).
+  - La primera versión usaba 10: el lienzo y la pantalla de carga del HUD lo tapaban.
+  - Lo descubrió la captura de la prueba, que pasaba a pesar de ello. Ahora la prueba también comprueba que
+    nada lo cubra.
+- Si el motor termina de cargar antes del final del aviso, la música del menú puede empezar debajo de él.
+
+### Prueba
+`tools/e2e/disclaimer.mjs` (Chromium sin interfaz): **PASS**. Comprueba:
+- la opacidad frente al reloj de la propia animación, porque el motor ocupa el hilo principal mientras carga;
+- el cierre y el foco en el lienzo;
+- el salto con Esc;
+- que no aparece con `?map=`;
+- que nada lo tapa;
+- una captura con el aviso en pantalla, hecha con la descarga del motor bloqueada.
