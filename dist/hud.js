@@ -637,7 +637,7 @@
   // c_game_menu1 map. New game opens the difficulty board (640_difficulty.tga, 640x480).
   const MENU_MAP = "c_game_menu1";
   const FIRST_MAP = "c_intro";
-  const MENU_BUTTONS = [["newgame", "new"], ["loadgame", "load"], ["options", "options"]];
+  const MENU_BUTTONS = [["newgame", "new"], ["loadgame", "load"], ["options", "options"], ["unlockables", "clothes"]];
   const DIFFICULTY = [[122, 92, 396, 70, 1], [122, 168, 396, 68, 2], [122, 242, 396, 70, 3],
                       [122, 318, 396, 68, 3], [97, 408, 448, 48, 0]]; // x, y, w, h, skill (0: back)
 
@@ -681,7 +681,7 @@
     for (const [art, action] of MENU_BUTTONS) {
       const b = document.createElement("button");
       b.dataset.action = action;
-      b.setAttribute("aria-label", art);
+      b.setAttribute("aria-label", action === "clothes" ? "Items / Clothes" : art);
       const up = document.createElement("img");
       const mo = document.createElement("img");
       up.alt = mo.alt = "";
@@ -723,12 +723,14 @@
     // load and options are the engine's own dialogs (mainui)
     else if (action === "load") showLoadGame();
     else if (action === "options") showOptions();
+    else if (action === "clothes") engineCmd("openclothes");
   };
 
   const startGame = async (skill) => {
+    // Release the menu cursor before this explicit user-gesture capture.
+    showMenu(false);
     // the click is a user gesture: capture the mouse now, the map takes a moment to load
     try { const p = document.getElementById("canvas").requestPointerLock(); if (p && p.catch) p.catch(() => {}); } catch (_) { /* */ }
-    showMenu(false);
     stopAllMusic();
     loading.show();
     if (window.CoFPreload) await window.CoFPreload(FIRST_MAP).catch(() => false);
@@ -1544,6 +1546,11 @@
 
   window.CoFHUD = {
     resolvePath: resolveCi,
+    showClothesMenu(open) {
+      if(menu.el)menu.el.classList.toggle("on",menu.visible&&!open);
+      if(rain.canvas)rain.canvas.style.visibility=open&&menu.visible?'hidden':'';
+      if(!open&&menu.visible&&document.pointerLockElement)document.exitPointerLock();
+    },
     get bagOpen() { return bag.open; },
     get menuOpen() { return menu.visible; },
     get paused() { return pause.open; },

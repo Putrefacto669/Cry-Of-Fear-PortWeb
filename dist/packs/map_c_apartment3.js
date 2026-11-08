@@ -17,7 +17,7 @@
         // web worker
         PACKAGE_PATH = encodeURIComponent(location.pathname.substring(0, location.pathname.lastIndexOf('/')) + '/');
       }
-      var PACKAGE_NAME = '/root/cof-audits/extras-20261101/dist-fourth/packs/map_c_apartment3.data';
+      var PACKAGE_NAME = '/root/cof-audits/visual-clothes-20261107/candidate-v1/packs/map_c_apartment3.data';
       var REMOTE_PACKAGE_BASE = 'map_c_apartment3.data';
       var REMOTE_PACKAGE_NAME = Module['locateFile'] ? Module['locateFile'](REMOTE_PACKAGE_BASE, '') : REMOTE_PACKAGE_BASE;
 var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
@@ -176,10 +176,10 @@ Module['FS_createPath']("/rodir/cryoffear/sound", "slower3", true, true);
           var files = metadata['files'];
           for (var i = 0; i < files.length; ++i) {
             DataRequest.prototype.requests[files[i].filename].onload();
-          }          Module['removeRunDependency']('datafile_/root/cof-audits/extras-20261101/dist-fourth/packs/map_c_apartment3.data');
+          }          Module['removeRunDependency']('datafile_/root/cof-audits/visual-clothes-20261107/candidate-v1/packs/map_c_apartment3.data');
 
       };
-      Module['addRunDependency']('datafile_/root/cof-audits/extras-20261101/dist-fourth/packs/map_c_apartment3.data');
+      Module['addRunDependency']('datafile_/root/cof-audits/visual-clothes-20261107/candidate-v1/packs/map_c_apartment3.data');
 
       Module['preloadResults'] ??= {};
 

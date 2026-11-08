@@ -380,6 +380,9 @@
       if (promise && typeof promise.catch === "function") promise.catch(() => {});
       return promise;
     };
+    if (this.id === "canvas" && (globalThis.CoFExtras?.clothesOpen || globalThis.CoFHUD?.menuOpen)) {
+      return observed(Promise.reject(Object.assign(new Error("Game menu owns the cursor"), { name: "InvalidStateError" })));
+    }
     try {
       const p = nativeRequestLock.call(this, { unadjustedMovement: true, ...options });
       if (p && typeof p.catch === "function") return observed(p.catch(fallback));
@@ -410,8 +413,11 @@
 
   document.addEventListener("pointerlockchange", () => {
     const locked = document.pointerLockElement === canvas;
+    const clothesHasCursor = !!(globalThis.CoFExtras?.clothesOpen || globalThis.CoFHUD?.menuOpen);
+    // A request already in flight may complete after the wardrobe opens.
+    if (locked && clothesHasCursor) { pointerHint.textContent = ""; document.exitPointerLock(); return; }
     pointerHint.textContent = locked ? "Ratón capturado · Esc para liberarlo" : "";
-    if (!locked && !engineReleased && performance.now() - lastRealEscape > 200) sendEscape();
+    if (!locked && !engineReleased && !clothesHasCursor && performance.now() - lastRealEscape > 200) sendEscape();
     engineReleased = false;
   });
   document.addEventListener("pointerlockerror", () => {

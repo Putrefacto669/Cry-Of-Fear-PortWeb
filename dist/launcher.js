@@ -6,6 +6,15 @@
   const KEY = 'cofLauncherLanguage';
   const names = {english:['en','English'],spanish:['es','Español'],french:['fr','Français'],
     german:['de','Deutsch'],dutch:['nl','Nederlands'],norwegian:['no','Norsk'],swedish:['sv','Svenska']};
+  const update = {
+    english:['Alpha update · 7 November 2026','Items / Clothes: preview Simon with original outfits from the main menu.','Unlocked outfits and your selection persist between sessions.','Original noise sprite restored; lighting comparisons are still in progress.'],
+    spanish:['Actualización Alpha · 7 de noviembre de 2026','Items / Clothes: previsualiza a Simon con su ropa original desde el menú principal.','Las prendas desbloqueadas y tu selección se conservan entre sesiones.','Ruido visual original restaurado; la comparación de iluminación sigue en curso.'],
+    french:['Mise à jour Alpha · 7 novembre 2026','Items / Clothes : aperçu de Simon avec ses tenues originales depuis le menu principal.','Les tenues débloquées et votre sélection sont conservées entre les sessions.','Bruit visuel original restauré ; la comparaison de l’éclairage se poursuit.'],
+    german:['Alpha-Update · 7. November 2026','Items / Clothes: Simon mit Originalkleidung direkt im Hauptmenü ansehen.','Freigeschaltete Kleidung und die Auswahl bleiben zwischen Sitzungen erhalten.','Originales Bildrauschen wiederhergestellt; der Beleuchtungsvergleich läuft weiter.'],
+    dutch:['Alpha-update · 7 november 2026','Items / Clothes: bekijk Simon met originele kleding vanuit het hoofdmenu.','Vrijgespeelde kleding en je keuze blijven tussen sessies bewaard.','Originele beeldruis hersteld; de vergelijking van de belichting gaat verder.'],
+    norwegian:['Alpha-oppdatering · 7. november 2026','Items / Clothes: forhåndsvis Simon med originale antrekk fra hovedmenyen.','Opplåste antrekk og valget ditt beholdes mellom økter.','Original bildestøy er gjenopprettet; sammenligningen av belysning fortsetter.'],
+    swedish:['Alpha-uppdatering · 7 november 2026','Items / Clothes: förhandsvisa Simon med originalkläder från huvudmenyn.','Upplåsta kläder och ditt val sparas mellan sessioner.','Ursprungligt bildbrus återställt; jämförelsen av belysningen fortsätter.']
+  };
   const strings = {
     english: {
       tag:'Unofficial browser port · Alpha',play:'Play',language:'Language',status:'In the launcher',
@@ -20,7 +29,7 @@
         'Original bag, health and stamina bars, phone and messages.','Phone combinations with the knife and Glock.',
         'Save/load checks for scenes, doors, weapons and voices.','Original steps, sounds and game resources.',
         'Seven original subtitle languages, selected in the game menu.'],
-      next:'In development: ammunition HUD, more weapons and continued campaign validation.',
+      next:'In development: more weapons, visual fidelity and continued campaign validation.',
       credit:'Unofficial port published with permission from its author. Non-profit: no ads, donations or payments.',
       original:'Play the original for free at ',rights:'Game resources © Team Psykskallar; distributed with permission, outside the code license.',
       code:'Port code: GPL-3.0',license:'license',source:'source code',engine:'Engine',author:'Web port',
@@ -39,7 +48,7 @@
         'Bolso, barras de vida y energía, teléfono y mensajes originales.','Combinaciones de teléfono con navaja y Glock.',
         'Pruebas de guardado/carga de escenas, puertas, armas y voces.','Pisadas, sonidos y recursos originales.',
         'Siete idiomas originales de subtítulos, elegidos en el menú del juego.'],
-      next:'En desarrollo: HUD de munición, más armas y validación continua de la campaña.',
+      next:'En desarrollo: más armas, fidelidad visual y validación continua de la campaña.',
       credit:'Port no oficial publicado con permiso de su autor. Sin fines de lucro: sin anuncios, donaciones ni pagos.',
       original:'Juega gratis al original en ',rights:'Recursos del juego © Team Psykskallar; distribuidos con permiso y fuera de la licencia del código.',
       code:'Código del port: GPL-3.0',license:'licencia',source:'código fuente',engine:'Motor',author:'Port web',
@@ -58,7 +67,7 @@
         'Sac, barres de vie et d’endurance, téléphone et messages d’origine.','Téléphone combiné au couteau ou au Glock.',
         'Tests de sauvegarde/chargement des scènes, portes, armes et voix.','Pas, sons et ressources d’origine.',
         'Sept langues de sous-titres d’origine, à choisir dans le menu du jeu.'],
-      next:'En développement : affichage des munitions, autres armes et validation de la campagne.',
+      next:'En développement : autres armes, fidélité visuelle et validation de la campagne.',
       credit:'Portage non officiel publié avec l’autorisation de son auteur. Sans but lucratif : ni publicité, ni dons, ni paiements.',
       original:'Jouez gratuitement à l’original sur ',rights:'Ressources du jeu © Team Psykskallar ; distribuées avec autorisation, hors licence du code.',
       code:'Code du portage : GPL-3.0',license:'licence',source:'code source',engine:'Moteur',author:'Portage web',
@@ -77,7 +86,7 @@
         'Originale Tasche, Lebens- und Ausdauerbalken, Handy und Nachrichten.','Handy zusammen mit Messer oder Glock.',
         'Speicher-/Ladetests für Szenen, Türen, Waffen und Stimmen.','Originale Schritte, Sounds und Spielressourcen.',
         'Sieben originale Untertitelsprachen im Spielmenü.'],
-      next:'In Entwicklung: Munitionsanzeige, weitere Waffen und Prüfung der Kampagne.',
+      next:'In Entwicklung: weitere Waffen, visuelle Originaltreue und Prüfung der Kampagne.',
       credit:'Inoffizielle Portierung mit Genehmigung des Autors. Nicht kommerziell: keine Werbung, Spenden oder Zahlungen.',
       original:'Das Original kostenlos spielen auf ',rights:'Spielressourcen © Team Psykskallar; mit Genehmigung verbreitet, nicht unter der Codelizenz.',
       code:'Portierungscode: GPL-3.0',license:'Lizenz',source:'Quellcode',engine:'Engine',author:'Web-Portierung',
@@ -96,7 +105,7 @@
         'Originele tas, levens- en uithoudingsbalken, telefoon en berichten.','Telefoon samen met mes of Glock.',
         'Opslag-/laadtests voor scènes, deuren, wapens en stemmen.','Originele voetstappen, geluiden en spelbestanden.',
         'Zeven originele ondertiteltalen via het spelmenu.'],
-      next:'In ontwikkeling: munitie-HUD, meer wapens en verdere controle van de campagne.',
+      next:'In ontwikkeling: meer wapens, visuele getrouwheid en verdere controle van de campagne.',
       credit:'Onofficiële port met toestemming van de auteur. Zonder winstoogmerk: geen advertenties, donaties of betalingen.',
       original:'Speel het origineel gratis op ',rights:'Spelbestanden © Team Psykskallar; verspreid met toestemming, buiten de licentie van de code.',
       code:'Code van de port: GPL-3.0',license:'licentie',source:'broncode',engine:'Engine',author:'Webport',
@@ -115,7 +124,7 @@
         'Original veske, livs- og utholdenhetsmålere, telefon og meldinger.','Telefon sammen med kniv eller Glock.',
         'Lagrings-/lastetester for scener, dører, våpen og stemmer.','Originale fottrinn, lyder og spillressurser.',
         'Sju originale undertekstspråk via spillmenyen.'],
-      next:'Under utvikling: ammunisjonsvisning, flere våpen og videre kontroll av kampanjen.',
+      next:'Under utvikling: flere våpen, visuell gjengivelse og videre kontroll av kampanjen.',
       credit:'Uoffisiell port med tillatelse fra opphavspersonen. Ikke kommersiell: ingen annonser, donasjoner eller betalinger.',
       original:'Spill originalen gratis på ',rights:'Spillressurser © Team Psykskallar; distribuert med tillatelse, utenfor kodelisensen.',
       code:'Portkode: GPL-3.0',license:'lisens',source:'kildekode',engine:'Motor',author:'Nettport',
@@ -134,7 +143,7 @@
         'Ursprunglig väska, livs- och uthållighetsmätare, telefon och meddelanden.','Telefon tillsammans med kniv eller Glock.',
         'Tester av sparning/laddning för scener, dörrar, vapen och röster.','Ursprungliga fotsteg, ljud och spelresurser.',
         'Sju ursprungliga undertextspråk via spelmenyn.'],
-      next:'Under utveckling: ammunitionsvisning, fler vapen och fortsatt kontroll av kampanjen.',
+      next:'Under utveckling: fler vapen, visuell trohet och fortsatt kontroll av kampanjen.',
       credit:'Inofficiell port med upphovspersonens tillstånd. Icke-kommersiell: inga annonser, donationer eller betalningar.',
       original:'Spela originalet gratis på ',rights:'Spelresurser © Team Psykskallar; distribueras med tillstånd, utanför kodens licens.',
       code:'Portens kod: GPL-3.0',license:'licens',source:'källkod',engine:'Motor',author:'Webbport',
@@ -144,6 +153,11 @@
   let selected = null;
   try {const saved=localStorage.getItem(KEY);if(Object.hasOwn(strings,saved))selected=saved;} catch (_) {}
   const wrap=launcher.querySelector('.lb-wrap'), play=document.getElementById('play');
+  const news=document.createElement('section');news.className='lb-update';news.id='launcher-update';
+  news.setAttribute('aria-labelledby','launcher-update-title');
+  const newsTitle=document.createElement('h2');newsTitle.id='launcher-update-title';
+  const newsList=document.createElement('ul');for(let i=0;i<3;i++)newsList.append(document.createElement('li'));
+  news.append(newsTitle,newsList);launcher.querySelector('.lb-hero').after(news);
   const links=[...launcher.querySelectorAll('.lb-credits a')].map(a=>a.cloneNode(true));
   const change=document.createElement('button');change.type='button';change.id='launcher-language-change';change.className='lb-lang-change';
   launcher.querySelector('.lb-hero').prepend(change);
@@ -157,6 +171,7 @@
   const setList=(nodes,values)=>nodes.forEach((node,i)=>{node.textContent=values[i];});
   function labels(language){
     const s=strings[language];document.documentElement.lang=names[language][0];
+    newsTitle.textContent=update[language][0];setList([...newsList.children],update[language].slice(1));
     text('.lb-tag',s.tag);play.textContent=s.play;text('.lb-note',s.note);
     change.textContent=s.language+' · '+names[language][1];
     setList([...launcher.querySelectorAll('.lb-card h2')],s.headings);
