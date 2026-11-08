@@ -1,0 +1,54 @@
+{
+  "manifest": "61bebcaccb10",
+  "allManifestFilesValid": true,
+  "resourceCount": 94,
+  "existingSuite": {
+    "passed": 18,
+    "failed": 0,
+    "contractsUnchanged": true
+  },
+  "complements": {
+    "clock-backwards": {
+      "passed": true,
+      "browser": null
+    },
+    "fog": {
+      "passed": true,
+      "browser": "156.0.8078.4"
+    },
+    "hud": {
+      "passed": true,
+      "browser": null
+    },
+    "clothes-chromium": {
+      "passed": true,
+      "browser": "156.0.8078.4"
+    },
+    "clothes-firefox": {
+      "passed": true,
+      "browser": "157.0"
+    },
+    "grey": {
+      "passed": true,
+      "browser": null
+    },
+    "linear-fog": {
+      "passed": true,
+      "browser": null
+    }
+  },
+  "bspContracts": {
+    "passed": 11,
+    "skipped": 0
+  },
+  "cofLightingFixtures": 11,
+  "sourceUnchanged": {
+    "CLAUDE.md": true,
+    "patches/xash3d/0001-root.patch": true,
+    "platform/web/hud.js": true,
+    "game/cof-logic/client/cof_client.cpp": true,
+    "platform/web/shaders/postfx.frag.glsl": true
+  },
+  "headAtClosure": "69721caca5bdc5c773a947fb3140596a1c2671fe",
+  "distributionNote": "Concurrent Claude work updated/committed dist; Codex did not write dist or run Git mutations."
+}

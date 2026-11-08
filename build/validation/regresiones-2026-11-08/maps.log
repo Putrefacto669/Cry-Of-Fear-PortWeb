@@ -1,0 +1,22 @@
+.........E.
+======================================================================
+ERROR: test_staged_original_extras (test_extras_maps.ExtrasContracts.test_staged_original_extras)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/josue/OneDrive/Desktop/Cry Of Fear Web Alpha Version/Cry-Of-Fear-Port-Web/tools/e2e/test_extras_maps.py", line 26, in test_staged_original_extras
+    self.check_copy('c_start',path)
+  File "/mnt/c/Users/josue/OneDrive/Desktop/Cry Of Fear Web Alpha Version/Cry-Of-Fear-Port-Web/tools/e2e/test_extras_maps.py", line 45, in check_copy
+    self.assertEqual(hashlib.sha256(p.read_bytes()).digest(),hashlib.sha256((GAME/path).read_bytes()).digest(),path)
+                                    ^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1021, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1015, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/cof-audits/audit-D3Kl5uly/stage/boot/cryoffear/sound/unlockables/nv_on.wav'
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.250s
+
+FAILED (errors=1)

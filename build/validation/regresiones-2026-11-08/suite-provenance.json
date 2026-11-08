@@ -1,0 +1,100 @@
+{
+  "originalRun": "/root/cof-audits/claude-launcher/regressions-153416",
+  "originalBase": "http://127.0.0.1:8091/",
+  "expectedManifest": "61bebcaccb10",
+  "runner": "regressions_claude.py",
+  "launchShim": "fixed Chromium 156 and mute-audio only",
+  "all18ContractsUnchanged": true,
+  "suites": {
+    "campaign_entities": {
+      "exitCode": 0,
+      "originalContractSHA256": "c2311972039a5ff2bbd988e940ba71acc91df2c0546ec736582c2e9ee9550813",
+      "originalLogSHA256": "1a10ffc43718b38cf5e66c25520ba674ac7b6fcf783946205429691f624ca109"
+    },
+    "manager_entities": {
+      "exitCode": 0,
+      "originalContractSHA256": "5cf890dcac6bf1a69b6ae5e7a74746c223410dfcdfaf4931ce4b8c7cf8e56dc2",
+      "originalLogSHA256": "1ed74bf6de435051de39b6c0fc2a240bc0c4fdd2606f66b4bf4c21606add2e5d"
+    },
+    "sound_entities": {
+      "exitCode": 0,
+      "originalContractSHA256": "7ea23ec4754bb96718f4efdbfa9bc9cd99602ec9e5b5e544b72603fb7b2c9847",
+      "originalLogSHA256": "258b806f961a37ef089b4d51896896f51528e2706ac3e6f8b1c8ce44e64d8aab"
+    },
+    "camera_entities": {
+      "exitCode": 0,
+      "originalContractSHA256": "bdfd52548be16d3de9327516172d35235e25abc174d760c70a6cf28687dea233",
+      "originalLogSHA256": "0f38296a6efd54ab10e813153e8176544a2523140403ef2b726d02f6761ffd81"
+    },
+    "train_entities": {
+      "exitCode": 0,
+      "originalContractSHA256": "dfec384f3934adeda3f3b06199e26358b70d837a8edb9f489246bde25204079b",
+      "originalLogSHA256": "16411b1cccdc611bd8ac2577e7cf8d103b8873c9ef43e2c3da831ca24bee9398"
+    },
+    "track_entities": {
+      "exitCode": 0,
+      "originalContractSHA256": "1107de3736a0105c8ec276004c15b8ce4ae1724f458618594193de3b93794876",
+      "originalLogSHA256": "04d32d33cfdf4f93ea3a87ce7079fd28cd1cb7b394dfc2a52a423fb04517e4d2"
+    },
+    "envpos_entities": {
+      "exitCode": 0,
+      "originalContractSHA256": "1794478c5c376eb784dfce3e3680a2ae698eb4cf05f57b401fac2b5d0ed524be",
+      "originalLogSHA256": "aa43ba64b62292b7aabfc97c6f08bbf3c3f05197ddc758d8863a923d0bee3f2c"
+    },
+    "button_entities": {
+      "exitCode": 0,
+      "originalContractSHA256": "2fe952a33ba10a26dd2244073ad3879302906c0403d8f4195ab2d4955120ae37",
+      "originalLogSHA256": "414c4be0f742147624d5df13fc60c0d09e424c5db5d522df5c95e29da27ecff5"
+    },
+    "changelevel_entities": {
+      "exitCode": 0,
+      "originalContractSHA256": "5b288b85b95ac1e307b06ddd0b5a73175df4492e3a443a8e5781a2c1b6ea5aa7",
+      "originalLogSHA256": "4abfd9f48258242a2cbcfc4d81df01ccec582b241913a2fe5b35b26091e90628"
+    },
+    "trigger_persistence": {
+      "exitCode": 0,
+      "originalContractSHA256": "ac5b1aec7238f4515f0bd5404be914b124609706335b0d720287d075ea588398",
+      "originalLogSHA256": "ce3331e59978a4c9fd3b6189c447df845d35182c8d7f8ebdd32a4a14d844906b"
+    },
+    "ambient_persistence": {
+      "exitCode": 0,
+      "originalContractSHA256": "f083d1b477d85da18af19157d7e13baaedc32cfe36728e221d70b7d5ce8ef2cb",
+      "originalLogSHA256": "9d6ca6ec365c76d231c168fed67c56a93efa9dba389455bca84a28653e33770f"
+    },
+    "callback_behavior": {
+      "exitCode": 0,
+      "originalContractSHA256": "06c1b19db2575d0f3af968d637a977ad9e739ec5bdf54059abbacff18f6affc6",
+      "originalLogSHA256": "f75eb5e5ba2ca6da1b597acdd539256add1ad8fb4727ba9be4744b90608443ef"
+    },
+    "extras_persistence": {
+      "exitCode": 0,
+      "originalContractSHA256": "e971305caf04751a535d48070aee11132a6cc1d1c9d2c992dcdd667ea7db9b35",
+      "originalLogSHA256": "5aa6f31737d87807caac84bfe7e95a848aba64b230f68259fc599561077da900"
+    },
+    "extras_interactions": {
+      "exitCode": 0,
+      "originalContractSHA256": "20133bb9635666eb97472354e5906e772ca4c1a819aa830d50a5998d3bdc178d",
+      "originalLogSHA256": "adbcea2ac922d1e72f8ce215241d731a670577689a63c1c010c57c924f1c86cf"
+    },
+    "phone_singleplayer_punch": {
+      "exitCode": 0,
+      "originalContractSHA256": "529349c13cd68c74c50f3d9382de9f3d66b833a1fdd510938f181907ecba060d",
+      "originalLogSHA256": "1371a0225a43f6a292232b16668a074fdaed83b4e6fab6d24394a6af10812aeb"
+    },
+    "dual_hands": {
+      "exitCode": 0,
+      "originalContractSHA256": "96ebed4f016eb196aa1e237681fc68b79b8780e5e6a8442be54f573fbfce0f78",
+      "originalLogSHA256": "86239c5455ea1055a91d82ac25161b03061f5730b2372f3268e7c7f0cca27f7a"
+    },
+    "ammo_hud": {
+      "exitCode": 0,
+      "originalContractSHA256": "934a97b285cdc7e3ac51b513953e288a1cb9dbd819ea2d0bf82ec83ef94bc543",
+      "originalLogSHA256": "803d576db42c86023539fae945e7a63af3b77fe5dd60988863e9c10455c60ee3"
+    },
+    "voice_mix_probe": {
+      "exitCode": 0,
+      "originalContractSHA256": "5d170f0a0043742613592340c81a68f7890c05d845f92a7016a8477fc1f729a3",
+      "originalLogSHA256": "fb942fa4a5ab033c2f5b29fb8f794e71bae12a9ae2f1da3cac6229dbe0aee4dd"
+    }
+  }
+}
