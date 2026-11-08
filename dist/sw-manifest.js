@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "a9ef5b6f7e9c",
+ "version": "8d19d038f984",
  "coi": false,
  "precache": [
   "BingSiteAuth.xml",
@@ -96,8 +96,8 @@ self.COF_MANIFEST = {
   "mp3/watercorridor.mp3": "ba8c97aa265b",
   "packs/boot.data": "9056f3572435",
   "packs/boot.js": "b81c3c8b79dd",
-  "packs/engine.data": "f069b9082caa",
-  "packs/engine.js": "267a1e533abc",
+  "packs/engine.data": "6e98435ad556",
+  "packs/engine.js": "55c7e4e72949",
   "packs/extras.data": "8972eb64392e",
   "packs/extras.js": "63f307f5a9a7",
   "packs/map_c_apartment1.data": "8a2ae128e830",
@@ -128,14 +128,14 @@ self.COF_MANIFEST = {
   "postfx.js": "b57cd4f53a8c",
   "shaders/black.frag.glsl": "84e7d1f5f6e7",
   "shaders/black.vert.glsl": "6f062c22dfc3",
-  "shaders/postfx.frag.glsl": "d013c40b914e",
+  "shaders/postfx.frag.glsl": "568f0a72e927",
   "shaders/postfx.vert.glsl": "67c791a629ca",
   "shaders/water.frag.glsl": "60e5c1ff01bd",
   "shaders/water.vert.glsl": "2ac21130b1b7",
   "sitemap.xml": "ac1bb0cd5b1c",
   "xash3d.html": "9c5ead998246",
-  "xash3d.js": "27889352d7a2",
-  "xash3d.wasm": "1536758e1209"
+  "xash3d.js": "58ab3610f2d1",
+  "xash3d.wasm": "8a7ca0515bf8"
  },
  "gz": {
   "packs/boot.data": {
@@ -143,8 +143,8 @@ self.COF_MANIFEST = {
    "gzSize": 22846762
   },
   "packs/engine.data": {
-   "size": 2885010,
-   "gzSize": 963254
+   "size": 2885974,
+   "gzSize": 963559
   },
   "packs/extras.data": {
    "size": 24149424,
@@ -195,8 +195,8 @@ self.COF_MANIFEST = {
    "gzSize": 32286826
   },
   "xash3d.wasm": {
-   "size": 4681929,
-   "gzSize": 1752419
+   "size": 4681925,
+   "gzSize": 1752407
   }
  }
 };
