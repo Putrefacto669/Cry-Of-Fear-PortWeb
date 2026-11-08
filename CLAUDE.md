@@ -159,6 +159,17 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
 
 ## Trampas conocidas
 
+- **Un solo parche por repositorio**: `patches.sh export` borra todos los `.patch` y escribe uno por repo
+  a partir del árbol canónico. Un parche suelto (`0004-root.patch`, `hlsdk/0002`...) que no esté aplicado
+  en ese árbol se pierde en el siguiente `export`, y el juego se compila sin él. Aplicar cualquier cambio
+  al árbol canónico y exportar; antes de un `export`, comparar árbol y parches (líneas `+/-`).
+  Consolidado el 08/11 (`docs/RELOJ_Y_CONSOLIDACION_2026_11_08.md`).
+- **Reloj del motor**: en la web `Platform_DoubleTime` usa `emscripten_get_now()`, que es monótono. El de
+  SDL (`Date.now()`) retrocede con los ajustes de hora y daba arranques sin conexión (`level loaded at
+  -18446744073707 sec`). Prueba: `tools/e2e/clock_backwards.mjs`.
+- **Pruebas e2e de Codex**: Node en `/root/emsdk/node/24.19.0_64bit/bin`, Playwright y navegadores en
+  `/root/cof-audits/browser-1.64.1` (`PLAYWRIGHT_BROWSERS_PATH=.../browsers`; los `.mjs` se copian a
+  `.../e2e/` para que encuentren `node_modules`).
 - **Comillas en WSL desde Git Bash**: `$var` y `$(...)` se expanden antes de llegar a WSL. Escribir
   siempre un script en el scratchpad, quitar CRLF (`sed -i 's/\r$//'`) y ejecutar con
   `MSYS_NO_PATHCONV=1 wsl -u root -- bash /mnt/c/.../script.sh`.

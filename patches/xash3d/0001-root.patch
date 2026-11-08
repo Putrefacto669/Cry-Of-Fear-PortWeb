@@ -702,10 +702,41 @@ index 6d66e098..2a0c9961 100644
  		if( !in_visible_cursor_pos.pushed )
  		{
 diff --git a/engine/platform/sdl2/sys_sdl2.c b/engine/platform/sdl2/sys_sdl2.c
-index ac3a43c2..07828e8f 100644
+index ac3a43c2..c5f73aba 100644
 --- a/engine/platform/sdl2/sys_sdl2.c
 +++ b/engine/platform/sdl2/sys_sdl2.c
-@@ -34,7 +34,9 @@ double Platform_DoubleTime( void )
+@@ -16,10 +16,25 @@ GNU General Public License for more details.
+ #include <SDL.h>
+ #include "platform.h"
+ #include "platform_sdl2.h"
++#if XASH_EMSCRIPTEN
++#include <emscripten/emscripten.h>
++#endif
+ 
+ #if XASH_TIMER == TIMER_SDL
+ double Platform_DoubleTime( void )
+ {
++#if XASH_EMSCRIPTEN
++	// SDL's counter is gettimeofday() here, that is Date.now(): wall-clock time that steps back
++	// when the system clock is adjusted. The unsigned difference below then wraps to 1.8e13 s
++	// ("Time to first frame: 18446744073709 seconds", "level loaded at -18446744073707 sec")
++	// and the client never connects. performance.now() is monotonic.
++	static double s_ClockStart = -1.0;
++	double now = emscripten_get_now();
++
++	if( s_ClockStart < 0.0 )
++		s_ClockStart = now;
++	return ( now - s_ClockStart ) * 0.001;
++#else
+ 	static Uint64 g_PerformanceFrequency;
+ 	static Uint64 g_ClockStart;
+ 
+@@ -30,11 +45,14 @@ double Platform_DoubleTime( void )
+ 	}
+ 	Uint64 CurrentTime = SDL_GetPerformanceCounter();
+ 	return (double)( CurrentTime - g_ClockStart ) / (double)( g_PerformanceFrequency );
++#endif
+ }
  
  void Platform_Sleep( int msec )
  {
