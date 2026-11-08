@@ -1081,7 +1081,7 @@ index fb0af14f..a97dc1d0 100644
  	{
  		if( subImage ) pglCompressedTexSubImage1DARB( tex->target, level, 0, width, tex->format, size, data );
 diff --git a/ref/gl/gl_local.h b/ref/gl/gl_local.h
-index 1e4d23e9..3b701253 100644
+index 1e4d23e9..33ded71f 100644
 --- a/ref/gl/gl_local.h
 +++ b/ref/gl/gl_local.h
 @@ -506,6 +506,9 @@ void GL_InitExtensions( void );
@@ -1094,7 +1094,18 @@ index 1e4d23e9..3b701253 100644
  qboolean VID_CubemapShot( const char *base, uint size, const float *vieworg, qboolean skyshot );
  void R_GammaChanged( qboolean do_reset_gamma );
  void R_BeginFrame( qboolean clearScene );
-@@ -824,3 +827,11 @@ extern convar_t r_scene_scale;
+@@ -770,6 +773,10 @@ static inline qboolean GL_RenderTargetsActive( void )
+ // renderer cvars
+ //
+ extern convar_t	gl_texture_anisotropy;
++extern convar_t	r_cof_lightmaps;
++extern convar_t	gl_cof_gamma;
++extern convar_t	gl_cof_brightness;
++extern convar_t	gl_cof_contrast;
+ extern convar_t	gl_extensions;
+ extern convar_t	gl_check_errors;
+ extern convar_t	gl_texture_lodbias;
+@@ -824,3 +831,11 @@ extern convar_t r_scene_scale;
  
  
  #endif // GL_LOCAL_H
@@ -1107,10 +1118,22 @@ index 1e4d23e9..3b701253 100644
 +void R_CoFSkyEnd( void );
 +void R_CoFSkyLight( alight_t *light );
 diff --git a/ref/gl/gl_opengl.c b/ref/gl/gl_opengl.c
-index f05a3ddf..4f70d755 100644
+index f05a3ddf..b828e993 100644
 --- a/ref/gl/gl_opengl.c
 +++ b/ref/gl/gl_opengl.c
-@@ -220,6 +220,17 @@ static const dllfunc_t texturecompressionfuncs[] MAYBE_UNUSED =
+@@ -22,6 +22,11 @@ CVAR_DEFINE_AUTO( gl_test, "0", 0, "engine developer cvar for quick testing new
+ CVAR_DEFINE_AUTO( gl_msaa, "1", FCVAR_GLCONFIG, "enable or disable multisample anti-aliasing" );
+ CVAR_DEFINE_AUTO( gl_stencilbits, "8", FCVAR_GLCONFIG|FCVAR_READ_ONLY, "pixelformat stencil bits (0 - auto)" );
+ CVAR_DEFINE_AUTO( gl_overbright, "1", FCVAR_GLCONFIG, "overbrights" );
++// Cry of Fear: lightmaps of the original client renderer and its own picture settings (gl_rsurf.c)
++CVAR_DEFINE_AUTO( r_cof_lightmaps, "1", 0, "build lightmaps like the Cry of Fear client (0 = Xash gamma tables)" );
++CVAR_DEFINE( gl_cof_gamma, "gl_gamma", "1", 0, "Cry of Fear lightmap gamma" );
++CVAR_DEFINE( gl_cof_brightness, "gl_brightness", "0", 0, "Cry of Fear lightmap brightness (0 to 0.3)" );
++CVAR_DEFINE( gl_cof_contrast, "gl_contrast", "1", 0, "Cry of Fear lightmap contrast (up to 2)" );
+ CVAR_DEFINE_AUTO( gl_fog, "1", FCVAR_GLCONFIG, "allow for rendering fog using built-in OpenGL fog implementation" );
+ CVAR_DEFINE_AUTO( gl_litwater_force, "0", FCVAR_GLCONFIG, "force enable lightmapped water, even if support not declared in the map" );
+ CVAR_DEFINE_AUTO( r_lighting_ambient, "0.3", FCVAR_GLCONFIG, "map ambient lighting scale" );
+@@ -220,6 +225,17 @@ static const dllfunc_t texturecompressionfuncs[] MAYBE_UNUSED =
  { GL_CALL( glGetCompressedTexImage ) },
  };
  
@@ -1128,7 +1151,7 @@ index f05a3ddf..4f70d755 100644
  static const dllfunc_t vbofuncs[] =
  {
  { GL_CALL( glBindBufferARB ) },
-@@ -803,6 +814,16 @@ static void GL_InitExtensionsGLES( void )
+@@ -803,6 +819,16 @@ static void GL_InitExtensionsGLES( void )
  	{
  		switch( extid )
  		{
@@ -1145,7 +1168,18 @@ index f05a3ddf..4f70d755 100644
  		case GL_ARB_VERTEX_BUFFER_OBJECT_EXT:
  			GL_CheckExtension( "vertex_buffer_object", vbofuncs, ARRAYSIZE( vbofuncs ), "gl_vertex_buffer_object", extid, 1.0 );
  			break;
-@@ -1450,7 +1471,12 @@ void GL_SetupAttributes( int safegl )
+@@ -1262,6 +1288,10 @@ static void GL_InitCommands( void )
+ 	gEngfuncs.Cvar_RegisterVariable( &gl_stencilbits );
+ 	gEngfuncs.Cvar_RegisterVariable( &gl_round_down );
+ 	gEngfuncs.Cvar_RegisterVariable( &gl_overbright );
++	gEngfuncs.Cvar_RegisterVariable( &r_cof_lightmaps );
++	gEngfuncs.Cvar_RegisterVariable( &gl_cof_gamma );
++	gEngfuncs.Cvar_RegisterVariable( &gl_cof_brightness );
++	gEngfuncs.Cvar_RegisterVariable( &gl_cof_contrast );
+ 	gEngfuncs.Cvar_RegisterVariable( &gl_fog );
+ 	gEngfuncs.Cvar_RegisterVariable( &gl_litwater_force );
+ 
+@@ -1450,7 +1480,12 @@ void GL_SetupAttributes( int safegl )
  	int context_flags = 0; // REFTODO!!!!!
  	int samples = 0;
  
@@ -1160,7 +1194,7 @@ index f05a3ddf..4f70d755 100644
  	gEngfuncs.GL_SetAttribute( REF_GL_CONTEXT_EGL, 1 );
  #if XASH_NANOGL
 diff --git a/ref/gl/gl_rmain.c b/ref/gl/gl_rmain.c
-index 97b12119..973f3ff1 100644
+index 97b12119..9f7eb24e 100644
 --- a/ref/gl/gl_rmain.c
 +++ b/ref/gl/gl_rmain.c
 @@ -214,8 +214,12 @@ void R_PopScene( void )
@@ -1287,8 +1321,26 @@ index 97b12119..973f3ff1 100644
  
  	R_MarkLeaves();
  	R_DrawFog ();
+@@ -1016,6 +1099,17 @@ static void R_CheckCvars( void )
+ 		rebuild = true;
+ 	}
+ 
++	// Cry of Fear lightmaps and their brightness/contrast/gamma (gl_rsurf.c R_CofBuildLightMap)
++	convar_t *cof_cvars[] = { &r_cof_lightmaps, &gl_cof_gamma, &gl_cof_brightness, &gl_cof_contrast };
++	for( size_t i = 0; i < ARRAYSIZE( cof_cvars ); i++ )
++	{
++		if( FBitSet( cof_cvars[i]->flags, FCVAR_CHANGED ))
++		{
++			ClearBits( cof_cvars[i]->flags, FCVAR_CHANGED );
++			rebuild = true;
++		}
++	}
++
+ 	if( FBitSet( r_vbo.flags, FCVAR_CHANGED ))
+ 	{
+ 		ClearBits( r_vbo.flags, FCVAR_CHANGED );
 diff --git a/ref/gl/gl_rsurf.c b/ref/gl/gl_rsurf.c
-index 18dea062..4d3f9d61 100644
+index 18dea062..94b34f85 100644
 --- a/ref/gl/gl_rsurf.c
 +++ b/ref/gl/gl_rsurf.c
 @@ -38,6 +38,207 @@ typedef struct
@@ -1512,8 +1564,130 @@ index 18dea062..4d3f9d61 100644
  		// transform light origin to local bmodel space
  		if( !tr.modelviewIdentity )
  			Matrix4x4_VectorITransform( RI.objectMatrix, dl->origin, origin_l );
-@@ -724,6 +931,11 @@ format in r_blocklights
+@@ -722,8 +929,133 @@ Combine and scale multiple lightmaps into the floating
+ format in r_blocklights
+ =================
  */
++/*
++=================
++R_CofBuildLightMap
++
++Cry of Fear: lightmaps as the original client builds them (client.dll FUN_1005a110). Its renderer uploads
++its own lightmaps, without the engine's gamma table, and the world pass multiplies them by the texture
++with GL_RGB_SCALE 2 (FUN_10061b40, mode 5 of FUN_10062c10):
++  layers 61/62/63 (ambient, diffuse, direction): curve( 2 * ( ambient + diffuse * z )) * 0.5,
++      z = layer63.b / 127 - 1 (flat path, FUN_10059660)
++  layer 61 alone: curve( layer61 ) (FUN_10059880)
++  any other face: curve( layer0 ) * 0.5 (FUN_10059d20)
++curve( x ) = x * gl_contrast + gl_brightness, after pow( x, 1 / gl_gamma ) when gl_gamma is not 1
++(FUN_100595f0); a colour above 1 is scaled down by its brightest channel (FUN_10059f30).
++Lightstyles other than 61-63 keep their animation (value / 264, 264 = 'm'). Dynamic lights and the
++flashlight are added like the original's additive passes: x1 after the x2 combine.
++=================
++*/
++static float R_CofCurve( float x )
++{
++	float gamma = gl_cof_gamma.value <= 0.0f ? 1.0f : gl_cof_gamma.value;
++	float contrast = Q_min( gl_cof_contrast.value, 2.0f );  // the original clamps them (FUN_1005a110)
++	float brightness = Q_min( gl_cof_brightness.value, 0.3f );
++
++	if( gamma != 1.0f && x > 0.0f )
++		x = powf( x, 1.0f / gamma );
++	return x * contrast + brightness;
++}
++
++static void R_CofBuildLightMap( const msurface_t *surf, byte *restrict dest, int stride, int smax, int tmax )
++{
++	const int size = smax * tmax;
++	const float pass = gl_overbright.value ? 1.0f : 2.0f; // without the x2 pass the lightmap carries it
++	int l61 = -1, l62 = -1, l63 = -1;
++
++	for( int map = 0; map < MAXLIGHTMAPS && surf->styles[map] < 255; map++ )
++	{
++		if( surf->styles[map] == 61 ) l61 = map;
++		else if( surf->styles[map] == 62 ) l62 = map;
++		else if( surf->styles[map] == 63 ) l63 = map;
++	}
++
++	for( int t = 0; t < tmax; t++ )
++	{
++		for( int s = 0; s < smax; s++ )
++		{
++			const int i = s + t * smax;
++			const uint *bl = &r_blocklights[i * 3];
++			byte *dst = &dest[( t * stride ) + ( s * 4 )];
++			uint stat[3] = { 0, 0, 0 };
++			float other[3] = { 0.0f, 0.0f, 0.0f }, c[3];
++
++			for( int map = 0; map < MAXLIGHTMAPS && surf->styles[map] < 255; map++ )
++			{
++				const color24 *lm = &surf->samples[map * size + i];
++				const uint value = g_lightstylevalue[surf->styles[map]];
++
++				stat[0] += lm->r * value;
++				stat[1] += lm->g * value;
++				stat[2] += lm->b * value;
++				if( map != l61 && map != l62 && map != l63 )
++				{
++					other[0] += lm->r * ( value / 264.0f );
++					other[1] += lm->g * ( value / 264.0f );
++					other[2] += lm->b * ( value / 264.0f );
++				}
++			}
++
++			if( l61 >= 0 && l62 >= 0 && l63 >= 0 )
++			{
++				const color24 *a = &surf->samples[l61 * size + i], *d = &surf->samples[l62 * size + i];
++				const float z = surf->samples[l63 * size + i].b / 127.0f - 1.0f;
++				c[0] = R_CofCurve( 2.0f * ( a->r + d->r * z ) / 255.0f ) * 0.5f;
++				c[1] = R_CofCurve( 2.0f * ( a->g + d->g * z ) / 255.0f ) * 0.5f;
++				c[2] = R_CofCurve( 2.0f * ( a->b + d->b * z ) / 255.0f ) * 0.5f;
++			}
++			else if( l61 >= 0 )
++			{
++				const color24 *a = &surf->samples[l61 * size + i];
++				c[0] = R_CofCurve( a->r / 255.0f );
++				c[1] = R_CofCurve( a->g / 255.0f );
++				c[2] = R_CofCurve( a->b / 255.0f );
++			}
++			else
++			{
++				for( int k = 0; k < 3; k++ )
++					c[k] = R_CofCurve( other[k] / 255.0f ) * 0.5f;
++			}
++
++			// dynamic lights: what R_AddDynamicLights put above the static sum, in lightmap units
++			for( int k = 0; k < 3; k++ )
++			{
++				if( bl[k] > stat[k] )
++					c[k] += ( bl[k] - stat[k] ) / ( 256.0f * 255.0f ) * 0.5f;
++				c[k] *= pass;
++			}
++
++			float brightest = Q_max( c[0], Q_max( c[1], c[2] ));
++			if( brightest > 1.0f )
++			{
++				for( int k = 0; k < 3; k++ )
++					c[k] /= brightest;
++			}
++
++			for( int k = 0; k < 3; k++ )
++			{
++				dst[k] = (byte)( bound( 0.0f, c[k], 1.0f ) * 255.0f + 0.5f );
++
++				// Cry of Fear flashlight: additive like the original's light pass (x1 after the x2 combine)
++				if( r_spotused )
++				{
++					int addition = (int)( r_spotlight[i * 3 + k] * 255.0f * 0.5f * pass + 0.5f );
++					R_CofSpotObserve( dst[k], addition );
++					dst[k] = Q_min( 255, dst[k] + addition );
++				}
++			}
++			dst[3] = 255;
++		}
++	}
++}
++
  static void R_BuildLightMap( const msurface_t *surf, byte *restrict dest, int stride, qboolean dynamic )
  {
 + double cof_lightmap_start = r_cofspot_debug && r_cofspot_debug->value ? gEngfuncs.pfnTime() : 0;
@@ -1524,7 +1698,7 @@ index 18dea062..4d3f9d61 100644
  	const mextrasurf_t *info = surf->info;
  	const qboolean turb = FBitSet( surf->flags, SURF_DRAWTURB );
  	const qboolean linear_gamma = FBitSet( gp_host->features, ENGINE_LINEAR_GAMMA_SPACE );
-@@ -786,6 +998,7 @@ static void R_BuildLightMap( const msurface_t *surf, byte *restrict dest, int st
+@@ -786,15 +1118,25 @@ static void R_BuildLightMap( const msurface_t *surf, byte *restrict dest, int st
  		memset( r_blocklights, 0, sizeof( uint ) * size * 3 );
  
  	// add all the dynamic lights
@@ -1532,7 +1706,16 @@ index 18dea062..4d3f9d61 100644
  	if( surf->dlightframe == tr.framecount && dynamic )
  		R_AddDynamicLights( surf, sample_size, smax, tmax );
  
-@@ -795,6 +1008,8 @@ static void R_BuildLightMap( const msurface_t *surf, byte *restrict dest, int st
++	if( r_cof_lightmaps.value && !turb && surf->samples )
++	{
++		R_CofBuildLightMap( surf, dest, stride, smax, tmax );
++		if( cof_lightmap_start ) r_spotstats.lightmapMs += ( gEngfuncs.pfnTime() - cof_lightmap_start ) * 1000.0;
++		return;
++	}
++
+ 	for( int t = 0; t < tmax; t++ )
+ 	{
+ 		for( int s = 0; s < smax; s++ )
  		{
  			const uint *restrict bl = &r_blocklights[(s + (t * smax)) * 3];
  			byte *restrict dst = &dest[(t * stride) + (s * 4)];
@@ -1541,7 +1724,7 @@ index 18dea062..4d3f9d61 100644
  
  			for( int i = 0; i < 3; i++ )
  			{
-@@ -815,10 +1030,19 @@ static void R_BuildLightMap( const msurface_t *surf, byte *restrict dest, int st
+@@ -815,10 +1157,19 @@ static void R_BuildLightMap( const msurface_t *surf, byte *restrict dest, int st
  					dst[i] = t >> 2;
  				else
  					dst[i] = lightgammatable[t] >> 2;
@@ -1561,6 +1744,19 @@ index 18dea062..4d3f9d61 100644
  }
  
  /*
+@@ -1171,7 +1522,11 @@ static void R_BlendLightmaps( void )
+ 		if( gl_overbright.value )
+ 		{
+ 			pglBlendFunc( GL_DST_COLOR, GL_SRC_COLOR );
+-			if(!( R_HasEnabledVBO() && !r_vbo_overbrightmode.value ))
++			// Cry of Fear: texture x lightmap x 2 like the original (FUN_10061b40, GL_RGB_SCALE 2);
++			// Xash's 128/192 would make it x1.333
++			if( r_cof_lightmaps.value )
++				pglColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
++			else if(!( R_HasEnabledVBO() && !r_vbo_overbrightmode.value ))
+ 				pglColor4f( 128.0f / 192.0f, 128.0f / 192.0f, 128.0f / 192.0f, 1.0f );
+ 		}
+ 		else
 diff --git a/ref/gl/gl_studio.c b/ref/gl/gl_studio.c
 index 39873fb4..e576c59b 100644
 --- a/ref/gl/gl_studio.c

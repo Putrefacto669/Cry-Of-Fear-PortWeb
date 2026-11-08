@@ -167,6 +167,11 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
 - **Reloj del motor**: en la web `Platform_DoubleTime` usa `emscripten_get_now()`, que es monótono. El de
   SDL (`Date.now()`) retrocede con los ajustes de hora y daba arranques sin conexión (`level loaded at
   -18446744073707 sec`). Prueba: `tools/e2e/clock_backwards.mjs`.
+- **Lightmaps fieles** (08/11): `R_CofBuildLightMap` (`gl_rsurf.c`) construye la luz del mundo como el
+  `client.dll`, sin tabla de gamma, con ×2 al combinar. El mundo queda más oscuro a propósito.
+  - `r_cof_lightmaps 0` vuelve a la luz de Xash para comparar.
+  - Opciones → Brillo fija `gl_brightness` (0–0,3, como el original).
+  - No compensar subiendo `brightness`, `gamma` ni el ×2.
 - **Pruebas e2e de Codex**: Node en `/root/emsdk/node/24.19.0_64bit/bin`, Playwright y navegadores en
   `/root/cof-audits/browser-1.64.1` (`PLAYWRIGHT_BROWSERS_PATH=.../browsers`; los `.mjs` se copian a
   `.../e2e/` para que encuentren `node_modules`).
