@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "16b968811f27",
+ "version": "7e8c81dec79a",
  "coi": false,
  "precache": [
   "LICENSE.txt",
@@ -38,9 +38,11 @@ self.COF_MANIFEST = {
   "shaders/water.vert.glsl",
   "xash3d.js",
   "sitemap.xml",
-  "googlee1f002228312b1b3.html"
+  "googlee1f002228312b1b3.html",
+  "BingSiteAuth.xml"
  ],
  "files": {
+  "BingSiteAuth.xml": "9866d127d1e5",
   "LICENSE.txt": "230184f60bae",
   "debug.js": "40590135a97a",
   "extras.js": "32eba15df1ba",
