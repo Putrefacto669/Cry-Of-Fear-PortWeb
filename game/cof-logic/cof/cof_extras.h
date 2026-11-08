@@ -10,6 +10,7 @@ struct cof_extra_player_t
  EHANDLE nightWeapon;
 };
 void CoF_RegisterExtras();
+void CoF_PrecacheClothesPreview();
 void CoF_ExtrasSpawn(CBasePlayer *player);
 void CoF_ExtrasFrame(CBasePlayer *player);
 bool CoF_ExtrasCommand(CBasePlayer *player, const char *command);

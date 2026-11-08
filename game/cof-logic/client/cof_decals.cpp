@@ -22,7 +22,9 @@
 struct cof_render_api_t
 {
 	intptr_t ( *RenderGetParm )( int parm, int arg );
-	void *unused[11]; // GetDetailScaleForTexture ... R_StoreEfrags
+	void *unused[7]; // GetDetailScaleForTexture ... GetFrameTime
+	void (*R_SetCurrentEntity)(struct cl_entity_s *entity);
+	void *unusedAfterEntity[3]; // R_SetCurrentModel ... R_StoreEfrags
 	int ( *GL_FindTexture )( const char *name );
 	const char *( *GL_TextureName )( unsigned int texnum );
 	const unsigned char *( *GL_TextureData )( unsigned int texnum );
@@ -30,6 +32,13 @@ struct cof_render_api_t
 };
 
 static cof_render_api_t *g_renderApi;
+
+// Scoped Studio preview: use the existing v37 renderer API, never patch engine globals.
+bool CoF_SetStudioEntity(struct cl_entity_s *entity)
+{
+ if(!g_renderApi || !g_renderApi->R_SetCurrentEntity)return false;
+ g_renderApi->R_SetCurrentEntity(entity);return true;
+}
 
 // Reuse the negotiated engine API for the original external costume textures.
 int CoF_LoadExtraTexture(const char *path)

@@ -1,0 +1,46 @@
+// Real Studio model and original materials. Diagnostic map/pickup preparation, not campaign progression.
+import assert from 'node:assert/strict';import fs from 'node:fs';import {chromium,firefox} from 'playwright';
+const [base,out,engine='chromium']=process.argv.slice(2);assert.ok(!fs.existsSync(out));fs.mkdirSync(out,{recursive:true});
+const b=await(engine==='firefox'?firefox:chromium).launch(engine==='firefox'?{headless:false,firefoxUserPrefs:{'media.volume_scale':'0.0','webgl.force-enabled':true}}:{executablePath:'/root/cof-audits/browser-1.64.1/browsers/chromium-1248/chrome-linux64/chrome',args:['--mute-audio','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const ctx=await b.newContext({viewport:{width:960,height:720}}),p=await ctx.newPage(),logs=[],errors=[],requests=[],r={engine,diagnosticPreparation:true,outfits:[],checks:[]};let serial=0,connections=0;
+p.on('console',m=>{logs.push(m.text());if(m.text().includes('client connected'))connections++;});p.on('pageerror',e=>errors.push(e.message));p.on('request',q=>requests.push(q.url()));
+async function wait(fn,limit=30000){const t=Date.now();while(!await fn()){assert.ok(Date.now()-t<limit,'clothes condition deadline');await p.waitForTimeout(100);}}
+async function cmd(c){const start=logs.length,token='clothes_'+(++serial);await Promise.all([p.waitForEvent('console',{predicate:m=>m.text().includes('COF/FENCE '+token+' '),timeout:30000}),p.evaluate(c=>CoFDebug.cmd(c),c+'\ncof_fence '+token)]);return logs.slice(start).join('\n');}
+const status=()=>cmd('cof_extras_status\ncof_extras_render\ncof_clothes_render');
+async function map(name){await p.evaluate(n=>CoFPreload(n),name);const n=connections;await p.evaluate(n=>CoFDebug.cmd('map '+n),name);await wait(()=>connections>n,60000);await cmd('sv_cheats 1');}
+async function open(){await p.locator('#cof-menu.on [data-action=clothes]').click();await p.locator('#cof-clothes.on').waitFor({timeout:30000});await wait(()=>p.evaluate(()=>CoFPostFX.preview().id>0));await wait(()=>p.evaluate(()=>CoFPostFX.stats().msPerFrame>0));assert.equal(await p.evaluate(()=>!!document.pointerLockElement),false,'wardrobe must retain a free UI cursor');}
+async function close(){await p.locator('#cof-clothes [data-close]').scrollIntoViewIfNeeded();await p.locator('#cof-clothes [data-close]').click();await p.locator('#cof-menu.on').waitFor({timeout:30000});await wait(()=>p.evaluate(()=>CoFPostFX.preview().id===0));assert.equal(await p.evaluate(()=>!!document.pointerLockElement),false);}
+async function choose(i){await p.locator('#cof-clothes [data-costume="'+i+'"]').click();await wait(async()=>new RegExp('COF/EXTRASCLIENT costume='+i+' ').test(await status()));await p.waitForTimeout(200);assert.equal(await p.locator('[data-costume="'+i+'"]').getAttribute('aria-pressed'),'true');}
+async function pixels(){return p.evaluate(async()=>{
+ const info=CoFPostFX.preview(),gl=GLctx,texture=GL.textures[info.id];if(!texture)throw Error('native portrait texture missing');
+ const previous=gl.getParameter(gl.READ_FRAMEBUFFER_BINDING),fb=gl.createFramebuffer();gl.bindFramebuffer(gl.READ_FRAMEBUFFER,fb);gl.framebufferTexture2D(gl.READ_FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,texture,0);
+ if(gl.checkFramebufferStatus(gl.READ_FRAMEBUFFER)!==gl.FRAMEBUFFER_COMPLETE)throw Error('portrait readback incomplete');
+ const data=new Uint8Array(info.width*info.height*4);gl.readPixels(0,0,info.width,info.height,gl.RGBA,gl.UNSIGNED_BYTE,data);gl.bindFramebuffer(gl.READ_FRAMEBUFFER,previous);gl.deleteFramebuffer(fb);
+ let minX=info.width,minY=info.height,maxX=-1,maxY=-1,count=0,colored=0;
+ for(let y=0;y<info.height;y++)for(let x=0;x<info.width;x++){const n=(y*info.width+x)*4;if(data[n+3]<128)continue;count++;minX=Math.min(x,minX);maxX=Math.max(x,maxX);minY=Math.min(y,minY);maxY=Math.max(y,maxY);if(Math.max(...data.subarray(n,n+3))-Math.min(...data.subarray(n,n+3))>12)colored++;}
+ const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',data)),v=>v.toString(16).padStart(2,'0')).join('');return {...info,count,colored,minX,maxX,minY,maxY,hash,error:gl.getError()};
+});}
+function checkPixels(v){assert.ok(v.count>1500,JSON.stringify(v));assert.ok(v.maxX<v.width*.62,JSON.stringify(v));assert.ok(v.maxY-v.minY>v.height*.6,JSON.stringify(v));assert.ok(v.maxY-v.minY<v.height*.9,JSON.stringify(v));assert.equal(v.error,0);}
+try{
+ await p.goto(base+'?map=c_game_menu1&sw=0&timer=1&prefetch=0&debug=1&fx='+(process.env.COF_CLOTHES_FX||'1'));await wait(()=>connections>0,60000);await p.locator('#cof-menu.on').waitFor({timeout:30000});await cmd('sv_cheats 1');
+ await open();assert.equal(await p.evaluate(()=>CoFCurrentMap()),'c_game_menu1');assert.equal(requests.some(s=>s.includes('map_c_start.')),false);assert.equal(await p.locator('#cof-clothes [data-costume]:enabled').count(),1);
+ await cmd('setclothes 6');assert.match(await status(),/COF\/EXTRAS unlocks=0 costume=0 /);r.lockedRejected=true;
+ r.default=await pixels();checkPixels(r.default);await p.screenshot({path:out+'/default.png'});r.checks.push('default real model visible without starting the campaign; locked selections rejected');
+ await close();await open();checkPixels(await pixels());await close();r.checks.push('close/reopen restores the native GPU preview and leaves the menu cursor free');
+ // Exercise the original HLC entity's Use contract; no debug grant for this first unlock.
+ await map('c_apartment1');const text=await cmd('cof_list cof_hoodie'),id=text.match(/cof_hoodie #(\d+)/)?.[1];assert.ok(id);await cmd('cof_use #'+id+' toggle');assert.match(await status(),/unlocks=4096 /);
+ await map('c_game_menu1');await p.locator('#cof-menu.on').waitFor({timeout:30000});await open();assert.equal(await p.locator('#cof-clothes [data-costume]:enabled').count(),2);await choose(6);r.hlc=await pixels();checkPixels(r.hlc);await p.screenshot({path:out+'/hlc-unlocked.png'});r.checks.push('original HLC pickup grants its original bit and only that outfit becomes available');
+ // Explicitly isolated coverage grant: never a product default or a claim of natural unlocks.
+ await cmd('cof_extras_unlock 0x3ff80');await wait(()=>p.locator('#cof-clothes [data-costume]:enabled').count().then(n=>n===12));
+ for(let i=0;i<12;i++){await choose(i);const image=await pixels();checkPixels(image);const text=await status();if(i){assert.match(text,new RegExp('EXTRASMATERIAL costume='+i+' hoodie=[1-9]'));if([1,3,4,7,9,10,11].includes(i))assert.match(text,/jeans=[1-9]/);if([7,10,11].includes(i))assert.match(text,/face=[1-9]/);}r.outfits.push({costume:i,image,status:text});await p.screenshot({path:out+'/costume-'+i+'.png'});}
+ assert.ok(new Set(r.outfits.map(x=>x.image.hash)).size>8);r.checks.push('all twelve original/default costume choices rendered through Studio with original materials');
+ await choose(6);await p.evaluate(()=>new Promise((resolve,reject)=>FS.syncfs(false,e=>e?reject(e):resolve())));const n=connections;await p.reload();await wait(()=>connections>n,60000);await cmd('sv_cheats 1');assert.match(await status(),/COF\/EXTRAS unlocks=262016 costume=6 /);await p.locator('#cof-menu.on').waitFor();await open();assert.equal(await p.locator('[data-costume="6"]').getAttribute('aria-pressed'),'true');checkPixels(await pixels());await close();r.checks.push('selection and unlocks survive a fresh WASM runtime through IndexedDB');
+ await map('c_apartment1');assert.match(await status(),/costume=6 /);await cmd('save clothes_history');await map('c_game_menu1');await p.locator('#cof-menu.on').waitFor();await open();await choose(0);await close();
+ await p.evaluate(()=>CoFPreload('c_apartment1'));const before=connections;await p.evaluate(()=>CoFDebug.cmd('load clothes_history'));await wait(()=>connections>before,60000);await cmd('sv_cheats 1');assert.match(await status(),/COF\/EXTRAS unlocks=262016 costume=6 /);
+ r.profile=await p.evaluate(()=>new TextDecoder().decode(FS.readFile('/rwdir/cryoffear/cof_extras_profile.cfg')));assert.match(r.profile,/COF_EXTRAS 1 262016 0/);r.checks.push('native save retains its own outfit without revoking unlocks or overwriting the newer menu preference');
+ r.modules=await p.evaluate(async()=>{const out={};for(const name of ['client.wasm','server.wasm','libref_gles3compat.wasm','filesystem_stdio.wasm','menu.wasm'])out[name]=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',FS.readFile('/lib/'+name))),v=>v.toString(16).padStart(2,'0')).join('');return out;});
+ await map('c_game_menu1');await p.locator('#cof-menu.on').waitFor();await p.locator('[data-action=new]').click();await p.locator('#cof-menu .board.on .hit').first().click();await wait(()=>p.evaluate(()=>CoFCurrentMap()==='c_intro'),60000);await wait(()=>p.evaluate(()=>!!document.pointerLockElement));r.checks.push('New Game still captures the mouse through its real difficulty-button gesture');
+ assert.deepEqual(errors,[]);r.passed=true;
+}catch(e){r.failure=String(e.stack);await p.screenshot({path:out+'/failure.png'}).catch(()=>{});process.exitCode=1;}
+finally{r.errors=errors;r.browser=b.version();fs.writeFileSync(out+'/result.json',JSON.stringify(r,null,2));fs.writeFileSync(out+'/engine.log',logs.join('\n'));await ctx.close();await b.close();}
+console.log(r.passed?'PASS native Clothes preview, twelve original choices, original HLC unlock, cold profile and native save':r.failure);

@@ -16,6 +16,8 @@ precision highp int; // the hash needs 32-bit uints, mediump int may be 16-bit
 
 uniform sampler2D uScene;
 uniform sampler2D uCookie;
+uniform sampler2D uClothes;
+uniform float uClothesVisible;
 
 uniform float uTime;
 uniform vec2  uResolution;
@@ -95,5 +97,12 @@ void main()
 		color += n * uGrain * ( 1.0 - 0.6 * luma );
 	}
 
+	// The wardrobe is UI: retain the Studio-rendered original material colors,
+	// independently of the grayscale/blur of the menu's background scene.
+	if( uClothesVisible > 0.0 )
+	{
+		vec4 portrait = texture( uClothes, vUV );
+		color = portrait.rgb + color * ( 1.0 - portrait.a );
+	}
 	fragColor = vec4( clamp( color, 0.0, 1.0 ), 1.0 );
 }

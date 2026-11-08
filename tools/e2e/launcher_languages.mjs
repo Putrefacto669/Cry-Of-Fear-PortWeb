@@ -24,6 +24,8 @@ for(const [name,type] of [['chromium',chromium],['firefox',firefox]]){
    assert.equal(await p.evaluate(()=>localStorage.getItem('cofLanguage')),'spanish','launcher must not replace game preference');
    assert.equal(await p.evaluate(()=>localStorage.getItem('cofLauncherLanguage')),language);
    const content=await p.locator('.lb-wrap').innerText();assert.ok(!content.includes('undefined'));assert.equal(await p.locator('.lb-credits a').count(),4);
+   assert.ok(await p.locator('#launcher-update-title').isVisible());assert.equal(await p.locator('#launcher-update li').count(),3);
+   assert.match(await p.locator('#launcher-update-title').textContent(),/2026/);assert.match(await p.locator('#launcher-update').innerText(),/Simon/);
    locales.push({language,code,play});
   }
   await p.reload();await p.locator('#launcher').waitFor({state:'visible'});assert.ok(await p.locator('#launcher-language').isHidden());assert.equal(await p.locator('#play').textContent(),'Spela');

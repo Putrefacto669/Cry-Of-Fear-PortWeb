@@ -75,6 +75,7 @@ import sys
 from pathlib import Path
 stage = Path(sys.argv[1])
 boot = {p.relative_to(stage / "boot").as_posix().lower() for p in (stage / "boot").rglob("*") if p.is_file()}
+boot.update(p.relative_to(stage / "shared_extras").as_posix().lower() for p in (stage / "shared_extras").rglob("*") if p.is_file())
 for m in (stage / "maps").iterdir() if (stage / "maps").is_dir() else []:
     for p in list(m.rglob("*")):
         if p.is_file() and p.relative_to(m).as_posix().lower() in boot:

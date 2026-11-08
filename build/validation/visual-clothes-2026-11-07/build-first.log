@@ -1,0 +1,540 @@
+Setting top to                                               : /root/cof-audits/visual-clothes-20261107/game/hlsdk-portable 
+Setting out to                                               : /root/cof-audits/visual-clothes-20261107/build/game 
+Build type                                                   : humanrights 
+LTO build                                                    : no 
+PolyOpt build                                                : no 
+OpenMP build                                                 : no 
+Generate profile                                             : no 
+Use profile                                                  : not found 
+Checking for program 'emcc'                                  : emcc 
+Checking for program 'emar'                                  : emar 
+Checking for program 'ar'                                    : emar 
+Checking for program 'em++'                                  : em++ 
+Checking for 'gcc' (C compiler)                              : not found 
+Checking for 'clang' (C compiler)                            : emcc 
+Target OS                                                    : emscripten 
+Target CPU                                                   : wasm 
+Target binfmt                                                : elf 
+Checking for 'g++' (C++ compiler)                            : not found 
+Checking for 'clang++' (C++ compiler)                        : em++ 
+Target OS                                                    : emscripten 
+Target CPU                                                   : wasm 
+Target binfmt                                                : elf 
+Checking for c flags '-MMD'                                  : yes 
+Checking for cxx flags '-MMD'                                : yes 
+Checking for program 'strip'                                 : emstrip 
+Checking for program 'objcopy'                               : llvm-objcopy 
+Couldn't find objcopy, --strip-to-file will be unavailable!
+Checking if 'clang' generates 32-bit code                    : yes 
+Checking for strlcpy                                         : yes 
+Checking for strlcat                                         : yes 
+Checking for required C flags                                : yes 
+Checking for required C++ flags                              : yes 
+Checking supported flags for clang in parallel               : started 
+... -Werror=string-compare                                   : yes 
+... -Werror=bool-operation                                   : yes 
+... -Werror=enum-conversion                                  : yes 
+... -Wmisleading-indentation                                 : yes 
+... -Werror=cast-align=strict                                : no 
+... -Werror=duplicated-cond                                  : no 
+... -Werror=packed-not-aligned                               : no 
+... -Werror=return-type                                      : yes 
+... -Werror=sizeof-array-div                                 : yes 
+... -Werror=bool-compare                                     : no 
+... -Werror=sizeof-pointer-memaccess                         : yes 
+... -fdiagnostics-color=always                               : yes 
+... -Wunintialized                                           : no 
+... -Werror=int-conversion                                   : yes 
+... -Werror=packed                                           : yes 
+... -fnonconst-initializers                                  : no 
+... -Werror=parentheses                                      : yes 
+... -Werror=implicit-fallthrough=2                           : no 
+... -Werror=write-strings                                    : yes 
+... -Werror=sequence-point                                   : yes 
+... -Werror=incompatible-pointer-types                       : yes 
+... -Werror=implicit-function-declaration                    : yes 
+... -Werror=use-after-free=3                                 : no 
+... -Werror=vla                                              : yes 
+... -Winit-self                                              : yes 
+... -Werror=tautological-compare                             : yes 
+... -Werror=sizeof-pointer-div                               : yes 
+... -Werror=jump-misses-init                                 : yes 
+... -Werror=implicit-int                                     : yes 
+-> processing test results                                   : 8 test failed 
+Checking supported flags for clang++ in parallel             : started 
+... -Werror=sequence-point                                   : yes 
+... -Wunintialized                                           : no 
+... -Werror=string-compare                                   : yes 
+... -Werror=bool-operation                                   : yes 
+... -Werror=return-type                                      : yes 
+... -Winit-self                                              : yes 
+... -Werror=sizeof-pointer-memaccess                         : yes 
+... -Werror=duplicated-cond                                  : no 
+... -Werror=parentheses                                      : yes 
+... -Werror=sizeof-array-div                                 : yes 
+... -Wmisleading-indentation                                 : yes 
+... -Werror=use-after-free=3                                 : no 
+... -Werror=write-strings                                    : yes 
+... -Werror=packed                                           : yes 
+... -Werror=bool-compare                                     : no 
+... -Werror=vla                                              : yes 
+... -fdiagnostics-color=always                               : yes 
+... -Werror=implicit-fallthrough=2                           : no 
+... -Werror=cast-align=strict                                : no 
+... -Werror=packed-not-aligned                               : no 
+... -Werror=tautological-compare                             : yes 
+... -Werror=sizeof-pointer-div                               : yes 
+-> processing test results                                   : 7 test failed 
+Checking for library m                                       : yes 
+Checking for header tgmath.h                                 : yes 
+Checking if tgmath.h is usable                               : yes 
+-> processing mod options                                    : ... 
+* Barnacle tongue length fix                                 : OFF 
+* Client local weapons prediction                            : ON 
+* Crowbar idle animation                                     : OFF 
+* Crowbar attack delay fix                                   : OFF 
+* Rapid crowbar fix                                          : ON 
+* Gauss overcharge fix                                       : OFF 
+* Fix of tripmine beam duplication on level transition       : OFF 
+* Handgrenade deploy animation fix after finishing a throw   : OFF 
+* Animation times fix for some weapons                       : OFF 
+* Old pre-HL 25th satchel's behaviour                        : OFF 
+* Speakable cycler and func_button (breaks AMXModX offsets)  : ON 
+* Enable hud_allow_hd cvar by default (breaks HUD in some mods) : ON 
+* OEM Build                                                     : OFF 
+* Demo Build                                                    : OFF 
+* Gamedir path                                                  : valve 
+* Where to put server dll                                       : dlls 
+* Where to put client or menu dll                               : cl_dlls 
+* Default server dll name                                       : hl 
+Determining library postfix                                     : started 
+-> processing test results                                      : _emscripten_wasm32 
+--> game_shared                                                 : in progress 
+Checking for program 'git'                                      : /usr/bin/git 
+Git commit hash                                                 : 8a09758d-dirty 
+Git branch                                                      : master 
+<-- game_shared                                                 : done 
+--> dlls                                                        : in progress 
+<-- dlls                                                        : done 
+--> freevgui                                                    : in progress 
+Checking if 'clang++' supports C++11                            : yes 
+<-- freevgui                                                    : done 
+--> cl_dll                                                      : in progress 
+<-- cl_dll                                                      : done 
+'configure' finished successfully (38.094s)
+Build commands will be stored in ../../build/game/compile_commands.json
+Waf: Entering directory `/root/cof-audits/visual-clothes-20261107/build/game'
+[  1/263] Compiling game_shared/vcs_info.c
+[  2/263] Compiling freevgui/platform/xash3d-fwgs/surface.cpp
+[  3/263] Compiling freevgui/platform/xash3d-fwgs/clip.cpp
+[  4/263] Compiling freevgui/surface.cpp
+[  5/263] Compiling freevgui/inputstream.cpp
+[  6/263] Compiling freevgui/controls/image.cpp
+[  7/263] Compiling freevgui/controls/label.cpp
+[  8/263] Compiling freevgui/layout.cpp
+[  9/263] Compiling freevgui/controls/list.cpp
+[ 10/263] Compiling freevgui/controls/menu.cpp
+[ 11/263] Compiling freevgui/vgui.cpp
+[ 12/263] Compiling freevgui/panel.cpp
+[ 13/263] Compiling freevgui/controls/messagebox.cpp
+[ 14/263] Compiling freevgui/controls/progressbar.cpp
+[ 15/263] Compiling freevgui/platform/common/font.cpp
+[ 16/263] Compiling freevgui/controls/scroll.cpp
+[ 17/263] Compiling freevgui/controls/tab.cpp
+[ 18/263] Compiling freevgui/platform/xash3d-fwgs/input.cpp
+[ 19/263] Compiling freevgui/vgui_string.cpp
+[ 20/263] Compiling freevgui/platform/posix/app.cpp
+[ 21/263] Linking ../../build/game/game_shared/libvcs_info.a
+[ 22/263] Compiling freevgui/controls/table.cpp
+[ 23/263] Compiling freevgui/platform/posix/font.cpp
+[ 24/263] Compiling freevgui/controls/treefolder.cpp
+[ 25/263] Compiling freevgui/controls/wizard.cpp
+[ 26/263] Compiling freevgui/controls/text.cpp
+[ 27/263] Compiling freevgui/scheme.cpp
+[ 28/263] Compiling freevgui/fileimage.cpp
+[ 29/263] Compiling freevgui/app.cpp
+[ 30/263] Compiling freevgui/buildgroup.cpp
+[ 31/263] Compiling freevgui/font.cpp
+[ 32/263] Compiling freevgui/controls/button.cpp
+[ 33/263] Compiling freevgui/controls/configwizard.cpp
+[ 34/263] Compiling freevgui/platform/xash3d-fwgs/app.cpp
+[ 35/263] Compiling freevgui/signals.cpp
+[ 36/263] Compiling freevgui/image.cpp
+[ 37/263] Compiling freevgui/controls/desktop.cpp
+[ 38/263] Compiling freevgui/controls/edit.cpp
+[ 39/263] Compiling freevgui/input.cpp
+[ 40/263] Compiling freevgui/controls/frame.cpp
+[ 41/263] Compiling freevgui/controls/header.cpp
+[ 42/263] Compiling dlls/monsters.cpp
+[ 43/263] Compiling dlls/xen.cpp
+[ 44/263] Compiling dlls/h_export.cpp
+[ 45/263] Compiling dlls/pathcorner.cpp
+[ 46/263] Compiling dlls/player.cpp
+[ 47/263] Compiling dlls/gman.cpp
+[ 48/263] Compiling dlls/gauss.cpp
+[ 49/263] Compiling dlls/spectator.cpp
+[ 50/263] Compiling ../cof-logic/cof/puzzles.cpp
+[ 51/263] Compiling dlls/barnacle.cpp
+[ 52/263] Compiling dlls/squadmonster.cpp
+[ 53/263] Compiling ../cof-logic/cof/sound_trigger.cpp
+[ 54/263] Compiling dlls/defaultai.cpp
+[ 55/263] Compiling dlls/skill.cpp
+[ 56/263] Compiling dlls/handgrenade.cpp
+[ 57/263] Compiling dlls/buttons.cpp
+[ 58/263] Compiling dlls/squeakgrenade.cpp
+[ 59/263] Compiling dlls/subs.cpp
+[ 60/263] Compiling dlls/game.cpp
+[ 61/263] Compiling dlls/hassassin.cpp
+[ 62/263] Compiling dlls/plane.cpp
+[ 63/263] Compiling dlls/plats.cpp
+[ 64/263] Compiling dlls/talkmonster.cpp
+[ 65/263] Compiling dlls/monsterstate.cpp
+[ 66/263] Compiling dlls/teamplay_gamerules.cpp
+[ 67/263] Compiling dlls/doors.cpp
+[ 68/263] Compiling ../cof-logic/cof/stairs.cpp
+[ 69/263] Compiling dlls/headcrab.cpp
+[ 70/263] Compiling dlls/ggrenade.cpp
+[ 71/263] Compiling dlls/tempmonster.cpp
+[ 72/263] Compiling ../cof-logic/cof/static_decal.cpp
+[ 73/263] Compiling dlls/tentacle.cpp
+[ 74/263] Compiling dlls/healthkit.cpp
+[ 75/263] Compiling dlls/mortar.cpp
+[ 76/263] Compiling dlls/triggers.cpp
+[ 77/263] Compiling dlls/globals.cpp
+[ 78/263] Compiling dlls/playermonster.cpp
+[ 79/263] Compiling dlls/roach.cpp
+[ 80/263] Compiling dlls/tripmine.cpp
+[ 81/263] Compiling ../cof-logic/cof/teleport.cpp
+[ 82/263] Compiling dlls/bloater.cpp
+[ 83/263] Compiling dlls/effects.cpp
+[ 84/263] Compiling ../cof-logic/cof/triggeron.cpp
+[ 85/263] Linking ../../build/game/freevgui/libvgui.a
+[ 86/263] Compiling dlls/combat.cpp
+[ 87/263] Compiling dlls/turret.cpp
+[ 88/263] Compiling dlls/gamerules.cpp
+[ 89/263] Compiling dlls/barney.cpp
+[ 90/263] Compiling dlls/util.cpp
+[ 91/263] Compiling ../cof-logic/cof/player_cof.cpp
+[ 92/263] Compiling dlls/mp5.cpp
+[ 93/263] Compiling dlls/hornet.cpp
+[ 94/263] Compiling dlls/python.cpp
+[ 95/263] Compiling dlls/rat.cpp
+[ 96/263] Compiling dlls/vehicle.cpp
+[ 97/263] Compiling ../cof-logic/cof/weapons_cof.cpp
+[ 98/263] Compiling dlls/bigmomma.cpp
+[ 99/263] Compiling dlls/animating.cpp
+[100/263] Compiling game_shared/voice_gamemgr.cpp
+[101/263] Compiling dlls/h_cycler.cpp
+[102/263] Compiling dlls/glock.cpp
+[103/263] Compiling dlls/weapons.cpp
+[104/263] Compiling dlls/multiplay_gamerules.cpp
+[105/263] Compiling dlls/egon.cpp
+[106/263] Compiling dlls/hornetgun.cpp
+[107/263] Compiling dlls/hgrunt.cpp
+[108/263] Compiling dlls/world.cpp
+[109/263] Compiling dlls/controller.cpp
+[110/263] Compiling dlls/satchel.cpp
+[111/263] Compiling dlls/airtank.cpp
+[112/263] Compiling dlls/nodes.cpp
+[113/263] Compiling dlls/houndeye.cpp
+[114/263] Compiling dlls/soundent.cpp
+[115/263] Compiling pm_shared/pm_math.c
+[116/263] Compiling dlls/zombie.cpp
+[117/263] Compiling ../cof-logic/cof/atmosphere.cpp
+[118/263] Compiling dlls/agrunt.cpp
+[119/263] Compiling dlls/bmodels.cpp
+[120/263] Compiling dlls/rpg.cpp
+[121/263] Compiling dlls/explode.cpp
+[122/263] Compiling dlls/apache.cpp
+[123/263] Compiling dlls/ichthyosaur.cpp
+[124/263] Compiling ../cof-logic/cof/bossbar.cpp
+[125/263] Compiling dlls/cbase.cpp
+[126/263] Compiling ../cof-logic/cof/changevalue.cpp
+[127/263] Compiling dlls/h_ai.cpp
+[128/263] Compiling dlls/schedule.cpp
+[129/263] Compiling dlls/islave.cpp
+[130/263] Compiling dlls/gargantua.cpp
+[131/263] Compiling ../cof-logic/cof/checkbrush.cpp
+[132/263] Compiling ../cof-logic/cof/doors.cpp
+[133/263] Compiling dlls/nihilanth.cpp
+[134/263] Compiling dlls/flyingmonster.cpp
+[135/263] Compiling ../cof-logic/cof/monsters.cpp
+[136/263] Compiling dlls/items.cpp
+[137/263] Compiling pm_shared/pm_shared.c
+[138/263] Compiling ../cof-logic/cof/effects_cof.cpp
+[139/263] Compiling ../cof-logic/cof/env_model.cpp
+[140/263] Compiling pm_shared/pm_debug.c
+[141/263] Compiling dlls/scientist.cpp
+[142/263] Compiling dlls/crossbow.cpp
+[143/263] Compiling dlls/h_cine.cpp
+[144/263] Compiling ../cof-logic/cof/envpos.cpp
+[145/263] Compiling ../cof-logic/cof/extras.cpp
+[146/263] Compiling dlls/h_battery.cpp
+[147/263] Compiling dlls/animation.cpp
+[148/263] Compiling dlls/bullsquid.cpp
+[149/263] Compiling dlls/scripted.cpp
+[150/263] Compiling dlls/shotgun.cpp
+[151/263] Compiling dlls/func_break.cpp
+[152/263] Compiling dlls/lights.cpp
+[153/263] Compiling public/safe_snprintf.c
+[154/263] Compiling ../cof-logic/cof/hud.cpp
+[155/263] Compiling dlls/leech.cpp
+[156/263] Compiling dlls/aflock.cpp
+[157/263] Compiling dlls/sound.cpp
+[158/263] Compiling dlls/observer.cpp
+[159/263] Compiling dlls/maprules.cpp
+[160/263] Compiling ../cof-logic/cof/motion.cpp
+[161/263] Compiling dlls/crowbar.cpp
+[162/263] Compiling ../cof-logic/cof/padlock.cpp
+../../game/hlsdk-portable/dlls/triggers.cpp:461:18: warning: first argument in call to 'memcpy' is a pointer to non-trivially copyable type 'entvars_t' (aka 'entvars_s') [-Wnontrivial-memcall]
+  461 |         memcpy( pMulti->pev, pev, sizeof(*pev) );
+      |                         ^
+../../game/hlsdk-portable/dlls/triggers.cpp:461:18: note: explicitly cast the pointer to silence this warning
+  461 |         memcpy( pMulti->pev, pev, sizeof(*pev) );
+      |                         ^
+      |                 (void*)
+1 warning generated.
+
+[163/263] Compiling dlls/singleplay_gamerules.cpp
+[164/263] Compiling dlls/genericmonster.cpp
+[165/263] Compiling dlls/osprey.cpp
+[166/263] Compiling dlls/monstermaker.cpp
+[167/263] Compiling dlls/func_tank.cpp
+[168/263] Compiling dlls/client.cpp
+[169/263] Compiling ../cof-logic/cof/persistence.cpp
+[170/263] Compiling ../cof-logic/client/cof_hands.cpp
+[171/263] Compiling pm_shared/pm_debug.c
+[172/263] Compiling cl_dll/hud.cpp
+[173/263] Compiling cl_dll/vgui_ScorePanel.cpp
+[174/263] Compiling cl_dll/ammohistory.cpp
+[175/263] Compiling cl_dll/ammo_secondary.cpp
+../../game/hlsdk-portable/dlls/nodes.cpp:2412:12: warning: first argument in call to 'memcpy' is a pointer to non-trivially copyable type 'CGraph' [-Wnontrivial-memcall]
+ 2412 |                         memcpy( this, pMemFile, sizeof(CGraph) );
+      |                                 ^
+../../game/hlsdk-portable/dlls/nodes.cpp:2412:12: note: explicitly cast the pointer to silence this warning
+ 2412 |                         memcpy( this, pMemFile, sizeof(CGraph) );
+      |                                 ^
+      |                                 (void*)
+../../game/hlsdk-portable/dlls/nodes.cpp:2452:11: warning: first argument in call to 'memcpy' is a pointer to non-trivially copyable type 'CNode' [-Wnontrivial-memcall]
+ 2452 |                 memcpy( m_pNodes, pMemFile, sizeof(CNode) * m_cNodes );
+      |                         ^
+../../game/hlsdk-portable/dlls/nodes.cpp:2452:11: note: explicitly cast the pointer to silence this warning
+ 2452 |                 memcpy( m_pNodes, pMemFile, sizeof(CNode) * m_cNodes );
+      |                         ^
+      |                         (void*)
+2 warnings generated.
+
+[176/263] Compiling cl_dll/flashlight.cpp
+../../game/hlsdk-portable/dlls/shotgun.cpp:176:3: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  176 |                 m_flPumpTime = gpGlobals->time + 0.5f;
+      |                 ^
+../../game/hlsdk-portable/dlls/shotgun.cpp:171:2: note: previous statement is here
+  171 |         if( !m_iClip && m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 )
+      |         ^
+../../game/hlsdk-portable/dlls/shotgun.cpp:247:3: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  247 |                 m_flPumpTime = gpGlobals->time + 0.95f;
+      |                 ^
+../../game/hlsdk-portable/dlls/shotgun.cpp:242:2: note: previous statement is here
+  242 |         if( !m_iClip && m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 )
+      |         ^
+2 warnings generated.
+
+[177/263] Compiling cl_dll/health.cpp
+[178/263] Compiling ../cof-logic/client/cof_decals.cpp
+[179/263] Compiling game_shared/vgui_listbox.cpp
+[180/263] Compiling cl_dll/saytext.cpp
+[181/263] Compiling dlls/egon.cpp
+[182/263] Compiling cl_dll/vgui_int.cpp
+[183/263] Compiling dlls/gauss.cpp
+[184/263] Compiling cl_dll/cdll_int.cpp
+[185/263] Compiling cl_dll/studio_util.cpp
+[186/263] Compiling ../cof-logic/client/cof_clothes_preview.cpp
+[187/263] Compiling cl_dll/parsemsg.cpp
+[188/263] Compiling dlls/satchel.cpp
+[189/263] Compiling game_shared/vgui_scrollbar2.cpp
+[190/263] Compiling dlls/crowbar.cpp
+[191/263] Compiling game_shared/vgui_helpers.cpp
+[192/263] Compiling ../cof-logic/client/cof_ammo.cpp
+[193/263] Compiling pm_shared/pm_shared.c
+[194/263] Compiling dlls/shotgun.cpp
+[195/263] Compiling cl_dll/geiger.cpp
+[196/263] Compiling cl_dll/menu.cpp
+[197/263] Compiling cl_dll/hl/hl_objects.cpp
+[198/263] Compiling cl_dll/train.cpp
+[199/263] Compiling cl_dll/ev_common.cpp
+[200/263] Compiling cl_dll/input.cpp
+[201/263] Compiling cl_dll/demo.cpp
+[202/263] Compiling cl_dll/battery.cpp
+[203/263] Compiling game_shared/voice_banmgr.cpp
+[204/263] Compiling cl_dll/vgui_teammenu.cpp
+[205/263] Compiling cl_dll/com_weapons.cpp
+[206/263] Compiling cl_dll/vgui_ControlConfigPanel.cpp
+[207/263] Compiling cl_dll/vgui_ConsolePanel.cpp
+[208/263] Compiling dlls/rpg.cpp
+[209/263] Compiling cl_dll/vgui_CustomObjects.cpp
+[210/263] Compiling cl_dll/hud_spectator.cpp
+../../game/cof-logic/client/cof_clothes_preview.cpp:41:29: warning: first argument in call to 'memset' is a pointer to non-trivially copyable type 'cl_entity_t' (aka 'cl_entity_s') [-Wnontrivial-memcall]
+   41 |  cl_entity_t preview;memset(&preview,0,sizeof(preview));preview.model=model;
+      |                             ^
+../../game/cof-logic/client/cof_clothes_preview.cpp:41:29: note: explicitly cast the pointer to silence this warning
+   41 |  cl_entity_t preview;memset(&preview,0,sizeof(preview));preview.model=model;
+      |                             ^
+      |                             (void*)
+1 warning generated.
+
+[211/263] Compiling cl_dll/hud_update.cpp
+[212/263] Compiling cl_dll/GameStudioModelRenderer.cpp
+[213/263] Compiling dlls/handgrenade.cpp
+[214/263] Compiling cl_dll/in_camera.cpp
+[215/263] Compiling cl_dll/hl/hl_baseentity.cpp
+[216/263] Compiling ../cof-logic/client/cof_visual.cpp
+[217/263] Compiling cl_dll/hl/hl_weapons.cpp
+[218/263] Compiling game_shared/vgui_grid.cpp
+../../game/hlsdk-portable/dlls/shotgun.cpp:176:3: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  176 |                 m_flPumpTime = gpGlobals->time + 0.5f;
+      |                 ^
+../../game/hlsdk-portable/dlls/shotgun.cpp:171:2: note: previous statement is here
+  171 |         if( !m_iClip && m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 )
+      |         ^
+../../game/hlsdk-portable/dlls/shotgun.cpp:247:3: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  247 |                 m_flPumpTime = gpGlobals->time + 0.95f;
+      |                 ^
+../../game/hlsdk-portable/dlls/shotgun.cpp:242:2: note: previous statement is here
+  242 |         if( !m_iClip && m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 )
+      |         ^
+2 warnings generated.
+
+[219/263] Compiling cl_dll/voice_status.cpp
+[220/263] Compiling cl_dll/vgui_ClassMenu.cpp
+[221/263] Compiling cl_dll/input_mouse.cpp
+[222/263] Compiling dlls/glock.cpp
+[223/263] Compiling game_shared/vgui_slider2.cpp
+[224/263] Compiling cl_dll/util.cpp
+[225/263] Compiling cl_dll/vgui_SpectatorPanel.cpp
+[226/263] Compiling cl_dll/hud_msg.cpp
+[227/263] Compiling dlls/mp5.cpp
+[228/263] Compiling cl_dll/hud_redraw.cpp
+[229/263] Compiling cl_dll/status_icons.cpp
+../../game/hlsdk-portable/dlls/client.cpp:1192:10: warning: first argument in call to 'memset' is a pointer to non-trivially copyable type 'struct entity_state_s' [-Wnontrivial-memcall]
+ 1192 |         memset( state, 0, sizeof(*state) );
+      |                 ^
+../../game/hlsdk-portable/dlls/client.cpp:1192:10: note: explicitly cast the pointer to silence this warning
+ 1192 |         memset( state, 0, sizeof(*state) );
+      |                 ^
+      |                 (void*)
+1 warning generated.
+
+[230/263] Compiling cl_dll/statusbar.cpp
+[231/263] Compiling cl_dll/death.cpp
+[232/263] Compiling dlls/squeakgrenade.cpp
+[233/263] Compiling cl_dll/ammo.cpp
+[234/263] Linking ../../build/game/dlls/hl_emscripten_wasm32.wasm
+[235/263] Compiling ../cof-logic/client/cof_phone_punch.cpp
+[236/263] Compiling dlls/crossbow.cpp
+[237/263] Compiling game_shared/vgui_checkbutton2.cpp
+[238/263] Compiling game_shared/vgui_loadtga.cpp
+[239/263] Compiling cl_dll/text_message.cpp
+[240/263] Compiling cl_dll/input_xash3d.cpp
+[241/263] Compiling cl_dll/message.cpp
+../../game/hlsdk-portable/cl_dll/input.cpp:805:11: warning: first argument in call to 'memset' is a pointer to non-trivially copyable type 'struct usercmd_s' [-Wnontrivial-memcall]
+  805 |                 memset( cmd, 0, sizeof(*cmd) );
+      |                         ^
+../../game/hlsdk-portable/cl_dll/input.cpp:805:11: note: explicitly cast the pointer to silence this warning
+  805 |                 memset( cmd, 0, sizeof(*cmd) );
+      |                         ^
+      |                         (void*)
+1 warning generated.
+
+[242/263] Compiling pm_shared/pm_math.c
+[243/263] Compiling cl_dll/view.cpp
+[244/263] Compiling cl_dll/interpolation.cpp
+[245/263] Compiling cl_dll/vgui_TeamFortressViewport.cpp
+[246/263] Compiling cl_dll/hl/hl_events.cpp
+[247/263] Compiling cl_dll/entity.cpp
+[248/263] Compiling cl_dll/ev_hldm.cpp
+[249/263] Compiling dlls/hornetgun.cpp
+[250/263] Compiling cl_dll/tri.cpp
+[251/263] Compiling dlls/python.cpp
+../../game/hlsdk-portable/cl_dll/voice_status.cpp:354:10: warning: first argument in call to 'memset' is a pointer to non-trivially copyable type 'cl_entity_s' [-Wnontrivial-memcall]
+  354 |                 memset(pEnt, 0, sizeof(*pEnt));
+      |                        ^
+../../game/hlsdk-portable/cl_dll/voice_status.cpp:354:10: note: explicitly cast the pointer to silence this warning
+  354 |                 memset(pEnt, 0, sizeof(*pEnt));
+      |                        ^
+      |                        (void*)
+1 warning generated.
+
+[252/263] Compiling cl_dll/input_goldsource.cpp
+[253/263] Compiling cl_dll/vgui_MOTDWindow.cpp
+[254/263] Compiling dlls/tripmine.cpp
+[255/263] Compiling cl_dll/events.cpp
+[256/263] Compiling cl_dll/scoreboard.cpp
+[257/263] Compiling ../cof-logic/client/cof_client.cpp
+[258/263] Compiling ../cof-logic/client/cof_extras.cpp
+[259/263] Compiling public/safe_snprintf.c
+[260/263] Compiling cl_dll/StudioModelRenderer.cpp
+[261/263] Compiling cl_dll/MOTD.cpp
+[262/263] Compiling cl_dll/vgui_SchemeManager.cpp
+../../game/hlsdk-portable/cl_dll/hud_redraw.cpp:48:6: error: use of undeclared identifier 'intermission'; did you mean 'm_iIntermission'?
+   48 |         if(!intermission && !(m_iHideHUDDisplay & HIDEHUD_ALL))CoF_DrawOriginalNoise();
+      |             ^~~~~~~~~~~~
+      |             m_iIntermission
+../../game/hlsdk-portable/cl_dll/hud.h:651:6: note: 'm_iIntermission' declared here
+  651 |         int m_iIntermission;
+      |             ^
+../../game/hlsdk-portable/cl_dll/hud_redraw.cpp:48:57: error: use of undeclared identifier 'CoF_DrawOriginalNoise'
+   48 |         if(!intermission && !(m_iHideHUDDisplay & HIDEHUD_ALL))CoF_DrawOriginalNoise();
+      |                                                                ^~~~~~~~~~~~~~~~~~~~~
+2 errors generated.
+
+../../game/hlsdk-portable/cl_dll/hud_spectator.cpp:180:10: warning: first argument in call to 'memset' is a pointer to non-trivially copyable type 'overviewInfo_t' (aka 'overviewInfo_s') [-Wnontrivial-memcall]
+  180 |         memset( &m_OverviewData, 0, sizeof(m_OverviewData) );
+      |                 ^
+../../game/hlsdk-portable/cl_dll/hud_spectator.cpp:180:10: note: explicitly cast the pointer to silence this warning
+  180 |         memset( &m_OverviewData, 0, sizeof(m_OverviewData) );
+      |                 ^
+      |                 (void*)
+../../game/hlsdk-portable/cl_dll/hud_spectator.cpp:1210:10: warning: first argument in call to 'memset' is a pointer to non-trivially copyable type 'overviewInfo_t' (aka 'overviewInfo_s') [-Wnontrivial-memcall]
+ 1210 |         memset( &m_OverviewData, 0, sizeof(m_OverviewData) );
+      |                 ^
+../../game/hlsdk-portable/cl_dll/hud_spectator.cpp:1210:10: note: explicitly cast the pointer to silence this warning
+ 1210 |         memset( &m_OverviewData, 0, sizeof(m_OverviewData) );
+      |                 ^
+      |                 (void*)
+../../game/hlsdk-portable/cl_dll/hud_spectator.cpp:1903:10: warning: first argument in call to 'memset' is a pointer to non-trivially copyable type 'overviewInfo_t' (aka 'overviewInfo_s') [-Wnontrivial-memcall]
+ 1903 |         memset( &m_OverviewData, 0, sizeof(m_OverviewData));
+      |                 ^
+../../game/hlsdk-portable/cl_dll/hud_spectator.cpp:1903:10: note: explicitly cast the pointer to silence this warning
+ 1903 |         memset( &m_OverviewData, 0, sizeof(m_OverviewData));
+      |                 ^
+      |                 (void*)
+3 warnings generated.
+
+../../game/hlsdk-portable/cl_dll/hl/hl_weapons.cpp:114:10: warning: first argument in call to 'memset' is a pointer to non-trivially copyable type 'entvars_t' (aka 'entvars_s') [-Wnontrivial-memcall]
+  114 |         memset( &ev[num_ents], 0, sizeof(entvars_t) );
+      |                 ^
+../../game/hlsdk-portable/cl_dll/hl/hl_weapons.cpp:114:10: note: explicitly cast the pointer to silence this warning
+  114 |         memset( &ev[num_ents], 0, sizeof(entvars_t) );
+      |                 ^
+      |                 (void*)
+../../game/hlsdk-portable/cl_dll/hl/hl_weapons.cpp:489:10: warning: first argument in call to 'memset' is a pointer to non-trivially copyable type 'TraceResult' [-Wnontrivial-memcall]
+  489 |         memset( ptr, 0, sizeof(*ptr) );
+      |                 ^
+../../game/hlsdk-portable/cl_dll/hl/hl_weapons.cpp:489:10: note: explicitly cast the pointer to silence this warning
+  489 |         memset( ptr, 0, sizeof(*ptr) );
+      |                 ^
+      |                 (void*)
+2 warnings generated.
+
+../../game/hlsdk-portable/cl_dll/vgui_SchemeManager.cpp:365:10: warning: first argument in call to 'memcpy' is a pointer to non-trivially copyable type 'CScheme' [-Wnontrivial-memcall]
+  365 |         memcpy( m_pSchemeList, tmpSchemes, sizeof(CScheme) * m_iNumSchemes );
+      |                 ^
+../../game/hlsdk-portable/cl_dll/vgui_SchemeManager.cpp:365:10: note: explicitly cast the pointer to silence this warning
+  365 |         memcpy( m_pSchemeList, tmpSchemes, sizeof(CScheme) * m_iNumSchemes );
+      |                 ^
+      |                 (void*)
+1 warning generated.
+
+Waf: Leaving directory `/root/cof-audits/visual-clothes-20261107/build/game'
+Build failed
+ -> task in 'client' failed with exit status 1 (run with -v to display more information)

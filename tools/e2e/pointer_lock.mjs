@@ -6,9 +6,9 @@ const source = fs.readFileSync(process.argv[2] || new URL("../../platform/web/lo
 const begin = source.indexOf("  const nativeRequestLock =");
 const end = source.indexOf("  const nativeExitLock =", begin);
 assert.ok(begin >= 0 && end > begin);
-const adapter = handler => {
+const adapter = (handler, extras, hud) => {
   class Element { requestPointerLock(options) { return handler(options); } }
-  vm.runInNewContext(source.slice(begin, end), { Element });
+  vm.runInNewContext(source.slice(begin, end), { Element, CoFExtras: extras, CoFHUD: hud });
   return new Element();
 };
 const error = name => Object.assign(new Error(name), { name });
@@ -16,6 +16,19 @@ const unhandled = [];
 const collect = e => unhandled.push(e);
 process.on("unhandledRejection", collect);
 try {
+  let wardrobeCalls = 0;
+  const extras = { clothesOpen: true };
+  const wardrobe = adapter(() => { wardrobeCalls++; return Promise.resolve(); }, extras);
+  wardrobe.id = 'canvas';
+  await assert.rejects(wardrobe.requestPointerLock(), e => e.name === 'InvalidStateError');
+  wardrobe.requestPointerLock(); // legacy SDL ignores the rejected promise
+  assert.equal(wardrobeCalls, 0, 'the wardrobe must keep its UI cursor');
+  extras.clothesOpen = false;
+  await wardrobe.requestPointerLock();assert.equal(wardrobeCalls, 1);
+  const hud = { menuOpen: true };
+  const mainMenu = adapter(() => Promise.resolve('captured'), undefined, hud);mainMenu.id='canvas';
+  await assert.rejects(mainMenu.requestPointerLock(), e => e.name === 'InvalidStateError');
+  hud.menuOpen=false;assert.equal(await mainMenu.requestPointerLock(),'captured');
   let calls = [];
   const ok = adapter(options => { calls.push(options); return Promise.resolve(); });
   await ok.requestPointerLock();

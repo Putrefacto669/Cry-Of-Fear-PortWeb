@@ -83,6 +83,7 @@ BOOT_FILES = ["liblist.gam", "valve.rc", "delta.lst","titles.txt", "skill.cfg", 
               "gfx/vgui/menu/newgame.TGA", "gfx/vgui/menu/newgame_mo.TGA",
               "gfx/vgui/menu/loadgame.TGA", "gfx/vgui/menu/loadgame_mo.TGA",
               "gfx/vgui/menu/options.TGA", "gfx/vgui/menu/options_mo.TGA",
+              "gfx/vgui/menu/unlockables.TGA", "gfx/vgui/menu/unlockables_mo.TGA",
               "gfx/palette.lmp", "gfx/palette.bmp", "gfx/colormap.lmp", "gfx/conback.lmp",
               "gfx/flashlight.tga",  # cookie de la linterna para platform/web/postfx.js
               "gfx/decals/decalinfo.txt"]  # grupos de env_static_decal (static_decal.cpp)
@@ -154,6 +155,16 @@ def map_music(game: Path, bsp: Path) -> set[Path]:
             if p:
                 out.add(p)
     return out
+
+
+def shared_extras_set(game: Path) -> set[str]:
+    """Costume materials and the original Simon model needed before a campaign is started."""
+    files = {p.relative_to(game).as_posix() for p in (game / "models/costumes").rglob("*")
+             if p.is_file() and p.suffix.lower() == ".tga"}
+    preview = find_ci(game, "models/cutscene/simon_clothes.mdl")
+    if preview:
+        files.add(preview.relative_to(game).as_posix())
+    return files
 
 
 def map_dependencies(game: Path, bsp: Path) -> tuple[set[str], list[str]]:
@@ -323,8 +334,7 @@ def main() -> int:
 
     # Costume textures are shared across levels and cold restores. Keep them in a
     # separate pack so boot.data stays below the repository's per-file limit.
-    costumes = {p.relative_to(game).as_posix() for p in (game / "models/costumes").rglob("*")
-                if p.is_file() and p.suffix.lower() == ".tga"}
+    costumes = shared_extras_set(game)
     if costumes:
         copy_set(game, costumes, args.stage / "shared_extras")
 

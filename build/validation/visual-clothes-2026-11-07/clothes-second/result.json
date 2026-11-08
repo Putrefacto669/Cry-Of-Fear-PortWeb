@@ -1,0 +1,25 @@
+{
+  "engine": "chromium",
+  "diagnosticPreparation": true,
+  "outfits": [],
+  "checks": [
+    "default real model visible without starting the campaign; locked selections rejected"
+  ],
+  "lockedRejected": true,
+  "default": {
+    "id": 571,
+    "width": 960,
+    "height": 433,
+    "count": 21858,
+    "colored": 2267,
+    "minX": 234,
+    "maxX": 352,
+    "minY": 44,
+    "maxY": 368,
+    "hash": "729dc110d30bd662fd541e3fe130f1be939ec814993047bc4ac088aaffc6c087",
+    "error": 0
+  },
+  "failure": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#cof-clothes [data-close]')\u001b[22m\n\u001b[2m    - locator resolved to <button data-close=\"1\">Exit</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing click action\u001b[22m\n\u001b[2m      - <canvas id=\"canvas\" width=\"960\" height=\"433\" tabindex=\"-1\" oncontextmenu=\"event.preventDefault()\"></canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing click action\u001b[22m\n\u001b[2m      - <canvas id=\"canvas\" width=\"960\" height=\"433\" tabindex=\"-1\" oncontextmenu=\"event.preventDefault()\"></canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    29 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - performing click action\u001b[22m\n\u001b[2m       - <canvas id=\"canvas\" width=\"960\" height=\"433\" tabindex=\"-1\" oncontextmenu=\"event.preventDefault()\"></canvas> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\n    at close (/root/cof-audits/visual-clothes-20261107/clothes_menu.mjs:12:139)\n    at async file:///root/cof-audits/visual-clothes-20261107/clothes_menu.mjs:29:2",
+  "errors": [],
+  "browser": "156.0.8078.4"
+}

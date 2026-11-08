@@ -1,0 +1,45 @@
+{
+  "engine": "chromium",
+  "diagnosticPreparation": true,
+  "outfits": [],
+  "checks": [
+    "default real model visible without starting the campaign; locked selections rejected",
+    "close/reopen restores the native GPU preview and leaves the menu cursor free",
+    {
+      "size": {
+        "width": 640,
+        "height": 480
+      },
+      "image": {
+        "id": 580,
+        "width": 640,
+        "height": 242,
+        "count": 6942,
+        "colored": 690,
+        "minX": 163,
+        "maxX": 230,
+        "minY": 25,
+        "maxY": 203,
+        "hash": "f9d3ac5f694568e5cc1d8e927da83b1e90b2736e4f8c02c4bcd96807ad82d0df",
+        "error": 0
+      }
+    }
+  ],
+  "lockedRejected": true,
+  "default": {
+    "id": 571,
+    "width": 960,
+    "height": 433,
+    "count": 22124,
+    "colored": 2316,
+    "minX": 233,
+    "maxX": 352,
+    "minY": 44,
+    "maxY": 369,
+    "hash": "9d4f75d8623579f26f9f9486d266ba6859da3232ef5eaf86442a3e8ab9091663",
+    "error": 0
+  },
+  "failure": "page.evaluate: Error: native portrait texture missing\n    at eval (eval at evaluate (:370:30), <anonymous>:2:89)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at pixels (/root/cof-audits/visual-clothes-20261107/clothes_resize.mjs:14:34)\n    at /root/cof-audits/visual-clothes-20261107/clothes_resize.mjs:32:80",
+  "errors": [],
+  "browser": "156.0.8078.4"
+}

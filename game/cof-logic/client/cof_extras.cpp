@@ -82,6 +82,7 @@ static int ExtrasMessage(const char *name,int size,void *data)
 static void ExtrasStatus()
 {
  gEngfuncs.Con_Printf("COF/EXTRASCLIENT costume=%d night=%d lit=%d draws=%u replacements=%u last=%s\n",g_costume,g_night,g_lit,g_draws,g_replacements,g_lastModel);
+ gEngfuncs.Con_Printf("COF/EXTRASMATERIAL costume=%d hoodie=%d sleeve=%d jeans=%d face=%d\n",g_costume,g_loaded[g_costume][0],g_loaded[g_costume][1],g_loaded[g_costume][2],g_loaded[g_costume][3]);
 }
 void CoF_ClientExtrasInit()
 {

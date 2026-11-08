@@ -22,7 +22,7 @@
     flashlightSize: 0.5,      // radio del cono en alturas de pantalla
     flashlightTint: [1.0, 0.93, 0.8], // halógeno cálido
     grey: 0,                  // 0..1, cof_blackandwhite (strength / 255)
-    grain: 0.06,              // cl_noiseeffect 1 en autoexec.cfg
+    grain: 0,                 // original snoise sprite now drawn by the native client; hash remains diagnostic
     vignette: 0.35,
     blur: 0,                  // radio en píxeles; CoF "cof_blur" (gl_screenblur)
   };
@@ -35,6 +35,8 @@
   let sceneW = 0;
   let sceneH = 0;
   let loc = {};
+  const worldEffects = new URLSearchParams(location.search).get("fx") !== "0";
+  let preview = { id: 0, width: 0, height: 0 }, attachment = null;
   let flashlightLevel = 0;           // 0..1 con fundido
   const sway = [0, 0];               // retardo del cono respecto a la vista
   const swayVel = [0, 0];
@@ -93,11 +95,12 @@
     gl.linkProgram(prog);
     if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
     for (const n of ["uScene", "uCookie", "uTime", "uResolution", "uFlashlight", "uFlashlightSway",
-      "uFlashlightGain", "uFlashlightSize", "uFlashlightTint", "uGrey", "uGrain", "uVignette", "uBlur"]) {
+      "uFlashlightGain", "uFlashlightSize", "uFlashlightTint", "uGrey", "uGrain", "uVignette", "uBlur", "uClothes", "uClothesVisible"]) {
       loc[n] = gl.getUniformLocation(prog, n);
     }
     vao = gl.createVertexArray(); // vacío: los vértices salen de gl_VertexID
     sceneTex = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE0);
     cookieTex = loadCookie();
   };
 
@@ -110,6 +113,8 @@
     sampler0: gl.getParameter(gl.SAMPLER_BINDING),
     tex1: (gl.activeTexture(gl.TEXTURE1), gl.getParameter(gl.TEXTURE_BINDING_2D)),
     sampler1: gl.getParameter(gl.SAMPLER_BINDING),
+    tex2: (gl.activeTexture(gl.TEXTURE2), gl.getParameter(gl.TEXTURE_BINDING_2D)),
+    sampler2: gl.getParameter(gl.SAMPLER_BINDING),
     drawFb: gl.getParameter(gl.DRAW_FRAMEBUFFER_BINDING),
     readFb: gl.getParameter(gl.READ_FRAMEBUFFER_BINDING),
     viewport: gl.getParameter(gl.VIEWPORT),
@@ -125,6 +130,7 @@
   const restore = (s) => {
     gl.useProgram(s.program);
     gl.bindVertexArray(s.vao);
+    gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, s.tex2); gl.bindSampler(2, s.sampler2);
     gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, s.tex1); gl.bindSampler(1, s.sampler1);
     gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, s.tex0); gl.bindSampler(0, s.sampler0);
     gl.activeTexture(s.activeTexture);
@@ -139,7 +145,7 @@
     gl.pixelStorei(gl.UNPACK_ALIGNMENT, s.unpackAlign);
   };
 
-  const active = () => settings.flashlight || flashlightLevel > 0 || settings.grey > 0 || settings.blur > 0 || settings.grain > 0 || settings.vignette > 0;
+  const active = () => preview.id > 0 || (worldEffects && (settings.flashlight || flashlightLevel > 0 || settings.grey > 0 || settings.blur > 0 || settings.grain > 0 || settings.vignette > 0));
 
   const frame = () => {
     if (!gl || !active()) return;
@@ -172,6 +178,10 @@
     gl.activeTexture(gl.TEXTURE1);
     gl.bindTexture(gl.TEXTURE_2D, cookieTex);
     gl.bindSampler(1, null);
+    const portrait = preview.id > 0 && typeof GL !== "undefined" ? GL.textures[preview.id] : null;
+    gl.activeTexture(gl.TEXTURE2);
+    gl.bindTexture(gl.TEXTURE_2D, portrait || sceneTex);
+    gl.bindSampler(2, null);
 
     gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER, null);
     gl.viewport(0, 0, w, h);
@@ -182,18 +192,20 @@
     gl.bindVertexArray(vao);
     gl.uniform1i(loc.uScene, 0);
     gl.uniform1i(loc.uCookie, 1);
+    gl.uniform1i(loc.uClothes, 2);
+    gl.uniform1f(loc.uClothesVisible, portrait ? 1 : 0);
     gl.uniform1f(loc.uTime, t0 / 1000);
     gl.uniform2f(loc.uResolution, w, h);
-    gl.uniform1f(loc.uFlashlight, flashlightLevel);
+    gl.uniform1f(loc.uFlashlight, worldEffects ? flashlightLevel : 0);
     gl.uniform2f(loc.uFlashlightSway, sway[0], sway[1]);
     gl.uniform1f(loc.uFlashlightGain, settings.flashlightGain);
     gl.uniform1f(loc.uFlashlightSize, settings.flashlightSize);
     gl.uniform3fv(loc.uFlashlightTint, settings.flashlightTint);
     // Native client.dll gl_grayscale override while nightvision is visible: 0.6.
-    gl.uniform1f(loc.uGrey, settings.nightvision ? 0.6 : settings.grey);
-    gl.uniform1f(loc.uGrain, settings.grain);
-    gl.uniform1f(loc.uVignette, settings.vignette);
-    gl.uniform1f(loc.uBlur, settings.blur);
+    gl.uniform1f(loc.uGrey, worldEffects ? (settings.nightvision ? 0.6 : settings.grey) : 0);
+    gl.uniform1f(loc.uGrain, worldEffects ? settings.grain : 0);
+    gl.uniform1f(loc.uVignette, worldEffects ? settings.vignette : 0);
+    gl.uniform1f(loc.uBlur, worldEffects ? settings.blur : 0);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 
     restore(s);
@@ -210,14 +222,26 @@
 
   window.CoFPostFX = {
     // carga los shaders y se engancha al bucle; el contexto GL lo crea el motor más tarde
-    async attach() {
+    attach() {
+      if (attachment) return attachment;
+      attachment = (async () => {
       const [vert, frag] = await Promise.all(
         ["shaders/postfx.vert.glsl", "shaders/postfx.frag.glsl"].map((u) => fetch(u).then((r) => r.text())));
       MainLoop.postMainLoop.push(() => {
-        if (!gl && typeof GLctx !== "undefined" && GLctx) init({ vert, frag });
+        if (!gl && typeof GLctx !== "undefined" && GLctx) {
+          gl = GLctx;
+          const previous = save();
+          try { init({ vert, frag }); } finally { restore(previous); }
+        }
         frame();
       });
+      })();return attachment;
     },
+    setPreviewTexture(id, width, height) {
+      preview = { id: Number.isInteger(id) && id > 0 ? id : 0, width, height };
+      if (preview.id) this.attach().catch(error => console.warn('clothes compositor:', error.message));
+    },
+    preview() { return { ...preview }; },
     set(opts) { Object.assign(settings, opts); return { ...settings }; },
     get() { return { ...settings }; },
     stats() {

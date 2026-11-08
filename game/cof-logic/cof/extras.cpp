@@ -15,13 +15,16 @@
 static const unsigned COMMENTARY_UNLOCK = 0x400000;
 static const unsigned NIGHTVISION_UNLOCK = 0x1000000;
 static unsigned g_unlocks;
+static int g_preferredCostume;
+static bool g_menuClothes[33];
 static bool g_commentaryDucked;
 static float g_commentaryVolume;
 static cof_extra_player_t g_extras[33];
 static float g_syncTime[33];
 static cvar_t commentaryOption = {"dev_commentary", "0", FCVAR_ARCHIVE};
 static int gmsgCoFExtras;
-void CoF_LinkExtrasMessages(){if(!gmsgCoFExtras)gmsgCoFExtras=REG_USER_MSG("CoFExtras",2);}
+static int gmsgCoFPreview;
+void CoF_LinkExtrasMessages(){if(!gmsgCoFExtras)gmsgCoFExtras=REG_USER_MSG("CoFExtras",2);if(!gmsgCoFPreview)gmsgCoFPreview=REG_USER_MSG("CoFPreview",1);}
 static const char *profilePath = "/rwdir/cryoffear/cof_extras_profile.cfg";
 cof_extra_player_t &CoF_ExtrasPrimaryState(){return g_extras[1];}
 
@@ -29,12 +32,26 @@ cof_extra_player_t *CoF_ExtrasPlayer(CBaseEntity *p)
 {
  return p && p->IsPlayer() && p->entindex()>0 && p->entindex()<33 ? &g_extras[p->entindex()] : NULL;
 }
+static bool CostumeAvailable(int costume)
+{
+ return costume>=0 && costume<=11 && (!costume || (g_unlocks & (0x80u<<(costume-1))));
+}
+static bool InMainMenu(){return !strcmp(STRING(gpGlobals->mapname),"c_game_menu1");}
+void CoF_PrecacheClothesPreview(){if(InMainMenu())PRECACHE_MODEL("models/cutscene/simon_clothes.mdl");}
+static void SendMenuClothes(CBasePlayer *player)
+{
+ cof_extra_player_t *s=CoF_ExtrasPlayer(player);if(!s)return;
+ bool open=g_menuClothes[player->entindex()] && InMainMenu();
+ CoF_HudPrint("COF/HUD CLOTHES %u %d %d 1\n",(g_unlocks>>7)&4095,s->costume,open?1:0);
+ if(gmsgCoFPreview){MESSAGE_BEGIN(MSG_ONE,gmsgCoFPreview,NULL,player->pev);WRITE_BYTE(open?1:0);MESSAGE_END();}
+}
 static void ProfileWrite()
 {
 #ifdef __EMSCRIPTEN__
  FILE *file = fopen("/rwdir/cryoffear/cof_extras_profile.tmp", "wb");
  if(!file) { ALERT(at_error,"COF/EXTRAS profile write failed\n"); return; }
- fprintf(file,"COF_EXTRAS 1 %u\n",g_unlocks);
+ // Optional last field: old readers still read the unlock mask unchanged.
+ fprintf(file,"COF_EXTRAS 1 %u %d\n",g_unlocks,g_preferredCostume);
  if(fclose(file) || rename("/rwdir/cryoffear/cof_extras_profile.tmp",profilePath))
   ALERT(at_error,"COF/EXTRAS profile replace failed\n");
  else CoF_HudPrint("COF/HUD EXTRASPROFILE %u\n",g_unlocks);
@@ -44,9 +61,13 @@ void CoF_RegisterExtras()
 {
  CVAR_REGISTER(&commentaryOption);
  g_unlocks=0;
+ g_preferredCostume=0;memset(g_menuClothes,0,sizeof(g_menuClothes));
 #ifdef __EMSCRIPTEN__
  FILE *file=fopen(profilePath,"rb");
- if(file) { unsigned value; if(fscanf(file,"COF_EXTRAS 1 %u",&value)==1)g_unlocks=value; fclose(file); }
+ if(file) { unsigned value;int choice=0;int fields=fscanf(file,"COF_EXTRAS 1 %u %d",&value,&choice);
+  if(fields>=1)g_unlocks=value;
+  if(fields==2 && CostumeAvailable(choice))g_preferredCostume=choice;
+  fclose(file); }
 #endif
 }
 static void Grant(unsigned bits)
@@ -55,7 +76,7 @@ static void Grant(unsigned bits)
 }
 void CoF_ExtrasSpawn(CBasePlayer *player)
 {
- cof_extra_player_t *s=CoF_ExtrasPlayer(player); if(s) {memset(s,0,sizeof(*s));g_syncTime[player->entindex()]=0;}
+ cof_extra_player_t *s=CoF_ExtrasPlayer(player); if(s) {memset(s,0,sizeof(*s));s->costume=g_preferredCostume;g_menuClothes[player->entindex()]=false;g_syncTime[player->entindex()]=0;}
 }
 void CoF_ExtrasRestored() {
  memset(g_syncTime,0,sizeof(g_syncTime));
@@ -281,14 +302,20 @@ void CoF_ExtrasFrame(CBasePlayer *player)
  if(g_syncTime[index]<=gpGlobals->time || g_syncTime[index]>gpGlobals->time+2) {
   CoF_HudPrint("COF/HUD EXTRAS %u %d %d %d\n",g_unlocks,s->costume,s->nightOwned,s->nightState==1);
   if(gmsgCoFExtras){MESSAGE_BEGIN(MSG_ONE,gmsgCoFExtras,NULL,player->pev);WRITE_BYTE(s->costume);WRITE_BYTE(s->nightState==1);MESSAGE_END();}
+  if(g_menuClothes[index] && InMainMenu())SendMenuClothes(player);
   g_syncTime[index]=gpGlobals->time+2;
  }
 }
 bool CoF_ExtrasCommand(CBasePlayer *player,const char *command)
 {
  cof_extra_player_t *s=CoF_ExtrasPlayer(player);if(!s)return false;
+ if(FStrEq(command,"openclothes")) {
+  if(InMainMenu()){g_menuClothes[player->entindex()]=true;SendMenuClothes(player);}
+  return true;
+ }
  if(FStrEq(command,"cof_commentary_skip")){CCoFDevCommentary *c=ActiveComment(player);if(c)c->Finish();return true;}
  if(FStrEq(command,"closeclothes")) {
+  if(g_menuClothes[player->entindex()]){g_menuClothes[player->entindex()]=false;SendMenuClothes(player);}
   CBaseEntity *entity=NULL;while((entity=UTIL_FindEntityByClassname(entity,"cof_clothesmenu")))
    if(((CCoFClothesMenu*)entity)->m_hPlayer==player)entity->Use(player,player,USE_OFF,1);
   return true;
@@ -296,9 +323,12 @@ bool CoF_ExtrasCommand(CBasePlayer *player,const char *command)
  if(FStrEq(command,"setclothes") && CMD_ARGC()>=2) {
   int selected=atoi(CMD_ARGV(1));
   CBaseEntity *entity=UTIL_FindEntityByClassname(NULL,"cof_clothesmenu");
-  if(!entity || !((CCoFClothesMenu*)entity)->m_bOpen)return true;
-  if(selected<0 || selected>11 || (selected && !(g_unlocks & (0x80u<<(selected-1)))))return true;
-  s->costume=selected;g_syncTime[player->entindex()]=0;((CCoFClothesMenu*)entity)->Send();return true;
+  bool menu=g_menuClothes[player->entindex()] && InMainMenu();
+  if(!menu && (!entity || !((CCoFClothesMenu*)entity)->m_bOpen))return true;
+  if(!CostumeAvailable(selected))return true;
+  s->costume=selected;g_syncTime[player->entindex()]=0;
+  if(g_preferredCostume!=selected){g_preferredCostume=selected;ProfileWrite();}
+  if(menu)SendMenuClothes(player);else ((CCoFClothesMenu*)entity)->Send();return true;
  }
  if(FStrEq(command,"flashlight") && s->nightOwned && (g_unlocks & NIGHTVISION_UNLOCK)) {
   if(gpGlobals->time>=s->nightTime && (s->nightState==0 || s->nightState==1))s->nightState=s->nightState?100:101;

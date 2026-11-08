@@ -493,6 +493,8 @@ static void Flashlight_Frame( float now, float dt, const float *vieworg, const f
 
 void CoF_DecalsInit( void );    // cof_decals.cpp
 void CoF_ClientExtrasInit();
+void CoF_ClothesPreviewInit();void CoF_ClothesPreviewReset();void CoF_DrawClothesPreview();
+void CoF_VisualInit();void CoF_VisualReset();
 void CoF_ClientAmmoInit();void CoF_ClientAmmoReset();
 void CoF_ClientHandsInit();void CoF_ClientHandsReset();
 void CoF_ClientPhonePunchInit();void CoF_ClientPhonePunchReset();
@@ -503,6 +505,7 @@ void CoF_ClientInit( void )
 {
 	CoF_DecalsInit();
 	CoF_ClientExtrasInit();
+ CoF_ClothesPreviewInit();CoF_VisualInit();
  CoF_ClientAmmoInit();
  CoF_ClientHandsInit();
  CoF_ClientPhonePunchInit();
@@ -528,6 +531,7 @@ void CoF_ClientInit( void )
 void CoF_ClientDrawTransparent( void )
 {
 	Particles_Draw();
+ CoF_DrawClothesPreview();
 }
 
 void CoF_ClientVidInit( void )
@@ -535,6 +539,7 @@ void CoF_ClientVidInit( void )
  SkyLevel();
 	CoF_DecalsVidInit();
 	CoF_ClientExtrasReset();
+ CoF_ClothesPreviewReset();CoF_VisualReset();
  CoF_ClientAmmoReset();
  CoF_ClientHandsReset();
  CoF_ClientPhonePunchReset();

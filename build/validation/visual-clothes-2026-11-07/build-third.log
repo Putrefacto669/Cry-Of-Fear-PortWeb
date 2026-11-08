@@ -1,0 +1,23 @@
+Build commands will be stored in ../../build/game/compile_commands.json
+Waf: Entering directory `/root/cof-audits/visual-clothes-20261107/build/game'
+[ 49/263] Compiling ../cof-logic/cof/extras.cpp
+[ 53/263] Compiling ../cof-logic/cof/weapons_cof.cpp
+[ 68/263] Compiling ../cof-logic/cof/player_cof.cpp
+[243/263] Compiling ../cof-logic/client/cof_clothes_preview.cpp
+../../game/cof-logic/cof/weapons_cof.cpp:870:2: error: use of undeclared identifier 'CoF_PrecacheClothesPreview'
+  870 |         CoF_PrecacheClothesPreview();
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+
+../../game/cof-logic/client/cof_clothes_preview.cpp:43:29: warning: first argument in call to 'memset' is a pointer to non-trivially copyable type 'cl_entity_t' (aka 'cl_entity_s') [-Wnontrivial-memcall]
+   43 |  cl_entity_t preview;memset(&preview,0,sizeof(preview));preview.model=model;
+      |                             ^
+../../game/cof-logic/client/cof_clothes_preview.cpp:43:29: note: explicitly cast the pointer to silence this warning
+   43 |  cl_entity_t preview;memset(&preview,0,sizeof(preview));preview.model=model;
+      |                             ^
+      |                             (void*)
+1 warning generated.
+
+Waf: Leaving directory `/root/cof-audits/visual-clothes-20261107/build/game'
+Build failed
+ -> task in 'server' failed with exit status 1 (run with -v to display more information)

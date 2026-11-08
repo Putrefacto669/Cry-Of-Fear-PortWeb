@@ -21,6 +21,7 @@
 #include "skill.h"
 #include "shake.h"
 #include "cof_player.h"
+#include "cof_extras.h"
 #include "saverestore.h"
 
 // CoF's skill.cfg uses these names, not Half-Life's sk_plr_9mm_bullet.
@@ -867,6 +868,7 @@ void UTIL_PrecacheOtherWeapon( const char *szClassname ); // weapons.cpp, not in
 // these, because the player carries them from one level to the next
 void CoF_PrecacheWeapons( void )
 {
+	CoF_PrecacheClothesPreview();
 	PRECACHE_SOUND("unlockables/nv_on.wav");
 	PRECACHE_SOUND("unlockables/nv_off.wav");
 	UTIL_PrecacheOtherWeapon( "weapon_switchblade" );
