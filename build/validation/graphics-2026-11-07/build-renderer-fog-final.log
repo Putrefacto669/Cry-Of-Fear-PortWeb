@@ -1,0 +1,20 @@
+Build commands will be stored in ../../build/engine/compile_commands.json
+Waf: Entering directory `/root/cof-audits/graphics-20261107/build/engine'
+[19/36] Processing ref/gl/gl2_shim/gl2_shim.c
+../../engine/xash3d-fwgs/ref/gl/gl2_shim/gl2_shim.c:203:70: warning: passing 'GLuint *' (aka 'unsigned int *') to parameter of type 'GLint *' (aka 'int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  203 |                 pglGetObjectParameterivARB( object, GL_OBJECT_INFO_LOG_LENGTH_ARB, &maxLength );
+      |                                                                                    ^~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl2_shim/gl2_shim.c:212:44: warning: passing 'GLuint *' (aka 'unsigned int *') to parameter of type 'GLsizei *' (aka 'int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  212 |                 pglGetProgramInfoLog( object, maxLength, &maxLength, msg );
+      |                                                          ^~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl2_shim/gl2_shim.c:214:40: warning: passing 'GLuint *' (aka 'unsigned int *') to parameter of type 'GLsizei *' (aka 'int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  214 |                 pglGetInfoLogARB( object, maxLength, &maxLength, msg );
+      |                                                      ^~~~~~~~~~
+../../engine/xash3d-fwgs/ref/gl/gl2_shim/gl2_shim.c:354:66: warning: passing 'GLuint *' (aka 'unsigned int *') to parameter of type 'GLint *' (aka 'int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+  354 |                 pglGetObjectParameterivARB( glprog, GL_OBJECT_LINK_STATUS_ARB, &status );
+      |                                                                                ^~~~~~~
+4 warnings generated.
+
+[36/36] Linking ../../build/engine/ref/gl/libref_gles3compat.wasm
+Waf: Leaving directory `/root/cof-audits/graphics-20261107/build/engine'
+'build' finished successfully (1.187s)

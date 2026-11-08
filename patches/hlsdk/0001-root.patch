@@ -63,6 +63,27 @@ index 53d320a4..3833e237 100644
  			IEngineStudio.GL_StudioDrawShadow();
  		}
  	}
+diff --git a/cl_dll/ammo.cpp b/cl_dll/ammo.cpp
+index 341ab908..4fe8ae38 100644
+--- a/cl_dll/ammo.cpp
++++ b/cl_dll/ammo.cpp
+@@ -844,11 +844,16 @@ void CHudAmmo::UserCmd_PrevWeapon( void )
+ //-------------------------------------------------------------------------
+ // Drawing code
+ //-------------------------------------------------------------------------
++extern int CoF_DrawAmmo(WEAPON *weapon,float time,float &fade);
++
+ int CHudAmmo::Draw( float flTime )
+ {
+ 	int a, x, y, r, g, b;
+ 	int AmmoWidth;
+ 
++	int cofResult=CoF_DrawAmmo(m_pWeapon,flTime,m_fFade);
++	if(cofResult>=0)return cofResult;
++
+ 	if( !( gHUD.m_iWeaponBits & ( 1 << ( WEAPON_SUIT ) ) ) )
+ 		return 1;
+ 
 diff --git a/cl_dll/cl_util.h b/cl_dll/cl_util.h
 index 80f4cdae..1fda8f1e 100644
 --- a/cl_dll/cl_util.h
@@ -162,6 +183,27 @@ index d901ec69..ab23d601 100644
  	ASSERT( iSize == 0 );
  
  	// clear all hud data
+diff --git a/cl_dll/hud_redraw.cpp b/cl_dll/hud_redraw.cpp
+index b6788480..7f05910a 100644
+--- a/cl_dll/hud_redraw.cpp
++++ b/cl_dll/hud_redraw.cpp
+@@ -93,6 +93,8 @@ void CHud::Think( void )
+ // Redraw
+ // step through the local data,  placing the appropriate graphics & text as appropriate
+ // returns 1 if they've changed, 0 otherwise
++extern void CoF_DrawOriginalNoise();
++
+ int CHud::Redraw( float flTime, int intermission )
+ {
+ 	m_fOldTime = m_flTime;	// save time of previous redraw
+@@ -143,6 +145,7 @@ int CHud::Redraw( float flTime, int intermission )
+ 
+ 	if( m_pCvarDraw->value )
+ 	{
++		if(!intermission && !(m_iHideHUDDisplay & HIDEHUD_ALL))CoF_DrawOriginalNoise();
+ 		HUDLIST *pList = m_pHudList;
+ 
+ 		while( pList )
 diff --git a/cl_dll/tri.cpp b/cl_dll/tri.cpp
 index 0088daf3..34a5a534 100644
 --- a/cl_dll/tri.cpp

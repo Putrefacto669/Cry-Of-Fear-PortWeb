@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "caseName": "voice",
+  "scenario": {
+    "target": "whatthesub",
+    "resource": "/rodir/cryoffear/sound/subtitles/start/sub1.wav"
+  },
+  "expected": {
+    "len": 22722,
+    "rate": 22050,
+    "hash": 1187988295
+  },
+  "before": "[22:08:09] COF/ENTITY whatthesub class=ambient_generic body=0 solid=0 origin=3089.5,-2433.0,-717.0 gate=0 speed=0.0 spawn=52 touch=0 target= frozen=0 stairs=-1 use=1 think=1 toggle=0 next=0 now=1.649 effects=0 renderfx=0 modelindex=0 model=-\n[22:08:09] COF/FENCE audio_2 time=1.649",
+  "after": "[22:08:11] COF/ENTITY whatthesub class=ambient_generic body=0 solid=0 origin=3089.5,-2433.0,-717.0 gate=0 speed=0.0 spawn=52 touch=0 target= frozen=0 stairs=-1 use=1 think=1 toggle=0 next=0 now=1.975 effects=0 renderfx=0 modelindex=0 model=-\n[22:08:11] COF/FENCE audio_5 time=1.975",
+  "a": {
+    "starts": [],
+    "context": "suspended",
+    "master": 1,
+    "world": 1,
+    "voices": 8
+  },
+  "b": {
+    "starts": [
+      {
+        "at": 0.005804988662131519,
+        "state": "running",
+        "offset": 0
+      }
+    ],
+    "context": "running",
+    "master": 0.8393849730491638,
+    "world": 1,
+    "voices": 9
+  },
+  "c": {
+    "starts": [
+      {
+        "at": 0.005804988662131519,
+        "state": "running",
+        "offset": 0
+      },
+      {
+        "at": 1.7008616780045351,
+        "state": "running",
+        "offset": 0
+      }
+    ],
+    "context": "running",
+    "master": 0.800000011920929,
+    "world": 1,
+    "voices": 8
+  },
+  "d": {
+    "starts": [
+      {
+        "at": 0.005804988662131519,
+        "state": "running",
+        "offset": 0
+      },
+      {
+        "at": 1.7008616780045351,
+        "state": "running",
+        "offset": 0
+      },
+      {
+        "at": 2.10140589569161,
+        "state": "running",
+        "offset": 0
+      }
+    ],
+    "context": "running",
+    "master": 0.800000011920929,
+    "world": 1,
+    "voices": 8
+  },
+  "completedBefore": {
+    "starts": [
+      {
+        "at": 0.005804988662131519,
+        "state": "running",
+        "offset": 0
+      },
+      {
+        "at": 1.7008616780045351,
+        "state": "running",
+        "offset": 0
+      },
+      {
+        "at": 2.10140589569161,
+        "state": "running",
+        "offset": 0
+      }
+    ],
+    "context": "running",
+    "master": 0.800000011920929,
+    "world": 1,
+    "voices": 8
+  },
+  "completedAfter": {
+    "starts": [
+      {
+        "at": 0.005804988662131519,
+        "state": "running",
+        "offset": 0
+      },
+      {
+        "at": 1.7008616780045351,
+        "state": "running",
+        "offset": 0
+      },
+      {
+        "at": 2.10140589569161,
+        "state": "running",
+        "offset": 0
+      }
+    ],
+    "context": "running",
+    "master": 0.800000011920929,
+    "world": 1,
+    "voices": 8
+  },
+  "errors": [],
+  "browser": "156.0.8078.4",
+  "humanListeningVerified": false
+}

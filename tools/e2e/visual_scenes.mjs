@@ -1,10 +1,12 @@
 // Observational scene audit. Original events run; no entity removal, teleport or fullbright.
 import assert from 'node:assert/strict';import fs from 'node:fs';import {chromium} from 'playwright';
 const [base,out]=process.argv.slice(2);assert.ok(!fs.existsSync(out));fs.mkdirSync(out,{recursive:true});
+const capture=process.env.COF_CAPTURE_SIZE?.match(/^(\d+)x(\d+)$/),viewport=capture?{width:Number(capture[1]),height:Number(capture[2])}:{width:960,height:720};
 const browser=await chromium.launch({executablePath:'/root/cof-audits/browser-1.64.1/browsers/chromium-1248/chrome-linux64/chrome',args:['--mute-audio','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
-const result={browser:browser.version(),nativeOriginalComparison:false,scenes:[]};
+const result={browser:browser.version(),nativeOriginalComparison:false,requestedFramebuffer:capture?viewport:null,scenes:[]};
 try{for(const map of ['c_intro','c_nightmare','c_start','c_apartment1','c_apartmentsick','c_game_menu1']){
- const ctx=await browser.newContext({viewport:{width:960,height:720}}),p=await ctx.newPage(),logs=[],errors=[];let serial=0;
+ const ctx=await browser.newContext({viewport}),p=await ctx.newPage(),logs=[],errors=[];let serial=0;
+ if(capture)await ctx.addInitScript(({width,height})=>document.addEventListener('DOMContentLoaded',()=>{const style=document.createElement('style');style.textContent=`html,body{width:${width}px;height:${height}px}body{display:block}header,#log,footer{display:none}main{width:${width}px;height:${height}px}`;document.head.append(style);}),viewport);
  p.on('console',m=>logs.push(m.text()));p.on('pageerror',e=>errors.push(e.message));
  const cmd=async text=>{const n=logs.length,token='visual_'+(++serial);await Promise.all([p.waitForEvent('console',{predicate:m=>m.text().includes('COF/FENCE '+token+' '),timeout:30000}),p.evaluate(c=>CoFDebug.cmd(c),text+'\ncof_fence '+token)]);return logs.slice(n).join('\n');};
  const row={map,snapshots:[],errors};result.scenes.push(row);
@@ -14,8 +16,9 @@ try{for(const map of ['c_intro','c_nightmare','c_start','c_apartment1','c_apartm
   await cmd('sv_cheats 1');
   for(const seconds of [1,15]){
    await p.waitForTimeout(seconds===1?1000:14000);
-   const state=await cmd('gamma\nbrightness\ngl_fog\nr_fullbright\ncof_sky_status\ncof_inspect !player');
+   const state=await cmd('gamma\nbrightness\ngl_fog\nr_fullbright\ndefault_fov\nviewpos\ncof_visual_status\ncof_sky_status\ncof_inspect !player');
    const snapshot=await p.evaluate(()=>({map:CoFCurrentMap(),postfx:CoFPostFX.get(),postfxStats:CoFPostFX.stats(),canvas:[canvas.width,canvas.height],loading:document.querySelector('#cof-loading')?.className}));
+   if(capture)assert.deepEqual(snapshot.canvas,[viewport.width,viewport.height],'actual framebuffer must match requested reference size');
    row.snapshots.push({secondsAfterConnection:seconds,state,...snapshot});await p.locator('#canvas').screenshot({path:out+'/'+map+'-'+seconds+'.png'});
   }
   assert.deepEqual(errors,[]);row.passed=true;

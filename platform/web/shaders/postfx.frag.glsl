@@ -48,7 +48,9 @@ float Hash( uvec3 v )
 
 vec3 Grey( vec3 color, float amount )
 {
-	float luma = dot( color, vec3( 0.299, 0.587, 0.114 ));
+	// Original client 1005d7a0, float combiner weights at 1014c920.
+	// Its older DOT3 fallback quantizes these weights through a small RGB texture.
+	float luma = dot( color, vec3( 0.32, 0.59, 0.09 ));
 	return mix( color, vec3( luma ), amount );
 }
 

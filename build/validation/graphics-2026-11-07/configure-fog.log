@@ -1,0 +1,241 @@
+Setting top to                                          : /root/cof-audits/graphics-20261107/engine/xash3d-fwgs 
+Setting out to                                          : /root/cof-audits/graphics-20261107/build/engine 
+Build type                                              : humanrights 
+LTO build                                               : no 
+PolyOpt build                                           : no 
+OpenMP build                                            : no 
+Generate profile                                        : no 
+Use profile                                             : not found 
+Checking for program 'emcc'                             : emcc 
+Checking for program 'emar'                             : emar 
+Checking for program 'ar'                               : emar 
+Checking for program 'em++'                             : em++ 
+Checking for 'gcc' (C compiler)                         : not found 
+Checking for 'clang' (C compiler)                       : emcc 
+Target OS                                               : emscripten 
+Target CPU                                              : wasm32 
+Target binfmt                                           : elf 
+Checking for 'g++' (C++ compiler)                       : not found 
+Checking for 'clang++' (C++ compiler)                   : em++ 
+Target OS                                               : emscripten 
+Target CPU                                              : wasm32 
+Target binfmt                                           : elf 
+Checking for c flags '-MMD'                             : yes 
+Checking for cxx flags '-MMD'                           : yes 
+Checking for program 'strip'                            : emstrip 
+Checking for program 'objcopy'                          : llvm-objcopy 
+Couldn't find objcopy, --strip-to-file will be unavailable!
+Checking if 'clang' generates 32-bit code               : yes 
+Checking for program 'clang-format'                     : not found 
+Checking for required C flags                           : yes 
+Checking for required C++ flags                         : yes 
+Checking supported flags for clang in parallel          : started 
+... -fnonconst-initializers                             : no 
+... -Werror=implicit-int                                : yes 
+... -Werror=packed-not-aligned                          : no 
+... -Werror=packed                                      : yes 
+... -Wstringop-overflow                                 : no 
+... -Werror=free-nonheap-object                         : yes 
+... -Werror=strict-prototypes                           : yes 
+... -Wno-error=format-nonliteral                        : yes 
+... -Werror=unsequenced                                 : yes 
+... -Werror=implicit-function-declaration               : yes 
+... -Werror=sizeof-pointer-div                          : yes 
+... -Werror=format=2                                    : yes 
+... -Wmisleading-indentation                            : yes 
+... -Werror=string-compare                              : yes 
+... -Wuninitialized                                     : yes 
+... -Werror=nonnull                                     : yes 
+... -Werror=duplicated-cond                             : no 
+... -Werror=sizeof-pointer-memaccess                    : yes 
+... -Werror=implicit-fallthrough=2                      : no 
+... -Werror=old-style-declaration                       : no 
+... -Wmissing-prototypes                                : yes 
+... -Werror=sequence-point                              : yes 
+... -Wno-error=enum-float-conversion                    : yes 
+... -Walloc-zero                                        : no 
+... -Werror=write-strings                               : yes 
+... -Wunused-variable                                   : yes 
+... -Werror=use-after-free=3                            : no 
+... -Werror=vla                                         : yes 
+... -Wunused-function                                   : yes 
+... -Wmismatched-dealloc                                : no 
+... -Werror=enum-conversion                             : yes 
+... -Wunused-but-set-variable                           : yes 
+... -Werror=int-conversion                              : yes 
+... -Werror=parentheses                                 : yes 
+... -Werror=bool-operation                              : yes 
+... -Werror=init-self                                   : yes 
+... -Werror=sizeof-array-div                            : yes 
+... -Werror=incompatible-pointer-types                  : yes 
+... -Werror=jump-misses-init                            : yes 
+... -Werror=strict-aliasing                             : yes 
+... -Werror=logical-op                                  : no 
+... -Werror=alloc-size                                  : no 
+... -Werror=tautological-compare                        : yes 
+... -Werror=old-style-definition                        : yes 
+... -Werror=bool-compare                                : no 
+... -Werror=return-type                                 : yes 
+... -fdiagnostics-color=always                          : yes 
+-> processing test results                              : 12 test failed 
+Checking supported flags for clang++ in parallel        : started 
+... -Wunused-but-set-variable                           : yes 
+... -Werror=duplicated-cond                             : no 
+... -Wno-error=format-nonliteral                        : yes 
+... -Werror=free-nonheap-object                         : yes 
+... -Werror=use-after-free=3                            : no 
+... -Werror=sizeof-array-div                            : yes 
+... -Werror=sizeof-pointer-div                          : yes 
+... -Werror=unsequenced                                 : yes 
+... -Werror=packed                                      : yes 
+... -Werror=string-compare                              : yes 
+... -Wmisleading-indentation                            : yes 
+... -Werror=strict-aliasing                             : yes 
+... -Werror=implicit-fallthrough=2                      : no 
+... -Werror=vla                                         : yes 
+... -Werror=init-self                                   : yes 
+... -Werror=packed-not-aligned                          : no 
+... -Wmismatched-dealloc                                : no 
+... -Werror=sizeof-pointer-memaccess                    : yes 
+... -Wstringop-overflow                                 : no 
+... -Werror=write-strings                               : yes 
+... -Wunused-variable                                   : yes 
+... -Werror=sequence-point                              : yes 
+... -Werror=parentheses                                 : yes 
+... -Werror=tautological-compare                        : yes 
+... -Werror=logical-op                                  : no 
+... -fdiagnostics-color=always                          : yes 
+... -Werror=alloc-size                                  : no 
+... -Werror=nonnull                                     : yes 
+... -Wuninitialized                                     : yes 
+... -Wunused-function                                   : yes 
+... -Werror=bool-operation                              : yes 
+... -Werror=format=2                                    : yes 
+... -Walloc-zero                                        : no 
+... -Werror=bool-compare                                : no 
+... -Werror=return-type                                 : yes 
+-> processing test results                              : 10 test failed 
+Checking for library dl                                 : yes 
+Checking for library m                                  : yes 
+Checking for large file support                         : yes 
+Checking for program 'pkg-config'                       : /usr/bin/pkg-config 
+Checking for 'ogg'                                      : not found 
+Checking for 'vorbis'                                   : not found 
+Checking for 'vorbisfile'                               : not found 
+Checking for 'opus'                                     : not found 
+Checking for 'opus'                                     : not found 
+Checking for 'opusfile'                                 : not found 
+Checking for 'libmpg123'                                : not found 
+Checking for library bz2                                : no 
+Checking for 'freetype2'                                : yes 
+Checking for zlib-ng                                    : no 
+Checking for zlib                                       : no 
+--> public                                              : in progress 
+Checking for program 'git'                              : /usr/bin/git 
+Git commit hash                                         : not found 
+Git branch                                              : not found 
+Git commit date                                         : not found 
+Checking for alloca in alloca.h                         : yes 
+Executing 8 configuration tests                         : started 
+Checking for strcasestr                                 : yes 
+Checking for strcasecmp                                 : yes 
+Checking for strnlen                                    : yes 
+Checking for strlcat                                    : yes 
+Checking for strncasecmp                                : yes 
+Checking for strlcpy                                    : yes 
+Checking for strchrnul                                  : yes 
+Checking for tgmath.h                                   : yes 
+-> processing test results                              : all ok 
+<-- public                                              : done 
+--> 3rdparty/miniz                                      : in progress 
+<-- 3rdparty/miniz                                      : done 
+--> filesystem                                          : in progress 
+Checking for memfd_create                               : no 
+Checking for d_type field in struct dirent              : yes 
+<-- filesystem                                          : done 
+--> 3rdparty/libbacktrace                               : in progress 
+Checking for large file support                         : yes 
+Checking supported flags for clang in parallel          : started 
+... -g                                                  : yes 
+... -funwind-tables                                     : yes 
+-> processing test results                              : all ok 
+Checking supported flags for clang in parallel          : started 
+... -frandom-seed=test                                  : yes 
+-> processing test results                              : all ok 
+Checking for in parallel                                : started 
+... tlhelp32.h header                                   : no 
+... sys/link.h header                                   : no 
+... windows.h header                                    : no 
+... getexecname function                                : no 
+... sys/ldr.h header                                    : no 
+... KERN_PROC and KERN_PROC_PATHNAME defines            : no 
+... loadquery function                                  : no 
+... mach-o/dyld.h header                                : no 
+... KERN_PROC_ARGS and KERN_PROC_PATHNAME defines       : no 
+...  dl_iterate_phdr function in sys/link.h             : no 
+... inttypes.h header                                   : yes 
+... link.h header                                       : yes 
+...  getpagesize function                               : yes 
+... dlfcn.h header                                      : yes 
+... _Unwind_GetIPInfo function                          : yes 
+... memory.h header                                     : yes 
+...  strnlen function                                   : yes 
+... sys/mman.h header                                   : yes 
+... __atomic extensions                                 : yes 
+...  __sync extensions                                  : yes 
+... readlink function                                   : yes 
+... stdint.h header                                     : yes 
+... lstat function                                      : yes 
+... strings.h header                                    : yes 
+... unistd.h header                                     : yes 
+... sys/stat.h header                                   : yes 
+... stdlib.h header                                     : yes 
+... fnctl function                                      : yes 
+... sys/types.h header                                  : yes 
+... string.h header                                     : yes 
+...  dl_iterate_phdr function in link.h                 : no 
+-> processing test results                              : 11 test failed 
+<-- 3rdparty/libbacktrace                               : done 
+--> 3rdparty/library_suffix                             : in progress 
+<-- 3rdparty/library_suffix                             : done 
+--> 3rdparty/yy-thunks                                  : in progress 
+<-- 3rdparty/yy-thunks                                  : done 
+--> 3rdparty/extras                                     : in progress 
+Checking for program 'rsvg-convert'                     : not found 
+<-- 3rdparty/extras                                     : done 
+--> ref/common                                          : in progress 
+<-- ref/common                                          : done 
+--> ref/gl                                              : in progress 
+<-- ref/gl                                              : done 
+--> 3rdparty/bzip2                                      : in progress 
+<-- 3rdparty/bzip2                                      : done 
+--> 3rdparty/mpg123                                     : in progress 
+<-- 3rdparty/mpg123                                     : done 
+--> 3rdparty/mbedtls                                    : in progress 
+<-- 3rdparty/mbedtls                                    : done 
+--> 3rdparty/opus                                       : in progress 
+Checking for C99 lrint                                  : yes 
+Checking for C99 lrintf                                 : yes 
+Checking for C99 VLA support                            : yes 
+<-- 3rdparty/opus                                       : done 
+--> 3rdparty/libogg                                     : in progress 
+Checking for header inttypes.h                          : yes 
+<-- 3rdparty/libogg                                     : done 
+--> 3rdparty/vorbis                                     : in progress 
+Checking for memory.h header                            : yes 
+Checking for alloca in alloca.h header                  : yes 
+<-- 3rdparty/vorbis                                     : done 
+--> 3rdparty/opusfile                                   : in progress 
+<-- 3rdparty/opusfile                                   : done 
+--> 3rdparty/mainui                                     : in progress 
+Checking if 'clang++' supports C++11                    : yes 
+<-- 3rdparty/mainui                                     : done 
+--> 3rdparty/MultiEmulator                              : in progress 
+<-- 3rdparty/MultiEmulator                              : done 
+--> engine                                              : in progress 
+Checking for getrusage                                  : yes 
+Checking for SDL2 sanity                                : yes 
+Checking if a pthread flag is necessary for compiling   : None 
+Checking if a pthread flag is necessary for linking     : None 
+<-- engine                                              : done 
+'configure' finished successfully (2m5.945s)

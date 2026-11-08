@@ -11,8 +11,8 @@ try{
  await p.locator('#cof-menu.on [data-action=clothes]').click();await p.locator('#cof-clothes.on').waitFor();await wait(()=>p.evaluate(()=>CoFPostFX.preview().id>0&&CoFPostFX.stats().msPerFrame>0));assert.equal(await p.locator('#cof-clothes [data-costume]:enabled').count(),1);assert.equal(await p.evaluate(()=>!!document.pointerLockElement),false);
  r.preview=await p.evaluate(()=>CoFPostFX.preview());assert.ok(r.preview.width>0&&r.preview.height>0);await p.screenshot({path:out+'/clothes.png'});
  r.modules=await p.evaluate(async()=>{const o={};for(const n of ['server.wasm','client.wasm','libref_gles3compat.wasm','filesystem_stdio.wasm','menu.wasm'])o[n]=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',FS.readFile('/lib/'+n))),v=>v.toString(16).padStart(2,'0')).join('');return o;});
- assert.equal(r.modules['client.wasm'],'45294e1e911c5c2caf3c8c022f1555b21fe02c8e4524acca3a76684f51fd6b4f');assert.equal(r.modules['server.wasm'],'91ca7418dcdcb520cd1479d77ca6646af79e455158c23f179661a1f46f7954f4');
- assert.equal(r.modules['libref_gles3compat.wasm'],'8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec');
+ assert.equal(r.modules['client.wasm'],process.env.COF_EXPECT_CLIENT||'45294e1e911c5c2caf3c8c022f1555b21fe02c8e4524acca3a76684f51fd6b4f');assert.equal(r.modules['server.wasm'],'91ca7418dcdcb520cd1479d77ca6646af79e455158c23f179661a1f46f7954f4');
+ assert.equal(r.modules['libref_gles3compat.wasm'],process.env.COF_EXPECT_RENDERER||'8db286f9132d53133c1a9887ef78bf0735dd264962846f2db6b66350d11e0eec');
  assert.equal(r.modules['filesystem_stdio.wasm'],'85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95');
  assert.equal(r.modules['menu.wasm'],'bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051');
  await p.locator('#cof-clothes [data-close]').scrollIntoViewIfNeeded();await p.locator('#cof-clothes [data-close]').click();await p.locator('#cof-menu.on').waitFor();assert.deepEqual(errors,[]);r.passed=true;

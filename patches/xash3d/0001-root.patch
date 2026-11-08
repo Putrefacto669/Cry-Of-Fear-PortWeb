@@ -781,11 +781,74 @@ index 5c37607d..0308d7c5 100644
  static inline size_t Q_strnlen( const char *str, size_t size )
  {
  #if HAVE_STRNLEN
+diff --git a/ref/gl/gl2_shim/fragment.glsl.inc b/ref/gl/gl2_shim/fragment.glsl.inc
+index 803bc2bf..7fe9614e 100644
+--- a/ref/gl/gl2_shim/fragment.glsl.inc
++++ b/ref/gl/gl2_shim/fragment.glsl.inc
+@@ -24,7 +24,14 @@
+ "uniform float uAlphaTest;\n"
+ "#endif\n"
+ "#if FEAT_FOG\n"
++"#ifdef GL_ES\n"
++"#define FOG_PREC highp\n"
++"#else\n"
++"#define FOG_PREC\n"
++"#endif\n"
+ "uniform PREC vec4 uFog;\n"
++"uniform FOG_PREC vec4 uFogParams;\n"
++"in FOG_PREC float vFogDistance;\n"
+ "#endif\n"
+ "uniform PREC vec4 uColor;\n"
+ "#if ATTR_COLOR\n"
+@@ -64,6 +71,8 @@
+ "#if FEAT_FOG\n"
+ "float fogDist = gl_FragCoord.z / gl_FragCoord.w;\n"
+ "float fogRate = clamp(exp(-uFog.w * fogDist), 0.0, 1.0);\n"
++"if(uFogParams.z > 0.5)\n"
++"fogRate = clamp((uFogParams.y - vFogDistance) / max(uFogParams.y - uFogParams.x, 0.000001), 0.0, 1.0);\n"
+ "c.rgb = mix(uFog.rgb, c.rgb, fogRate);\n"
+ "#endif\n"
+ "oFragColor = c;\n"
 diff --git a/ref/gl/gl2_shim/gl2_shim.c b/ref/gl/gl2_shim/gl2_shim.c
-index 91541c9b..cfe2fde4 100644
+index 91541c9b..c200d9eb 100644
 --- a/ref/gl/gl2_shim/gl2_shim.c
 +++ b/ref/gl/gl2_shim/gl2_shim.c
-@@ -442,6 +442,11 @@ static gl2wrap_prog_t *GL2_SetProg( const GLuint flags )
+@@ -69,6 +69,8 @@ typedef struct
+ 	GLint utex0;
+ 	GLint utex1;
+ 	GLint ufog;
++	GLint ufogParams;
++	GLint uModelView;
+ 	GLint uMVP;
+ 	GLuint *vao_begin;
+ } gl2wrap_prog_t;
+@@ -96,6 +98,7 @@ static struct
+ 	GLenum prim;
+ 	GLfloat color[4];
+ 	GLfloat fog[4]; // color + density
++	GLfloat fogParams[4]; // start, end, linear enabled, reserved
+ 	GLfloat alpharef;
+ 	gl2wrap_prog_t progs[MAX_PROGS];
+ 	gl2wrap_prog_t *cur_prog;
+@@ -366,6 +369,8 @@ static gl2wrap_prog_t *GL2_GetProg( const GLuint flags )
+ 	prog->utex0  = pglGetUniformLocationARB( glprog, "uTex0" );
+ 	prog->utex1  = pglGetUniformLocationARB( glprog, "uTex1" );
+ 	prog->ufog   = pglGetUniformLocationARB( glprog, "uFog" );
++	prog->ufogParams = pglGetUniformLocationARB( glprog, "uFogParams" );
++	prog->uModelView = pglGetUniformLocationARB( glprog, "uModelView" );
+ 	prog->uMVP   = pglGetUniformLocationARB( glprog, "uMVP" );
+ 
+ 	if( gl2wrap_config.vao_mandatory )
+@@ -427,6 +432,8 @@ static gl2wrap_prog_t *GL2_SetProg( const GLuint flags )
+ 				pglUniform4fvARB( prog->ucolor, 1, gl2wrap.color );
+ 			if( prog->ufog >= 0 )
+ 				pglUniform4fvARB( prog->ufog, 1, gl2wrap.fog );
++			if( prog->ufogParams >= 0 )
++				pglUniform4fvARB( prog->ufogParams, 1, gl2wrap.fogParams );
+ 			gl2wrap.uchanged = GL_FALSE;
+ 		}
+ 		GL2_UpdateMVP( prog );
+@@ -442,6 +449,11 @@ static gl2wrap_prog_t *GL2_SetProg( const GLuint flags )
  
  #define TRIQUADS_SIZE GL2_MAX_VERTS / 4 * 6
  
@@ -797,7 +860,7 @@ index 91541c9b..cfe2fde4 100644
  static void GL2_InitTriQuads( void )
  {
  	for( int i = 0; i < ( !!pglDrawRangeElementsBaseVertex ? 1 : 4 ); i++ )
-@@ -457,6 +462,10 @@ static void GL2_InitTriQuads( void )
+@@ -457,6 +469,10 @@ static void GL2_InitTriQuads( void )
  			triquads_array[j * 6 + 4] = j * 4 + 2 + i;
  			triquads_array[j * 6 + 5] = j * 4 + 3 + i;
  		}
@@ -808,7 +871,16 @@ index 91541c9b..cfe2fde4 100644
  		pglGenBuffersARB( 1, &gl2wrap.triquads_ibo[i] );
  		rpglBindBufferARB( GL_ELEMENT_ARRAY_BUFFER_ARB, gl2wrap.triquads_ibo[i] );
  		pglBufferDataARB( GL_ELEMENT_ARRAY_BUFFER_ARB, sizeof( triquads_array ), triquads_array, GL_STATIC_DRAW_ARB );
-@@ -604,7 +613,11 @@ int GL2_ShimInit( void )
+@@ -557,6 +573,8 @@ int GL2_ShimInit( void )
+ 	if( gl2wrap_init )
+ 		return 0;
+ 
++	gl2wrap.fogParams[1] = 1.0f; // OpenGL default GL_FOG_END
++
+ 	if( !pglBindBufferARB )
+ 	{
+ 		gEngfuncs.Con_Printf( S_ERROR "GL2_ShimInit: missing VBO, disabling\n" );
+@@ -604,7 +622,11 @@ int GL2_ShimInit( void )
  	if( gEngfuncs.Sys_CheckParm( "-noincremental" ))
  		gl2wrap_config.incremental = gl2wrap_config.buf_storage = false;
  
@@ -820,7 +892,7 @@ index 91541c9b..cfe2fde4 100644
  	if( gEngfuncs.Sys_CheckParm( "-minshaders" ))
  		gl2wrap_config.version = 100;
  	if( gl2wrap_config.buf_storage )
-@@ -953,6 +966,18 @@ static void GL2_FlushPrims( void )
+@@ -953,6 +975,18 @@ static void GL2_FlushPrims( void )
  		// simple case, one quad may draw like polygon(4)
  		if( count == 4 )
  			rpglDrawArrays( GL_TRIANGLE_FAN, startindex, count );
@@ -839,6 +911,93 @@ index 91541c9b..cfe2fde4 100644
  		else if( pglDrawRangeElementsBaseVertex )
  		{
  			/*
+@@ -1204,24 +1238,29 @@ static void APIENTRY GL2_AlphaFunc( GLenum mode, GLfloat ref )
+ 	// mode is always GL_GREATER
+ }
+ 
++// CoF client 10093bc0 uses GL_LINEAR with explicit eye-space start/end.
++// Preserve the previous exponential path for other engine fog modes.
+ static void APIENTRY GL2_Fogf( GLenum param, GLfloat val )
+ {
+-	if( param == GL_FOG_DENSITY )
+-	{
+-		gl2wrap.fog[3] = val;
+-		gl2wrap.uchanged = GL_TRUE;
+-	}
++ switch( param )
++ {
++ case GL_FOG_DENSITY: gl2wrap.fog[3] = val; break;
++ case GL_FOG_START: gl2wrap.fogParams[0] = val; break;
++ case GL_FOG_END: gl2wrap.fogParams[1] = val; break;
++ case GL_FOG_MODE: gl2wrap.fogParams[2] = (GLenum)val == GL_LINEAR; break;
++ default: return;
++ }
++ gl2wrap.uchanged = GL_TRUE;
+ }
+ 
+ static void APIENTRY GL2_Fogfv( GLenum param, const GLfloat *val )
+ {
+-	if( param == GL_FOG_COLOR )
+-	{
+-		gl2wrap.fog[0] = val[0];
+-		gl2wrap.fog[1] = val[1];
+-		gl2wrap.fog[2] = val[2];
+-		gl2wrap.uchanged = GL_TRUE;
+-	}
++ if( param == GL_FOG_COLOR )
++ {
++  gl2wrap.fog[0] = val[0]; gl2wrap.fog[1] = val[1]; gl2wrap.fog[2] = val[2];
++  gl2wrap.uchanged = GL_TRUE;
++ }
++ else GL2_Fogf( param, val[0] );
+ }
+ 
+ static qboolean GL2_SkipEnable( GLenum e )
+@@ -1350,6 +1389,8 @@ static void GL2_UpdateMVP( gl2wrap_prog_t *prog )
+ 		ClearBits( gl2wrap_matrix.update, BIT64( prog->flags ));
+ 		GL2_Mul4x4( gl2wrap_matrix.mv, gl2wrap_matrix.pr, gl2wrap_matrix.mvp );
+ 		pglUniformMatrix4fvARB( prog->uMVP, 1, false, (void *)gl2wrap_matrix.mvp );
++		if( prog->uModelView >= 0 )
++			pglUniformMatrix4fvARB( prog->uModelView, 1, false, (void *)gl2wrap_matrix.mv );
+ 	}
+ }
+ 
+@@ -1783,6 +1824,7 @@ static void APIENTRY GL2_TexEnvf(GLenum target, GLenum pname, GLfloat param)
+ 
+ static void APIENTRY GL2_Fogi(GLenum pname, GLint param)
+ {
++	GL2_Fogf( pname, (GLfloat)param );
+ }
+ 
+ static void APIENTRY GL2_ShadeModel(GLenum mode)
+diff --git a/ref/gl/gl2_shim/vertex.glsl.inc b/ref/gl/gl2_shim/vertex.glsl.inc
+index 70986c06..e1e1e2fd 100644
+--- a/ref/gl/gl2_shim/vertex.glsl.inc
++++ b/ref/gl/gl2_shim/vertex.glsl.inc
+@@ -33,11 +33,23 @@
+ "out vec3 vNormal;\n"
+ "#endif\n"
+ "\n"
++"#ifdef GL_ES\n"
++"#define FOG_PREC highp\n"
++"#else\n"
++"#define FOG_PREC\n"
++"#endif\n"
++"#if FEAT_FOG\n"
++"uniform mat4 uModelView;\n"
++"out FOG_PREC float vFogDistance;\n"
++"#endif\n"
+ "uniform mat4 uMVP;\n"
+ "\n"
+ "void main()\n"
+ "{\n"
+ "gl_Position = uMVP * vec4(inPosition,1.0);\n"
++"#if FEAT_FOG\n"
++"vFogDistance = abs((uModelView * vec4(inPosition,1.0)).z);\n"
++"#endif\n"
+ "#if ATTR_COLOR\n"
+ "vColor = inColor;\n"
+ "#endif\n"
 diff --git a/ref/gl/gl_decals.c b/ref/gl/gl_decals.c
 index 1b3fc6df..05d2e24c 100644
 --- a/ref/gl/gl_decals.c

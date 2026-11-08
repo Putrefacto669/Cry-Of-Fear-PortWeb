@@ -77,9 +77,9 @@ static void Fog_Frame( void )
 	bool want = g_fog.on || t < 1.0f;
 	if( want && g_fog.curEnd > g_fog.curStart )
 	{
-		// the GLES path of the renderer (gl2_shim) only does exponential fog: a density
-		// that leaves 5% of the scene at the end distance, exp(-(d * density)^2) = 0.05
-		gEngfuncs.pTriAPI->FogParams( 1.73f / g_fog.curEnd, 1 );
+		// Native client 10093bc0: linear fog starts at curStart and ends at curEnd.
+		// A zero density selects the engine's GL_LINEAR path (including GLES shim).
+		gEngfuncs.pTriAPI->FogParams( 0.0f, 1 );
 		gEngfuncs.pTriAPI->Fog( g_fog.color, g_fog.curStart, g_fog.curEnd, 1 );
 		g_fog.drawn = 1;
 	}
