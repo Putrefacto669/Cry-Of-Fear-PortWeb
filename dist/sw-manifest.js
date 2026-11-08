@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "636f6f29424d",
+ "version": "16b968811f27",
  "coi": false,
  "precache": [
   "LICENSE.txt",
@@ -36,18 +36,21 @@ self.COF_MANIFEST = {
   "shaders/postfx.vert.glsl",
   "shaders/water.frag.glsl",
   "shaders/water.vert.glsl",
-  "xash3d.js"
+  "xash3d.js",
+  "sitemap.xml",
+  "googlee1f002228312b1b3.html"
  ],
  "files": {
   "LICENSE.txt": "230184f60bae",
   "debug.js": "40590135a97a",
   "extras.js": "32eba15df1ba",
+  "googlee1f002228312b1b3.html": "fe98df47e40f",
   "gpustats.js": "70aaa1f28265",
   "hud.js": "9ba7204f0483",
-  "index.html": "3b6817e5bbde",
+  "index.html": "e6b75b58af35",
+  "launcher.js": "4f29b7f65403",
   "launcher/background.jpg": "d385a9ca8c75",
   "launcher/logo.png": "8d7bb7601333",
-  "launcher.js": "4f29b7f65403",
   "loader.js": "ae55eeb111a2",
   "mp3/2aphall1.mp3": "70a02fded189",
   "mp3/ap3hall1.mp3": "23be860ec5a8",
@@ -127,6 +130,7 @@ self.COF_MANIFEST = {
   "shaders/postfx.vert.glsl": "67c791a629ca",
   "shaders/water.frag.glsl": "60e5c1ff01bd",
   "shaders/water.vert.glsl": "2ac21130b1b7",
+  "sitemap.xml": "ac1bb0cd5b1c",
   "xash3d.html": "9c5ead998246",
   "xash3d.js": "27889352d7a2",
   "xash3d.wasm": "1536758e1209"
