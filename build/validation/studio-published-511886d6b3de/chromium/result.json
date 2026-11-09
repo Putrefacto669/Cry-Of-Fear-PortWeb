@@ -1,0 +1,136 @@
+{
+  "browser": "156.0.8078.4",
+  "engine": "chromium",
+  "expectedManifest": "511886d6b3de",
+  "scenes": [
+    {
+      "label": "apartment-default",
+      "stats": "[19:33:31] cof_model_light active=1 calls=50 hits=50 has61=50 sky=0 fx=10 ambient=1.000,1.000,1.000 diffuse=0.114,0.106,0.098 lightvec=-0.10,0.22,-0.95\n[19:33:31] COF/FENCE studio_audit_4 time=2.3165",
+      "gpu": {
+        "error": 0,
+        "width": 800,
+        "height": 347,
+        "min": 3,
+        "max": 234,
+        "mean": 19.135841738712365,
+        "blend": false,
+        "depth": true,
+        "depthWrite": true,
+        "activeTexture": 33984
+      }
+    },
+    {
+      "label": "apartment-flashlight-on",
+      "stats": "[19:33:33] cof_model_light active=1 calls=75 hits=75 has61=75 sky=0 fx=15 ambient=1.000,1.000,1.000 diffuse=0.114,0.106,0.098 lightvec=-0.10,0.22,-0.95\n[19:33:33] COF/FENCE studio_audit_9 time=3.6392",
+      "gpu": {
+        "error": 0,
+        "width": 800,
+        "height": 347,
+        "min": 3,
+        "max": 239.66666666666666,
+        "mean": 19.262195004802532,
+        "blend": false,
+        "depth": true,
+        "depthWrite": true,
+        "activeTexture": 33984
+      }
+    },
+    {
+      "label": "apartment-flashlight-off",
+      "stats": "[19:33:34] cof_model_light active=1 calls=60 hits=60 has61=60 sky=0 fx=12 ambient=1.000,1.000,1.000 diffuse=0.114,0.106,0.098 lightvec=-0.10,0.22,-0.95\n[19:33:34] COF/FENCE studio_audit_11 time=4.8804",
+      "gpu": {
+        "error": 0,
+        "width": 800,
+        "height": 347,
+        "min": 3,
+        "max": 242,
+        "mean": 18.94037704130575,
+        "blend": false,
+        "depth": true,
+        "depthWrite": true,
+        "activeTexture": 33984
+      }
+    },
+    {
+      "label": "apartment-brightness-01",
+      "stats": "[19:33:35] cof_model_light active=1 calls=50 hits=50 has61=50 sky=0 fx=10 ambient=1.000,1.000,1.000 diffuse=0.157,0.148,0.141 lightvec=-0.10,0.22,-0.95\n[19:33:35] COF/FENCE studio_audit_13 time=5.8135",
+      "gpu": {
+        "error": 0,
+        "width": 800,
+        "height": 347,
+        "min": 3,
+        "max": 245,
+        "mean": 24.85070004803307,
+        "blend": false,
+        "depth": true,
+        "depthWrite": true,
+        "activeTexture": 33984
+      }
+    },
+    {
+      "label": "apartment-restored",
+      "stats": "[19:33:38] cof_model_light active=1 calls=33 hits=33 has61=33 sky=0 fx=10 ambient=1.000,1.000,1.000 diffuse=0.114,0.106,0.098 lightvec=-0.10,0.22,-0.95\n[19:33:38] COF/FENCE studio_audit_16 time=7.4632",
+      "gpu": {
+        "error": 0,
+        "width": 800,
+        "height": 347,
+        "min": 3,
+        "max": 57.666666666666664,
+        "mean": 23.145740874158562,
+        "blend": false,
+        "depth": true,
+        "depthWrite": true,
+        "activeTexture": 33984
+      }
+    },
+    {
+      "label": "nightmare-transition",
+      "stats": "[19:33:42] cof_model_light active=1 calls=59 hits=59 has61=59 sky=0 fx=16 ambient=0.500,0.500,0.500 diffuse=0.118,0.118,0.114 lightvec=0.06,-0.01,-0.98\n[19:33:42] COF/FENCE studio_audit_18 time=1.3317",
+      "gpu": {
+        "error": 0,
+        "width": 800,
+        "height": 347,
+        "min": 3,
+        "max": 95,
+        "mean": 7.686389289144814,
+        "blend": true,
+        "depth": true,
+        "depthWrite": true,
+        "activeTexture": 33984
+      }
+    },
+    {
+      "label": "apartment-return",
+      "stats": "[19:33:45] cof_model_light active=1 calls=98 hits=98 has61=98 sky=0 fx=30 ambient=1.000,1.000,1.000 diffuse=0.114,0.106,0.098 lightvec=-0.10,0.22,-0.95\n[19:33:45] COF/FENCE studio_audit_19 time=1.2656",
+      "gpu": {
+        "error": 0,
+        "width": 800,
+        "height": 347,
+        "min": 3,
+        "max": 140,
+        "mean": 12.862668107584078,
+        "blend": true,
+        "depth": true,
+        "depthWrite": true,
+        "activeTexture": 33984
+      }
+    }
+  ],
+  "diagnostic": true,
+  "modules": {
+    "client.wasm": "e0b2b6cc926ac1ba8564512fd493148f2748a959becb7a8e494391ac2b8b6ab1",
+    "server.wasm": "91ca7418dcdcb520cd1479d77ca6646af79e455158c23f179661a1f46f7954f4",
+    "libref_gles3compat.wasm": "f440e4a16db8083f0ce61451f73d50ed33fa84a5e6a5efa47ae2d90ea3696500",
+    "filesystem_stdio.wasm": "85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95",
+    "menu.wasm": "bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051"
+  },
+  "draws": {
+    "scales": {
+      "1": 271673,
+      "2": 1006
+    },
+    "invalidScale": 0
+  },
+  "passed": true,
+  "errors": []
+}

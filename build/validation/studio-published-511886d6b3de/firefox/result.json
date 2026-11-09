@@ -1,0 +1,129 @@
+{
+  "browser": "157.0",
+  "engine": "firefox",
+  "expectedManifest": "511886d6b3de",
+  "scenes": [
+    {
+      "label": "apartment-default",
+      "stats": "[19:34:26] cof_model_light active=1 calls=101 hits=101 has61=101 sky=0 fx=20 ambient=1.000,1.000,1.000 diffuse=0.114,0.106,0.098 lightvec=-0.10,0.22,-0.95\n[19:34:26] COF/FENCE studio_audit_4 time=1.818",
+      "gpu": {
+        "error": 0,
+        "width": 800,
+        "height": 347,
+        "min": 3,
+        "max": 206,
+        "mean": 16.972456772332364,
+        "blend": false,
+        "depth": true,
+        "depthWrite": true,
+        "activeTexture": 33984
+      }
+    },
+    {
+      "label": "apartment-flashlight-on",
+      "stats": "[19:34:26] cof_model_light active=1 calls=120 hits=120 has61=120 sky=0 fx=24 ambient=1.000,1.000,1.000 diffuse=0.114,0.106,0.098 lightvec=-0.10,0.22,-0.95\n[19:34:26] COF/FENCE studio_audit_9 time=2.638",
+      "gpu": {
+        "error": 0,
+        "width": 800,
+        "height": 347,
+        "min": 3,
+        "max": 235,
+        "mean": 19.217578049955808,
+        "blend": false,
+        "depth": true,
+        "depthWrite": true,
+        "activeTexture": 33984
+      }
+    },
+    {
+      "label": "apartment-flashlight-off",
+      "stats": "[19:34:27] cof_model_light active=1 calls=100 hits=100 has61=100 sky=0 fx=20 ambient=1.000,1.000,1.000 diffuse=0.114,0.106,0.098 lightvec=-0.10,0.22,-0.95\n[19:34:27] COF/FENCE studio_audit_11 time=3.571",
+      "gpu": {
+        "error": 0,
+        "width": 800,
+        "height": 347,
+        "min": 3,
+        "max": 238,
+        "mean": 18.67954731028197,
+        "blend": false,
+        "depth": true,
+        "depthWrite": true,
+        "activeTexture": 33984
+      }
+    },
+    {
+      "label": "apartment-brightness-01",
+      "stats": "[19:34:28] cof_model_light active=1 calls=80 hits=80 has61=80 sky=0 fx=16 ambient=1.000,1.000,1.000 diffuse=0.157,0.148,0.141 lightvec=-0.10,0.22,-0.95\n[19:34:28] COF/FENCE studio_audit_13 time=4.155",
+      "gpu": {
+        "error": 0,
+        "width": 800,
+        "height": 347,
+        "min": 3,
+        "max": 240,
+        "mean": 25.889035782905392,
+        "blend": false,
+        "depth": true,
+        "depthWrite": true,
+        "activeTexture": 33984
+      }
+    },
+    {
+      "label": "apartment-restored",
+      "stats": "[19:34:30] cof_model_light active=1 calls=80 hits=80 has61=80 sky=0 fx=16 ambient=1.000,1.000,1.000 diffuse=0.114,0.106,0.098 lightvec=-0.10,0.22,-0.95\n[19:34:30] COF/FENCE studio_audit_16 time=4.755",
+      "gpu": {
+        "error": 0,
+        "width": 800,
+        "height": 347,
+        "min": 3,
+        "max": 242,
+        "mean": 19.150595581173125,
+        "blend": false,
+        "depth": true,
+        "depthWrite": true,
+        "activeTexture": 33984
+      }
+    },
+    {
+      "label": "nightmare-transition",
+      "stats": "[19:34:34] cof_model_light active=1 calls=455 hits=455 has61=455 sky=0 fx=106 ambient=0.500,0.500,0.500 diffuse=0.098,0.102,0.098 lightvec=-0.13,0.02,-0.98\n[19:34:34] COF/FENCE studio_audit_18 time=1.467",
+      "gpu": {
+        "error": 0,
+        "width": 800,
+        "height": 347,
+        "min": 3,
+        "max": 42.666666666666664,
+        "mean": 6.670018011527013,
+        "blend": true,
+        "depth": true,
+        "depthWrite": true,
+        "activeTexture": 33984
+      }
+    },
+    {
+      "label": "apartment-return",
+      "stats": "[19:34:37] cof_model_light active=1 calls=184 hits=184 has61=184 sky=0 fx=51 ambient=1.000,1.000,1.000 diffuse=0.114,0.106,0.098 lightvec=-0.10,0.22,-0.95\n[19:34:37] COF/FENCE studio_audit_19 time=1.332",
+      "gpu": {
+        "error": 0,
+        "width": 800,
+        "height": 347,
+        "min": 3,
+        "max": 111,
+        "mean": 12.223333333332866,
+        "blend": true,
+        "depth": true,
+        "depthWrite": true,
+        "activeTexture": 33984
+      }
+    }
+  ],
+  "diagnostic": true,
+  "modules": {
+    "client.wasm": "e0b2b6cc926ac1ba8564512fd493148f2748a959becb7a8e494391ac2b8b6ab1",
+    "server.wasm": "91ca7418dcdcb520cd1479d77ca6646af79e455158c23f179661a1f46f7954f4",
+    "libref_gles3compat.wasm": "f440e4a16db8083f0ce61451f73d50ed33fa84a5e6a5efa47ae2d90ea3696500",
+    "filesystem_stdio.wasm": "85e8f987a23b86f6dcabc92acda5e2818653bb155e84b7fab25fdbd3ec507a95",
+    "menu.wasm": "bbde8c4bcdfc8b61ed538fbcd86c5d92693a35277a7955fa502f5232285e6051"
+  },
+  "passed": true,
+  "errors": []
+}
