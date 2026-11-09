@@ -282,9 +282,18 @@ Mismo motor que la final; solo cambian `hud.js`/`loader.js`, que tienen sus prop
 
 **Evidencia:** `build/validation/claude-integration-2026-11-09/`.
 
-## 8. Pendiente
+## 8. Publicación
 
-- **Publicación:** solo commits locales. Pages sigue en `511886d6b3de` hasta que el usuario lo autorice.
+El usuario autorizó la publicación («Sí, publícalo»):
+
+| Paso | Resultado |
+|---|---|
+| Push | `git push portweb HEAD:main`, avance rápido `a7e7be9..8754144` |
+| Workflow de Pages | `42590850635`: success |
+| Comprobación byte a byte frente a `dist/` | `sw-manifest.js` (versión `bdffd7b5dfe5`), `hud.js`, `loader.js`, `sw.js`, `packs/engine.js` y `packs/engine.data`: idénticos |
+| `rain_option.mjs` contra la URL pública | PASS: 0 px por defecto; etiqueta 4.923 px; Espacio 0 px; opción guardada 5.002 px |
+
+## 9. Pendiente
 - **Doble empuñadura:** falta la captura del usuario. Codex tampoco reprodujo el solapamiento.
 - **Causa real de la precarga fallida en el 8090 del usuario:** sin datos. La corrección la cubre.
 - **`pfnChangeLevel`:** la red de seguridad repite el cambio con `changelevel2`. Conviene que Codex revise que esa
