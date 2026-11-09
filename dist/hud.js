@@ -1266,8 +1266,12 @@
     if (!rain.raf) ctx.clearRect(0, 0, w, h);
   };
 
+  // The streaks are off unless Options -> Rain is on (user decision, 09/11/2026): the server's request is kept,
+  // so turning the option on or off applies at once.
   const setRain = (drips, windX, windY) => {
     ensureRain();
+    rain.request = [drips, windX, windY];
+    if (!options.rain) drips = 0;
     rain.target = Math.min(450, Math.round(drips / 6));
     rain.slant = Math.max(-0.6, Math.min(0.6, (windX + windY) / 1500));
     if (!rain.raf && (rain.target || rain.drops.length)) rain.raf = requestAnimationFrame(rainFrame);
@@ -1358,7 +1362,7 @@
   // lightBrightness is the original renderer's gl_brightness (0 to 0.3, it clamps there): 0 is the
   // original picture. The engine's brightness stays at 1, the value of the original config.cfg; the
   // world lightmaps no longer go through its gamma table (gl_rsurf.c R_CofBuildLightMap).
-  const options = Object.assign({ sensitivity: 3, volume: 0.8, music: 0.8, lightBrightness: 0 }, readJson(OPTIONS_KEY, {}));
+  const options = Object.assign({ sensitivity: 3, volume: 0.8, music: 0.8, lightBrightness: 0, rain: false }, readJson(OPTIONS_KEY, {}));
   let optionsApplied = false;
   const applyOptions = () => {
     engineCmd(`sensitivity ${options.sensitivity}`);
@@ -1376,10 +1380,13 @@
     if (sheetPanel) return;
     const style = document.createElement("style");
     style.textContent = `
-      #cof-sheet { position:absolute; inset:0; z-index:17; display:none; align-items:center; justify-content:center;
-                   background:rgba(0,0,0,.78); user-select:none; }
+      #cof-sheet { position:absolute; inset:0; z-index:17; display:none; align-items:safe center; justify-content:center;
+                   background:rgba(0,0,0,.78); user-select:none; overflow-y:auto; }
       #cof-sheet.on { display:flex; }
-      #cof-sheet .box { min-width:min(80%, 420px); max-width:min(90%, 560px); padding:1.4em 1.8em; background:#0d0d0d;
+      /* main is short in a small window (log and footer below it): the sheet scrolls inside it instead of
+         overflowing above main, where the page header took the clicks (Codex's review of 09/11/2026) */
+      #cof-sheet .box { margin:auto 0; max-height:100%; overflow-y:auto; box-sizing:border-box;
+                        min-width:min(80%, 420px); max-width:min(90%, 560px); padding:1.4em 1.8em; background:#0d0d0d;
                         border:1px solid #333; box-shadow:0 0 40px #000; color:#ddd; font:clamp(13px, 2vh, 18px) Arial, sans-serif; }
       #cof-sheet h2 { margin:0 0 .8em; font:clamp(16px, 2.8vh, 26px) Arial, sans-serif; letter-spacing:.08em; color:#eee; }
       #cof-sheet .row { display:flex; align-items:center; justify-content:space-between; gap:1em; margin:.55em 0; }
@@ -1395,6 +1402,12 @@
     const el = document.createElement("div");
     el.id = "cof-sheet";
     el.addEventListener("click", (e) => { if (e.target === el) closeSheet(); });
+    // the sheet's controls have the keyboard (Space on a checkbox, arrows on a slider): SDL cancels the browser's
+    // default actions of document key events, so keep them from it, as the notes dialog does. Esc still closes it.
+    for (const type of ["keydown", "keyup", "keypress"])
+      addEventListener(type, (e) => {
+        if (e.key !== "Escape" && el.classList.contains("on") && el.contains(e.target)) e.stopPropagation();
+      }, true);
     sheetPanel = { el, onClose: null };
     document.querySelector("main").appendChild(el);
   };
@@ -1526,6 +1539,23 @@
     slider(SPANISH ? "Volumen" : "Volume", "volume", 0, 1, 0.05);
     slider(SPANISH ? "Música" : "Music", "music", 0, 1, 0.05);
     slider(SPANISH ? "Brillo" : "Brightness", "lightBrightness", 0, 0.3, 0.01);
+    {
+      // the rain streaks of rain_settings (off by default)
+      const row = document.createElement("div");
+      row.className = "row";
+      const span = document.createElement("label"); // names the checkbox, and clicking it toggles
+      span.textContent = SPANISH ? "Lluvia" : "Rain";
+      span.htmlFor = "cof-option-rain";
+      const box = document.createElement("input");
+      Object.assign(box, { type: "checkbox", checked: !!options.rain, id: "cof-option-rain" });
+      box.addEventListener("change", () => {
+        options.rain = box.checked;
+        writeJson(OPTIONS_KEY, options);
+        if (rain.request) setRain(...rain.request);
+      });
+      row.append(span, box);
+      body.appendChild(row);
+    }
     const row = document.createElement("div");
     row.className = "row";
     const span = document.createElement("span");

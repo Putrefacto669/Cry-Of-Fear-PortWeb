@@ -132,6 +132,8 @@
     let baseStatus = "";
     const prefetched = new Set();
     const prefetching = new Set();
+    const prefetchFailures = new Map();
+    let lastChange = null; // the game's last "CHANGE LEVEL: <map> <landmark>"
 
     const packMounted = (name) => {
       try { return FS.analyzePath(`/rodir/cryoffear/maps/${name}.bsp`).exists; } catch (_) { return false; }
@@ -203,6 +205,12 @@
         return true;
       } catch (e) {
         log(`no se pudo precargar ${name}: ${e.message}`, "err");
+        // A failed prefetch used to be final: the level change minutes later found no BSP and the game stayed
+        // on the old map ("changelevel: map c_nightmare doesn't exist", 09/11/2026, intro_to_nightmare.mjs with
+        // COF_FAIL_PACK). Try again with a growing delay while the page lives.
+        const attempt = (prefetchFailures.get(name) || 0) + 1;
+        prefetchFailures.set(name, attempt);
+        if (attempt < 20) setTimeout(() => prefetchMap(name).catch(() => {}), Math.min(30000, 5000 * 2 ** (attempt - 1)));
         return false;
       } finally {
         prefetching.delete(name);
@@ -314,6 +322,29 @@
         if (debug) console.log(t);
         // el motor escribe la partida en el mismo comando, justo después de esta línea
         if (/^Saving game to /.test(line)) setTimeout(persistRwdir, 0);
+        // A level change to a packaged map whose pack is not mounted (its prefetch failed or has not run). The
+        // engine refuses it ("changelevel: map X doesn't exist") and then ignores the trigger's further
+        // CHANGE_LEVEL calls for the rest of the level (pfnChangeLevel: one per spawncount). So: mount the pack
+        // and repeat that same change, map and landmark from the game's "CHANGE LEVEL: <map> <landmark>",
+        // with changelevel2, which reaches the same SV_QueueChangeLevel (09/11/2026, intro_to_nightmare.mjs).
+        const asked = /^CHANGE LEVEL:\s*(\S+)\s*(\S*)/.exec(line);
+        if (asked) lastChange = { map: asked[1].toLowerCase(), landmark: asked[2] };
+        const refused = /changelevel: map (\S+) doesn't exist/.exec(line);
+        if (refused && !preloaded) {
+          const next = refused[1].toLowerCase(), from = currentMap;
+          const landmark = lastChange && lastChange.map === next ? lastChange.landmark : "";
+          if (packaged.has(next)) {
+            log(`cambio a ${next} rechazado: falta su paquete; se carga y se repite`, "err");
+            prefetched.delete(next);
+            (async () => {
+              while (!packMounted(next) && currentMap === from) {
+                if (!prefetching.has(next)) await prefetchMap(next).catch(() => false);
+                if (!packMounted(next)) await sleep(2000);
+              }
+              if (currentMap === from) Module.ccall("Xash_Cmd", null, ["string"], [`changelevel2 ${next} ${landmark}\n`]);
+            })().catch((e) => log(`cambio a ${next}: ${e.message}`, "err"));
+          }
+        }
         const spawn = /^Spawn Server:\s*(\S+)/.exec(line);
         if (spawn) {
           currentMap = spawn[1].toLowerCase();
@@ -380,7 +411,9 @@
       if (promise && typeof promise.catch === "function") promise.catch(() => {});
       return promise;
     };
-    if (this.id === "canvas" && (globalThis.CoFExtras?.clothesOpen || globalThis.CoFHUD?.menuOpen)) {
+    // The pause menu owns the cursor too: SDL asks for the lock on the next click, and the click on
+    // Options locked it, so the options sheet's clicks went to the canvas (09/11/2026, rain_option.mjs).
+    if (this.id === "canvas" && (globalThis.CoFExtras?.clothesOpen || globalThis.CoFHUD?.menuOpen || globalThis.CoFHUD?.paused)) {
       return observed(Promise.reject(Object.assign(new Error("Game menu owns the cursor"), { name: "InvalidStateError" })));
     }
     try {
@@ -413,7 +446,7 @@
 
   document.addEventListener("pointerlockchange", () => {
     const locked = document.pointerLockElement === canvas;
-    const clothesHasCursor = !!(globalThis.CoFExtras?.clothesOpen || globalThis.CoFHUD?.menuOpen);
+    const clothesHasCursor = !!(globalThis.CoFExtras?.clothesOpen || globalThis.CoFHUD?.menuOpen || globalThis.CoFHUD?.paused);
     // A request already in flight may complete after the wardrobe opens.
     if (locked && clothesHasCursor) { pointerHint.textContent = ""; document.exitPointerLock(); return; }
     pointerHint.textContent = locked ? "Ratón capturado · Esc para liberarlo" : "";
