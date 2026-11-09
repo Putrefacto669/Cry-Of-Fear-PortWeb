@@ -22,7 +22,7 @@
 
 // package.sh replaces the token after calculating the resource graph. Older
 // clients still use updateViaCache=imports: a new URL must bypass their old HTTP entry.
-importScripts("sw-manifest.js?release=511886d6b3de");
+importScripts("sw-manifest.js?release=7d2f04e9649f");
 
 const M = self.COF_MANIFEST;
 const CACHE = "cof-web-v1"; // esquema de caché, no versión del juego
