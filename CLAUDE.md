@@ -167,6 +167,15 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
   - Desde el 08/11, `export` se cancela si se perderían líneas de los parches actuales.
   - `patches.sh check` informa sin escribir; `export --allow-drop` es solo para sustituciones revisadas.
   - Prueba: `tools/wsl/test_patches_guard.sh`.
+  - Desde el 09/11 la serie sale de `git diff HEAD` (incluye lo indexado), el lote es transaccional y
+    `--allow-drop` deja registro en `build/patch-approvals/<id>.txt`. La prueba escribe sus registros en
+    un temporal (`COF_PATCH_APPROVALS`).
+  - Antes de aplicar un `patch_*.py` al canónico, comprobar qué tiene ya: el 09/11 el árbol tenía Studio 2
+    en `gl_opengl.c`/`gl_local.h` pero no en `gl_studio.c`, y reaplicarlo duplicó la cvar
+    (`docs/CLAUDE_INTEGRACION_STUDIO4_LLUVIA_2026_11_09.md`).
+- **Lluvia del HUD** (09/11): las rayas de `hud.js` (`COF/HUD RAIN` de `rain_settings`) están apagadas por
+  defecto por decisión del usuario; Opciones → Lluvia las activa (`cofOptions.rain`). El servidor sigue
+  enviando la petición. Prueba: `tools/e2e/rain_option.mjs`.
 - **Reloj del motor**: en la web `Platform_DoubleTime` usa `emscripten_get_now()`, que es monótono. El de
   SDL (`Date.now()`) retrocede con los ajustes de hora y daba arranques sin conexión (`level loaded at
   -18446744073707 sec`). Prueba: `tools/e2e/clock_backwards.mjs`.

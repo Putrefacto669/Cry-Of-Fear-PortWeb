@@ -1,0 +1,15 @@
+AssertionError [ERR_ASSERTION]: still on c_intro after 9 min: Ejecutando · c_intro
++ actual - expected
+
++ 'c_intro'
+- 'c_nightmare'
+     ^
+
+    at file:///root/cof-audits/browser-1.64.1/e2e/claude/intro_to_nightmare.mjs:38:10 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'c_intro',
+  expected: 'c_nightmare',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

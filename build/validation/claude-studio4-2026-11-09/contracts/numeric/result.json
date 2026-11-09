@@ -1,0 +1,91 @@
+{
+  "reference": "Ghidra client.dll 10068d70; gamma 100595f0 (XMM0=x, XMM1=gamma at 10059627); values are derived, not native framebuffer captures",
+  "rows": [
+    {
+      "name": "normal opposite light",
+      "actual": 0.5,
+      "expected": 0.5,
+      "passed": true
+    },
+    {
+      "name": "normal tangent lambert2",
+      "actual": 0.300000012,
+      "expected": 0.300000012,
+      "passed": true
+    },
+    {
+      "name": "normal parallel light",
+      "actual": 0.099999994,
+      "expected": 0.100000001,
+      "passed": true
+    },
+    {
+      "name": "flatshade ambient plus .8 diffuse",
+      "actual": 0.420000017,
+      "expected": 0.419999987,
+      "passed": true
+    },
+    {
+      "name": "fullbright vertex",
+      "actual": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    {
+      "name": "dynamic light normal facing",
+      "actual": 0.300000012,
+      "expected": 0.300000012,
+      "passed": true
+    },
+    {
+      "name": "flatshade excludes dynamic",
+      "actual": 0.420000017,
+      "expected": 0.419999987,
+      "passed": true
+    },
+    {
+      "name": "saturation red",
+      "actual": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    {
+      "name": "saturation green ratio",
+      "actual": 0.5,
+      "expected": 0.5,
+      "passed": true
+    },
+    {
+      "name": "saturation blue ratio",
+      "actual": 0.25,
+      "expected": 0.25,
+      "passed": true
+    },
+    {
+      "name": "gamma identity",
+      "actual": 0.25,
+      "expected": 0.25,
+      "passed": true
+    },
+    {
+      "name": "original gamma2 exponent",
+      "actual": 0.25,
+      "expected": 0.25,
+      "passed": true
+    },
+    {
+      "name": "original gammahalf exponent",
+      "actual": 0.5,
+      "expected": 0.5,
+      "passed": true
+    },
+    {
+      "name": "gamma before contrast brightness",
+      "actual": 0.38499999,
+      "expected": 0.38499999,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "failed": 0
+}

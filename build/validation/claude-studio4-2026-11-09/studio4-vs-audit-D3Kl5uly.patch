@@ -1,0 +1,288 @@
+--- a/ref/gl/gl_local.h
++++ b/ref/gl/gl_local.h
+@@ -509,6 +509,9 @@
+ // Cry of Fear flashlight (gl_rsurf.c): dlight/elight key of the client's spotlight
+ #define COF_SPOT_KEY 0x7C0F000
+ float R_CofSpotFactor( const vec3_t point, vec3_t color );
++float R_CofSpotFactorFrom( const vec3_t apex, const vec3_t point, vec3_t color );
++qboolean R_CofSpotTouchesBox( const vec3_t apex, const vec3_t mins, const vec3_t maxs );
++float R_CofSpotFov( void );
+ float R_CofCurve( float x );
+ qboolean VID_CubemapShot( const char *base, uint size, const float *vieworg, qboolean skyshot );
+ void R_GammaChanged( qboolean do_reset_gamma );
+--- a/ref/gl/gl_rsurf.c
++++ b/ref/gl/gl_rsurf.c
+@@ -146,15 +146,62 @@
+ }
+ 
+ // for models (gl_studio.c): the strength of the spotlight at a point, and its tint there
+-float R_CofSpotFactor( const vec3_t point, vec3_t color )
++float R_CofSpotFactorFrom( const vec3_t apex, const vec3_t point, vec3_t color )
+ {
+ 	vec3_t d;
+-	VectorSubtract( point, RI.rvp.vieworigin, d );
++	VectorSubtract( point, apex, d );
+ 	float k = R_SpotAt( d, RI.vforward, RI.vright, RI.vup, 700.0f, R_SpotTan(), color );
+ 	VectorScale( color, k, color );
+ 	return k;
+ }
+ 
++float R_CofSpotFactor( const vec3_t point, vec3_t color )
++{
++	return R_CofSpotFactorFrom( RI.rvp.vieworigin, point, color );
++}
++
++// the flashlight's aperture in degrees (r_cofspot_fov, 50 by default), for the models (gl_studio.c)
++float R_CofSpotFov( void )
++{
++	R_SpotTan(); // finds r_cofspot_fov
++	return bound( 1.0f, r_cofspot_fov ? r_cofspot_fov->value : 50.0f, 170.0f );
++}
++
++// whether the spotlight's volume from 'apex' can reach the box: the original tests the cone's volume against the
++// model's box before the light takes one of the model's 4 slots (client.dll 10084e40 builds it, 10084b30 tests
++// it): four side planes through the light, the forward axis turned by +-( 90 - aperture / 2 ) about up and
++// right, and a far plane through apex + forward * radius (700 here, the reach of R_SpotAt). There is no near
++// plane. A box entirely behind one plane is rejected (10083e90), as in a frustum cull.
++qboolean R_CofSpotTouchesBox( const vec3_t apex, const vec3_t mins, const vec3_t maxs )
++{
++	const float half = DEG2RAD( R_CofSpotFov() * 0.5f );
++	vec3_t normals[5];
++	float dists[5];
++
++	VectorNegate( RI.vforward, normals[0] ); dists[0] = -( DotProduct( RI.vforward, apex ) + 700.0f );
++	for( int side = 0; side < 4; side++ )
++	{
++		const float *axis = side < 2 ? RI.vright : RI.vup;
++		const float sign = ( side & 1 ) ? 1.0f : -1.0f;
++		for( int k = 0; k < 3; k++ )
++			normals[1 + side][k] = RI.vforward[k] * sinf( half ) + sign * axis[k] * cosf( half );
++		dists[1 + side] = DotProduct( normals[1 + side], apex );
++	}
++
++	for( int p = 0; p < 5; p++ )
++	{
++		qboolean inside = false;
++		for( int c = 0; c < 8 && !inside; c++ )
++		{
++			vec3_t corner = { ( c & 1 ) ? maxs[0] : mins[0], ( c & 2 ) ? maxs[1] : mins[1], ( c & 4 ) ? maxs[2] : mins[2] };
++			inside = DotProduct( normals[p], corner ) >= dists[p];
++		}
++		if( !inside )
++			return false;
++	}
++	return true;
++}
++
+ static void R_AddSpotLight( const msurface_t *surf, const dlight_t *dl, float sample_size, int smax, int tmax )
+ {
+ 	const mextrasurf_t *info = surf->info;
+--- a/ref/gl/gl_studio.c
++++ b/ref/gl/gl_studio.c
+@@ -1326,7 +1326,7 @@
+ 	vec3_t wlightdir[COF_MODEL_LIGHTS], wlightcolor[COF_MODEL_LIGHTS];	// at the model origin
+ 	vec3_t blightdir[COF_MODEL_LIGHTS][MAXSTUDIOBONES];	// from the light to the bone, bone space
+ 	vec3_t blightcolor[COF_MODEL_LIGHTS][MAXSTUDIOBONES];	// colour x attenuation at the bone
+-	struct { int calls, hits, has61, sky, fx, fullbright, lights, far, hidden; vec3_t ambient, diffuse, lightvec; } last;
++	struct { int calls, hits, has61, sky, fx, fullbright, lights, far, hidden, cone; vec3_t ambient, diffuse, lightvec; } last;
+ } g_cofmodel;
+ 
+ static qboolean R_CofModelLightPoint( model_t *model, mnode_t *node, const vec3_t start, const vec3_t end, float *out )
+@@ -1479,13 +1479,17 @@
+ 	for( int i = 0; i < m_pStudioHeader->numbones; i++ )
+ 		Matrix3x4_VectorIRotate( g_studio.lighttransform[i], g_cofmodel.lightvec, g_cofmodel.blightvec[i] );
+ 
+-	// FUN_1005bd90: the first 4 live lights, in order, that reach the model's origin and that a world-only
+-	// point trace from the origin to the light does not block; the player's own flashlight always lights
+-	// the player's model. R_StudioEntityLight already moved the lights to their entities and the
+-	// flashlight to the view (it skips everything with r_dynamic 0, and so does this).
+-	vec3_t origin;
++	// FUN_1005bd90: the first 4 live lights, in order, that reach the model's origin, whose cone (spotlights)
++	// reaches the model's box, and that a world-only point trace from the origin to the light leaves clear
++	// (not startsolid, fraction 1: 1005bf99 reads pmtrace_t +4). The player's flashlight (keys -666/-665
++	// in the original) always lights the viewmodel. R_StudioEntityLight already moved the lights to their
++	// entities and the flashlight to the view (it skips everything with r_dynamic 0, and so does this).
++	vec3_t origin, absmin, absmax;
+ 	const dlight_t *picked[COF_MODEL_LIGHTS];
++	const qboolean viewmodel = ent == tr.viewent;
+ 	Matrix3x4_OriginFromMatrix( g_studio.rotationmatrix, origin );
++	VectorAdd( ent->origin, ent->curstate.mins, absmin );
++	VectorAdd( ent->origin, ent->curstate.maxs, absmax );
+ 	g_cofmodel.numlights = 0;
+ 	for( int lnum = 0; r_dynamic->value && lnum < MAX_ELIGHTS && g_cofmodel.numlights < COF_MODEL_LIGHTS; lnum++ )
+ 	{
+@@ -1494,19 +1498,26 @@
+ 		if( el->die < g_studio.time || el->radius <= 0.0f )
+ 			continue;
+ 
+-		qboolean own = el->key == COF_SPOT_KEY && RP_LOCALCLIENT( ent );
++		qboolean own = el->key == COF_SPOT_KEY && viewmodel;
+ 		if( !own )
+ 		{
+ 			vec3_t d;
+ 			VectorSubtract( origin, el->origin, d );
+-			// the flashlight's reach is its cone (R_CofSpotFactor, 700 units), not its elight radius
+-			if( el->key != COF_SPOT_KEY && DotProduct( d, d ) > el->radius * el->radius )
++			// 1005bd90 tests the distance first; the flashlight's reach is its volume's (700 units, R_SpotAt), not the
++			// radius of its elight
++			const float reach = el->key == COF_SPOT_KEY ? 700.0f : el->radius;
++			if( DotProduct( d, d ) > reach * reach )
+ 			{
+ 				g_cofmodel.last.far++;
+ 				continue;
+ 			}
++			if( el->key == COF_SPOT_KEY && !R_CofSpotTouchesBox( el->origin, absmin, absmax ))
++			{
++				g_cofmodel.last.cone++;
++				continue;
++			}
+ 			pmtrace_t trace = gEngfuncs.CL_TraceLine( origin, el->origin, PM_WORLD_ONLY );
+-			if( trace.allsolid || trace.fraction < 1.0f )
++			if( trace.startsolid || trace.fraction < 1.0f )
+ 			{
+ 				g_cofmodel.last.hidden++;
+ 				continue;
+@@ -1521,6 +1532,20 @@
+ 		vec3_t color = { R_CofCurve( el->color.r / 255.0f ) * 0.5f, R_CofCurve( el->color.g / 255.0f ) * 0.5f,
+ 			R_CofCurve( el->color.b / 255.0f ) * 0.5f };
+ 		float r2 = el->radius * el->radius;
++		vec3_t lightorg;
++
++		VectorCopy( el->origin, lightorg );
++		if( el->key == COF_SPOT_KEY && viewmodel )
++		{
++			// 100678d0 (100682a8-10068392): the viewmodel entity's origin and angles, pitch inverted, then
++			// origin - 13 * forward + 5 * right
++			vec3_t angles, forward, right, up;
++			VectorCopy( ent->angles, angles );
++			angles[PITCH] = -angles[PITCH];
++			AngleVectors( angles, forward, right, up );
++			VectorMA( ent->origin, -13.0f, forward, lightorg );
++			VectorMA( lightorg, 5.0f, right, lightorg );
++		}
+ 
+ 		for( int b = -1; b < m_pStudioHeader->numbones; b++ )
+ 		{
+@@ -1530,9 +1555,19 @@
+ 			if( b < 0 ) VectorCopy( origin, pos );
+ 			else VectorSet( pos, g_studio.lighttransform[b][0][3], g_studio.lighttransform[b][1][3], g_studio.lighttransform[b][2][3] );
+ 
+-			VectorSubtract( pos, el->origin, d );
++			VectorSubtract( pos, lightorg, d );
+ 			if( el->key == COF_SPOT_KEY )
+-				atten = R_CofSpotFactor( pos, tint ) > 0.0f ? 1.0f : 0.0f; // tint carries the cone
++			{
++				// 100678d0: 1 - d^2 / r^2 over the spot's reach, times a ramp inside its cone around the light's
++				// direction (the view): threshold cos( ( a + b ) * 0.3 deg ) (10068254), with both apertures from
++				// r_cofspot_fov, and ( dot - threshold ) / ( 1 - threshold )
++				vec3_t dir;
++				const float threshold = cosf( DEG2RAD( 2.0f * R_CofSpotFov() * 0.3f ));
++				VectorNormalize2( d, dir );
++				const float dot = DotProduct( dir, RI.vforward );
++				atten = Q_max( 0.0f, 1.0f - DotProduct( d, d ) / ( 700.0f * 700.0f ));
++				atten *= dot >= threshold ? ( dot - threshold ) / ( 1.0f - threshold ) : 0.0f;
++			}
+ 			else
+ 				atten = Q_max( 0.0f, 1.0f - DotProduct( d, d ) / r2 );
+ 			VectorNormalize( d );
+@@ -1591,18 +1626,13 @@
+ 	float brightest = Q_max( out[0], Q_max( out[1], out[2] ));
+ 	if( brightest > 1.0f )
+ 		VectorScale( out, 1.0f / brightest, out );
+-
+-	// additive meshes are drawn without the x2: give them their doubled colour here
+-	if( FBitSet( flags, STUDIO_NF_ADDITIVE ))
+-		for( int k = 0; k < 3; k++ )
+-			out[k] = Q_min( out[k] * 2.0f, 1.0f );
+ }
+ 
+ static void R_CofModelStats_f( void )
+ {
+-	gEngfuncs.Con_Printf( "cof_model_light active=%d calls=%d hits=%d has61=%d sky=%d fx=%d fullbright=%d lights=%d far=%d hidden=%d ambient=%.3f,%.3f,%.3f diffuse=%.3f,%.3f,%.3f lightvec=%.2f,%.2f,%.2f\n",
++	gEngfuncs.Con_Printf( "cof_model_light active=%d calls=%d hits=%d has61=%d sky=%d fx=%d fullbright=%d lights=%d far=%d hidden=%d cone=%d ambient=%.3f,%.3f,%.3f diffuse=%.3f,%.3f,%.3f lightvec=%.2f,%.2f,%.2f\n",
+ 		g_cofmodel.active, g_cofmodel.last.calls, g_cofmodel.last.hits, g_cofmodel.last.has61, g_cofmodel.last.sky, g_cofmodel.last.fx,
+-		g_cofmodel.last.fullbright, g_cofmodel.last.lights, g_cofmodel.last.far, g_cofmodel.last.hidden,
++		g_cofmodel.last.fullbright, g_cofmodel.last.lights, g_cofmodel.last.far, g_cofmodel.last.hidden, g_cofmodel.last.cone,
+ 		g_cofmodel.last.ambient[0], g_cofmodel.last.ambient[1], g_cofmodel.last.ambient[2],
+ 		g_cofmodel.last.diffuse[0], g_cofmodel.last.diffuse[1], g_cofmodel.last.diffuse[2],
+ 		g_cofmodel.last.lightvec[0], g_cofmodel.last.lightvec[1], g_cofmodel.last.lightvec[2] );
+@@ -1770,9 +1800,32 @@
+ 	}
+ }
+ 
++// Cry of Fear (10065ef0): a corona_ fullbright texture adds -0.1..+0.1 to each emitted vertex. The draw comes from
++// a generator of the renderer's own: COM_RandomFloat shares the engine's lran1 state with the server's
++// RANDOM_FLOAT/RANDOM_LONG, so drawing a model would change the game's random sequence (Codex's review of Studio 3).
++static qboolean g_cof_corona_mesh;
++static uint g_cof_corona_rng = 0x9e3779b9u;
++
++static float R_CofCoronaRandom( float low, float high )
++{
++	g_cof_corona_rng ^= g_cof_corona_rng << 13; // xorshift32
++	g_cof_corona_rng ^= g_cof_corona_rng >> 17;
++	g_cof_corona_rng ^= g_cof_corona_rng << 5;
++	return low + ( high - low ) * (float)( g_cof_corona_rng >> 8 ) * ( 1.0f / 16777216.0f );
++}
++
+ static void R_StudioSetColorArray( short *ptricmds, vec3_t *pstudionorms, byte *color )
+ {
+ 	float	*lv = (float *)g_studio.lightvalues[ptricmds[1]];
++	vec3_t	corona;
++
++	if( g_cof_corona_mesh )
++	{
++		const float r = R_CofCoronaRandom( -0.1f, 0.1f );
++		for( int k = 0; k < 3; k++ )
++			corona[k] = bound( 0.0f, lv[k] + r, 1.0f );
++		lv = corona;
++	}
+ 
+ 	color[3] = tr.blend * 255;
+ 	R_LightLambert( g_studio.lightpos[ptricmds[0]], pstudionorms[ptricmds[1]], lv, color );
+@@ -2359,11 +2412,9 @@
+ 		// not lit: its colour is cof_fullbrighttextures (0.5, x2 when drawn); corona_ adds +-0.1 per vertex
+ 		const char *cof_texname = ptexture[pskinref[pmesh[j].skinref]].name;
+ 		float cof_fullbright = -1.0f;
+-		qboolean cof_corona = false;
+ 		if( g_cofmodel.active && cof_fullbrighttextures.value != 0.0f && Q_strstr( cof_texname, "fullbright" ))
+ 		{
+ 			cof_fullbright = cof_fullbrighttextures.value;
+-			cof_corona = Q_strstr( cof_texname, "corona_" ) != NULL;
+ 			g_cofmodel.last.fullbright++;
+ 		}
+ 
+@@ -2390,9 +2441,7 @@
+ 				float lv_tmp;
+ 				if( cof_fullbright >= 0.0f )
+ 				{
+-					float v = cof_fullbright + ( cof_corona ? gEngfuncs.COM_RandomFloat( -0.1f, 0.1f ) : 0.0f );
+-					if( FBitSet( g_nFaceFlags, STUDIO_NF_ADDITIVE )) // drawn without the x2
+-						v = Q_min( v * 2.0f, 1.0f );
++					const float v = cof_fullbright; // corona_: R_StudioSetColorArray, per emitted vertex
+ 					VectorSet( g_studio.lightvalues[k], v, v, v );
+ 					if( FBitSet( g_nFaceFlags, STUDIO_NF_CHROME ))
+ 						R_StudioSetupChrome( g_studio.chrome[k], *pnormbone, (float *)pstudionorms );
+@@ -2482,14 +2531,21 @@
+ 
+ 		R_StudioSetupSkin( m_pStudioHeader, pskinref[pmesh->skinref] );
+ 
+-		// Cry of Fear: texture x colour x 2 (R_CofModelLighting)
++		// Cry of Fear: texture x colour x 2 (R_CofModelLighting), additive meshes too; corona_ flickers per vertex
+ 		if( g_cofmodel.active )
+-			pglTexEnvf( GL_TEXTURE_ENV, GL_RGB_SCALE_ARB, FBitSet( g_nFaceFlags, STUDIO_NF_FULLBRIGHT|STUDIO_NF_ADDITIVE ) ? 1.0f : 2.0f );
++		{
++			const char *texname = ptexture[pskinref[pmesh->skinref]].name;
++			pglTexEnvf( GL_TEXTURE_ENV, GL_RGB_SCALE_ARB, FBitSet( g_nFaceFlags, STUDIO_NF_FULLBRIGHT ) ? 1.0f : 2.0f );
++			g_cof_corona_mesh = cof_fullbrighttextures.value != 0.0f && Q_strstr( texname, "fullbright" ) && Q_strstr( texname, "corona_" );
++		}
+ 
+ 		R_StudioSubmitMesh( ptricmds, pstudionorms, s, t, shellscale, 0 );
+ 
+ 		if( g_cofmodel.active )
++		{
+ 			pglTexEnvf( GL_TEXTURE_ENV, GL_RGB_SCALE_ARB, 1.0f );
++			g_cof_corona_mesh = false;
++		}
+ 
+ 		if( FBitSet( g_nFaceFlags, STUDIO_NF_MASKED ))
+ 		{

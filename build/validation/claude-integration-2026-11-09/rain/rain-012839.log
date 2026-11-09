@@ -1,0 +1,73 @@
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByText(/^(Lluvia|Rain)$/)[22m
+[2m    - locator resolved to <label for="cof-option-rain">Rain</label>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - performing click action[22m
+[2m      - <header>…</header> intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - performing click action[22m
+[2m      - <header>…</header> intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    30 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - performing click action[22m
+[2m       - <header>…</header> intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+[2m    - element is visible, enabled and stable[22m
+[2m    - scrolling into view if needed[22m
+[2m    - done scrolling[22m
+[2m    - performing click action[22m
+
+    at run (/root/cof-audits/browser-1.64.1/e2e/claude/rain_option.mjs:52:42)
+    at async file:///root/cof-audits/browser-1.64.1/e2e/claude/rain_option.mjs:62:3 {
+  log: [
+    '  - waiting for getByText(/^(Lluvia|Rain)$/)',
+    '    - locator resolved to <label for="cof-option-rain">Rain</label>',
+    '  - attempting click action',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is visible, enabled and stable',
+    '      - scrolling into view if needed',
+    '      - done scrolling',
+    '      - performing click action',
+    '      - <header>…</header> intercepts pointer events',
+    '    - retrying click action',
+    '    - waiting 20ms',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is visible, enabled and stable',
+    '      - scrolling into view if needed',
+    '      - done scrolling',
+    '      - performing click action',
+    '      - <header>…</header> intercepts pointer events',
+    '    - retrying click action',
+    '      - waiting 100ms',
+    '    30 × waiting for element to be visible, enabled and stable',
+    '       - element is visible, enabled and stable',
+    '       - scrolling into view if needed',
+    '       - done scrolling',
+    '       - performing click action',
+    '       - <header>…</header> intercepts pointer events',
+    '     - retrying click action',
+    '       - waiting 500ms',
+    '    - waiting for element to be visible, enabled and stable',
+    '    - element is visible, enabled and stable',
+    '    - scrolling into view if needed',
+    '    - done scrolling',
+    '    - performing click action'
+  ],
+  name: 'TimeoutError'
+}

@@ -25,9 +25,17 @@ try {
  await until(()=>output.filter(l=>l.includes("client connected")).length>n);
  assert.match(await command("cof_changelevel haehecl"),/map=c_start landmark=hahaland use=1 touch=1/);
  await page.evaluate(()=>CoFPreload("c_start"));
- // Leave the arrival volume with ordinary movement, as in the original route.
- await page.keyboard.down("w");await page.waitForTimeout(700);await page.keyboard.up("w");await page.waitForTimeout(200);
+ // Leave the arrival volume with ordinary movement, as in the original route. c_start2's info_player_start
+ // (2428,-883) lies inside c_start's trigger_multiple *100 (x 2380..2466, y -904..-831, target haehecl): arriving
+ // there sends Simon straight back (diagnosis of 09/11/2026, docs/CLAUDE_INTERMITENCIAS_Y_STUDIO3_2026_11_09.md).
+ // A fixed 700 ms of W only gets him out when the game runs fast enough; hold W until the server reports him
+ // out of that box (player hull +-16), polled every 100 ms with the same state deadline as the rest.
+ const origin=async()=>(await command("cof_inspect !player")).match(/origin=([-\d.]+),([-\d.]+)/).slice(1).map(Number);
+ const inArrivalBox=([x,y])=>x+16>2380&&x-16<2466&&y+16>-904&&y-16<-831;
+ await page.keyboard.down("w");await until(async()=>!inArrivalBox(await origin()));await page.keyboard.up("w");await page.waitForTimeout(200);
  for(let cycle=0;cycle<2;cycle++) {
+  const position=await origin();
+  assert.ok(!inArrivalBox(position),`harness: Simon at ${position} is inside c_start's arrival trigger_multiple before the Use`);
   n=output.filter(l=>l.includes("client connected")).length;
   await page.evaluate(()=>CoFDebug.cmd("cof_use haehecl on"));
   await until(()=>output.filter(l=>l.includes("client connected")).length>n);

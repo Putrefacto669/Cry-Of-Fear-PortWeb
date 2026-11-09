@@ -1,0 +1,22 @@
+{
+  "diagnosticOnly": true,
+  "modules": {
+    "server.wasm": "91ca7418dcdcb520cd1479d77ca6646af79e455158c23f179661a1f46f7954f4",
+    "client.wasm": "e0b2b6cc926ac1ba8564512fd493148f2748a959becb7a8e494391ac2b8b6ab1",
+    "libref_gles3compat.wasm": "3ea07f6b1c2726f366aab7f547321093b039df83f7663430cb13f477bc9831b2"
+  },
+  "hrtf": false,
+  "hatchBefore": "[00:10:10] COF/ENTITY *132 class=func_button body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=161 touch=0 target=multitscene frozen=0 stairs=-1 use=1 think=0 toggle=1 next=0 now=18.5214 effects=0 renderfx=0 modelindex=133 model=*132\n[00:10:10] COF/USEAIM hit= class=func_button fraction=0.624607921\n[00:10:10] COF/USEAIM candidate=door_office class=inter_door dot=-0.0106156068\n[00:10:10] COF/USEAIM candidate=gay1 class=func_button dot=-0.0104359509\n[00:10:10] COF/FENCE extra_input_3 time=18.5214",
+  "hatchAfter": "[00:10:11] COF/ENTITY *132 class=func_button body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=161 touch=0 target=multitscene frozen=0 stairs=-1 use=1 think=0 toggle=0 next=-1 now=19.0749 effects=0 renderfx=0 modelindex=133 model=*132\n[00:10:11] COF/ENTITY weapon_glock missing\n[00:10:11] COF/FENCE extra_input_4 time=19.0749",
+  "keyCollected": "[00:10:13] bag 0: apartmentkey (inventoryitems/apartmentkey.txt) count -1\n[00:10:13] COF/FENCE extra_input_6 time=21.721",
+  "doorAfter": "[00:10:14] COF/ENTITY *66 class=inter_door body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=0 target=3_exit1 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=22.2558 effects=0 renderfx=0 modelindex=67 model=*66\n[00:10:14] COF/FENCE extra_input_8 time=22.2558",
+  "unlockTime": 22.2558,
+  "bagAfter": "[00:10:14] monster monster_child health 20 dead 0 dist 498\n[00:10:14] monster monstermaker health 0 dead 0 dist 54\n[00:10:14] COF/FENCE extra_input_9 time=22.2719",
+  "presses": [
+    23.4711
+  ],
+  "afterReload": "[00:10:16] COF/ENTITY !player class=player body=0 solid=3 origin=-312.0,480.0,177.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=23.871 effects=0 renderfx=0 modelindex=328 model=models/player.mdl\n[00:10:16] COF/FENCE extra_input_23 time=23.871",
+  "passed": true,
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

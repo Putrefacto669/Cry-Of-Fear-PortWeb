@@ -1,0 +1,15 @@
+ok refused: lost-line
+ok basic: lost line refused, superset accepted, --allow-drop replaces
+ok refused: same-line-different-file
+ok refused: same-lines-different-order
+ok refused: same-line-different-context
+ok refused: restores-removed-code
+ok refused: loses-duplicate
+ok interrupted-replacement: the previous series survives a failed copy
+ok reproduces-tree
+ok staged-only: exported from git diff HEAD
+ok refused: same-anchor-move
+ok approval-record: 20261109-004208-7674.txt
+ok batch-second-fails: both projects keep the previous series
+ok batch-double-failure: exit 2, backup kept and not deleted by the next export
+PASS patches.sh guard: 7 counterexamples refused, staged changes exported, failed copy and batch keep the series, double failure keeps backups, approvals recorded, series reproduces the tree

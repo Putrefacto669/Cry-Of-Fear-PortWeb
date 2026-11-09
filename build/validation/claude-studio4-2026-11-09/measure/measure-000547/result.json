@@ -1,0 +1,528 @@
+{
+  "base": "http://127.0.0.1:8096/",
+  "toggle": [
+    "r_dynamic",
+    "1",
+    "0"
+  ],
+  "maps": {
+    "c_apartment1": {
+      "setup": [
+        "[00:06:26] \"r_cof_lightmaps\" is \"1\" ( \"1\" )",
+        "[00:06:26] \"gl_brightness\" is \"0\" ( \"0\" )",
+        "[00:06:26] \"gl_contrast\" is \"1\" ( \"1\" )",
+        "[00:06:26] \"gl_lambert\" is \"2\" ( \"2\" )"
+      ],
+      "weapons": {
+        "weapon_mobile-spawn": {
+          "slot": "1",
+          "view": "origin=-819.0,-160.0,318.0",
+          "lightStats": "[00:06:43] cof_model_light active=1 calls=400 hits=400 has61=400 sky=0 fx=120 fullbright=80 lights=0 far=0 hidden=0 cone=0 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 25051,
+              "mean": 36,
+              "dark": 0.639
+            },
+            "previous": {
+              "pixels": 25051,
+              "mean": 36,
+              "dark": 0.639
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 25.43,
+              "dark": 0.43
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 25.43,
+              "dark": 0.43
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-simon": {
+          "slot": "1",
+          "view": "origin=-819.0,-160.0,318.0",
+          "lightStats": "[00:07:02] cof_model_light active=1 calls=504 hits=504 has61=504 sky=0 fx=126 fullbright=0 lights=0 far=0 hidden=0 cone=0 ambient=0.070,0.070,0.070 diffuse=0.004,0.004,0.004 lightvec=0.01,-0.90,-0.44",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 12.84,
+              "dark": 0.702
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 12.84,
+              "dark": 0.702
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-monster": {
+          "slot": "1",
+          "view": "origin=-819.0,-160.0,318.0",
+          "lightStats": "[00:07:20] cof_model_light active=1 calls=114 hits=114 has61=114 sky=0 fx=38 fullbright=76 lights=0 far=0 hidden=0 cone=0 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 22781,
+              "mean": 38.09,
+              "dark": 0.615
+            },
+            "previous": {
+              "pixels": 22781,
+              "mean": 38.09,
+              "dark": 0.615
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 29.4,
+              "dark": 0.236
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 29.4,
+              "dark": 0.236
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-envmodel": {
+          "slot": "1",
+          "view": "origin=-819.0,-160.0,318.0",
+          "lightStats": "[00:07:33] cof_model_light active=1 calls=240 hits=240 has61=240 sky=0 fx=80 fullbright=80 lights=0 far=0 hidden=0 cone=0 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 20303,
+              "mean": 38.9,
+              "dark": 0.557
+            },
+            "previous": {
+              "pixels": 20303,
+              "mean": 38.9,
+              "dark": 0.557
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 18.98,
+              "dark": 0.56
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 18.98,
+              "dark": 0.56
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-envmodelfx": {
+          "slot": "1",
+          "view": "origin=-819.0,-160.0,318.0",
+          "lightStats": "[00:07:43] cof_model_light active=1 calls=432 hits=432 has61=432 sky=0 fx=72 fullbright=72 lights=0 far=0 hidden=0 cone=0 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 25112,
+              "mean": 37.36,
+              "dark": 0.622
+            },
+            "previous": {
+              "pixels": 25112,
+              "mean": 37.36,
+              "dark": 0.622
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 23.1,
+              "dark": 0.41
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 23.1,
+              "dark": 0.41
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-spawn": {
+          "slot": "1",
+          "view": "origin=-819.0,-160.0,318.0",
+          "lightStats": "[00:08:07] cof_model_light active=1 calls=444 hits=444 has61=444 sky=0 fx=74 fullbright=0 lights=37 far=37 hidden=0 cone=370 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 11183,
+              "mean": 17.72,
+              "dark": 0.605
+            },
+            "previous": {
+              "pixels": 11183,
+              "mean": 14.42,
+              "dark": 0.729
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 22.36,
+              "dark": 0.384
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 21.47,
+              "dark": 0.423
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-simon": {
+          "slot": "1",
+          "view": "origin=-819.0,-160.0,318.0",
+          "lightStats": "[00:08:27] cof_model_light active=1 calls=348 hits=348 has61=348 sky=0 fx=87 fullbright=0 lights=0 far=29 hidden=145 cone=174 ambient=0.070,0.070,0.070 diffuse=0.004,0.004,0.004 lightvec=0.01,-0.90,-0.44",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 9.28,
+              "dark": 0.824
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 7.96,
+              "dark": 0.852
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-monster": {
+          "slot": "1",
+          "view": "origin=-819.0,-160.0,318.0",
+          "lightStats": "[00:08:48] cof_model_light active=1 calls=105 hits=105 has61=105 sky=0 fx=35 fullbright=0 lights=35 far=0 hidden=0 cone=70 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 13627,
+              "mean": 21.54,
+              "dark": 0.431
+            },
+            "previous": {
+              "pixels": 13627,
+              "mean": 16.74,
+              "dark": 0.596
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 30.19,
+              "dark": 0.211
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 28.14,
+              "dark": 0.223
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-envmodel": {
+          "slot": "1",
+          "view": "origin=-819.0,-160.0,318.0",
+          "lightStats": "[00:09:01] cof_model_light active=1 calls=204 hits=204 has61=204 sky=0 fx=68 fullbright=0 lights=34 far=0 hidden=68 cone=102 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 14431,
+              "mean": 20.16,
+              "dark": 0.511
+            },
+            "previous": {
+              "pixels": 14431,
+              "mean": 16.49,
+              "dark": 0.685
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 18.38,
+              "dark": 0.496
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 17.49,
+              "dark": 0.578
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-envmodelfx": {
+          "slot": "1",
+          "view": "origin=-819.0,-160.0,318.0",
+          "lightStats": "[00:09:11] cof_model_light active=1 calls=504 hits=504 has61=504 sky=0 fx=84 fullbright=0 lights=42 far=42 hidden=0 cone=420 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 11184,
+              "mean": 17.72,
+              "dark": 0.605
+            },
+            "previous": {
+              "pixels": 11184,
+              "mean": 14.42,
+              "dark": 0.729
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 22.36,
+              "dark": 0.384
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 21.47,
+              "dark": 0.423
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "origin": [
+        -819,
+        -160,
+        318
+      ],
+      "envmodel": {
+        "index": "424",
+        "fx": 0,
+        "model": "models/cutscene/player3.mdl",
+        "d": 36
+      },
+      "envmodelFx": {
+        "index": "306",
+        "fx": 150,
+        "model": "models/cutscene/hissidle2.mdl",
+        "d": 199
+      },
+      "errors": []
+    }
+  }
+}

@@ -1,0 +1,71 @@
+renderer 3ea07f6b1c2726f366aab7f547321093b039df83f7663430cb13f477bc9831b2
+--- codex fullbright review
+exit 0
+PASS real phone screen color and GL scale
+--- codex studio runtime contract
+exit 0
+PASS Studio integration, mounted hashes, save/load, map transitions and GL readback
+--- pointer lock
+OK pointer lock: raw movement, unsupported fallback, rejection preserved, legacy APIs and ignored SDL promises
+clock_backwards (render3) exit 0
+PASS monotonic engine clock: client connects with the wall clock stepping back 2 s
+{
+  "stepBackMs": 2000,
+  "passed": true,
+  "clockStepped": true,
+  "connected": true,
+  "wrapped": false,
+  "firstFrame": null,
+  "levelLoaded": "level loaded at 2.17 sec"
+}button_clock_probe.mjs
+button_fixed_probe.mjs
+button_probe.mjs
+c_start_gameplay_probe.mjs
+c_start_progression.mjs
+-rw-r--r-- 1 root root  7693 Nov  8 22:18 train_entities-regression.mjs
+-rw-r--r-- 1 root root  4797 Nov  8 22:20 trigger_persistence-regression.mjs
+-rw-r--r-- 1 root root  4744 Nov  8 22:26 voice_mix_probe-regression.mjs
+v24.19.0
+fog_entities exit 0
+PASS actual BSP linear fog GPU draws, off and native restoration without reactivation
+flashlight (render3) exit 0
+off 23.0 0.05 0
+spot 24.5 0.04 0
+wallOff 45.8 0 0
+wallSpot 56.0 0 0
+noDynamic 45.9 0 0
+dynamicAgain 56.0 0 0
+restoredOn 55.9 0 0
+wallOffAgain 45.9 0 0
+errors []
+--- phone fullbright
+OUT /root/cof-audits/claude-render3-20261109/measure-000339
+--- flashlight on viewmodel
+OUT /root/cof-audits/claude-render3-20261109/measure-000547
+1
+changelevel_entities-wt exit 0
+extras_interactions-wt exit 0
+PASS actual E ceiling hatch and original apartment key via bag Use; unlocked state survives load
+extras_interactions-negative exit 1
+AssertionError [ERR_ASSERTION]: player did not reach 3_exit1 unfrozen: origin=37.0,-155.0,164.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0
+campaign_entities 0
+manager_entities 0
+sound_entities 0
+camera_entities 0
+train_entities 0
+track_entities 0
+envpos_entities 0
+button_entities 0
+changelevel_entities 0
+trigger_persistence 0
+ambient_persistence 0
+callback_behavior 0
+extras_persistence 0
+extras_interactions 0
+phone_singleplayer_punch 0
+dual_hands 0
+ammo_hud 0
+voice_mix_probe 0
+RESULT /root/cof-audits/claude-render3-20261109/regressions-001051 18 / 18
+
+[exited with code 0]

@@ -1,0 +1,112 @@
+{
+  "syntheticTraces": true,
+  "expected": {
+    "first-four-even-when-later-is-closer": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "expiry-radius-world-blockage": [
+      2
+    ],
+    "startsolid-fraction-one": [],
+    "spot-outside-cone-takes-no-slot": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "spot-inside-cone": [
+      0
+    ],
+    "flashlight-on-viewmodel-untested": [
+      0
+    ],
+    "flashlight-on-other-model-tested": [],
+    "dynamic-disabled": []
+  },
+  "rows": {
+    "first-four-even-when-later-is-closer": {
+      "slots": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "far": 0,
+      "hidden": 0,
+      "cone": 0,
+      "traces": 4,
+      "invalidTraceFlags": 0
+    },
+    "expiry-radius-world-blockage": {
+      "slots": [
+        2
+      ],
+      "far": 1,
+      "hidden": 1,
+      "cone": 0,
+      "traces": 2,
+      "invalidTraceFlags": 0
+    },
+    "startsolid-fraction-one": {
+      "slots": [],
+      "far": 0,
+      "hidden": 1,
+      "cone": 0,
+      "traces": 1,
+      "invalidTraceFlags": 0
+    },
+    "spot-outside-cone-takes-no-slot": {
+      "slots": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "far": 0,
+      "hidden": 0,
+      "cone": 1,
+      "traces": 4,
+      "invalidTraceFlags": 0
+    },
+    "spot-inside-cone": {
+      "slots": [
+        0
+      ],
+      "far": 0,
+      "hidden": 0,
+      "cone": 0,
+      "traces": 1,
+      "invalidTraceFlags": 0
+    },
+    "flashlight-on-viewmodel-untested": {
+      "slots": [
+        0
+      ],
+      "far": 0,
+      "hidden": 0,
+      "cone": 0,
+      "traces": 0,
+      "invalidTraceFlags": 0
+    },
+    "flashlight-on-other-model-tested": {
+      "slots": [],
+      "far": 0,
+      "hidden": 0,
+      "cone": 1,
+      "traces": 0,
+      "invalidTraceFlags": 0
+    },
+    "dynamic-disabled": {
+      "slots": [],
+      "far": 0,
+      "hidden": 0,
+      "cone": 1,
+      "traces": 0,
+      "invalidTraceFlags": 0
+    }
+  },
+  "failed": []
+}

@@ -1,0 +1,76 @@
+{
+  "default": {
+    "request": "[01:36:20] COF/HUD RAIN 1000 10 10",
+    "canvas": true,
+    "max": 0,
+    "errors": []
+  },
+  "geometry": {
+    "viewport": [
+      960,
+      600
+    ],
+    "scroll": [
+      0,
+      0
+    ],
+    "header": [
+      0,
+      0,
+      960,
+      35
+    ],
+    "main": [
+      0,
+      35,
+      960,
+      383
+    ],
+    "box": [
+      270,
+      56,
+      690,
+      361
+    ],
+    "label": [
+      294,
+      220,
+      321,
+      235
+    ],
+    "hit": "<label for=\"cof-option-rain\">Rain</label>",
+    "visual": [
+      0,
+      0,
+      1
+    ],
+    "dpr": 1,
+    "zoom": [],
+    "playwrightBox": {
+      "x": 294.390625,
+      "y": 219.625,
+      "width": 26.75,
+      "height": 15
+    },
+    "received": "<canvas id=\"canvas\" tabindex=\"-1\" oncontextmenu=\"event.preventDefault()\" width=\""
+  },
+  "uiOn": {
+    "checked": false,
+    "canvas": true,
+    "max": 0
+  },
+  "uiOff": {
+    "checked": true,
+    "canvas": true,
+    "max": 5175,
+    "saved": true
+  },
+  "on": {
+    "request": "[01:37:36] COF/HUD RAIN 1000 10 10",
+    "canvas": true,
+    "max": 4976,
+    "errors": []
+  },
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: the Options label did not turn the rain on: {\"checked\":false,\"canvas\":true,\"max\":0}\n    at file:///root/cof-audits/browser-1.64.1/e2e/claude/rain_option.mjs:73:10"
+}

@@ -1,0 +1,31 @@
+  xash3d:
+    - root:ref/gl/gl_rsurf.c: added line lost or moved (between 'static uint\t\tr_blocklights[BLOCK_SIZE_MAX*BLOCK_SIZE_MAX*3];' and 'static mextrasurf_t\t\t*fullbright_surfaces[MAX_TEXTURES];'): +float R_CofSpotFactor( const vec3_t point, vec3_t color )
+    - root:ref/gl/gl_rsurf.c: added line lost or moved (between 'static uint\t\tr_blocklights[BLOCK_SIZE_MAX*BLOCK_SIZE_MAX*3];' and 'static mextrasurf_t\t\t*fullbright_surfaces[MAX_TEXTURES];'): +	VectorSubtract( point, RI.rvp.vieworigin, d );
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +	struct { int calls, hits, has61, sky, fx, fullbright, lights, far, hidden; vec3_t ambient, diffuse, lightvec; } last;
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +	// FUN_1005bd90: the first 4 live lights, in order, that reach the model's origin and that a world-only
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +	// point trace from the origin to the light does not block; the player's own flashlight always lights
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +	// the player's model. R_StudioEntityLight already moved the lights to their entities and the
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +	// flashlight to the view (it skips everything with r_dynamic 0, and so does this).
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +	vec3_t origin;
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +		qboolean own = el->key == COF_SPOT_KEY && RP_LOCALCLIENT( ent );
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +			// the flashlight's reach is its cone (R_CofSpotFactor, 700 units), not its elight radius
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +			if( el->key != COF_SPOT_KEY && DotProduct( d, d ) > el->radius * el->radius )
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +			if( trace.allsolid || trace.fraction < 1.0f )
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +			VectorSubtract( pos, el->origin, d );
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +				atten = R_CofSpotFactor( pos, tint ) > 0.0f ? 1.0f : 0.0f; // tint carries the cone
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +	// additive meshes are drawn without the x2: give them their doubled colour here
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +	if( FBitSet( flags, STUDIO_NF_ADDITIVE ))
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +		for( int k = 0; k < 3; k++ )
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +			out[k] = Q_min( out[k] * 2.0f, 1.0f );
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +	gEngfuncs.Con_Printf( "cof_model_light active=%d calls=%d hits=%d has61=%d sky=%d fx=%d fullbright=%d lights=%d far=%d hidden=%d ambient=%.3f,%.3f,%.3f diffuse=%.3f,%.3f,%.3f lightvec=%.2f,%.2f,%.2f\n",
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '/*'): +		g_cofmodel.last.fullbright, g_cofmodel.last.lights, g_cofmodel.last.far, g_cofmodel.last.hidden,
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '\t\t// fill in sortedmesh info'): +		qboolean cof_corona = false;
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '\t\t// fill in sortedmesh info'): +			cof_corona = Q_strstr( cof_texname, "corona_" ) != NULL;
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '\t\t\t\tfloat lv_tmp;' and '\t\t\t\tif( FBitSet( m_pStudioHeader->flags, STUDIO_HAS_BONEWEIGHTS ))'): +					float v = cof_fullbright + ( cof_corona ? gEngfuncs.COM_RandomFloat( -0.1f, 0.1f ) : 0.0f );
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '\t\t\t\tfloat lv_tmp;' and '\t\t\t\tif( FBitSet( m_pStudioHeader->flags, STUDIO_HAS_BONEWEIGHTS ))'): +					if( FBitSet( g_nFaceFlags, STUDIO_NF_ADDITIVE )) // drawn without the x2
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '\t\t\t\tfloat lv_tmp;' and '\t\t\t\tif( FBitSet( m_pStudioHeader->flags, STUDIO_HAS_BONEWEIGHTS ))'): +						v = Q_min( v * 2.0f, 1.0f );
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '\t\tR_StudioSubmitMesh( ptricmds, pstudionorms, s, t, shellscale, 0 );'): +		// Cry of Fear: texture x colour x 2 (R_CofModelLighting)
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '' and '\t\tR_StudioSubmitMesh( ptricmds, pstudionorms, s, t, shellscale, 0 );'): +			pglTexEnvf( GL_TEXTURE_ENV, GL_RGB_SCALE_ARB, FBitSet( g_nFaceFlags, STUDIO_NF_FULLBRIGHT|STUDIO_NF_ADDITIVE ) ? 1.0f : 2.0f );
+  hlsdk:
+  la serie nueva pierde o mueve cambios de la actual (ver arriba)

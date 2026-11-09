@@ -1,0 +1,57 @@
+/mnt/c/Users/josue/AppData/Local/Temp/claude/5ca423ac58aab436/c2c79a05-c4b9-45e7-9a8b-0ec4623056ec/scratchpad/run_render2_all.sh: line 18: COF_TOGGLE=cof_fullbrighttextures 0.5 0: command not found
+/mnt/c/Users/josue/AppData/Local/Temp/claude/5ca423ac58aab436/c2c79a05-c4b9-45e7-9a8b-0ec4623056ec/scratchpad/run_render2_all.sh: line 19: COF_TOGGLE=r_dynamic 1 0: command not found
+d ignored SDL promises
+clock_backwards (render2) exit 0
+PASS monotonic engine clock: client connects with the wall clock stepping back 2 s
+{
+  "stepBackMs": 2000,
+  "passed": true,
+  "clockStepped": true,
+  "connected": true,
+  "wrapped": false,
+  "firstFrame": null,
+  "levelLoaded": "level loaded at 1.93 sec"
+}button_clock_probe.mjs
+button_fixed_probe.mjs
+button_probe.mjs
+c_start_gameplay_probe.mjs
+c_start_progression.mjs
+-rw-r--r-- 1 root root  7693 Nov  8 20:13 train_entities-regression.mjs
+-rw-r--r-- 1 root root  4797 Nov  8 20:16 trigger_persistence-regression.mjs
+-rw-r--r-- 1 root root  4744 Nov  8 20:24 voice_mix_probe-regression.mjs
+v24.19.0
+fog_entities exit 0
+PASS actual BSP linear fog GPU draws, off and native restoration without reactivation
+flashlight (render2) exit 0
+off 23.0 0.05 0
+spot 24.3 0.04 0
+wallOff 45.9 0 0
+wallSpot 56.0 0 0
+noDynamic 45.9 0 0
+dynamicAgain 56.0 0 0
+restoredOn 56.0 0 0
+wallOffAgain 45.9 0 0
+errors []
+--- phone fullbright
+--- flashlight on viewmodel
+campaign_entities 0
+manager_entities 0
+sound_entities 0
+camera_entities 0
+train_entities 0
+track_entities 0
+envpos_entities 0
+button_entities 0
+changelevel_entities 0
+trigger_persistence 0
+ambient_persistence 0
+callback_behavior 0
+extras_persistence 0
+extras_interactions 0
+phone_singleplayer_punch 0
+dual_hands 0
+ammo_hud 0
+voice_mix_probe 0
+RESULT /root/cof-audits/claude-render2-20261109/regressions-221617 18 / 18
+
+[exited with code 0]
