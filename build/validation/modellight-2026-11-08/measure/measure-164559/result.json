@@ -1,0 +1,1858 @@
+{
+  "base": "http://127.0.0.1:8092/",
+  "maps": {
+    "c_intro": {
+      "error": "Error: locator.screenshot: Error: strict mode violation: locator('canvas') resolved to 2 elements:\n    1) <canvas id=\"canvas\" width=\"800\" height=\"347\" tabindex=\"-1\" oncontextmenu=\"event.preventDefault()\"></canvas> aka locator('#canvas')\n    2) <canvas id=\"cof-rain\"></canvas> aka locator('#cof-rain')\n\nCall log:\n\u001b[2m  - waiting for locator('canvas')\u001b[22m\n",
+      "errors": [],
+      "tail": [
+        "[16:46:40] COF/HUD INV 1 inventoryitems/weapons/weapon_glock.txt",
+        "[16:46:40] COF/HUD QUICK weapon_glock - -",
+        "[16:46:40] COF/HUD OBJECTIVE ",
+        "[16:46:41] COF/HUD STAT 100 100 0 8",
+        "[16:46:41] COF/HUD SMSICON 0",
+        "[16:46:41] COF/HUD INV 1 inventoryitems/weapons/weapon_glock.txt",
+        "[16:46:41] COF/HUD QUICK weapon_glock - -",
+        "[16:46:41] COF/HUD OBJECTIVE ",
+        "[16:46:41] COF/HUD EXTRAS 0 0 0 0",
+        "[16:46:41] COF/HUD EXTRAS 0 0 0 0",
+        "[16:46:41] COF/HUD STAT 100 100 0 8",
+        "[16:46:41] COF/HUD SMSICON 0",
+        "[16:46:41] COF/HUD INV 1 inventoryitems/weapons/weapon_glock.txt",
+        "[16:46:41] COF/HUD QUICK weapon_glock - -",
+        "[16:46:41] COF/HUD OBJECTIVE "
+      ]
+    },
+    "c_nightmare": {
+      "setup": [
+        "[16:47:25] \"r_cof_lightmaps\" is \"1\" ( \"1\" )",
+        "[16:47:25] \"gl_brightness\" is \"0\" ( \"0\" )",
+        "[16:47:25] \"gl_contrast\" is \"1\" ( \"1\" )",
+        "[16:47:25] \"gl_lambert\" is \"2\" ( \"2\" )"
+      ],
+      "weapons": {
+        "weapon_glock-spawn": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:47:29] cof_model_light active=1 calls=645 hits=645 has61=645 sky=0 fx=129 ambient=0.500,0.500,0.500 diffuse=0.094,0.098,0.094 lightvec=0.11,-0.07,-0.98",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 10.34,
+              "dark": 0.858
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 13.14,
+              "dark": 0.823
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_glock-monster": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:47:36] cof_model_light active=1 calls=936 hits=936 has61=936 sky=0 fx=216 ambient=0.500,0.500,0.500 diffuse=0.094,0.098,0.094 lightvec=0.11,-0.07,-0.98",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 8.72,
+              "dark": 0.912
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 9.49,
+              "dark": 0.899
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_glock-envmodel": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:47:45] cof_model_light active=1 calls=575 hits=575 has61=575 sky=0 fx=161 ambient=0.500,0.500,0.500 diffuse=0.090,0.094,0.082 lightvec=0.01,0.06,-0.98",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 7.11,
+              "dark": 0.971
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 10.85,
+              "dark": 0.927
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-spawn": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:47:57] cof_model_light active=1 calls=528 hits=528 has61=528 sky=0 fx=192 ambient=0.500,0.500,0.500 diffuse=0.098,0.102,0.102 lightvec=-0.13,-0.01,-0.98",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 1.68,
+              "dark": 0.971
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 1.68,
+              "dark": 0.971
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-monster": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:48:05] cof_model_light active=1 calls=567 hits=567 has61=567 sky=0 fx=216 ambient=0.500,0.500,0.500 diffuse=0.098,0.102,0.102 lightvec=-0.13,-0.01,-0.98",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 1.68,
+              "dark": 0.971
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 1.68,
+              "dark": 0.971
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-envmodel": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:48:12] cof_model_light active=1 calls=435 hits=435 has61=435 sky=0 fx=174 ambient=0.500,0.500,0.500 diffuse=0.098,0.102,0.102 lightvec=-0.13,-0.01,-0.98",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 1.68,
+              "dark": 0.971
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 1.68,
+              "dark": 0.971
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-spawn": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:48:18] cof_model_light active=1 calls=532 hits=532 has61=532 sky=0 fx=228 ambient=0.500,0.500,0.500 diffuse=0.098,0.102,0.102 lightvec=-0.13,-0.01,-0.98",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 2.18,
+              "dark": 0.962
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 2.18,
+              "dark": 0.962
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-monster": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:48:26] cof_model_light active=1 calls=0 hits=0 has61=0 sky=0 fx=0 ambient=0.000,0.000,0.000 diffuse=0.000,0.000,0.000 lightvec=0.00,0.00,0.00",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 2.18,
+              "dark": 0.962
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 2.18,
+              "dark": 0.962
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-envmodel": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:48:32] cof_model_light active=1 calls=0 hits=0 has61=0 sky=0 fx=0 ambient=0.000,0.000,0.000 diffuse=0.000,0.000,0.000 lightvec=0.00,0.00,0.00",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 2.18,
+              "dark": 0.962
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 2.18,
+              "dark": 0.962
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "origin": [],
+      "envmodel": {
+        "index": "121",
+        "fx": 150,
+        "d": null
+      },
+      "errors": []
+    },
+    "c_start": {
+      "setup": [
+        "[16:49:49] \"r_cof_lightmaps\" is \"1\" ( \"1\" )",
+        "[16:49:49] \"gl_brightness\" is \"0\" ( \"0\" )",
+        "[16:49:49] \"gl_contrast\" is \"1\" ( \"1\" )",
+        "[16:49:49] \"gl_lambert\" is \"2\" ( \"2\" )"
+      ],
+      "weapons": {
+        "weapon_glock-spawn": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:49:53] cof_model_light active=0 calls=351 hits=351 has61=351 sky=0 fx=0 ambient=0.008,0.008,0.008 diffuse=0.078,0.078,0.063 lightvec=-0.18,0.02,-0.97",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 14.2,
+              "dark": 0.681
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 19.16,
+              "dark": 0.579
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_glock-monster": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:50:04] cof_model_light active=0 calls=369 hits=369 has61=369 sky=0 fx=0 ambient=0.008,0.008,0.008 diffuse=0.078,0.078,0.063 lightvec=-0.18,0.02,-0.97",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 14.34,
+              "dark": 0.674
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 19.22,
+              "dark": 0.572
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_glock-envmodel": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:50:12] cof_model_light active=0 calls=234 hits=234 has61=234 sky=0 fx=0 ambient=0.008,0.008,0.008 diffuse=0.078,0.078,0.063 lightvec=-0.18,0.02,-0.97",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 14.27,
+              "dark": 0.68
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 19.11,
+              "dark": 0.578
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-spawn": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:50:21] cof_model_light active=0 calls=286 hits=286 has61=286 sky=0 fx=0 ambient=0.008,0.008,0.008 diffuse=0.078,0.078,0.063 lightvec=-0.18,0.02,-0.97",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 7.89,
+              "dark": 0.95
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 27.41,
+              "dark": 0.31
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-monster": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:50:30] cof_model_light active=0 calls=455 hits=455 has61=455 sky=0 fx=0 ambient=0.008,0.008,0.008 diffuse=0.078,0.078,0.063 lightvec=-0.18,0.02,-0.97",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 5.76,
+              "dark": 0.96
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 17.94,
+              "dark": 0.369
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-envmodel": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:50:38] cof_model_light active=0 calls=299 hits=299 has61=299 sky=0 fx=0 ambient=0.008,0.008,0.008 diffuse=0.078,0.078,0.063 lightvec=-0.18,0.02,-0.97",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 3.46,
+              "dark": 0.962
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 8.06,
+              "dark": 0.962
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-spawn": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:50:49] cof_model_light active=0 calls=364 hits=364 has61=364 sky=0 fx=0 ambient=0.008,0.008,0.008 diffuse=0.078,0.078,0.063 lightvec=-0.18,0.02,-0.97",
+          "viewmodel": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 2.18,
+              "dark": 0.962
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 2.18,
+              "dark": 0.962
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-monster": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:50:57] cof_model_light active=1 calls=330 hits=330 has61=330 sky=0 fx=0 ambient=0.027,0.027,0.024 diffuse=0.067,0.067,0.055 lightvec=0.29,-0.28,-0.91",
+          "viewmodel": {
+            "cof": {
+              "pixels": 2571,
+              "mean": 4.07,
+              "dark": 1
+            },
+            "previous": {
+              "pixels": 2571,
+              "mean": 23.76,
+              "dark": 0.52
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 8.83,
+              "dark": 0.945
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 9.87,
+              "dark": 0.915
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-envmodel": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:51:06] cof_model_light active=1 calls=320 hits=320 has61=320 sky=0 fx=0 ambient=0.027,0.027,0.024 diffuse=0.067,0.067,0.055 lightvec=0.29,-0.28,-0.91",
+          "viewmodel": {
+            "cof": {
+              "pixels": 10554,
+              "mean": 5.79,
+              "dark": 0.963
+            },
+            "previous": {
+              "pixels": 10554,
+              "mean": 33.81,
+              "dark": 0.084
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 13.36,
+              "dark": 0.765
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 15.42,
+              "dark": 0.702
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "origin": [],
+      "envmodel": {
+        "index": "15",
+        "fx": 150,
+        "d": null
+      },
+      "errors": []
+    },
+    "c_apartment1": {
+      "setup": [
+        "[16:52:25] \"r_cof_lightmaps\" is \"1\" ( \"1\" )",
+        "[16:52:25] \"gl_brightness\" is \"0\" ( \"0\" )",
+        "[16:52:25] \"gl_contrast\" is \"1\" ( \"1\" )",
+        "[16:52:25] \"gl_lambert\" is \"2\" ( \"2\" )"
+      ],
+      "weapons": {
+        "weapon_glock-spawn": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:52:34] cof_model_light active=1 calls=200 hits=200 has61=200 sky=0 fx=60 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 7719,
+              "mean": 22.79,
+              "dark": 0.29
+            },
+            "previous": {
+              "pixels": 7719,
+              "mean": 42.61,
+              "dark": 0.103
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 25.06,
+              "dark": 0.382
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 25.8,
+              "dark": 0.364
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_glock-monster": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:52:49] cof_model_light active=1 calls=96 hits=96 has61=96 sky=0 fx=32 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 12051,
+              "mean": 17.85,
+              "dark": 0.517
+            },
+            "previous": {
+              "pixels": 12051,
+              "mean": 34.76,
+              "dark": 0.14
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 28.99,
+              "dark": 0.202
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 29.78,
+              "dark": 0.184
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_glock-envmodel": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:52:58] cof_model_light active=1 calls=376 hits=376 has61=376 sky=0 fx=94 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 8224,
+              "mean": 21.92,
+              "dark": 0.405
+            },
+            "previous": {
+              "pixels": 8224,
+              "mean": 39.46,
+              "dark": 0.142
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 21.36,
+              "dark": 0.389
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 22.3,
+              "dark": 0.358
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-spawn": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:53:06] cof_model_light active=1 calls=328 hits=328 has61=328 sky=0 fx=82 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 11743,
+              "mean": 17.12,
+              "dark": 0.553
+            },
+            "previous": {
+              "pixels": 11743,
+              "mean": 31.11,
+              "dark": 0.101
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 20.93,
+              "dark": 0.388
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 21.97,
+              "dark": 0.341
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-monster": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:53:17] cof_model_light active=1 calls=90 hits=90 has61=90 sky=0 fx=30 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 12653,
+              "mean": 16.23,
+              "dark": 0.657
+            },
+            "previous": {
+              "pixels": 12653,
+              "mean": 29.31,
+              "dark": 0.119
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 28.13,
+              "dark": 0.223
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 28.94,
+              "dark": 0.19
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-envmodel": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:53:26] cof_model_light active=1 calls=288 hits=288 has61=288 sky=0 fx=72 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 11743,
+              "mean": 17.12,
+              "dark": 0.553
+            },
+            "previous": {
+              "pixels": 11743,
+              "mean": 31.11,
+              "dark": 0.101
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 20.93,
+              "dark": 0.388
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 21.97,
+              "dark": 0.341
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-spawn": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:53:34] cof_model_light active=1 calls=296 hits=296 has61=296 sky=0 fx=74 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 11742,
+              "mean": 17.12,
+              "dark": 0.553
+            },
+            "previous": {
+              "pixels": 11742,
+              "mean": 31.1,
+              "dark": 0.101
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 21.29,
+              "dark": 0.381
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 22.34,
+              "dark": 0.334
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-monster": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:53:42] cof_model_light active=1 calls=93 hits=93 has61=93 sky=0 fx=31 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 12649,
+              "mean": 16.23,
+              "dark": 0.658
+            },
+            "previous": {
+              "pixels": 12649,
+              "mean": 29.31,
+              "dark": 0.118
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 28.34,
+              "dark": 0.223
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 29.15,
+              "dark": 0.19
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-envmodel": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:53:53] cof_model_light active=1 calls=312 hits=312 has61=312 sky=0 fx=78 ambient=0.039,0.035,0.031 diffuse=0.161,0.149,0.141 lightvec=-0.22,0.06,-0.96",
+          "viewmodel": {
+            "cof": {
+              "pixels": 11742,
+              "mean": 17.12,
+              "dark": 0.553
+            },
+            "previous": {
+              "pixels": 11742,
+              "mean": 31.1,
+              "dark": 0.101
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 21.29,
+              "dark": 0.381
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 22.34,
+              "dark": 0.334
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "origin": [],
+      "envmodel": {
+        "index": "257",
+        "fx": 107,
+        "d": null
+      },
+      "errors": []
+    },
+    "c_apartmentsick": {
+      "setup": [
+        "[16:55:09] \"r_cof_lightmaps\" is \"1\" ( \"1\" )",
+        "[16:55:09] \"gl_brightness\" is \"0\" ( \"0\" )",
+        "[16:55:09] \"gl_contrast\" is \"1\" ( \"1\" )",
+        "[16:55:09] \"gl_lambert\" is \"2\" ( \"2\" )"
+      ],
+      "weapons": {
+        "weapon_glock-spawn": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:55:13] cof_model_light active=1 calls=180 hits=90 has61=90 sky=90 fx=45 ambient=0.039,0.035,0.035 diffuse=0.098,0.094,0.090 lightvec=-0.07,-0.29,-0.95",
+          "viewmodel": {
+            "cof": {
+              "pixels": 7821,
+              "mean": 17.34,
+              "dark": 0.375
+            },
+            "previous": {
+              "pixels": 7821,
+              "mean": 34.91,
+              "dark": 0.048
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 8.17,
+              "dark": 0.914
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 8.8,
+              "dark": 0.899
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_glock-monster": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:55:20] cof_model_light active=1 calls=180 hits=90 has61=90 sky=90 fx=45 ambient=0.039,0.035,0.035 diffuse=0.098,0.094,0.090 lightvec=-0.07,-0.29,-0.95",
+          "viewmodel": {
+            "cof": {
+              "pixels": 7821,
+              "mean": 17.34,
+              "dark": 0.375
+            },
+            "previous": {
+              "pixels": 7821,
+              "mean": 34.91,
+              "dark": 0.048
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 8.17,
+              "dark": 0.914
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 8.8,
+              "dark": 0.899
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_glock-envmodel": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:55:27] cof_model_light active=1 calls=160 hits=80 has61=80 sky=80 fx=40 ambient=0.039,0.035,0.035 diffuse=0.098,0.094,0.090 lightvec=-0.07,-0.29,-0.95",
+          "viewmodel": {
+            "cof": {
+              "pixels": 11737,
+              "mean": 14.36,
+              "dark": 0.571
+            },
+            "previous": {
+              "pixels": 11737,
+              "mean": 27.61,
+              "dark": 0.287
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 6.27,
+              "dark": 0.915
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 4.68,
+              "dark": 0.941
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-spawn": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:55:33] cof_model_light active=1 calls=208 hits=104 has61=104 sky=104 fx=52 ambient=0.039,0.035,0.035 diffuse=0.098,0.094,0.090 lightvec=-0.07,-0.29,-0.95",
+          "viewmodel": {
+            "cof": {
+              "pixels": 15657,
+              "mean": 11.47,
+              "dark": 0.896
+            },
+            "previous": {
+              "pixels": 15657,
+              "mean": 23.8,
+              "dark": 0.214
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 5.82,
+              "dark": 0.927
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 4.34,
+              "dark": 0.927
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-monster": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:55:41] cof_model_light active=1 calls=192 hits=96 has61=96 sky=96 fx=48 ambient=0.039,0.035,0.035 diffuse=0.098,0.094,0.090 lightvec=-0.07,-0.29,-0.95",
+          "viewmodel": {
+            "cof": {
+              "pixels": 15657,
+              "mean": 11.47,
+              "dark": 0.896
+            },
+            "previous": {
+              "pixels": 15657,
+              "mean": 23.8,
+              "dark": 0.214
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 5.82,
+              "dark": 0.927
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 4.34,
+              "dark": 0.927
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_switchblade-envmodel": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:55:48] cof_model_light active=1 calls=220 hits=110 has61=110 sky=110 fx=55 ambient=0.039,0.035,0.035 diffuse=0.098,0.094,0.090 lightvec=-0.07,-0.29,-0.95",
+          "viewmodel": {
+            "cof": {
+              "pixels": 15657,
+              "mean": 11.47,
+              "dark": 0.896
+            },
+            "previous": {
+              "pixels": 15657,
+              "mean": 23.8,
+              "dark": 0.214
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 5.82,
+              "dark": 0.927
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 4.34,
+              "dark": 0.927
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-spawn": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:55:56] cof_model_light active=1 calls=172 hits=86 has61=86 sky=86 fx=43 ambient=0.039,0.035,0.035 diffuse=0.098,0.094,0.090 lightvec=-0.07,-0.29,-0.95",
+          "viewmodel": {
+            "cof": {
+              "pixels": 15657,
+              "mean": 11.47,
+              "dark": 0.896
+            },
+            "previous": {
+              "pixels": 15657,
+              "mean": 23.8,
+              "dark": 0.214
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 6.27,
+              "dark": 0.919
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 4.82,
+              "dark": 0.917
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-monster": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:56:02] cof_model_light active=1 calls=184 hits=92 has61=92 sky=92 fx=46 ambient=0.039,0.035,0.035 diffuse=0.098,0.094,0.090 lightvec=-0.07,-0.29,-0.95",
+          "viewmodel": {
+            "cof": {
+              "pixels": 15657,
+              "mean": 11.47,
+              "dark": 0.896
+            },
+            "previous": {
+              "pixels": 15657,
+              "mean": 23.8,
+              "dark": 0.214
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 6.27,
+              "dark": 0.919
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 4.82,
+              "dark": 0.917
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "weapon_mobile-envmodel": {
+          "slot": "1",
+          "view": "",
+          "lightStats": "[16:56:08] cof_model_light active=1 calls=228 hits=114 has61=114 sky=114 fx=57 ambient=0.039,0.035,0.035 diffuse=0.098,0.094,0.090 lightvec=-0.07,-0.29,-0.95",
+          "viewmodel": {
+            "cof": {
+              "pixels": 15657,
+              "mean": 11.47,
+              "dark": 0.896
+            },
+            "previous": {
+              "pixels": 15657,
+              "mean": 23.8,
+              "dark": 0.214
+            }
+          },
+          "entities": {
+            "cof": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            },
+            "previous": {
+              "pixels": 0,
+              "mean": null,
+              "dark": null
+            }
+          },
+          "world": {
+            "cof": {
+              "pixels": 277600,
+              "mean": 6.27,
+              "dark": 0.919
+            },
+            "previous": {
+              "pixels": 277600,
+              "mean": 4.82,
+              "dark": 0.917
+            }
+          },
+          "stabilityMeanAbs": 0,
+          "glErrors": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "origin": [],
+      "envmodel": {
+        "index": "9",
+        "fx": 150,
+        "d": null
+      },
+      "errors": []
+    }
+  }
+}

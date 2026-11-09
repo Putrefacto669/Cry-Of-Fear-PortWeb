@@ -1,0 +1,11 @@
+AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+
+'36.0,-155.0,164.0'
+    at file:///root/cof-audits/browser-1.64.1/e2e/claude/extras_interactions-regression.mjs:24:542 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '36.0,-155.0,164.0',
+  expected: '36.0,-155.0,164.0',
+  operator: 'notStrictEqual',
+  diff: 'simple'
+}

@@ -172,6 +172,14 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
   - `r_cof_lightmaps 0` vuelve a la luz de Xash para comparar.
   - Opciones → Brillo fija `gl_brightness` (0–0,3, como el original).
   - No compensar subiendo `brightness`, `gamma` ni el ×2.
+  - La curva es `pow(x, gl_gamma)·gl_contrast + gl_brightness` (`FUN_100595f0`; no `1/gamma`).
+- **Luz de modelos** (08/11, `docs/ILUMINACION_MODELOS_Y_MATERIALES_2026_11_08.md`): el original no usa la luz de
+  modelos del motor (`gl_modelrenderer 1`). `gl_studio.c` la reproduce (`R_CofModel*`): capas 61/62/63 del luxel
+  bajo el modelo, `gl_lambert 2`, `renderfx` 100–200, y textura × color × 2.
+  - El ×2 va por `GL_RGB_SCALE`, que el shim emula solo para esto (`uRGBScale`).
+  - `r_cof_modellight 0` compara con la luz de Xash.
+  - `cof_model_light` muestra contadores de diagnóstico.
+  - Medición: `tools/e2e/model_light.mjs`.
 - **Pruebas e2e de Codex**: Node en `/root/emsdk/node/24.19.0_64bit/bin`, Playwright y navegadores en
   `/root/cof-audits/browser-1.64.1` (`PLAYWRIGHT_BROWSERS_PATH=.../browsers`; los `.mjs` se copian a
   `.../e2e/` para que encuentren `node_modules`).

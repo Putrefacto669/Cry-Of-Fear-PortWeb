@@ -813,10 +813,10 @@ index 5c37607d..0308d7c5 100644
  {
  #if HAVE_STRNLEN
 diff --git a/ref/gl/gl2_shim/fragment.glsl.inc b/ref/gl/gl2_shim/fragment.glsl.inc
-index 803bc2bf..7fe9614e 100644
+index 803bc2bf..d3351941 100644
 --- a/ref/gl/gl2_shim/fragment.glsl.inc
 +++ b/ref/gl/gl2_shim/fragment.glsl.inc
-@@ -24,7 +24,14 @@
+@@ -24,9 +24,17 @@
  "uniform float uAlphaTest;\n"
  "#endif\n"
  "#if FEAT_FOG\n"
@@ -830,8 +830,19 @@ index 803bc2bf..7fe9614e 100644
 +"in FOG_PREC float vFogDistance;\n"
  "#endif\n"
  "uniform PREC vec4 uColor;\n"
++"uniform PREC float uRGBScale;\n"
  "#if ATTR_COLOR\n"
-@@ -64,6 +71,8 @@
+ "in PREC vec4 vColor;\n"
+ "#endif\n"
+@@ -57,6 +65,7 @@
+ "#if ATTR_TEXCOORD1\n"
+ "c = c * texture(uTex1, vTexCoord1);\n"
+ "#endif\n"
++"c.rgb = min(c.rgb * uRGBScale, vec3(1.0));\n"
+ "#if FEAT_ALPHA_TEST\n"
+ "if(c.a <= uAlphaTest)\n"
+ "discard;\n"
+@@ -64,6 +73,8 @@
  "#if FEAT_FOG\n"
  "float fogDist = gl_FragCoord.z / gl_FragCoord.w;\n"
  "float fogRate = clamp(exp(-uFog.w * fogDist), 0.0, 1.0);\n"
@@ -841,45 +852,59 @@ index 803bc2bf..7fe9614e 100644
  "#endif\n"
  "oFragColor = c;\n"
 diff --git a/ref/gl/gl2_shim/gl2_shim.c b/ref/gl/gl2_shim/gl2_shim.c
-index 91541c9b..c200d9eb 100644
+index 91541c9b..7083d044 100644
 --- a/ref/gl/gl2_shim/gl2_shim.c
 +++ b/ref/gl/gl2_shim/gl2_shim.c
-@@ -69,6 +69,8 @@ typedef struct
+@@ -69,6 +69,9 @@ typedef struct
  	GLint utex0;
  	GLint utex1;
  	GLint ufog;
 +	GLint ufogParams;
++	GLint urgbscale;
 +	GLint uModelView;
  	GLint uMVP;
  	GLuint *vao_begin;
  } gl2wrap_prog_t;
-@@ -96,6 +98,7 @@ static struct
+@@ -96,6 +99,8 @@ static struct
  	GLenum prim;
  	GLfloat color[4];
  	GLfloat fog[4]; // color + density
 +	GLfloat fogParams[4]; // start, end, linear enabled, reserved
++	GLfloat rgbscale; // GL_RGB_SCALE of the texture environment (Cry of Fear models: 2)
  	GLfloat alpharef;
  	gl2wrap_prog_t progs[MAX_PROGS];
  	gl2wrap_prog_t *cur_prog;
-@@ -366,6 +369,8 @@ static gl2wrap_prog_t *GL2_GetProg( const GLuint flags )
+@@ -366,6 +371,9 @@ static gl2wrap_prog_t *GL2_GetProg( const GLuint flags )
  	prog->utex0  = pglGetUniformLocationARB( glprog, "uTex0" );
  	prog->utex1  = pglGetUniformLocationARB( glprog, "uTex1" );
  	prog->ufog   = pglGetUniformLocationARB( glprog, "uFog" );
 +	prog->ufogParams = pglGetUniformLocationARB( glprog, "uFogParams" );
++	prog->urgbscale = pglGetUniformLocationARB( glprog, "uRGBScale" );
 +	prog->uModelView = pglGetUniformLocationARB( glprog, "uModelView" );
  	prog->uMVP   = pglGetUniformLocationARB( glprog, "uMVP" );
  
  	if( gl2wrap_config.vao_mandatory )
-@@ -427,6 +432,8 @@ static gl2wrap_prog_t *GL2_SetProg( const GLuint flags )
+@@ -398,6 +406,8 @@ static gl2wrap_prog_t *GL2_GetProg( const GLuint flags )
+ 		pglUniform1iARB( prog->utex0, 0 );
+ 	if( FBitSet( prog->flags, BIT( GL2_ATTR_TEXCOORD1 )) && prog->utex1 >= 0 )
+ 		pglUniform1iARB( prog->utex1, 1 );
++	if( prog->urgbscale >= 0 )
++		pglUniform1fARB( prog->urgbscale, gl2wrap.rgbscale ); // never left at the GLSL default of 0
+ 	if( gl2wrap.cur_prog )
+ 		pglUseProgramObjectARB( gl2wrap.cur_prog->glprog );
+ 	prog->glprog = glprog;
+@@ -427,6 +437,10 @@ static gl2wrap_prog_t *GL2_SetProg( const GLuint flags )
  				pglUniform4fvARB( prog->ucolor, 1, gl2wrap.color );
  			if( prog->ufog >= 0 )
  				pglUniform4fvARB( prog->ufog, 1, gl2wrap.fog );
 +			if( prog->ufogParams >= 0 )
 +				pglUniform4fvARB( prog->ufogParams, 1, gl2wrap.fogParams );
++			if( prog->urgbscale >= 0 )
++				pglUniform1fARB( prog->urgbscale, gl2wrap.rgbscale );
  			gl2wrap.uchanged = GL_FALSE;
  		}
  		GL2_UpdateMVP( prog );
-@@ -442,6 +449,11 @@ static gl2wrap_prog_t *GL2_SetProg( const GLuint flags )
+@@ -442,6 +456,11 @@ static gl2wrap_prog_t *GL2_SetProg( const GLuint flags )
  
  #define TRIQUADS_SIZE GL2_MAX_VERTS / 4 * 6
  
@@ -891,7 +916,7 @@ index 91541c9b..c200d9eb 100644
  static void GL2_InitTriQuads( void )
  {
  	for( int i = 0; i < ( !!pglDrawRangeElementsBaseVertex ? 1 : 4 ); i++ )
-@@ -457,6 +469,10 @@ static void GL2_InitTriQuads( void )
+@@ -457,6 +476,10 @@ static void GL2_InitTriQuads( void )
  			triquads_array[j * 6 + 4] = j * 4 + 2 + i;
  			triquads_array[j * 6 + 5] = j * 4 + 3 + i;
  		}
@@ -902,7 +927,7 @@ index 91541c9b..c200d9eb 100644
  		pglGenBuffersARB( 1, &gl2wrap.triquads_ibo[i] );
  		rpglBindBufferARB( GL_ELEMENT_ARRAY_BUFFER_ARB, gl2wrap.triquads_ibo[i] );
  		pglBufferDataARB( GL_ELEMENT_ARRAY_BUFFER_ARB, sizeof( triquads_array ), triquads_array, GL_STATIC_DRAW_ARB );
-@@ -557,6 +573,8 @@ int GL2_ShimInit( void )
+@@ -557,6 +580,8 @@ int GL2_ShimInit( void )
  	if( gl2wrap_init )
  		return 0;
  
@@ -911,7 +936,7 @@ index 91541c9b..c200d9eb 100644
  	if( !pglBindBufferARB )
  	{
  		gEngfuncs.Con_Printf( S_ERROR "GL2_ShimInit: missing VBO, disabling\n" );
-@@ -604,7 +622,11 @@ int GL2_ShimInit( void )
+@@ -604,7 +629,11 @@ int GL2_ShimInit( void )
  	if( gEngfuncs.Sys_CheckParm( "-noincremental" ))
  		gl2wrap_config.incremental = gl2wrap_config.buf_storage = false;
  
@@ -923,7 +948,15 @@ index 91541c9b..c200d9eb 100644
  	if( gEngfuncs.Sys_CheckParm( "-minshaders" ))
  		gl2wrap_config.version = 100;
  	if( gl2wrap_config.buf_storage )
-@@ -953,6 +975,18 @@ static void GL2_FlushPrims( void )
+@@ -631,6 +660,7 @@ int GL2_ShimInit( void )
+ 	GL2_ShimInstall();
+ 	GL2_InitTriQuads();
+ 
++	gl2wrap.rgbscale = 1.f;
+ 	gl2wrap.color[0] = 1.f;
+ 	gl2wrap.color[1] = 1.f;
+ 	gl2wrap.color[2] = 1.f;
+@@ -953,6 +983,18 @@ static void GL2_FlushPrims( void )
  		// simple case, one quad may draw like polygon(4)
  		if( count == 4 )
  			rpglDrawArrays( GL_TRIANGLE_FAN, startindex, count );
@@ -942,7 +975,7 @@ index 91541c9b..c200d9eb 100644
  		else if( pglDrawRangeElementsBaseVertex )
  		{
  			/*
-@@ -1204,24 +1238,29 @@ static void APIENTRY GL2_AlphaFunc( GLenum mode, GLfloat ref )
+@@ -1204,24 +1246,29 @@ static void APIENTRY GL2_AlphaFunc( GLenum mode, GLfloat ref )
  	// mode is always GL_GREATER
  }
  
@@ -984,7 +1017,7 @@ index 91541c9b..c200d9eb 100644
  }
  
  static qboolean GL2_SkipEnable( GLenum e )
-@@ -1350,6 +1389,8 @@ static void GL2_UpdateMVP( gl2wrap_prog_t *prog )
+@@ -1350,6 +1397,8 @@ static void GL2_UpdateMVP( gl2wrap_prog_t *prog )
  		ClearBits( gl2wrap_matrix.update, BIT64( prog->flags ));
  		GL2_Mul4x4( gl2wrap_matrix.mv, gl2wrap_matrix.pr, gl2wrap_matrix.mvp );
  		pglUniformMatrix4fvARB( prog->uMVP, 1, false, (void *)gl2wrap_matrix.mvp );
@@ -993,7 +1026,27 @@ index 91541c9b..c200d9eb 100644
  	}
  }
  
-@@ -1783,6 +1824,7 @@ static void APIENTRY GL2_TexEnvf(GLenum target, GLenum pname, GLfloat param)
+@@ -1773,16 +1822,25 @@ static void APIENTRY GL2_Translatef(GLfloat x, GLfloat y, GLfloat z)
+ {
+ }
+ 
+-static void APIENTRY GL2_TexEnvi(GLenum target, GLenum pname, GLint param)
++// Only GL_RGB_SCALE is emulated (Cry of Fear: models are texture x colour x 2, gl_studio.c);
++// the combine modes stay MODULATE as before
++static void APIENTRY GL2_TexEnvf(GLenum target, GLenum pname, GLfloat param)
+ {
++	if( target == GL_TEXTURE_ENV && pname == GL_RGB_SCALE_ARB && gl2wrap.rgbscale != param )
++	{
++		gl2wrap.rgbscale = param;
++		gl2wrap.uchanged = GL_TRUE;
++	}
+ }
+ 
+-static void APIENTRY GL2_TexEnvf(GLenum target, GLenum pname, GLfloat param)
++static void APIENTRY GL2_TexEnvi(GLenum target, GLenum pname, GLint param)
+ {
++	GL2_TexEnvf( target, pname, (GLfloat)param );
+ }
  
  static void APIENTRY GL2_Fogi(GLenum pname, GLint param)
  {
@@ -1081,20 +1134,21 @@ index fb0af14f..a97dc1d0 100644
  	{
  		if( subImage ) pglCompressedTexSubImage1DARB( tex->target, level, 0, width, tex->format, size, data );
 diff --git a/ref/gl/gl_local.h b/ref/gl/gl_local.h
-index 1e4d23e9..33ded71f 100644
+index 1e4d23e9..e37bd426 100644
 --- a/ref/gl/gl_local.h
 +++ b/ref/gl/gl_local.h
-@@ -506,6 +506,9 @@ void GL_InitExtensions( void );
+@@ -506,6 +506,10 @@ void GL_InitExtensions( void );
  void GL_ClearExtensions( void );
  int GL_LoadTexture( const char *name, const byte *buf, size_t size, int flags );
  qboolean VID_ScreenShot( const char *filename, int shot_type );
 +// Cry of Fear flashlight (gl_rsurf.c): dlight/elight key of the client's spotlight
 +#define COF_SPOT_KEY 0x7C0F000
 +float R_CofSpotFactor( const vec3_t point, vec3_t color );
++float R_CofCurve( float x );
  qboolean VID_CubemapShot( const char *base, uint size, const float *vieworg, qboolean skyshot );
  void R_GammaChanged( qboolean do_reset_gamma );
  void R_BeginFrame( qboolean clearScene );
-@@ -770,6 +773,10 @@ static inline qboolean GL_RenderTargetsActive( void )
+@@ -770,6 +774,13 @@ static inline qboolean GL_RenderTargetsActive( void )
  // renderer cvars
  //
  extern convar_t	gl_texture_anisotropy;
@@ -1102,10 +1156,13 @@ index 1e4d23e9..33ded71f 100644
 +extern convar_t	gl_cof_gamma;
 +extern convar_t	gl_cof_brightness;
 +extern convar_t	gl_cof_contrast;
++extern convar_t	r_cof_modellight;
++extern convar_t	gl_cof_lambert;
++extern convar_t	r_cof_brightvalue;
  extern convar_t	gl_extensions;
  extern convar_t	gl_check_errors;
  extern convar_t	gl_texture_lodbias;
-@@ -824,3 +831,11 @@ extern convar_t r_scene_scale;
+@@ -824,3 +835,11 @@ extern convar_t r_scene_scale;
  
  
  #endif // GL_LOCAL_H
@@ -1118,10 +1175,10 @@ index 1e4d23e9..33ded71f 100644
 +void R_CoFSkyEnd( void );
 +void R_CoFSkyLight( alight_t *light );
 diff --git a/ref/gl/gl_opengl.c b/ref/gl/gl_opengl.c
-index f05a3ddf..b828e993 100644
+index f05a3ddf..62988d53 100644
 --- a/ref/gl/gl_opengl.c
 +++ b/ref/gl/gl_opengl.c
-@@ -22,6 +22,11 @@ CVAR_DEFINE_AUTO( gl_test, "0", 0, "engine developer cvar for quick testing new
+@@ -22,6 +22,14 @@ CVAR_DEFINE_AUTO( gl_test, "0", 0, "engine developer cvar for quick testing new
  CVAR_DEFINE_AUTO( gl_msaa, "1", FCVAR_GLCONFIG, "enable or disable multisample anti-aliasing" );
  CVAR_DEFINE_AUTO( gl_stencilbits, "8", FCVAR_GLCONFIG|FCVAR_READ_ONLY, "pixelformat stencil bits (0 - auto)" );
  CVAR_DEFINE_AUTO( gl_overbright, "1", FCVAR_GLCONFIG, "overbrights" );
@@ -1130,10 +1187,13 @@ index f05a3ddf..b828e993 100644
 +CVAR_DEFINE( gl_cof_gamma, "gl_gamma", "1", 0, "Cry of Fear lightmap gamma" );
 +CVAR_DEFINE( gl_cof_brightness, "gl_brightness", "0", 0, "Cry of Fear lightmap brightness (0 to 0.3)" );
 +CVAR_DEFINE( gl_cof_contrast, "gl_contrast", "1", 0, "Cry of Fear lightmap contrast (up to 2)" );
++CVAR_DEFINE_AUTO( r_cof_modellight, "1", 0, "light studio models like the Cry of Fear client (gl_studio.c)" );
++CVAR_DEFINE( gl_cof_lambert, "gl_lambert", "2", 0, "Cry of Fear model shading wrap (original default 2)" );
++CVAR_DEFINE( r_cof_brightvalue, "brightvalue", "1", 0, "Cry of Fear ambient light of models with renderfx 100" );
  CVAR_DEFINE_AUTO( gl_fog, "1", FCVAR_GLCONFIG, "allow for rendering fog using built-in OpenGL fog implementation" );
  CVAR_DEFINE_AUTO( gl_litwater_force, "0", FCVAR_GLCONFIG, "force enable lightmapped water, even if support not declared in the map" );
  CVAR_DEFINE_AUTO( r_lighting_ambient, "0.3", FCVAR_GLCONFIG, "map ambient lighting scale" );
-@@ -220,6 +225,17 @@ static const dllfunc_t texturecompressionfuncs[] MAYBE_UNUSED =
+@@ -220,6 +228,17 @@ static const dllfunc_t texturecompressionfuncs[] MAYBE_UNUSED =
  { GL_CALL( glGetCompressedTexImage ) },
  };
  
@@ -1151,7 +1211,7 @@ index f05a3ddf..b828e993 100644
  static const dllfunc_t vbofuncs[] =
  {
  { GL_CALL( glBindBufferARB ) },
-@@ -803,6 +819,16 @@ static void GL_InitExtensionsGLES( void )
+@@ -803,6 +822,16 @@ static void GL_InitExtensionsGLES( void )
  	{
  		switch( extid )
  		{
@@ -1168,7 +1228,7 @@ index f05a3ddf..b828e993 100644
  		case GL_ARB_VERTEX_BUFFER_OBJECT_EXT:
  			GL_CheckExtension( "vertex_buffer_object", vbofuncs, ARRAYSIZE( vbofuncs ), "gl_vertex_buffer_object", extid, 1.0 );
  			break;
-@@ -1262,6 +1288,10 @@ static void GL_InitCommands( void )
+@@ -1262,6 +1291,13 @@ static void GL_InitCommands( void )
  	gEngfuncs.Cvar_RegisterVariable( &gl_stencilbits );
  	gEngfuncs.Cvar_RegisterVariable( &gl_round_down );
  	gEngfuncs.Cvar_RegisterVariable( &gl_overbright );
@@ -1176,10 +1236,13 @@ index f05a3ddf..b828e993 100644
 +	gEngfuncs.Cvar_RegisterVariable( &gl_cof_gamma );
 +	gEngfuncs.Cvar_RegisterVariable( &gl_cof_brightness );
 +	gEngfuncs.Cvar_RegisterVariable( &gl_cof_contrast );
++	gEngfuncs.Cvar_RegisterVariable( &r_cof_modellight );
++	gEngfuncs.Cvar_RegisterVariable( &gl_cof_lambert );
++	gEngfuncs.Cvar_RegisterVariable( &r_cof_brightvalue );
  	gEngfuncs.Cvar_RegisterVariable( &gl_fog );
  	gEngfuncs.Cvar_RegisterVariable( &gl_litwater_force );
  
-@@ -1450,7 +1480,12 @@ void GL_SetupAttributes( int safegl )
+@@ -1450,7 +1486,12 @@ void GL_SetupAttributes( int safegl )
  	int context_flags = 0; // REFTODO!!!!!
  	int samples = 0;
  
@@ -1340,7 +1403,7 @@ index 97b12119..9f7eb24e 100644
  	{
  		ClearBits( r_vbo.flags, FCVAR_CHANGED );
 diff --git a/ref/gl/gl_rsurf.c b/ref/gl/gl_rsurf.c
-index 18dea062..94b34f85 100644
+index 18dea062..311a9309 100644
 --- a/ref/gl/gl_rsurf.c
 +++ b/ref/gl/gl_rsurf.c
 @@ -38,6 +38,207 @@ typedef struct
@@ -1579,20 +1642,20 @@ index 18dea062..94b34f85 100644
 +      z = layer63.b / 127 - 1 (flat path, FUN_10059660)
 +  layer 61 alone: curve( layer61 ) (FUN_10059880)
 +  any other face: curve( layer0 ) * 0.5 (FUN_10059d20)
-+curve( x ) = x * gl_contrast + gl_brightness, after pow( x, 1 / gl_gamma ) when gl_gamma is not 1
++curve( x ) = x * gl_contrast + gl_brightness, after pow( x, gl_gamma ) when gl_gamma is not 1
 +(FUN_100595f0); a colour above 1 is scaled down by its brightest channel (FUN_10059f30).
 +Lightstyles other than 61-63 keep their animation (value / 264, 264 = 'm'). Dynamic lights and the
 +flashlight are added like the original's additive passes: x1 after the x2 combine.
 +=================
 +*/
-+static float R_CofCurve( float x )
++float R_CofCurve( float x ) // also lights the models (gl_studio.c)
 +{
 +	float gamma = gl_cof_gamma.value <= 0.0f ? 1.0f : gl_cof_gamma.value;
 +	float contrast = Q_min( gl_cof_contrast.value, 2.0f );  // the original clamps them (FUN_1005a110)
 +	float brightness = Q_min( gl_cof_brightness.value, 0.3f );
 +
 +	if( gamma != 1.0f && x > 0.0f )
-+		x = powf( x, 1.0f / gamma );
++		x = powf( x, gamma ); // base in XMM0, exponent in XMM1 (100595f0 -> 100ff550)
 +	return x * contrast + brightness;
 +}
 +
@@ -1758,7 +1821,7 @@ index 18dea062..94b34f85 100644
  		}
  		else
 diff --git a/ref/gl/gl_studio.c b/ref/gl/gl_studio.c
-index 39873fb4..e576c59b 100644
+index 39873fb4..3f534789 100644
 --- a/ref/gl/gl_studio.c
 +++ b/ref/gl/gl_studio.c
 @@ -252,7 +252,7 @@ static qboolean R_StudioComputeBBox( vec3_t bbox[8] )
@@ -1800,7 +1863,296 @@ index 39873fb4..e576c59b 100644
  				g_studio.locallightR2[k] = r2;
  				g_studio.locallight[k] = el;
  				lstrength[k] = minstrength;
-@@ -1302,6 +1310,7 @@ static void R_StudioSetupLighting( alight_t *plight )
+@@ -1286,6 +1294,288 @@ static void R_StudioEntityLight( alight_t *lightinfo )
+ 	}
+ }
+ 
++/*
++===============
++Cry of Fear model lighting
++
++The original client draws studio models with its own renderer (gl_renderer 1 and gl_modelrenderer 1,
++both on by default): it does not call the engine's StudioDynamicLight/EntityLight/SetupLighting
++(client.dll FUN_1008c650) and lights the model itself.
++  FUN_10065710/FUN_10065890: from the centre of the bbox, 256 units down (up with EF_INVLIGHT), the
++      nearest luxel of the first world surface hit gives
++        - with layer 61: ambient = a * k, diffuse = d * k, k = curve( s ) / s, s = 2 * ( a + d * z ),
++          and the direction of layer 63 in world space (s * (r*2-1) + t * (g*2-1) + n * (b*2-1));
++        - without it: ambient = curve( layer 0 ) * 0.5, no diffuse;
++        - nothing hit: ambient = diffuse = curve( sv_skycolor / 255 ) * 0.25 from above.
++  FUN_100678d0: renderfx 100 = brightvalue, renderfx 101-200 = ( renderfx - 100 ) / 100 of ambient,
++      up to 4 dynamic lights: curve( colour ) * 0.5 with 1 - dist^2 / radius^2 at each bone.
++  FUN_10068d70, per vertex: colour = ambient + diffuse, minus diffuse * ( cos + l - 1 ) / l when that is
++      positive (l = gl_lambert, 2), plus the dynamic lights; scaled down by its brightest channel.
++  FUN_100687d0: texture x colour x 2 (GL_COMBINE MODULATE, GL_RGB_SCALE 2), like the world.
++curve() is the one of the world lightmaps (gl_rsurf.c R_CofCurve). No engine gamma table.
++===============
++*/
++#define COF_MODEL_LIGHTS 4
++static struct
++{
++	qboolean active;
++	vec3_t ambient, diffuse;
++	vec3_t lightvec;	// the direction the light travels, world space
++	vec3_t blightvec[MAXSTUDIOBONES];
++	int numlights;
++	vec3_t wlightdir[COF_MODEL_LIGHTS], wlightcolor[COF_MODEL_LIGHTS];	// at the model origin
++	vec3_t blightdir[COF_MODEL_LIGHTS][MAXSTUDIOBONES];	// from the light to the bone, bone space
++	vec3_t blightcolor[COF_MODEL_LIGHTS][MAXSTUDIOBONES];	// colour x attenuation at the bone
++	struct { int calls, hits, has61, sky, fx; vec3_t ambient, diffuse, lightvec; } last;
++} g_cofmodel;
++
++static qboolean R_CofModelLightPoint( model_t *model, mnode_t *node, const vec3_t start, const vec3_t end, float *out )
++{
++	if( !node || node->contents < 0 )
++		return false;
++
++	float front = PlaneDiff( start, node->plane );
++	float back = PlaneDiff( end, node->plane );
++	int side = front < 0;
++
++	if(( back < 0 ) == side )
++		return R_CofModelLightPoint( model, node_child( node, side, model ), start, end, out );
++
++	vec3_t mid;
++	VectorLerp( start, front / ( front - back ), end, mid );
++
++	if( R_CofModelLightPoint( model, node_child( node, side, model ), start, mid, out ))
++		return true;
++
++	int first = node_firstsurface( node, model );
++	int num = node_numsurfaces( node, model );
++
++	for( int i = 0; i < num; i++ )
++	{
++		const msurface_t *surf = &model->surfaces[first + i];
++		const mextrasurf_t *info = surf->info;
++
++		if( FBitSet( surf->flags, SURF_DRAWSKY|SURF_DRAWTILED ) || !surf->samples )
++			continue;
++
++		int s = (int)( DotProduct( mid, info->lmvecs[0] ) + info->lmvecs[0][3] ) - (int)info->lightmapmins[0];
++		int t = (int)( DotProduct( mid, info->lmvecs[1] ) + info->lmvecs[1][3] ) - (int)info->lightmapmins[1];
++
++		if( s < 0 || t < 0 || s > info->lightextents[0] || t > info->lightextents[1] )
++			continue;
++
++		int sample_size = gEngfuncs.Mod_SampleSizeForFace( surf );
++		int smax = ( info->lightextents[0] / sample_size ) + 1;
++		int tmax = ( info->lightextents[1] / sample_size ) + 1;
++		const color24 *lm = surf->samples + ( t / sample_size ) * smax + ( s / sample_size );
++		vec3_t layer0 = { 0 }, ambient = { 0 }, diffuse = { 0 }, dir = { 0 };
++		float z = 0.0f; // layer 61 without 63 reads a stale value in the original; never seen in CoF maps
++		qboolean has61 = false;
++
++		for( int map = 0; map < MAXLIGHTMAPS && surf->styles[map] != 255; map++, lm += smax * tmax )
++		{
++			vec3_t c = { lm->r / 255.0f, lm->g / 255.0f, lm->b / 255.0f };
++
++			switch( surf->styles[map] )
++			{
++			case 0: VectorCopy( c, layer0 ); break;
++			case 61: VectorCopy( c, ambient ); has61 = true; break;
++			case 62: VectorCopy( c, diffuse ); break;
++			case 63:
++			{
++				vec3_t sv, tv, nv;
++				VectorNormalize2( surf->texinfo->vecs[0], sv );
++				VectorNormalize2( surf->texinfo->vecs[1], tv );
++				if( FBitSet( surf->flags, SURF_PLANEBACK ))
++					VectorNegate( surf->plane->normal, nv );
++				else VectorCopy( surf->plane->normal, nv );
++				VectorClear( dir );
++				VectorMA( dir, c[0] * 2.0f - 1.0f, sv, dir );
++				VectorMA( dir, c[1] * 2.0f - 1.0f, tv, dir );
++				z = c[2] * 2.0f - 1.0f;
++				VectorMA( dir, z, nv, dir );
++				break;
++			}
++			}
++		}
++
++		memset( out, 0, sizeof( float ) * 9 );
++		if( !has61 )
++		{
++			for( int k = 0; k < 3; k++ )
++				out[k] = R_CofCurve( layer0[k] ) * 0.5f;
++		}
++		else
++		{
++			for( int k = 0; k < 3; k++ )
++			{
++				float sum = 2.0f * ( ambient[k] + diffuse[k] * z );
++				float scale = sum != 0.0f ? R_CofCurve( sum ) / sum : 0.0f;
++				out[k] = ambient[k] * scale;
++				out[3 + k] = diffuse[k] * scale;
++			}
++			VectorCopy( dir, &out[6] );
++			g_cofmodel.last.has61++;
++		}
++		return true;
++	}
++
++	return R_CofModelLightPoint( model, node_child( node, !side, model ), mid, end, out );
++}
++
++static void R_CofModelSetupLighting( cl_entity_t *ent )
++{
++	model_t *world = WORLDMODEL;
++	float light[9] = { 0 };
++	vec3_t start, end;
++
++	g_cofmodel.last.calls++;
++	for( int k = 0; k < 3; k++ )
++		start[k] = ent->origin[k] + ( ent->curstate.mins[k] + ent->curstate.maxs[k] ) * 0.5f;
++	VectorCopy( start, end );
++	end[2] += FBitSet( ent->curstate.effects, EF_INVLIGHT ) ? 256.0f : -256.0f;
++
++	if( !world || !world->lightdata )
++	{
++		VectorSet( light, 0.5f, 0.5f, 0.5f );
++	}
++	else if( R_CofModelLightPoint( world, world->nodes, start, end, light ))
++	{
++		g_cofmodel.last.hits++;
++	}
++	else
++	{
++		const movevars_t *mv = gp_movevars;
++		g_cofmodel.last.sky++;
++		for( int k = 0; k < 3; k++ )
++			light[k] = light[3 + k] = R_CofCurve( mv->skycolor[k] / 255.0f ) * 0.25f;
++		VectorSet( &light[6], 0.0f, 0.0f, 1.0f );
++	}
++
++	VectorCopy( &light[0], g_cofmodel.ambient );
++	VectorCopy( &light[3], g_cofmodel.diffuse );
++	VectorNegate( &light[6], g_cofmodel.lightvec );
++
++	// FUN_100678d0: the muzzle flashes, and ambient chosen by the mapper
++	if( ent->model && ( !Q_stricmp( ent->model->name, "models/flash1.mdl" ) || !Q_stricmp( ent->model->name, "models/flash2.mdl" )))
++		VectorSet( g_cofmodel.ambient, 0.15f, 0.15f, 0.15f );
++	int fx = ent->curstate.renderfx;
++	if( fx == 100 )
++		VectorSet( g_cofmodel.ambient, r_cof_brightvalue.value, r_cof_brightvalue.value, r_cof_brightvalue.value );
++	else if( fx > 100 && fx <= 200 && fx != 101 && fx != 137 && fx != 167 )
++		VectorSet( g_cofmodel.ambient, ( fx - 100 ) / 100.0f, ( fx - 100 ) / 100.0f, ( fx - 100 ) / 100.0f );
++	if( fx == 101 ) // fixed colours of the original (0x1014dec0 and 0x1014deb0)
++	{
++		VectorSet( g_cofmodel.ambient, 0.1f, 0.1f, 0.1f );
++		VectorSet( g_cofmodel.diffuse, 0.15f, 0.1f, 0.1f );
++	}
++	else if( fx == 167 )
++	{
++		VectorSet( g_cofmodel.ambient, 0.1f, 0.1f, 0.1f );
++		VectorSet( g_cofmodel.diffuse, 0.1f, 0.1f, 0.1f );
++	}
++	if( fx >= 100 && fx <= 200 ) g_cofmodel.last.fx++;
++
++	for( int i = 0; i < m_pStudioHeader->numbones; i++ )
++		Matrix3x4_VectorIRotate( g_studio.lighttransform[i], g_cofmodel.lightvec, g_cofmodel.blightvec[i] );
++
++	// the dynamic lights R_StudioEntityLight picked (it also placed the flashlight at the view)
++	vec3_t origin;
++	Matrix3x4_OriginFromMatrix( g_studio.rotationmatrix, origin );
++	g_cofmodel.numlights = Q_min( g_studio.numlocallights, COF_MODEL_LIGHTS );
++	for( int l = 0; l < g_cofmodel.numlights; l++ )
++	{
++		const dlight_t *el = g_studio.locallight[l];
++		vec3_t color = { R_CofCurve( el->color.r / 255.0f ) * 0.5f, R_CofCurve( el->color.g / 255.0f ) * 0.5f,
++			R_CofCurve( el->color.b / 255.0f ) * 0.5f };
++		float r2 = el->radius * el->radius;
++
++		for( int b = -1; b < m_pStudioHeader->numbones; b++ )
++		{
++			vec3_t pos, d, tint = { 1.0f, 1.0f, 1.0f };
++			float atten;
++
++			if( b < 0 ) VectorCopy( origin, pos );
++			else VectorSet( pos, g_studio.lighttransform[b][0][3], g_studio.lighttransform[b][1][3], g_studio.lighttransform[b][2][3] );
++
++			VectorSubtract( pos, el->origin, d );
++			if( el->key == COF_SPOT_KEY )
++				atten = R_CofSpotFactor( pos, tint ) > 0.0f ? 1.0f : 0.0f; // tint carries the cone
++			else
++				atten = Q_max( 0.0f, 1.0f - DotProduct( d, d ) / r2 );
++			VectorNormalize( d );
++
++			float *dir = b < 0 ? g_cofmodel.wlightdir[l] : g_cofmodel.blightdir[l][b];
++			float *col = b < 0 ? g_cofmodel.wlightcolor[l] : g_cofmodel.blightcolor[l][b];
++			if( b < 0 ) VectorCopy( d, dir );
++			else Matrix3x4_VectorIRotate( g_studio.lighttransform[b], d, dir );
++			for( int k = 0; k < 3; k++ )
++				col[k] = color[k] * tint[k] * atten;
++		}
++	}
++	g_studio.numlocallights = 0; // R_LightLambert must not add them again with the engine's gamma
++
++	VectorCopy( g_cofmodel.ambient, g_cofmodel.last.ambient );
++	VectorCopy( g_cofmodel.diffuse, g_cofmodel.last.diffuse );
++	VectorCopy( g_cofmodel.lightvec, g_cofmodel.last.lightvec );
++}
++
++// FUN_10068d70
++static void R_CofModelLighting( vec3_t out, int bone, int flags, const vec3_t normal )
++{
++	if( FBitSet( flags, STUDIO_NF_FULLBRIGHT ))
++	{
++		VectorSet( out, 1.0f, 1.0f, 1.0f ); // drawn without the x2 (R_StudioDrawPoints)
++		return;
++	}
++
++	if( FBitSet( flags, STUDIO_NF_FLATSHADE ))
++	{
++		VectorMA( g_cofmodel.ambient, 0.8f, g_cofmodel.diffuse, out );
++	}
++	else
++	{
++		const float *lightvec = bone < 0 ? g_cofmodel.lightvec : g_cofmodel.blightvec[bone];
++		float l = Q_max( 1.0f, gl_cof_lambert.value );
++		float lightcos = Q_min( DotProduct( normal, lightvec ), 1.0f );
++		float f = ( lightcos + ( l - 1.0f )) / l;
++
++		VectorAdd( g_cofmodel.ambient, g_cofmodel.diffuse, out );
++		if( f > 0.0f )
++			VectorMA( out, -f, g_cofmodel.diffuse, out );
++		for( int k = 0; k < 3; k++ )
++			out[k] = Q_max( out[k], 0.0f );
++
++		for( int i = 0; i < g_cofmodel.numlights; i++ )
++		{
++			const float *dir = bone < 0 ? g_cofmodel.wlightdir[i] : g_cofmodel.blightdir[i][bone];
++			const float *col = bone < 0 ? g_cofmodel.wlightcolor[i] : g_cofmodel.blightcolor[i][bone];
++			float r = -DotProduct( normal, dir );
++			if( r > 0.0f )
++				VectorMA( out, r, col, out );
++		}
++	}
++
++	float brightest = Q_max( out[0], Q_max( out[1], out[2] ));
++	if( brightest > 1.0f )
++		VectorScale( out, 1.0f / brightest, out );
++
++	// additive meshes are drawn without the x2: give them their doubled colour here
++	if( FBitSet( flags, STUDIO_NF_ADDITIVE ))
++		for( int k = 0; k < 3; k++ )
++			out[k] = Q_min( out[k] * 2.0f, 1.0f );
++}
++
++static void R_CofModelStats_f( void )
++{
++	gEngfuncs.Con_Printf( "cof_model_light active=%d calls=%d hits=%d has61=%d sky=%d fx=%d ambient=%.3f,%.3f,%.3f diffuse=%.3f,%.3f,%.3f lightvec=%.2f,%.2f,%.2f\n",
++		g_cofmodel.active, g_cofmodel.last.calls, g_cofmodel.last.hits, g_cofmodel.last.has61, g_cofmodel.last.sky, g_cofmodel.last.fx,
++		g_cofmodel.last.ambient[0], g_cofmodel.last.ambient[1], g_cofmodel.last.ambient[2],
++		g_cofmodel.last.diffuse[0], g_cofmodel.last.diffuse[1], g_cofmodel.last.diffuse[2],
++		g_cofmodel.last.lightvec[0], g_cofmodel.last.lightvec[1], g_cofmodel.last.lightvec[2] );
++	memset( &g_cofmodel.last, 0, sizeof( g_cofmodel.last ));
++}
++
+ /*
+ ===============
+ R_StudioSetupLighting
+@@ -1302,6 +1592,7 @@ static void R_StudioSetupLighting( alight_t *plight )
  	if( RI.currententity != NULL )
  		scale = RI.currententity->curstate.scale;
  
@@ -1808,7 +2160,64 @@ index 39873fb4..e576c59b 100644
  	g_studio.ambientlight = plight->ambientlight;
  	g_studio.shadelight = plight->shadelight;
  	VectorCopy( plight->plightvec, g_studio.lightvec );
-@@ -3205,6 +3214,8 @@ R_StudioDrawModelInternal
+@@ -1313,6 +1604,24 @@ static void R_StudioSetupLighting( alight_t *plight )
+ 	}
+ 
+ 	VectorCopy( plight->color, g_studio.lightcolor );
++
++	// Cry of Fear: the client's own model lighting; the envpos sky and engine effects keep Xash's
++	{
++		static qboolean registered;
++		cl_entity_t *ent = RI.currententity;
++
++		if( !registered )
++		{
++			gEngfuncs.Cmd_AddCommand( "cof_model_light", R_CofModelStats_f, "Cry of Fear model lighting of the last frames" );
++			registered = true;
++		}
++
++		g_cofmodel.active = r_cof_lightmaps.value && r_cof_modellight.value && ent && !R_CoFSkyDrawing()
++			&& ent->curstate.renderfx != kRenderFxGlowShell && ent->curstate.renderfx != 137
++			&& ent->curstate.rendermode != kRenderTransAdd;
++		if( g_cofmodel.active )
++			R_CofModelSetupLighting( ent );
++	}
+ }
+ 
+ /*
+@@ -2034,6 +2343,15 @@ static void R_StudioDrawPoints( void )
+ 			for( int i = 0; i < pmesh[j].numnorms; i++, k++, pstudionorms++, pnormbone++ )
+ 			{
+ 				float lv_tmp;
++				if( g_cofmodel.active )
++				{
++					if( FBitSet( m_pStudioHeader->flags, STUDIO_HAS_BONEWEIGHTS ))
++						R_CofModelLighting( g_studio.lightvalues[k], -1, g_nFaceFlags, g_studio.norms[k] );
++					else R_CofModelLighting( g_studio.lightvalues[k], *pnormbone, g_nFaceFlags, (float *)pstudionorms );
++					if( FBitSet( g_nFaceFlags, STUDIO_NF_CHROME ))
++						R_StudioSetupChrome( g_studio.chrome[k], *pnormbone, (float *)pstudionorms );
++					continue;
++				}
+ 				if( FBitSet( m_pStudioHeader->flags, STUDIO_HAS_BONEWEIGHTS ))
+ 					R_StudioLighting( &lv_tmp, -1, g_nFaceFlags, g_studio.norms[k] );
+ 				else R_StudioLighting( &lv_tmp, *pnormbone, g_nFaceFlags, (float *)pstudionorms );
+@@ -2109,8 +2427,15 @@ static void R_StudioDrawPoints( void )
+ 
+ 		R_StudioSetupSkin( m_pStudioHeader, pskinref[pmesh->skinref] );
+ 
++		// Cry of Fear: texture x colour x 2 (R_CofModelLighting)
++		if( g_cofmodel.active )
++			pglTexEnvf( GL_TEXTURE_ENV, GL_RGB_SCALE_ARB, FBitSet( g_nFaceFlags, STUDIO_NF_FULLBRIGHT|STUDIO_NF_ADDITIVE ) ? 1.0f : 2.0f );
++
+ 		R_StudioSubmitMesh( ptricmds, pstudionorms, s, t, shellscale, 0 );
+ 
++		if( g_cofmodel.active )
++			pglTexEnvf( GL_TEXTURE_ENV, GL_RGB_SCALE_ARB, 1.0f );
++
+ 		if( FBitSet( g_nFaceFlags, STUDIO_NF_MASKED ))
+ 		{
+ 			pglAlphaFunc( GL_GREATER, DEFAULT_ALPHATEST );
+@@ -3205,6 +3530,8 @@ R_StudioDrawModelInternal
  */
  static void R_StudioDrawModelInternal( cl_entity_t *e, int flags )
  {
@@ -1817,7 +2226,7 @@ index 39873fb4..e576c59b 100644
  	if( !FBitSet( RI.rvp.flags, RF_DRAW_WORLD ))
  	{
  		if( e->player )
-@@ -3224,6 +3235,7 @@ static void R_StudioDrawModelInternal( cl_entity_t *e, int flags )
+@@ -3224,6 +3551,7 @@ static void R_StudioDrawModelInternal( cl_entity_t *e, int flags )
  			pStudioDraw->StudioDrawPlayer( flags, R_StudioGetPlayerState( e->index - 1 ));
  		else pStudioDraw->StudioDrawModel( flags );
  	}

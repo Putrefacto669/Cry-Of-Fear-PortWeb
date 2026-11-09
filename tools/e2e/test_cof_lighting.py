@@ -8,7 +8,8 @@ def run_contract():
     source=Path(os.environ['COF_WORK'])/'engine/xash3d-fwgs/ref/gl/gl_rsurf.c'
     text=source.read_text()
     def function(name):
-     start=text.index('static '+('float ' if name=='R_CofCurve' else 'void ')+name+'(')
+     # R_CofCurve is shared with the model lighting (gl_studio.c) since 08/11, so it may not be static
+     start=text.index('\nfloat R_CofCurve(')+1 if name=='R_CofCurve' and 'static float R_CofCurve(' not in text else text.index('static '+('float ' if name=='R_CofCurve' else 'void ')+name+'(')
      opening=text.index('{',start);depth=0
      for end in range(opening,len(text)):
       if text[end]=='{':depth+=1

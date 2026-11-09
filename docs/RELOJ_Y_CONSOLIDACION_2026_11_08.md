@@ -173,7 +173,7 @@ jugador que lo vea demasiado oscuro tiene el mismo ajuste que ofrecía el origin
   | Solo la 61 | `curva(capa 61)` | `FUN_10059880` |
   | Las demás caras | `curva(capa 0)·0,5` | `FUN_10059d20` |
 
-  - `curva(x) = x·gl_contrast + gl_brightness`; antes, `pow(x, 1/gl_gamma)` si `gl_gamma ≠ 1`.
+  - `curva(x) = x·gl_contrast + gl_brightness`; antes, `pow(x, gl_gamma)` si `gl_gamma ≠ 1` (corregido el 08/11: al principio se usó `1/gl_gamma`, ver `ILUMINACION_MODELOS_Y_MATERIALES_2026_11_08.md`, sección 10).
   - Normalización por el canal máximo y negativos a 0 (`FUN_10059f30`).
   - Los estilos animados (que no sean 61–63) conservan su animación: `valor / 264`.
   - Las luces dinámicas y el foco de la linterna se suman como las pasadas aditivas del original, a ×1
@@ -205,7 +205,7 @@ Media del fotograma (0–255) / porcentaje de píxeles por debajo de 16:
   Pueden verse algo más claros que el mundo.
 - **Relieve**: con `gl_bump 1` el original usa la ruta con relieve, que reparte N·L por píxel; aquí se
   usa la ruta plana, de media parecida.
-- **Gamma**: el exponente cuando `gl_gamma ≠ 1` no está confirmado. El deslizador no lo usa.
+- **Gamma**: exponente confirmado después en el desensamblado: `pow(x, gl_gamma)`. El deslizador no lo usa.
 - **Sin comparación nativa**: falta una captura del juego original en el mismo punto.
 
 ### Pruebas
