@@ -1,0 +1,60 @@
+renderer 9e792b0ef8b84fe60c6963074438612b895cf0e00ce9f566fac271532db42e56
+--- unit lighting
+
+OK
+--- patches guard
+PASS patches.sh guard: refuses lost lines, accepts supersets, --allow-drop replaces
+--- pointer lock
+OK pointer lock: raw movement, unsupported fallback, rejection preserved, legacy APIs and ignored SDL promises
+clock_backwards (render) exit 0
+PASS monotonic engine clock: client connects with the wall clock stepping back 2 s
+{
+  "stepBackMs": 2000,
+  "passed": true,
+  "clockStepped": true,
+  "connected": true,
+  "wrapped": false,
+  "firstFrame": null,
+  "levelLoaded": "level loaded at 2.02 sec"
+}button_clock_probe.mjs
+button_fixed_probe.mjs
+button_probe.mjs
+c_start_gameplay_probe.mjs
+c_start_progression.mjs
+-rw-r--r-- 1 root root  7693 Nov  8 19:00 train_entities-regression.mjs
+-rw-r--r-- 1 root root  4797 Nov  8 19:02 trigger_persistence-regression.mjs
+-rw-r--r-- 1 root root  4744 Nov  8 19:10 voice_mix_probe-regression.mjs
+v24.19.0
+fog_entities exit 0
+PASS actual BSP linear fog GPU draws, off and native restoration without reactivation
+flashlight (render) exit 0
+off 23.0 0.05 0
+spot 24.4 0.04 0
+wallOff 45.9 0 0
+wallSpot 55.9 0 0
+noDynamic 45.9 0 0
+dynamicAgain 56.0 0 0
+restoredOn 56.0 0 0
+wallOffAgain 46.0 0 0
+errors []
+campaign_entities 0
+manager_entities 0
+sound_entities 0
+camera_entities 0
+train_entities 0
+track_entities 0
+envpos_entities 0
+button_entities 0
+changelevel_entities 1
+trigger_persistence 0
+ambient_persistence 0
+callback_behavior 0
+extras_persistence 0
+extras_interactions 0
+phone_singleplayer_punch 0
+dual_hands 0
+ammo_hud 0
+voice_mix_probe 0
+RESULT /root/cof-audits/claude-render-20261108/regressions-201118 17 / 18
+
+[exited with code 0]

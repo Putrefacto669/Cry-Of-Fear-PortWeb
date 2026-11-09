@@ -13,11 +13,14 @@ const out = process.argv[3] || `/tmp/cof-model-light-${Date.now()}`;
 const maps = process.argv.slice(4).length ? process.argv.slice(4)
   : ['c_intro', 'c_nightmare', 'c_start', 'c_apartment1', 'c_apartmentsick'];
 const weapons = (process.env.COF_WEAPONS || 'weapon_glock').split(',');
+// what is compared: COF_TOGGLE "cvar on off" (default: the model lighting itself)
+const [toggle, onValue, offValue] = (process.env.COF_TOGGLE || 'r_cof_modellight 1 0').split(' ');
+const on = `${toggle} ${onValue}`, off = `${toggle} ${offValue}`;
 if (fs.existsSync(out)) throw Error(`Output directory already exists: ${out}`);
 fs.mkdirSync(out, { recursive: true });
 const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--mute-audio'] });
 const lum = (p, i) => .2126 * p[i] + .7152 * p[i + 1] + .0722 * p[i + 2];
-const result = { base, maps: {} };
+const result = { base, toggle: [toggle, onValue, offValue], maps: {} };
 
 for (const map of maps) {
   const page = await browser.newPage({ viewport: { width: 800, height: 600 } });
@@ -89,17 +92,18 @@ for (const map of maps) {
       const slot = [...dump.matchAll(/carried (\d+): (\S+)/g)].find(m => m[2] === weapon)?.[1];
       if (slot !== undefined) await cmd(`cof_equip ${slot}`);
       await page.waitForTimeout(2500); // draw animation
+      if (process.env.COF_PRE) { await cmd(process.env.COF_PRE); await page.waitForTimeout(1500); } // e.g. flashlight
      for (const [scene, look] of scenes) {
       const key = `${weapon}-${scene}`;
       if (look) { await cmd(look); await page.waitForTimeout(1200); }
       const view = ((await cmd('cof_inspect !player')).match(/origin=\S+/) || [''])[0];
       await cmd('pause');
-      await cmd('r_cof_modellight 1\nr_drawentities 1\nr_drawviewmodel 1\ncof_model_light');
+      await cmd(`${on}\nr_drawentities 1\nr_drawviewmodel 1\ncof_model_light`);
       const cof = await frame(`${key}-cof`);
       const lightStats = (await cmd('cof_model_light')).split('\n').find(s => s.includes('cof_model_light active=')) || '';
-      await cmd('r_cof_modellight 0');
+      await cmd(off);
       const xash = await frame(`${key}-previous`);
-      await cmd('r_cof_modellight 1\nr_drawentities 0');
+      await cmd(`${on}\nr_drawentities 0`);
       const world = await frame();
       await cmd('r_drawentities 1\nr_drawviewmodel 0');
       const noView = await frame();

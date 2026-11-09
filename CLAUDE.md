@@ -164,6 +164,9 @@ y capítulo 1 "Lost in a city" (`c_start`, `c_start2`, `c_apartment1-5`, `c_apar
   en ese árbol se pierde en el siguiente `export`, y el juego se compila sin él. Aplicar cualquier cambio
   al árbol canónico y exportar; antes de un `export`, comparar árbol y parches (líneas `+/-`).
   Consolidado el 08/11 (`docs/RELOJ_Y_CONSOLIDACION_2026_11_08.md`).
+  - Desde el 08/11, `export` se cancela si se perderían líneas de los parches actuales.
+  - `patches.sh check` informa sin escribir; `export --allow-drop` es solo para sustituciones revisadas.
+  - Prueba: `tools/wsl/test_patches_guard.sh`.
 - **Reloj del motor**: en la web `Platform_DoubleTime` usa `emscripten_get_now()`, que es monótono. El de
   SDL (`Date.now()`) retrocede con los ajustes de hora y daba arranques sin conexión (`level loaded at
   -18446744073707 sec`). Prueba: `tools/e2e/clock_backwards.mjs`.

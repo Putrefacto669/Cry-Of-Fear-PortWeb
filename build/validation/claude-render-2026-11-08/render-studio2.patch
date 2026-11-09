@@ -1,0 +1,135 @@
+--- a/ref/gl/gl_opengl.c
++++ b/ref/gl/gl_opengl.c
+@@ -30,6 +30,7 @@
+ CVAR_DEFINE_AUTO( r_cof_modellight, "1", 0, "light studio models like the Cry of Fear client (gl_studio.c)" );
+ CVAR_DEFINE( gl_cof_lambert, "gl_lambert", "2", 0, "Cry of Fear model shading wrap (original default 2)" );
+ CVAR_DEFINE( r_cof_brightvalue, "brightvalue", "1", 0, "Cry of Fear ambient light of models with renderfx 100" );
++CVAR_DEFINE_AUTO( cof_fullbrighttextures, "0.5", 0, "Cry of Fear colour of model textures named *fullbright* (0 = lit)" );
+ CVAR_DEFINE_AUTO( gl_fog, "1", FCVAR_GLCONFIG, "allow for rendering fog using built-in OpenGL fog implementation" );
+ CVAR_DEFINE_AUTO( gl_litwater_force, "0", FCVAR_GLCONFIG, "force enable lightmapped water, even if support not declared in the map" );
+ CVAR_DEFINE_AUTO( r_lighting_ambient, "0.3", FCVAR_GLCONFIG, "map ambient lighting scale" );
+@@ -1298,6 +1299,7 @@
+ 	gEngfuncs.Cvar_RegisterVariable( &r_cof_modellight );
+ 	gEngfuncs.Cvar_RegisterVariable( &gl_cof_lambert );
+ 	gEngfuncs.Cvar_RegisterVariable( &r_cof_brightvalue );
++	gEngfuncs.Cvar_RegisterVariable( &cof_fullbrighttextures );
+ 	gEngfuncs.Cvar_RegisterVariable( &gl_fog );
+ 	gEngfuncs.Cvar_RegisterVariable( &gl_litwater_force );
+ 
+--- a/ref/gl/gl_local.h
++++ b/ref/gl/gl_local.h
+@@ -781,6 +781,7 @@
+ extern convar_t	r_cof_modellight;
+ extern convar_t	gl_cof_lambert;
+ extern convar_t	r_cof_brightvalue;
++extern convar_t	cof_fullbrighttextures;
+ extern convar_t	gl_extensions;
+ extern convar_t	gl_check_errors;
+ extern convar_t	gl_texture_lodbias;
+--- a/ref/gl/gl_studio.c
++++ b/ref/gl/gl_studio.c
+@@ -1326,7 +1326,7 @@
+ 	vec3_t wlightdir[COF_MODEL_LIGHTS], wlightcolor[COF_MODEL_LIGHTS];	// at the model origin
+ 	vec3_t blightdir[COF_MODEL_LIGHTS][MAXSTUDIOBONES];	// from the light to the bone, bone space
+ 	vec3_t blightcolor[COF_MODEL_LIGHTS][MAXSTUDIOBONES];	// colour x attenuation at the bone
+-	struct { int calls, hits, has61, sky, fx; vec3_t ambient, diffuse, lightvec; } last;
++	struct { int calls, hits, has61, sky, fx, fullbright, lights, far, hidden; vec3_t ambient, diffuse, lightvec; } last;
+ } g_cofmodel;
+ 
+ static qboolean R_CofModelLightPoint( model_t *model, mnode_t *node, const vec3_t start, const vec3_t end, float *out )
+@@ -1479,13 +1479,45 @@
+ 	for( int i = 0; i < m_pStudioHeader->numbones; i++ )
+ 		Matrix3x4_VectorIRotate( g_studio.lighttransform[i], g_cofmodel.lightvec, g_cofmodel.blightvec[i] );
+ 
+-	// the dynamic lights R_StudioEntityLight picked (it also placed the flashlight at the view)
++	// FUN_1005bd90: the first 4 live lights, in order, that reach the model's origin and that a world-only
++	// point trace from the origin to the light does not block; the player's own flashlight always lights
++	// the player's model. R_StudioEntityLight already moved the lights to their entities and the
++	// flashlight to the view (it skips everything with r_dynamic 0, and so does this).
+ 	vec3_t origin;
++	const dlight_t *picked[COF_MODEL_LIGHTS];
+ 	Matrix3x4_OriginFromMatrix( g_studio.rotationmatrix, origin );
+-	g_cofmodel.numlights = Q_min( g_studio.numlocallights, COF_MODEL_LIGHTS );
++	g_cofmodel.numlights = 0;
++	for( int lnum = 0; r_dynamic->value && lnum < MAX_ELIGHTS && g_cofmodel.numlights < COF_MODEL_LIGHTS; lnum++ )
++	{
++		dlight_t *el = &tr.elights[lnum];
++
++		if( el->die < g_studio.time || el->radius <= 0.0f )
++			continue;
++
++		qboolean own = el->key == COF_SPOT_KEY && RP_LOCALCLIENT( ent );
++		if( !own )
++		{
++			vec3_t d;
++			VectorSubtract( origin, el->origin, d );
++			// the flashlight's reach is its cone (R_CofSpotFactor, 700 units), not its elight radius
++			if( el->key != COF_SPOT_KEY && DotProduct( d, d ) > el->radius * el->radius )
++			{
++				g_cofmodel.last.far++;
++				continue;
++			}
++			pmtrace_t trace = gEngfuncs.CL_TraceLine( origin, el->origin, PM_WORLD_ONLY );
++			if( trace.allsolid || trace.fraction < 1.0f )
++			{
++				g_cofmodel.last.hidden++;
++				continue;
++			}
++		}
++		picked[g_cofmodel.numlights++] = el;
++	}
++	g_cofmodel.last.lights += g_cofmodel.numlights;
+ 	for( int l = 0; l < g_cofmodel.numlights; l++ )
+ 	{
+-		const dlight_t *el = g_studio.locallight[l];
++		const dlight_t *el = picked[l];
+ 		vec3_t color = { R_CofCurve( el->color.r / 255.0f ) * 0.5f, R_CofCurve( el->color.g / 255.0f ) * 0.5f,
+ 			R_CofCurve( el->color.b / 255.0f ) * 0.5f };
+ 		float r2 = el->radius * el->radius;
+@@ -1568,8 +1600,9 @@
+ 
+ static void R_CofModelStats_f( void )
+ {
+-	gEngfuncs.Con_Printf( "cof_model_light active=%d calls=%d hits=%d has61=%d sky=%d fx=%d ambient=%.3f,%.3f,%.3f diffuse=%.3f,%.3f,%.3f lightvec=%.2f,%.2f,%.2f\n",
++	gEngfuncs.Con_Printf( "cof_model_light active=%d calls=%d hits=%d has61=%d sky=%d fx=%d fullbright=%d lights=%d far=%d hidden=%d ambient=%.3f,%.3f,%.3f diffuse=%.3f,%.3f,%.3f lightvec=%.2f,%.2f,%.2f\n",
+ 		g_cofmodel.active, g_cofmodel.last.calls, g_cofmodel.last.hits, g_cofmodel.last.has61, g_cofmodel.last.sky, g_cofmodel.last.fx,
++		g_cofmodel.last.fullbright, g_cofmodel.last.lights, g_cofmodel.last.far, g_cofmodel.last.hidden,
+ 		g_cofmodel.last.ambient[0], g_cofmodel.last.ambient[1], g_cofmodel.last.ambient[2],
+ 		g_cofmodel.last.diffuse[0], g_cofmodel.last.diffuse[1], g_cofmodel.last.diffuse[2],
+ 		g_cofmodel.last.lightvec[0], g_cofmodel.last.lightvec[1], g_cofmodel.last.lightvec[2] );
+@@ -2322,6 +2355,18 @@
+ 	{
+ 		g_nFaceFlags = ptexture[pskinref[pmesh[j].skinref]].flags | g_nForceFaceFlags;
+ 
++		// Cry of Fear (10065ef0): a texture named *fullbright* (also fullbright_mess, the phone's screen) is
++		// not lit: its colour is cof_fullbrighttextures (0.5, x2 when drawn); corona_ adds +-0.1 per vertex
++		const char *cof_texname = ptexture[pskinref[pmesh[j].skinref]].name;
++		float cof_fullbright = -1.0f;
++		qboolean cof_corona = false;
++		if( g_cofmodel.active && cof_fullbrighttextures.value != 0.0f && Q_strstr( cof_texname, "fullbright" ))
++		{
++			cof_fullbright = cof_fullbrighttextures.value;
++			cof_corona = Q_strstr( cof_texname, "corona_" ) != NULL;
++			g_cofmodel.last.fullbright++;
++		}
++
+ 		// fill in sortedmesh info
+ 		g_studio.meshes[j].flags = g_nFaceFlags;
+ 		g_studio.meshes[j].mesh = &pmesh[j];
+@@ -2343,6 +2388,16 @@
+ 			for( int i = 0; i < pmesh[j].numnorms; i++, k++, pstudionorms++, pnormbone++ )
+ 			{
+ 				float lv_tmp;
++				if( cof_fullbright >= 0.0f )
++				{
++					float v = cof_fullbright + ( cof_corona ? gEngfuncs.COM_RandomFloat( -0.1f, 0.1f ) : 0.0f );
++					if( FBitSet( g_nFaceFlags, STUDIO_NF_ADDITIVE )) // drawn without the x2
++						v = Q_min( v * 2.0f, 1.0f );
++					VectorSet( g_studio.lightvalues[k], v, v, v );
++					if( FBitSet( g_nFaceFlags, STUDIO_NF_CHROME ))
++						R_StudioSetupChrome( g_studio.chrome[k], *pnormbone, (float *)pstudionorms );
++					continue;
++				}
+ 				if( g_cofmodel.active )
+ 				{
+ 					if( FBitSet( m_pStudioHeader->flags, STUDIO_HAS_BONEWEIGHTS ))
