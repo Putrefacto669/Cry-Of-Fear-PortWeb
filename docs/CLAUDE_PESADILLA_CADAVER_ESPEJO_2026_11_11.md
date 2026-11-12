@@ -150,6 +150,15 @@ El usuario autorizó empaquetar, hacer commit y desplegar a GitHub Pages cuando 
 - Se sube a `portweb/main` con un avance normal desde `8754144`, sin force push.
 - La verificación del despliegue se registra a continuación, aparte del push.
 
+**Despliegue comprobado (11/11/2026):**
+
+- Commit `138163d`, subido a `portweb/main` (`8754144..138163d`).
+- Workflow «GitHub Pages», run `43147378592`: **success**.
+- El sitio público sirve el manifiesto `c83a0e4f86f0`. `packs/engine.data.gz`, `packs/engine.js`, `sw.js` y
+  `sw-manifest.js` tienen el mismo hash que el commit.
+- `nightmare_customize_probe` **contra GitHub Pages**: cadáveres PASS (`body 0` y eliminados), espejo PASS (guion
+  hasta 3,2 s tras la foto; X y cristal rotos). Evidencia: `probe-public-*`.
+
 ## 5. Pendiente (no tratado aquí, por indicación del usuario)
 
 - **Notas del bolso.** El original tiene un cuaderno de 16 notas guardado en el jugador. `cof_addcodenote`
