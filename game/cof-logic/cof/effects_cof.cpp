@@ -90,6 +90,13 @@ void CoF_CameraFlash( CBasePlayer *pPlayer )
 		CBaseMonster *pMonster = pNear->MyMonsterPointer();
 		if( !pMonster || pNear->IsPlayer() || !pNear->IsAlive())
 			continue;
+		// A monster playing or waiting on a scripted_sequence is left alone: LIGHT_DAMAGE is one of the script break
+		// conditions, and the flash cancelled the mirror reflection's wait script (c_nightmare wrongm8s), so its
+		// "action" (Simon striking the glass, 1 s after the photo of spot9) never played (11/11/2026). The original
+		// camera (hl.dll 10027280) does not touch it that way: it only gives a 0-damage hit of its own type to monster_
+		// entities within 64 units of where its trace ends, and the reflection completes its blow in the original.
+		if( pMonster->m_pCine || pMonster->m_MonsterState == MONSTERSTATE_SCRIPT )
+			continue;
 		Vector dir = ( pNear->Center() - eye ).Normalize();
 		if( DotProduct( dir, forward ) < 0.7f )
 			continue;
@@ -108,7 +115,17 @@ m_iVisible 1 shows, 2 hides, 3 toggles
 class CEnvCustomize : public CPointEntity
 {
 public:
-	void Spawn( void ) { m_iKeyValuesVersion = 1; CPointEntity::Spawn(); }
+	// The original (hl.dll 10108f00) applies pev->body unless it is -1 and pev->skin unless it is -1 (-2 toggles 0/1,
+	// -99 sets -1). Its KeyValue (1010bfd0) leaves body and skin to the engine's entvars, so an omitted key is 0 and
+	// is applied: the prelude's corpses (spott1mc, cwrongm6, body 1 = an empty submodel) and tvframe_b0, rope_vis,
+	// badcustier2 depend on it (11/11/2026). Here "not given" (0, values are stored +1) becomes 0 at spawn.
+	void Spawn( void )
+	{
+		if( !m_iBody ) m_iBody = 1;
+		if( !m_iSkin ) m_iSkin = 1;
+		m_iKeyValuesVersion = 2;
+		CPointEntity::Spawn();
+	}
 	virtual void KeyValue( KeyValueData *pkvd );
 	virtual void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value );
 	virtual int Save( CSave &save );
@@ -150,6 +167,13 @@ int CEnvCustomize::Restore( CRestore &restore )
 		if( m_iBody == 0 && pev->body != 0 ) m_iBody = pev->body + 1;
 		if( m_iSkin == 0 && pev->skin != 0 ) m_iSkin = pev->skin + 1;
 		m_iKeyValuesVersion = 1;
+	}
+	if( m_iKeyValuesVersion == 1 )
+	{
+		// version 1 kept "not given" as 0 and skipped it; the original applies 0 (see Spawn)
+		if( !m_iBody ) m_iBody = 1;
+		if( !m_iSkin ) m_iSkin = 1;
+		m_iKeyValuesVersion = 2;
 	}
 	return 1;
 }
@@ -195,10 +219,16 @@ void CEnvCustomize::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE
 	CBaseEntity *pTarget = NULL;
 	while(( pTarget = UTIL_FindEntityByTargetname( pTarget, STRING( pev->target ))))
 	{
-		if( m_iBody > 0 )
-			pTarget->pev->body = m_iBody - 1;
-		if( m_iSkin > 0 )
-			pTarget->pev->skin = m_iSkin - 1;
+		// as 10108f00: -1 leaves them; skin -2 toggles 0/1 and -99 sets -1
+		const int body = m_iBody - 1, skin = m_iSkin - 1;
+		if( body != -1 )
+			pTarget->pev->body = body;
+		if( skin == -2 )
+			pTarget->pev->skin = pTarget->pev->skin ? 0 : 1;
+		else if( skin == -99 )
+			pTarget->pev->skin = -1;
+		else if( skin != -1 )
+			pTarget->pev->skin = skin;
 		if( m_iVisible == 1 )
 			pTarget->pev->effects &= ~EF_NODRAW;
 		else if( m_iVisible == 2 )

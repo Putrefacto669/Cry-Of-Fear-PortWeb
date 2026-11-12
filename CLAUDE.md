@@ -4,6 +4,19 @@ Guía para Claude Code (y cualquier asistente) que trabaje en este repositorio: 
 cómo se compila y se prueba, qué se hizo hasta ahora y qué trampas ya se conocen. El usuario
 trabaja en español: responder y documentar en español; los comentarios del código van en inglés.
 
+## Pesadilla: cadáver de la X y espejo — 11/11/2026
+
+Leer `docs/CLAUDE_PESADILLA_CADAVER_ESPEJO_2026_11_11.md`.
+
+- **`env_customize`:** una clave `body`/`skin` **ausente vale 0 y se aplica**, como en `hl.dll` (`10108f00`). La
+  regla anterior («ausente = no cambiar») escondía los cadáveres de las X falsas, los marcos de TV de `c_apartment3`,
+  la cuerda de `c_apartment5` y el rayo de `c_intro`. Las partidas antiguas se migran (versión 2).
+- **Destello de la cámara:** ya no marca `LIGHT_DAMAGE` en monstruos con guion. Cancelaba el guion del reflejo de
+  Simon en el espejo, que se quedaba estático.
+- **Publicado** con manifiesto `c83a0e4f86f0` (solo cambia `server.wasm`, ahora `78a7f109…`).
+- **Pendiente, a pedido del usuario:** el cuaderno de notas (16 notas, `cof_addcodenote`, imágenes de código) y el
+  teléfono (`cof_phonecall`/`cof_telephone`, que no están en los 11 mapas).
+
 ## Continuación de teléfono y HUD — 01/11/2026
 
 Leer `docs/CONTINUACION_TELEFONO_HUD_2026_11_01.md`. Partida limpia en `9588f8f`.

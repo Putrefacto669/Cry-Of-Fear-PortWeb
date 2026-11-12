@@ -1,0 +1,56 @@
+{
+  "base": "http://127.0.0.1:8110/",
+  "published": "http://127.0.0.1:8110/",
+  "parts": {
+    "corpses": {
+      "spott1m": {
+        "before": 1,
+        "during": 1,
+        "after": "missing"
+      },
+      "wrongm6": {
+        "before": 1,
+        "during": 1,
+        "after": "missing"
+      },
+      "errors": [],
+      "passed": false,
+      "failure": "spott1m not made visible\n\n1 !== 0\n"
+    },
+    "mirror": {
+      "before": 164,
+      "samples": [
+        [
+          0.21,
+          36
+        ]
+      ],
+      "spot9": "missing",
+      "glass": 0,
+      "scriptEndsAfter": 0.21,
+      "errors": [],
+      "passed": false,
+      "failure": "the glass did not break\n\n0 !== 'missing'\n"
+    },
+    "scenes": {
+      "tvBefore": [
+        3,
+        3,
+        3
+      ],
+      "tvAfter": [
+        3,
+        3,
+        3
+      ],
+      "ropeBefore": 1,
+      "ropeAfter": 1,
+      "badseqAfter": 2,
+      "skyBefore": 5,
+      "skyAfter": 5,
+      "passed": false,
+      "failure": "tvframe_b0\n+ actual - expected\n\n  [\n+   3,\n+   3,\n+   3\n-   0,\n-   0,\n-   0\n  ]\n"
+    }
+  },
+  "passed": false
+}
