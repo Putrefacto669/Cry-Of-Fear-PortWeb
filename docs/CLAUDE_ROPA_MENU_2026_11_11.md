@@ -138,3 +138,12 @@ Batería `cl3-suite-204522`, sin nada en paralelo:
 
 **Capturas:** `before/` (silueta negra y panel antiguo) y `after/` (Simon iluminado y panel original), tanto en
 `c_game_menu1` como en el armario de `c_start`.
+
+**Despliegue comprobado (13/11/2026):**
+
+- Commit `df80bad`, subido a `portweb/main` (`138163d..df80bad`), sin force push.
+- Workflow «GitHub Pages», run `43550170169`: **success**.
+- El sitio público sirve el manifiesto `fdf221a95644`; `extras.js`, `index.html`, `packs/engine.data.gz` y `sw.js`
+  tienen el mismo hash que el commit.
+- Contra el sitio público (`parked-public/`): área del juego en 16:9, los dos trenes completan su recorrido con
+  Clothes abierto y aparcan fuera de plano; el retrato de Simon se ve iluminado, con el panel nuevo.
