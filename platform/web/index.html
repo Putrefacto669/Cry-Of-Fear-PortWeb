@@ -47,7 +47,12 @@
                  font: 13px/1.4 ui-monospace, Consolas, monospace; }
     /* minmax(0, 1fr): sin él, el tamaño que SDL pone al canvas estira la fila y tapa log y pie */
     body { display: grid; grid-template-rows: auto minmax(0, 1fr) 28vh auto; }
-    main { position: relative; overflow: hidden; min-height: 0; }
+    /* At most 16:9, centred (bars at the sides): between header, log and footer the row was about 2.6:1 on a 16:9
+       screen, and Xash widens the horizontal field of view with the aspect (half 62.9 deg instead of 53.1). The menu
+       then showed both trains parked at the ends of the track (stop1/stop2, 52.8-54.8 deg off centre), which the
+       original frames out (11/11/2026). Narrower windows are unchanged; every overlay lives inside main. */
+    main { position: relative; overflow: hidden; min-height: 0; height: 100%; aspect-ratio: 16 / 9; max-width: 100%;
+           justify-self: center; }
     header { padding: 6px 12px; color: var(--dim); border-bottom: 1px solid #222; }
     #pointer { float: right; color: var(--fg); }
     #update, #fullscreen { margin-left: 8px; font: inherit; color: var(--bg); background: var(--fg); border: 0; padding: 1px 8px; cursor: pointer; }

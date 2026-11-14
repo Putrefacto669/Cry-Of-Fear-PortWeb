@@ -1,0 +1,88 @@
+patches.sh export --allow-drop 20261111-215955-1195 (COF_WORK=/root/cof-audits/claude-nightmare-20261111)
+== xash3d: pérdidas aprobadas
+    - root:ref/gl/gl_studio.c: added line lost or moved (between '\tVectorCopy( plight->color, g_studio.lightcolor );' and '}'): +			&& ent->curstate.rendermode != kRenderTransAdd;
+== xash3d: SHA-256 de la serie anterior
+0b72f2e487b2499ef659d6c650fe7eaf1f9811ef9addd7110c603542b7d54ced  0001-root.patch
+d5d33efc134ee1da5630b26fff835766a6a9825928662d12fbde4d9c7d8da985  0002-3rdparty__library_suffix.patch
+810a786cab1a996a371cd3b4705c2079015387c5b07c972bab1c2b1af92dad44  0003-3rdparty__mainui.patch
+== xash3d: SHA-256 de la serie nueva
+c0e9994957417e6863a8a7d3ec133b79981d103279861b8e9a02d9856c27397d  0001-root.patch
+d5d33efc134ee1da5630b26fff835766a6a9825928662d12fbde4d9c7d8da985  0002-3rdparty__library_suffix.patch
+810a786cab1a996a371cd3b4705c2079015387c5b07c972bab1c2b1af92dad44  0003-3rdparty__mainui.patch
+== xash3d: diff entre series
+--- current series
++++ new series
+@@ -1875,5 +1875,5 @@
+  		else
+ diff --git a/ref/gl/gl_studio.c b/ref/gl/gl_studio.c
+-index 39873fb4..2c06430f 100644
++index 39873fb4..f1f2b1b1 100644
+ --- a/ref/gl/gl_studio.c
+ +++ b/ref/gl/gl_studio.c
+@@ -2277,5 +2277,5 @@
+  	g_studio.shadelight = plight->shadelight;
+  	VectorCopy( plight->plightvec, g_studio.lightvec );
+-@@ -1313,6 +1667,24 @@ static void R_StudioSetupLighting( alight_t *plight )
++@@ -1313,6 +1667,27 @@ static void R_StudioSetupLighting( alight_t *plight )
+  	}
+  
+@@ -2293,7 +2293,10 @@
+ +		}
+ +
+++		// EF_FULLBRIGHT (a Xash extension, not in the levels) marks the Clothes portrait of the web UI
+++		// (cof_clothes_preview.cpp): it keeps the engine's full brightness instead of the luxel under it,
+++		// which left the model black over the dark menu level (11/11/2026)
+ +		g_cofmodel.active = r_cof_lightmaps.value && r_cof_modellight.value && ent && !R_CoFSkyDrawing()
+ +			&& ent->curstate.renderfx != kRenderFxGlowShell && ent->curstate.renderfx != 137
+-+			&& ent->curstate.rendermode != kRenderTransAdd;
+++			&& ent->curstate.rendermode != kRenderTransAdd && !FBitSet( ent->curstate.effects, EF_FULLBRIGHT );
+ +		if( g_cofmodel.active )
+ +			R_CofModelSetupLighting( ent );
+@@ -2302,5 +2305,5 @@
+  
+  /*
+-@@ -1428,9 +1800,32 @@ static void R_LightLambert( vec4_t light[MAX_LOCALLIGHTS], const vec3_t normal,
++@@ -1428,9 +1803,32 @@ static void R_LightLambert( vec4_t light[MAX_LOCALLIGHTS], const vec3_t normal,
+  	}
+  }
+@@ -2335,5 +2338,5 @@
+  	color[3] = tr.blend * 255;
+  	R_LightLambert( g_studio.lightpos[ptricmds[0]], pstudionorms[ptricmds[1]], lv, color );
+-@@ -2013,6 +2408,16 @@ static void R_StudioDrawPoints( void )
++@@ -2013,6 +2411,16 @@ static void R_StudioDrawPoints( void )
+  	{
+  		g_nFaceFlags = ptexture[pskinref[pmesh[j].skinref]].flags | g_nForceFaceFlags;
+@@ -2352,5 +2355,5 @@
+  		g_studio.meshes[j].flags = g_nFaceFlags;
+  		g_studio.meshes[j].mesh = &pmesh[j];
+-@@ -2034,6 +2439,23 @@ static void R_StudioDrawPoints( void )
++@@ -2034,6 +2442,23 @@ static void R_StudioDrawPoints( void )
+  			for( int i = 0; i < pmesh[j].numnorms; i++, k++, pstudionorms++, pnormbone++ )
+  			{
+@@ -2376,5 +2379,5 @@
+  					R_StudioLighting( &lv_tmp, -1, g_nFaceFlags, g_studio.norms[k] );
+  				else R_StudioLighting( &lv_tmp, *pnormbone, g_nFaceFlags, (float *)pstudionorms );
+-@@ -2109,8 +2531,22 @@ static void R_StudioDrawPoints( void )
++@@ -2109,8 +2534,22 @@ static void R_StudioDrawPoints( void )
+  
+  		R_StudioSetupSkin( m_pStudioHeader, pskinref[pmesh->skinref] );
+@@ -2399,5 +2402,5 @@
+  		{
+  			pglAlphaFunc( GL_GREATER, DEFAULT_ALPHATEST );
+-@@ -3205,6 +3641,8 @@ R_StudioDrawModelInternal
++@@ -3205,6 +3644,8 @@ R_StudioDrawModelInternal
+  */
+  static void R_StudioDrawModelInternal( cl_entity_t *e, int flags )
+@@ -2408,5 +2411,5 @@
+  	{
+  		if( e->player )
+-@@ -3224,6 +3662,7 @@ static void R_StudioDrawModelInternal( cl_entity_t *e, int flags )
++@@ -3224,6 +3665,7 @@ static void R_StudioDrawModelInternal( cl_entity_t *e, int flags )
+  			pStudioDraw->StudioDrawPlayer( flags, R_StudioGetPlayerState( e->index - 1 ));
+  		else pStudioDraw->StudioDrawModel( flags );
+== hlsdk: pérdidas aprobadas
+== hlsdk: SHA-256 de la serie anterior
+a046877b66f9d41081f7e4bf5a8630efb246514504358f18da4a8512a38d6d76  0001-root.patch
+== hlsdk: SHA-256 de la serie nueva
+a046877b66f9d41081f7e4bf5a8630efb246514504358f18da4a8512a38d6d76  0001-root.patch
+== hlsdk: diff entre series

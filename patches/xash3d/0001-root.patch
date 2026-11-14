@@ -1874,7 +1874,7 @@ index 18dea062..ee668d3e 100644
  		}
  		else
 diff --git a/ref/gl/gl_studio.c b/ref/gl/gl_studio.c
-index 39873fb4..2c06430f 100644
+index 39873fb4..f1f2b1b1 100644
 --- a/ref/gl/gl_studio.c
 +++ b/ref/gl/gl_studio.c
 @@ -252,7 +252,7 @@ static qboolean R_StudioComputeBBox( vec3_t bbox[8] )
@@ -2276,7 +2276,7 @@ index 39873fb4..2c06430f 100644
  	g_studio.ambientlight = plight->ambientlight;
  	g_studio.shadelight = plight->shadelight;
  	VectorCopy( plight->plightvec, g_studio.lightvec );
-@@ -1313,6 +1667,24 @@ static void R_StudioSetupLighting( alight_t *plight )
+@@ -1313,6 +1667,27 @@ static void R_StudioSetupLighting( alight_t *plight )
  	}
  
  	VectorCopy( plight->color, g_studio.lightcolor );
@@ -2292,16 +2292,19 @@ index 39873fb4..2c06430f 100644
 +			registered = true;
 +		}
 +
++		// EF_FULLBRIGHT (a Xash extension, not in the levels) marks the Clothes portrait of the web UI
++		// (cof_clothes_preview.cpp): it keeps the engine's full brightness instead of the luxel under it,
++		// which left the model black over the dark menu level (11/11/2026)
 +		g_cofmodel.active = r_cof_lightmaps.value && r_cof_modellight.value && ent && !R_CoFSkyDrawing()
 +			&& ent->curstate.renderfx != kRenderFxGlowShell && ent->curstate.renderfx != 137
-+			&& ent->curstate.rendermode != kRenderTransAdd;
++			&& ent->curstate.rendermode != kRenderTransAdd && !FBitSet( ent->curstate.effects, EF_FULLBRIGHT );
 +		if( g_cofmodel.active )
 +			R_CofModelSetupLighting( ent );
 +	}
  }
  
  /*
-@@ -1428,9 +1800,32 @@ static void R_LightLambert( vec4_t light[MAX_LOCALLIGHTS], const vec3_t normal,
+@@ -1428,9 +1803,32 @@ static void R_LightLambert( vec4_t light[MAX_LOCALLIGHTS], const vec3_t normal,
  	}
  }
  
@@ -2334,7 +2337,7 @@ index 39873fb4..2c06430f 100644
  
  	color[3] = tr.blend * 255;
  	R_LightLambert( g_studio.lightpos[ptricmds[0]], pstudionorms[ptricmds[1]], lv, color );
-@@ -2013,6 +2408,16 @@ static void R_StudioDrawPoints( void )
+@@ -2013,6 +2411,16 @@ static void R_StudioDrawPoints( void )
  	{
  		g_nFaceFlags = ptexture[pskinref[pmesh[j].skinref]].flags | g_nForceFaceFlags;
  
@@ -2351,7 +2354,7 @@ index 39873fb4..2c06430f 100644
  		// fill in sortedmesh info
  		g_studio.meshes[j].flags = g_nFaceFlags;
  		g_studio.meshes[j].mesh = &pmesh[j];
-@@ -2034,6 +2439,23 @@ static void R_StudioDrawPoints( void )
+@@ -2034,6 +2442,23 @@ static void R_StudioDrawPoints( void )
  			for( int i = 0; i < pmesh[j].numnorms; i++, k++, pstudionorms++, pnormbone++ )
  			{
  				float lv_tmp;
@@ -2375,7 +2378,7 @@ index 39873fb4..2c06430f 100644
  				if( FBitSet( m_pStudioHeader->flags, STUDIO_HAS_BONEWEIGHTS ))
  					R_StudioLighting( &lv_tmp, -1, g_nFaceFlags, g_studio.norms[k] );
  				else R_StudioLighting( &lv_tmp, *pnormbone, g_nFaceFlags, (float *)pstudionorms );
-@@ -2109,8 +2531,22 @@ static void R_StudioDrawPoints( void )
+@@ -2109,8 +2534,22 @@ static void R_StudioDrawPoints( void )
  
  		R_StudioSetupSkin( m_pStudioHeader, pskinref[pmesh->skinref] );
  
@@ -2398,7 +2401,7 @@ index 39873fb4..2c06430f 100644
  		if( FBitSet( g_nFaceFlags, STUDIO_NF_MASKED ))
  		{
  			pglAlphaFunc( GL_GREATER, DEFAULT_ALPHATEST );
-@@ -3205,6 +3641,8 @@ R_StudioDrawModelInternal
+@@ -3205,6 +3644,8 @@ R_StudioDrawModelInternal
  */
  static void R_StudioDrawModelInternal( cl_entity_t *e, int flags )
  {
@@ -2407,7 +2410,7 @@ index 39873fb4..2c06430f 100644
  	if( !FBitSet( RI.rvp.flags, RF_DRAW_WORLD ))
  	{
  		if( e->player )
-@@ -3224,6 +3662,7 @@ static void R_StudioDrawModelInternal( cl_entity_t *e, int flags )
+@@ -3224,6 +3665,7 @@ static void R_StudioDrawModelInternal( cl_entity_t *e, int flags )
  			pStudioDraw->StudioDrawPlayer( flags, R_StudioGetPlayerState( e->index - 1 ));
  		else pStudioDraw->StudioDrawModel( flags );
  	}

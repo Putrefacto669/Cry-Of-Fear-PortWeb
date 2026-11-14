@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "name": "new-reader-legacy-unlocks",
+      "base": "http://127.0.0.1:8114/",
+      "profile": "COF_EXTRAS 1 4096\n",
+      "mask": 4096,
+      "choice": 0,
+      "state": "[22:18:53] \"sv_cheats\" changed to \"1\"\n[22:18:53] COF/EXTRAS unlocks=4096 costume=0 nightOwned=0 nightState=0 deadline=0 stored=0 commentary=0\n[22:18:53] COF/FENCE profile_2 time=1.2996",
+      "unchanged": true
+    },
+    {
+      "name": "new-reader-blocked-preference",
+      "base": "http://127.0.0.1:8114/",
+      "profile": "COF_EXTRAS 1 0 6\n",
+      "mask": 0,
+      "choice": 0,
+      "state": "[22:19:03] \"sv_cheats\" changed to \"1\"\n[22:19:03] COF/EXTRAS unlocks=0 costume=0 nightOwned=0 nightState=0 deadline=0 stored=0 commentary=0\n[22:19:03] COF/FENCE profile_2 time=1.3822",
+      "unchanged": true
+    }
+  ],
+  "errors": [],
+  "failure": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unlocks=4096 costume=0 /. Input:\n\n'[22:19:14] \"sv_cheats\" changed to \"1\"\\n' +\n  '[22:19:14] COF/FENCE profile_2 time=1.367'\n\n    at file:///root/cof-audits/browser-1.64.1/e2e/claude/clothes_profile_compat.mjs:16:141\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:502:9)",
+  "passed": false
+}

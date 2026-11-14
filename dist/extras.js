@@ -4,8 +4,7 @@
   // Native CClothesMenu (1001f2b0) puts the list in the right half, leaving Simon visible on the left.
   const names = ['Default clothes', 'David Leatherhoff suit', 'ModDB hoodie', 'Hello Kitty suit',
     'Afraid of Monsters suit', 'Camouflage hoodie', 'Half-Life Creations hoodie', 'Black Metal suit',
-    'Team Psykskallar hoodie', 'Awesome suit', 'Sick Simon suit', 'AoM Twitcher suit'];
-  const authors = ['Minuit', 'ruMpel', 'Sporkeh', 'DragonNOR', 'BerZerk', 'Mr. Sunabouzu - On Sporkeh'];
+    'Team Psykskallar hoodie', 'Awesome suit', 'Sick Simon suit', 'AoM Twitcher suit'];  const authors = ['Minuit', 'ruMpel', 'Sporkeh', 'DragonNOR', 'BerZerk', 'Mr. Sunabouzu - On Sporkeh'];
   let panel, caption, checkbox, stream, blobUrl, commentaryId = 0, clothesOpen = false;
   let unlocks = 0, selected = 0, mask = 0, volume = .8, hooks = {}, menuClothes = false;
   const cmd = text => { if (window.CoFRuntimeReady) Module.ccall('Xash_Cmd', null, ['string'], [text + '\n']); };
@@ -13,13 +12,20 @@
     if (panel) return;
     const style = document.createElement('style');
     style.textContent = `
-      #cof-clothes { display:none; position:absolute; right:3%; top:5%; z-index:15; width:min(300px,43%);
-        max-height:90%; overflow-y:auto; box-sizing:border-box; padding:12px; background:rgba(0,0,0,.72); color:#ddd; font:clamp(12px,1.8vh,18px) Arial,sans-serif; }
-      #cof-clothes.on { display:flex; flex-direction:column; gap:4px; }
-      #cof-clothes button { flex-shrink:0; background:#171717; color:#ddd; border:1px solid #666; padding:5px; cursor:pointer; }
-      #cof-clothes button:disabled { color:#777; cursor:default; }
-      #cof-clothes button[aria-pressed=true] { border-color:#c9a57a; }
-      #cof-clothes [data-close] { position:sticky; bottom:0; z-index:1; }
+      /* the native CClothesMenu (client.dll 1001f2b0) over a W x H screen: buttons H/12 high; the list at x = W/2,
+         W/2 wide, from the top; Close at (0, H - H/12) and Reset at (W/4, H - H/12), W/4 wide. ColorButtons with
+         the "credits" font: text white alpha 200, no fill, borders black and white alpha 128, the chosen one red
+         alpha 32 (11/11/2026; it replaces the boxed panel of 07/11) */
+      #cof-clothes { display:none; position:absolute; inset:0; z-index:15; pointer-events:none;
+        font:clamp(11px,2.7vh,24px) "Trebuchet MS",Tahoma,Arial,sans-serif; }
+      #cof-clothes.on { display:block; }
+      #cof-clothes button { position:absolute; height:8.3333%; box-sizing:border-box; margin:0; padding:0 4px;
+        pointer-events:auto; cursor:pointer; font:inherit; color:rgba(255,255,255,.78); background:transparent;
+        border:1px solid rgba(255,255,255,.5); border-right-color:rgba(0,0,0,.5); border-bottom-color:rgba(0,0,0,.5);
+        text-shadow:0 1px 2px #000; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      #cof-clothes button:hover:not(:disabled), #cof-clothes button:focus-visible { color:#fff; outline:none; }
+      #cof-clothes button:disabled { cursor:default; color:rgba(255,255,255,.55); }
+      #cof-clothes button[aria-pressed=true] { background:rgba(255,0,0,.125); }
       #cof-commentary { display:none; position:absolute; left:10%; right:10%; bottom:8%; z-index:15;
         color:#ddd; text-align:center; font:clamp(13px,2.1vh,22px) Arial,sans-serif; text-shadow:0 2px 3px black; }
       #cof-commentary.on { display:block; }
@@ -27,20 +33,28 @@
     `;
     document.head.append(style);
     panel = document.createElement('section'); panel.id = 'cof-clothes'; panel.setAttribute('aria-label', 'Clothes');
-    const title = document.createElement('strong'); title.textContent = 'Clothes'; panel.append(title);
-    for (let i = 0; i < names.length; i++) {
-      const button = document.createElement('button'); button.dataset.costume = i;
-      button.addEventListener('click', () => cmd(`setclothes ${i}`)); panel.append(button);
+    // the list: costumes 1..11 and the Custom hoodie (setclothes 12 with a player's custom_hoodie.tga, which the
+    // port does not support: shown locked); the default clothes are Reset, as in the original
+    const row = (label, left, top, width) => {
+      const button = document.createElement('button'); button.textContent = label;
+      Object.assign(button.style, { left: `${left}%`, top: `${top}%`, width: `${width}%` }); panel.append(button);
+      return button;
+    };
+    for (let i = 1; i <= 12; i++) {
+      const button = row('', 50, (i - 1) * 100 / 12, 50); button.dataset.costume = i;
+      if (i < names.length) button.addEventListener('click', () => cmd(`setclothes ${i}`));
     }
-    const close = document.createElement('button'); close.textContent = 'Exit'; close.dataset.close = '1';
-    close.addEventListener('click', closeClothes); panel.append(close);
+    const close = row('Close', 0, 100 - 100 / 12, 25); close.dataset.close = '1';
+    close.addEventListener('click', closeClothes);
+    const reset = row('Reset', 25, 100 - 100 / 12, 25); reset.dataset.reset = '1';
+    reset.addEventListener('click', () => cmd('setclothes 0'));
     caption = document.createElement('div'); caption.id = 'cof-commentary';
     document.querySelector('main').append(panel, caption);
   };
   const renderClothes = () => {
     ensure();
     for (const button of panel.querySelectorAll('[data-costume]')) {
-      const i = +button.dataset.costume, enabled = i === 0 || !!(mask & (1 << (i - 1)));
+      const i = +button.dataset.costume, enabled = i < names.length && !!(mask & (1 << (i - 1)));
       button.disabled = !enabled; const label=enabled ? names[i] : 'Locked';
       if(button.textContent!==label)button.textContent=label;
       button.setAttribute('aria-pressed', String(selected === i));

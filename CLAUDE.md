@@ -4,6 +4,17 @@ Guía para Claude Code (y cualquier asistente) que trabaje en este repositorio: 
 cómo se compila y se prueba, qué se hizo hasta ahora y qué trampas ya se conocen. El usuario
 trabaja en español: responder y documentar en español; los comentarios del código van en inglés.
 
+## Menú de ropa — 11/11/2026
+
+Leer `docs/CLAUDE_ROPA_MENU_2026_11_11.md`.
+
+- **Retrato negro:** la luz de modelos de CoF (`gl_studio.c`) ya no se aplica a entidades con `EF_FULLBRIGHT`, que
+  solo usa el retrato de la interfaz.
+- **Panel** (`extras.js`) con la disposición nativa de `CClothesMenu` (`1001f2b0`): lista a la derecha, Close y Reset
+  abajo. Reset = `setclothes 0`.
+- **Pruebas:** `clothes_menu.mjs` adaptada; el recuento de entradas habilitadas baja en uno porque la ropa
+  predeterminada ahora es Reset.
+
 ## Pesadilla: cadáver de la X y espejo — 11/11/2026
 
 Leer `docs/CLAUDE_PESADILLA_CADAVER_ESPEJO_2026_11_11.md`.

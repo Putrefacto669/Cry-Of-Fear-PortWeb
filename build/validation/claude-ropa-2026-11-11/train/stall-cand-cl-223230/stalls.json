@@ -1,0 +1,78 @@
+[
+ {
+  "at": 29186,
+  "ms": 2500,
+  "top": [
+   [
+    "(idle)@:-1 < (root)@:-1",
+    1010
+   ],
+   [
+    "_glGetError@xash3d.js:0 < wasm-to-js@:0 < wasm-function[182]@0011ef02:0 < wasm-function[199]@0011ef02:0",
+    64
+   ],
+   [
+    "preDrawHandleClientVertexAttribBindings@xash3d.js:0 < _glDrawArrays@xash3d.js:0 < wasm-to-js@:0 < wasm-function[75]@0011ef02:0",
+    4
+   ],
+   [
+    "(program)@:-1 < (root)@:-1",
+    3
+   ],
+   [
+    "_glDrawArrays@xash3d.js:0 < wasm-to-js@:0 < wasm-function[75]@0011ef02:0 < wasm-function[222]@0011ef02:0",
+    1
+   ],
+   [
+    "wasm-function[74]@0011ef02:0 < wasm-function[78]@0011ef02:0 < wasm-function[75]@0011ef02:0 < wasm-function[223]@0011ef02:0",
+    1
+   ],
+   [
+    "_glDisableVertexAttribArray@xash3d.js:0 < wasm-to-js@:0 < wasm-function[75]@0011ef02:0 < wasm-function[222]@0011ef02:0",
+    1
+   ],
+   [
+    "P.<computed>@gpustats.js:60 < _glTexSubImage2D@xash3d.js:0 < wasm-to-js@:0 < wasm-function[219]@0011ef02:0",
+    1
+   ]
+  ]
+ },
+ {
+  "at": 61420,
+  "ms": 2482,
+  "top": [
+   [
+    "(idle)@:-1 < (root)@:-1",
+    939
+   ],
+   [
+    "_glGetError@xash3d.js:0 < wasm-to-js@:0 < wasm-function[182]@0011ef02:0 < wasm-function[199]@0011ef02:0",
+    125
+   ],
+   [
+    "preDrawHandleClientVertexAttribBindings@xash3d.js:0 < _glDrawArrays@xash3d.js:0 < wasm-to-js@:0 < wasm-function[75]@0011ef02:0",
+    7
+   ],
+   [
+    "(program)@:-1 < (root)@:-1",
+    4
+   ],
+   [
+    "cb.vertexAttribPointerAdaptor@xash3d.js:0 < preDrawHandleClientVertexAttribBindings@xash3d.js:0 < _glDrawArrays@xash3d.js:0 < wasm-to-js@:0",
+    2
+   ],
+   [
+    "_glDisableVertexAttribArray@xash3d.js:0 < wasm-to-js@:0 < wasm-function[75]@0011ef02:0 < wasm-function[222]@0011ef02:0",
+    2
+   ],
+   [
+    "wasm-function[329]@0011ef02:0 < wasm-function[225]@0011ef02:0 < wasm-function[199]@0011ef02:0 < wasm-function[204]@0011ef02:0",
+    1
+   ],
+   [
+    "wasm-function[3113]@xash3d.wasm:0 < js-to-wasm:i:@:-1 < dynCall@xash3d.js:0 < SDL2.audio.scriptProcessorNode.onaudioprocess@xash3d.js:0",
+    1
+   ]
+  ]
+ }
+]
