@@ -567,8 +567,10 @@ void CoF_ClientFrame( void )
 // Dynamic lights must exist before R_PushDlights/R_DrawWorld. Allocating them
 // in HUD_DrawNormalTriangles is too late, and a 0.1 s light expires between
 // frames below 10 FPS. Use the actual view, including scripted cameras.
+void CoF_HandsView( const float *org, const float *angles ); // cof_hands.cpp: dual wield phone placement
 void CoF_ClientFlashlightView( const float *org, const float *angles, float dt )
 {
+	CoF_HandsView( org, angles );
 	Flashlight_Frame( gEngfuncs.GetClientTime(), dt, org, angles );
 	CoF_ClientExtrasView(org,dt);
 }

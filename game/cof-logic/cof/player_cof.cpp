@@ -391,7 +391,15 @@ static void CoF_SyncCounts( CBasePlayer *pPlayer, cof_player_t *s )
 static void CoF_Equip( CBasePlayer *pPlayer, const char *name )
 {
 	if( name[0] && CoF_IsRealWeapon( name ) && pPlayer->HasNamedPlayerItem( name ))
- {CoF_DualCancel(pPlayer);pPlayer->SelectItem( name );}
+ {
+  // Leaving dual wield with the knife already in hand: SelectItem ignores the active item,
+  // but the knife must leave its dual p2 pose, so it is drawn again (single p1 set).
+  cof_phone_t *phone=CoF_Phone(pPlayer);
+  bool redeploy=phone && phone->dual && pPlayer->m_pActiveItem && FStrEq(name,"weapon_switchblade") &&
+   FClassnameIs(pPlayer->m_pActiveItem->pev,"weapon_switchblade");
+  CoF_DualCancel(pPlayer);
+  if(redeploy)pPlayer->m_pActiveItem->Deploy();else pPlayer->SelectItem( name );
+ }
 }
 
 void CoF_PlayerPreThink( CBasePlayer *pPlayer )

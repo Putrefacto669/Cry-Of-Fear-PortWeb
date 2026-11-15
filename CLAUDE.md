@@ -4,6 +4,25 @@ Guía para Claude Code (y cualquier asistente) que trabaje en este repositorio: 
 cómo se compila y se prueba, qué se hizo hasta ahora y qué trampas ya se conocen. El usuario
 trabaja en español: responder y documentar en español; los comentarios del código van en inglés.
 
+## Teléfono + navaja a dos manos — 14/11/2026
+
+Leer `docs/CLAUDE_MANOS_DUALES_2026_11_14.md`. Continúa la investigación de Codex (checkout `phase5-20261109`, sin
+tocarlo).
+
+- **Captura del original** (teléfono + Glock, aportada por el usuario): la Glock va **reflejada a la izquierda** y el
+  teléfono **sin reflejar a la derecha**.
+- **En el original**, el arma (`+0x204`) es el modelo extra de `1008c7e0`: reflejado, sin culling y en la cámara, sin
+  balanceo. El teléfono es el viewmodel normal.
+- **En el port**, el arma sigue siendo el viewmodel del motor, así que `cof_hands.cpp` intercambia las
+  transformaciones.
+- **Navaja en dual:** p2 (sacar 6, reposo 5, guardar 7, ataques 8/18/19). Todo pierde el brazo `l_`.
+- p1 y p2 son dos agarres de la **mano derecha** (huesos del MDL), no «derecha/izquierda».
+- **Error a no repetir:** suponer que `10038f40` instala el viewmodel del motor. Llevó a reflejar el teléfono; la captura
+  lo desmintió.
+- **Diagnóstico:** `cof_dual_armmask` y `cof_dual_extraview` hacen el A/B.
+- **Publicado** con manifiesto `0140a63de3d5`. Solo cambian `server.wasm` (`6e7bbf18…`) y `client.wasm` (`9cc63f56…`).
+  Pruebas: `dual_hands_contract.mjs`, las tres de manos de Codex y 18/18 regresiones.
+
 ## Menú de ropa — 11/11/2026
 
 Leer `docs/CLAUDE_ROPA_MENU_2026_11_11.md`.

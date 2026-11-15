@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "fdf221a95644",
+ "version": "0140a63de3d5",
  "coi": false,
  "precache": [
   "BingSiteAuth.xml",
@@ -98,8 +98,8 @@ self.COF_MANIFEST = {
   "mp3/watercorridor.mp3": "ba8c97aa265b",
   "packs/boot.data": "9056f3572435",
   "packs/boot.js": "b81c3c8b79dd",
-  "packs/engine.data": "17b41f40896c",
-  "packs/engine.js": "4ed97dcc1b47",
+  "packs/engine.data": "be8d7eae1ef6",
+  "packs/engine.js": "6d9d86619166",
   "packs/extras.data": "8972eb64392e",
   "packs/extras.js": "63f307f5a9a7",
   "packs/map_c_apartment1.data": "8a2ae128e830",
@@ -145,8 +145,8 @@ self.COF_MANIFEST = {
    "gzSize": 22846762
   },
   "packs/engine.data": {
-   "size": 2899897,
-   "gzSize": 970493
+   "size": 2905140,
+   "gzSize": 972948
   },
   "packs/extras.data": {
    "size": 24149424,

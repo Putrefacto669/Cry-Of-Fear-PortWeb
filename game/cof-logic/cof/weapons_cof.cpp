@@ -91,8 +91,9 @@ public:
 weapon_switchblade
 =====================================================================
 */
-// The knife has a sequence set per hand: p1* is the right hand, p2* the left (v_switchblade.mdl).
-// Right click (SecondaryAttack) moves it to the other hand with p1top2 / p2top1.
+// The knife has two sequence sets, p1* and p2* (v_switchblade.mdl). The MDL bones put the knife next to
+// r_wr in both (p2 is a reversed grip); the l_ arm does not move. The names below keep the port's
+// original "left" labels. Right click (SecondaryAttack) switches with p1top2 / p2top1.
 enum switchblade_e
 {
 	BLADE_IDLE = 0, BLADE_DRAW = 1, BLADE_HOLSTER = 2, BLADE_ATTACK1 = 3,
@@ -117,6 +118,12 @@ public:
 	void ItemPostFrame(){if(!CoF_DualPostFrame(m_pPlayer,this))CCofWeapon::ItemPostFrame();}
  int Save(CSave&);int Restore(CRestore&);static TYPEDESCRIPTION m_SaveData[];
  int m_iHand;  // 1: right, 2: left
+ // hl.dll 10031020 (case 6), 10032b30 and 10035f40: dual wielded with the phone the knife
+ // is the view model and always uses the p2 set (draw 6, idle 5, holster 7, attacks 8/18/19).
+ // m_iHand keeps the single-weapon hand untouched.
+ // Same condition as DualKind() below, which decides whether the client draws the phone.
+ bool Dual(){cof_phone_t *s=CoF_Phone(m_pPlayer);return s && s->dual && (!s->dualWeapon || s->dualWeapon==WEAPON_COF_SWITCHBLADE) && m_pPlayer->HasNamedPlayerItem("weapon_mobile");}
+ int Hand(){return Dual()?2:m_iHand;}
 };
 
 LINK_ENTITY_TO_CLASS( weapon_switchblade, CCofSwitchblade )
@@ -142,9 +149,9 @@ BOOL CCofSwitchblade::Deploy( void )
 	// dual wielded with the phone: its light stays on in the other hand
 	cof_phone_t *phone = CoF_Phone( m_pPlayer );
 	if( phone && phone->dual )
-		{m_iHand=1;CoF_SetFlashlight( m_pPlayer, phone->flash!=0 );}
+		CoF_SetFlashlight( m_pPlayer, phone->flash!=0 );
 	return DefaultDeploy( "models/weapons/switchblade/v_switchblade.mdl", "",
-		m_iHand == 2 ? BLADE_DRAW_LEFT : BLADE_DRAW, "crowbar" );
+		Hand() == 2 ? BLADE_DRAW_LEFT : BLADE_DRAW, "crowbar" );
 }
 
 void CCofSwitchblade::Holster( int skiplocal )
@@ -153,7 +160,7 @@ void CCofSwitchblade::Holster( int skiplocal )
 	if( phone && phone->dual )
 		CoF_SetFlashlight( m_pPlayer, false );
 	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5f;
-	SendWeaponAnim( m_iHand == 2 ? BLADE_HOLSTER_LEFT : BLADE_HOLSTER, 0 );
+	SendWeaponAnim( Hand() == 2 ? BLADE_HOLSTER_LEFT : BLADE_HOLSTER, 0 );
 }
 
 // right click: the knife changes hand (p1top2 or p2top1, 35 frames at 30 fps)
@@ -207,7 +214,7 @@ void CCofSwitchblade::PrimaryAttack( void )
 {
 	static const int swingsRight[] = { BLADE_ATTACK1, BLADE_ATTACK2, BLADE_ATTACK3 };
 	static const int swingsLeft[] = { BLADE_ATTACK1_LEFT, BLADE_ATTACK2_LEFT, BLADE_ATTACK3_LEFT };
-	const int *swings = m_iHand == 2 ? swingsLeft : swingsRight;
+	const int *swings = Hand() == 2 ? swingsLeft : swingsRight;
 	TraceResult tr;
 
 	UTIL_MakeVectors( m_pPlayer->pev->v_angle );
@@ -249,7 +256,9 @@ void CCofSwitchblade::WeaponIdle( void )
 {
 	if( m_flTimeWeaponIdle > UTIL_WeaponTimeBase())
 		return;
-	if( m_iHand == 2 )
+	if( Dual() )
+		Anim( BLADE_IDLE_LEFT, RANDOM_FLOAT( 5, 10 )); // 10031020: the dual idle state is 5
+	else if( m_iHand == 2 )
 		Anim( RANDOM_LONG( 0, 4 ) ? BLADE_IDLE_LEFT : BLADE_FIDGET1_LEFT, RANDOM_FLOAT( 5, 10 ));
 	else
 		Anim( RANDOM_LONG( 0, 4 ) ? BLADE_IDLE : BLADE_FIDGET1, RANDOM_FLOAT( 5, 10 ));

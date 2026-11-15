@@ -1,0 +1,42 @@
+{
+  "manifest": "0140a63de3d5",
+  "bag": "[18:52:25] COF/HUD SMSICON 0\n[18:52:25] COF/HUD INV 3 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt inventoryitems/weapons/weapon_glock.txt\n[18:52:25] COF/HUD QUICK weapon_mobile weapon_switchblade weapon_glock\n[18:52:25] COF/HUD OBJECTIVE \n[18:52:27] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[18:52:27] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[18:52:27] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1\n[18:52:27] carried 1: weapon_glock\n[18:52:27] carried 1: weapon_switchblade\n[18:52:27] carried 1: weapon_mobile\n[18:52:27] monster monstermaker health 0 dead 0 dist 320\n[18:52:27] COF/FENCE dh_67 time=11.3476",
+  "singleBefore": {
+    "line": "COF/HANDSCLIENT on=0 right=0 phoneSeq=0 body=0 serial=0 age=12.1728 draws=0 mirrors=0 masked=0 maskedview=0 viewseq=1 viewmodel=models/weapons/switchblade/v_switchblade.mdl",
+    "on": 0,
+    "right": 0,
+    "draws": 0,
+    "mirrors": 0,
+    "masked": 0,
+    "maskedview": 0,
+    "viewseq": 1,
+    "viewmodel": "models/weapons/switchblade/v_switchblade.mdl"
+  },
+  "dual": "[18:52:39] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=0.433 reload=0 buttons=0 health=100\n[18:52:39] COF/PHONE mode=0 light=0 dual=1 message=0\n[18:52:39] COF/SPPUNCH state angle=0,0,0 velocity=0,0,0 maxclients=1\n[18:52:39] COF/FENCE dh_71 time=15.3227",
+  "draw": {
+    "line": "COF/HANDSCLIENT on=1 right=1 phoneSeq=2 body=0 serial=1 age=0.100099 draws=3 mirrors=6 masked=25326 maskedview=11052 viewseq=6 viewmodel=models/weapons/switchblade/v_switchblade.mdl",
+    "on": 1,
+    "right": 1,
+    "draws": 3,
+    "mirrors": 6,
+    "masked": 25326,
+    "maskedview": 11052,
+    "viewseq": 6,
+    "viewmodel": "models/weapons/switchblade/v_switchblade.mdl"
+  },
+  "idle": {
+    "line": "COF/HANDSCLIENT on=1 right=1 phoneSeq=0 body=0 serial=2 age=1.4187 draws=35 mirrors=70 masked=295470 maskedview=128940 viewseq=5 viewmodel=models/weapons/switchblade/v_switchblade.mdl",
+    "on": 1,
+    "right": 1,
+    "draws": 35,
+    "mirrors": 70,
+    "masked": 295470,
+    "maskedview": 128940,
+    "viewseq": 5,
+    "viewmodel": "models/weapons/switchblade/v_switchblade.mdl"
+  },
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: one mirror per frame (knife), phone unmirrored\n    at file:///root/cof-audits/browser-1.64.1/e2e/claude/dual_hands_contract.mjs:40:9",
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

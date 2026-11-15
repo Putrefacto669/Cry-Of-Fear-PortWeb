@@ -1,0 +1,30 @@
+{
+  "diagnosticOnly": true,
+  "deployment": {
+    "manifest": "d798ec8511e8",
+    "controller": "http://127.0.0.1:8118/sw.js"
+  },
+  "before": "[18:31:43] COF/PHONEPUNCH state kicks=0 frames=0 angle=0,0,0 velocity=0,0,0 applied=0,0,0 peak=0,0,0 native=0,0,0 nativePeak=0,0,0\n[18:31:43] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-0.234 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[18:31:43] COF/PHONE mode=1 light=1 dual=0 message=0\n[18:31:43] COF/SPPUNCH state angle=0,0,0 velocity=0,0,0 maxclients=1\n[18:31:43] COF/FENCE sp_97 time=13.7808",
+  "saved": "[18:31:43] COF/SPPUNCH saved angle=-1,1,3 velocity=-9,9,27",
+  "active": "[18:31:46] COF/PHONEPUNCH state kicks=0 frames=0 angle=0,0,0 velocity=0,0,0 applied=0,0,0 peak=0,0,0 native=0,0,0 nativePeak=1.375,1.375,4.25\n[18:31:46] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[18:31:46] COF/PHONE mode=1 light=1 dual=0 message=0\n[18:31:46] COF/SPPUNCH state angle=-9.33089e-06,9.33089e-06,2.79929e-05 velocity=-0.000230807,0.000230807,0.00069242 maxclients=1\n[18:31:46] COF/FENCE sp_98 time=16.2981",
+  "steps": [
+    "[18:31:43] COF/SPPUNCH step dt=0.0500000007 before=0,0,0 velocity=-20,20,60 after=-1,1,3 next=-8.99999905,8.99999905,26.9999962",
+    "[18:31:43] COF/SPPUNCH step dt=0.0500000007 before=-1,1,3 velocity=-8.99999905,8.99999905,26.9999962 after=-1.44999993,1.44999993,4.3499999 next=-2.049999,2.049999,6.14999676",
+    "[18:31:43] COF/SPPUNCH step dt=0.0309999995 before=-1.44999993,1.44999993,4.3499999 velocity=-2.049999,2.049999,6.14999676 after=-1.51354992,1.51354992,4.54064989 next=1.54905057,-1.54905057,-4.64715195",
+    "[18:31:43] COF/SPPUNCH step dt=0.0309999995 before=-1.51354992,1.51354992,4.54064989 velocity=1.54905057,-1.54905057,-4.64715195 after=-1.46552932,1.46552932,4.39658833 next=4.04792404,-4.04792404,-12.1437731",
+    "[18:31:43] COF/SPPUNCH step dt=0.0309999995 before=-1.46552932,1.46552932,4.39658833 velocity=4.04792404,-4.04792404,-12.1437731 after=-1.34004366,1.34004366,4.02013159 next=5.59864044,-5.59864044,-16.7959251",
+    "[18:31:43] COF/SPPUNCH step dt=0.0309999995 before=-1.34004366,1.34004366,4.02013159 velocity=5.59864044,-5.59864044,-16.7959251 after=-1.16648579,1.16648579,3.49945784 next=6.36959124,-6.36959124,-19.108778",
+    "[18:31:43] COF/SPPUNCH step dt=0.0309999995 before=-1.16648579,1.16648579,3.49945784 velocity=6.36959124,-6.36959124,-19.108778 after=-0.969028473,0.969028473,2.90708566 next=6.53053236,-6.53053236,-19.5916004",
+    "[18:31:43] COF/SPPUNCH step dt=0.0309999995 before=-0.969028473,0.969028473,2.90708566 velocity=6.53053236,-6.53053236,-19.5916004 after=-0.766581953,0.766581953,2.29974604 next=6.24167776,-6.24167776,-18.7250366"
+  ],
+  "restored": "[18:31:46] COF/SPPUNCH restored angle=-1,1,3 velocity=-9,9,27",
+  "settled": "[18:31:50] COF/PHONEPUNCH state kicks=0 frames=0 angle=0,0,0 velocity=0,0,0 applied=0,0,0 peak=0,0,0 native=0,0,0 nativePeak=1.5,1.5,4.5\n[18:31:50] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[18:31:50] COF/PHONE mode=1 light=1 dual=0 message=0\n[18:31:50] COF/SPPUNCH state angle=3.53717e-05,-3.53717e-05,-0.000106115 velocity=0.000265964,-0.000265964,-0.000797892 maxclients=1\n[18:31:50] COF/FENCE sp_99 time=17.079",
+  "cold": "[18:31:57] COF/SPPUNCH restored angle=-1,1,3 velocity=-9,9,27",
+  "coldSettled": "[18:32:02] COF/PHONEPUNCH state kicks=0 frames=0 angle=0,0,0 velocity=0,0,0 applied=0,0,0 peak=0,0,0 native=0,0,0 nativePeak=1.375,1.375,4.375\n[18:32:02] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[18:32:02] COF/PHONE mode=1 light=1 dual=0 message=0\n[18:32:02] COF/SPPUNCH state angle=-0.000189772,0.000189772,0.000569316 velocity=-0.000127501,0.000127501,0.000382501 maxclients=1\n[18:32:02] COF/FENCE sp_101 time=17.1733",
+  "modules": {
+    "server.wasm": "6e7bbf18b183ab4fefe6c900241c473ce497852ef1241b99c11d5ced8f777444",
+    "client.wasm": "9fb2138e5d245b71a64935c49ad7f84944252ac891a85ea308ac1da753fab77f"
+  },
+  "passed": true,
+  "errors": []
+}

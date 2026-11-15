@@ -1,0 +1,8 @@
+OK all 14 c_start brushes: server preset, client room_type, DSP coefficients and no repeated messages on same zone
+OK non-player touch and Use cannot change the acoustic preset
+OK target dispatch happens once per accepted zone change; delay is not guessed as an audio timer
+OK closed/open named SDK master; missing and unsupported masters fail without changing audio
+OK invalid preset values are rejected; finite fractional values truncate in the standard short message
+OK real brush overlap selects presets 0/17/8/23; leaving a zone preserves the last preset
+OK zone room/master survive save/load and virtual Touch works after restore
+OK c_apartment1 missing roomtype defaults to 0; new map contacts work

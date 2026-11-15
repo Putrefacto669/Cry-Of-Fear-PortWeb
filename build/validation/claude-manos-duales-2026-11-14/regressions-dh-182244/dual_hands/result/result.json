@@ -1,0 +1,37 @@
+{
+  "diagnosticOnly": true,
+  "deployment": {
+    "manifest": "d798ec8511e8",
+    "controller": "http://127.0.0.1:8118/sw.js"
+  },
+  "bagBefore": "[18:32:20] COF/HUD EXTRAS 0 0 0 0\n[18:32:20] COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=11.2701 time=11.2701\n[18:32:20] COF/HUD SMSICON 0\n[18:32:20] COF/HUD INV 3 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt inventoryitems/weapons/weapon_glock.txt\n[18:32:20] COF/HUD QUICK weapon_mobile weapon_switchblade weapon_glock\n[18:32:20] COF/HUD OBJECTIVE \n[18:32:20] \"cl_lw\" is \"0\" ( \"1\" )\n[18:32:20] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[18:32:20] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[18:32:20] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1\n[18:32:20] carried 1: weapon_glock\n[18:32:20] carried 1: weapon_switchblade\n[18:32:20] carried 1: weapon_mobile\n[18:32:20] monster monstermaker health 0 dead 0 dist 320\n[18:32:20] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-0.014 secondary=-0.001 playernext=0.486 reload=0 buttons=0 health=100\n[18:32:20] COF/PHONE mode=0 light=0 dual=0 message=0\n[18:32:20] COF/SPPUNCH state angle=0,0,0 velocity=0,0,0 maxclients=1\n[18:32:20] COF/FENCE hands_85 time=11.2562",
+  "blade": "[18:32:21] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-0.531 secondary=-0.001 playernext=0.465 reload=0 buttons=0 health=100\n[18:32:21] COF/PHONE mode=0 light=0 dual=1 message=0\n[18:32:21] COF/SPPUNCH state angle=0,0,0 velocity=0,0,0 maxclients=1\n[18:32:21] COF/FENCE hands_86 time=11.7694",
+  "bladeRender": "[18:32:22] COF/HANDSCLIENT on=1 right=1 phoneSeq=0 body=0 serial=2 age=0.9329 draws=16 mirrors=16 masked=135072 viewseq=5 viewmodel=models/weapons/switchblade/v_switchblade.mdl\n[18:32:22] COF/FENCE hands_88 time=13.1709",
+  "afterPhoneToggle": "[18:32:23] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[18:32:23] COF/PHONE mode=1 light=1 dual=1 message=0\n[18:32:23] COF/SPPUNCH state angle=0,0,0 velocity=0,0,0 maxclients=1\n[18:32:23] COF/FENCE hands_91 time=13.9029",
+  "invalid": "[18:32:23] COF/HUD DUALSELECT 0\n[18:32:23] Warning: late precache of inventory/inventory_no.wav\n[18:32:23] COF/FENCE hands_92 time=14.0353",
+  "glock": "[18:32:24] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[18:32:24] COF/PHONE mode=1 light=1 dual=1 message=0\n[18:32:24] COF/SPPUNCH state angle=0,0,0 velocity=0,0,0 maxclients=1\n[18:32:24] COF/FENCE hands_95 time=15.7032",
+  "glockRender": "[18:32:25] COF/HANDSCLIENT on=1 right=2 phoneSeq=5 body=0 serial=5 age=0.9511 draws=40 mirrors=40 masked=282420 viewseq=21 viewmodel=models/weapons/glock/v_glock.mdl\n[18:32:25] COF/FENCE hands_96 time=15.8032",
+  "shot": "[18:32:25] COF/WEAPON class=weapon_glock clip=14 ammo=0 primary=0.183 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[18:32:25] COF/PHONE mode=1 light=1 dual=1 message=0\n[18:32:25] COF/SPPUNCH state angle=-1.932,0,0 velocity=5.52286,0,0 maxclients=1\n[18:32:25] COF/FENCE hands_99 time=16.3197",
+  "shotClip": 14,
+  "restored": "[18:32:28] COF/WEAPON class=weapon_glock clip=14 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[18:32:28] COF/PHONE mode=1 light=1 dual=1 message=0\n[18:32:28] COF/SPPUNCH state angle=-0.000164261,0,0 velocity=-0.000940686,0,0 maxclients=1\n[18:32:28] COF/FENCE hands_101 time=18.686",
+  "bagAfter": "[18:32:28] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[18:32:28] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[18:32:28] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1\n[18:32:28] carried 1: weapon_glock\n[18:32:28] carried 1: weapon_switchblade\n[18:32:28] carried 1: weapon_mobile\n[18:32:28] monster monstermaker health 0 dead 0 dist 320\n[18:32:28] COF/FENCE hands_103 time=18.7197",
+  "pendingSave": "[18:32:28] COF/SPPUNCH saved angle=-0.000164261,0,0 velocity=-0.000940686,0,0\n[18:32:28] Saving game to save/hands_switch.sav...\n[18:32:28] COF/FENCE hands_104 time=18.8372",
+  "cold": "[18:33:24] COF/WEAPON class=weapon_glock clip=14 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[18:33:24] COF/PHONE mode=0 light=0 dual=1 message=0\n[18:33:24] COF/FENCE hands_108 time=21.2197",
+  "gl": {
+    "lost": false,
+    "error": 0
+  },
+  "beforeReload": "[18:33:25] COF/WEAPON class=weapon_glock clip=14 ammo=15 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[18:33:25] COF/PHONE mode=0 light=0 dual=1 message=0\n[18:33:25] COF/FENCE hands_115 time=22.2389",
+  "reloadSave": "[18:33:25] Saving game to save/hands_reload.sav...\n[18:33:25] COF/FENCE hands_118 time=22.3819",
+  "reloaded": "[18:33:32] COF/WEAPON class=weapon_glock clip=15 ammo=14 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[18:33:32] COF/PHONE mode=0 light=0 dual=1 message=0\n[18:33:32] COF/FENCE hands_142 time=24.9811",
+  "coldReloadPending": "[18:34:22] COF/WEAPON class=weapon_glock clip=14 ammo=15 primary=-1 secondary=-0.001 playernext=2.46667 reload=1 buttons=0 health=100\n[18:34:22] COF/PHONE mode=0 light=0 dual=1 message=0\n[18:34:22] COF/FENCE hands_145 time=22.4673",
+  "coldReloaded": "[18:34:25] COF/WEAPON class=weapon_glock clip=15 ammo=14 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[18:34:25] COF/PHONE mode=0 light=0 dual=1 message=0\n[18:34:25] COF/FENCE hands_169 time=25.0658",
+  "single": "[18:34:27] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[18:34:27] COF/PHONE mode=0 light=0 dual=0 message=0\n[18:34:27] COF/FENCE hands_171 time=27.2986",
+  "modules": {
+    "server.wasm": "6e7bbf18b183ab4fefe6c900241c473ce497852ef1241b99c11d5ced8f777444",
+    "client.wasm": "9fb2138e5d245b71a64935c49ad7f84944252ac891a85ea308ac1da753fab77f"
+  },
+  "passed": true,
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}
