@@ -1,0 +1,30 @@
+{
+  "diagnosticOnly": true,
+  "deployment": {
+    "manifest": "b902da18e9f1",
+    "controller": "http://127.0.0.1:8118/sw.js"
+  },
+  "before": "[23:20:37] COF/PHONEPUNCH state kicks=0 frames=0 angle=0,0,0 velocity=0,0,0 applied=0,0,0 peak=0,0,0 native=0,0,0 nativePeak=0,0,0\n[23:20:37] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-0.216 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[23:20:37] COF/PHONE mode=1 light=1 dual=0 message=0\n[23:20:37] COF/SPPUNCH state angle=0,0,0 velocity=0,0,0 maxclients=1\n[23:20:37] COF/FENCE sp_94 time=13.7",
+  "saved": "[23:20:38] COF/SPPUNCH saved angle=-1.54401,1.54401,4.63203 velocity=1.80768,-1.80768,-5.42303",
+  "active": "[23:20:40] COF/PHONEPUNCH state kicks=0 frames=0 angle=0,0,0 velocity=0,0,0 applied=0,0,0 peak=0,0,0 native=0,0,0 nativePeak=1.5,1.5,4.625\n[23:20:40] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[23:20:40] COF/PHONE mode=1 light=1 dual=0 message=0\n[23:20:40] COF/SPPUNCH state angle=0.000129768,-0.000129768,-0.000389303 velocity=0.000226439,-0.000226439,-0.000679316 maxclients=1\n[23:20:40] COF/FENCE sp_95 time=16.2833",
+  "steps": [
+    "[23:20:37] COF/SPPUNCH step dt=0.0489999987 before=0,0,0 velocity=-20,20,60 after=-0.979999959,0.979999959,2.93999982 next=-9.22000027,9.22000027,27.6600018",
+    "[23:20:37] COF/SPPUNCH step dt=0.0489999987 before=-0.979999959,0.979999959,2.93999982 velocity=-9.22000027,9.22000027,27.6600018 after=-1.43177998,1.43177998,4.29533958 next=-2.29042029,2.29042029,6.87126255",
+    "[23:20:37] COF/SPPUNCH step dt=0.0489999987 before=-1.43177998,1.43177998,4.29533958 velocity=-2.29042029,2.29042029,6.87126255 after=-1.54401052,1.54401052,4.63203144 next=1.80767608,-1.80767608,-5.42302704",
+    "[23:20:38] COF/SPPUNCH step dt=0.0329999998 before=-1.54401052,1.54401052,4.63203144 velocity=1.80767608,-1.80767608,-5.42302704 after=-1.48435724,1.48435724,4.45307159 next=4.23951054,-4.23951054,-12.7185307",
+    "[23:20:38] COF/SPPUNCH step dt=0.0329999998 before=-1.48435724,1.48435724,4.45307159 velocity=4.23951054,-4.23951054,-12.7185307 after=-1.34445333,1.34445333,4.03336 next=5.66928291,-5.66928291,-17.0078468",
+    "[23:20:38] COF/SPPUNCH step dt=0.0329999998 before=-1.34445333,1.34445333,4.03336 velocity=5.66928291,-5.66928291,-17.0078468 after=-1.15736699,1.15736699,3.47210097 next=6.30024004,-6.30024004,-18.9007187",
+    "[23:20:38] COF/SPPUNCH step dt=0.0329999998 before=-1.15736699,1.15736699,3.47210097 velocity=6.30024004,-6.30024004,-18.9007187 after=-0.949459076,0.949459076,2.84837723 next=6.32798719,-6.32798719,-18.9839592",
+    "[23:20:38] COF/SPPUNCH step dt=0.0309999995 before=-0.949459076,0.949459076,2.84837723 velocity=6.32798719,-6.32798719,-18.9839592 after=-0.753291488,0.753291488,2.25987458 next=6.06906223,-6.06906223,-18.2071838"
+  ],
+  "restored": "[23:20:41] COF/SPPUNCH restored angle=-1.54401,1.54401,4.63203 velocity=1.80768,-1.80768,-5.42303",
+  "settled": "[23:20:45] COF/PHONEPUNCH state kicks=0 frames=0 angle=0,0,0 velocity=0,0,0 applied=0,0,0 peak=0,0,0 native=0,0,0 nativePeak=1.25,1.25,3.875\n[23:20:45] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[23:20:45] COF/PHONE mode=1 light=1 dual=0 message=0\n[23:20:45] COF/SPPUNCH state angle=-5.69191e-05,5.69191e-05,0.000170757 velocity=-0.000142233,0.000142233,0.000426701 maxclients=1\n[23:20:45] COF/FENCE sp_96 time=16.1593",
+  "cold": "[23:20:58] COF/SPPUNCH restored angle=-1.54401,1.54401,4.63203 velocity=1.80768,-1.80768,-5.42303",
+  "coldSettled": "[23:21:02] COF/PHONEPUNCH state kicks=0 frames=0 angle=0,0,0 velocity=0,0,0 applied=0,0,0 peak=0,0,0 native=0,0,0 nativePeak=1.25,1.25,4\n[23:21:02] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[23:21:02] COF/PHONE mode=1 light=1 dual=0 message=0\n[23:21:02] COF/SPPUNCH state angle=-0.000192124,0.000192124,0.000576371 velocity=-0.000203395,0.000203395,0.000610184 maxclients=1\n[23:21:02] COF/FENCE sp_98 time=16.8074",
+  "modules": {
+    "server.wasm": "6d354715ca4f45c608e2d548520081c11b6dfc3fb096d929719956ba2746abe6",
+    "client.wasm": "6bdf1b1fc2b239c6f28a11525e68be3d373846e9224ecef4306dd4304cecdb86"
+  },
+  "passed": true,
+  "errors": []
+}

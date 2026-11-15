@@ -1,0 +1,2454 @@
+[20:51:01] Console initialized.
+[20:51:01] FS_LoadProgs: filesystem_stdio successfully loaded
+[20:51:01] /rwdir is working directory now
+[20:51:01] Error: game directory "cryoffear" not exist
+[20:51:01] Adding directory: /rodir/
+[20:51:01] Adding directory: ./
+[20:51:01] Program args: ./this.program -game cryoffear -rodir /rodir -ref gles3compat -dll /lib/server.wasm -clientlib /lib/client.wasm -menulib /lib/menu.wasm -windowed -dev 1 -log +exec cof_web.cfg +snd_webaudio 1 +snd_webaudio_hrtf 0 +map c_start 
+[20:51:01] Developer level: 1
+[20:51:01] execing cryoffear/vfs.cfg
+[20:51:01] FS_AddGameHierarchy( valve )
+[20:51:01] Adding directory: /rodir/valve/
+[20:51:01] Adding directory: valve/
+[20:51:01] FS_AddGameHierarchy( cryoffear )
+[20:51:01] Adding directory: /rodir/cryoffear/
+[20:51:01] Adding directory: cryoffear_downloads/
+[20:51:01] Adding directory: cryoffear/
+[20:51:01] Adding directory: cryoffear/custom/
+[20:51:01] Touch_Init()
+[20:51:01] Warning: SV_LoadProgs: couldn't get physics API
+[20:51:01] Dll loaded for game "Half-Life"
+[20:51:01] Error: Delta_ParseField: unable to find field is_donator
+[20:51:01] execing skill.cfg
+[20:51:01] Warning: Unknown command "sk_monster_head4"
+[20:51:01] Warning: Unknown command "sk_monster_chest4"
+[20:51:01] Warning: Unknown command "sk_monster_stomach4"
+[20:51:01] Warning: Unknown command "sk_monster_arm4"
+[20:51:01] Warning: Unknown command "sk_monster_leg4"
+[20:51:01] Warning: Unknown command "sk_player_head4"
+[20:51:01] Warning: Unknown command "sk_player_chest4"
+[20:51:01] Warning: Unknown command "sk_player_stomach4"
+[20:51:01] Warning: Unknown command "sk_player_arm4"
+[20:51:01] Warning: Unknown command "sk_player_leg4"
+[20:51:01] Warning: Unknown command "sk_cof_sledgehammer1"
+[20:51:01] Warning: Unknown command "sk_cof_sledgehammer2"
+[20:51:01] Warning: Unknown command "sk_cof_sledgehammer3"
+[20:51:01] Warning: Unknown command "sk_cof_sledgehammer4"
+[20:51:01] Warning: Unknown command "sk_cof_nightstick1"
+[20:51:01] Warning: Unknown command "sk_cof_nightstick2"
+[20:51:01] Warning: Unknown command "sk_cof_nightstick3"
+[20:51:01] Warning: Unknown command "sk_cof_nightstick4"
+[20:51:01] Warning: Unknown command "sk_cof_2switchblade1"
+[20:51:01] Warning: Unknown command "sk_cof_2switchblade2"
+[20:51:01] Warning: Unknown command "sk_cof_2switchblade3"
+[20:51:01] Warning: Unknown command "sk_cof_2switchblade4"
+[20:51:01] Warning: Unknown command "sk_cof_switchblade1"
+[20:51:01] Warning: Unknown command "sk_cof_switchblade2"
+[20:51:01] Warning: Unknown command "sk_cof_switchblade3"
+[20:51:01] Warning: Unknown command "sk_cof_switchblade4"
+[20:51:01] Warning: Unknown command "sk_baby_health1"
+[20:51:01] Warning: Unknown command "sk_baby_health2"
+[20:51:01] Warning: Unknown command "sk_baby_health3"
+[20:51:01] Warning: Unknown command "sk_baby_health4"
+[20:51:01] Warning: Unknown command "sk_baby_damage1"
+[20:51:01] Warning: Unknown command "sk_baby_damage2"
+[20:51:01] Warning: Unknown command "sk_baby_damage3"
+[20:51:01] Warning: Unknown command "sk_baby_damage4"
+[20:51:01] Warning: Unknown command "sk_faster_health1"
+[20:51:01] Warning: Unknown command "sk_faster_health2"
+[20:51:01] Warning: Unknown command "sk_faster_health3"
+[20:51:01] Warning: Unknown command "sk_faster_health4"
+[20:51:01] Warning: Unknown command "sk_faster_dmg_one_slash1"
+[20:51:01] Warning: Unknown command "sk_faster_dmg_one_slash2"
+[20:51:01] Warning: Unknown command "sk_faster_dmg_one_slash3"
+[20:51:01] Warning: Unknown command "sk_faster_dmg_one_slash4"
+[20:51:01] Warning: Unknown command "sk_faster_dmg_both_slash1"
+[20:51:01] Warning: Unknown command "sk_faster_dmg_both_slash2"
+[20:51:01] Warning: Unknown command "sk_faster_dmg_both_slash3"
+[20:51:01] Warning: Unknown command "sk_faster_dmg_both_slash4"
+[20:51:01] Warning: Unknown command "sk_krypande_health1"
+[20:51:01] Warning: Unknown command "sk_krypande_health2"
+[20:51:01] Warning: Unknown command "sk_krypande_health3"
+[20:51:01] Warning: Unknown command "sk_krypande_health4"
+[20:51:01] Warning: Unknown command "sk_krypande_dmg_one_slash1"
+[20:51:01] Warning: Unknown command "sk_krypande_dmg_one_slash2"
+[20:51:01] Warning: Unknown command "sk_krypande_dmg_one_slash3"
+[20:51:01] Warning: Unknown command "sk_krypande_dmg_one_slash4"
+[20:51:01] Warning: Unknown command "sk_syringe_heal1"
+[20:51:01] Warning: Unknown command "sk_syringe_heal2"
+[20:51:01] Warning: Unknown command "sk_syringe_heal3"
+[20:51:01] Warning: Unknown command "sk_syringe_heal4"
+[20:51:01] Warning: Unknown command "sk_chainsawboss_health1"
+[20:51:01] Warning: Unknown command "sk_chainsawboss_health2"
+[20:51:01] Warning: Unknown command "sk_chainsawboss_health3"
+[20:51:01] Warning: Unknown command "sk_chainsawboss_health4"
+[20:51:01] Warning: Unknown command "sk_sewmo_health1"
+[20:51:01] Warning: Unknown command "sk_sewmo_health2"
+[20:51:01] Warning: Unknown command "sk_sewmo_health3"
+[20:51:01] Warning: Unknown command "sk_sewmo_health4"
+[20:51:01] Warning: Unknown command "sk_sewmo_dmg_one_slash1"
+[20:51:01] Warning: Unknown command "sk_sewmo_dmg_one_slash2"
+[20:51:01] Warning: Unknown command "sk_sewmo_dmg_one_slash3"
+[20:51:01] Warning: Unknown command "sk_sewmo_dmg_one_slash4"
+[20:51:01] Warning: Unknown command "sk_sewmo_dmg_both_slash1"
+[20:51:01] Warning: Unknown command "sk_sewmo_dmg_both_slash2"
+[20:51:01] Warning: Unknown command "sk_sewmo_dmg_both_slash3"
+[20:51:01] Warning: Unknown command "sk_sewmo_dmg_both_slash4"
+[20:51:01] Warning: Unknown command "sk_sawrunner_health1"
+[20:51:01] Warning: Unknown command "sk_sawrunner_health2"
+[20:51:01] Warning: Unknown command "sk_sawrunner_health3"
+[20:51:01] Warning: Unknown command "sk_sawrunner_health4"
+[20:51:01] Warning: Unknown command "sk_sawrunner_dmg_one_slash1"
+[20:51:01] Warning: Unknown command "sk_sawrunner_dmg_one_slash2"
+[20:51:01] Warning: Unknown command "sk_sawrunner_dmg_one_slash3"
+[20:51:01] Warning: Unknown command "sk_sawrunner_dmg_one_slash4"
+[20:51:01] Warning: Unknown command "sk_sawrunner_dmg_both_slash1"
+[20:51:01] Warning: Unknown command "sk_sawrunner_dmg_both_slash2"
+[20:51:01] Warning: Unknown command "sk_sawrunner_dmg_both_slash3"
+[20:51:01] Warning: Unknown command "sk_sawrunner_dmg_both_slash4"
+[20:51:01] Warning: Unknown command "sk_zombie_health4"
+[20:51:01] Warning: Unknown command "sk_zombie_dmg_one_slash4"
+[20:51:01] Warning: Unknown command "sk_zombie_dmg_both_slash4"
+[20:51:01] Warning: Unknown command "sk_child_health1"
+[20:51:01] Warning: Unknown command "sk_child_health2"
+[20:51:01] Warning: Unknown command "sk_child_health3"
+[20:51:01] Warning: Unknown command "sk_child_health4"
+[20:51:01] Warning: Unknown command "sk_child_dmg_one_slash1"
+[20:51:01] Warning: Unknown command "sk_child_dmg_one_slash2"
+[20:51:01] Warning: Unknown command "sk_child_dmg_one_slash3"
+[20:51:01] Warning: Unknown command "sk_child_dmg_one_slash4"
+[20:51:01] Warning: Unknown command "sk_child_dmg_both_slash1"
+[20:51:01] Warning: Unknown command "sk_child_dmg_both_slash2"
+[20:51:01] Warning: Unknown command "sk_child_dmg_both_slash3"
+[20:51:01] Warning: Unknown command "sk_child_dmg_both_slash4"
+[20:51:01] Warning: Unknown command "sk_sewerboss_health1"
+[20:51:01] Warning: Unknown command "sk_sewerboss_health2"
+[20:51:01] Warning: Unknown command "sk_sewerboss_health3"
+[20:51:01] Warning: Unknown command "sk_sewerboss_health4"
+[20:51:01] Warning: Unknown command "sk_sewerboss_melee1"
+[20:51:01] Warning: Unknown command "sk_sewerboss_melee2"
+[20:51:01] Warning: Unknown command "sk_sewerboss_melee3"
+[20:51:01] Warning: Unknown command "sk_sewerboss_melee4"
+[20:51:01] Warning: Unknown command "sk_slower3_health1"
+[20:51:01] Warning: Unknown command "sk_slower3_health2"
+[20:51:01] Warning: Unknown command "sk_slower3_health3"
+[20:51:01] Warning: Unknown command "sk_slower3_health4"
+[20:51:01] Warning: Unknown command "sk_slower3_dmg_one_slash1"
+[20:51:01] Warning: Unknown command "sk_slower3_dmg_one_slash2"
+[20:51:01] Warning: Unknown command "sk_slower3_dmg_one_slash3"
+[20:51:01] Warning: Unknown command "sk_slower3_dmg_one_slash4"
+[20:51:01] Warning: Unknown command "sk_slower3_dmg_both_slash1"
+[20:51:01] Warning: Unknown command "sk_slower3_dmg_both_slash2"
+[20:51:01] Warning: Unknown command "sk_slower3_dmg_both_slash3"
+[20:51:01] Warning: Unknown command "sk_slower3_dmg_both_slash4"
+[20:51:01] Warning: Unknown command "sk_flygare_health1"
+[20:51:01] Warning: Unknown command "sk_flygare_health2"
+[20:51:01] Warning: Unknown command "sk_flygare_health3"
+[20:51:01] Warning: Unknown command "sk_flygare_health4"
+[20:51:01] Warning: Unknown command "sk_flygare_acid1"
+[20:51:01] Warning: Unknown command "sk_flygare_acid2"
+[20:51:01] Warning: Unknown command "sk_flygare_acid3"
+[20:51:01] Warning: Unknown command "sk_flygare_acid4"
+[20:51:01] Warning: Unknown command "sk_flygare_melee1"
+[20:51:01] Warning: Unknown command "sk_flygare_melee2"
+[20:51:01] Warning: Unknown command "sk_flygare_melee3"
+[20:51:01] Warning: Unknown command "sk_flygare_melee4"
+[20:51:01] Warning: Unknown command "sk_plr_buckshot4"
+[20:51:01] Warning: Unknown command "sk_rcrazy_health1"
+[20:51:01] Warning: Unknown command "sk_rcrazy_health2"
+[20:51:01] Warning: Unknown command "sk_rcrazy_health3"
+[20:51:01] Warning: Unknown command "sk_rcrazy_health4"
+[20:51:01] Warning: Unknown command "sk_rcrazy_dmg_one_slash1"
+[20:51:01] Warning: Unknown command "sk_rcrazy_dmg_one_slash2"
+[20:51:01] Warning: Unknown command "sk_rcrazy_dmg_one_slash3"
+[20:51:01] Warning: Unknown command "sk_rcrazy_dmg_one_slash4"
+[20:51:01] Warning: Unknown command "sk_rcrazy_dmg_both_slash1"
+[20:51:01] Warning: Unknown command "sk_rcrazy_dmg_both_slash2"
+[20:51:01] Warning: Unknown command "sk_rcrazy_dmg_both_slash3"
+[20:51:01] Warning: Unknown command "sk_rcrazy_dmg_both_slash4"
+[20:51:01] Warning: Unknown command "sk_primary_speed1"
+[20:51:01] Warning: Unknown command "sk_primary_speed2"
+[20:51:01] Warning: Unknown command "sk_primary_speed3"
+[20:51:01] Warning: Unknown command "sk_primary_speed4"
+[20:51:01] Warning: Unknown command "sk_secondary_speed1"
+[20:51:01] Warning: Unknown command "sk_secondary_speed2"
+[20:51:01] Warning: Unknown command "sk_secondary_speed3"
+[20:51:01] Warning: Unknown command "sk_secondary_speed4"
+[20:51:01] Warning: Unknown command "sk_sprint_speed1"
+[20:51:01] Warning: Unknown command "sk_sprint_speed2"
+[20:51:01] Warning: Unknown command "sk_sprint_speed3"
+[20:51:01] Warning: Unknown command "sk_sprint_speed4"
+[20:51:01] Warning: Unknown command "sk_stair_speed1"
+[20:51:01] Warning: Unknown command "sk_stair_speed2"
+[20:51:01] Warning: Unknown command "sk_stair_speed3"
+[20:51:01] Warning: Unknown command "sk_stair_speed4"
+[20:51:01] Warning: Unknown command "bullet_punch_max"
+[20:51:01] Warning: Unknown command "bullet_punch_divide"
+[20:51:01] Warning: Unknown command "blast_punch_max"
+[20:51:01] Warning: Unknown command "blast_punch_divide"
+[20:51:01] Warning: Unknown command "sk_cof_m161"
+[20:51:01] Warning: Unknown command "sk_cof_m162"
+[20:51:01] Warning: Unknown command "sk_cof_m163"
+[20:51:01] Warning: Unknown command "sk_cof_m164"
+[20:51:01] Warning: Unknown command "sk_cof_VP701"
+[20:51:01] Warning: Unknown command "sk_cof_VP702"
+[20:51:01] Warning: Unknown command "sk_cof_VP703"
+[20:51:01] Warning: Unknown command "sk_cof_VP704"
+[20:51:01] Warning: Unknown command "sk_cof_weapon_melee1"
+[20:51:01] Warning: Unknown command "sk_cof_weapon_melee2"
+[20:51:01] Warning: Unknown command "sk_cof_weapon_melee3"
+[20:51:01] Warning: Unknown command "sk_cof_weapon_melee4"
+[20:51:01] Warning: Unknown command "sk_cof_p3451"
+[20:51:01] Warning: Unknown command "sk_cof_p3452"
+[20:51:01] Warning: Unknown command "sk_cof_p3453"
+[20:51:01] Warning: Unknown command "sk_cof_p3454"
+[20:51:01] Warning: Unknown command "sk_cof_g431"
+[20:51:01] Warning: Unknown command "sk_cof_g432"
+[20:51:01] Warning: Unknown command "sk_cof_g433"
+[20:51:01] Warning: Unknown command "sk_cof_g434"
+[20:51:01] Warning: Unknown command "sk_cof_shotgun1"
+[20:51:01] Warning: Unknown command "sk_cof_shotgun2"
+[20:51:01] Warning: Unknown command "sk_cof_shotgun3"
+[20:51:01] Warning: Unknown command "sk_cof_shotgun4"
+[20:51:01] Warning: Unknown command "sk_cof_rifle1"
+[20:51:01] Warning: Unknown command "sk_cof_rifle2"
+[20:51:01] Warning: Unknown command "sk_cof_rifle3"
+[20:51:01] Warning: Unknown command "sk_cof_rifle4"
+[20:51:01] Warning: Unknown command "sk_cof_revolver1"
+[20:51:01] Warning: Unknown command "sk_cof_revolver2"
+[20:51:01] Warning: Unknown command "sk_cof_revolver3"
+[20:51:01] Warning: Unknown command "sk_cof_revolver4"
+[20:51:02] Warning: Unknown command "sk_stranger_health1"
+[20:51:02] Warning: Unknown command "sk_stranger_health2"
+[20:51:02] Warning: Unknown command "sk_stranger_health3"
+[20:51:02] Warning: Unknown command "sk_stranger_health4"
+[20:51:02] Warning: Unknown command "sk_stranger_damage1"
+[20:51:02] Warning: Unknown command "sk_stranger_damage2"
+[20:51:02] Warning: Unknown command "sk_stranger_damage3"
+[20:51:02] Warning: Unknown command "sk_stranger_damage4"
+[20:51:02] Warning: Unknown command "sk_suicider_health1"
+[20:51:02] Warning: Unknown command "sk_suicider_health2"
+[20:51:02] Warning: Unknown command "sk_suicider_health3"
+[20:51:02] Warning: Unknown command "sk_suicider_health4"
+[20:51:02] Warning: Unknown command "sk_suicider_bullet1"
+[20:51:02] Warning: Unknown command "sk_suicider_bullet2"
+[20:51:02] Warning: Unknown command "sk_suicider_bullet3"
+[20:51:02] Warning: Unknown command "sk_suicider_bullet4"
+[20:51:02] Warning: Unknown command "sk_suicider_suicide1"
+[20:51:02] Warning: Unknown command "sk_suicider_suicide2"
+[20:51:02] Warning: Unknown command "sk_suicider_suicide3"
+[20:51:02] Warning: Unknown command "sk_suicider_suicide4"
+[20:51:02] Warning: Unknown command "sk_roofboss_health1"
+[20:51:02] Warning: Unknown command "sk_roofboss_health2"
+[20:51:02] Warning: Unknown command "sk_roofboss_health3"
+[20:51:02] Warning: Unknown command "sk_roofboss_health4"
+[20:51:02] Warning: Unknown command "sk_roofboss_headhit1"
+[20:51:02] Warning: Unknown command "sk_roofboss_headhit2"
+[20:51:02] Warning: Unknown command "sk_roofboss_headhit3"
+[20:51:02] Warning: Unknown command "sk_roofboss_headhit4"
+[20:51:02] Warning: Unknown command "sk_roofboss_headhealth1"
+[20:51:02] Warning: Unknown command "sk_roofboss_headhealth2"
+[20:51:02] Warning: Unknown command "sk_roofboss_headhealth3"
+[20:51:02] Warning: Unknown command "sk_roofboss_headhealth4"
+[20:51:02] Warning: Unknown command "sk_roofboss_attacktime1"
+[20:51:02] Warning: Unknown command "sk_roofboss_attacktime2"
+[20:51:02] Warning: Unknown command "sk_roofboss_attacktime3"
+[20:51:02] Warning: Unknown command "sk_roofboss_attacktime4"
+[20:51:02] Warning: Unknown command "sk_faceless_health1"
+[20:51:02] Warning: Unknown command "sk_faceless_health2"
+[20:51:02] Warning: Unknown command "sk_faceless_health3"
+[20:51:02] Warning: Unknown command "sk_faceless_health4"
+[20:51:02] Warning: Unknown command "sk_faceless_dmg_one_slash1"
+[20:51:02] Warning: Unknown command "sk_faceless_dmg_one_slash2"
+[20:51:02] Warning: Unknown command "sk_faceless_dmg_one_slash3"
+[20:51:02] Warning: Unknown command "sk_faceless_dmg_one_slash4"
+[20:51:02] Warning: Unknown command "sk_faceless_dmg_both_slash1"
+[20:51:02] Warning: Unknown command "sk_faceless_dmg_both_slash2"
+[20:51:02] Warning: Unknown command "sk_faceless_dmg_both_slash3"
+[20:51:02] Warning: Unknown command "sk_faceless_dmg_both_slash4"
+[20:51:02] Warning: Unknown command "sk_cof_branch1"
+[20:51:02] Warning: Unknown command "sk_cof_branch2"
+[20:51:02] Warning: Unknown command "sk_cof_branch3"
+[20:51:02] Warning: Unknown command "sk_cof_branch4"
+[20:51:02] Warning: Unknown command "sk_doctor_health1"
+[20:51:02] Warning: Unknown command "sk_doctor_health2"
+[20:51:02] Warning: Unknown command "sk_doctor_health3"
+[20:51:02] Warning: Unknown command "sk_doctor_health4"
+[20:51:02] Warning: Unknown command "sk_doctor_p3451"
+[20:51:02] Warning: Unknown command "sk_doctor_p3452"
+[20:51:02] Warning: Unknown command "sk_doctor_p3453"
+[20:51:02] Warning: Unknown command "sk_doctor_p3454"
+[20:51:02] Warning: Unknown command "sk_doctor_revolver1"
+[20:51:02] Warning: Unknown command "sk_doctor_revolver2"
+[20:51:02] Warning: Unknown command "sk_doctor_revolver3"
+[20:51:02] Warning: Unknown command "sk_doctor_revolver4"
+[20:51:02] Warning: Unknown command "sk_flare_burn_time1"
+[20:51:02] Warning: Unknown command "sk_flare_burn_time2"
+[20:51:02] Warning: Unknown command "sk_flare_burn_time3"
+[20:51:02] Warning: Unknown command "sk_flare_burn_time4"
+[20:51:02] Warning: Unknown command "sk_taller_health1"
+[20:51:02] Warning: Unknown command "sk_taller_health2"
+[20:51:02] Warning: Unknown command "sk_taller_health3"
+[20:51:02] Warning: Unknown command "sk_taller_health4"
+[20:51:02] Warning: Unknown command "sk_taller_dmg_punch1"
+[20:51:02] Warning: Unknown command "sk_taller_dmg_punch2"
+[20:51:02] Warning: Unknown command "sk_taller_dmg_punch3"
+[20:51:02] Warning: Unknown command "sk_taller_dmg_punch4"
+[20:51:02] Warning: Unknown command "sk_spitter_health1"
+[20:51:02] Warning: Unknown command "sk_spitter_health2"
+[20:51:02] Warning: Unknown command "sk_spitter_health3"
+[20:51:02] Warning: Unknown command "sk_spitter_health4"
+[20:51:02] Warning: Unknown command "sk_aom_pills1"
+[20:51:02] Warning: Unknown command "sk_aom_pills2"
+[20:51:02] Warning: Unknown command "sk_aom_pills3"
+[20:51:02] Warning: Unknown command "sk_aom_pills4"
+[20:51:02] Warning: Unknown command "sk_cof_axe1"
+[20:51:02] Warning: Unknown command "sk_cof_axe2"
+[20:51:02] Warning: Unknown command "sk_cof_axe3"
+[20:51:02] Warning: Unknown command "sk_cof_axe4"
+[20:51:02] Warning: Unknown command "sk_twitcher_health1"
+[20:51:02] Warning: Unknown command "sk_twitcher_health2"
+[20:51:02] Warning: Unknown command "sk_twitcher_health3"
+[20:51:02] Warning: Unknown command "sk_twitcher_health4"
+[20:51:02] Warning: Unknown command "sk_twitcher_dmg_one_slash1"
+[20:51:02] Warning: Unknown command "sk_twitcher_dmg_one_slash2"
+[20:51:02] Warning: Unknown command "sk_twitcher_dmg_one_slash3"
+[20:51:02] Warning: Unknown command "sk_twitcher_dmg_one_slash4"
+[20:51:02] Warning: Unknown command "sk_twitcher_dmg_both_slash1"
+[20:51:02] Warning: Unknown command "sk_twitcher_dmg_both_slash2"
+[20:51:02] Warning: Unknown command "sk_twitcher_dmg_both_slash3"
+[20:51:02] Warning: Unknown command "sk_twitcher_dmg_both_slash4"
+[20:51:02] Warning: Unknown command "sk_twitcher2_health1"
+[20:51:02] Warning: Unknown command "sk_twitcher2_health2"
+[20:51:02] Warning: Unknown command "sk_twitcher2_health3"
+[20:51:02] Warning: Unknown command "sk_twitcher2_health4"
+[20:51:02] Warning: Unknown command "sk_twitcher2_dmg_one_slash1"
+[20:51:02] Warning: Unknown command "sk_twitcher2_dmg_one_slash2"
+[20:51:02] Warning: Unknown command "sk_twitcher2_dmg_one_slash3"
+[20:51:02] Warning: Unknown command "sk_twitcher2_dmg_one_slash4"
+[20:51:02] Warning: Unknown command "sk_twitcher2_dmg_both_slash1"
+[20:51:02] Warning: Unknown command "sk_twitcher2_dmg_both_slash2"
+[20:51:02] Warning: Unknown command "sk_twitcher2_dmg_both_slash3"
+[20:51:02] Warning: Unknown command "sk_twitcher2_dmg_both_slash4"
+[20:51:02] Warning: Unknown command "sk_twitcher3_health1"
+[20:51:02] Warning: Unknown command "sk_twitcher3_health2"
+[20:51:02] Warning: Unknown command "sk_twitcher3_health3"
+[20:51:02] Warning: Unknown command "sk_twitcher3_health4"
+[20:51:02] Warning: Unknown command "sk_twitcher3_dmg_one_slash1"
+[20:51:02] Warning: Unknown command "sk_twitcher3_dmg_one_slash2"
+[20:51:02] Warning: Unknown command "sk_twitcher3_dmg_one_slash3"
+[20:51:02] Warning: Unknown command "sk_twitcher3_dmg_one_slash4"
+[20:51:02] Warning: Unknown command "sk_twitcher3_dmg_both_slash1"
+[20:51:02] Warning: Unknown command "sk_twitcher3_dmg_both_slash2"
+[20:51:02] Warning: Unknown command "sk_twitcher3_dmg_both_slash3"
+[20:51:02] Warning: Unknown command "sk_twitcher3_dmg_both_slash4"
+[20:51:02] Warning: Unknown command "sk_twitcher4_health1"
+[20:51:02] Warning: Unknown command "sk_twitcher4_health2"
+[20:51:02] Warning: Unknown command "sk_twitcher4_health3"
+[20:51:02] Warning: Unknown command "sk_twitcher4_health4"
+[20:51:02] Warning: Unknown command "sk_twitcher4_dmg_one_slash1"
+[20:51:02] Warning: Unknown command "sk_twitcher4_dmg_one_slash2"
+[20:51:02] Warning: Unknown command "sk_twitcher4_dmg_one_slash3"
+[20:51:02] Warning: Unknown command "sk_twitcher4_dmg_one_slash4"
+[20:51:02] Warning: Unknown command "sk_twitcher4_dmg_both_slash1"
+[20:51:02] Warning: Unknown command "sk_twitcher4_dmg_both_slash2"
+[20:51:02] Warning: Unknown command "sk_twitcher4_dmg_both_slash3"
+[20:51:02] Warning: Unknown command "sk_twitcher4_dmg_both_slash4"
+[20:51:02] execing video.cfg
+[20:51:02] Loading renderer: gles3compat -> libref_gles3compat.wasm
+[20:51:02] execing opengl.cfg
+[20:51:02] Trying safe opengl mode 0
+[20:51:02] bpp 24
+[20:51:02] Video: SDL
+[20:51:02] Video driver: emscripten
+[20:51:02] Window size: 617x347 (real 617x347)
+[20:51:02] Window position: 0x0
+[20:51:02] Window mode: windowed
+[20:51:02] Window bordered: true
+[20:51:02] Window resizable: true
+[20:51:02] Window maximized: false
+[20:51:02] Window display index: 0
+[20:51:02] Window display mode: 800x600@0
+WebGL: INVALID_ENUM: getParameter: invalid parameter name
+[20:51:02] Note: GL2_ShimInit: missing BufferStorage
+[20:51:02] Note: GL2_ShimInit: config: ASYNC MAP CYCLE=1 VER=300
+[20:51:02] Note: GL2_ShimInit: 1441792 bytes allocated for vertex buffer
+[20:51:02] Note: GL2_InitProgs: Pre-generating 8 progs, version 300...
+[20:51:02] Note: GL2_GetProg: Generating progs for 0x0001
+[20:51:02] Note: GL2_GetProg: Generated progs for 0x0001
+[20:51:02] Note: GL2_GetProg: Generating progs for 0x0005
+[20:51:02] Note: GL2_GetProg: Generated progs for 0x0005
+[20:51:02] Note: GL2_GetProg: Generating progs for 0x0007
+[20:51:02] Note: GL2_GetProg: Generated progs for 0x0007
+[20:51:02] Note: GL2_GetProg: Generating progs for 0x0015
+[20:51:02] Note: GL2_GetProg: Generated progs for 0x0015
+[20:51:02] Note: GL2_GetProg: Generating progs for 0x0021
+[20:51:02] Note: GL2_GetProg: Generated progs for 0x0021
+[20:51:02] Note: GL2_GetProg: Generating progs for 0x0025
+[20:51:02] Note: GL2_GetProg: Generated progs for 0x0025
+[20:51:02] Note: GL2_GetProg: Generating progs for 0x0027
+[20:51:02] Note: GL2_GetProg: Generated progs for 0x0027
+[20:51:02] Note: GL2_GetProg: Generating progs for 0x0035
+[20:51:02] Note: GL2_GetProg: Generated progs for 0x0035
+[20:51:02] 
+[20:51:02] GL_VENDOR: WebKit
+[20:51:02] GL_RENDERER: WebKit WebGL
+[20:51:02] GL_VERSION: OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))
+[20:51:02] GL_MAX_TEXTURE_SIZE: 8192
+[20:51:02] GL_MAX_TEXTURE_UNITS_ARB: 32
+[20:51:02] GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT: 16.0
+[20:51:02] 
+[20:51:02] MODE: 617x347
+[20:51:02] 
+[20:51:02] Color 24 bits, Alpha 8 bits, Depth 24 bits, Stencil 8 bits
+[20:51:02] OpenGL Error: GL_INVALID_ENUM while uploading *default [2D]
+[20:51:02] UI_ApplyCustomColors: colors.lst not found
+[20:51:02] Rendering Trebuchet MS(11, 500) took 0.011300 seconds
+[20:51:02] Rendering Trebuchet MS(9, 500) took 0.005200 seconds
+[20:51:02] Rendering Trebuchet MS(18, 500) took 0.006000 seconds
+[20:51:02] Rendering Trebuchet MS(11, 1000) took 0.003700 seconds
+[20:51:02] Rendering Trebuchet MS(11, 500) took 0.000300 seconds
+[20:51:02] Rendering Trebuchet MS(11, 500) took 0.015000 seconds
+[20:51:02] Rendering Tahoma(8, 500) took 0.006000 seconds
+[20:51:02] AVI: Not supported
+The ScriptProcessorNode is deprecated. Use AudioWorkletNode instead. (https://bit.ly/audio-worklet)
+[20:51:02] Using SDL audio driver: emscripten @ 44100 Hz
+[20:51:02] Web Audio: 3D channels enabled
+[20:51:02] execing valve.rc
+[20:51:02] Warning: Unknown command "s_refgain"
+[20:51:02] Warning: Unknown command "s_refdelay"
+[20:51:02] Warning: Unknown command "s_occfactor"
+[20:51:02] Warning: Unknown command "s_verbwet"
+[20:51:02] Warning: Unknown command "s_distance"
+[20:51:02] execing language.cfg
+[20:51:02] execing joystick.cfg
+[20:51:02] execing autoexec.cfg
+[20:51:02] Warning: Unknown command "r_dynamiclight"
+[20:51:02] Warning: Unknown command "gl_texturemode"
+[20:51:02] Warning: Unknown command "sv_voicecodec"
+[20:51:02] execing config.cfg
+[20:51:02] execing cof_web.cfg
+[20:51:02] Time to first frame: 0.541 seconds
+[20:51:02] Error: Delta_ParseField: unable to find field is_donator
+[20:51:02] Spawn Server: c_start
+[20:51:02] execing maps/c_start_load.cfg
+[20:51:02] 
+GAME SKILL LEVEL:1
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_agrunt_health1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_agrunt_dmg_punch1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_apache_health1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_barney_health1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_health1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_bite1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_whip1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_spit1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_gargantua_health1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_slash1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_fire1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_stomp1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_hassassin_health1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_headcrab_health1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_headcrab_dmg_bite1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_health1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_kick1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_pellets1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_gspeed1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_houndeye_health1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_houndeye_dmg_blast1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_islave_health1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_claw1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_clawrake1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_zap1 **
+
+[20:51:02] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_health1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_shake1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_leech_health1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_leech_dmg_bite1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_controller_health1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgzap1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_controller_speedball1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgball1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_health1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_zap1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_scientist_health1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_snark_health1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_bite1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_pop1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_turret_health1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_miniturret_health1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_sentry_health1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_plr_crowbar1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_plr_9mm_bullet1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_plr_357_bullet1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_bullet1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_grenade1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_client1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_monster1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_plr_rpg1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_plr_gauss1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_narrow1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_wide1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_plr_hand_grenade1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_plr_satchel1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_plr_tripmine1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_12mm_bullet1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_9mmAR_bullet1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_9mm_bullet1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_hornet_dmg1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_suitcharger1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_battery1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_healthcharger1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_healthkit1 **
+
+[20:51:03] 
+
+** GetSkillCVar Got a zero for sk_scientist_heal1 **
+
+[20:51:03] Error: Could not load model models/w_suit.mdl from disk
+[20:51:03] Error: Could not load model models/w_medkit.mdl from disk
+[20:51:03] Error: Could not load model models/w_battery.mdl from disk
+[20:51:03] Error: Could not load model models/w_antidote.mdl from disk
+[20:51:03] Error: Could not load model models/w_security.mdl from disk
+[20:51:03] Error: Could not load model models/w_longjump.mdl from disk
+[20:51:03] Error: Could not load model models/v_shotgun.mdl from disk
+[20:51:03] Error: Could not load model models/w_shotgun.mdl from disk
+[20:51:03] Error: Could not load model models/p_shotgun.mdl from disk
+[20:51:03] Error: Could not load model models/shotgunshell.mdl from disk
+[20:51:03] Error: Could not load model models/w_shotbox.mdl from disk
+[20:51:03] Error: Could not load model models/v_crowbar.mdl from disk
+[20:51:03] Error: Could not load model models/w_crowbar.mdl from disk
+[20:51:03] Error: Could not load model models/p_crowbar.mdl from disk
+[20:51:03] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[20:51:03] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[20:51:03] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[20:51:03] Error: Could not load model models/shell.mdl from disk
+[20:51:03] Error: Could not load model models/w_9mmclip.mdl from disk
+[20:51:03] Error: Could not load model models/v_9mmAR.mdl from disk
+[20:51:03] Error: Could not load model models/w_9mmAR.mdl from disk
+[20:51:03] Error: Could not load model models/p_9mmAR.mdl from disk
+[20:51:03] Error: Could not load model models/shell.mdl from disk
+[20:51:03] Error: Could not load model models/grenade.mdl from disk
+[20:51:03] Error: Could not load model models/w_9mmARclip.mdl from disk
+[20:51:03] Error: Could not load model models/w_9mmARclip.mdl from disk
+[20:51:03] Error: Could not load model models/w_ARgrenade.mdl from disk
+[20:51:03] Error: Could not load model models/w_chainammo.mdl from disk
+[20:51:03] Error: Could not load model models/v_357.mdl from disk
+[20:51:03] Error: Could not load model models/w_357.mdl from disk
+[20:51:03] Error: Could not load model models/p_357.mdl from disk
+[20:51:03] Error: Could not load model models/w_357ammobox.mdl from disk
+[20:51:03] Error: Could not load model models/w_357ammobox.mdl from disk
+[20:51:03] Error: Could not load model models/w_gauss.mdl from disk
+[20:51:03] Error: Could not load model models/v_gauss.mdl from disk
+[20:51:03] Error: Could not load model models/p_gauss.mdl from disk
+[20:51:03] Error: Could not load model sprites/hotglow.spr from disk
+[20:51:03] Error: Could not load model sprites/hotglow.spr from disk
+[20:51:03] Error: Could not load model sprites/smoke.spr from disk
+[20:51:03] Error: Could not load model models/w_gaussammo.mdl from disk
+[20:51:03] Error: Could not load model models/w_rpg.mdl from disk
+[20:51:03] Error: Could not load model models/v_rpg.mdl from disk
+[20:51:03] Error: Could not load model models/p_rpg.mdl from disk
+[20:51:03] Error: Could not load model sprites/laserdot.spr from disk
+[20:51:03] Error: Could not load model models/rpgrocket.mdl from disk
+[20:51:03] Error: Could not load model sprites/smoke.spr from disk
+[20:51:03] Error: Could not load model models/w_rpgammo.mdl from disk
+[20:51:03] Error: Could not load model models/w_crossbow.mdl from disk
+[20:51:03] Error: Could not load model models/v_crossbow.mdl from disk
+[20:51:03] Error: Could not load model models/p_crossbow.mdl from disk
+[20:51:03] Error: Could not load model models/crossbow_bolt.mdl from disk
+[20:51:03] Error: Could not load model sprites/streak.spr from disk
+[20:51:03] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[20:51:03] Error: Could not load model models/w_egon.mdl from disk
+[20:51:03] Error: Could not load model models/v_egon.mdl from disk
+[20:51:03] Error: Could not load model models/p_egon.mdl from disk
+[20:51:03] Error: Could not load model models/w_9mmclip.mdl from disk
+[20:51:03] Error: Could not load model sprites/xbeam1.spr from disk
+[20:51:03] Error: Could not load model models/v_tripmine.mdl from disk
+[20:51:03] Error: Could not load model models/p_tripmine.mdl from disk
+[20:51:03] Error: Could not load model models/v_tripmine.mdl from disk
+[20:51:03] Error: Could not load model models/v_satchel.mdl from disk
+[20:51:03] Error: Could not load model models/v_satchel_radio.mdl from disk
+[20:51:03] Error: Could not load model models/w_satchel.mdl from disk
+[20:51:03] Error: Could not load model models/p_satchel.mdl from disk
+[20:51:03] Error: Could not load model models/p_satchel_radio.mdl from disk
+[20:51:03] Error: Could not load model models/w_satchel.mdl from disk
+[20:51:03] Error: Could not load model models/w_grenade.mdl from disk
+[20:51:03] Error: Could not load model models/v_grenade.mdl from disk
+[20:51:03] Error: Could not load model models/p_grenade.mdl from disk
+[20:51:03] Error: Could not load model models/w_sqknest.mdl from disk
+[20:51:03] Error: Could not load model models/v_squeak.mdl from disk
+[20:51:03] Error: Could not load model models/p_squeak.mdl from disk
+[20:51:03] Error: Could not load model models/w_squeak.mdl from disk
+[20:51:03] Error: Could not load model models/v_hgun.mdl from disk
+[20:51:03] Error: Could not load model models/w_hgun.mdl from disk
+[20:51:03] Error: Could not load model models/p_hgun.mdl from disk
+[20:51:03] Error: Could not load model models/hornet.mdl from disk
+[20:51:03] Error: Could not load model sprites/muz1.spr from disk
+[20:51:03] Error: Could not load model sprites/zerogxplode.spr from disk
+[20:51:03] Error: Could not load model sprites/WXplo1.spr from disk
+[20:51:03] Error: Could not load model sprites/laserdot.spr from disk
+[20:51:03] Error: Could not load model models/grenade.mdl from disk
+[20:51:03] Error: Could not load model sprites/explode1.spr from disk
+[20:51:03] Error: Could not load model models/player.mdl from disk
+[20:51:03] Error: Could not load model models/hgibs.mdl from disk
+[20:51:03] Error: Could not load model models/agibs.mdl from disk
+[20:51:03] Error: No spawn function for "info_texlights"
+[20:51:03] env_model : unknown sequence "idle"
+[20:51:04] 
+0 entities inhibited
+[20:51:04] Game started
+[20:51:04] level loaded at 1.95 sec
+[20:51:04] execing spserver.cfg
+[20:51:04] Trying to connect with modern protocol
+[20:51:04] LoadBackground: found steam background in game directory
+[20:51:04] execing mainui.cfg
+[20:51:04] Localize_AddToDict( resource/mainui_english.txt ): couldn't open file. Some strings will not be localized!.
+[20:51:04] Localize_AddToDict( resource/cryoffear_english.txt ): couldn't open file. Some strings will not be localized!.
+[20:51:04] Spooling demo header.
+[20:51:04] 
+BUILD 4221 SERVER (0 CRC)
+Server #1
+[20:51:04] Warning: unexpected end of sprites/hud.txt (211 should be 57)
+[20:51:05] Missing bitmap font: gfx\vgui\fonts\640_Basic Text.tga
+[20:51:05] Missing bitmap font: gfx\vgui\fonts\640_Primary Button Text.tga
+[20:51:05] Missing bitmap font: gfx\vgui\fonts\640_CommandMenu Text.tga
+[20:51:05] Missing bitmap font: gfx\vgui\fonts\640_Scoreboard Text.tga
+[20:51:05] Missing bitmap font: gfx\vgui\fonts\640_Scoreboard Title Text.tga
+[20:51:05] Missing bitmap font: gfx\vgui\fonts\640_Scoreboard Small Text.tga
+[20:51:05] Missing bitmap font: gfx\vgui\fonts\640_Title Font.tga
+[20:51:05] Unable to open commandmenu.txt
+[20:51:05] Unable to open spectatormenu.txt
+[20:51:05] Unable to open spectcammenu.txt
+[20:51:05] Verifying and downloading resources...
+[20:51:05] Error: Could not load sound sound/items/smallmedkit1.wav
+[20:51:05] Error: Could not load sound sound/items/9mmclip1.wav
+[20:51:05] Error: Could not load sound sound/weapons/dbarrel1.wav
+[20:51:05] Error: Could not load sound sound/weapons/sbarrel1.wav
+[20:51:05] Error: Could not load sound sound/weapons/reload1.wav
+[20:51:05] Error: Could not load sound sound/weapons/reload3.wav
+[20:51:05] Error: Could not load sound sound/weapons/357_cock1.wav
+[20:51:05] Error: Could not load sound sound/weapons/scock1.wav
+[20:51:05] Error: Could not load sound sound/weapons/cbar_hit1.wav
+[20:51:05] Error: Could not load sound sound/weapons/cbar_hit2.wav
+[20:51:05] Error: Could not load sound sound/weapons/cbar_hitbod1.wav
+[20:51:05] Error: Could not load sound sound/weapons/cbar_hitbod2.wav
+[20:51:05] Error: Could not load sound sound/weapons/cbar_hitbod3.wav
+[20:51:05] Error: Could not load sound sound/weapons/cbar_miss1.wav
+[20:51:05] Error: Could not load sound sound/items/9mmclip2.wav
+[20:51:05] Error: Could not load sound sound/weapons/pl_gun1.wav
+[20:51:05] Error: Could not load sound sound/weapons/pl_gun2.wav
+[20:51:05] Error: Could not load sound sound/weapons/pl_gun3.wav
+[20:51:05] Error: Could not load sound sound/items/clipinsert1.wav
+[20:51:05] Error: Could not load sound sound/items/cliprelease1.wav
+[20:51:05] Error: Could not load sound sound/weapons/hks1.wav
+[20:51:05] Error: Could not load sound sound/weapons/hks2.wav
+[20:51:05] Error: Could not load sound sound/weapons/hks3.wav
+[20:51:05] Error: Could not load sound sound/weapons/glauncher.wav
+[20:51:05] Error: Could not load sound sound/weapons/glauncher2.wav
+[20:51:05] Error: Could not load sound sound/weapons/357_reload1.wav
+[20:51:05] Error: Could not load sound sound/weapons/357_shot1.wav
+[20:51:05] Error: Could not load sound sound/weapons/357_shot2.wav
+[20:51:05] Error: Could not load sound sound/weapons/gauss2.wav
+[20:51:05] Error: Could not load sound sound/weapons/electro4.wav
+[20:51:05] Error: Could not load sound sound/weapons/electro5.wav
+[20:51:05] Error: Could not load sound sound/weapons/electro6.wav
+[20:51:05] Error: Could not load sound sound/ambience/pulsemachine.wav
+[20:51:05] Error: Could not load sound sound/weapons/rocket1.wav
+[20:51:05] Error: Could not load sound sound/weapons/rocketfire1.wav
+[20:51:05] Error: Could not load sound sound/weapons/xbow_fire1.wav
+[20:51:05] Error: Could not load sound sound/weapons/xbow_reload1.wav
+[20:51:05] Error: Could not load sound sound/weapons/xbow_hitbod1.wav
+[20:51:05] Error: Could not load sound sound/weapons/xbow_hitbod2.wav
+[20:51:05] Error: Could not load sound sound/weapons/xbow_fly1.wav
+[20:51:05] Error: Could not load sound sound/weapons/xbow_hit1.wav
+[20:51:05] Error: Could not load sound sound/fvox/beep.wav
+[20:51:05] Error: Could not load sound sound/weapons/egon_off1.wav
+[20:51:05] Error: Could not load sound sound/weapons/egon_run3.wav
+[20:51:05] Error: Could not load sound sound/weapons/egon_windup2.wav
+[20:51:05] Error: Could not load sound sound/weapons/mine_deploy.wav
+[20:51:05] Error: Could not load sound sound/weapons/mine_activate.wav
+[20:51:05] Error: Could not load sound sound/weapons/mine_charge.wav
+[20:51:05] Error: Could not load sound sound/weapons/g_bounce1.wav
+[20:51:05] Error: Could not load sound sound/weapons/g_bounce2.wav
+[20:51:05] Error: Could not load sound sound/weapons/g_bounce3.wav
+[20:51:05] Error: Could not load sound sound/squeek/sqk_hunt2.wav
+[20:51:05] Error: Could not load sound sound/squeek/sqk_hunt3.wav
+[20:51:05] Error: Could not load sound sound/squeek/sqk_blast1.wav
+[20:51:05] Error: Could not load sound sound/common/bodysplat.wav
+[20:51:05] Error: Could not load sound sound/squeek/sqk_die1.wav
+[20:51:05] Error: Could not load sound sound/squeek/sqk_hunt1.wav
+[20:51:05] Error: Could not load sound sound/squeek/sqk_deploy1.wav
+[20:51:05] Error: Could not load sound sound/agrunt/ag_fire1.wav
+[20:51:05] Error: Could not load sound sound/agrunt/ag_fire2.wav
+[20:51:05] Error: Could not load sound sound/agrunt/ag_fire3.wav
+[20:51:05] Error: Could not load sound sound/hornet/ag_buzz1.wav
+[20:51:05] Error: Could not load sound sound/hornet/ag_buzz2.wav
+[20:51:05] Error: Could not load sound sound/hornet/ag_buzz3.wav
+[20:51:05] Error: Could not load sound sound/hornet/ag_hornethit1.wav
+[20:51:05] Error: Could not load sound sound/hornet/ag_hornethit2.wav
+[20:51:05] Error: Could not load sound sound/hornet/ag_hornethit3.wav
+[20:51:05] Error: Could not load sound sound/weapons/debris1.wav
+[20:51:05] Error: Could not load sound sound/weapons/debris2.wav
+[20:51:05] Error: Could not load sound sound/weapons/debris3.wav
+[20:51:05] Error: Could not load sound sound/weapons/grenade_hit1.wav
+[20:51:05] Error: Could not load sound sound/weapons/grenade_hit2.wav
+[20:51:05] Error: Could not load sound sound/weapons/grenade_hit3.wav
+[20:51:05] Error: Could not load sound sound/weapons/bullet_hit1.wav
+[20:51:05] Error: Could not load sound sound/weapons/bullet_hit2.wav
+[20:51:05] Error: Could not load sound sound/items/weapondrop1.wav
+[20:51:05] Error: Could not load sound sound/player/sprayer.wav
+[20:51:05] Error: Could not load sound sound/player/pl_fallpain2.wav
+[20:51:05] Error: Could not load sound sound/player/pl_fallpain3.wav
+[20:51:05] Error: Could not load sound sound/player/pl_step1.wav
+[20:51:05] Error: Could not load sound sound/player/pl_step2.wav
+[20:51:05] Error: Could not load sound sound/player/pl_step3.wav
+[20:51:05] Error: Could not load sound sound/player/pl_step4.wav
+[20:51:05] Error: Could not load sound sound/player/pl_metal1.wav
+[20:51:05] Error: Could not load sound sound/player/pl_metal2.wav
+[20:51:05] Error: Could not load sound sound/player/pl_metal3.wav
+[20:51:05] Error: Could not load sound sound/player/pl_metal4.wav
+[20:51:05] Error: Could not load sound sound/player/pl_dirt1.wav
+[20:51:05] Error: Could not load sound sound/player/pl_dirt2.wav
+[20:51:05] Error: Could not load sound sound/player/pl_dirt3.wav
+[20:51:05] Error: Could not load sound sound/player/pl_dirt4.wav
+[20:51:05] Error: Could not load sound sound/player/pl_duct1.wav
+[20:51:05] Error: Could not load sound sound/player/pl_duct2.wav
+[20:51:05] Error: Could not load sound sound/player/pl_duct3.wav
+[20:51:05] Error: Could not load sound sound/player/pl_duct4.wav
+[20:51:05] Error: Could not load sound sound/player/pl_grate1.wav
+[20:51:05] Error: Could not load sound sound/player/pl_grate2.wav
+[20:51:05] Error: Could not load sound sound/player/pl_grate3.wav
+[20:51:05] Error: Could not load sound sound/player/pl_grate4.wav
+[20:51:05] Error: Could not load sound sound/player/pl_slosh1.wav
+[20:51:05] Error: Could not load sound sound/player/pl_slosh2.wav
+[20:51:05] Error: Could not load sound sound/player/pl_slosh3.wav
+[20:51:05] Error: Could not load sound sound/player/pl_slosh4.wav
+[20:51:05] Error: Could not load sound sound/player/pl_tile1.wav
+[20:51:05] Error: Could not load sound sound/player/pl_tile2.wav
+[20:51:05] Error: Could not load sound sound/player/pl_tile3.wav
+[20:51:05] Error: Could not load sound sound/player/pl_tile4.wav
+[20:51:05] Error: Could not load sound sound/player/pl_tile5.wav
+[20:51:05] Error: Could not load sound sound/player/pl_swim1.wav
+[20:51:05] Error: Could not load sound sound/player/pl_swim2.wav
+[20:51:05] Error: Could not load sound sound/player/pl_swim3.wav
+[20:51:05] Error: Could not load sound sound/player/pl_swim4.wav
+[20:51:05] Error: Could not load sound sound/player/pl_ladder1.wav
+[20:51:05] Error: Could not load sound sound/player/pl_ladder2.wav
+[20:51:05] Error: Could not load sound sound/player/pl_ladder3.wav
+[20:51:05] Error: Could not load sound sound/player/pl_ladder4.wav
+[20:51:05] Error: Could not load sound sound/player/pl_wade1.wav
+[20:51:05] Error: Could not load sound sound/player/pl_wade2.wav
+[20:51:05] Error: Could not load sound sound/player/pl_wade3.wav
+[20:51:05] Error: Could not load sound sound/player/pl_wade4.wav
+[20:51:05] Error: Could not load sound sound/debris/wood1.wav
+[20:51:05] Error: Could not load sound sound/debris/wood2.wav
+[20:51:05] Error: Could not load sound sound/debris/wood3.wav
+[20:51:05] Error: Could not load sound sound/plats/train_use1.wav
+[20:51:05] Error: Could not load sound sound/plats/vehicle_ignition.wav
+[20:51:05] Error: Could not load sound sound/buttons/spark5.wav
+[20:51:05] Error: Could not load sound sound/buttons/spark6.wav
+[20:51:05] Error: Could not load sound sound/debris/glass1.wav
+[20:51:05] Error: Could not load sound sound/debris/glass2.wav
+[20:51:05] Error: Could not load sound sound/debris/glass3.wav
+[20:51:05] Error: Could not load sound sound/items/flashlight1.wav
+[20:51:05] Error: Could not load sound sound/player/pl_pain2.wav
+[20:51:05] Error: Could not load sound sound/player/pl_pain4.wav
+[20:51:05] Error: Could not load sound sound/player/pl_pain5.wav
+[20:51:05] Error: Could not load sound sound/player/pl_pain6.wav
+[20:51:05] Error: Could not load sound sound/player/pl_pain7.wav
+[20:51:05] Error: Could not load sound sound/common/wpn_hudoff.wav
+[20:51:05] Error: Could not load sound sound/common/wpn_hudon.wav
+[20:51:05] Error: Could not load sound sound/common/wpn_moveselect.wav
+[20:51:05] Error: Could not load sound sound/common/wpn_select.wav
+[20:51:05] Error: Could not load sound sound/common/wpn_denyselect.wav
+[20:51:05] Error: Could not load sound sound/player/geiger6.wav
+[20:51:05] Error: Could not load sound sound/player/geiger5.wav
+[20:51:05] Error: Could not load sound sound/player/geiger4.wav
+[20:51:05] Error: Could not load sound sound/player/geiger3.wav
+[20:51:05] Error: Could not load sound sound/player/geiger2.wav
+[20:51:05] Error: Could not load sound sound/player/geiger1.wav
+[20:51:05] Error: Could not load sound sound/common/null.wav
+[20:51:05] Error: Could not load sound sound/items/suitchargeok1.wav
+[20:51:05] Error: Could not load sound sound/common/bodydrop3.wav
+[20:51:05] Error: Could not load sound sound/common/bodydrop4.wav
+[20:51:05] Error: Could not load sound sound/weapons/ric1.wav
+[20:51:05] Error: Could not load sound sound/weapons/ric2.wav
+[20:51:05] Error: Could not load sound sound/weapons/ric3.wav
+[20:51:05] Error: Could not load sound sound/weapons/ric4.wav
+[20:51:05] Error: Could not load sound sound/weapons/ric5.wav
+[20:51:05] Error: Could not load sound sound/buttons/button9.wav
+[20:51:05] Error: Could not load sound sound/doors/doormove7.wav
+[20:51:05] Error: Could not load model models/w_suit.mdl from disk
+[20:51:05] Error: Could not load model models/w_medkit.mdl from disk
+[20:51:05] Error: Could not load model models/w_battery.mdl from disk
+[20:51:05] Error: Could not load model models/w_antidote.mdl from disk
+[20:51:05] Error: Could not load model models/w_security.mdl from disk
+[20:51:05] Error: Could not load model models/w_longjump.mdl from disk
+[20:51:05] Error: Could not load model models/v_shotgun.mdl from disk
+[20:51:05] Error: Could not load model models/w_shotgun.mdl from disk
+[20:51:05] Error: Could not load model models/p_shotgun.mdl from disk
+[20:51:05] Error: Could not load model models/shotgunshell.mdl from disk
+[20:51:05] Error: Could not load model models/w_shotbox.mdl from disk
+[20:51:05] Error: Could not load model models/v_crowbar.mdl from disk
+[20:51:05] Error: Could not load model models/w_crowbar.mdl from disk
+[20:51:05] Error: Could not load model models/p_crowbar.mdl from disk
+[20:51:05] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[20:51:05] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[20:51:05] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[20:51:05] Error: Could not load model models/shell.mdl from disk
+[20:51:05] Error: Could not load model models/w_9mmclip.mdl from disk
+[20:51:05] Error: Could not load model models/v_9mmAR.mdl from disk
+[20:51:05] Error: Could not load model models/w_9mmAR.mdl from disk
+[20:51:05] Error: Could not load model models/p_9mmAR.mdl from disk
+[20:51:05] Error: Could not load model models/grenade.mdl from disk
+[20:51:05] Error: Could not load model models/w_9mmARclip.mdl from disk
+[20:51:05] Error: Could not load model models/w_ARgrenade.mdl from disk
+[20:51:05] Error: Could not load model models/w_chainammo.mdl from disk
+[20:51:05] Error: Could not load model models/v_357.mdl from disk
+[20:51:05] Error: Could not load model models/w_357.mdl from disk
+[20:51:05] Error: Could not load model models/p_357.mdl from disk
+[20:51:05] Error: Could not load model models/w_357ammobox.mdl from disk
+[20:51:05] Error: Could not load model models/w_gauss.mdl from disk
+[20:51:05] Error: Could not load model models/v_gauss.mdl from disk
+[20:51:05] Error: Could not load model models/p_gauss.mdl from disk
+[20:51:05] Error: Could not load model sprites/hotglow.spr from disk
+[20:51:05] Error: Could not load model sprites/smoke.spr from disk
+[20:51:05] Error: Could not load model models/w_gaussammo.mdl from disk
+[20:51:05] Error: Could not load model models/w_rpg.mdl from disk
+[20:51:05] Error: Could not load model models/v_rpg.mdl from disk
+[20:51:05] Error: Could not load model models/p_rpg.mdl from disk
+[20:51:05] Error: Could not load model sprites/laserdot.spr from disk
+[20:51:05] Error: Could not load model models/rpgrocket.mdl from disk
+[20:51:05] Error: Could not load model models/w_rpgammo.mdl from disk
+[20:51:05] Error: Could not load model models/w_crossbow.mdl from disk
+[20:51:05] Error: Could not load model models/v_crossbow.mdl from disk
+[20:51:05] Error: Could not load model models/p_crossbow.mdl from disk
+[20:51:05] Error: Could not load model models/crossbow_bolt.mdl from disk
+[20:51:05] Error: Could not load model sprites/streak.spr from disk
+[20:51:05] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[20:51:05] Error: Could not load model models/w_egon.mdl from disk
+[20:51:05] Error: Could not load model models/v_egon.mdl from disk
+[20:51:05] Error: Could not load model models/p_egon.mdl from disk
+[20:51:05] Error: Could not load model sprites/xbeam1.spr from disk
+[20:51:05] Error: Could not load model models/v_tripmine.mdl from disk
+[20:51:05] Error: Could not load model models/p_tripmine.mdl from disk
+[20:51:05] Error: Could not load model models/v_satchel.mdl from disk
+[20:51:05] Error: Could not load model models/v_satchel_radio.mdl from disk
+[20:51:05] Error: Could not load model models/w_satchel.mdl from disk
+[20:51:05] Error: Could not load model models/p_satchel.mdl from disk
+[20:51:05] Error: Could not load model models/p_satchel_radio.mdl from disk
+[20:51:05] Error: Could not load model models/w_grenade.mdl from disk
+[20:51:05] Error: Could not load model models/v_grenade.mdl from disk
+[20:51:05] Error: Could not load model models/p_grenade.mdl from disk
+[20:51:05] Error: Could not load model models/w_sqknest.mdl from disk
+[20:51:05] Error: Could not load model models/v_squeak.mdl from disk
+[20:51:05] Error: Could not load model models/p_squeak.mdl from disk
+[20:51:05] Error: Could not load model models/w_squeak.mdl from disk
+[20:51:05] Error: Could not load model models/v_hgun.mdl from disk
+[20:51:05] Error: Could not load model models/w_hgun.mdl from disk
+[20:51:05] Error: Could not load model models/p_hgun.mdl from disk
+[20:51:05] Error: Could not load model models/hornet.mdl from disk
+[20:51:05] Error: Could not load model sprites/muz1.spr from disk
+[20:51:05] Error: Could not load model sprites/zerogxplode.spr from disk
+[20:51:05] Error: Could not load model sprites/WXplo1.spr from disk
+[20:51:05] Error: Could not load model sprites/explode1.spr from disk
+[20:51:05] Error: Could not load model models/player.mdl from disk
+[20:51:05] Error: Could not load model models/hgibs.mdl from disk
+[20:51:05] Error: Could not load model models/agibs.mdl from disk
+[20:51:05] Setting up renderer...
+[20:51:05] SKY:  blackrt, blackbk, blacklf, blackft, blackup, blackdn. done
+[.WebGL-0x7a4001c9a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+[.WebGL-0x7a4001c9a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+[.WebGL-0x7a4001c9a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now.
+[20:51:06] Signon network traffic:  31.408 Kb from server, 237 bytes to server
+[20:51:06] client connected at 1.44 sec
+[20:51:06] COF/HUD EXTRAS 0 0 0 0
+[20:51:06] COF/HUD STAT 100 100 0 0
+[20:51:06] COF/HUD SMSICON 0
+[20:51:06] COF/HUD INV 0
+[20:51:06] COF/HUD QUICK - - -
+[20:51:06] COF/HUD OBJECTIVE 
+[20:51:06] COF/HUD MUSIC 0 0 music1.mp3
+[20:51:06] Couldn't open file overviews/c_start.txt. Using default values for overiew mode.
+[20:51:06] COF/HUD PADLOCK 0
+[20:51:06] Couldn't open file overviews/c_start.txt. Using default values for overiew mode.
+[20:51:06] Warning: unexpected end of sprites/weapon_glock.txt (10 should be 8)
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio
+[20:51:06] COF/HUD NIGHTVISION 0
+[20:51:06] Note: GL2_GetProg: Generating progs for 0x0017
+[20:51:06] Note: GL2_GetProg: Generated progs for 0x0017
+[.WebGL-0x7a4001c9a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): Running out of reserved outsideRenderPass queueSerial. ending renderPass now. (this message will no longer repeat)
+[20:51:06] COF/HUD STAT 100 100 0 8
+[20:51:06] COF/FENCE ld_1 time=1.2658
+[20:51:06] "sv_cheats" changed to "1"
+[20:51:06] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=1.5158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:06] COF/FENCE ld_2 time=1.5158
+[20:51:06] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=1.7163 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:06] COF/FENCE ld_3 time=1.7163
+[20:51:06] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=1.8994 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:06] COF/FENCE ld_4 time=1.8994
+[20:51:07] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.0659 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:07] COF/FENCE ld_5 time=2.0659
+[20:51:07] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.2328 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:07] COF/FENCE ld_6 time=2.2328
+[20:51:07] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.416 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:07] COF/FENCE ld_7 time=2.416
+[20:51:07] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.6001 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:07] COF/FENCE ld_8 time=2.6001
+[20:51:07] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.7524 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:07] COF/FENCE ld_9 time=2.7524
+[20:51:07] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=2.9331 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:07] COF/FENCE ld_10 time=2.9331
+[20:51:08] Done.
+[20:51:08] COF/HUD PICKUP inventoryitems/weapons/weapon_mobile.txt
+[20:51:08] COF/HUD SMSREAD 0
+[20:51:08] COF/HUD EXTRAS 0 0 0 0
+[20:51:08] COF/HUD SMSICON 0
+[20:51:08] COF/HUD INV 1 inventoryitems/weapons/weapon_mobile.txt
+[20:51:08] COF/HUD QUICK weapon_mobile - -
+[20:51:08] COF/HUD OBJECTIVE 
+[20:51:08] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=3.1005 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:08] COF/FENCE ld_11 time=3.1005
+[20:51:08] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=3.2655 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:08] COF/FENCE ld_12 time=3.2655
+[20:51:08] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=3.4334 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:08] COF/FENCE ld_13 time=3.4334
+[20:51:08] COF/HUD STAT 100 100 0 8
+[20:51:08] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=3.6005 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:08] COF/FENCE ld_14 time=3.6005
+[20:51:08] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=3.7655 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:08] COF/FENCE ld_15 time=3.7655
+[20:51:08] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=3.9328 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:08] COF/FENCE ld_16 time=3.9328
+[20:51:09] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.1002 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:09] COF/FENCE ld_17 time=4.1002
+[20:51:09] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.2656 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:09] COF/FENCE ld_18 time=4.2656
+[20:51:09] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.4329 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:09] COF/FENCE ld_19 time=4.4329
+[20:51:09] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.6158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:09] COF/FENCE ld_20 time=4.6158
+[20:51:09] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.7655 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:09] COF/FENCE ld_21 time=4.7655
+[20:51:09] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=4.9331 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:09] COF/FENCE ld_22 time=4.9331
+[20:51:10] COF/HUD PICKUP inventoryitems/weapons/weapon_switchblade.txt
+[20:51:10] COF/HUD EXTRAS 0 0 0 0
+[20:51:10] COF/HUD SMSICON 0
+[20:51:10] COF/HUD INV 2 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt
+[20:51:10] COF/HUD QUICK weapon_mobile weapon_switchblade -
+[20:51:10] COF/HUD OBJECTIVE 
+[20:51:10] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=5.1158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:10] COF/FENCE ld_23 time=5.1158
+[20:51:10] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=5.2664 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:10] COF/FENCE ld_24 time=5.2664
+[20:51:10] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=5.433 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:10] COF/FENCE ld_25 time=5.433
+[20:51:10] COF/HUD STAT 100 100 0 8
+[20:51:10] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=5.6158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:10] COF/FENCE ld_26 time=5.6158
+[20:51:10] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=5.7505 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:10] COF/FENCE ld_27 time=5.7505
+[20:51:10] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=5.9158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:10] COF/FENCE ld_28 time=5.9158
+[20:51:11] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.0826 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:11] COF/FENCE ld_29 time=6.0826
+[20:51:11] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.2353 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:11] COF/FENCE ld_30 time=6.2353
+[20:51:11] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.4185 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:11] COF/FENCE ld_31 time=6.4185
+[20:51:11] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.5826 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:11] COF/FENCE ld_32 time=6.5826
+[20:51:11] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.766 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:11] COF/FENCE ld_33 time=6.766
+[20:51:11] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=6.9503 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:11] COF/FENCE ld_34 time=6.9503
+[20:51:12] COF/HUD EXTRAS 0 0 0 0
+[20:51:12] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=7.1158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:12] COF/FENCE ld_35 time=7.1158
+[20:51:12] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=7.268 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:12] COF/FENCE ld_36 time=7.268
+[20:51:12] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=7.4502 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:12] COF/FENCE ld_37 time=7.4502
+[20:51:12] COF/HUD STAT 100 100 0 8
+[20:51:12] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=7.6332 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:12] COF/FENCE ld_38 time=7.6332
+[20:51:12] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=7.81579 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:12] COF/FENCE ld_39 time=7.81579
+[20:51:13] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.01579 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:13] COF/FENCE ld_40 time=8.01579
+[20:51:13] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.1827 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:13] COF/FENCE ld_41 time=8.1827
+[20:51:13] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.3508 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:13] COF/FENCE ld_42 time=8.3508
+[20:51:13] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.5334 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:13] COF/FENCE ld_43 time=8.5334
+[20:51:13] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.7158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:13] COF/FENCE ld_44 time=8.7158
+[20:51:13] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=8.8832 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:13] COF/FENCE ld_45 time=8.8832
+[20:51:14] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.05 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:14] COF/FENCE ld_46 time=9.05
+[20:51:14] COF/HUD EXTRAS 0 0 0 0
+[20:51:14] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.2158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:14] COF/FENCE ld_47 time=9.2158
+[20:51:14] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.3824 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:14] COF/FENCE ld_48 time=9.3824
+[20:51:14] COF/HUD STAT 100 100 0 8
+[20:51:14] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.5494 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:14] COF/FENCE ld_49 time=9.5494
+[20:51:14] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.716 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:14] COF/FENCE ld_50 time=9.716
+[20:51:14] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=9.8833 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:14] COF/FENCE ld_51 time=9.8833
+[20:51:15] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=10.0495 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:15] COF/FENCE ld_52 time=10.0495
+[20:51:15] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=10.2162 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:15] COF/FENCE ld_53 time=10.2162
+[20:51:15] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=10.3838 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:15] COF/FENCE ld_54 time=10.3838
+[20:51:15] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=10.5502 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:15] COF/FENCE ld_55 time=10.5502
+[20:51:15] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=10.716 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:15] COF/FENCE ld_56 time=10.716
+[20:51:15] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=10.8832 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:15] COF/FENCE ld_57 time=10.8832
+[20:51:16] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=11.0503 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:16] COF/FENCE ld_58 time=11.0503
+[20:51:16] COF/HUD EXTRAS 0 0 0 0
+[20:51:16] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=11.2 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:16] COF/FENCE ld_59 time=11.2
+[20:51:16] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=11.3685 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:16] COF/FENCE ld_60 time=11.3685
+[20:51:16] COF/HUD STAT 100 100 0 8
+[20:51:16] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=11.5327 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:16] COF/FENCE ld_61 time=11.5327
+[20:51:16] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=11.7158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:16] COF/FENCE ld_62 time=11.7158
+[20:51:16] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=11.8663 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:16] COF/FENCE ld_63 time=11.8663
+[20:51:17] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=12.0328 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:17] COF/FENCE ld_64 time=12.0328
+[20:51:17] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=12.2158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:17] COF/FENCE ld_65 time=12.2158
+[20:51:17] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=12.366 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:17] COF/FENCE ld_66 time=12.366
+[20:51:17] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=12.5664 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:17] COF/FENCE ld_67 time=12.5664
+[20:51:17] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=12.7158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:17] COF/FENCE ld_68 time=12.7158
+[20:51:17] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=12.9158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:17] COF/FENCE ld_69 time=12.9158
+[20:51:18] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=13.0501 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:18] COF/FENCE ld_70 time=13.0501
+[20:51:18] COF/HUD EXTRAS 0 0 0 0
+[20:51:18] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=13.2158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:18] COF/FENCE ld_71 time=13.2158
+[20:51:18] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=13.3664 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:18] COF/FENCE ld_72 time=13.3664
+[20:51:18] COF/HUD STAT 100 100 0 8
+[20:51:18] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=13.5497 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:18] COF/FENCE ld_73 time=13.5497
+[20:51:18] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=13.7331 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:18] COF/FENCE ld_74 time=13.7331
+[20:51:19] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=14 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:19] COF/FENCE ld_75 time=14
+[20:51:19] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=14.1335 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:19] COF/FENCE ld_76 time=14.1335
+[20:51:19] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=14.3343 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:19] COF/FENCE ld_77 time=14.3343
+[20:51:19] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=14.5158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:19] COF/FENCE ld_78 time=14.5158
+[20:51:19] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=14.7158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:19] COF/FENCE ld_79 time=14.7158
+[20:51:20] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=14.9158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:20] COF/FENCE ld_80 time=14.9158
+[20:51:20] COF/HUD SUB 9
+[20:51:20] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=15.1158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:20] COF/FENCE ld_81 time=15.1158
+[20:51:20] COF/HUD EXTRAS 0 0 0 0
+[20:51:20] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=15.3158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:20] COF/FENCE ld_82 time=15.3158
+[20:51:20] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=15.4158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:20] COF/FENCE ld_83 time=15.4158
+[20:51:20] COF/HUD STAT 100 100 0 8
+[20:51:20] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=15.6331 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:20] COF/FENCE ld_84 time=15.6331
+[20:51:20] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=15.833 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:20] COF/FENCE ld_85 time=15.833
+[20:51:21] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=16.0158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:21] COF/FENCE ld_86 time=16.0158
+[20:51:21] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=16.2162 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:21] COF/FENCE ld_87 time=16.2162
+[20:51:21] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=16.4012 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:21] COF/FENCE ld_88 time=16.4012
+[20:51:21] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=16.5663 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:21] COF/FENCE ld_89 time=16.5663
+[20:51:21] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=16.7503 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:21] COF/FENCE ld_90 time=16.7503
+[20:51:21] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=16.9324 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:21] COF/FENCE ld_91 time=16.9324
+[20:51:22] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=17.1158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:22] COF/FENCE ld_92 time=17.1158
+[20:51:22] COF/HUD EXTRAS 0 0 0 0
+[20:51:22] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=17.2831 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:22] COF/FENCE ld_93 time=17.2831
+[20:51:22] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=17.4496 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:22] COF/FENCE ld_94 time=17.4496
+[20:51:22] COF/HUD STAT 100 100 0 8
+[20:51:22] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=17.6163 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:22] COF/FENCE ld_95 time=17.6163
+[20:51:22] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=17.7833 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:22] COF/FENCE ld_96 time=17.7833
+[20:51:23] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=17.9516 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:23] COF/FENCE ld_97 time=17.9516
+[20:51:23] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=18.1181 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:23] COF/FENCE ld_98 time=18.1181
+[20:51:23] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=18.3158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:23] COF/FENCE ld_99 time=18.3158
+[20:51:23] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=18.4826 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:23] COF/FENCE ld_100 time=18.4826
+[20:51:23] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=18.6498 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:23] COF/FENCE ld_101 time=18.6498
+[20:51:23] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=18.8166 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:23] COF/FENCE ld_102 time=18.8166
+[20:51:24] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=19.0178 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:24] COF/FENCE ld_103 time=19.0178
+[20:51:24] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=19.1174 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:24] COF/FENCE ld_104 time=19.1174
+[20:51:24] COF/HUD EXTRAS 0 0 0 0
+[20:51:24] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=19.5156 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:24] COF/FENCE ld_105 time=19.5156
+[20:51:24] COF/HUD STAT 100 100 0 8
+[20:51:24] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=19.6998 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:24] COF/FENCE ld_106 time=19.6998
+[20:51:24] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=19.866 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:24] COF/FENCE ld_107 time=19.866
+[20:51:24] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=20.033 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:24] COF/FENCE ld_108 time=20.033
+[20:51:25] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=20.1998 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:25] COF/FENCE ld_109 time=20.1998
+[20:51:25] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=20.365 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:25] COF/FENCE ld_110 time=20.365
+[20:51:25] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=20.5329 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:25] COF/FENCE ld_111 time=20.5329
+[20:51:25] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=20.6998 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:25] COF/FENCE ld_112 time=20.6998
+[20:51:25] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=20.8654 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:25] COF/FENCE ld_113 time=20.8654
+[20:51:25] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=21.0503 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:25] COF/FENCE ld_114 time=21.0503
+[20:51:26] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=21.2148 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:26] COF/FENCE ld_115 time=21.2148
+[20:51:26] COF/HUD EXTRAS 0 0 0 0
+[20:51:26] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=21.3998 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:26] COF/FENCE ld_116 time=21.3998
+[20:51:26] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=21.5652 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:26] COF/FENCE ld_117 time=21.5652
+[20:51:26] COF/HUD STAT 100 100 0 8
+[20:51:26] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=21.7513 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:26] COF/FENCE ld_118 time=21.7513
+[20:51:26] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=21.9155 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:26] COF/FENCE ld_119 time=21.9155
+[20:51:26] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=22.0998 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:26] COF/FENCE ld_120 time=22.0998
+[20:51:27] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=22.2493 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:27] COF/FENCE ld_121 time=22.2493
+[20:51:27] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=22.4161 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:27] COF/FENCE ld_122 time=22.4161
+[20:51:27] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=22.6009 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:27] COF/FENCE ld_123 time=22.6009
+[20:51:27] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=22.7652 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:27] COF/FENCE ld_124 time=22.7652
+[20:51:27] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=22.9323 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:27] COF/FENCE ld_125 time=22.9323
+[20:51:27] COF/HUD SUB 10
+[20:51:27] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=23.1503 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:27] COF/FENCE ld_126 time=23.1503
+[20:51:28] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=23.2998 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:28] COF/FENCE ld_127 time=23.2998
+[20:51:28] COF/HUD EXTRAS 0 0 0 0
+[20:51:28] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=23.4654 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:28] COF/FENCE ld_128 time=23.4654
+[20:51:28] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=23.6319 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:28] COF/FENCE ld_129 time=23.6319
+[20:51:28] COF/HUD STAT 100 100 0 8
+[20:51:28] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=23.7819 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:28] COF/FENCE ld_130 time=23.7819
+[20:51:28] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=23.9506 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:28] COF/FENCE ld_131 time=23.9506
+[20:51:28] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=24.1323 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:28] COF/FENCE ld_132 time=24.1323
+[20:51:29] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=24.2823 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:29] COF/FENCE ld_133 time=24.2823
+[20:51:29] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=24.4649 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:29] COF/FENCE ld_134 time=24.4649
+[20:51:29] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=24.6336 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:29] COF/FENCE ld_135 time=24.6336
+[20:51:29] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=24.8172 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:29] COF/FENCE ld_136 time=24.8172
+[20:51:29] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=25 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:29] COF/FENCE ld_137 time=25
+[20:51:29] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=25.1496 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:29] COF/FENCE ld_138 time=25.1496
+[20:51:30] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=25.3315 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:30] COF/FENCE ld_139 time=25.3315
+[20:51:30] COF/HUD EXTRAS 0 0 0 0
+[20:51:30] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=25.4998 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:30] COF/FENCE ld_140 time=25.4998
+[20:51:30] COF/HUD STAT 100 100 0 8
+[20:51:30] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=25.6819 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:30] COF/FENCE ld_141 time=25.6819
+[20:51:30] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=25.8486 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:30] COF/FENCE ld_142 time=25.8486
+[20:51:30] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=26.0006 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:30] COF/FENCE ld_143 time=26.0006
+[20:51:30] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=26.1653 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:30] COF/FENCE ld_144 time=26.1653
+[20:51:31] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=26.332 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:31] COF/FENCE ld_145 time=26.332
+[20:51:31] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=26.4998 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:31] COF/FENCE ld_146 time=26.4998
+[20:51:31] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=26.6652 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:31] COF/FENCE ld_147 time=26.6652
+[20:51:31] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=26.8327 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:31] COF/FENCE ld_148 time=26.8327
+[20:51:31] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=27.0503 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:31] COF/FENCE ld_149 time=27.0503
+[20:51:32] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=27.2159 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:32] COF/FENCE ld_150 time=27.2159
+[20:51:32] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=27.3998 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:32] COF/FENCE ld_151 time=27.3998
+[20:51:32] COF/HUD EXTRAS 0 0 0 0
+[20:51:32] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=27.5998 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:32] COF/FENCE ld_152 time=27.5998
+[20:51:32] COF/HUD STAT 100 100 0 8
+[20:51:32] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=27.7503 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:32] COF/FENCE ld_153 time=27.7503
+[20:51:32] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=27.9503 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:32] COF/FENCE ld_154 time=27.9503
+[20:51:32] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=28.115 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:32] COF/FENCE ld_155 time=28.115
+[20:51:33] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=28.2998 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:33] COF/FENCE ld_156 time=28.2998
+[20:51:33] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=28.3998 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:33] COF/FENCE ld_157 time=28.3998
+[20:51:33] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=28.4998 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:33] COF/FENCE ld_158 time=28.4998
+[20:51:33] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=28.8996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:33] COF/FENCE ld_159 time=28.8996
+[20:51:33] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=29.0996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:33] COF/FENCE ld_160 time=29.0996
+[20:51:34] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=29.2996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:34] COF/FENCE ld_161 time=29.2996
+[20:51:34] COF/HUD EXTRAS 0 0 0 0
+[20:51:34] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=29.4996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:34] COF/FENCE ld_162 time=29.4996
+[20:51:34] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=29.6339 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:34] COF/FENCE ld_163 time=29.6339
+[20:51:34] COF/HUD STAT 100 100 0 8
+[20:51:34] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=29.8996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:34] COF/FENCE ld_164 time=29.8996
+[20:51:34] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=30.1004 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:34] COF/FENCE ld_165 time=30.1004
+[20:51:35] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=30.2996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:35] COF/FENCE ld_166 time=30.2996
+[20:51:35] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=30.4996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:35] COF/FENCE ld_167 time=30.4996
+[20:51:35] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=30.6326 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:35] COF/FENCE ld_168 time=30.6326
+[20:51:35] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=30.8157 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:35] COF/FENCE ld_169 time=30.8157
+[20:51:35] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=31.0158 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:35] COF/FENCE ld_170 time=31.0158
+[20:51:35] COF/HUD SUB 11
+[20:51:35] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=31.1996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:35] COF/FENCE ld_171 time=31.1996
+[20:51:36] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=31.3503 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:36] COF/FENCE ld_172 time=31.3503
+[20:51:36] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=31.5172 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:36] COF/FENCE ld_173 time=31.5172
+[20:51:36] COF/HUD EXTRAS 0 0 0 0
+[20:51:36] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=31.6996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:36] COF/FENCE ld_174 time=31.6996
+[20:51:36] COF/HUD STAT 100 100 0 8
+[20:51:36] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=31.8654 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:36] COF/FENCE ld_175 time=31.8654
+[20:51:36] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=32.0333 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:36] COF/FENCE ld_176 time=32.0333
+[20:51:36] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=32.1996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:36] COF/FENCE ld_177 time=32.1996
+[20:51:37] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=32.3491 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:37] COF/FENCE ld_178 time=32.3491
+[20:51:37] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=32.5157 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:37] COF/FENCE ld_179 time=32.5157
+[20:51:37] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=32.6996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:37] COF/FENCE ld_180 time=32.6996
+[20:51:37] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=32.8487 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:37] COF/FENCE ld_181 time=32.8487
+[20:51:37] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=32.9996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:37] COF/FENCE ld_182 time=32.9996
+[20:51:37] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=33.182 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:37] COF/FENCE ld_183 time=33.182
+[20:51:38] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=33.3321 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:38] COF/FENCE ld_184 time=33.3321
+[20:51:38] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=33.4996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:38] COF/FENCE ld_185 time=33.4996
+[20:51:38] COF/HUD EXTRAS 0 0 0 0
+[20:51:38] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=33.6996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:38] COF/FENCE ld_186 time=33.6996
+[20:51:38] COF/HUD STAT 100 100 0 8
+[20:51:38] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=33.8339 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:38] COF/FENCE ld_187 time=33.8339
+[20:51:38] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=34.0317 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:38] COF/FENCE ld_188 time=34.0317
+[20:51:39] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=34.2155 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:39] COF/FENCE ld_189 time=34.2155
+[20:51:39] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=34.3996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:39] COF/FENCE ld_190 time=34.3996
+[20:51:39] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=34.5996 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:39] COF/FENCE ld_191 time=34.5996
+[20:51:39] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=34.8651 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:39] COF/FENCE ld_192 time=34.8651
+[20:51:40] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=35.0653 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:40] COF/FENCE ld_193 time=35.0653
+[20:51:40] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=35.2821 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:40] COF/FENCE ld_194 time=35.2821
+[20:51:40] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=35.4985 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:40] COF/FENCE ld_195 time=35.4985
+[20:51:40] COF/HUD EXTRAS 0 0 0 0
+[20:51:40] COF/HUD STAT 100 100 0 8
+[20:51:40] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=35.7985 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:40] COF/FENCE ld_196 time=35.7985
+[20:51:40] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=35.948 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:40] COF/FENCE ld_197 time=35.948
+[20:51:41] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=36.1157 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:41] COF/FENCE ld_198 time=36.1157
+[20:51:41] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=36.2995 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:41] COF/FENCE ld_199 time=36.2995
+[20:51:41] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=36.482 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:41] COF/FENCE ld_200 time=36.482
+[20:51:41] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=36.6323 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:41] COF/FENCE ld_201 time=36.6323
+[20:51:41] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=36.8165 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:41] COF/FENCE ld_202 time=36.8165
+[20:51:41] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=36.9985 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:41] COF/FENCE ld_203 time=36.9985
+[20:51:42] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=37.1478 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:42] COF/FENCE ld_204 time=37.1478
+[20:51:42] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=37.348 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:42] COF/FENCE ld_205 time=37.348
+[20:51:42] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=37.5153 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:42] COF/FENCE ld_206 time=37.5153
+[20:51:42] COF/HUD EXTRAS 0 0 0 0
+[20:51:42] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=37.6985 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:42] COF/FENCE ld_207 time=37.6985
+[20:51:42] COF/HUD STAT 100 100 0 8
+[20:51:42] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=37.8487 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:42] COF/FENCE ld_208 time=37.8487
+[20:51:42] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=38.032 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:42] COF/FENCE ld_209 time=38.032
+[20:51:43] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=38.1985 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:43] COF/FENCE ld_210 time=38.1985
+[20:51:43] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=38.3488 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:43] COF/FENCE ld_211 time=38.3488
+[20:51:43] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=38.5149 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:43] COF/FENCE ld_212 time=38.5149
+[20:51:43] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=38.6984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:43] COF/FENCE ld_213 time=38.6984
+[20:51:43] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=38.8471 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:43] COF/FENCE ld_214 time=38.8471
+[20:51:43] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=39.0321 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:43] COF/FENCE ld_215 time=39.0321
+[20:51:44] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=39.2148 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:44] COF/FENCE ld_216 time=39.2148
+[20:51:44] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=39.3984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:44] COF/FENCE ld_217 time=39.3984
+[20:51:44] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=39.5984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:44] COF/FENCE ld_218 time=39.5984
+[20:51:44] COF/HUD EXTRAS 0 0 0 0
+[20:51:44] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=39.7662 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:44] COF/FENCE ld_219 time=39.7662
+[20:51:44] COF/HUD STAT 100 100 0 8
+[20:51:44] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=39.9313 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:44] COF/FENCE ld_220 time=39.9313
+[20:51:45] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=40.0984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:45] COF/FENCE ld_221 time=40.0984
+[20:51:45] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=40.2648 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:45] COF/FENCE ld_222 time=40.2648
+[20:51:45] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=40.4315 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:45] COF/FENCE ld_223 time=40.4315
+[20:51:45] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=40.5984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:45] COF/FENCE ld_224 time=40.5984
+[20:51:45] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=40.7984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:45] COF/FENCE ld_225 time=40.7984
+[20:51:45] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=40.917 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:45] COF/FENCE ld_226 time=40.917
+[20:51:46] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=41.0984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:46] COF/FENCE ld_227 time=41.0984
+[20:51:46] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=41.2984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:46] COF/FENCE ld_228 time=41.2984
+[20:51:46] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=41.4984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:46] COF/FENCE ld_229 time=41.4984
+[20:51:46] COF/HUD EXTRAS 0 0 0 0
+[20:51:46] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=41.6984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:46] COF/FENCE ld_230 time=41.6984
+[20:51:46] COF/HUD STAT 100 100 0 8
+[20:51:46] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=41.8984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:46] COF/FENCE ld_231 time=41.8984
+[20:51:47] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=42.0984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:47] COF/FENCE ld_232 time=42.0984
+[20:51:47] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=42.3147 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:47] COF/FENCE ld_233 time=42.3147
+[20:51:47] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=42.4984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:47] COF/FENCE ld_234 time=42.4984
+[20:51:47] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=42.6477 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:47] COF/FENCE ld_235 time=42.6477
+[20:51:47] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=42.8151 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:47] COF/FENCE ld_236 time=42.8151
+[20:51:47] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=42.9984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:47] COF/FENCE ld_237 time=42.9984
+[20:51:48] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=43.1488 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:48] COF/FENCE ld_238 time=43.1488
+[20:51:48] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=43.3151 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:48] COF/FENCE ld_239 time=43.3151
+[20:51:48] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=43.4984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:48] COF/FENCE ld_240 time=43.4984
+[20:51:48] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=43.6483 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:48] COF/FENCE ld_241 time=43.6483
+[20:51:48] COF/HUD EXTRAS 0 0 0 0
+[20:51:48] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=43.815 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:48] COF/FENCE ld_242 time=43.815
+[20:51:48] COF/HUD STAT 100 100 0 8
+[20:51:48] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=43.9984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:48] COF/FENCE ld_243 time=43.9984
+[20:51:49] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=44.1984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:49] COF/FENCE ld_244 time=44.1984
+[20:51:49] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=44.3478 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:49] COF/FENCE ld_245 time=44.3478
+[20:51:49] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=44.542 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:49] COF/FENCE ld_246 time=44.542
+[20:51:49] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=44.732 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:49] COF/FENCE ld_247 time=44.732
+[20:51:49] COF/ENTITY !player class=player body=0 solid=3 origin=-135.0,-2720.0,-793.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=1 stairs=0 use=0 think=0 toggle=0 next=0 now=44.8984 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:49] COF/FENCE ld_248 time=44.8984
+[20:51:49] COF/TELEPORT teleportdes1 origin=641.0,-2950.0,-730.0 minsZ=-36.0 yaw=90.0 velocity=0.0
+[20:51:50] COF/ENTITY !player class=player body=0 solid=3 origin=641.0,-2950.0,-731.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=45.0647 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:50] COF/FENCE ld_249 time=45.0647
+[20:51:50] COF/HUD STAT 100 100 0 0
+[20:51:50] COF/LIST cof_ladder_manager_use #731 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=175 model=*174 killme=0
+[20:51:50] COF/LIST cof_ladder_manager_use #732 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=176 model=*175 killme=0
+[20:51:50] COF/LIST cof_ladder_manager_use #735 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=178 model=*177 killme=0
+[20:51:50] COF/LIST cof_ladder_manager_use #736 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=179 model=*178 killme=0
+[20:51:50] COF/LIST cof_ladder_manager_use #738 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=180 model=*179 killme=0
+[20:51:50] COF/LIST cof_ladder_manager_use #739 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=181 model=*180 killme=0
+[20:51:50] COF/FENCE ld_250 time=45.1983
+[20:51:50] COF/ENTITY #731 class=cof_ladder_manager_use body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=0 target=nerdclimb2 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=45.2374 effects=0 renderfx=0 modelindex=175 model=*174
+[20:51:50] COF/FENCE ld_251 time=45.2374
+[20:51:51] COF/ENTITY #731 class=cof_ladder_manager_use body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=0 target=nerdclimb2 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=45.2983 effects=0 renderfx=0 modelindex=175 model=*174
+[20:51:51] COF/FENCE ld_252 time=45.2983
+[20:51:51] COF/ENTITY #732 class=cof_ladder_manager_use body=0 solid=4 origin=0.0,0.0,0.0 gate=1 speed=0.0 spawn=0 touch=0 target=nerdclimb2 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=45.5237 effects=0 renderfx=0 modelindex=176 model=*175
+[20:51:51] COF/FENCE ld_253 time=45.5237
+[20:51:51] COF/HUD EXTRAS 0 0 0 0
+[20:51:51] COF/ENTITY #732 class=cof_ladder_manager_use body=0 solid=4 origin=0.0,0.0,0.0 gate=1 speed=0.0 spawn=0 touch=0 target=nerdclimb2 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=45.7312 effects=0 renderfx=0 modelindex=176 model=*175
+[20:51:51] COF/FENCE ld_254 time=45.7312
+[20:51:51] COF/ENTITY #735 class=cof_ladder_manager_use body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=0 target=nerdclimb3 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=45.8312 effects=0 renderfx=0 modelindex=178 model=*177
+[20:51:51] COF/FENCE ld_255 time=45.8312
+[20:51:51] COF/ENTITY #735 class=cof_ladder_manager_use body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=0 target=nerdclimb3 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=45.9312 effects=0 renderfx=0 modelindex=178 model=*177
+[20:51:51] COF/FENCE ld_256 time=45.9312
+[20:51:51] COF/HUD SMSICON 1
+[20:51:51] COF/ENTITY #736 class=cof_ladder_manager_use body=0 solid=4 origin=0.0,0.0,0.0 gate=1 speed=0.0 spawn=0 touch=0 target=nerdclimb3 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=46.0631 effects=0 renderfx=0 modelindex=179 model=*178
+[20:51:51] COF/FENCE ld_257 time=46.0631
+[20:51:51] COF/ENTITY #736 class=cof_ladder_manager_use body=0 solid=4 origin=0.0,0.0,0.0 gate=1 speed=0.0 spawn=0 touch=0 target=nerdclimb3 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=46.1631 effects=0 renderfx=0 modelindex=179 model=*178
+[20:51:51] COF/FENCE ld_258 time=46.1631
+[20:51:51] COF/ENTITY #738 class=cof_ladder_manager_use body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=0 target=nerdclimb4 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=46.232 effects=0 renderfx=0 modelindex=180 model=*179
+[20:51:51] COF/FENCE ld_259 time=46.232
+[20:51:51] COF/ENTITY #738 class=cof_ladder_manager_use body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=0 target=nerdclimb4 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=46.2631 effects=0 renderfx=0 modelindex=180 model=*179
+[20:51:51] COF/FENCE ld_260 time=46.2631
+[20:51:51] COF/ENTITY #739 class=cof_ladder_manager_use body=0 solid=4 origin=0.0,0.0,0.0 gate=1 speed=0.0 spawn=0 touch=0 target=nerdclimb4 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=46.3631 effects=0 renderfx=0 modelindex=181 model=*180
+[20:51:51] COF/FENCE ld_261 time=46.3631
+[20:51:51] COF/ENTITY #739 class=cof_ladder_manager_use body=0 solid=4 origin=0.0,0.0,0.0 gate=1 speed=0.0 spawn=0 touch=0 target=nerdclimb4 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=46.4631 effects=0 renderfx=0 modelindex=181 model=*180
+[20:51:51] COF/FENCE ld_262 time=46.4631
+[20:51:51] COF/ENTITY nerd2exittop class=info_teleport_destination body=0 solid=0 origin=-879.0,-5.0,254.0 gate=0 speed=0.0 spawn=0 touch=0 target= frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=46.4635 effects=0 renderfx=0 modelindex=0 model=-
+[20:51:51] COF/FENCE ld_263 time=46.4635
+[20:51:51] COF/ENTITY nerd2exitbot class=info_teleport_destination body=0 solid=0 origin=-888.0,40.0,130.0 gate=0 speed=0.0 spawn=0 touch=0 target= frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=46.5631 effects=0 renderfx=0 modelindex=0 model=-
+[20:51:51] COF/FENCE ld_264 time=46.5631
+[20:51:52] COF/FENCE ld_265 time=46.5811
+[20:51:52] COF/HUD CHAPTER Chapter 1 - Lost in a city
+[20:51:52] COF/HUD STAT 100 100 0 0
+[20:51:53] COF/HUD EXTRAS 0 0 0 0
+[20:51:53] COF/FENCE ld_266 time=48.6026
+[20:51:54] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=0 views=11 captures=12 setups=12 recoveries=0 org=-874.992,32.0004,195.393 angles=-322.681,0.287502,0.320769 entorg=-883,32,131 msg=134166898 localmsg=134166898 att0=-874.646,32.0004,195.164 att1=-865.966,32.0854,190.199
+[20:51:54] COF/FENCE ld_267 time=49.0063
+[20:51:54] COF/ENTITY !player class=player body=0 solid=3 origin=-862.0,32.0,181.5 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=49.0753 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:54] COF/FENCE ld_268 time=49.0753
+[20:51:54] COF/HUD STAT 100 100 0 0
+[20:51:55] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=0 views=26 captures=27 setups=27 recoveries=0 org=-879.288,32.0004,209.072 angles=-353.807,1.60366,359.847 entorg=-883,32,131 msg=134166913 localmsg=134166913 att0=-879.803,32.0004,209.152 att1=-869.825,32.2548,208.538
+[20:51:55] COF/FENCE ld_269 time=49.6753
+[20:51:53] COF/HUD EXTRAS 0 0 0 0
+[20:51:55] COF/FENCE ld_270 time=49.7817
+[20:51:55] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=0 views=41 captures=42 setups=42 recoveries=0 org=-882.217,32.0004,230.414 angles=-348.932,0.24841,0.646445 entorg=-883,32,131 msg=134166928 localmsg=134166928 att0=-881.648,32.0004,232.782 att1=-871.805,32.0236,231.016
+[20:51:55] COF/FENCE ld_271 time=50.568
+[20:51:56] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=1 views=55 captures=55 setups=56 recoveries=0 org=-880.345,32.0004,254.512 angles=-357.342,0.583467,359.877 entorg=-883,32,179 msg=134166942 localmsg=134166942 att0=-879.163,32.0004,253.882 att1=-869.192,32.135,253.135
+[20:51:56] COF/FENCE ld_272 time=51.068
+[20:51:56] COF/HUD STAT 100 100 0 0
+[20:51:56] COF/ENTITY !player class=player body=0 solid=3 origin=-862.0,32.0,181.5 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=51.5223 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:51:56] COF/FENCE ld_273 time=51.5223
+[20:51:56] COF/HUD EXTRAS 0 0 0 0
+[20:51:57] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=1 views=79 captures=79 setups=80 recoveries=0 org=-881.251,32.0004,286.96 angles=-359.81,0.710517,1.7572 entorg=-883,32,179 msg=134166966 localmsg=134166966 att0=-882.131,32.0004,288.518 att1=-872.131,32.0754,288.499
+[20:51:57] COF/FENCE ld_274 time=52.0726
+[20:51:57] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=4 views=93 captures=91 setups=94 recoveries=1 org=-879.437,31.6022,304.464 angles=-350.944,353.555,0.830056 entorg=-883,32,227 msg=134166980 localmsg=134166980 att0=-879.661,31.1768,305.017 att1=-870.174,28.8591,302.864
+[20:51:57] COF/FENCE ld_275 time=52.6199
+[20:51:57] COF/FENCE ld_276 time=52.668
+[20:51:58] COF/HUD STAT 100 100 0 0
+[20:51:58] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=4 views=104 captures=102 setups=105 recoveries=1 org=-883.3,26.9272,304.497 angles=-317.854,287.604,5.79838 entorg=-883,32,227 msg=134166991 localmsg=134166991 att0=-882.719,28.8103,303.046 att1=-880.43,22.0115,296.079
+[20:51:58] COF/FENCE ld_277 time=53.268
+[20:51:58] COF/HUD EXTRAS 0 0 0 0
+[20:52:00] COF/LADDERCLIENT cam=0 model=none seq=-1 views=119 captures=113 setups=120 recoveries=2 org=-879.631,-22.0441,319.89 angles=-4.98487,270.045,359.7 entorg=0,0,0 msg=-1 localmsg=134167018 att0=0,0,0 att1=0,0,0
+[20:52:00] COF/FENCE ld_278 time=54.8996
+[20:52:00] COF/HUD STAT 100 100 0 0
+[20:52:00] COF/ENTITY !player class=player body=0 solid=3 origin=-879.0,-5.0,290.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=55.705 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:52:00] COF/FENCE ld_279 time=55.705
+[20:52:00] COF/HUD EXTRAS 0 0 0 0
+[20:52:01] COF/FENCE ld_280 time=56.3567
+[20:52:02] COF/HUD STAT 100 100 0 0
+[20:52:02] COF/HUD EXTRAS 0 0 0 0
+[20:52:03] COF/FENCE ld_281 time=57.9018
+[20:52:03] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=7 views=132 captures=127 setups=134 recoveries=2 org=-884.326,15.8516,315.95 angles=-3.57369,15.7901,5.91335 entorg=-883,32,227 msg=134167089 localmsg=134167089 att0=-884.326,18.4449,316.028 att1=-874.516,20.29,316.639
+[20:52:03] COF/FENCE ld_282 time=58.4914
+[20:52:04] COF/FENCE ld_283 time=58.9914
+[20:52:04] COF/HUD STAT 100 100 0 0
+[20:52:04] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=7 views=158 captures=153 setups=160 recoveries=2 org=-882.82,32.0004,322.778 angles=-0.369992,1.42053,3.51622 entorg=-883,32,227 msg=134167115 localmsg=134167115 att0=-882.97,32.0004,322.012 att1=-872.975,32.2272,322.218
+[20:52:04] COF/FENCE ld_284 time=59.5052
+[20:52:04] COF/HUD EXTRAS 0 0 0 0
+[20:52:05] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=7 views=168 captures=163 setups=170 recoveries=2 org=-883.544,32.0005,313.67 angles=-357.897,357.746,2.7872 entorg=-883,32,227 msg=134167125 localmsg=134167125 att0=-882.741,32.0005,310.7 att1=-872.76,31.8719,311.306
+[20:52:05] COF/FENCE ld_285 time=59.9914
+[20:52:06] COF/HUD STAT 100 100 0 0
+[20:52:06] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=8 views=192 captures=185 setups=194 recoveries=2 org=-884.206,32.0004,300.006 angles=-359.995,0.0182066,0.0489588 entorg=-883,32,179 msg=134167149 localmsg=134167149 att0=-883,32,179 att1=-883,32,179
+[20:52:06] COF/FENCE ld_286 time=61.2925
+[20:52:07] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=8 views=203 captures=196 setups=205 recoveries=3 org=-884.468,32.0005,271.01 angles=-3.38485,359.28,2.81819 entorg=-883,32,179 msg=134167160 localmsg=134167160 att0=-884.058,32.0005,268.03 att1=-874.098,31.5131,267.281
+[20:52:07] COF/FENCE ld_287 time=61.7925
+[20:52:07] COF/HUD EXTRAS 0 0 0 0
+[20:52:07] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=8 views=215 captures=208 setups=217 recoveries=3 org=-879.99,32.0004,253.177 angles=-356.953,0.630989,359.87 entorg=-883,32,179 msg=134167172 localmsg=134167172 att0=-881.869,32.0005,251.095 att1=-871.869,32.0545,251.123
+[20:52:07] COF/FENCE ld_288 time=62.3925
+[20:52:08] COF/HUD STAT 100 100 0 0
+[20:52:08] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=9 views=234 captures=225 setups=236 recoveries=4 org=-883.681,32.0005,214.146 angles=-7.90296,358.673,1.74242 entorg=-883,32,131 msg=134167191 localmsg=134167191 att0=-883.398,32.0005,212.523 att1=-873.694,31.9497,214.937
+[20:52:08] COF/FENCE ld_289 time=63.3504
+[20:52:08] COF/FENCE ld_290 time=63.3925
+[20:52:09] COF/HUD EXTRAS 0 0 0 0
+[20:52:09] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=9 views=243 captures=234 setups=245 recoveries=4 org=-878.505,32.0004,208.987 angles=-350.094,2.04987,0.210523 entorg=-883,32,131 msg=134167200 localmsg=134167200 att0=-877.996,32.0004,208.95 att1=-868.221,32.4422,206.886
+[20:52:09] COF/FENCE ld_291 time=63.8925
+[20:52:09] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=9 views=253 captures=244 setups=255 recoveries=4 org=-875.749,32.0004,195.86 angles=-317.753,0.0187785,0.0202829 entorg=-883,32,131 msg=134167210 localmsg=134167210 att0=-878.205,32.0004,197.051 att1=-869.983,32.0003,191.358
+[20:52:09] COF/FENCE ld_292 time=64.4924
+[20:52:10] COF/HUD STAT 100 100 0 0
+[20:52:10] COF/LADDERCLIENT cam=0 model=none seq=-1 views=257 captures=248 setups=259 recoveries=4 org=-884.045,32.0004,195.415 angles=-358.964,359.999,0 entorg=0,0,0 msg=-1 localmsg=134167229 att0=0,0,0 att1=0,0,0
+[20:52:10] COF/FENCE ld_293 time=65.4924
+[20:52:11] COF/HUD EXTRAS 0 0 0 0
+[20:52:11] COF/ENTITY !player class=player body=0 solid=3 origin=-888.0,40.0,166.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=65.8206 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:52:11] COF/FENCE ld_294 time=65.8206
+[20:52:14] COF/HUD STAT 100 100 0 0
+[20:52:16] COF/FENCE ld_295 time=67.5706
+[20:52:16] COF/HUD EXTRAS 0 0 0 0
+[20:52:17] COF/FENCE ld_296 time=69.3317
+[20:52:17] COF/HUD STAT 100 100 0 0
+[20:52:18] COF/HUD EXTRAS 0 0 0 0
+[20:52:18] COF/LADDERCLIENT cam=339 model=models/ladder_climb.mdl seq=0 views=267 captures=259 setups=270 recoveries=4 org=-877.825,32.0004,201.335 angles=-5.71413,0.34392,2.94722 entorg=-883,32,131 msg=134167259 localmsg=134167259 att0=-877.973,32.0004,207.826 att1=-867.981,32.3233,207.587
+[20:52:18] COF/FENCE ld_297 time=69.9248
+[20:52:18] Error: Can't find landmark land2b
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:18] Error: Invalid function pointer in entity!
+[20:52:19] Error: Invalid function pointer in entity!
+[20:52:19] Error: Invalid function pointer in entity!
+[20:52:19] Error: Invalid function pointer in entity!
+[20:52:19] Error: Invalid function pointer in entity!
+[20:52:19] Error: Invalid function pointer in entity!
+[20:52:19] Error: Invalid function pointer in entity!
+[20:52:19] Error: Invalid function pointer in entity!
+[20:52:19] Error: Invalid function pointer in entity!
+[20:52:19] Saving game to save/ladder_mid.sav...
+[20:52:19] COF/FENCE ld_298 time=70.0978
+[20:52:19] Loading game from save/ladder_mid.sav...
+[20:52:19] Error: Delta_ParseField: unable to find field is_donator
+[20:52:19] Spawn Server: c_start
+[20:52:19] Loading game from save/c_start.HL1...
+[20:52:19] execing maps/c_start_unload.cfg
+[20:52:19] execing maps/c_start_load.cfg
+[20:52:19] 
+GAME SKILL LEVEL:1
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_agrunt_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_agrunt_dmg_punch1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_apache_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_barney_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_bite1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_whip1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_bullsquid_dmg_spit1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_gargantua_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_slash1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_fire1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_gargantua_dmg_stomp1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_hassassin_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_headcrab_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_headcrab_dmg_bite1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_kick1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_pellets1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_hgrunt_gspeed1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_houndeye_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_houndeye_dmg_blast1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_islave_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_claw1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_clawrake1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_islave_dmg_zap1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_ichthyosaur_shake1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_leech_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_leech_dmg_bite1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_controller_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgzap1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_controller_speedball1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_controller_dmgball1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_nihilanth_zap1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_scientist_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_snark_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_bite1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_snark_dmg_pop1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_turret_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_miniturret_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_sentry_health1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_plr_crowbar1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_plr_9mm_bullet1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_plr_357_bullet1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_bullet1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_plr_9mmAR_grenade1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_client1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_plr_xbow_bolt_monster1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_plr_rpg1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_plr_gauss1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_narrow1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_plr_egon_wide1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_plr_hand_grenade1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_plr_satchel1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_plr_tripmine1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_12mm_bullet1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_9mmAR_bullet1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_9mm_bullet1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_hornet_dmg1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_suitcharger1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_battery1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_healthcharger1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_healthkit1 **
+
+[20:52:19] 
+
+** GetSkillCVar Got a zero for sk_scientist_heal1 **
+
+[20:52:19] Error: Could not load model models/w_suit.mdl from disk
+[20:52:19] Error: Could not load model models/w_medkit.mdl from disk
+[20:52:19] Error: Could not load model models/w_battery.mdl from disk
+[20:52:19] Error: Could not load model models/w_antidote.mdl from disk
+[20:52:19] Error: Could not load model models/w_security.mdl from disk
+[20:52:19] Error: Could not load model models/w_longjump.mdl from disk
+[20:52:19] Error: Could not load model models/v_shotgun.mdl from disk
+[20:52:19] Error: Could not load model models/w_shotgun.mdl from disk
+[20:52:19] Error: Could not load model models/p_shotgun.mdl from disk
+[20:52:19] Error: Could not load model models/shotgunshell.mdl from disk
+[20:52:19] Error: Could not load model models/w_shotbox.mdl from disk
+[20:52:19] Error: Could not load model models/v_crowbar.mdl from disk
+[20:52:19] Error: Could not load model models/w_crowbar.mdl from disk
+[20:52:19] Error: Could not load model models/p_crowbar.mdl from disk
+[20:52:19] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[20:52:19] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[20:52:19] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[20:52:19] Error: Could not load model models/shell.mdl from disk
+[20:52:19] Error: Could not load model models/w_9mmclip.mdl from disk
+[20:52:19] Error: Could not load model models/v_9mmAR.mdl from disk
+[20:52:19] Error: Could not load model models/w_9mmAR.mdl from disk
+[20:52:19] Error: Could not load model models/p_9mmAR.mdl from disk
+[20:52:19] Error: Could not load model models/shell.mdl from disk
+[20:52:19] Error: Could not load model models/grenade.mdl from disk
+[20:52:19] Error: Could not load model models/w_9mmARclip.mdl from disk
+[20:52:19] Error: Could not load model models/w_9mmARclip.mdl from disk
+[20:52:19] Error: Could not load model models/w_ARgrenade.mdl from disk
+[20:52:19] Error: Could not load model models/w_chainammo.mdl from disk
+[20:52:19] Error: Could not load model models/v_357.mdl from disk
+[20:52:19] Error: Could not load model models/w_357.mdl from disk
+[20:52:19] Error: Could not load model models/p_357.mdl from disk
+[20:52:19] Error: Could not load model models/w_357ammobox.mdl from disk
+[20:52:19] Error: Could not load model models/w_357ammobox.mdl from disk
+[20:52:19] Error: Could not load model models/w_gauss.mdl from disk
+[20:52:19] Error: Could not load model models/v_gauss.mdl from disk
+[20:52:19] Error: Could not load model models/p_gauss.mdl from disk
+[20:52:19] Error: Could not load model sprites/hotglow.spr from disk
+[20:52:19] Error: Could not load model sprites/hotglow.spr from disk
+[20:52:19] Error: Could not load model sprites/smoke.spr from disk
+[20:52:19] Error: Could not load model models/w_gaussammo.mdl from disk
+[20:52:19] Error: Could not load model models/w_rpg.mdl from disk
+[20:52:19] Error: Could not load model models/v_rpg.mdl from disk
+[20:52:19] Error: Could not load model models/p_rpg.mdl from disk
+[20:52:19] Error: Could not load model sprites/laserdot.spr from disk
+[20:52:19] Error: Could not load model models/rpgrocket.mdl from disk
+[20:52:19] Error: Could not load model sprites/smoke.spr from disk
+[20:52:19] Error: Could not load model models/w_rpgammo.mdl from disk
+[20:52:19] Error: Could not load model models/w_crossbow.mdl from disk
+[20:52:19] Error: Could not load model models/v_crossbow.mdl from disk
+[20:52:19] Error: Could not load model models/p_crossbow.mdl from disk
+[20:52:19] Error: Could not load model models/crossbow_bolt.mdl from disk
+[20:52:19] Error: Could not load model sprites/streak.spr from disk
+[20:52:19] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[20:52:19] Error: Could not load model models/w_egon.mdl from disk
+[20:52:19] Error: Could not load model models/v_egon.mdl from disk
+[20:52:19] Error: Could not load model models/p_egon.mdl from disk
+[20:52:19] Error: Could not load model models/w_9mmclip.mdl from disk
+[20:52:19] Error: Could not load model sprites/xbeam1.spr from disk
+[20:52:19] Error: Could not load model models/v_tripmine.mdl from disk
+[20:52:19] Error: Could not load model models/p_tripmine.mdl from disk
+[20:52:19] Error: Could not load model models/v_tripmine.mdl from disk
+[20:52:19] Error: Could not load model models/v_satchel.mdl from disk
+[20:52:19] Error: Could not load model models/v_satchel_radio.mdl from disk
+[20:52:19] Error: Could not load model models/w_satchel.mdl from disk
+[20:52:19] Error: Could not load model models/p_satchel.mdl from disk
+[20:52:19] Error: Could not load model models/p_satchel_radio.mdl from disk
+[20:52:19] Error: Could not load model models/w_satchel.mdl from disk
+[20:52:19] Error: Could not load model models/w_grenade.mdl from disk
+[20:52:19] Error: Could not load model models/v_grenade.mdl from disk
+[20:52:19] Error: Could not load model models/p_grenade.mdl from disk
+[20:52:19] Error: Could not load model models/w_sqknest.mdl from disk
+[20:52:19] Error: Could not load model models/v_squeak.mdl from disk
+[20:52:19] Error: Could not load model models/p_squeak.mdl from disk
+[20:52:19] Error: Could not load model models/w_squeak.mdl from disk
+[20:52:19] Error: Could not load model models/v_hgun.mdl from disk
+[20:52:19] Error: Could not load model models/w_hgun.mdl from disk
+[20:52:19] Error: Could not load model models/p_hgun.mdl from disk
+[20:52:19] Error: Could not load model models/hornet.mdl from disk
+[20:52:19] Error: Could not load model sprites/muz1.spr from disk
+[20:52:19] Error: Could not load model sprites/zerogxplode.spr from disk
+[20:52:19] Error: Could not load model sprites/WXplo1.spr from disk
+[20:52:19] Error: Could not load model sprites/laserdot.spr from disk
+[20:52:19] Error: Could not load model models/grenade.mdl from disk
+[20:52:19] Error: Could not load model sprites/explode1.spr from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/hgibs.mdl from disk
+[20:52:19] Error: Could not load model models/agibs.mdl from disk
+[20:52:19] 
+*Graph Loaded!
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] **Graph Pointers Set!
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Error: Could not load model models/player.mdl from disk
+[20:52:19] Game started
+[20:52:19] level loaded at 0.24 sec
+[20:52:19] execing spserver.cfg
+[20:52:19] Server changing, reconnecting
+[20:52:19] Trying to connect with modern protocol
+[20:52:20] Spooling demo header.
+[20:52:20] 
+BUILD 4221 SERVER (0 CRC)
+Server #2
+[20:52:20] Verifying and downloading resources...
+[20:52:20] Error: Could not load sound sound/items/smallmedkit1.wav
+[20:52:20] Error: Could not load sound sound/items/9mmclip1.wav
+[20:52:20] Error: Could not load sound sound/weapons/dbarrel1.wav
+[20:52:20] Error: Could not load sound sound/weapons/sbarrel1.wav
+[20:52:20] Error: Could not load sound sound/weapons/reload1.wav
+[20:52:20] Error: Could not load sound sound/weapons/reload3.wav
+[20:52:20] Error: Could not load sound sound/weapons/357_cock1.wav
+[20:52:20] Error: Could not load sound sound/weapons/scock1.wav
+[20:52:20] Error: Could not load sound sound/weapons/cbar_hit1.wav
+[20:52:20] Error: Could not load sound sound/weapons/cbar_hit2.wav
+[20:52:20] Error: Could not load sound sound/weapons/cbar_hitbod1.wav
+[20:52:20] Error: Could not load sound sound/weapons/cbar_hitbod2.wav
+[20:52:20] Error: Could not load sound sound/weapons/cbar_hitbod3.wav
+[20:52:20] Error: Could not load sound sound/weapons/cbar_miss1.wav
+[20:52:20] Error: Could not load sound sound/items/9mmclip2.wav
+[20:52:20] Error: Could not load sound sound/weapons/pl_gun1.wav
+[20:52:20] Error: Could not load sound sound/weapons/pl_gun2.wav
+[20:52:20] Error: Could not load sound sound/weapons/pl_gun3.wav
+[20:52:20] Error: Could not load sound sound/items/clipinsert1.wav
+[20:52:20] Error: Could not load sound sound/items/cliprelease1.wav
+[20:52:20] Error: Could not load sound sound/weapons/hks1.wav
+[20:52:20] Error: Could not load sound sound/weapons/hks2.wav
+[20:52:20] Error: Could not load sound sound/weapons/hks3.wav
+[20:52:20] Error: Could not load sound sound/weapons/glauncher.wav
+[20:52:20] Error: Could not load sound sound/weapons/glauncher2.wav
+[20:52:20] Error: Could not load sound sound/weapons/357_reload1.wav
+[20:52:20] Error: Could not load sound sound/weapons/357_shot1.wav
+[20:52:20] Error: Could not load sound sound/weapons/357_shot2.wav
+[20:52:20] Error: Could not load sound sound/weapons/gauss2.wav
+[20:52:20] Error: Could not load sound sound/weapons/electro4.wav
+[20:52:20] Error: Could not load sound sound/weapons/electro5.wav
+[20:52:20] Error: Could not load sound sound/weapons/electro6.wav
+[20:52:20] Error: Could not load sound sound/ambience/pulsemachine.wav
+[20:52:20] Error: Could not load sound sound/weapons/rocket1.wav
+[20:52:20] Error: Could not load sound sound/weapons/rocketfire1.wav
+[20:52:20] Error: Could not load sound sound/weapons/xbow_fire1.wav
+[20:52:20] Error: Could not load sound sound/weapons/xbow_reload1.wav
+[20:52:20] Error: Could not load sound sound/weapons/xbow_hitbod1.wav
+[20:52:20] Error: Could not load sound sound/weapons/xbow_hitbod2.wav
+[20:52:20] Error: Could not load sound sound/weapons/xbow_fly1.wav
+[20:52:20] Error: Could not load sound sound/weapons/xbow_hit1.wav
+[20:52:20] Error: Could not load sound sound/fvox/beep.wav
+[20:52:20] Error: Could not load sound sound/weapons/egon_off1.wav
+[20:52:20] Error: Could not load sound sound/weapons/egon_run3.wav
+[20:52:20] Error: Could not load sound sound/weapons/egon_windup2.wav
+[20:52:20] Error: Could not load sound sound/weapons/mine_deploy.wav
+[20:52:20] Error: Could not load sound sound/weapons/mine_activate.wav
+[20:52:20] Error: Could not load sound sound/weapons/mine_charge.wav
+[20:52:20] Error: Could not load sound sound/weapons/g_bounce1.wav
+[20:52:20] Error: Could not load sound sound/weapons/g_bounce2.wav
+[20:52:20] Error: Could not load sound sound/weapons/g_bounce3.wav
+[20:52:20] Error: Could not load sound sound/squeek/sqk_hunt2.wav
+[20:52:20] Error: Could not load sound sound/squeek/sqk_hunt3.wav
+[20:52:20] Error: Could not load sound sound/squeek/sqk_blast1.wav
+[20:52:20] Error: Could not load sound sound/common/bodysplat.wav
+[20:52:20] Error: Could not load sound sound/squeek/sqk_die1.wav
+[20:52:20] Error: Could not load sound sound/squeek/sqk_hunt1.wav
+[20:52:20] Error: Could not load sound sound/squeek/sqk_deploy1.wav
+[20:52:20] Error: Could not load sound sound/agrunt/ag_fire1.wav
+[20:52:20] Error: Could not load sound sound/agrunt/ag_fire2.wav
+[20:52:20] Error: Could not load sound sound/agrunt/ag_fire3.wav
+[20:52:20] Error: Could not load sound sound/hornet/ag_buzz1.wav
+[20:52:20] Error: Could not load sound sound/hornet/ag_buzz2.wav
+[20:52:20] Error: Could not load sound sound/hornet/ag_buzz3.wav
+[20:52:20] Error: Could not load sound sound/hornet/ag_hornethit1.wav
+[20:52:20] Error: Could not load sound sound/hornet/ag_hornethit2.wav
+[20:52:20] Error: Could not load sound sound/hornet/ag_hornethit3.wav
+[20:52:20] Error: Could not load sound sound/weapons/debris1.wav
+[20:52:20] Error: Could not load sound sound/weapons/debris2.wav
+[20:52:20] Error: Could not load sound sound/weapons/debris3.wav
+[20:52:20] Error: Could not load sound sound/weapons/grenade_hit1.wav
+[20:52:20] Error: Could not load sound sound/weapons/grenade_hit2.wav
+[20:52:20] Error: Could not load sound sound/weapons/grenade_hit3.wav
+[20:52:20] Error: Could not load sound sound/weapons/bullet_hit1.wav
+[20:52:20] Error: Could not load sound sound/weapons/bullet_hit2.wav
+[20:52:20] Error: Could not load sound sound/items/weapondrop1.wav
+[20:52:20] Error: Could not load sound sound/player/sprayer.wav
+[20:52:20] Error: Could not load sound sound/player/pl_fallpain2.wav
+[20:52:20] Error: Could not load sound sound/player/pl_fallpain3.wav
+[20:52:20] Error: Could not load sound sound/player/pl_step1.wav
+[20:52:20] Error: Could not load sound sound/player/pl_step2.wav
+[20:52:20] Error: Could not load sound sound/player/pl_step3.wav
+[20:52:20] Error: Could not load sound sound/player/pl_step4.wav
+[20:52:20] Error: Could not load sound sound/player/pl_metal1.wav
+[20:52:20] Error: Could not load sound sound/player/pl_metal2.wav
+[20:52:20] Error: Could not load sound sound/player/pl_metal3.wav
+[20:52:20] Error: Could not load sound sound/player/pl_metal4.wav
+[20:52:20] Error: Could not load sound sound/player/pl_dirt1.wav
+[20:52:20] Error: Could not load sound sound/player/pl_dirt2.wav
+[20:52:20] Error: Could not load sound sound/player/pl_dirt3.wav
+[20:52:20] Error: Could not load sound sound/player/pl_dirt4.wav
+[20:52:20] Error: Could not load sound sound/player/pl_duct1.wav
+[20:52:20] Error: Could not load sound sound/player/pl_duct2.wav
+[20:52:20] Error: Could not load sound sound/player/pl_duct3.wav
+[20:52:20] Error: Could not load sound sound/player/pl_duct4.wav
+[20:52:20] Error: Could not load sound sound/player/pl_grate1.wav
+[20:52:20] Error: Could not load sound sound/player/pl_grate2.wav
+[20:52:20] Error: Could not load sound sound/player/pl_grate3.wav
+[20:52:20] Error: Could not load sound sound/player/pl_grate4.wav
+[20:52:20] Error: Could not load sound sound/player/pl_slosh1.wav
+[20:52:20] Error: Could not load sound sound/player/pl_slosh2.wav
+[20:52:20] Error: Could not load sound sound/player/pl_slosh3.wav
+[20:52:20] Error: Could not load sound sound/player/pl_slosh4.wav
+[20:52:20] Error: Could not load sound sound/player/pl_tile1.wav
+[20:52:20] Error: Could not load sound sound/player/pl_tile2.wav
+[20:52:20] Error: Could not load sound sound/player/pl_tile3.wav
+[20:52:20] Error: Could not load sound sound/player/pl_tile4.wav
+[20:52:20] Error: Could not load sound sound/player/pl_tile5.wav
+[20:52:20] Error: Could not load sound sound/player/pl_swim1.wav
+[20:52:20] Error: Could not load sound sound/player/pl_swim2.wav
+[20:52:20] Error: Could not load sound sound/player/pl_swim3.wav
+[20:52:20] Error: Could not load sound sound/player/pl_swim4.wav
+[20:52:20] Error: Could not load sound sound/player/pl_ladder1.wav
+[20:52:20] Error: Could not load sound sound/player/pl_ladder2.wav
+[20:52:20] Error: Could not load sound sound/player/pl_ladder3.wav
+[20:52:20] Error: Could not load sound sound/player/pl_ladder4.wav
+[20:52:20] Error: Could not load sound sound/player/pl_wade1.wav
+[20:52:20] Error: Could not load sound sound/player/pl_wade2.wav
+[20:52:20] Error: Could not load sound sound/player/pl_wade3.wav
+[20:52:20] Error: Could not load sound sound/player/pl_wade4.wav
+[20:52:20] Error: Could not load sound sound/debris/wood1.wav
+[20:52:20] Error: Could not load sound sound/debris/wood2.wav
+[20:52:20] Error: Could not load sound sound/debris/wood3.wav
+[20:52:20] Error: Could not load sound sound/plats/train_use1.wav
+[20:52:20] Error: Could not load sound sound/plats/vehicle_ignition.wav
+[20:52:20] Error: Could not load sound sound/buttons/spark5.wav
+[20:52:20] Error: Could not load sound sound/buttons/spark6.wav
+[20:52:20] Error: Could not load sound sound/debris/glass1.wav
+[20:52:20] Error: Could not load sound sound/debris/glass2.wav
+[20:52:20] Error: Could not load sound sound/debris/glass3.wav
+[20:52:20] Error: Could not load sound sound/items/flashlight1.wav
+[20:52:20] Error: Could not load sound sound/player/pl_pain2.wav
+[20:52:20] Error: Could not load sound sound/player/pl_pain4.wav
+[20:52:20] Error: Could not load sound sound/player/pl_pain5.wav
+[20:52:20] Error: Could not load sound sound/player/pl_pain6.wav
+[20:52:20] Error: Could not load sound sound/player/pl_pain7.wav
+[20:52:20] Error: Could not load sound sound/common/wpn_hudoff.wav
+[20:52:20] Error: Could not load sound sound/common/wpn_hudon.wav
+[20:52:20] Error: Could not load sound sound/common/wpn_moveselect.wav
+[20:52:20] Error: Could not load sound sound/common/wpn_select.wav
+[20:52:20] Error: Could not load sound sound/common/wpn_denyselect.wav
+[20:52:20] Error: Could not load sound sound/player/geiger6.wav
+[20:52:20] Error: Could not load sound sound/player/geiger5.wav
+[20:52:20] Error: Could not load sound sound/player/geiger4.wav
+[20:52:20] Error: Could not load sound sound/player/geiger3.wav
+[20:52:20] Error: Could not load sound sound/player/geiger2.wav
+[20:52:20] Error: Could not load sound sound/player/geiger1.wav
+[20:52:20] Error: Could not load sound sound/common/null.wav
+[20:52:20] Error: Could not load sound sound/items/suitchargeok1.wav
+[20:52:20] Error: Could not load sound sound/common/bodydrop3.wav
+[20:52:20] Error: Could not load sound sound/common/bodydrop4.wav
+[20:52:20] Error: Could not load sound sound/weapons/ric1.wav
+[20:52:20] Error: Could not load sound sound/weapons/ric2.wav
+[20:52:20] Error: Could not load sound sound/weapons/ric3.wav
+[20:52:20] Error: Could not load sound sound/weapons/ric4.wav
+[20:52:20] Error: Could not load sound sound/weapons/ric5.wav
+[20:52:20] Error: Could not load sound sound/buttons/button9.wav
+[20:52:20] Error: Could not load sound sound/doors/doormove7.wav
+[20:52:20] Error: Could not load model models/w_suit.mdl from disk
+[20:52:20] Error: Could not load model models/w_medkit.mdl from disk
+[20:52:20] Error: Could not load model models/w_battery.mdl from disk
+[20:52:20] Error: Could not load model models/w_antidote.mdl from disk
+[20:52:20] Error: Could not load model models/w_security.mdl from disk
+[20:52:20] Error: Could not load model models/w_longjump.mdl from disk
+[20:52:20] Error: Could not load model models/v_shotgun.mdl from disk
+[20:52:20] Error: Could not load model models/w_shotgun.mdl from disk
+[20:52:20] Error: Could not load model models/p_shotgun.mdl from disk
+[20:52:20] Error: Could not load model models/shotgunshell.mdl from disk
+[20:52:20] Error: Could not load model models/w_shotbox.mdl from disk
+[20:52:20] Error: Could not load model models/v_crowbar.mdl from disk
+[20:52:20] Error: Could not load model models/w_crowbar.mdl from disk
+[20:52:20] Error: Could not load model models/p_crowbar.mdl from disk
+[20:52:20] Error: Could not load model models/v_9mmhandgun.mdl from disk
+[20:52:20] Error: Could not load model models/w_9mmhandgun.mdl from disk
+[20:52:20] Error: Could not load model models/p_9mmhandgun.mdl from disk
+[20:52:20] Error: Could not load model models/shell.mdl from disk
+[20:52:20] Error: Could not load model models/w_9mmclip.mdl from disk
+[20:52:20] Error: Could not load model models/v_9mmAR.mdl from disk
+[20:52:20] Error: Could not load model models/w_9mmAR.mdl from disk
+[20:52:20] Error: Could not load model models/p_9mmAR.mdl from disk
+[20:52:20] Error: Could not load model models/grenade.mdl from disk
+[20:52:20] Error: Could not load model models/w_9mmARclip.mdl from disk
+[20:52:20] Error: Could not load model models/w_ARgrenade.mdl from disk
+[20:52:20] Error: Could not load model models/w_chainammo.mdl from disk
+[20:52:20] Error: Could not load model models/v_357.mdl from disk
+[20:52:20] Error: Could not load model models/w_357.mdl from disk
+[20:52:20] Error: Could not load model models/p_357.mdl from disk
+[20:52:20] Error: Could not load model models/w_357ammobox.mdl from disk
+[20:52:20] Error: Could not load model models/w_gauss.mdl from disk
+[20:52:20] Error: Could not load model models/v_gauss.mdl from disk
+[20:52:20] Error: Could not load model models/p_gauss.mdl from disk
+[20:52:20] Error: Could not load model sprites/hotglow.spr from disk
+[20:52:20] Error: Could not load model sprites/smoke.spr from disk
+[20:52:20] Error: Could not load model models/w_gaussammo.mdl from disk
+[20:52:20] Error: Could not load model models/w_rpg.mdl from disk
+[20:52:20] Error: Could not load model models/v_rpg.mdl from disk
+[20:52:20] Error: Could not load model models/p_rpg.mdl from disk
+[20:52:20] Error: Could not load model sprites/laserdot.spr from disk
+[20:52:20] Error: Could not load model models/rpgrocket.mdl from disk
+[20:52:20] Error: Could not load model models/w_rpgammo.mdl from disk
+[20:52:20] Error: Could not load model models/w_crossbow.mdl from disk
+[20:52:20] Error: Could not load model models/v_crossbow.mdl from disk
+[20:52:20] Error: Could not load model models/p_crossbow.mdl from disk
+[20:52:20] Error: Could not load model models/crossbow_bolt.mdl from disk
+[20:52:20] Error: Could not load model sprites/streak.spr from disk
+[20:52:20] Error: Could not load model models/w_crossbow_clip.mdl from disk
+[20:52:20] Error: Could not load model models/w_egon.mdl from disk
+[20:52:20] Error: Could not load model models/v_egon.mdl from disk
+[20:52:20] Error: Could not load model models/p_egon.mdl from disk
+[20:52:20] Error: Could not load model sprites/xbeam1.spr from disk
+[20:52:20] Error: Could not load model models/v_tripmine.mdl from disk
+[20:52:20] Error: Could not load model models/p_tripmine.mdl from disk
+[20:52:20] Error: Could not load model models/v_satchel.mdl from disk
+[20:52:20] Error: Could not load model models/v_satchel_radio.mdl from disk
+[20:52:20] Error: Could not load model models/w_satchel.mdl from disk
+[20:52:20] Error: Could not load model models/p_satchel.mdl from disk
+[20:52:20] Error: Could not load model models/p_satchel_radio.mdl from disk
+[20:52:20] Error: Could not load model models/w_grenade.mdl from disk
+[20:52:20] Error: Could not load model models/v_grenade.mdl from disk
+[20:52:20] Error: Could not load model models/p_grenade.mdl from disk
+[20:52:20] Error: Could not load model models/w_sqknest.mdl from disk
+[20:52:20] Error: Could not load model models/v_squeak.mdl from disk
+[20:52:20] Error: Could not load model models/p_squeak.mdl from disk
+[20:52:20] Error: Could not load model models/w_squeak.mdl from disk
+[20:52:20] Error: Could not load model models/v_hgun.mdl from disk
+[20:52:20] Error: Could not load model models/w_hgun.mdl from disk
+[20:52:20] Error: Could not load model models/p_hgun.mdl from disk
+[20:52:20] Error: Could not load model models/hornet.mdl from disk
+[20:52:20] Error: Could not load model sprites/muz1.spr from disk
+[20:52:20] Error: Could not load model sprites/zerogxplode.spr from disk
+[20:52:20] Error: Could not load model sprites/WXplo1.spr from disk
+[20:52:20] Error: Could not load model sprites/explode1.spr from disk
+[20:52:20] Error: Could not load model models/player.mdl from disk
+[20:52:20] Error: Could not load model models/hgibs.mdl from disk
+[20:52:20] Error: Could not load model models/agibs.mdl from disk
+[20:52:20] Setting up renderer...
+[20:52:20] SKY:  blackrt, blackbk, blacklf, blackft, blackup, blackdn. done
+[20:52:20] Error: Can't find landmark land2b
+[20:52:20] Loading decals from c_nightmare
+[20:52:20] Loading decals from c_start2
+[20:52:20] Loading decals from c_apartment1
+[20:52:20] Signon network traffic:  32.065 Kb from server, 199 bytes to server
+[20:52:20] client connected at 0.69 sec
+[20:52:20] COF/HUD EXTRAS 0 0 0 0
+[20:52:20] COF/HUD STAT 100 100 0 0
+[20:52:20] COF/HUD SMSICON 1
+[20:52:20] COF/HUD INV 2 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt
+[20:52:20] COF/HUD QUICK weapon_mobile weapon_switchblade -
+[20:52:20] COF/HUD OBJECTIVE 
+[20:52:20] COF/SKY_SEND world id=60 health=80
+[20:52:20] COF/SKY_SEND sky id=61 flags=3
+[20:52:20] COF/HUD PADLOCK 0
+[20:52:20] Couldn't open file overviews/c_start.txt. Using default values for overiew mode.
+[20:52:20] COF/HUD NIGHTVISION 0
+[20:52:23] COF/HUD EXTRAS 0 0 0 0
+[20:52:23] COF/HUD STAT 100 100 0 0
+[20:52:23] COF/LADDERCLIENT cam=0 model=none seq=-1 views=271 captures=263 setups=274 recoveries=4 org=-883.812,32.0005,215.06 angles=-4.86704,358.232,2.16712 entorg=0,0,0 msg=-1 localmsg=25724115 att0=0,0,0 att1=0,0,0
+[20:52:23] COF/FENCE ld_299 time=72.6016
+[20:52:23] COF/ENTITY !player class=player body=0 solid=3 origin=-862.0,32.0,181.5 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=72.6978 effects=0 renderfx=0 modelindex=337 model=models/player.mdl
+[20:52:23] COF/FENCE ld_300 time=72.6978

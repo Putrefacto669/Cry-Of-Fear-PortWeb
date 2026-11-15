@@ -159,6 +159,55 @@ demostrado.
 - El texto del `PASS` de esa ejecución todavía decía «mirrored phone»; se corrigió después. Las comprobaciones son las
   mismas.
 
+## 5 bis. Recarga de la Glock en dual (informe del usuario, 14/11)
+
+**Síntoma:** «no se recarga la Glock con el dual».
+
+**Medido en el sitio público** (`glock-reload-public-194453`), con munición recogida de una caja real del mapa:
+
+| Caso | Resultado |
+|---|---|
+| R con el cargador a medias | Recarga: secuencia 4 (`reload`), 12 → 15 en unos 2,7 s |
+| Cargador vacío | Recarga sola: secuencia 5 (`reload_noshot`), 0 → 12 |
+
+**Por qué parece que no recarga:** el cargador lo cambia la mano izquierda, y el brazo `l_` se filtra en dual. En las
+capturas `partial-*.png` la Glock apenas se mueve. El primer ensayo (`glock-reload-public-194331`) no es válido:
+`cof_give ammo_glock` no dio munición.
+
+**El original** (`hl.dll`, solo lectura; volcados fuera del repositorio):
+
+- `FUN_1011d560` (`CBasePlayerWeapon::ItemPostFrame`): con `IN_RELOAD`, `weapon_dualweapon` llama a `vtable+0x1c0`
+  (slot 112).
+- **Slot 112 = `FUN_10034540` (`CDualWeapon` Reload)**. Sale sin recargar si `strstr(getcwd(), "editor321@planethalflife.com")`
+  no encuentra la cadena (`FUN_100dff40` = `__getcwd`). Es un interruptor de desarrollador por la carpeta del juego.
+- Aun así, solo recarga una pistola (Glock 3, P345 7, VP70 0x13) si **la otra mano es la navaja (ID 6)**. Con
+  teléfono + Glock no hay recarga.
+- El disparo dual (`FUN_10032330`) usa contadores propios por mano (`player+0x5dc`/`+0x5e0`). Con el cargador vacío
+  solo llama a `vtable+0x190` y sale: no recarga sola.
+
+**Conclusión:** en el juego retail no se recarga en dual; hay que salir del dual para recargar. El port recargaba, y
+`hands_arm_regression` de Codex exigía esa recarga.
+
+**Decisión del usuario (14/11): como el original.**
+
+- **`CCofGlock::Reload`:** no recarga si `CoF_DualActive()`, ni con R ni con el cargador vacío. Al disparar en vacío,
+  la Glock ya solo suena (`glock_click`).
+- **`CoF_DualSelect`:** cancela una recarga en curso al entrar en dual con la Glock en la mano, como al cambiar al
+  `weapon_dualweapon` del original.
+- **`dual_hands.mjs` y `ammo_hud.mjs`, adaptadas:**
+  - en dual, R no recarga: cargador sin cambios y `reload=0` durante 2,5 s;
+  - después salen del dual (equipando la Glock) y comprueban allí la recarga pendiente con guardar y cargar.
+
+**Medido** (`glock-reload-local-195640`): con 15 balas de reserva, ni R ni el cargador vacío recargan en dual.
+
+**Batería** sobre `6a6d1dded4d7` (`dh-suite-195748`, `regressions-dh-200305`):
+
+| Prueba | Resultado |
+|---|---|
+| 18 regresiones | **18/18** |
+| `hands_arm_mask` | PASS |
+| `hands_arm_regression` y `phase5_dual_rendered` de Codex | **Fallan en su línea 55**, que exige recargar en dual. Es el comportamiento inventado que se retiró. Se conservan sin modificar en el checkout de Codex |
+
 ## 6. Límites
 
 - La única comparación nativa es la captura del usuario de teléfono + Glock. No hay una de teléfono + navaja: la pose
@@ -172,3 +221,6 @@ demostrado.
 - En `build/validation/claude-manos-duales-2026-11-14/`, `dh-suite-181912` y `regressions-dh-182244` corresponden a la
   candidata retirada (`d798ec8511e8`, con el teléfono reflejado). Se conservan como historial.
 - La batería sobre la candidata intermedia `df59428ee859` se detuvo al reemplazarla. Sus tres pruebas de manos pasaron.
+
+**Publicación de la recarga dual:** junto con las escaleras, en el manifiesto `b902da18e9f1`; ver
+`docs/CLAUDE_ESCALERAS_2026_11_14.md`.

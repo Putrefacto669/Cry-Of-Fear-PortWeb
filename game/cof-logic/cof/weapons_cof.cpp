@@ -378,9 +378,17 @@ void CCofGlock::PrimaryAttack( void )
 	m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 0.25f;
 }
 
+bool CoF_DualActive( CBasePlayer *p ); // below, next to DualKind()
+
 void CCofGlock::Reload( void )
 {
 	if( m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 || m_iClip == COF_GLOCK_CLIP )
+		return;
+	// hl.dll CDualWeapon reload (vtable 0x1c0, 10034540): it only runs when getcwd() contains
+	// "editor321@planethalflife.com" (a developer's Steam folder) and the other hand holds the
+	// knife; the dual Glock shot (10032330) only clicks when empty. With the phone there is no
+	// reload in dual: neither R nor the empty-magazine auto reload. Leave dual to reload.
+	if( CoF_DualActive( m_pPlayer ))
 		return;
 
 	// reload_noshot also racks the slide: 105 frames instead of 80
@@ -791,6 +799,7 @@ static int DualKind(CBasePlayer *p)
  if(selected==WEAPON_COF_GLOCK && FStrEq(name,"weapon_glock"))return 2;
  return 0;
 }
+bool CoF_DualActive(CBasePlayer *p){return p && DualKind(p) && p->HasNamedPlayerItem("weapon_mobile");}
 static CBasePlayerItem *FindCarried(CBasePlayer *p,const char *name)
 {
  for(int slot=0;slot<MAX_ITEM_TYPES;++slot)
@@ -829,7 +838,14 @@ bool CoF_DualSelect(CBasePlayer *p,const char *a,const char *b)
  if(!mobile || !right)return false;
  cof_phone_t *s=CoF_Phone(p);if(!s)return false;
  s->dual=1;s->dualWeapon=FStrEq(weapon,"weapon_glock")?WEAPON_COF_GLOCK:WEAPON_COF_SWITCHBLADE;
- if(p->m_pActiveItem!=right)p->SelectItem(weapon);else right->Deploy();
+ if(p->m_pActiveItem!=right)p->SelectItem(weapon);
+ else {
+  // The original swaps to a separate weapon_dualweapon, which abandons a reload in progress
+  // (and the dual weapon itself does not reload with the phone): do not let it finish in dual.
+  CBasePlayerWeapon *w=(CBasePlayerWeapon*)right->GetWeaponPtr();
+  if(w && w->m_fInReload)w->m_fInReload=FALSE;
+  right->Deploy();
+ }
  HandAnimation(p,s->flash?MOBILE_DRAW_FLASH:MOBILE_DRAW_SMS);
  g_handsVisible[p->entindex()]=0; // a user-selected new pair starts both draw animations
  return p->m_pActiveItem==right;

@@ -1,0 +1,10 @@
+file:///root/cof-audits/browser-1.64.1/e2e/claude/sound_entities-regression.mjs:18
+      if (Date.now() - start > timeout) throw new Error("timeout waiting for acoustic zone state");
+                                              ^
+
+Error: timeout waiting for acoustic zone state
+    at until (file:///root/cof-audits/browser-1.64.1/e2e/claude/sound_entities-regression.mjs:18:47)
+    at async room (file:///root/cof-audits/browser-1.64.1/e2e/claude/sound_entities-regression.mjs:44:7)
+    at async file:///root/cof-audits/browser-1.64.1/e2e/claude/sound_entities-regression.mjs:63:5
+
+Node.js v24.19.0

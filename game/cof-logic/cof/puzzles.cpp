@@ -383,20 +383,121 @@ item_padlock: opened with use; its code is not in the map data
 */
 /*
 =====================================================================
-cof_ladder_manager(_use): the original plays climbing animations; here
-using the ladder fades out and moves the player to the other end
+cof_ladder_manager(_use), rebuilt from hl.dll (read-only analysis):
+CCoFLadderManager KeyValue 1004e4d0, Use 1004fb50, LadderThink 1004ed40,
+step up 1004f470, step down 1004f780; cof_ladder_manager_use Use 1004fe80.
+
+Using the ladder freezes the player and spawns an animated camera model
+(the original's camera_model, CAnimatedCameraModel) with the manager's
+model (models/ladder_climb.mdl) at the manager. The client puts the view
+on that model's attachments ("AttachCam", client.dll 1006f890/1008cee0),
+so the player sees Simon's arms climb. Each time an animation ends, IN_FORWARD
+plays the next sequence of animation1..N and IN_BACK goes back down; between
+loops the camera moves 48 units (DAT_101afebc). At either end the camera is
+removed and the player is put on topent/bottoment.
 =====================================================================
 */
+#include "studio.h"
+
+#define COF_LADDER_MAX   32
+#define COF_LADDER_STEP  48.0f // DAT_101afebc
+
+static int gmsgCoFAttachCam;
+void CoF_LinkLadderMessages( void )
+{
+	if( !gmsgCoFAttachCam )
+		gmsgCoFAttachCam = REG_USER_MSG( "CoFAttachCam", 2 );
+}
+
+static void CoF_AttachCam( CBaseEntity *pPlayer, CBaseEntity *pCamera )
+{
+	CoF_LinkLadderMessages();
+	MESSAGE_BEGIN( MSG_ONE, gmsgCoFAttachCam, NULL, pPlayer->pev );
+	WRITE_SHORT( pCamera ? pCamera->entindex() : 0 );
+	MESSAGE_END();
+}
+
+// the original's camera_model: an animating model the client looks through
+class CCofLadderCamera : public CBaseAnimating
+{
+public:
+	void Spawn( void )
+	{
+		pev->solid = SOLID_NOT;
+		pev->movetype = MOVETYPE_NONE;
+		pev->takedamage = DAMAGE_NO;
+		// client.dll 1008cee0 draws this entity with m_fDoInterp = 0 (param_1[6]): no interpolation
+		pev->effects |= EF_NOINTERP;
+	}
+	// not saved: a restored climb is finished by the manager
+	virtual int ObjectCaps( void ) { return ( CBaseAnimating::ObjectCaps() & ~FCAP_ACROSS_TRANSITION ) | FCAP_DONT_SAVE; }
+	// hl.dll 100c20c0: sequence by name, restarted from frame 0
+	float Play( const char *name )
+	{
+		int seq = LookupSequence( name );
+		if( seq < 0 )
+		{
+			ALERT( at_console, "%s has no sequence named:%s\n", STRING( pev->model ), name );
+			return 0;
+		}
+		pev->sequence = seq;
+		pev->frame = 0;
+		ResetSequenceInfo();
+		studiohdr_t *h = (studiohdr_t *)GET_MODEL_PTR( ENT( pev ));
+		if( !h || seq >= h->numseq )
+			return 0;
+		mstudioseqdesc_t *d = (mstudioseqdesc_t *)((byte *)h + h->seqindex ) + seq;
+		return d->fps > 0 && d->numframes > 1 ? ( d->numframes - 1 ) / d->fps : 0;
+	}
+};
+
+LINK_ENTITY_TO_CLASS( cof_ladder_camera, CCofLadderCamera )
+
 class CCofLadderManager : public CPointEntity
 {
 public:
+	void Spawn( void );
 	virtual void KeyValue( KeyValueData *pkvd );
+	virtual void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value );
 	virtual int Save( CSave &save );
 	virtual int Restore( CRestore &restore );
 	static TYPEDESCRIPTION m_SaveData[];
+	void EXPORT LadderThink( void );
+	void StepUp( void );
+	void StepDown( void );
+	void Finish( void );
+	CCofLadderCamera *Camera( void ) { return (CCofLadderCamera *)(CBaseEntity *)m_hCamera; }
+	void Raise( float dz )
+	{
+		CBaseEntity *pCam = m_hCamera;
+		if( pCam )
+			UTIL_SetOrigin( pCam->pev, pCam->pev->origin + Vector( 0, 0, dz ));
+	}
+	void Play( const char *name );
 
 	string_t m_iszTop;
 	string_t m_iszBottom;
+	string_t m_iszAnim[COF_LADDER_MAX + 1]; // animation1..N, by their number
+	int m_iCount;
+	string_t m_iszCustomOff, m_iszCustomOn, m_iszCustomOffD, m_iszCustomOnD;
+	int m_iDescendOffset;
+	EHANDLE m_hPlayer;
+	EHANDLE m_hCamera;
+	int m_iIndex;
+	BOOL m_fDown, m_fFinishing, m_fSkipRaise, m_fLowerNext;
+	float m_flFinishTime, m_flAnimEnd;
+	string_t m_iszLastAnim;
+	string_t m_iszViewModel; // port: the weapon is hidden while the arms climb
+	// port: the client is sent the entities of the PVS around origin + view_ofs. The player stays
+	// still while the camera travels the shaft, so view_ofs follows the camera's eye (the view itself
+	// comes from the camera's attachments) and is restored at the end.
+	Vector m_vecViewOfs;
+	void FollowCamera( void )
+	{
+		CBaseEntity *pPlayer = m_hPlayer, *pCam = m_hCamera;
+		if( pPlayer && pCam )
+			pPlayer->pev->view_ofs = pCam->pev->origin + Vector( 0, 0, 72 ) - pPlayer->pev->origin;
+	}
 };
 
 LINK_ENTITY_TO_CLASS( cof_ladder_manager, CCofLadderManager )
@@ -405,27 +506,258 @@ TYPEDESCRIPTION CCofLadderManager::m_SaveData[] =
 {
 	DEFINE_FIELD( CCofLadderManager, m_iszTop, FIELD_STRING ),
 	DEFINE_FIELD( CCofLadderManager, m_iszBottom, FIELD_STRING ),
+	DEFINE_ARRAY( CCofLadderManager, m_iszAnim, FIELD_STRING, COF_LADDER_MAX + 1 ),
+	DEFINE_FIELD( CCofLadderManager, m_iCount, FIELD_INTEGER ),
+	DEFINE_FIELD( CCofLadderManager, m_iszCustomOff, FIELD_STRING ),
+	DEFINE_FIELD( CCofLadderManager, m_iszCustomOn, FIELD_STRING ),
+	DEFINE_FIELD( CCofLadderManager, m_iszCustomOffD, FIELD_STRING ),
+	DEFINE_FIELD( CCofLadderManager, m_iszCustomOnD, FIELD_STRING ),
+	DEFINE_FIELD( CCofLadderManager, m_iDescendOffset, FIELD_INTEGER ),
+	DEFINE_FIELD( CCofLadderManager, m_hPlayer, FIELD_EHANDLE ),
+	DEFINE_FIELD( CCofLadderManager, m_iIndex, FIELD_INTEGER ),
+	DEFINE_FIELD( CCofLadderManager, m_fDown, FIELD_BOOLEAN ),
+	DEFINE_FIELD( CCofLadderManager, m_fFinishing, FIELD_BOOLEAN ),
+	DEFINE_FIELD( CCofLadderManager, m_fSkipRaise, FIELD_BOOLEAN ),
+	DEFINE_FIELD( CCofLadderManager, m_fLowerNext, FIELD_BOOLEAN ),
+	DEFINE_FIELD( CCofLadderManager, m_flFinishTime, FIELD_TIME ),
+	DEFINE_FIELD( CCofLadderManager, m_flAnimEnd, FIELD_TIME ),
+	DEFINE_FIELD( CCofLadderManager, m_iszLastAnim, FIELD_STRING ),
+	DEFINE_FIELD( CCofLadderManager, m_iszViewModel, FIELD_STRING ),
+	DEFINE_FIELD( CCofLadderManager, m_vecViewOfs, FIELD_VECTOR ),
 };
 
 IMPLEMENT_SAVERESTORE( CCofLadderManager, CPointEntity )
 
+void CCofLadderManager::Spawn( void )
+{
+	CPointEntity::Spawn();
+	if( !FStringNull( pev->model ))
+		PRECACHE_MODEL( (char *)STRING( pev->model ));
+}
+
 void CCofLadderManager::KeyValue( KeyValueData *pkvd )
 {
 	if( FStrEq( pkvd->szKeyName, "topent" ))
-	{
 		m_iszTop = ALLOC_STRING( pkvd->szValue );
-		pkvd->fHandled = TRUE;
-	}
 	else if( FStrEq( pkvd->szKeyName, "bottoment" ))
-	{
 		m_iszBottom = ALLOC_STRING( pkvd->szValue );
-		pkvd->fHandled = TRUE;
+	else if( !strncmp( pkvd->szKeyName, "animation", 9 ))
+	{
+		int n = atoi( pkvd->szKeyName + 9 );
+		if( n < 1 || n > COF_LADDER_MAX )
+			return;
+		m_iszAnim[n] = ALLOC_STRING( pkvd->szValue );
+		m_iCount++;
 	}
-	else if( !strncmp( pkvd->szKeyName, "animation", 9 ) || !strncmp( pkvd->szKeyName, "custom", 6 ) ||
-		FStrEq( pkvd->szKeyName, "descendoffset" ))
-		pkvd->fHandled = TRUE;
+	else if( FStrEq( pkvd->szKeyName, "customoff" ))
+		m_iszCustomOff = ALLOC_STRING( pkvd->szValue );
+	else if( FStrEq( pkvd->szKeyName, "customon" ))
+		m_iszCustomOn = ALLOC_STRING( pkvd->szValue );
+	else if( FStrEq( pkvd->szKeyName, "customoffd" ))
+		m_iszCustomOffD = ALLOC_STRING( pkvd->szValue );
+	else if( FStrEq( pkvd->szKeyName, "customond" ))
+		m_iszCustomOnD = ALLOC_STRING( pkvd->szValue );
+	else if( FStrEq( pkvd->szKeyName, "descendoffset" ))
+		m_iDescendOffset = atoi( pkvd->szValue );
 	else
+	{
 		CPointEntity::KeyValue( pkvd );
+		return;
+	}
+	pkvd->fHandled = TRUE;
+}
+
+// value 0: from the bottom (climb up); otherwise from the top (climb down)
+void CCofLadderManager::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
+{
+	if( !pActivator || !pActivator->IsPlayer() || FStringNull( pev->model ) || (CBaseEntity *)m_hPlayer )
+		return;
+	CBasePlayer *pPlayer = (CBasePlayer *)pActivator;
+	m_fDown = value != 0;
+	m_hPlayer = pPlayer;
+	// hl.dll 100deff0(0) sets FL_FROZEN, but Xash (SV_ParseClientMove) also clears the buttons of a
+	// frozen client, and the climb is driven by IN_FORWARD/IN_BACK: hold the player still instead.
+	pPlayer->pev->movetype = MOVETYPE_NONE;
+	pPlayer->pev->velocity = g_vecZero;
+	CBaseEntity *pCam = CBaseEntity::Create( "cof_ladder_camera", pev->origin, pev->angles, pPlayer->edict());
+	if( !pCam )
+	{
+		pPlayer->pev->movetype = MOVETYPE_WALK;
+		m_hPlayer = NULL;
+		return;
+	}
+	SET_MODEL( pCam->edict(), STRING( pev->model ));
+	m_hCamera = pCam;
+	m_iIndex = m_fDown ? m_iCount : 1;
+	if( m_fDown )
+		Raise( (float)m_iDescendOffset );
+	CoF_AttachCam( pPlayer, pCam );
+	pPlayer->pev->flags |= FL_GODMODE | FL_NOTARGET;
+	m_iszViewModel = pPlayer->pev->viewmodel;
+	pPlayer->pev->viewmodel = 0;
+	m_vecViewOfs = pPlayer->pev->view_ofs;
+	FollowCamera();
+	m_fFinishing = FALSE;
+	m_iszLastAnim = 0;
+	SetThink( &CCofLadderManager::LadderThink );
+	pev->nextthink = gpGlobals->time + 0.1f;
+	StepUp();
+}
+
+void CCofLadderManager::Play( const char *name )
+{
+	CCofLadderCamera *pCam = Camera();
+	float duration = pCam ? pCam->Play( name ) : 0;
+	m_iszLastAnim = ALLOC_STRING( name );
+	if( duration == 0 )
+	{
+		ALERT( at_console, "Unable to find delay\n" );
+		return;
+	}
+	m_flAnimEnd = gpGlobals->time + duration;
+}
+
+// hl.dll 1004f470: the next animation of the list (or, the first time from the top, customond)
+void CCofLadderManager::StepUp( void )
+{
+	if( !(CBaseEntity *)m_hPlayer || !Camera() || m_iIndex < 1 || m_iIndex > COF_LADDER_MAX )
+		return;
+	const char *last = m_iszLastAnim ? STRING( m_iszLastAnim ) : "";
+	if( m_iIndex > 1 && !m_fDown && !strstr( last, "climb_loop_down" ) && !m_fSkipRaise )
+		Raise( COF_LADDER_STEP );
+	string_t name = m_iszAnim[m_iIndex];
+	const char *n = name ? STRING( name ) : "";
+	if( strstr( n, "climb_end" ) && strstr( n, "up" ))
+	{
+		if( !m_fDown && m_iszCustomOff )
+			name = m_iszCustomOff;
+		else if( m_fDown && m_iszCustomOnD )
+			name = m_iszCustomOnD;
+	}
+	BOOL down = m_fDown;
+	float before = m_flAnimEnd;
+	Play( name ? STRING( name ) : "" );
+	if( down )
+	{
+		m_fSkipRaise = TRUE;
+		m_fDown = FALSE;
+		m_fLowerNext = TRUE;
+	}
+	if( m_flAnimEnd != before && m_iIndex == m_iCount && !down )
+	{
+		m_fFinishing = TRUE;
+		m_flFinishTime = m_flAnimEnd;
+	}
+	if( !down )
+		m_iIndex++;
+}
+
+// hl.dll 1004f780: back down one step; at the bottom, customoffd (or climb_end_down) ends the climb
+void CCofLadderManager::StepDown( void )
+{
+	if( !(CBaseEntity *)m_hPlayer || !Camera() )
+		return;
+	m_iIndex--;
+	m_fSkipRaise = FALSE;
+	if( m_fLowerNext )
+	{
+		m_fLowerNext = FALSE;
+		Raise( -COF_LADDER_STEP );
+	}
+	if( m_iIndex >= 1 && m_iIndex <= COF_LADDER_MAX && m_iszAnim[m_iIndex] && strstr( STRING( m_iszAnim[m_iIndex] ), "climb_end" ))
+	{
+		string_t custom = m_fDown ? m_iszCustomOffD : m_iszCustomOff;
+		if( custom )
+			m_iszAnim[m_iIndex] = custom;
+	}
+	BOOL lastLoop = m_iszLastAnim && strstr( STRING( m_iszLastAnim ), "climb_loop_down" );
+	if( m_iIndex > 1 )
+	{
+		if( lastLoop )
+			Raise( -COF_LADDER_STEP );
+		Play( "climb_loop_down" );
+		if( m_iIndex == m_iCount )
+		{
+			m_fFinishing = TRUE;
+			m_flFinishTime = m_flAnimEnd;
+		}
+		return;
+	}
+	if( lastLoop )
+		Raise( -COF_LADDER_STEP );
+	string_t custom = m_fDown ? m_iszCustomOffD : m_iszCustomOff;
+	Play( custom ? STRING( custom ) : "climb_end_down" );
+	m_fFinishing = TRUE;
+	m_flFinishTime = m_flAnimEnd;
+}
+
+// hl.dll 1004ed40
+void CCofLadderManager::LadderThink( void )
+{
+	CBaseEntity *pPlayer = m_hPlayer;
+	if( !pPlayer )
+	{
+		if( (CBaseEntity *)m_hCamera )
+			UTIL_Remove( m_hCamera );
+		m_hCamera = NULL;
+		SetThink( NULL );
+		return;
+	}
+	// a restored climb has no camera (it is not saved): finish it where it was heading
+	if( !Camera() || ( m_fFinishing && gpGlobals->time > m_flFinishTime ))
+	{
+		Finish();
+		return;
+	}
+	((CBasePlayer *)pPlayer)->m_flNextAttack = 0.2f; // port: no shots from the hidden weapon
+	pPlayer->pev->velocity = g_vecZero;
+	FollowCamera();
+	if( gpGlobals->time > m_flAnimEnd )
+	{
+		if( pPlayer->pev->button & IN_FORWARD )
+		{
+			m_fDown = FALSE;
+			StepUp();
+		}
+		if( pPlayer->pev->button & IN_BACK )
+		{
+			m_fDown = TRUE;
+			StepDown();
+		}
+	}
+	pev->nextthink = gpGlobals->time + 0.01f;
+}
+
+void CCofLadderManager::Finish( void )
+{
+	CBaseEntity *pPlayer = m_hPlayer;
+	SetThink( NULL );
+	m_fFinishing = FALSE;
+	if( (CBaseEntity *)m_hCamera )
+		UTIL_Remove( m_hCamera );
+	m_hCamera = NULL;
+	m_hPlayer = NULL;
+	if( !pPlayer )
+		return;
+	pPlayer->pev->flags &= ~( FL_GODMODE | FL_NOTARGET );
+	pPlayer->pev->movetype = MOVETYPE_WALK;
+	if( m_vecViewOfs != g_vecZero )
+		pPlayer->pev->view_ofs = m_vecViewOfs;
+	CoF_AttachCam( pPlayer, NULL );
+	if( !pPlayer->pev->viewmodel )
+		pPlayer->pev->viewmodel = m_iszViewModel;
+	string_t dest = m_fDown ? m_iszBottom : m_iszTop;
+	CBaseEntity *pDest = FStringNull( dest ) ? NULL : UTIL_FindEntityByTargetname( NULL, STRING( dest ));
+	if( pDest )
+	{
+		UTIL_SetOrigin( pPlayer->pev, pDest->pev->origin + Vector( 0, 0, 36.0f + 1.0f ));
+		pPlayer->pev->angles = pPlayer->pev->v_angle = pDest->pev->angles;
+		pPlayer->pev->fixangle = TRUE;
+		pPlayer->pev->velocity = pPlayer->pev->basevelocity = g_vecZero;
+		pPlayer->pev->flags &= ~FL_ONGROUND;
+	}
+	if( !FStringNull( pev->target ))
+		FireTargets( STRING( pev->target ), pPlayer, pPlayer, USE_TOGGLE, 0 );
 }
 
 class CCofLadderUse : public CBaseEntity
@@ -440,34 +772,21 @@ public:
 	}
 	virtual int ObjectCaps( void ) { return ( CBaseEntity::ObjectCaps() & ~FCAP_ACROSS_TRANSITION ) | FCAP_IMPULSE_USE; }
 	virtual void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value );
+	float m_flNextUse; // not saved, like a debounce
 };
 
 LINK_ENTITY_TO_CLASS( cof_ladder_manager_use, CCofLadderUse )
 
+// hl.dll 1004fe80: on the ground, at most once a second; the value tells the manager the direction
 void CCofLadderUse::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
 {
-	if( !pActivator || !pActivator->IsPlayer() || FStringNull( pev->target ))
+	if( !pActivator || !pActivator->IsPlayer() || FStringNull( pev->target ) || gpGlobals->time < m_flNextUse )
 		return;
-
-	CCofLadderManager *pLadder = (CCofLadderManager *)UTIL_FindEntityByTargetname( NULL, STRING( pev->target ));
-	if( !pLadder || !FClassnameIs( pLadder->pev, "cof_ladder_manager" ))
+	if( !( pActivator->pev->flags & FL_ONGROUND ))
 		return;
-
+	m_flNextUse = gpGlobals->time + 1.0f;
 	// iuser1 0: this use area is at the bottom, so the player goes up
-	string_t dest = pev->iuser1 ? pLadder->m_iszBottom : pLadder->m_iszTop;
-	CBaseEntity *pDest = FStringNull( dest ) ? NULL : UTIL_FindEntityByTargetname( NULL, STRING( dest ));
-	if( !pDest )
-		return;
-
-	UTIL_ScreenFade( pActivator, Vector( 0, 0, 0 ), 0.4f, 0.2f, 255, FFADE_IN );
-	pActivator->pev->flags &= ~FL_ONGROUND;
-	UTIL_SetOrigin( pActivator->pev, pDest->pev->origin + Vector( 0, 0, -pActivator->pev->mins.z + 1 ));
-	pActivator->pev->velocity = g_vecZero;
-	if( pDest->pev->angles != g_vecZero )
-	{
-		pActivator->pev->angles = pActivator->pev->v_angle = pDest->pev->angles;
-		pActivator->pev->fixangle = TRUE;
-	}
+	FireTargets( STRING( pev->target ), pActivator, pActivator, USE_TOGGLE, (float)pev->iuser1 );
 }
 
 /*

@@ -1,0 +1,10 @@
+AssertionError [ERR_ASSERTION]: hands state timeout
+    at wait (file:///root/cof-audits/browser-1.64.1/e2e/claude/hands_arm_regression.mjs:13:69)
+    at async file:///root/cof-audits/browser-1.64.1/e2e/claude/hands_arm_regression.mjs:55:30 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

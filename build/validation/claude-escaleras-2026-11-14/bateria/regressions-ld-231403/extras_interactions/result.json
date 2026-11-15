@@ -1,0 +1,16 @@
+{
+  "diagnosticOnly": true,
+  "modules": {
+    "server.wasm": "6d354715ca4f45c608e2d548520081c11b6dfc3fb096d929719956ba2746abe6",
+    "client.wasm": "6bdf1b1fc2b239c6f28a11525e68be3d373846e9224ecef4306dd4304cecdb86",
+    "libref_gles3compat.wasm": "8e8b0e19a9721d5cda7a13b53c6146aa267e4a21ef5391728c569578507d2814"
+  },
+  "hrtf": false,
+  "hatchBefore": "[23:25:34] COF/ENTITY *132 class=func_button body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=161 touch=0 target=multitscene frozen=0 stairs=-1 use=1 think=0 toggle=1 next=0 now=18.7492 effects=0 renderfx=0 modelindex=133 model=*132\n[23:25:34] COF/USEAIM hit= class=func_button fraction=0.624607921\n[23:25:34] COF/USEAIM candidate=door_office class=inter_door dot=-0.0106156068\n[23:25:34] COF/USEAIM candidate=gay1 class=func_button dot=-0.0104359509\n[23:25:34] COF/FENCE extra_input_3 time=18.7492",
+  "hatchAfter": "[23:25:34] COF/HUD MUSIC 0 0 aptaurus.mp3\n[23:25:34] COF/HUD SUB 17\n[23:25:34] COF/ENTITY *132 class=func_button body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=161 touch=0 target=multitscene frozen=0 stairs=-1 use=1 think=0 toggle=0 next=-1 now=19.2966 effects=0 renderfx=0 modelindex=133 model=*132\n[23:25:34] COF/ENTITY weapon_glock missing\n[23:25:34] COF/FENCE extra_input_4 time=19.2966",
+  "keyCollected": "[23:25:37] bag 0: apartmentkey (inventoryitems/apartmentkey.txt) count -1\n[23:25:37] COF/FENCE extra_input_6 time=21.9639",
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /The door is locked/. Input:\n\n''\n\n    at file:///root/cof-audits/browser-1.64.1/e2e/claude/extras_interactions-regression.mjs:20:154",
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

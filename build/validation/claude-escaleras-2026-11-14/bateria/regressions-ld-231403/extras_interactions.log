@@ -1,0 +1,12 @@
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /The door is locked/. Input:
+
+''
+
+    at file:///root/cof-audits/browser-1.64.1/e2e/claude/extras_interactions-regression.mjs:20:154 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '',
+  expected: /The door is locked/,
+  operator: 'match',
+  diff: 'simple'
+}

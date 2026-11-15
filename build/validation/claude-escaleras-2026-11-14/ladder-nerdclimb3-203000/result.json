@@ -1,0 +1,296 @@
+{
+  "ladder": "nerdclimb3",
+  "steps": [
+    {
+      "at": "started up",
+      "v": {
+        "cam": 339,
+        "model": "models/ladder_climb.mdl",
+        "seq": 0,
+        "views": 10,
+        "captures": 11,
+        "org": [
+          1294,
+          -3091.84,
+          -892.501
+        ],
+        "angles": [
+          -320.74,
+          270.191,
+          0.202131
+        ]
+      }
+    },
+    {
+      "at": "up t+0.5",
+      "v": {
+        "cam": 339,
+        "seq": 1,
+        "org": [
+          1294,
+          -3085.6,
+          -829.445
+        ]
+      }
+    },
+    {
+      "at": "up t+1",
+      "v": {
+        "cam": 339,
+        "seq": 1,
+        "org": [
+          1294,
+          -3084.26,
+          -812.199
+        ]
+      }
+    },
+    {
+      "at": "up t+1.5",
+      "v": {
+        "cam": 339,
+        "seq": 2,
+        "org": [
+          1294,
+          -3085.51,
+          -781.196
+        ]
+      }
+    },
+    {
+      "at": "up t+2",
+      "v": {
+        "cam": 339,
+        "seq": 2,
+        "org": [
+          1294,
+          -3082.5,
+          -767.814
+        ]
+      }
+    },
+    {
+      "at": "up t+2.5",
+      "v": {
+        "cam": 339,
+        "seq": 2,
+        "org": [
+          1301.37,
+          -3086.49,
+          -754.389
+        ]
+      }
+    },
+    {
+      "at": "up t+3",
+      "v": {
+        "cam": 339,
+        "seq": 2,
+        "org": [
+          1293.11,
+          -3127.57,
+          -701.029
+        ]
+      }
+    },
+    {
+      "at": "up t+3.5",
+      "v": {
+        "cam": 0,
+        "seq": -1,
+        "org": [
+          1293.11,
+          -3127.57,
+          -701.029
+        ]
+      }
+    },
+    {
+      "at": "down t+0.5",
+      "v": {
+        "cam": 339,
+        "seq": 5,
+        "org": [
+          1294,
+          -3085.33,
+          -788.356
+        ]
+      }
+    },
+    {
+      "at": "down t+1",
+      "v": {
+        "cam": 339,
+        "seq": 8,
+        "org": [
+          1294,
+          -3082.67,
+          -796.889
+        ]
+      }
+    },
+    {
+      "at": "down t+1.5",
+      "v": {
+        "cam": 339,
+        "seq": 9,
+        "org": [
+          1294,
+          -3085.36,
+          -762.934
+        ]
+      }
+    },
+    {
+      "at": "down t+2",
+      "v": {
+        "cam": 339,
+        "seq": 9,
+        "org": [
+          1294,
+          -3085.36,
+          -762.934
+        ]
+      }
+    },
+    {
+      "at": "down t+2.5",
+      "v": {
+        "cam": 339,
+        "seq": 9,
+        "org": [
+          1294,
+          -3085.36,
+          -762.934
+        ]
+      }
+    },
+    {
+      "at": "down t+3",
+      "v": {
+        "cam": 0,
+        "seq": -1,
+        "org": [
+          1294,
+          -3085.36,
+          -762.934
+        ]
+      }
+    }
+  ],
+  "list": [
+    "[20:30:51] COF/LIST cof_ladder_manager_use #731 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=175 model=*174 killme=0",
+    "[20:30:51] COF/LIST cof_ladder_manager_use #732 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=176 model=*175 killme=0",
+    "[20:30:51] COF/LIST cof_ladder_manager_use #735 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=178 model=*177 killme=0",
+    "[20:30:51] COF/LIST cof_ladder_manager_use #736 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=179 model=*178 killme=0",
+    "[20:30:51] COF/LIST cof_ladder_manager_use #738 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=180 model=*179 killme=0",
+    "[20:30:51] COF/LIST cof_ladder_manager_use #739 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=181 model=*180 killme=0"
+  ],
+  "areas": [
+    {
+      "id": 735,
+      "cls": "cof_ladder_manager_use",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "gate": 0,
+      "frozen": 0
+    },
+    {
+      "id": 736,
+      "cls": "cof_ladder_manager_use",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "gate": 1,
+      "frozen": 0
+    }
+  ],
+  "topEnt": {
+    "cls": "info_teleport_destination",
+    "origin": [
+      1294,
+      -3131,
+      -775
+    ],
+    "gate": 0,
+    "frozen": 0
+  },
+  "bottomEnt": {
+    "cls": "info_teleport_destination",
+    "origin": [
+      1293,
+      -3078,
+      -957
+    ],
+    "gate": 0,
+    "frozen": 0
+  },
+  "startPos": [
+    1294,
+    -3105,
+    -904.5
+  ],
+  "midPos": [
+    1294,
+    -3105,
+    -904.5
+  ],
+  "releasedAt": 2,
+  "afterUp": {
+    "cls": "player",
+    "origin": [
+      1294,
+      -3131,
+      -738
+    ],
+    "gate": 0,
+    "frozen": 0
+  },
+  "afterDown": {
+    "cls": "player",
+    "origin": [
+      1293,
+      -3078,
+      -921
+    ],
+    "gate": 0,
+    "frozen": 0
+  },
+  "afterLoad": {
+    "v": {
+      "cam": 0,
+      "model": "none",
+      "seq": -1,
+      "views": 146,
+      "captures": 133,
+      "org": [
+        1294,
+        -3082.59,
+        -863.406
+      ],
+      "angles": [
+        -5.48476,
+        270.292,
+        2.40599
+      ]
+    },
+    "pl": {
+      "cls": "player",
+      "origin": [
+        1294,
+        -3105,
+        -904.5
+      ],
+      "gate": 0,
+      "frozen": 0
+    }
+  },
+  "passed": true,
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

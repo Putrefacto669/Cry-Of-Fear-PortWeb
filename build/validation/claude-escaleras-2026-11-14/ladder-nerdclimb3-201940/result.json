@@ -1,0 +1,80 @@
+{
+  "ladder": "nerdclimb3",
+  "steps": [
+    {
+      "at": "started up",
+      "v": {
+        "cam": 339,
+        "model": "models/ladder_climb.mdl",
+        "seq": 0,
+        "views": 0,
+        "org": [
+          0,
+          0,
+          0
+        ],
+        "angles": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  ],
+  "list": [
+    "[20:20:30] COF/LIST cof_ladder_manager_use #731 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=175 model=*174 killme=0",
+    "[20:20:30] COF/LIST cof_ladder_manager_use #732 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=176 model=*175 killme=0",
+    "[20:20:30] COF/LIST cof_ladder_manager_use #735 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=178 model=*177 killme=0",
+    "[20:20:30] COF/LIST cof_ladder_manager_use #736 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=179 model=*178 killme=0",
+    "[20:20:30] COF/LIST cof_ladder_manager_use #738 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=180 model=*179 killme=0",
+    "[20:20:30] COF/LIST cof_ladder_manager_use #739 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=181 model=*180 killme=0"
+  ],
+  "areas": [
+    {
+      "id": 735,
+      "cls": "cof_ladder_manager_use",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "gate": 0,
+      "frozen": 0
+    },
+    {
+      "id": 736,
+      "cls": "cof_ladder_manager_use",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "gate": 1,
+      "frozen": 0
+    }
+  ],
+  "topEnt": {
+    "cls": "info_teleport_destination",
+    "origin": [
+      1294,
+      -3131,
+      -775
+    ],
+    "gate": 0,
+    "frozen": 0
+  },
+  "bottomEnt": {
+    "cls": "info_teleport_destination",
+    "origin": [
+      1293,
+      -3078,
+      -957
+    ],
+    "gate": 0,
+    "frozen": 0
+  },
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: view taken from the camera attachments\n    at file:///root/cof-audits/browser-1.64.1/e2e/claude/ladder_climb.mjs:32:52",
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

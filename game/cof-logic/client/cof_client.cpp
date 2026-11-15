@@ -568,8 +568,11 @@ void CoF_ClientFrame( void )
 // in HUD_DrawNormalTriangles is too late, and a 0.1 s light expires between
 // frames below 10 FPS. Use the actual view, including scripted cameras.
 void CoF_HandsView( const float *org, const float *angles ); // cof_hands.cpp: dual wield phone placement
+void CoF_LadderView( float *org, float *angles ); // cof_hands.cpp: ladder camera model
 void CoF_ClientFlashlightView( const float *org, const float *angles, float dt )
 {
+	// org/angles are pparams->vieworg/viewangles (writable): the ladder camera replaces the view
+	CoF_LadderView( (float *)org, (float *)angles );
 	CoF_HandsView( org, angles );
 	Flashlight_Frame( gEngfuncs.GetClientTime(), dt, org, angles );
 	CoF_ClientExtrasView(org,dt);

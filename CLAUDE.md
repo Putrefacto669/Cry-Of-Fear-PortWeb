@@ -4,6 +4,30 @@ Guía para Claude Code (y cualquier asistente) que trabaje en este repositorio: 
 cómo se compila y se prueba, qué se hizo hasta ahora y qué trampas ya se conocen. El usuario
 trabaja en español: responder y documentar en español; los comentarios del código van en inglés.
 
+## Escaleras con animación — 14/11/2026
+
+Leer `docs/CLAUDE_ESCALERAS_2026_11_14.md`.
+
+- **Reconstrucción** de `cof_ladder_manager(_use)` del `hl.dll` (`1004fb50`, `1004ed40`, `1004f470`, `1004f780`):
+  - una cámara `ladder_climb.mdl` (`cof_ladder_camera`, el `camera_model` original);
+  - **W/S** suben o bajan paso a paso, con 48 unidades entre bucles;
+  - destino final en `topent` o `bottoment`.
+- **Cliente:** mensaje `CoFAttachCam`; la vista sale de los attachments de la cámara (`client.dll` `1008cee0`) y se
+  capturan durante el dibujo.
+- **Desviaciones de Xash:**
+  - `MOVETYPE_NONE` en vez de `FL_FROZEN`, porque Xash borra los botones de los congelados;
+  - `view_ofs` sigue a la cámara, por el PVS;
+  - corrección del salto de 48 y recuperación cuando la caja de la secuencia descarta el modelo.
+- **Prueba:** `tools/e2e/ladder_climb.mjs <url> <salida> [nerdclimb2|3|4]`.
+- **Publicado** con manifiesto `b902da18e9f1`, junto con la recarga dual.
+
+## Recarga en dual — 14/11/2026
+
+En el original no se recarga con dos armas. `CDualWeapon::Reload` (`10034540`) exige que `getcwd()` contenga
+`editor321@planethalflife.com` (solo para desarrolladores) y además la navaja en la otra mano. Decisión del usuario:
+como el original. `dual_hands.mjs` y `ammo_hud.mjs` se adaptaron; las dos variantes de Codex fallan a propósito en esa
+comprobación.
+
 ## Teléfono + navaja a dos manos — 14/11/2026
 
 Leer `docs/CLAUDE_MANOS_DUALES_2026_11_14.md`. Continúa la investigación de Codex (checkout `phase5-20261109`, sin

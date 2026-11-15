@@ -1,0 +1,284 @@
+{
+  "ladder": "nerdclimb4",
+  "steps": [
+    {
+      "at": "started up",
+      "v": {
+        "cam": 339,
+        "model": "models/ladder_climb.mdl",
+        "seq": 0,
+        "views": 8,
+        "captures": 9,
+        "setups": 9,
+        "recoveries": 0,
+        "org": [
+          1778,
+          -3385.36,
+          -892.843
+        ],
+        "angles": [
+          -330.539,
+          270.57,
+          0.799102
+        ]
+      }
+    },
+    {
+      "at": "up t+0.5",
+      "v": {
+        "cam": 339,
+        "seq": 1,
+        "captures": 35,
+        "setups": 36,
+        "recoveries": 0,
+        "org": [
+          1778,
+          -3380.4,
+          -832.789
+        ]
+      }
+    },
+    {
+      "at": "up t+1",
+      "v": {
+        "cam": 339,
+        "seq": 1,
+        "captures": 37,
+        "setups": 38,
+        "recoveries": 0,
+        "org": [
+          1778,
+          -3375.71,
+          -818.633
+        ]
+      }
+    },
+    {
+      "at": "up t+1.5",
+      "v": {
+        "cam": 339,
+        "seq": 2,
+        "captures": 55,
+        "setups": 56,
+        "recoveries": 0,
+        "org": [
+          1778.31,
+          -3377.91,
+          -762.825
+        ]
+      }
+    },
+    {
+      "at": "up t+2",
+      "v": {
+        "cam": 339,
+        "seq": 2,
+        "captures": 58,
+        "setups": 59,
+        "recoveries": 0,
+        "org": [
+          1786.06,
+          -3379.92,
+          -754.495
+        ]
+      }
+    },
+    {
+      "at": "up t+2.5",
+      "v": {
+        "cam": 339,
+        "seq": 2,
+        "captures": 60,
+        "setups": 61,
+        "recoveries": 0,
+        "org": [
+          1775.91,
+          -3385.28,
+          -758.297
+        ]
+      }
+    },
+    {
+      "at": "up t+3",
+      "v": {
+        "cam": 0,
+        "seq": -1,
+        "captures": 62,
+        "setups": 65,
+        "recoveries": 1,
+        "org": [
+          1778,
+          -3377,
+          -789
+        ]
+      }
+    },
+    {
+      "at": "down t+0.5",
+      "v": {
+        "cam": 339,
+        "seq": 5,
+        "captures": 81,
+        "setups": 84,
+        "recoveries": 1,
+        "org": [
+          1779.87,
+          -3379.58,
+          -757.201
+        ]
+      }
+    },
+    {
+      "at": "down t+1",
+      "v": {
+        "cam": 339,
+        "seq": 5,
+        "captures": 84,
+        "setups": 87,
+        "recoveries": 1,
+        "org": [
+          1778,
+          -3378.61,
+          -781.483
+        ]
+      }
+    },
+    {
+      "at": "down t+1.5",
+      "v": {
+        "cam": 339,
+        "seq": 8,
+        "captures": 100,
+        "setups": 105,
+        "recoveries": 2,
+        "org": [
+          1778,
+          -3379.75,
+          -831.836
+        ]
+      }
+    },
+    {
+      "at": "down t+2",
+      "v": {
+        "cam": 339,
+        "seq": 9,
+        "captures": 102,
+        "setups": 107,
+        "recoveries": 2,
+        "org": [
+          1778,
+          -3375.67,
+          -892.888
+        ]
+      }
+    },
+    {
+      "at": "down t+2.5",
+      "v": {
+        "cam": 339,
+        "seq": 9,
+        "captures": 102,
+        "setups": 109,
+        "recoveries": 2,
+        "org": [
+          1778,
+          -3378.36,
+          -815.778
+        ]
+      }
+    },
+    {
+      "at": "down t+3",
+      "v": {
+        "cam": 0,
+        "seq": -1,
+        "captures": 108,
+        "setups": 115,
+        "recoveries": 3,
+        "org": [
+          1778,
+          -3381,
+          -890.67
+        ]
+      }
+    }
+  ],
+  "list": [
+    "[20:54:20] COF/LIST cof_ladder_manager_use #731 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=175 model=*174 killme=0",
+    "[20:54:20] COF/LIST cof_ladder_manager_use #732 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=176 model=*175 killme=0",
+    "[20:54:20] COF/LIST cof_ladder_manager_use #735 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=178 model=*177 killme=0",
+    "[20:54:20] COF/LIST cof_ladder_manager_use #736 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=179 model=*178 killme=0",
+    "[20:54:20] COF/LIST cof_ladder_manager_use #738 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=180 model=*179 killme=0",
+    "[20:54:20] COF/LIST cof_ladder_manager_use #739 origin=0,0,0 effects=0 renderfx=0 rendermode=4 modelindex=181 model=*180 killme=0"
+  ],
+  "areas": [
+    {
+      "id": 738,
+      "cls": "cof_ladder_manager_use",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "gate": 0,
+      "frozen": 0
+    },
+    {
+      "id": 739,
+      "cls": "cof_ladder_manager_use",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "gate": 1,
+      "frozen": 0
+    }
+  ],
+  "topEnt": {
+    "cls": "info_teleport_destination",
+    "origin": [
+      1778,
+      -3425,
+      -775
+    ],
+    "gate": 0,
+    "frozen": 0
+  },
+  "bottomEnt": {
+    "cls": "info_teleport_destination",
+    "origin": [
+      1777,
+      -3372,
+      -957
+    ],
+    "gate": 0,
+    "frozen": 0
+  },
+  "startPos": [
+    1778,
+    -3398,
+    -904.5
+  ],
+  "midPos": [
+    1778,
+    -3398,
+    -904.5
+  ],
+  "releasedAt": 2,
+  "afterUp": {
+    "cls": "player",
+    "origin": [
+      1778,
+      -3425,
+      -739
+    ],
+    "gate": 0,
+    "frozen": 0
+  },
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: camera drawn at down t+2.5\n    at file:///root/cof-audits/browser-1.64.1/e2e/claude/ladder_climb.mjs:57:96",
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

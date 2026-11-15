@@ -9,6 +9,7 @@
 #include "triangleapi.h"
 #include "StudioModelRenderer.h"
 #include "GameStudioModelRenderer.h"
+#include <math.h>
 #include <string.h>
 #include <vector>
 extern engine_studio_api_t IEngineStudio;
@@ -39,8 +40,78 @@ static void HandsStatus()
  gEngfuncs.Con_Printf("COF/HANDSCLIENT on=%d right=%d phoneSeq=%d body=%d serial=%d age=%g draws=%u mirrors=%u masked=%u maskedview=%u viewseq=%d viewmodel=%s\n",g_on,g_kind,g_sequence,g_body,g_serial,gEngfuncs.GetClientTime()-g_start,g_draws,g_mirrors,g_maskedVertices,g_maskedView,
   view?view->curstate.sequence:-1,view && view->model?view->model->name:"none");
 }
+// Ladders (hl.dll CCoFLadderManager): the server sends the animated camera model's index
+// ("AttachCam" in the original, 0 detaches). client.dll 1008cee0 takes, while drawing that
+// entity, its attachments: origin = attachment 0 (the "eye" bone), angles from attachment 1 - 0
+// with the pitch negated, roll = pitch of attachment 3 - 0; 100af790 then uses them as the view.
+// Xash recomputes the attachments while drawing (after V_CalcRefdef), so like the original they
+// are captured during the draw of the camera entity and give the view of the next frame.
+static int g_ladderCam;
+static float g_ladderOrg[3],g_ladderAngles[3],g_ladderAtt[4][3],g_ladderEntOrg[3];
+static bool g_ladderAttValid;
+static unsigned g_ladderViews,g_ladderCaptures,g_ladderSetups,g_ladderRecoveries;
+static int LadderCamMessage(const char*,int size,void *data)
+{
+ BEGIN_READ(data,size);g_ladderCam=READ_SHORT();g_ladderAttValid=false;return 1;
+}
+static void LadderCapture()
+{
+ cl_entity_t *e=IEngineStudio.GetCurrentEntity();
+ if(!g_ladderCam || !e || e->index!=g_ladderCam)return;
+ for(int i=0;i<4;++i)for(int j=0;j<3;++j)g_ladderAtt[i][j]=e->attachment[i][j];
+ for(int j=0;j<3;++j)g_ladderEntOrg[j]=e->origin[j];
+ g_ladderAttValid=true;++g_ladderCaptures;
+}
+static void LadderAngles(const float *v,float *a)
+{
+ // VectorAngles of the original (pitch positive upwards, both in [0,360))
+ if(v[1]==0 && v[0]==0){a[1]=0;a[0]=v[2]>0?90.0f:270.0f;a[2]=0;return;}
+ float yaw=atan2f(v[1],v[0])*57.29577951f;if(yaw<0)yaw+=360;
+ float pitch=atan2f(v[2],sqrtf(v[0]*v[0]+v[1]*v[1]))*57.29577951f;if(pitch<0)pitch+=360;
+ a[0]=pitch;a[1]=yaw;a[2]=0;
+}
+void CoF_LadderView(float *org,float *angles)
+{
+ if(!g_ladderCam || !g_ladderAttValid)return; // the original also waits for a first draw (DAT_10542bb3)
+ float f[3],r[3],a[3],ra[3];
+ for(int i=0;i<3;++i){f[i]=g_ladderAtt[1][i]-g_ladderAtt[0][i];r[i]=g_ladderAtt[3][i]-g_ladderAtt[0][i];}
+ if(f[0]==0 && f[1]==0 && f[2]==0)return;
+ LadderAngles(f,a);LadderAngles(r,ra);
+ // The captured attachments are one frame old. Between animations the server moves the camera by
+ // 48 units at once: follow that move now (the attachments are rigid with the model), otherwise the
+ // model ends up outside the stale view's frustum, is not drawn and the view stays behind.
+ float shift[3]={0,0,0};
+ cl_entity_t *e=gEngfuncs.GetEntityByIndex(g_ladderCam);
+ if(e && e->model)for(int i=0;i<3;++i)shift[i]=e->origin[i]-g_ladderEntOrg[i];
+ for(int i=0;i<3;++i)org[i]=g_ladderAtt[0][i]+shift[i];
+ angles[0]=-a[0];angles[1]=a[1];angles[2]=ra[0];
+ // When a new sequence starts, the stale view can fall outside its bounding box (the sequence
+ // boxes differ a lot, e.g. climb_start_down reaches x 95, climb_loop_down only 24): the model is
+ // culled, no capture comes and the view would stay there. After two frames without a capture,
+ // look once from a point inside every box (origin + 72 up, along the model's yaw); the next draw
+ // gives the attachments back.
+ static unsigned lastCaptures,staleFrames;
+ staleFrames=g_ladderCaptures==lastCaptures?staleFrames+1:0;lastCaptures=g_ladderCaptures;
+ if(staleFrames>=2 && e && e->model) {
+  org[0]=e->origin[0];org[1]=e->origin[1];org[2]=e->origin[2]+72;
+  angles[0]=0;angles[1]=e->angles[1];angles[2]=0;++g_ladderRecoveries;
+ }
+ for(int i=0;i<3;++i){g_ladderOrg[i]=org[i];g_ladderAngles[i]=angles[i];}
+ ++g_ladderViews;
+}
+static void LadderStatus()
+{
+ cl_entity_t *e=g_ladderCam?gEngfuncs.GetEntityByIndex(g_ladderCam):NULL;
+ cl_entity_t *local=gEngfuncs.GetLocalPlayer();
+ gEngfuncs.Con_Printf("COF/LADDERCLIENT cam=%d model=%s seq=%d views=%u captures=%u setups=%u recoveries=%u org=%g,%g,%g angles=%g,%g,%g entorg=%g,%g,%g msg=%d localmsg=%d att0=%g,%g,%g att1=%g,%g,%g\n",g_ladderCam,
+  e && e->model?e->model->name:"none",e?e->curstate.sequence:-1,g_ladderViews,g_ladderCaptures,g_ladderSetups,g_ladderRecoveries,
+  g_ladderOrg[0],g_ladderOrg[1],g_ladderOrg[2],g_ladderAngles[0],g_ladderAngles[1],g_ladderAngles[2],
+  e?e->origin[0]:0,e?e->origin[1]:0,e?e->origin[2]:0,e?e->curstate.messagenum:-1,local?local->curstate.messagenum:-1,
+  e?e->attachment[0][0]:0,e?e->attachment[0][1]:0,e?e->attachment[0][2]:0,e?e->attachment[1][0]:0,e?e->attachment[1][1]:0,e?e->attachment[1][2]:0);
+}
 void CoF_ClientHandsInit()
 {
+ gEngfuncs.pfnHookUserMsg("CoFAttachCam",LadderCamMessage);gEngfuncs.pfnAddCommand("cof_ladder_view",LadderStatus);
  g_armMask=gEngfuncs.pfnRegisterVariable("cof_dual_armmask","1",0);
  // Diagnostic A/B: 0 leaves the mirrored weapon on the bobbing view model transform.
  g_extraView=gEngfuncs.pfnRegisterVariable("cof_dual_extraview","1",0);
@@ -76,14 +147,16 @@ void CoF_HandsView(const float *org,const float *angles)
 }
 void CoF_ClientHandsReset()
 {
- g_viewValid=g_bobValid=false;
+ g_viewValid=g_bobValid=false;g_ladderCam=0;
  g_on=0;g_serial=-1;g_drawing=false;g_draws=g_mirrors=g_maskedVertices=g_maskedView=0;
 }
 // client.dll 1008c7e0 negates column Y of the extra model (DAT_1013e428 = -1.0): here the
 // knife or Glock view model of a dual pair.
 void CoF_HandsMirror(float (*matrix)[4])
 {
- if(g_drawing || !DualWeaponView(IEngineStudio.GetCurrentEntity()))return;
+ cl_entity_t *current=IEngineStudio.GetCurrentEntity();
+ if(g_ladderCam && current && current->index==g_ladderCam)++g_ladderSetups; // diagnostic: draw requested
+ if(g_drawing || !DualWeaponView(current))return;
  for(int i=0;i<3;++i)matrix[i][1]=-matrix[i][1];
  ++g_mirrors;
 }
@@ -139,6 +212,7 @@ static void MaskLeftArm()
 }
 void CoF_HandsBeforePoints()
 {
+ LadderCapture();
  MaskLeftArm();
  // client.dll 1008c7e0 also disables culling (TriAPI CullFace(TRI_NONE)) for the mirrored model.
  if(!g_drawing && DualWeaponView(IEngineStudio.GetCurrentEntity()))gEngfuncs.pTriAPI->CullFace(TRI_NONE);
