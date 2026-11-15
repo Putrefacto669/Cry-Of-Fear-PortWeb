@@ -158,3 +158,12 @@ cerró; siguió con el de la segunda, que sirve los mismos archivos de `cand-ld`
 
 El usuario la autorizó el 14/11. `dist/` pasa a **`b902da18e9f1`** (recarga dual como el original + escaleras). Frente a
 `0140a63de3d5` cambian `packs/engine.*`, `sw-manifest.js` y `sw.js`.
+
+**Despliegue comprobado (14/11/2026):**
+
+- Commit `09f09c5`, subido a `portweb/main` (`4949911..09f09c5`), sin force push.
+- Workflow «GitHub Pages», run `43681805379`: **success**.
+- El sitio público sirve el manifiesto `b902da18e9f1`. `packs/engine.data.gz`, `packs/engine.js`, `sw.js` y
+  `sw-manifest.js` tienen el mismo hash que el commit.
+- Contra el sitio público (`publico/`): `ladder_climb` (`nerdclimb3`) **PASS** y `dual_hands_contract` **PASS**. El
+  navegador cargó `client.wasm` `6bdf1b1f…` y `server.wasm` `6d354715…`, los mismos de la candidata.
