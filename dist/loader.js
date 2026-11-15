@@ -247,10 +247,34 @@
         refreshStatus();
       }
     }
+    // Mobile: during play only download the next map's pack (the Service Worker or the HTTP cache keeps it) and
+    // leave the mount for the level change. Mounting a 50-60 MiB pack creates hundreds of MEMFS files on the main
+    // thread (a hitch of seconds on a phone, mid-game) and holds ~145 MiB more JS heap from then on
+    // (mobile_perf.mjs, c_start2: 347 MiB with the prefetch, 202 MiB without). The change of level then mounts it
+    // from the cache through the "changelevel ... doesn't exist" path below, behind the level change itself.
+    const warmed = new Set();
+    async function warmMap(name) {
+      name = name.toLowerCase();
+      if (!packaged.has(name) || warmed.has(name) || packMounted(name)) return false;
+      warmed.add(name);
+      try {
+        const res = await fetch(`packs/map_${name}.data`);
+        if (!res.ok || !res.body) throw new Error(`HTTP ${res.status}`);
+        const reader = res.body.getReader();
+        while (!(await reader.read()).done) { /* discarded: only the cache keeps it */ }
+        log(`descargado sin montar: ${name}`);
+        return true;
+      } catch (e) {
+        warmed.delete(name);
+        log(`no se pudo descargar ${name}: ${e.message}`, "err");
+        return false;
+      }
+    }
     async function prefetchFrom(name) {
       const all = await transitionsPromise;
+      const mobileWarm = window.CoFMobile?.active && params.get("prefetch") !== "mount";
       for (const next of all[name] || []) {
-        if (next !== name) await prefetchMap(next);
+        if (next !== name) await (mobileWarm ? warmMap(next) : prefetchMap(next));
       }
     }
     const schedulePrefetch = () => {

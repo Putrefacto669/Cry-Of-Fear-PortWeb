@@ -4,6 +4,27 @@ Guía para Claude Code (y cualquier asistente) que trabaje en este repositorio: 
 cómo se compila y se prueba, qué se hizo hasta ahora y qué trampas ya se conocen. El usuario
 trabaja en español: responder y documentar en español; los comentarios del código van en inglés.
 
+## Versión móvil: texturas DXT, diálogo táctil, precarga y opciones — 15/11/2026
+
+Leer `docs/CLAUDE_MOVIL_2026_11_15.md`. Parte de la Alpha móvil de Codex (`eeebe6d`). Teléfono del usuario: Pixel 10 Pro
+XL (Tensor G5, PowerVR, 120 Hz).
+
+- **Texturas a cuadros en móvil:** sin `WEBGL_compressed_texture_s3tc`, `img_dds.c` rechazaba en silencio los DDS
+  BC1/BC3 de `texcomp`, y los WAD no se publican.
+  - Ahora se decodifican a RGBA en la CPU, solo en Emscripten y solo si falta S3TC.
+  - El parche está en `patches/xash3d`. Prueba: `mobile_no_s3tc.mjs`.
+- **Diálogo que se cerraba:** el `click` de compatibilidad tras el toque de «Usar» caía en el fondo. El fondo y la ✕
+  solo cierran si la pulsación empezó en ellos. Prueba: `mobile_computer_tap.mjs`.
+- **Precarga en móvil:** solo se descarga el mapa siguiente y se monta en el cambio de nivel. Heap: 347 → 242 MiB.
+- **Opciones solo en móvil:** limitar a 60 fps (`MainLoop.timingValue`, desde ~110 Hz), viñeta y resolución baja.
+  Prueba: `mobile_options.mjs`.
+- **Trampas:**
+  - un `xash3d.wasm` nuevo exige su `xash3d.js` con el gancho DPR de `package.sh`;
+  - el árbol canónico no tenía el cambio de `gl_studio.c` del 11/11 (`patches.sh check` lo detectó);
+  - en `intro_to_nightmare.mjs` el parámetro extra necesita `&`.
+- **No reproducidos:** el screamer (la jaula `walltoggle` deja moverse 17–50 unidades, como el mapa original) y la
+  cámara táctil. `mobile_controls` falló 1 vez de 6 en «drag changes yaw».
+
 ## Escaleras con animación — 14/11/2026
 
 Leer `docs/CLAUDE_ESCALERAS_2026_11_14.md`.

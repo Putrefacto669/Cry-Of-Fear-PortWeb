@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "e9110520a5d6",
+ "version": "963e89b2be10",
  "coi": false,
  "precache": [
   "BingSiteAuth.xml",
@@ -10,10 +10,10 @@ self.COF_MANIFEST = {
   "gpustats.js",
   "hud.js",
   "index.html",
-  "launcher.js",
   "launcher/background.jpg",
   "launcher/disclaimer.jpg",
   "launcher/logo.png",
+  "launcher.js",
   "loader.js",
   "mobile.css",
   "mobile.js",
@@ -51,13 +51,15 @@ self.COF_MANIFEST = {
   "extras.js": "e3ce2423650a",
   "googlee1f002228312b1b3.html": "fe98df47e40f",
   "gpustats.js": "70aaa1f28265",
-  "hud.js": "aeeef07111f0",
+  "hud.js": "1bb2699b8a8c",
   "index.html": "96201619adf6",
   "launcher/background.jpg": "d385a9ca8c75",
   "launcher/disclaimer.jpg": "1375e3bf3d98",
   "launcher/logo.png": "8d7bb7601333",
   "launcher.js": "fefeda5e9b3f",
-  "loader.js": "1f0b5d8a6a64",
+  "loader.js": "b742f2625750",
+  "mobile.css": "5d643e3765de",
+  "mobile.js": "a6b8ea285874",
   "mp3/2aphall1.mp3": "70a02fded189",
   "mp3/ap3hall1.mp3": "23be860ec5a8",
   "mp3/ap3hall1end.mp3": "6da929c405e7",
@@ -138,10 +140,8 @@ self.COF_MANIFEST = {
   "shaders/water.vert.glsl": "2ac21130b1b7",
   "sitemap.xml": "ac1bb0cd5b1c",
   "xash3d.html": "9c5ead998246",
-  "xash3d.js": "cbb394521d0a",
-  "xash3d.wasm": "8a7ca0515bf8",
-  "mobile.js": "a6b8ea285874",
-  "mobile.css": "5d643e3765de"
+  "xash3d.js": "97e277a65a73",
+  "xash3d.wasm": "2e2edb14e097"
  },
  "gz": {
   "packs/boot.data": {
@@ -201,8 +201,8 @@ self.COF_MANIFEST = {
    "gzSize": 32286826
   },
   "xash3d.wasm": {
-   "size": 4681925,
-   "gzSize": 1752407
+   "size": 4683846,
+   "gzSize": 1753245
   }
  }
 };

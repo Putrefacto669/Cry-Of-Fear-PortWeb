@@ -536,6 +536,164 @@ index 81ac9c38..4e8fc624 100644
  
  	return 0;
  }
+diff --git a/engine/common/imagelib/img_dds.c b/engine/common/imagelib/img_dds.c
+index f7f6ffcc..d277794a 100644
+--- a/engine/common/imagelib/img_dds.c
++++ b/engine/common/imagelib/img_dds.c
+@@ -308,6 +308,133 @@ static void Image_DXTAdjustVolume( dds_t *hdr )
+ 	hdr->dwFlags |= DDS_LINEARSIZE;
+ }
+ 
++#if XASH_EMSCRIPTEN
++/*
++=============
++Image_DXTDecodeRGBA
++
++Mobile GPUs (Adreno, Mali, PowerVR, Apple) usually lack WEBGL_compressed_texture_s3tc. Without it the
++compressed DDS of materials/ (tools/texcomp: BC1 opaque, BC3 with alpha) were rejected and the world was
++drawn with the missing-texture checkerboard. Decode the top level to RGBA instead; the renderer builds the
++mipmaps as for any uncompressed image.
++=============
++*/
++static void Image_DXTColors( const byte *b, byte pal[4][4], qboolean fourColors )
++{
++	uint c[2] = { b[0] | ( b[1] << 8 ), b[2] | ( b[3] << 8 ) };
++
++	for( int i = 0; i < 2; i++ )
++	{
++		pal[i][0] = (( c[i] >> 11 ) & 31 ) * 255 / 31;
++		pal[i][1] = (( c[i] >> 5 ) & 63 ) * 255 / 63;
++		pal[i][2] = ( c[i] & 31 ) * 255 / 31;
++		pal[i][3] = 255;
++	}
++
++	if( fourColors || c[0] > c[1] )
++	{
++		for( int k = 0; k < 3; k++ )
++		{
++			pal[2][k] = ( 2 * pal[0][k] + pal[1][k] ) / 3;
++			pal[3][k] = ( pal[0][k] + 2 * pal[1][k] ) / 3;
++		}
++		pal[2][3] = pal[3][3] = 255;
++	}
++	else
++	{
++		for( int k = 0; k < 3; k++ )
++		{
++			pal[2][k] = ( pal[0][k] + pal[1][k] ) / 2;
++			pal[3][k] = 0;
++		}
++		pal[2][3] = 255;
++		pal[3][3] = 0; // BC1 punch-through alpha
++	}
++}
++
++static qboolean Image_DXTDecodeRGBA( const byte *fin, size_t insize )
++{
++	const int w = image.width, h = image.height;
++	const int bw = ( w + 3 ) / 4, bh = ( h + 3 ) / 4;
++	const int blockSize = image.type == PF_DXT1 ? 8 : 16;
++	qboolean alpha = false;
++
++	if( (size_t)bw * bh * blockSize > insize )
++		return false;
++
++	byte *out = Mem_Malloc( host.imagepool, (size_t)w * h * 4 );
++
++	for( int by = 0; by < bh; by++ )
++	{
++		for( int bx = 0; bx < bw; bx++ )
++		{
++			const byte *blk = fin + ((size_t)by * bw + bx ) * blockSize;
++			const byte *color = image.type == PF_DXT1 ? blk : blk + 8;
++			byte pal[4][4], alphas[16];
++
++			Image_DXTColors( color, pal, image.type != PF_DXT1 );
++
++			if( image.type == PF_DXT3 )
++			{
++				for( int i = 0; i < 16; i++ )
++				{
++					int a = ( blk[i >> 1] >> (( i & 1 ) * 4 )) & 15;
++					alphas[i] = a * 17;
++				}
++			}
++			else if( image.type == PF_DXT5 )
++			{
++				byte a[8];
++				a[0] = blk[0];
++				a[1] = blk[1];
++				if( a[0] > a[1] )
++				{
++					for( int i = 1; i < 7; i++ )
++						a[i + 1] = (( 7 - i ) * a[0] + i * a[1] ) / 7;
++				}
++				else
++				{
++					for( int i = 1; i < 5; i++ )
++						a[i + 1] = (( 5 - i ) * a[0] + i * a[1] ) / 5;
++					a[6] = 0;
++					a[7] = 255;
++				}
++				uint64_t bits = 0;
++				for( int i = 0; i < 6; i++ )
++					bits |= (uint64_t)blk[2 + i] << ( 8 * i );
++				for( int i = 0; i < 16; i++ )
++					alphas[i] = a[( bits >> ( 3 * i )) & 7];
++			}
++
++			uint idx = color[4] | ( color[5] << 8 ) | ( color[6] << 16 ) | ((uint)color[7] << 24 );
++			for( int i = 0; i < 16; i++ )
++			{
++				int x = bx * 4 + ( i & 3 ), y = by * 4 + ( i >> 2 );
++				if( x >= w || y >= h )
++					continue;
++				byte *px = out + ((size_t)y * w + x ) * 4;
++				const byte *c = pal[( idx >> ( 2 * i )) & 3];
++				px[0] = c[0];
++				px[1] = c[1];
++				px[2] = c[2];
++				px[3] = image.type == PF_DXT1 ? c[3] : alphas[i];
++				if( px[3] != 255 )
++					alpha = true;
++			}
++		}
++	}
++
++	image.rgba = out;
++	image.type = PF_RGBA_32;
++	image.size = (size_t)w * h * 4;
++	image.num_mips = 0;
++	if( alpha )
++		SetBits( image.flags, IMAGE_HAS_ALPHA );
++	SetBits( image.flags, IMAGE_HAS_COLOR );
++	return true;
++}
++#endif
++
+ /*
+ =============
+ Image_LoadDDS
+@@ -359,6 +486,19 @@ qboolean Image_LoadDDS( const char *name, const byte *buffer, fs_offset_t filesi
+ 	Image_DXTGetPixelFormat( &header, &header2 ); // and image type too :)
+ 	Image_DXTAdjustVolume( &header );
+ 
++#if XASH_EMSCRIPTEN
++	// no S3TC on this GPU (most phones): decode BC1/BC2/BC3 2D textures on the CPU instead of rejecting them
++	if( !Image_CheckFlag( IL_DDS_HARDWARE ) && ( image.type == PF_DXT1 || image.type == PF_DXT3 || image.type == PF_DXT5 )
++		&& image.depth == 1 && !( header.dsCaps.dwCaps2 & DDS_CUBEMAP ))
++	{
++		if( !Image_DXTDecodeRGBA( buffer + headersOffset, filesize - headersOffset ))
++		{
++			Con_DPrintf( S_ERROR "%s: (%s) DXT data too short\n", __func__, name );
++			return false;
++		}
++		return true;
++	}
++#endif
+ 	if( !Image_CheckFlag( IL_DDS_HARDWARE ) && ImageCompressed( image.type ))
+ 		return false; // silently rejected
+ 
 diff --git a/engine/common/mod_bmodel.c b/engine/common/mod_bmodel.c
 index d1fe48e2..83f655b8 100644
 --- a/engine/common/mod_bmodel.c

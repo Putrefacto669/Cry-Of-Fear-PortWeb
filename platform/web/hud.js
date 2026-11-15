@@ -804,6 +804,7 @@
     window.CoFExtras?.onMap();
     updateBoss(0, 0, "-", "-");
     if (!optionsApplied) applyOptions();
+    else applyPerformance().catch(() => {}); // the main loop exists by now: the 60 fps cap can take hold
     if (typeof setRain === "function" && rain.canvas) setRain(0, 0, 0);
     const isMenu = name === MENU_MAP;
     showMenu(false);
@@ -966,7 +967,13 @@
     sms.id = "cof-sms";
     const dialog = document.createElement("div");
     dialog.id = "cof-dialog";
-    dialog.addEventListener("click", (e) => { if (e.target === dialog || e.target.classList.contains("close")) closeDialog(); });
+    // Close on the backdrop or ✕ only when the press also began there. On a phone the touch "Use" button opens the
+    // dialog while the finger is down; lifting it fires a compatibility click on whatever now lies under the finger,
+    // the backdrop, which closed the computer's password form at once (mobile_computer_tap.mjs).
+    let pressedBackdrop = false;
+    const onBackdrop = (e) => e.target === dialog || e.target.classList.contains("close");
+    dialog.addEventListener("pointerdown", (e) => { pressedBackdrop = onBackdrop(e); });
+    dialog.addEventListener("click", (e) => { if (pressedBackdrop && onBackdrop(e)) closeDialog(); pressedBackdrop = false; });
     addEventListener("keydown", (e) => {
       if (!dialog.classList.contains("on")) return;
       // the dialog has the keyboard: keep it from the engine (TAB, E, movement...)
@@ -1376,9 +1383,43 @@
   // lightBrightness is the original renderer's gl_brightness (0 to 0.3, it clamps there): 0 is the
   // original picture. The engine's brightness stays at 1, the value of the original config.cfg; the
   // world lightmaps no longer go through its gamma table (gl_rsurf.c R_CofBuildLightMap).
-  const options = Object.assign({ sensitivity: 3, volume: 0.8, music: 0.8, lightBrightness: 0, rain: false }, readJson(OPTIONS_KEY, {}));
+  const options = Object.assign({ sensitivity: 3, volume: 0.8, music: 0.8, lightBrightness: 0, rain: false,
+    vignette: true, fpsCap: true, lowRes: false }, readJson(OPTIONS_KEY, {}));
   let optionsApplied = false;
+  // Phone-only performance settings (Options shows them in mobile mode). A 120 Hz screen (Pixel 10 Pro XL) made the
+  // engine draw up to 120 frames a second: the main loop now runs every Nth display frame for ~60 fps. The vignette
+  // is what kept the postfx pass (a full-screen copy and redraw, costly on tile-based phone GPUs) running every
+  // frame. The low resolution draws at 1 pixel per CSS pixel instead of up to 1.5.
+  let displayRate = 0;
+  // the median interval between animation frames: a map load or a slow frame does not drag it down
+  // (counting frames in one second right after the load gave 1 Hz in mobile_options.mjs)
+  const measureDisplayRate = () => new Promise((resolve) => {
+    const gaps = [];
+    let last = 0;
+    const step = (now) => {
+      if (last) gaps.push(now - last);
+      last = now;
+      if (gaps.length < 90) requestAnimationFrame(step);
+      else { gaps.sort((a, b) => a - b); resolve(1000 / gaps[gaps.length >> 1]); }
+    };
+    requestAnimationFrame(step);
+  });
+  const applyPerformance = async () => {
+    if (window.CoFPostFX) CoFPostFX.set({ vignette: options.vignette ? 0.35 : 0 });
+    if (!window.CoFMobile?.active) return;
+    const ratio = options.lowRes ? 1 : Math.min(devicePixelRatio, 1.5);
+    if (window.Module && Module.cofRenderPixelRatio !== ratio) {
+      Module.cofRenderPixelRatio = ratio;
+      dispatchEvent(new Event("resize"));
+    }
+    if (typeof MainLoop === "undefined" || MainLoop.timingMode !== 1) return;
+    displayRate = await measureDisplayRate();
+    // 120/144 Hz -> every 2nd frame (60/72 fps); 60 or 90 Hz, or a game already under ~110 fps -> unchanged
+    MainLoop.timingValue = options.fpsCap ? Math.max(1, Math.floor(displayRate / 55)) : 1;
+    console.log(`COF/PERF display=${displayRate.toFixed(0)}Hz every=${MainLoop.timingValue} ratio=${ratio} vignette=${options.vignette ? 1 : 0}`);
+  };
   const applyOptions = () => {
+    applyPerformance().catch(() => {});
     engineCmd(`sensitivity ${options.sensitivity}`);
     engineCmd(`volume ${options.volume}`);
     engineCmd(`brightness 1`);
@@ -1570,6 +1611,27 @@
       });
       row.append(span, box);
       body.appendChild(row);
+    }
+    const toggle = (label, key) => {
+      const line = document.createElement("div");
+      line.className = "row";
+      const name = document.createElement("label");
+      name.textContent = label;
+      name.htmlFor = `cof-option-${key}`;
+      const box = document.createElement("input");
+      Object.assign(box, { type: "checkbox", checked: !!options[key], id: `cof-option-${key}` });
+      box.addEventListener("change", () => {
+        options[key] = box.checked;
+        writeJson(OPTIONS_KEY, options);
+        applyPerformance().catch(() => {});
+      });
+      line.append(name, box);
+      body.appendChild(line);
+    };
+    if (window.CoFMobile?.active) {
+      toggle(SPANISH ? "Limitar a 60 fps" : "Limit to 60 fps", "fpsCap");
+      toggle(SPANISH ? "Viñeta" : "Vignette", "vignette");
+      toggle(SPANISH ? "Resolución baja" : "Low resolution", "lowRes");
     }
     const row = document.createElement("div");
     row.className = "row";
