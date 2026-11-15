@@ -61,7 +61,7 @@
     for (const [symbol, text] of [
       ["✥", t("Mueve el joystick izquierdo", "Move the left stick")],
       ["↔", t("Arrastra la derecha para mirar", "Swipe on the right to look")],
-      ["◎", t("Ataque, Usar y Recargar", "Attack, Use and Reload")],
+      ["◎", t("Para saltar agachado, mantén Agacharse y desliza hacia arriba.", "To crouch-jump, hold Crouch and swipe up.")],
       ["▣", t("Bolso y accesos 1, 2 y 3", "Bag and quick slots 1, 2 and 3")],
       ["▤", t("Consulta notas y objetivos", "Read notes and objectives")],
       ["Ⅱ", t("Para combinar armas, abre el bolso. Las escaleras requieren una validación táctil aparte.", "Use the bag to combine weapons. Touch controls for ladders still need validation.")]
@@ -137,16 +137,25 @@
   let climbing = false;
   let climbDirection = null;
   const command = value => window.Module.ccall("Xash_Cmd", null, ["string"], [value + "\n"]);
+  const actionHeld = action => [...pressed.values()].some(input => input.actions.has(action));
+  const holdAction = (input, action) => {
+    if (input.actions.has(action)) return;
+    if (!actionHeld(action)) command("+" + action);
+    input.actions.add(action);
+  };
   const release = (element, id) => {
     const current = pressed.get(element);
     if (!current || (id !== undefined && current.id !== id)) return;
     pressed.delete(element);
-    command("-" + current.action);
+    for (const action of current.actions) if (!actionHeld(action)) command("-" + action);
     if (element.hasPointerCapture(current.id)) element.releasePointerCapture(current.id);
     element.classList.remove("pressed");
   };
   const resetButtons = () => { for (const element of pressed.keys()) release(element); };
   let stickPress = null;
+  const canvasPointers = new Set();
+  let zonesNeedUpdate = false;
+  let touchGeometry = "";
   function changeClimbDirection(next) {
     if (climbDirection === next) return;
     if (climbDirection) command("-" + climbDirection);
@@ -160,7 +169,7 @@
     thumb.style.transform = "";
   }
   function startStick(event) {
-    if (blocked || stickPress) return;
+    if (blocked || event.pointerType === "mouse" || stickPress) return;
     const box = stick.getBoundingClientRect();
     const x = box.left + box.width / 2, y = box.top + box.height / 2;
     const radius = box.width / 2;
@@ -180,6 +189,8 @@
     const view = canvas.getBoundingClientRect();
     const area = stick.getBoundingClientRect();
     if (!view.width || !view.height || !area.width) return;
+    touchGeometry = `${view.width}:${view.height}`;
+    zonesNeedUpdate = false;
     const x1 = (area.left - view.left) / view.width;
     const y1 = (area.top - view.top) / view.height;
     const x2 = (area.right - view.left) / view.width;
@@ -188,12 +199,15 @@
       command("touch_removebutton cof_web_look; touch_removebutton cof_web_joy");
       return;
     }
+    // Keep native touch coordinates aligned after switching between aspect ratios.
+    command(`touch_aspectratio ${view.height / view.width}`);
     // The Xash circle uses TOUCH_FL_CLIENT (4) and TOUCH_FL_STICK (2048).
     command('touch_addbutton cof_web_look "" "_look" 0.5 0 1 1 0 0 0 0 4');
     command(`touch_addbutton cof_web_joy "" "_joy" ${x1} ${y1} ${x2} ${y2} 0 0 0 0 2052`);
   }
   const clearTouches = () => {
     resetButtons();
+    canvasPointers.clear();
     releaseStick();
     if (configured) {
       command("touch_removebutton cof_web_joy; touch_setclientonly 0; touch_setclientonly 1");
@@ -283,24 +297,35 @@
       !document.getElementById("disclaimer").hidden;
     if (next && !blocked) clearTouches();
     blocked = next;
-    controls.hidden = !mapShown;
+    if (controls.hidden === mapShown) controls.hidden = !mapShown;
     const wasHidden = stick.hidden;
-    actions.hidden = stick.hidden = blocked;
+    if (wasHidden !== blocked) actions.hidden = stick.hidden = blocked;
     if (configured && wasHidden && !blocked) registerTouchZones();
-    rotation.hidden = !mapShown || !portrait || hud.menuOpen || hud.paused || hud.bagOpen ||
+    const hideRotation = !mapShown || !portrait || hud.menuOpen || hud.paused || hud.bagOpen ||
       Boolean(window.CoFExtras?.clothesOpen) || hud.interactionOpen;
+    if (rotation.hidden !== hideRotation) rotation.hidden = hideRotation;
+    if (configured && !blocked && zonesNeedUpdate && !canvasPointers.size && !pressed.size) registerTouchZones();
     requestAnimationFrame(tick);
   }
   function start() {
     if (device !== "mobile" || running) return;
     running = true;
     document.body.classList.add("cof-mobile-active");
-    canvas.addEventListener("pointerdown", startStick);
+    canvas.addEventListener("pointerdown", event => {
+      if (event.pointerType !== "mouse") canvasPointers.add(event.pointerId);
+      startStick(event);
+    });
     canvas.addEventListener("pointermove", moveStick);
     for (const event of ["pointerup", "pointercancel", "lostpointercapture"]) {
-      canvas.addEventListener(event, releaseStick);
+      canvas.addEventListener(event, input => {
+        canvasPointers.delete(input.pointerId);
+        releaseStick(input);
+      });
     }
-    new ResizeObserver(() => { if (configured && !blocked) clearTouches(); }).observe(canvas);
+    new ResizeObserver(() => {
+      const {width, height} = canvas.getBoundingClientRect();
+      if (touchGeometry !== `${width}:${height}`) zonesNeedUpdate = true;
+    }).observe(canvas);
     rotationHint.textContent = t("Gira el teléfono para jugar en horizontal", "Turn your phone sideways to play");
     if (document.documentElement.requestFullscreen || screen.orientation?.lock) {
       button(rotation, t("Intentar pantalla completa", "Try fullscreen"), prepareScreen);
@@ -309,17 +334,25 @@
       const element = actionButton(action, t(spanish, label));
       if (action === "attack") attackButton = element;
       element.addEventListener("pointerdown", event => {
-        if (blocked || event.button !== 0 || pressed.has(element)) return;
+        if (blocked || (event.pointerType === "mouse" && event.button !== 0) || pressed.has(element)) return;
         event.preventDefault();
         element.setPointerCapture(event.pointerId);
         if (action === "attack" && ladderAvailable) {
           command("cof_useladder");
           return;
         }
-        pressed.set(element, {id:event.pointerId, action});
-        command("+" + action);
+        const input = {id:event.pointerId, y:event.clientY, actions:new Set()};
+        holdAction(input, action);
+        pressed.set(element, input);
         element.classList.add("pressed");
       });
+      if (action === "duck") {
+        element.title = t("Agacharse · desliza arriba para saltar agachado", "Crouch · swipe up to crouch-jump");
+        element.addEventListener("pointermove", event => {
+          const input = pressed.get(element);
+          if (input?.id === event.pointerId && input.y - event.clientY > 24) holdAction(input, "jump");
+        });
+      }
       for (const type of ["pointerup", "pointercancel", "lostpointercapture"]) {
         element.addEventListener(type, event => release(element, event.pointerId));
       }
@@ -338,7 +371,12 @@
     actionButton("inventory", t("Bolso de Simon", "Simon's bag"), toggleBag);
     for (const event of ["blur", "pagehide"]) window.addEventListener(event, clearTouches);
     document.addEventListener("visibilitychange", () => { if (document.hidden) clearTouches(); });
-    canvas.addEventListener("touchcancel", clearTouches);
+    canvas.addEventListener("touchcancel", () => {
+      if (!canvasPointers.size) {
+        command("touch_removebutton cof_web_joy; touch_setclientonly 0; touch_setclientonly 1");
+        zonesNeedUpdate = true;
+      }
+    });
     requestAnimationFrame(tick);
   }
   function onMap() {

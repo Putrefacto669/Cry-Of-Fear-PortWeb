@@ -29,6 +29,23 @@ cp "$WEB/index.html" "$WEB/loader.js" "$WEB/postfx.js" "$WEB/hud.js" "$WEB/extra
 # buscadores: sitemap para Search Console/Bing y los archivos con que Google y Bing verifican la propiedad
 cp "$WEB/sitemap.xml" "$WEB/googlee1f002228312b1b3.html" "$WEB/BingSiteAuth.xml" "$DIST/"
 cp "$WEB/launcher.js" "$WEB/mobile.js" "$WEB/mobile.css" "$DIST/"
+# Keep the WebGL buffer affordable on dense phone screens. The loader selects the
+# limit only for Mobile. Recognize the Emscripten import explicitly so a toolchain
+# update cannot silently drop the override.
+python3 - "$DIST/xash3d.js" <<'PYDPR'
+from pathlib import Path
+import re
+import sys
+
+path = Path(sys.argv[1])
+script = path.read_text(encoding="utf-8")
+pattern = r"(_emscripten_get_device_pixel_ratio\s*=\s*\(\)\s*=>\s*)devicePixelRatio\b"
+script, count = re.subn(pattern, r"\1(Module.cofRenderPixelRatio ?? devicePixelRatio)", script)
+if count != 1:
+    raise SystemExit(f"Expected one Emscripten DPR import in {path}, found {count}")
+path.write_text(script, encoding="utf-8")
+PYDPR
+
 # portada del launcher (index.html #launcher): logo y fondo del menú original, convertidos a PNG/JPEG; aviso de contenido
 # del primer vídeo de arranque (media/startupvideo1.avi, fotograma fijo)
 mkdir -p "$DIST/launcher" && cp "$WEB/launcher/logo.png" "$WEB/launcher/background.jpg" "$WEB/launcher/disclaimer.jpg" "$DIST/launcher/"

@@ -313,6 +313,8 @@
 
     window.Module = {
       canvas,
+      // SDL scales the WebGL buffer. Leave CSS dimensions and touch coordinates in CSS pixels.
+      cofRenderPixelRatio: window.CoFMobile?.active ? Math.min(devicePixelRatio, 1.5) : undefined,
       arguments: args,
       // build ASan (Emscripten lee las opciones de Module, no del entorno). Sin ASan se ignora.
       //   leak_check_at_exit=0: la página no termina nunca y, si el motor sale por un error, el

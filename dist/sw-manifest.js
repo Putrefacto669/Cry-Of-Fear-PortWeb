@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "4e6cb6608ea9",
+ "version": "e9110520a5d6",
  "coi": false,
  "precache": [
   "BingSiteAuth.xml",
@@ -56,8 +56,8 @@ self.COF_MANIFEST = {
   "launcher/background.jpg": "d385a9ca8c75",
   "launcher/disclaimer.jpg": "1375e3bf3d98",
   "launcher/logo.png": "8d7bb7601333",
-  "launcher.js": "822876305965",
-  "loader.js": "1914d2e763bf",
+  "launcher.js": "fefeda5e9b3f",
+  "loader.js": "1f0b5d8a6a64",
   "mp3/2aphall1.mp3": "70a02fded189",
   "mp3/ap3hall1.mp3": "23be860ec5a8",
   "mp3/ap3hall1end.mp3": "6da929c405e7",
@@ -138,10 +138,10 @@ self.COF_MANIFEST = {
   "shaders/water.vert.glsl": "2ac21130b1b7",
   "sitemap.xml": "ac1bb0cd5b1c",
   "xash3d.html": "9c5ead998246",
-  "xash3d.js": "58ab3610f2d1",
+  "xash3d.js": "cbb394521d0a",
   "xash3d.wasm": "8a7ca0515bf8",
-  "mobile.js": "92143d87e553",
-  "mobile.css": "9397a5b62ad1"
+  "mobile.js": "a6b8ea285874",
+  "mobile.css": "5d643e3765de"
  },
  "gz": {
   "packs/boot.data": {
