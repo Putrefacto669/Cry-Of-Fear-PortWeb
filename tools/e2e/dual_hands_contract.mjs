@@ -95,5 +95,5 @@ try{
  assert.ok(r.idle.maskedview>0 && r.idle.maskedview<r.idle.masked,'knife and phone both filtered');
 
  r.modules=await p.evaluate(async()=>{const o={};for(const f of ['client.wasm','server.wasm'])o[f]=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',FS.readFile('/lib/'+f))),b=>b.toString(16).padStart(2,'0')).join('');return o;});
- assert.deepEqual(errors,[]);r.passed=true;console.log('PASS dual hands contract: p2 knife view model, mirrored phone, l_ filter A/B, p2 attack, save/load, single knife p1');
+ assert.deepEqual(errors,[]);r.passed=true;console.log('PASS dual hands contract: mirrored p2 knife at the camera, unmirrored phone, l_ filter A/B (knife, Glock), p2 attack, save/load, single knife p1');
 }catch(e){r.passed=false;r.failure=String(e.stack||e);console.error(e);process.exitCode=1;}finally{r.errors=errors;r.chromium=browser.version();fs.writeFileSync(`${out}/result.json`,JSON.stringify(r,null,2));fs.writeFileSync(`${out}/engine.log`,logs.join('\n'));await ctx.close();await browser.close();}

@@ -148,6 +148,17 @@ demostrado.
 **Publicación:** el usuario la autorizó el 14/11 tras ver el resultado. `dist/` pasa a **`0140a63de3d5`**; frente a
 `fdf221a95644` cambian `packs/engine.*`, `sw-manifest.js` y `sw.js`.
 
+**Despliegue comprobado (14/11/2026):**
+
+- Commit `8590410`, subido a `portweb/main` (`1fbb5a4..8590410`), sin force push.
+- Workflow «GitHub Pages», run `43662073302`: **success**.
+- El sitio público sirve el manifiesto `0140a63de3d5`. `packs/engine.data.gz`, `packs/engine.js`, `sw.js` y
+  `sw-manifest.js` tienen el mismo hash que el commit.
+- `dual_hands_contract` contra el sitio público (`dualhands-public-*`): **PASS**. El navegador cargó `client.wasm`
+  `9cc63f56…` y `server.wasm` `6e7bbf18…`.
+- El texto del `PASS` de esa ejecución todavía decía «mirrored phone»; se corrigió después. Las comprobaciones son las
+  mismas.
+
 ## 6. Límites
 
 - La única comparación nativa es la captura del usuario de teléfono + Glock. No hay una de teléfono + navaja: la pose
