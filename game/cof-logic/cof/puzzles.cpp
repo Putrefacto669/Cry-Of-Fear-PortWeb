@@ -485,6 +485,7 @@ public:
 	EHANDLE m_hCamera;
 	int m_iIndex;
 	BOOL m_fDown, m_fFinishing, m_fSkipRaise, m_fLowerNext;
+	int m_iRestoreDirection; // 1 up, -1 down; 0 in older saves
 	float m_flFinishTime, m_flAnimEnd;
 	string_t m_iszLastAnim;
 	string_t m_iszViewModel; // port: the weapon is hidden while the arms climb
@@ -524,9 +525,34 @@ TYPEDESCRIPTION CCofLadderManager::m_SaveData[] =
 	DEFINE_FIELD( CCofLadderManager, m_iszLastAnim, FIELD_STRING ),
 	DEFINE_FIELD( CCofLadderManager, m_iszViewModel, FIELD_STRING ),
 	DEFINE_FIELD( CCofLadderManager, m_vecViewOfs, FIELD_VECTOR ),
+	DEFINE_FIELD( CCofLadderManager, m_iRestoreDirection, FIELD_INTEGER ),
 };
 
-IMPLEMENT_SAVERESTORE( CCofLadderManager, CPointEntity )
+int CCofLadderManager::Save( CSave &save )
+{
+	if( !CPointEntity::Save( save ))
+		return 0;
+	return save.WriteFields( "CCofLadderManager", this, m_SaveData, ARRAYSIZE( m_SaveData ));
+}
+
+int CCofLadderManager::Restore( CRestore &restore )
+{
+	if( !CPointEntity::Restore( restore ))
+		return 0;
+	const int restored = restore.ReadFields( "CCofLadderManager", this, m_SaveData, ARRAYSIZE( m_SaveData ));
+	// The camera is transient. Re-arm the cleanup even if the saved Think callback
+	// had no function symbol in the WebAssembly save table.
+	if( restored && (CBaseEntity *)m_hPlayer )
+	{
+		if( m_iRestoreDirection )
+			m_fDown = m_iRestoreDirection < 0;
+		else if( m_fLowerNext && !m_fFinishing )
+			m_fDown = TRUE;
+		SetThink( &CCofLadderManager::LadderThink );
+		pev->nextthink = gpGlobals->time + 0.01f;
+	}
+	return restored;
+}
 
 void CCofLadderManager::Spawn( void )
 {
@@ -574,6 +600,7 @@ void CCofLadderManager::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_
 		return;
 	CBasePlayer *pPlayer = (CBasePlayer *)pActivator;
 	m_fDown = value != 0;
+	m_iRestoreDirection = m_fDown ? -1 : 1;
 	m_hPlayer = pPlayer;
 	// hl.dll 100deff0(0) sets FL_FROZEN, but Xash (SV_ParseClientMove) also clears the buttons of a
 	// frozen client, and the climb is driven by IN_FORWARD/IN_BACK: hold the player still instead.
@@ -592,6 +619,7 @@ void CCofLadderManager::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_
 	if( m_fDown )
 		Raise( (float)m_iDescendOffset );
 	CoF_AttachCam( pPlayer, pCam );
+	CoF_HudPrint( "COF/HUD CLIMB 1\n" );
 	pPlayer->pev->flags |= FL_GODMODE | FL_NOTARGET;
 	m_iszViewModel = pPlayer->pev->viewmodel;
 	pPlayer->pev->viewmodel = 0;
@@ -717,11 +745,13 @@ void CCofLadderManager::LadderThink( void )
 		if( pPlayer->pev->button & IN_FORWARD )
 		{
 			m_fDown = FALSE;
+			m_iRestoreDirection = 1;
 			StepUp();
 		}
 		if( pPlayer->pev->button & IN_BACK )
 		{
 			m_fDown = TRUE;
+			m_iRestoreDirection = -1;
 			StepDown();
 		}
 	}
@@ -744,6 +774,7 @@ void CCofLadderManager::Finish( void )
 	if( m_vecViewOfs != g_vecZero )
 		pPlayer->pev->view_ofs = m_vecViewOfs;
 	CoF_AttachCam( pPlayer, NULL );
+	CoF_HudPrint( "COF/HUD CLIMB 0\n" );
 	if( !pPlayer->pev->viewmodel )
 		pPlayer->pev->viewmodel = m_iszViewModel;
 	string_t dest = m_fDown ? m_iszBottom : m_iszTop;
@@ -772,17 +803,36 @@ public:
 	}
 	virtual int ObjectCaps( void ) { return ( CBaseEntity::ObjectCaps() & ~FCAP_ACROSS_TRANSITION ) | FCAP_IMPULSE_USE; }
 	virtual void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value );
+	bool CanUse( CBaseEntity *pActivator );
 	float m_flNextUse; // not saved, like a debounce
 };
 
 LINK_ENTITY_TO_CLASS( cof_ladder_manager_use, CCofLadderUse )
 
+bool CCofLadderUse::CanUse( CBaseEntity *pActivator )
+{
+	return pActivator && pActivator->IsPlayer() && FBitSet( pActivator->pev->flags, FL_ONGROUND ) &&
+		!FStringNull( pev->target ) && gpGlobals->time >= m_flNextUse;
+}
+
+bool CoF_IsUsableLadder( CBaseEntity *pEntity, CBasePlayer *pPlayer )
+{
+	if( !pEntity || !FClassnameIs( pEntity->pev, "cof_ladder_manager_use" ) ||
+		!((CCofLadderUse *)pEntity)->CanUse( pPlayer ))
+		return false;
+
+	CBaseEntity *pTarget = UTIL_FindEntityByTargetname( NULL, STRING( pEntity->pev->target ));
+	if( !pTarget || !FClassnameIs( pTarget->pev, "cof_ladder_manager" ))
+		return false;
+
+	CCofLadderManager *pManager = (CCofLadderManager *)pTarget;
+	return !FStringNull( pManager->pev->model ) && !(CBaseEntity *)pManager->m_hPlayer;
+}
+
 // hl.dll 1004fe80: on the ground, at most once a second; the value tells the manager the direction
 void CCofLadderUse::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
 {
-	if( !pActivator || !pActivator->IsPlayer() || FStringNull( pev->target ) || gpGlobals->time < m_flNextUse )
-		return;
-	if( !( pActivator->pev->flags & FL_ONGROUND ))
+	if( !CanUse( pActivator ))
 		return;
 	m_flNextUse = gpGlobals->time + 1.0f;
 	// iuser1 0: this use area is at the bottom, so the player goes up

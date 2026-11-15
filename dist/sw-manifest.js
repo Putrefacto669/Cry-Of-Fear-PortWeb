@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "b902da18e9f1",
+ "version": "4e6cb6608ea9",
  "coi": false,
  "precache": [
   "BingSiteAuth.xml",
@@ -10,11 +10,13 @@ self.COF_MANIFEST = {
   "gpustats.js",
   "hud.js",
   "index.html",
+  "launcher.js",
   "launcher/background.jpg",
   "launcher/disclaimer.jpg",
   "launcher/logo.png",
-  "launcher.js",
   "loader.js",
+  "mobile.css",
+  "mobile.js",
   "packs/boot.js",
   "packs/engine.js",
   "packs/extras.js",
@@ -49,13 +51,13 @@ self.COF_MANIFEST = {
   "extras.js": "e3ce2423650a",
   "googlee1f002228312b1b3.html": "fe98df47e40f",
   "gpustats.js": "70aaa1f28265",
-  "hud.js": "503d673362f3",
-  "index.html": "0572583ae482",
+  "hud.js": "aeeef07111f0",
+  "index.html": "96201619adf6",
   "launcher/background.jpg": "d385a9ca8c75",
   "launcher/disclaimer.jpg": "1375e3bf3d98",
   "launcher/logo.png": "8d7bb7601333",
-  "launcher.js": "00789e8b809d",
-  "loader.js": "36fc07f18e5c",
+  "launcher.js": "822876305965",
+  "loader.js": "1914d2e763bf",
   "mp3/2aphall1.mp3": "70a02fded189",
   "mp3/ap3hall1.mp3": "23be860ec5a8",
   "mp3/ap3hall1end.mp3": "6da929c405e7",
@@ -98,8 +100,8 @@ self.COF_MANIFEST = {
   "mp3/watercorridor.mp3": "ba8c97aa265b",
   "packs/boot.data": "9056f3572435",
   "packs/boot.js": "b81c3c8b79dd",
-  "packs/engine.data": "87127e37c03c",
-  "packs/engine.js": "33c01323a1e9",
+  "packs/engine.data": "bbe3618e8507",
+  "packs/engine.js": "92c91db2fc8e",
   "packs/extras.data": "8972eb64392e",
   "packs/extras.js": "63f307f5a9a7",
   "packs/map_c_apartment1.data": "8a2ae128e830",
@@ -118,8 +120,8 @@ self.COF_MANIFEST = {
   "packs/map_c_game_menu1.js": "341542627a0c",
   "packs/map_c_intro.data": "95524a3f0d7a",
   "packs/map_c_intro.js": "60fbdc7419e9",
-  "packs/map_c_nightmare.data": "94c54bd2661e",
-  "packs/map_c_nightmare.js": "c2116a9b9fd4",
+  "packs/map_c_nightmare.data": "3b98dbe6def8",
+  "packs/map_c_nightmare.js": "62fcc5ec6eb1",
   "packs/map_c_start.data": "9d60ea83fbf0",
   "packs/map_c_start.js": "9889233d4faf",
   "packs/map_c_start2.data": "c74f146eb41e",
@@ -137,7 +139,9 @@ self.COF_MANIFEST = {
   "sitemap.xml": "ac1bb0cd5b1c",
   "xash3d.html": "9c5ead998246",
   "xash3d.js": "58ab3610f2d1",
-  "xash3d.wasm": "8a7ca0515bf8"
+  "xash3d.wasm": "8a7ca0515bf8",
+  "mobile.js": "92143d87e553",
+  "mobile.css": "9397a5b62ad1"
  },
  "gz": {
   "packs/boot.data": {
@@ -145,8 +149,8 @@ self.COF_MANIFEST = {
    "gzSize": 22846762
   },
   "packs/engine.data": {
-   "size": 2913779,
-   "gzSize": 976275
+   "size": 2914782,
+   "gzSize": 976666
   },
   "packs/extras.data": {
    "size": 24149424,
@@ -185,8 +189,8 @@ self.COF_MANIFEST = {
    "gzSize": 20470014
   },
   "packs/map_c_nightmare.data": {
-   "size": 41828940,
-   "gzSize": 25655064
+   "size": 41914027,
+   "gzSize": 25665628
   },
   "packs/map_c_start.data": {
    "size": 73991040,

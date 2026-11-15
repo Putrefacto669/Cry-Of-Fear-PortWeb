@@ -28,7 +28,7 @@ rm -f "$DIST/xash.js" "$DIST/xash.wasm"
 cp "$WEB/index.html" "$WEB/loader.js" "$WEB/postfx.js" "$WEB/hud.js" "$WEB/extras.js" "$WEB/gpustats.js" "$WEB/debug.js" "$WEB/sw.js" "$DIST/"
 # buscadores: sitemap para Search Console/Bing y los archivos con que Google y Bing verifican la propiedad
 cp "$WEB/sitemap.xml" "$WEB/googlee1f002228312b1b3.html" "$WEB/BingSiteAuth.xml" "$DIST/"
-cp "$WEB/launcher.js" "$DIST/"
+cp "$WEB/launcher.js" "$WEB/mobile.js" "$WEB/mobile.css" "$DIST/"
 # portada del launcher (index.html #launcher): logo y fondo del menú original, convertidos a PNG/JPEG; aviso de contenido
 # del primer vídeo de arranque (media/startupvideo1.avi, fotograma fijo)
 mkdir -p "$DIST/launcher" && cp "$WEB/launcher/logo.png" "$WEB/launcher/background.jpg" "$WEB/launcher/disclaimer.jpg" "$DIST/launcher/"

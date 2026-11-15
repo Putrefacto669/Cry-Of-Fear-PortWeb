@@ -1,0 +1,168 @@
+diff --git a/dlls/player.cpp b/dlls/player.cpp
+--- a/dlls/player.cpp
++++ b/dlls/player.cpp
+@@ -1531,78 +1531,24 @@
+ //
+ #define	PLAYER_SEARCH_RADIUS	(float)64
+ 
+-void CBasePlayer::PlayerUse( void )
+-{
+-	if( IsObserver() )
+-		return;
+-
+-	// Was use pressed or released?
+-	if( !( ( pev->button | m_afButtonPressed | m_afButtonReleased) & IN_USE ) )
+-		return;
+-
+-	// Hit Use on a train?
+-	if( m_afButtonPressed & IN_USE )
+-	{
+-		if( m_pTank != 0 )
+-		{
+-			// Stop controlling the tank
+-			// TODO: Send HUD Update
+-			m_pTank->Use( this, this, USE_OFF, 0 );
+-			return;
+-		}
+-		else
+-		{
+-			if( m_afPhysicsFlags & PFLAG_ONTRAIN )
+-			{
+-				m_afPhysicsFlags &= ~PFLAG_ONTRAIN;
+-				m_iTrain = TRAIN_NEW|TRAIN_OFF;
+-
+-				CBaseEntity *pTrain = Instance( pev->groundentity );
+-				if( pTrain && pTrain->Classify() == CLASS_VEHICLE )
+-				{
+-					( (CFuncVehicle *)pTrain )->m_pDriver = NULL;
+-				}
+-				return;
+-			}
+-			else
+-			{	// Start controlling the train!
+-				CBaseEntity *pTrain = CBaseEntity::Instance( pev->groundentity );
+-
+-				if( pTrain && !( pev->button & IN_JUMP ) && FBitSet( pev->flags, FL_ONGROUND ) && ( pTrain->ObjectCaps() & FCAP_DIRECTIONAL_USE ) && pTrain->OnControls( pev ) )
+-				{
+-					m_afPhysicsFlags |= PFLAG_ONTRAIN;
+-					m_iTrain = TrainSpeed( (int)pTrain->pev->speed, pTrain->pev->impulse );
+-					m_iTrain |= TRAIN_NEW;
+-
+-					if( pTrain->Classify() == CLASS_VEHICLE )
+-					{
+-						EMIT_SOUND( ENT( pev ), CHAN_ITEM, "plats/vehicle_ignition.wav", 0.8, ATTN_NORM );
+-						( (CFuncVehicle *)pTrain )->m_pDriver = this;
+-					}
+-					else
+-						EMIT_SOUND( ENT( pev ), CHAN_ITEM, "plats/train_use1.wav", 0.8, ATTN_NORM );
+-					return;
+-				}
+-			}
+-		}
+-	}
+-
++CBaseEntity *CoF_FindNearbyUseTarget( CBasePlayer *pPlayer )
++{
+ 	CBaseEntity *pObject = NULL;
+ 	CBaseEntity *pClosest = NULL;
+ 	Vector vecLOS;
+ 	float flMaxDot = VIEW_FIELD_NARROW;
+ 	float flDot;
+ 
+-	UTIL_MakeVectors( pev->v_angle );// so we know which way we are facing
+-
+-	while( ( pObject = UTIL_FindEntityInSphere( pObject, pev->origin, PLAYER_SEARCH_RADIUS ) ) != NULL )
++	UTIL_MakeVectors( pPlayer->pev->v_angle );// so we know which way we are facing
++
++	while( ( pObject = UTIL_FindEntityInSphere( pObject, pPlayer->pev->origin, PLAYER_SEARCH_RADIUS ) ) != NULL )
+ 	{
+ 		if( pObject->ObjectCaps() & ( FCAP_IMPULSE_USE | FCAP_CONTINUOUS_USE | FCAP_ONOFF_USE ) )
+ 		{
+ 			// !!!PERFORMANCE- should this check be done on a per case basis AFTER we've determined that
+ 			// this object is actually usable? This dot is being done for every object within PLAYER_SEARCH_RADIUS
+ 			// when player hits the use key. How many objects can be in that area, anyway? (sjb)
+-			vecLOS = ( VecBModelOrigin( pObject->pev ) - ( pev->origin + pev->view_ofs ) );
++			vecLOS = ( VecBModelOrigin( pObject->pev ) - ( pPlayer->pev->origin + pPlayer->pev->view_ofs ) );
+ 
+ 			// This essentially moves the origin of the target to the corner nearest the player to test to see 
+ 			// if it's "hull" is in the view cone
+@@ -1615,8 +1561,8 @@
+ 			if( pClosest && fabs( flDot - flMaxDot ) <= 2.0f * FLT_EPSILON )
+ 			{
+ 				TraceResult useTrace;
+-				Vector eyes = pev->origin + pev->view_ofs;
+-				UTIL_TraceLine( eyes, eyes + gpGlobals->v_forward * PLAYER_SEARCH_RADIUS, dont_ignore_monsters, edict(), &useTrace );
++				Vector eyes = pPlayer->pev->origin + pPlayer->pev->view_ofs;
++				UTIL_TraceLine( eyes, eyes + gpGlobals->v_forward * PLAYER_SEARCH_RADIUS, dont_ignore_monsters, pPlayer->edict(), &useTrace );
+ 				if( useTrace.pHit == pObject->edict() ) preferObject = TRUE;
+ 				else if( useTrace.pHit == pClosest->edict() ) preferObject = FALSE;
+ 			}
+@@ -1630,7 +1576,67 @@
+ 			//ALERT( at_console, "%s : %f\n", STRING( pObject->pev->classname ), flDot );
+ 		}
+ 	}
+-	pObject = pClosest;
++	return pClosest;
++
++}
++
++void CBasePlayer::PlayerUse( void )
++{
++	if( IsObserver() )
++		return;
++
++	// Was use pressed or released?
++	if( !( ( pev->button | m_afButtonPressed | m_afButtonReleased) & IN_USE ) )
++		return;
++
++	// Hit Use on a train?
++	if( m_afButtonPressed & IN_USE )
++	{
++		if( m_pTank != 0 )
++		{
++			// Stop controlling the tank
++			// TODO: Send HUD Update
++			m_pTank->Use( this, this, USE_OFF, 0 );
++			return;
++		}
++		else
++		{
++			if( m_afPhysicsFlags & PFLAG_ONTRAIN )
++			{
++				m_afPhysicsFlags &= ~PFLAG_ONTRAIN;
++				m_iTrain = TRAIN_NEW|TRAIN_OFF;
++
++				CBaseEntity *pTrain = Instance( pev->groundentity );
++				if( pTrain && pTrain->Classify() == CLASS_VEHICLE )
++				{
++					( (CFuncVehicle *)pTrain )->m_pDriver = NULL;
++				}
++				return;
++			}
++			else
++			{	// Start controlling the train!
++				CBaseEntity *pTrain = CBaseEntity::Instance( pev->groundentity );
++
++				if( pTrain && !( pev->button & IN_JUMP ) && FBitSet( pev->flags, FL_ONGROUND ) && ( pTrain->ObjectCaps() & FCAP_DIRECTIONAL_USE ) && pTrain->OnControls( pev ) )
++				{
++					m_afPhysicsFlags |= PFLAG_ONTRAIN;
++					m_iTrain = TrainSpeed( (int)pTrain->pev->speed, pTrain->pev->impulse );
++					m_iTrain |= TRAIN_NEW;
++
++					if( pTrain->Classify() == CLASS_VEHICLE )
++					{
++						EMIT_SOUND( ENT( pev ), CHAN_ITEM, "plats/vehicle_ignition.wav", 0.8, ATTN_NORM );
++						( (CFuncVehicle *)pTrain )->m_pDriver = this;
++					}
++					else
++						EMIT_SOUND( ENT( pev ), CHAN_ITEM, "plats/train_use1.wav", 0.8, ATTN_NORM );
++					return;
++				}
++			}
++		}
++	}
++
++	CBaseEntity *pObject = CoF_FindNearbyUseTarget( this );
+ 
+ 	// Found an object
+ 	if( pObject )

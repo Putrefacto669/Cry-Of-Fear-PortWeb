@@ -1,0 +1,145 @@
+#launcher .cof-device-settings { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem; }
+#cof-device-dialog { width:min(34rem, calc(100% - 3rem)); padding:1.25rem; color:#eee; background:#1a1819; border:1px solid #77666b; }
+#cof-device-dialog::backdrop { background:#09090aee; }
+#cof-device-dialog button, #launcher .cof-device-settings button { min-height:44px; padding:.45rem .8rem; font:inherit; color:#eee; background:#252124; border:1px solid #786870; }
+#cof-device-dialog button { margin:.3rem .4rem .3rem 0; }
+.cof-touch-diagram { display:grid; grid-template-columns:repeat(3, 1fr); gap:.6rem; }
+.cof-touch-diagram div { text-align:center; padding:.4rem; border:1px solid #51434a; }
+.cof-touch-diagram b { display:block; font-size:1.9rem; }
+body.cof-mobile-active { grid-template-rows:minmax(0,1fr); height:100dvh; overflow:hidden; }
+body.cof-mobile-active > :is(header, footer, #log) { display:none; }
+body.cof-mobile-active main { max-height:100dvh; max-width:100vw; width:min(100vw, 177.7778dvh); height:auto; align-self:center; }
+.cof-mobile-active #canvas, #cof-touch-controls { touch-action:none; }
+#cof-touch-controls { position:absolute; z-index:12; inset:0; pointer-events:none; user-select:none; -webkit-user-select:none; }
+#cof-touch-controls [hidden] { display:none; }
+#cof-touch-controls {
+  container-type:size;
+  --top: max(3.4%, env(safe-area-inset-top));
+  --left: max(4.3%, env(safe-area-inset-left));
+  --right: max(3.25%, env(safe-area-inset-right));
+  --top-size: clamp(30px, 8.3cqh, 80px);
+  --action-size: clamp(36px, 10.5cqh, 104px);
+}
+.cof-touch-stick, .cof-touch-actions button {
+  position:absolute; border:1px solid #798b9d72;
+  border-radius:50%; color:#cdd2d6;
+  background:radial-gradient(ellipse at 36% 18%, #46535c66, #1b242ab0 46%, #101418bd 78%, #212b34b5);
+  box-shadow:inset 0 1px 2px #c5d8eb28, inset 0 -1px 4px #90b4d436, 0 2px 6px #0008;
+}
+.cof-touch-stick {
+  left:20%; top:75.4%; transform:translate(-50%, -50%); width:24.5cqh; aspect-ratio:1;
+  border-color:#8ca9bf91;
+  box-shadow:inset 0 1px 3px #cfe6f34d, inset -2px -3px 9px #729bb951, 0 2px 7px #0008;
+}
+.cof-touch-stick i {
+  position:absolute; width:7%; height:5.5%; background:#afb9c480;
+  clip-path:polygon(50% 0,100% 100%,0 100%); pointer-events:none;
+}
+.cof-touch-stick .up { left:46.5%; top:6%; }
+.cof-touch-stick .right { right:5.5%; top:47.25%; transform:rotate(90deg); }
+.cof-touch-stick .down { left:46.5%; bottom:6%; transform:rotate(180deg); }
+.cof-touch-stick .left { left:5.5%; top:47.25%; transform:rotate(-90deg); }
+.cof-touch-stick span {
+  position:absolute; inset:29%; border-radius:50%;
+  background:linear-gradient(155deg,#4b535bdc,#252a2fe8);
+  border:1px solid #9faeb98a; box-shadow:inset 0 1px 3px #bdc8d64d, 0 2px 6px #0008;
+}
+.cof-touch-actions { position:absolute; inset:0; pointer-events:none; }
+.cof-touch-actions button {
+  display:grid; place-items:center; padding:0; width:var(--action-size); height:var(--action-size);
+  pointer-events:auto; touch-action:none;
+  font:600 clamp(15px, 3.5cqh, 34px) system-ui; cursor:pointer;
+}
+.cof-touch-actions svg {
+  width:55%; height:55%; fill:none; stroke:currentColor; stroke-width:1.7;
+  stroke-linecap:round; stroke-linejoin:round; opacity:.83; pointer-events:none;
+}
+.cof-touch-actions button:is(.pressed,:active,.quick-selected) {
+  border-color:#94bacad9; box-shadow:inset 0 0 8px #9cd8ff48, 0 0 5px #79abd44a;
+}
+.cof-touch-actions button:focus-visible { outline:2px solid #f5f6f7; outline-offset:2px; }
+.cof-touch-actions :is([data-action="pause"],[data-action="inventory"],[data-action="objectives"],[data-action="flashlight"],[data-action^="quick"]) {
+  top:var(--top); width:var(--top-size); height:var(--top-size);
+}
+.cof-touch-actions [data-action="pause"] { left:var(--left); }
+.cof-touch-actions [data-action="inventory"] { left:calc(var(--left) + var(--top-size) + 2cqw); }
+.cof-touch-actions [data-action="objectives"] { left:calc(var(--left) + 2 * var(--top-size) + 4cqw); }
+.cof-touch-actions [data-action^="quick"] {
+  left:50%; transform:translateX(-50%); height:calc(var(--top-size) * .87);
+  border-radius:16%; background:linear-gradient(#20272d80,#0f1419ad);
+}
+.cof-touch-actions [data-action="quick1"] { left:calc(50% - var(--top-size) - 1cqw); }
+.cof-touch-actions [data-action="quick3"] { left:calc(50% + var(--top-size) + 1cqw); }
+.cof-touch-actions [data-action="flashlight"] { right:max(4.3%, env(safe-area-inset-right)); }
+.cof-touch-actions [data-action="attack"] {
+  right:var(--right); bottom:20%; width:16.9cqh; height:16.9cqh;
+  border-color:#8ca9bf91;
+}
+.cof-touch-actions [data-action="attack"] svg { width:62%; height:62%; }
+.cof-touch-actions [data-action="reload"] { left:77.8%; bottom:23.3%; transform:translateX(-50%); }
+.cof-touch-actions [data-action="use"] { left:83.7%; bottom:32.9%; transform:translateX(-50%); }
+.cof-touch-actions [data-action="sprint"] { left:76.4%; bottom:max(10.1%, env(safe-area-inset-bottom)); transform:translateX(-50%); }
+.cof-touch-actions [data-action="duck"] { left:84.4%; bottom:max(10.7%, env(safe-area-inset-bottom)); transform:translateX(-50%); }
+.cof-touch-actions [data-action="jump"] {
+  right:max(1.25%, env(safe-area-inset-right)); bottom:max(10%, env(safe-area-inset-bottom));
+  width:clamp(32px, 8.2cqh, 78px); height:clamp(32px, 8.2cqh, 78px);
+}
+.cof-touch-rotation { pointer-events:auto; position:absolute; inset:0; display:grid; place-items:center; margin:0; color:white; background:#131014ec; }
+
+#cof-bag > .cof-touch-close-bag { display:none; }
+.cof-mobile-active #cof-bag > .cof-touch-close-bag {
+  position:absolute; top:max(.55rem, env(safe-area-inset-top)); left:max(.55rem, env(safe-area-inset-left));
+  z-index:3; display:grid; place-items:center; width:44px; height:44px; padding:0;
+  border:1px solid #a1abb48c; border-radius:50%; background:#171c23e5; color:#e0e4e8;
+  font:26px system-ui; touch-action:manipulation; cursor:pointer;
+}
+
+body.cof-mobile-active > header:has(#update:not([hidden])) {
+  display:block; position:fixed; inset:0; z-index:30; padding:0; border:0;
+  font-size:0; color:transparent; pointer-events:none;
+}
+.cof-mobile-active header :is(#status, #fullscreen, #pointer) { display:none; }
+.cof-mobile-active #update:not([hidden]) {
+  position:absolute; top:calc(max(.7rem, env(safe-area-inset-top)) + clamp(36px, 11vmin, 56px));
+  left:50%; transform:translateX(-50%); margin:0; padding:.4em .9em;
+  min-height:38px; border:1px solid #b4bdc7; border-radius:.35rem;
+  background:#1b232bf2; color:#fff; font:600 13px system-ui; pointer-events:auto;
+}
+
+#cof-audio-unlock:not([hidden]) {
+  position:fixed; z-index:29; top:max(4.5rem, calc(env(safe-area-inset-top) + 3.8rem)); right:max(.55rem, env(safe-area-inset-right));
+  min-height:40px; padding:.4rem .8rem; border:1px solid #a1abb4; border-radius:.35rem;
+  background:#1b232bf2; color:white; font:600 13px system-ui;
+}
+
+.cof-mobile-active #cof-touch-controls .cof-touch-rotation {
+  place-content:center; justify-items:center; gap:.6rem; text-align:center; padding:.6rem;
+}
+.cof-touch-rotation p { margin:0; }
+.cof-touch-rotation button {
+  min-height:44px; border:1px solid #a1abb4; border-radius:.35rem;
+  background:#252d35; color:#fff; padding:.3em .8em; font:inherit;
+}
+.cof-mobile-active :is(#cof-menu, #cof-pause) .buttons {
+  top:auto; bottom:max(6%, env(safe-area-inset-bottom)); width:min(50%, 340px); gap:.15rem;
+}
+.cof-mobile-active :is(#cof-menu, #cof-pause) .buttons button {
+  min-height:clamp(36px, 12dvh, 48px); touch-action:manipulation;
+}
+.cof-mobile-active :is(#cof-menu, #cof-pause) .buttons button img {
+  object-fit:contain; object-position:left center; pointer-events:none;
+}
+.cof-mobile-active #cof-menu .board .hit { touch-action:manipulation; }
+.cof-mobile-active #cof-sheet .box { overscroll-behavior:contain; touch-action:pan-y; }
+.cof-mobile-active #cof-sheet :is(button, label, input) { touch-action:manipulation; }
+@media (orientation:portrait) {
+  body.cof-mobile-active main:has(#cof-menu.on, #cof-sheet.on) {
+    width:100%; height:min(100dvh, 34rem); aspect-ratio:auto;
+  }
+  .cof-mobile-active :is(#cof-menu, #cof-pause) .buttons {
+    top:36%; bottom:auto; left:10%; width:80%;
+  }
+  .cof-mobile-active #cof-menu .logo { width:min(75%, 460px); }
+}
+
+#cof-touch-controls.climbing .cof-touch-actions button:not([data-action="pause"]) { display:none; }

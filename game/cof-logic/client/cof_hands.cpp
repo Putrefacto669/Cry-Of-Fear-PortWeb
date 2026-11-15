@@ -47,6 +47,14 @@ static void HandsStatus()
 // Xash recomputes the attachments while drawing (after V_CalcRefdef), so like the original they
 // are captured during the draw of the camera entity and give the view of the next frame.
 static int g_ladderCam;
+
+// The view relies on attachments from this draw, even when the previous
+// attachment places the camera outside the new sequence's visibility bounds.
+bool CoF_ActiveLadderCamera(const cl_entity_t *entity)
+{
+ return g_ladderCam && entity && entity->index == g_ladderCam && entity->model &&
+        !strcmp(entity->model->name,"models/ladder_climb.mdl");
+}
 static float g_ladderOrg[3],g_ladderAngles[3],g_ladderAtt[4][3],g_ladderEntOrg[3];
 static bool g_ladderAttValid;
 static unsigned g_ladderViews,g_ladderCaptures,g_ladderSetups,g_ladderRecoveries;
@@ -85,17 +93,6 @@ void CoF_LadderView(float *org,float *angles)
  if(e && e->model)for(int i=0;i<3;++i)shift[i]=e->origin[i]-g_ladderEntOrg[i];
  for(int i=0;i<3;++i)org[i]=g_ladderAtt[0][i]+shift[i];
  angles[0]=-a[0];angles[1]=a[1];angles[2]=ra[0];
- // When a new sequence starts, the stale view can fall outside its bounding box (the sequence
- // boxes differ a lot, e.g. climb_start_down reaches x 95, climb_loop_down only 24): the model is
- // culled, no capture comes and the view would stay there. After two frames without a capture,
- // look once from a point inside every box (origin + 72 up, along the model's yaw); the next draw
- // gives the attachments back.
- static unsigned lastCaptures,staleFrames;
- staleFrames=g_ladderCaptures==lastCaptures?staleFrames+1:0;lastCaptures=g_ladderCaptures;
- if(staleFrames>=2 && e && e->model) {
-  org[0]=e->origin[0];org[1]=e->origin[1];org[2]=e->origin[2]+72;
-  angles[0]=0;angles[1]=e->angles[1];angles[2]=0;++g_ladderRecoveries;
- }
  for(int i=0;i<3;++i){g_ladderOrg[i]=org[i];g_ladderAngles[i]=angles[i];}
  ++g_ladderViews;
 }

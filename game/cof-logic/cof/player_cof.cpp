@@ -67,6 +67,9 @@ typedef struct
 	EHANDLE store;                 // cof_playerstate holding this in save games
 
 	cof_phone_t phone;   // trigger_cofmobile / weapon_mobile
+	float nextLadderHint;
+	float forceLadderHint;
+	bool sentLadderHint;
 	int sentHide;        // m_iHideHUD in the last COF/HUD STAT
 	int sentUnread;      // last COF/HUD SMSICON
 	BOOL flashlight;     // the phone's light (CoF_SetFlashlight)
@@ -421,10 +424,23 @@ void CoF_PlayerPreThink( CBasePlayer *pPlayer )
 	{
 		dt = 0.0f;
 		s->nextStatus = s->forceStatus = 0.0f;
+		s->nextLadderHint = s->forceLadderHint = 0.0f;
 		s->lastSprint = now;
 		s->invDirty = TRUE;
 	}
 	s->lastTime = now;
+
+	if( now >= s->nextLadderHint )
+	{
+		const bool ladder = CoF_LadderInReach( pPlayer );
+		if( ladder != s->sentLadderHint || now >= s->forceLadderHint )
+		{
+			CoF_HudPrint( "COF/HUD LADDER %d\n", ladder ? 1 : 0 );
+			s->sentLadderHint = ladder;
+			s->forceLadderHint = now + 1.0f;
+		}
+		s->nextLadderHint = now + 0.1f;
+	}
 
 	BOOL ducking = FBitSet( pev->flags, FL_DUCKING ) || FBitSet( pev->button, IN_DUCK );
 	BOOL moving = pev->velocity.Length2D() > 20.0f && FBitSet( pev->flags, FL_ONGROUND );
@@ -781,6 +797,12 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
 
 bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd )
 {
+	if( FStrEq( pcmd, "cof_useladder" ))
+	{
+		CoF_UseLadderInReach( pPlayer );
+		return true;
+	}
+
 	if(CoF_ExtrasCommand(pPlayer,pcmd))return true;
 	cof_player_t *s = CoF_State( pPlayer );
 	if( !s )

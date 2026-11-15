@@ -369,6 +369,16 @@
     const el = document.createElement("div");
     el.id = "cof-bag";
     el.innerHTML = `<img class="rust" alt=""><div class="sheet"><img class="bg" alt=""><div class="menu"><img alt=""></div></div>`;
+    if (window.CoFMobile?.active) {
+      const close = document.createElement("button");
+      close.type = "button";
+      close.className = "cof-touch-close-bag";
+      close.dataset.action = "inventory-close";
+      close.setAttribute("aria-label", document.documentElement.lang === "es" ? "Cerrar bolso" : "Close bag");
+      close.textContent = "×";
+      close.addEventListener("click", () => toggleBag());
+      el.append(close);
+    }
     const sheet = el.querySelector(".sheet");
     bag.menu = el.querySelector(".menu");
     loadTga(`${VGUI}/backgroundtoall.TGA`).then((url) => { el.querySelector(".rust").src = url; })
@@ -665,7 +675,7 @@
       #cof-menu .board.on { display:flex; }
       #cof-menu .board .sheet { position:relative; aspect-ratio:640 / 480; width:min(90cqw, calc(90cqh * 4 / 3)); }
       #cof-menu .board .sheet img { position:absolute; inset:0; width:100%; height:100%; }
-      #cof-menu .board .hit { position:absolute; cursor:pointer; }
+      #cof-menu .board .hit { all:unset; position:absolute; cursor:pointer; }
       #cof-menu .board .hit:hover { background:rgba(255,40,40,.12); box-shadow:0 0 0 1px rgba(255,80,80,.5) inset; }
     `;
     document.head.appendChild(style);
@@ -701,8 +711,12 @@
     board.innerHTML = `<div class="sheet"><img alt=""></div>`;
     const sheet = board.querySelector(".sheet");
     setPictureAbs(sheet.querySelector("img"), `${VGUI}/640_difficulty.tga`);
-    for (const [x, y, w, h, skill] of DIFFICULTY) {
-      const hit = document.createElement("div");
+    const difficultyLabels = SPANISH ? ["Fácil", "Normal", "Difícil", "Pesadilla", "Atrás"] :
+      ["Easy", "Normal", "Difficult", "Nightmare", "Back"];
+    for (const [index, [x, y, w, h, skill]] of DIFFICULTY.entries()) {
+      const hit = document.createElement("button");
+      hit.type = "button";
+      hit.setAttribute("aria-label", difficultyLabels[index]);
       hit.className = "hit";
       Object.assign(hit.style, { left: pct(x, 640), top: pct(y, 480), width: pct(w, 640), height: pct(h, 480) });
       hit.addEventListener("click", () => (skill ? startGame(skill) : board.classList.remove("on")));
@@ -1535,7 +1549,8 @@
       row.append(span, input);
       body.appendChild(row);
     };
-    slider(SPANISH ? "Sensibilidad del ratón" : "Mouse sensitivity", "sensitivity", 0.5, 10, 0.1);
+    slider(window.CoFMobile?.active ? (SPANISH ? "Sensibilidad táctil" : "Touch sensitivity") :
+      (SPANISH ? "Sensibilidad del ratón" : "Mouse sensitivity"), "sensitivity", 0.5, 10, 0.1);
     slider(SPANISH ? "Volumen" : "Volume", "volume", 0, 1, 0.05);
     slider(SPANISH ? "Música" : "Music", "music", 0, 1, 0.05);
     slider(SPANISH ? "Brillo" : "Brightness", "lightBrightness", 0, 0.3, 0.01);
@@ -1562,7 +1577,10 @@
     span.textContent = SPANISH ? "Pantalla completa" : "Fullscreen";
     const fs = document.createElement("button");
     fs.textContent = SPANISH ? "Activar" : "Enable";
-    fs.addEventListener("click", () => document.getElementById("canvas").parentElement.requestFullscreen({ navigationUI: "hide" }).catch(() => {}));
+    fs.addEventListener("click", () => {
+      if (window.CoFMobile?.active) window.CoFMobile.prepareScreen();
+      else document.getElementById("canvas").parentElement.requestFullscreen({ navigationUI: "hide" }).catch(() => {});
+    });
     row.append(span, fs);
     body.appendChild(row);
     const langRow = document.createElement("div");
@@ -1586,8 +1604,13 @@
       if(!open&&menu.visible&&document.pointerLockElement)document.exitPointerLock();
     },
     get bagOpen() { return bag.open; },
+    get interactionOpen() {
+      return loading.active || Boolean(panel?.dialog.classList.contains("on")) ||
+        Boolean(padlockPanel && padlockPanel.style.display !== "none");
+    },
     get menuOpen() { return menu.visible; },
     get paused() { return pause.open; },
+    get cameraHidesHud() { return Boolean(status.hide & 0xc); },
     onMap,
     handle(line) {
       if (!languageSynced) syncLanguage();  // the first server line: the engine is up
@@ -1618,6 +1641,12 @@
           if (window.CoFPostFX) CoFPostFX.set({ blur: on ? Math.max(1, Math.min(8, strength)) : 0 });
           break;
         }
+        case "CLIMB":
+          window.CoFMobile?.setClimbing(args[0] === "1");
+          break;
+        case "LADDER":
+          window.CoFMobile?.setLadderAvailable(args[0] === "1");
+          break;
         case "STAT":
           if (loading.active) loading.ready();
           updateStatus(+args[0] || 0, +args[1] || 0, +args[2] || 0, +args[3] || 0);

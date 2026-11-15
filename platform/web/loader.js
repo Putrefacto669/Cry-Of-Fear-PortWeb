@@ -87,6 +87,16 @@
         document.getElementById("update").disabled = false;
         setStatus("Cierra las otras pestañas del juego antes de actualizar");
       });
+      let checking = false;
+      const checkForUpdate = async () => {
+        if (checking || document.hidden || !sw.controller || reg.waiting || reg.installing) return;
+        checking = true;
+        try { await reg.update(); }
+        catch (err) { console.debug("Service Worker update check:", err.message); }
+        finally { checking = false; }
+      };
+      document.addEventListener("visibilitychange", checkForUpdate);
+      setInterval(checkForUpdate, 5 * 60 * 1000);
       if (!sw.controller) {
         setStatus("Preparando caché…");
         await Promise.race([new Promise((r) => sw.addEventListener("controllerchange", r, { once: true })), sleep(5000)]);
@@ -98,6 +108,26 @@
       log(`service worker: ${e.message}`, "err");
       if (!sw.controller) throw e;
     }
+  }
+
+  function watchAudioUnlock() {
+    const watcher = setInterval(() => {
+      const context = window.Module?.cofAudio?.ctx;
+      if (!context) return;
+      clearInterval(watcher);
+      const button = document.getElementById("cof-audio-unlock");
+      if (!button) return;
+      const showIfBlocked = () => { button.hidden = !["suspended", "interrupted"].includes(context.state); };
+      button.textContent = document.documentElement.lang === "es" ? "Activar sonido" : "Enable audio";
+      button.addEventListener("click", async () => {
+        try { await context.resume(); }
+        catch (err) { log(`audio: ${err.message}`, "err"); }
+        showIfBlocked();
+      });
+      context.addEventListener("statechange", showIfBlocked);
+      showIfBlocked();
+    }, 500);
+    setTimeout(() => clearInterval(watcher), 20000);
   }
 
   const loadScript = (src) => new Promise((resolve, reject) => {
@@ -349,6 +379,7 @@
         if (spawn) {
           currentMap = spawn[1].toLowerCase();
           if (window.CoFHUD) CoFHUD.onMap(currentMap);
+          window.CoFMobile?.onMap();
           baseStatus = `Ejecutando${currentMap ? ` · ${currentMap}` : ""}`;
           refreshStatus();
         } else if (t.includes("client connected")) {
@@ -362,6 +393,8 @@
       onRuntimeInitialized: () => {
         // señal para herramientas externas (debug.js, pruebas e2e): FS ya está inicializado
         window.CoFRuntimeReady = true;
+        if (audio !== "motor") watchAudioUnlock();
+        window.CoFMobile?.start();
         if (params.get("timer") === "1") MainLoop.requestAnimationFrame = MainLoop.fakeRequestAnimationFrame;
         if (params.get("fx") !== "0" && window.CoFPostFX) CoFPostFX.attach().catch((e) => log(`postfx: ${e.message}`, "err"));
         baseStatus = `Ejecutando${currentMap ? ` · ${currentMap}` : ""}`;
@@ -413,7 +446,7 @@
     };
     // The pause menu owns the cursor too: SDL asks for the lock on the next click, and the click on
     // Options locked it, so the options sheet's clicks went to the canvas (09/11/2026, rain_option.mjs).
-    if (this.id === "canvas" && (globalThis.CoFExtras?.clothesOpen || globalThis.CoFHUD?.menuOpen || globalThis.CoFHUD?.paused)) {
+    if (this.id === "canvas" && (globalThis.CoFMobile?.active || globalThis.CoFExtras?.clothesOpen || globalThis.CoFHUD?.menuOpen || globalThis.CoFHUD?.paused)) {
       return observed(Promise.reject(Object.assign(new Error("Game menu owns the cursor"), { name: "InvalidStateError" })));
     }
     try {
@@ -504,6 +537,7 @@
     setStatus(window.CoFLauncher?.t("status") || "En el launcher");
     launcher.hidden = false;
     document.getElementById("play").addEventListener("click", () => {
+      window.CoFMobile?.prepareScreen();
       launcher.hidden = true;
       showDisclaimer();
       run(); // the engine loads behind the warning

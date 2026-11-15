@@ -124,7 +124,7 @@ SKY_SUFFIXES = ("rt", "bk", "lf", "ft", "up", "dn")
 ENT_RE = re.compile(r'"([^"]*)"\s+"([^"]*)"')
 
 
-def read_entities(bsp: Path) -> list[dict[str, str]]:
+def read_entity_lump(bsp: Path) -> str:
     with bsp.open("rb") as f:
         version, = struct.unpack("<i", f.read(4))
         if version != BSP_VERSION:
@@ -132,12 +132,40 @@ def read_entities(bsp: Path) -> list[dict[str, str]]:
         f.seek(4 + LUMP_ENTITIES * 8)
         ofs, size = struct.unpack("<ii", f.read(8))
         f.seek(ofs)
-        text = f.read(size).decode("latin-1").rstrip("\0")
+        return f.read(size).decode("latin-1").rstrip("\0")
+
+
+def read_entities(bsp: Path) -> list[dict[str, str]]:
+    text = read_entity_lump(bsp)
     ents = []
     for block in text.split("}"):
         if "{" in block:
             ents.append(dict(ENT_RE.findall(block)))
     return ents
+
+
+def stage_nightmare_entities(bsp: Path, map_stage: Path) -> None:
+    """Extend just the two visible corpse reveals. Leave the BSP and other events alone."""
+    delays = {"multispott1": "killspott1m", "multiwrong6": "killwrong62"}
+    changed: set[str] = set()
+
+    def extend_reveal(match: re.Match[str]) -> str:
+        block = match[0]
+        fields = dict(ENT_RE.findall(block))
+        name = fields.get("targetname", "")
+        if fields.get("classname") != "multi_manager" or name not in delays:
+            return block
+        key = delays[name]
+        if name in changed or fields.get(key) != "0.3":
+            raise ValueError(f"Unexpected nightmare corpse timeline {name}")
+        changed.add(name)
+        return re.sub(r'("' + key + r'"\s+")0\.3(")', r'\g<1>1.2\2', block, count=1)
+
+    patched = re.sub(r'\{[^{}]*\}', extend_reveal, read_entity_lump(bsp))
+    if changed != delays.keys():
+        raise ValueError("Missing nightmare corpse timelines")
+    path = map_stage / "maps" / "c_nightmare.ent"
+    path.write_bytes(patched.encode("latin-1") + b"\0")
 
 
 def map_music(game: Path, bsp: Path) -> set[Path]:
@@ -362,6 +390,8 @@ def main() -> int:
             print(f"  WADs fuera del paquete: {len(dropped)} ({mib:.1f} MiB)")
 
     size = copy_set(game, deps, map_stage)
+    if args.map == "c_nightmare":
+        stage_nightmare_entities(bsp, map_stage)
     print(f"{args.map}: {len(deps)} archivos, {size / 2**20:.1f} MiB")
     music = map_music(game, bsp)
     (args.stage / "mp3").mkdir(parents=True, exist_ok=True)
