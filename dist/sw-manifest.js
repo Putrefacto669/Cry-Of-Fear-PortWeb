@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "b902da18e9f1",
+ "version": "bbd2d84ba245",
  "coi": false,
  "precache": [
   "BingSiteAuth.xml",
@@ -15,6 +15,8 @@ self.COF_MANIFEST = {
   "launcher/logo.png",
   "launcher.js",
   "loader.js",
+  "mobile.css",
+  "mobile.js",
   "packs/boot.js",
   "packs/engine.js",
   "packs/extras.js",
@@ -24,9 +26,11 @@ self.COF_MANIFEST = {
   "packs/map_c_apartment4.js",
   "packs/map_c_apartment5.js",
   "packs/map_c_apartmentsick.js",
+  "packs/map_c_basement.js",
   "packs/map_c_game_menu1.js",
   "packs/map_c_intro.js",
   "packs/map_c_nightmare.js",
+  "packs/map_c_sewer.js",
   "packs/map_c_start.js",
   "packs/map_c_start2.js",
   "packs/maps.json",
@@ -49,13 +53,15 @@ self.COF_MANIFEST = {
   "extras.js": "e3ce2423650a",
   "googlee1f002228312b1b3.html": "fe98df47e40f",
   "gpustats.js": "70aaa1f28265",
-  "hud.js": "503d673362f3",
-  "index.html": "0572583ae482",
+  "hud.js": "eb0abe2c9ad7",
+  "index.html": "96201619adf6",
   "launcher/background.jpg": "d385a9ca8c75",
   "launcher/disclaimer.jpg": "1375e3bf3d98",
   "launcher/logo.png": "8d7bb7601333",
-  "launcher.js": "00789e8b809d",
-  "loader.js": "36fc07f18e5c",
+  "launcher.js": "fefeda5e9b3f",
+  "loader.js": "b742f2625750",
+  "mobile.css": "21f0410bd612",
+  "mobile.js": "a84de4cc0704",
   "mp3/2aphall1.mp3": "70a02fded189",
   "mp3/ap3hall1.mp3": "23be860ec5a8",
   "mp3/ap3hall1end.mp3": "6da929c405e7",
@@ -71,7 +77,10 @@ self.COF_MANIFEST = {
   "mp3/aproom2.mp3": "acf4f82e769b",
   "mp3/apsick.mp3": "503a4378adc9",
   "mp3/aptaurus.mp3": "1634633baf45",
+  "mp3/basement1.mp3": "1d987a64e8bd",
   "mp3/basement1end.mp3": "d2041f6fdf3e",
+  "mp3/basement2.mp3": "31befca2eab9",
+  "mp3/basements.mp3": "5e6190005400",
   "mp3/fancorridor.mp3": "5ae92e47665f",
   "mp3/faster.mp3": "8a7e8f48de26",
   "mp3/gamestartup.mp3": "2fa24ba9b3c8",
@@ -80,6 +89,7 @@ self.COF_MANIFEST = {
   "mp3/intro2.mp3": "6951efd61f45",
   "mp3/introduction.mp3": "5bb198fa2929",
   "mp3/introreal.mp3": "a35c91d20b1d",
+  "mp3/memories1b.mp3": "be4ca2202ebe",
   "mp3/music1.mp3": "e242e2793a5f",
   "mp3/music3.mp3": "99ae03f53b7d",
   "mp3/music4.mp3": "580f16ed9d6a",
@@ -89,6 +99,7 @@ self.COF_MANIFEST = {
   "mp3/nightmmm.mp3": "865d72c887b3",
   "mp3/sawersong.mp3": "74caa35a7a80",
   "mp3/sewerhit.mp3": "86a4f34841b7",
+  "mp3/sewers2.mp3": "bd0eab55ebea",
   "mp3/slowerdeath.mp3": "c55c2cf8f39d",
   "mp3/slowereyes.mp3": "5d047b6fba2b",
   "mp3/slowerfight.mp3": "01d722b9d25a",
@@ -98,8 +109,8 @@ self.COF_MANIFEST = {
   "mp3/watercorridor.mp3": "ba8c97aa265b",
   "packs/boot.data": "9056f3572435",
   "packs/boot.js": "b81c3c8b79dd",
-  "packs/engine.data": "87127e37c03c",
-  "packs/engine.js": "33c01323a1e9",
+  "packs/engine.data": "82f4ac52443b",
+  "packs/engine.js": "6d4c7bdd0a73",
   "packs/extras.data": "8972eb64392e",
   "packs/extras.js": "63f307f5a9a7",
   "packs/map_c_apartment1.data": "8a2ae128e830",
@@ -114,17 +125,21 @@ self.COF_MANIFEST = {
   "packs/map_c_apartment5.js": "ee33e05393c1",
   "packs/map_c_apartmentsick.data": "6564b8d6f2c9",
   "packs/map_c_apartmentsick.js": "1cde8035f2c3",
+  "packs/map_c_basement.data": "a9c392ec82de",
+  "packs/map_c_basement.js": "0c56a5c9fd51",
   "packs/map_c_game_menu1.data": "ae0666489e26",
   "packs/map_c_game_menu1.js": "341542627a0c",
   "packs/map_c_intro.data": "95524a3f0d7a",
   "packs/map_c_intro.js": "60fbdc7419e9",
-  "packs/map_c_nightmare.data": "94c54bd2661e",
-  "packs/map_c_nightmare.js": "c2116a9b9fd4",
+  "packs/map_c_nightmare.data": "3b98dbe6def8",
+  "packs/map_c_nightmare.js": "62fcc5ec6eb1",
+  "packs/map_c_sewer.data": "7c96018c6780",
+  "packs/map_c_sewer.js": "1d9dc7f61368",
   "packs/map_c_start.data": "9d60ea83fbf0",
   "packs/map_c_start.js": "9889233d4faf",
   "packs/map_c_start2.data": "c74f146eb41e",
   "packs/map_c_start2.js": "253f3375fb51",
-  "packs/maps.json": "4e86393c4c0b",
+  "packs/maps.json": "6dc66991b880",
   "packs/shared.json": "ff92c721887a",
   "packs/transitions.json": "79671f300407",
   "postfx.js": "b57cd4f53a8c",
@@ -136,8 +151,8 @@ self.COF_MANIFEST = {
   "shaders/water.vert.glsl": "2ac21130b1b7",
   "sitemap.xml": "ac1bb0cd5b1c",
   "xash3d.html": "9c5ead998246",
-  "xash3d.js": "58ab3610f2d1",
-  "xash3d.wasm": "8a7ca0515bf8"
+  "xash3d.js": "97e277a65a73",
+  "xash3d.wasm": "2e2edb14e097"
  },
  "gz": {
   "packs/boot.data": {
@@ -145,8 +160,8 @@ self.COF_MANIFEST = {
    "gzSize": 22846762
   },
   "packs/engine.data": {
-   "size": 2913779,
-   "gzSize": 976275
+   "size": 2931718,
+   "gzSize": 981040
   },
   "packs/extras.data": {
    "size": 24149424,
@@ -176,6 +191,10 @@ self.COF_MANIFEST = {
    "size": 28671265,
    "gzSize": 15664727
   },
+  "packs/map_c_basement.data": {
+   "size": 60751498,
+   "gzSize": 34299397
+  },
   "packs/map_c_game_menu1.data": {
    "size": 16485833,
    "gzSize": 9208931
@@ -185,8 +204,12 @@ self.COF_MANIFEST = {
    "gzSize": 20470014
   },
   "packs/map_c_nightmare.data": {
-   "size": 41828940,
-   "gzSize": 25655064
+   "size": 41914027,
+   "gzSize": 25665628
+  },
+  "packs/map_c_sewer.data": {
+   "size": 22158391,
+   "gzSize": 10709078
   },
   "packs/map_c_start.data": {
    "size": 73991040,
@@ -197,8 +220,8 @@ self.COF_MANIFEST = {
    "gzSize": 32286826
   },
   "xash3d.wasm": {
-   "size": 4681925,
-   "gzSize": 1752407
+   "size": 4683846,
+   "gzSize": 1753245
   }
  }
 };

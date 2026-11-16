@@ -1,0 +1,20 @@
+diff --git a/cl_dll/StudioModelRenderer.cpp b/cl_dll/StudioModelRenderer.cpp
+--- a/cl_dll/StudioModelRenderer.cpp
++++ b/cl_dll/StudioModelRenderer.cpp
+@@ -57,6 +57,7 @@
+ extern void CoF_CostumeBegin(model_t *model, void *header);
+ extern void CoF_CostumeEnd();
+ extern void CoF_HandsMirror(float (*matrix)[4]);
++extern bool CoF_ActiveLadderCamera(const cl_entity_t *entity);
+ extern void CoF_HandsBeforePoints();extern void CoF_HandsAfterPoints();
+ 
+ void CStudioModelRenderer::Init( void )
+@@ -1141,7 +1142,7 @@
+ 	if( flags & STUDIO_RENDER )
+ 	{
+ 		// see if the bounding box lets us trivially reject, also sets
+-		if( !IEngineStudio.StudioCheckBBox() )
++		if( !IEngineStudio.StudioCheckBBox() && !CoF_ActiveLadderCamera(m_pCurrentEntity) )
+ 			return 0;
+ 
+ 		( *m_pModelsDrawn )++;

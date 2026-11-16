@@ -163,3 +163,17 @@ rutinas.
 2. El recorrido guiado: agacharse, caer al agua, salto agachado, romper los barrotes, los monstruos que suben del agua
    y las puertas hasta `chsw55`.
 3. Las pruebas negativas (los dos `checkbrush` y los barrotes sin romper).
+
+## 7. Publicación (15/11/2026)
+
+Autorizada por el usuario (el permiso de Andreas cubre todo el juego). Se integró `portweb/main` (`914b3ae`, la versión
+móvil) en la rama de campaña y se publicó un `dist` con:
+
+- `c_basement` y `c_sewer` (paquetes `map_c_basement` 60,8 MB y `map_c_sewer` 22,2 MB; música `basement1`, `basement2`,
+  `basements`, `memories1b` y `sewers2`) añadidos a `packs/maps.json`.
+- Servidor (`939288f8…`) y cliente (`cc321362…`) compilados sobre la fusión, con los parches de hlsdk 0002/0003.
+- El botón móvil de marcar número (`dial`, el `*` del teclado), necesario para la llamada de `c_basement`.
+- Manifiesto del Service Worker `bbd2d84ba245`.
+
+`c_sewer` todavía no tiene la niebla (`func_fogfield`) ni el recorrido guiado completo; su salida `chsw55` no cambia
+de nivel porque `c_sewer2` aún no está en el paquete.

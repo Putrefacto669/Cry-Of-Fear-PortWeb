@@ -1,0 +1,24 @@
+{
+  "map": "c_intro",
+  "hidden": false,
+  "extensions": [
+    "EXT_texture_compression_bptc",
+    "EXT_texture_compression_rgtc",
+    "WEBGL_compressed_texture_astc",
+    "WEBGL_compressed_texture_etc",
+    "WEBGL_compressed_texture_etc1",
+    "WEBGL_compressed_texture_s3tc",
+    "WEBGL_compressed_texture_s3tc_srgb"
+  ],
+  "textureLines": [
+    "GL_MAX_TEXTURE_SIZE: 8192",
+    "GL_MAX_TEXTURE_UNITS_ARB: 32",
+    "GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT: 16.0",
+    "Warning: Unknown command \"gl_texturemode\""
+  ],
+  "glErrors": [
+    "WebGL: INVALID_ENUM: getParameter: invalid parameter name",
+    "[11:11:55] OpenGL Error: GL_INVALID_ENUM while uploading *default [2D]"
+  ],
+  "jsErrors": []
+}

@@ -1,0 +1,22 @@
+{
+  "diagnosticOnly": true,
+  "modules": {
+    "server.wasm": "34094386cb5ea48e7c9576e2cc0551cbef03636be4b6a9749a69d6e9de37dba7",
+    "client.wasm": "5231706ca85f3198198fedb0afc3d2914af248dfd6bf1a0b85c9232c9dd5660b",
+    "libref_gles3compat.wasm": "8e8b0e19a9721d5cda7a13b53c6146aa267e4a21ef5391728c569578507d2814"
+  },
+  "hrtf": false,
+  "hatchBefore": "[12:47:12] COF/ENTITY *132 class=func_button body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=161 touch=0 target=multitscene frozen=0 stairs=-1 use=1 think=0 toggle=1 next=0 now=18.095 effects=0 renderfx=0 modelindex=133 model=*132\n[12:47:12] COF/USEAIM hit= class=func_button fraction=0.624607921\n[12:47:12] COF/USEAIM candidate=door_office class=inter_door dot=-0.0106156068\n[12:47:12] COF/USEAIM candidate=gay1 class=func_button dot=-0.0104359509\n[12:47:12] COF/FENCE extra_input_3 time=18.095",
+  "hatchAfter": "[12:47:13] COF/HUD MUSIC 0 0 aptaurus.mp3\n[12:47:13] COF/HUD SUB 17\n[12:47:13] COF/ENTITY *132 class=func_button body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=161 touch=0 target=multitscene frozen=0 stairs=-1 use=1 think=0 toggle=0 next=-1 now=18.6449 effects=0 renderfx=0 modelindex=133 model=*132\n[12:47:13] COF/ENTITY weapon_glock missing\n[12:47:13] COF/FENCE extra_input_4 time=18.6449",
+  "keyCollected": "[12:47:15] bag 0: apartmentkey (inventoryitems/apartmentkey.txt) count -1\n[12:47:15] COF/FENCE extra_input_6 time=21.2954",
+  "doorAfter": "[12:47:16] COF/ENTITY *66 class=inter_door body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=0 target=3_exit1 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=21.9789 effects=0 renderfx=0 modelindex=67 model=*66\n[12:47:16] COF/FENCE extra_input_8 time=21.9789",
+  "unlockTime": 21.9789,
+  "bagAfter": "[12:47:16] monster monster_child health 20 dead 0 dist 498\n[12:47:16] monster monstermaker health 0 dead 0 dist 54\n[12:47:16] COF/FENCE extra_input_9 time=21.9948",
+  "presses": [
+    23.1448
+  ],
+  "afterReload": "[12:47:18] COF/ENTITY !player class=player body=0 solid=3 origin=-312.0,480.0,177.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=23.5278 effects=0 renderfx=0 modelindex=328 model=models/player.mdl\n[12:47:18] COF/FENCE extra_input_22 time=23.5278",
+  "passed": true,
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

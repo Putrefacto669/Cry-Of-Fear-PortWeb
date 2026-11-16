@@ -1,0 +1,54 @@
+{
+  "checks": {
+    "COF/PERF applied in mobile mode": true,
+    "one engine frame per display frame without the cap": true,
+    "timingValue 2: one engine frame every 2 display frames": true,
+    "rate measured after the load (above 1 Hz) and the cap follows it": true,
+    "postfx pass runs with the vignette": true,
+    "no postfx pass without the vignette": true,
+    "low resolution lowers the buffer": true,
+    "no JS errors": true
+  },
+  "perfLine": "COF/PERF display=10Hz every=1 ratio=1.5 vignette=1",
+  "buffer": {
+    "w": 1266,
+    "h": 585,
+    "css": [
+      844,
+      390
+    ],
+    "ratio": 1.5
+  },
+  "every1": {
+    "display": 22,
+    "engine": 22,
+    "ratio": 1
+  },
+  "every2": {
+    "display": 68,
+    "engine": 34,
+    "ratio": 2
+  },
+  "measured": 10,
+  "every": 1,
+  "fxOn": {
+    "msPerFrame": 0.614,
+    "size": [
+      1266,
+      585
+    ]
+  },
+  "options": false,
+  "fxOff": {
+    "msPerFrame": 0,
+    "size": [
+      1266,
+      585
+    ]
+  },
+  "bufferLow": {
+    "w": 844,
+    "h": 390
+  },
+  "jsErrors": []
+}

@@ -22,6 +22,8 @@ bool CoF_HasItem( CBaseEntity *pActivator, const char *mapName );
 void CoF_RemoveItem( CBaseEntity *pActivator, const char *mapName );
 void CoF_ClearItem( CBaseEntity *pActivator, const char *classname );
 bool CoF_UseItemOn( CBaseEntity *pPlayer, const char *mapName ); // USE in the bag: keys (doors.cpp)
+bool CoF_LadderInReach( class CBasePlayer *pPlayer );
+void CoF_UseLadderInReach( class CBasePlayer *pPlayer );
 void CoF_UseTrace( class CBasePlayer *pPlayer );                   // E: trace from the eyes (doors.cpp)
 
 // the phone's light: kept here and drawn by the client as the original's spotlight

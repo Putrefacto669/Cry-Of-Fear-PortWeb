@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Cry of Fear Web — port no oficial jugable en el navegador</title>
   <!-- buscadores y vistas previas de enlaces (Google, Bing, Discord, WhatsApp...) -->
   <meta name="description" content="Juega Cry of Fear en el navegador: port web no oficial del survival horror de Team Psykskallar. Gratis, de código abierto y con permiso de su autor.">
@@ -41,6 +41,7 @@
     "sameAs": ["https://github.com/Putrefacto669/Cry-Of-Fear-PortWeb"]
   }
   </script>
+  <link rel="stylesheet" href="mobile.css">
   <style>
     :root { color-scheme: dark; --bg: #0b0b0c; --fg: #c9c9c9; --dim: #6b6b6b; --err: #e06c6c; }
     html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg);
@@ -203,6 +204,7 @@
       alt="This game contains violence and gore, and can cause fear, depression, heart failure and suicide. Users and viewers discretion is advised.">
   </div>
   <header>Cry of Fear · Xash3D FWGS / WebAssembly — <span id="status">Iniciando…</span> <button id="update" hidden>Nueva versión · recargar</button> <button id="fullscreen">Pantalla completa</button> <span id="pointer"></span></header>
+  <button id="cof-audio-unlock" type="button" hidden>Activar sonido</button>
   <main><canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas></main>
   <div id="log"></div>
   <footer>
@@ -234,6 +236,7 @@
   <script src="postfx.js"></script>
   <script src="extras.js"></script>
   <script src="hud.js"></script>
+  <script src="mobile.js"></script>
   <script src="loader.js"></script>
 </body>
 </html>

@@ -87,6 +87,16 @@
         document.getElementById("update").disabled = false;
         setStatus("Cierra las otras pestañas del juego antes de actualizar");
       });
+      let checking = false;
+      const checkForUpdate = async () => {
+        if (checking || document.hidden || !sw.controller || reg.waiting || reg.installing) return;
+        checking = true;
+        try { await reg.update(); }
+        catch (err) { console.debug("Service Worker update check:", err.message); }
+        finally { checking = false; }
+      };
+      document.addEventListener("visibilitychange", checkForUpdate);
+      setInterval(checkForUpdate, 5 * 60 * 1000);
       if (!sw.controller) {
         setStatus("Preparando caché…");
         await Promise.race([new Promise((r) => sw.addEventListener("controllerchange", r, { once: true })), sleep(5000)]);
@@ -98,6 +108,26 @@
       log(`service worker: ${e.message}`, "err");
       if (!sw.controller) throw e;
     }
+  }
+
+  function watchAudioUnlock() {
+    const watcher = setInterval(() => {
+      const context = window.Module?.cofAudio?.ctx;
+      if (!context) return;
+      clearInterval(watcher);
+      const button = document.getElementById("cof-audio-unlock");
+      if (!button) return;
+      const showIfBlocked = () => { button.hidden = !["suspended", "interrupted"].includes(context.state); };
+      button.textContent = document.documentElement.lang === "es" ? "Activar sonido" : "Enable audio";
+      button.addEventListener("click", async () => {
+        try { await context.resume(); }
+        catch (err) { log(`audio: ${err.message}`, "err"); }
+        showIfBlocked();
+      });
+      context.addEventListener("statechange", showIfBlocked);
+      showIfBlocked();
+    }, 500);
+    setTimeout(() => clearInterval(watcher), 20000);
   }
 
   const loadScript = (src) => new Promise((resolve, reject) => {
@@ -217,10 +247,34 @@
         refreshStatus();
       }
     }
+    // Mobile: during play only download the next map's pack (the Service Worker or the HTTP cache keeps it) and
+    // leave the mount for the level change. Mounting a 50-60 MiB pack creates hundreds of MEMFS files on the main
+    // thread (a hitch of seconds on a phone, mid-game) and holds ~145 MiB more JS heap from then on
+    // (mobile_perf.mjs, c_start2: 347 MiB with the prefetch, 202 MiB without). The change of level then mounts it
+    // from the cache through the "changelevel ... doesn't exist" path below, behind the level change itself.
+    const warmed = new Set();
+    async function warmMap(name) {
+      name = name.toLowerCase();
+      if (!packaged.has(name) || warmed.has(name) || packMounted(name)) return false;
+      warmed.add(name);
+      try {
+        const res = await fetch(`packs/map_${name}.data`);
+        if (!res.ok || !res.body) throw new Error(`HTTP ${res.status}`);
+        const reader = res.body.getReader();
+        while (!(await reader.read()).done) { /* discarded: only the cache keeps it */ }
+        log(`descargado sin montar: ${name}`);
+        return true;
+      } catch (e) {
+        warmed.delete(name);
+        log(`no se pudo descargar ${name}: ${e.message}`, "err");
+        return false;
+      }
+    }
     async function prefetchFrom(name) {
       const all = await transitionsPromise;
+      const mobileWarm = window.CoFMobile?.active && params.get("prefetch") !== "mount";
       for (const next of all[name] || []) {
-        if (next !== name) await prefetchMap(next);
+        if (next !== name) await (mobileWarm ? warmMap(next) : prefetchMap(next));
       }
     }
     const schedulePrefetch = () => {
@@ -283,6 +337,8 @@
 
     window.Module = {
       canvas,
+      // SDL scales the WebGL buffer. Leave CSS dimensions and touch coordinates in CSS pixels.
+      cofRenderPixelRatio: window.CoFMobile?.active ? Math.min(devicePixelRatio, 1.5) : undefined,
       arguments: args,
       // build ASan (Emscripten lee las opciones de Module, no del entorno). Sin ASan se ignora.
       //   leak_check_at_exit=0: la página no termina nunca y, si el motor sale por un error, el
@@ -349,6 +405,7 @@
         if (spawn) {
           currentMap = spawn[1].toLowerCase();
           if (window.CoFHUD) CoFHUD.onMap(currentMap);
+          window.CoFMobile?.onMap();
           baseStatus = `Ejecutando${currentMap ? ` · ${currentMap}` : ""}`;
           refreshStatus();
         } else if (t.includes("client connected")) {
@@ -362,6 +419,8 @@
       onRuntimeInitialized: () => {
         // señal para herramientas externas (debug.js, pruebas e2e): FS ya está inicializado
         window.CoFRuntimeReady = true;
+        if (audio !== "motor") watchAudioUnlock();
+        window.CoFMobile?.start();
         if (params.get("timer") === "1") MainLoop.requestAnimationFrame = MainLoop.fakeRequestAnimationFrame;
         if (params.get("fx") !== "0" && window.CoFPostFX) CoFPostFX.attach().catch((e) => log(`postfx: ${e.message}`, "err"));
         baseStatus = `Ejecutando${currentMap ? ` · ${currentMap}` : ""}`;
@@ -413,7 +472,7 @@
     };
     // The pause menu owns the cursor too: SDL asks for the lock on the next click, and the click on
     // Options locked it, so the options sheet's clicks went to the canvas (09/11/2026, rain_option.mjs).
-    if (this.id === "canvas" && (globalThis.CoFExtras?.clothesOpen || globalThis.CoFHUD?.menuOpen || globalThis.CoFHUD?.paused)) {
+    if (this.id === "canvas" && (globalThis.CoFMobile?.active || globalThis.CoFExtras?.clothesOpen || globalThis.CoFHUD?.menuOpen || globalThis.CoFHUD?.paused)) {
       return observed(Promise.reject(Object.assign(new Error("Game menu owns the cursor"), { name: "InvalidStateError" })));
     }
     try {
@@ -504,6 +563,7 @@
     setStatus(window.CoFLauncher?.t("status") || "En el launcher");
     launcher.hidden = false;
     document.getElementById("play").addEventListener("click", () => {
+      window.CoFMobile?.prepareScreen();
       launcher.hidden = true;
       showDisclaimer();
       run(); // the engine loads behind the warning

@@ -381,19 +381,51 @@ CoF_PlayerPreThink, before PlayerUse; a press used here is taken out
 of m_afButtonPressed so PlayerUse does not use something else too.
 =====================================================================
 */
-void CoF_UseTrace( CBasePlayer *pPlayer )
+static CBaseEntity *CoF_TraceUseTarget( CBasePlayer *pPlayer )
 {
-	if( !( pPlayer->m_afButtonPressed & IN_USE ) || pPlayer->IsObserver() || pPlayer->m_pTank != 0 )
-		return;
-
 	UTIL_MakeVectors( pPlayer->pev->v_angle );
 	Vector start = pPlayer->pev->origin + pPlayer->pev->view_ofs;
 	TraceResult tr;
 	UTIL_TraceLine( start, start + gpGlobals->v_forward * 80.0f, dont_ignore_monsters, pPlayer->edict(), &tr );
 	CBaseEntity *pHit = tr.pHit ? CBaseEntity::Instance( tr.pHit ) : NULL;
-	if( !pHit || pHit == pPlayer )
+	return pHit == pPlayer ? NULL : pHit;
+}
+
+extern CBaseEntity *CoF_FindNearbyUseTarget( CBasePlayer *pPlayer );
+extern bool CoF_IsUsableLadder( CBaseEntity *pEntity, CBasePlayer *pPlayer );
+
+static CBaseEntity *CoF_UsableLadderTarget( CBasePlayer *pPlayer )
+{
+	if( !pPlayer->IsAlive() || pPlayer->IsObserver() || pPlayer->m_pTank != 0 ||
+		FBitSet( pPlayer->pev->flags, FL_FROZEN ))
+		return NULL;
+
+	CBaseEntity *pHit = CoF_TraceUseTarget( pPlayer );
+	if( !pHit || !( pHit->ObjectCaps() & ( FCAP_IMPULSE_USE | FCAP_ONOFF_USE )))
+		pHit = CoF_FindNearbyUseTarget( pPlayer );
+	return CoF_IsUsableLadder( pHit, pPlayer ) ? pHit : NULL;
+}
+
+bool CoF_LadderInReach( CBasePlayer *pPlayer )
+{
+	return CoF_UsableLadderTarget( pPlayer ) != NULL;
+}
+
+void CoF_UseLadderInReach( CBasePlayer *pPlayer )
+{
+	CBaseEntity *pHit = CoF_UsableLadderTarget( pPlayer );
+	if( pHit )
+		pHit->Use( pPlayer, pPlayer, USE_SET, 1 );
+}
+
+void CoF_UseTrace( CBasePlayer *pPlayer )
+{
+	if( !( pPlayer->m_afButtonPressed & IN_USE ) || pPlayer->IsObserver() || pPlayer->m_pTank != 0 )
 		return;
 
+	CBaseEntity *pHit = CoF_TraceUseTarget( pPlayer );
+	if( !pHit )
+		return;
 	int caps = pHit->ObjectCaps();
 	if( !( caps & ( FCAP_IMPULSE_USE | FCAP_ONOFF_USE )))
 		return; // continuous use stays with PlayerUse, which repeats it while E is held
