@@ -27,6 +27,84 @@
   const logEl = document.getElementById("log");
   const canvas = document.getElementById("canvas");
 
+  const mobileScales = [0.8, 1, 1.25, 1.5];
+  const resolutionKey = "cofMobileResolution";
+  const mobileModes = ["auto", "performance", "sharp"];
+  let resolutionMode = "auto";
+  try {
+    const saved = localStorage.getItem(resolutionKey);
+    if (mobileModes.includes(saved)) resolutionMode = saved;
+    else if (JSON.parse(localStorage.getItem("cofOptions"))?.lowRes === true) resolutionMode = "performance";
+  } catch (_) {}
+  const startingScale = () => resolutionMode === "sharp" ? 3 : resolutionMode === "performance" ? 0 : 1;
+  let mobileScale = startingScale();
+  let mobileResolutionPending = false;
+  let lastRender = 0;
+  let frameTimes = [];
+  let fastWindows = 0;
+
+  function mobilePixelRatio() {
+    const {width, height} = canvas.getBoundingClientRect();
+    return Math.min(devicePixelRatio, mobileScales[mobileScale], Math.sqrt(750000 / Math.max(1, width * height)));
+  }
+
+  function applyMobileResolution() {
+    if (!mobileResolutionPending || window.CoFMobile?.touchActive) return;
+    mobileResolutionPending = false;
+    const ratio = mobilePixelRatio();
+    if (Math.abs(Module.cofRenderPixelRatio - ratio) < 0.001) return;
+    Module.cofRenderPixelRatio = ratio;
+    // SDL recalculates the backing buffer on resize. CSS and touch coordinates stay in CSS pixels.
+    window.dispatchEvent(new Event("resize"));
+  }
+
+  function resetMobileSampling() {
+    lastRender = 0;
+    frameTimes = [];
+    fastWindows = 0;
+  }
+
+  function sampleMobileResolution() {
+    if (document.hidden || innerHeight > innerWidth) return;
+    applyMobileResolution();
+    if (resolutionMode !== "auto" || mobileResolutionPending) return;
+    if (window.CoFHUD?.menuOpen || window.CoFHUD?.paused) {
+      if (lastRender) resetMobileSampling();
+      return;
+    }
+    const now = performance.now();
+    if (lastRender) frameTimes.push(now - lastRender);
+    lastRender = now;
+    if (frameTimes.length < 36) return;
+    frameTimes.sort((a, b) => a - b);
+    const median = frameTimes[18];
+    const p90 = frameTimes[32];
+    frameTimes = [];
+    // Escalar hacia arriba requiere varias ventanas con margen para evitar reajustes continuos.
+    fastWindows = median <= 23 && p90 <= 34 ? fastWindows + 1 : 0;
+    if (median >= 38 && p90 >= 49 && mobileScale > 0) {
+      mobileScale--;
+      fastWindows = 0;
+      mobileResolutionPending = true;
+    } else if (fastWindows >= 4 && mobileScale < mobileScales.length - 1) {
+      mobileScale++;
+      fastWindows = 0;
+      mobileResolutionPending = true;
+    }
+  }
+
+  window.CoFMobileResolution = Object.freeze({
+    get mode() { return resolutionMode; },
+    setMode(mode) {
+      if (!mobileModes.includes(mode)) return;
+      resolutionMode = mode;
+      mobileScale = startingScale();
+      mobileResolutionPending = true;
+      resetMobileSampling();
+      try { localStorage.setItem(resolutionKey, mode); } catch (_) {}
+    },
+  });
+
   const LOG_LINES = 400;
   const log = (text, cls) => {
     const line = document.createElement("div");
@@ -34,7 +112,7 @@
     line.textContent = text;
     logEl.appendChild(line);
     while (logEl.childNodes.length > LOG_LINES) logEl.firstChild.remove();
-    logEl.scrollTop = logEl.scrollHeight;
+    if (!window.CoFMobile?.active || debug) logEl.scrollTop = logEl.scrollHeight;
   };
   const setStatus = (text) => { statusEl.textContent = text; };
 
@@ -338,7 +416,7 @@
     window.Module = {
       canvas,
       // SDL scales the WebGL buffer. Leave CSS dimensions and touch coordinates in CSS pixels.
-      cofRenderPixelRatio: window.CoFMobile?.active ? Math.min(devicePixelRatio, 1.5) : undefined,
+      cofRenderPixelRatio: window.CoFMobile?.active ? mobilePixelRatio() : undefined,
       arguments: args,
       // build ASan (Emscripten lee las opciones de Module, no del entorno). Sin ASan se ignora.
       //   leak_check_at_exit=0: la página no termina nunca y, si el motor sale por un error, el
@@ -406,6 +484,7 @@
           currentMap = spawn[1].toLowerCase();
           if (window.CoFHUD) CoFHUD.onMap(currentMap);
           window.CoFMobile?.onMap();
+          resetMobileSampling();
           baseStatus = `Ejecutando${currentMap ? ` · ${currentMap}` : ""}`;
           refreshStatus();
         } else if (t.includes("client connected")) {
@@ -421,6 +500,11 @@
         window.CoFRuntimeReady = true;
         if (audio !== "motor") watchAudioUnlock();
         window.CoFMobile?.start();
+        if (window.CoFMobile?.active) {
+          new ResizeObserver(() => { mobileResolutionPending = true; }).observe(canvas);
+          MainLoop.postMainLoop.push(sampleMobileResolution);
+          document.addEventListener("visibilitychange", resetMobileSampling);
+        }
         if (params.get("timer") === "1") MainLoop.requestAnimationFrame = MainLoop.fakeRequestAnimationFrame;
         if (params.get("fx") !== "0" && window.CoFPostFX) CoFPostFX.attach().catch((e) => log(`postfx: ${e.message}`, "err"));
         baseStatus = `Ejecutando${currentMap ? ` · ${currentMap}` : ""}`;

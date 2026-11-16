@@ -1,9 +1,9 @@
-// Mobile performance options (hud.js applyPerformance): Limit to 60 fps, Vignette, Low resolution.
+// Mobile performance options: frame cap, vignette and resolution profiles.
 // Checks in mobile mode, with real requestAnimationFrame and postfx on:
 // - the options are listed only in mobile mode and persist in localStorage;
 // - the frame cap divides the engine's main loop (timingValue N = one engine frame every N display frames);
 // - turning the vignette off stops the full-screen postfx pass (CoFPostFX.stats frames);
-// - low resolution lowers the drawing buffer to 1 pixel per CSS pixel.
+// - the Performance profile lowers the drawing buffer compared with Sharpness.
 // Usage: node mobile_options.mjs <base url> <out>
 import assert from 'node:assert/strict';import fs from 'node:fs';import {chromium} from 'playwright';
 const [base,out]=process.argv.slice(2);assert.ok(base&&out&&!fs.existsSync(out));fs.mkdirSync(out,{recursive:true});
@@ -40,8 +40,12 @@ try{
  r.options=await p.evaluate(()=>!!document.getElementById('cof-option-vignette'));
  await p.evaluate(()=>CoFPostFX.set({vignette:0}));await p.evaluate(()=>CoFPostFX.stats());await p.waitForTimeout(2000);r.fxOff=await p.evaluate(()=>CoFPostFX.stats());
  check('postfx pass runs with the vignette',r.fxOn.msPerFrame>0);check('no postfx pass without the vignette',r.fxOff.msPerFrame===0);
- // low resolution: ratio 1, then a resize lowers the buffer
- await p.evaluate(()=>{Module.cofRenderPixelRatio=1;dispatchEvent(new Event('resize'));});await p.waitForTimeout(1500);
+ // Compare the two fixed profiles so the adaptive controller cannot change this baseline.
+ await p.evaluate(()=>CoFMobileResolution.setMode('sharp'));
+ await p.waitForFunction(()=>Module.cofRenderPixelRatio>1);
+ r.buffer=await p.evaluate(()=>({w:canvas.width,h:canvas.height}));
+ await p.evaluate(()=>CoFMobileResolution.setMode('performance'));
+ await p.waitForFunction(()=>Module.cofRenderPixelRatio<=.8);
  r.bufferLow=await p.evaluate(()=>{const c=document.getElementById('canvas');return {w:c.width,h:c.height};});
  check('low resolution lowers the buffer',r.bufferLow.w<r.buffer.w*0.8);
  await p.screenshot({path:`${out}/low-res.png`});
