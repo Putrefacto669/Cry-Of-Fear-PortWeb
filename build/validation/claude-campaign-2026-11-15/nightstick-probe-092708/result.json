@@ -1,0 +1,82 @@
+{
+  "checks": {
+    "weapon_nightstick spawns": true,
+    "sk_cof_nightstick registered": true,
+    "picked up into the bag": true,
+    "quick select has it": true,
+    "nightstick in the hand": true,
+    "one swing per second while held": true,
+    "every swing has its hit": true,
+    "hit 0.31 s after the swing": true,
+    "view kick on every hit": true,
+    "floor hit lands on the world": true,
+    "still in the hand after load": true,
+    "swings after load": true,
+    "no nightstick load errors": true,
+    "no JS errors": true
+  },
+  "noSpawnFunction": [],
+  "unknownSkill": [],
+  "weaponRow": "COF/LIST weapon_nightstick #286 origin=1085,1701,551 effects=0 renderfx=0 rendermode=0 modelindex=221 model=models/weapons/nightstick/w_nightstick.mdl killme=0",
+  "pickup": [
+    "COF/HUD PICKUP inventoryitems/weapons/weapon_nightstick.txt",
+    "COF/HUD INV 1 inventoryitems/weapons/weapon_nightstick.txt",
+    "COF/HUD QUICK weapon_nightstick - -"
+  ],
+  "active": "weapon_nightstick",
+  "held": {
+    "swings": [
+      "COF/NIGHTSTICK swing seq=3 impact=73.0834 now=72.7734",
+      "COF/NIGHTSTICK swing seq=4 impact=74.1098 now=73.7998",
+      "COF/NIGHTSTICK swing seq=5 impact=75.1265 now=74.8165"
+    ],
+    "hits": [
+      "COF/NIGHTSTICK miss time=73.0834",
+      "COF/NIGHTSTICK miss time=74.1098",
+      "COF/NIGHTSTICK miss time=75.1265"
+    ],
+    "kicks": [
+      "COF/NIGHTSTICK kick velocity=60,-160,0",
+      "COF/NIGHTSTICK kick velocity=60.2943,-160.785,0",
+      "COF/NIGHTSTICK kick velocity=60.3101,-160.827,0"
+    ]
+  },
+  "swingGaps": [
+    1.026,
+    1.017
+  ],
+  "hitDelays": [
+    0.31,
+    0.31,
+    0.31
+  ],
+  "firstKick": "COF/NIGHTSTICK kick velocity=60,-160,0",
+  "floor": {
+    "swings": [
+      "COF/NIGHTSTICK swing seq=3 impact=80.4844 now=80.1744"
+    ],
+    "hits": [
+      "COF/NIGHTSTICK impact target=worldspawn id=0 damage=11 hitgroup=0 time=80.4844"
+    ],
+    "kicks": [
+      "COF/NIGHTSTICK kick velocity=60.0003,-160.001,0"
+    ]
+  },
+  "floorSounds": [],
+  "afterLoad": "weapon_nightstick",
+  "afterLoadSwing": {
+    "swings": [
+      "COF/NIGHTSTICK swing seq=4 impact=85.2201 now=84.9101"
+    ],
+    "hits": [
+      "COF/NIGHTSTICK miss time=85.2201"
+    ],
+    "kicks": [
+      "COF/NIGHTSTICK kick velocity=60.0001,-160,0"
+    ]
+  },
+  "problems": [],
+  "jsErrors": [],
+  "done": true,
+  "chromium": "156.0.8078.4"
+}

@@ -1,0 +1,214 @@
+{
+  "checks": {
+    "monster_sewmo spawns": true,
+    "nine sewmo in the map": true,
+    "all dormant: same sequence, not damageable, health 40": true,
+    "at 250 units it stays dormant": true,
+    "at 100 units it rises: another sequence (appear)": true,
+    "0.8 s later it is a monster (takes damage)": true,
+    "it attacks the player": false,
+    "slash damage 4 (sk_sewmo_dmg_one_slash1)": false,
+    "the nightstick kills it": false,
+    "four hits of 11 (40 -> dead)": false,
+    "dormant after save/load": false,
+    "and it still rises after the load": false,
+    "no JS errors": true
+  },
+  "noSpawn": [
+    "Error: No spawn function for \"info_texlights\"",
+    "Error: No spawn function for \"func_fogfield\""
+  ],
+  "count": 9,
+  "initial": [
+    {
+      "seq": 20,
+      "dmg": 0,
+      "hp": 40,
+      "dead": 0,
+      "o": [
+        1973,
+        495,
+        -492
+      ]
+    },
+    {
+      "seq": 20,
+      "dmg": 0,
+      "hp": 40,
+      "dead": 0,
+      "o": [
+        1971,
+        265,
+        -492
+      ]
+    },
+    {
+      "seq": 20,
+      "dmg": 0,
+      "hp": 40,
+      "dead": 0,
+      "o": [
+        1238,
+        143,
+        -140
+      ]
+    },
+    {
+      "seq": 20,
+      "dmg": 0,
+      "hp": 40,
+      "dead": 0,
+      "o": [
+        1375,
+        214,
+        -140
+      ]
+    },
+    {
+      "seq": 20,
+      "dmg": 0,
+      "hp": 40,
+      "dead": 0,
+      "o": [
+        1695,
+        175,
+        -140
+      ]
+    },
+    {
+      "seq": 20,
+      "dmg": 0,
+      "hp": 40,
+      "dead": 0,
+      "o": [
+        2407,
+        2808,
+        -528
+      ]
+    },
+    {
+      "seq": 20,
+      "dmg": 0,
+      "hp": 40,
+      "dead": 0,
+      "o": [
+        3096,
+        3230,
+        -528
+      ]
+    },
+    {
+      "seq": 20,
+      "dmg": 0,
+      "hp": 40,
+      "dead": 0,
+      "o": [
+        3052,
+        2712,
+        -528
+      ]
+    },
+    {
+      "seq": 20,
+      "dmg": 0,
+      "hp": 40,
+      "dead": 0,
+      "o": [
+        1975,
+        929,
+        -492
+      ]
+    }
+  ],
+  "idleSeq": 20,
+  "target": {
+    "id": "85",
+    "o": [
+      1695,
+      175,
+      -140
+    ]
+  },
+  "far": {
+    "seq": 20,
+    "dmg": 0,
+    "hp": 40,
+    "dead": 0,
+    "o": [
+      1695,
+      175,
+      -140
+    ]
+  },
+  "h0": 100,
+  "rising": {
+    "seq": 19,
+    "dmg": 0,
+    "hp": 40,
+    "dead": 0,
+    "o": [
+      1695,
+      175,
+      -140
+    ]
+  },
+  "up": {
+    "seq": 0,
+    "dmg": 2,
+    "hp": 40,
+    "dead": 0,
+    "o": [
+      1695,
+      175,
+      -140
+    ]
+  },
+  "hurt": null,
+  "hits": [
+    40,
+    40,
+    40,
+    40,
+    40,
+    40,
+    40,
+    40,
+    40,
+    40,
+    40,
+    40
+  ],
+  "nightstickLines": 0,
+  "saveTarget": {
+    "id": "88",
+    "o": [
+      3052,
+      2712,
+      -528
+    ]
+  },
+  "afterLoad": {
+    "seq": 0,
+    "dmg": 0,
+    "hp": 0,
+    "dead": 0,
+    "o": [
+      -1225,
+      -1246,
+      -1214
+    ]
+  },
+  "risenAfterLoad": {
+    "seq": 0,
+    "dmg": 0,
+    "hp": 0,
+    "dead": 0,
+    "o": [
+      -1225,
+      -1246,
+      -1214
+    ]
+  },
+  "jsErrors": [],
+  "done": true
+}

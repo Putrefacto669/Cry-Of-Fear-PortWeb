@@ -368,12 +368,28 @@ class CCofAddCodeNote : public CPointEntity
 public:
 	virtual void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
 	{
+		// hl.dll 100a6790 sends the note kind (iuser1) with the player's current keypad code; 4 is the phone
+		// code of c_basement (gfx/vgui/notes/phonecode.TGA, "Phone code:")
 		CoF_EnsurePuzzles();
-		CoF_HudPrint( "COF/HUD CODE %s\n", g_cofKeypadCode );
+		CoF_HudPrint( "COF/HUD CODE %s %d\n", g_cofKeypadCode, pev->iuser1 );
 	}
 };
 
 LINK_ENTITY_TO_CLASS( cof_addcodenote, CCofAddCodeNote )
+
+// hl.dll 100a7120: the keypad code becomes 5247 (player +0x2040 = 0x147f, keypad mode +0x2044 = 2). It is fixed in
+// the original, unlike the random code of the first chapter; the multi_managers fire it before cof_addcodenote.
+class CCofKeypad4 : public CPointEntity
+{
+public:
+	virtual void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
+	{
+		CoF_EnsurePuzzles();
+		snprintf( g_cofKeypadCode, sizeof( g_cofKeypadCode ), "%d", 0x147f );
+	}
+};
+
+LINK_ENTITY_TO_CLASS( cof_keypad4, CCofKeypad4 )
 LINK_ENTITY_TO_CLASS( cof_updatekeypad, CPointEntity )
 
 /*
@@ -814,7 +830,8 @@ bool CoF_PuzzleCommand( CBasePlayer *pPlayer, const char *pcmd )
 		return true;
 
 	// a keypad without target never opens (the elevator panel of c_apartment1)
-	if( stricmp( answer, wanted ) || FStringNull( pEntity->pev->target ))
+	// keypadnumber (100e5890): a code of 9999 means the keypad was already used
+	if( stricmp( answer, wanted ) || FStringNull( pEntity->pev->target ) || ( !password && !strcmp( wanted, "9999" )))
 	{
 		CoF_HudPrint( "COF/HUD DENIED\n" );
 		return true;
@@ -828,7 +845,9 @@ bool CoF_PuzzleCommand( CBasePlayer *pPlayer, const char *pcmd )
   }
  } else {
   CoF_HudPrint("COF/HUD GRANTED\n");
-  FireTargets(STRING(pEntity->pev->target),pPlayer,pEntity,USE_TOGGLE,0);
+  // 100e5890 fires with the player as activator and caller, then sets the code to 9999 (used once)
+  FireTargets(STRING(pEntity->pev->target),pPlayer,pPlayer,USE_TOGGLE,0);
+  snprintf( g_cofKeypadCode, sizeof( g_cofKeypadCode ), "9999" );
  }
 	return true;
 }

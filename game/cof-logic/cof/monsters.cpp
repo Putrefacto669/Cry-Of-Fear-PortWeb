@@ -14,6 +14,7 @@
 #include "game.h"
 #include "skill.h"
 #include "cof_player.h"
+#include "saverestore.h"
 
 #define COF_AE_ATTACK_ONE   1
 #define COF_AE_ATTACK_LEFT  2
@@ -38,6 +39,9 @@ typedef struct
 	const char *death[COF_MAX_SOUNDS];
 	const char *hit[COF_MAX_SOUNDS];
 	const char *miss[COF_MAX_SOUNDS];
+	// optional (0 / empty for the chapter 1 monsters, which keep their earlier behaviour):
+	float yawSpeed;       // 0: 120
+	const char *wall[COF_MAX_SOUNDS];  // a hit on the world or a machine; empty: the hit list
 } cof_monster_info_t;
 
 static const cof_monster_info_t g_cofMonsters[] =
@@ -119,6 +123,42 @@ static const cof_monster_info_t g_cofMonsters[] =
 		{ "boss/sawer/chainsaw_attack.wav" },
 		{ "boss/sawer/chainsaw_loop.wav" },
 	},
+	{ // hl.dll CCrab (vtable 101ac5a0): the crawling slower of chapter 2. Spawn 1002b0e0: slower2.mdl, hull
+	  // +-cof_monsterhumanscale (4) by 36 high, view 28, field of view 0.5; Precache 1002afa0; skill.cfg
+	  // sk_krypande_* (DAT_10226818..20; skill.cfg has no sk_krypande_dmg_both_slash, so that slash does 0);
+	  // HandleAnimEvent 1002aa40: reach 55, strike / strike_wall / miss, attack sound one time in two;
+	  // SetYawSpeed 1002b0a0: cof_monsterhumanyawspeed (280). No death sound of its own.
+		"monster_crab", "models/slower2.mdl",
+		{ 20, 30, 50 }, { 2, 4, 8 }, { 0, 0, 0 }, 55,
+		Vector( -4, -4, 0 ), Vector( 4, 4, 36 ), BLOOD_COLOR_RED,
+		{ "slower/slower_alert10.wav", "slower/slower_alert20.wav", "slower/slower_alert30.wav" },
+		{ "slower/slower_attack1.wav", "slower/slower_attack2.wav" },
+		{ "slower/slower_pain1.wav", "slower/slower_pain2.wav" },
+		{ NULL },
+		{ "slower/hammer_strike1.wav", "slower/hammer_strike2.wav", "slower/hammer_strike3.wav" },
+		{ "slower/hammer_miss1.wav", "slower/hammer_miss2.wav" },
+		280,
+		{ "slower/hammer_strike_wall1.wav", "slower/hammer_strike_wall2.wav", "slower/hammer_strike_wall3.wav" },
+	},
+	{ // hl.dll CSewmo (vtable 101b3cc4), the sewer monster of chapter 2. Spawn 10059130: sewmo.mdl, hull
+	  // +-cof_monsterhumanscale (4) by 72 high; skill.cfg sk_sewmo_* (DAT_10226774..7c); HandleAnimEvent 100587f0:
+	  // reach 55, claw_strike on a living target, claw_miss on a miss, nothing on the world (common/null.wav keeps
+	  // the port's wall list from falling back to the strike); attack sound one time in two; yaw 280.
+	  // Its event 6 / MELEE_ATTACK2 state is never reached (sewmo.mdl has no event 6), so attack1 only, as here.
+	  // Not reproduced: the "break free" schedule (10058720: ALERT, hurt to half health, 1 in 2, break_free.wav
+	  // and the custom task 94 with "horjavel").
+		"monster_sewmo", "models/sewmo.mdl",
+		{ 40, 60, 90 }, { 4, 6, 9 }, { 4, 6, 9 }, 55,
+		Vector( -4, -4, 0 ), Vector( 4, 4, 72 ), BLOOD_COLOR_RED,
+		{ "sewmo/sewmo_alert10.wav", "sewmo/sewmo_alert20.wav", "sewmo/sewmo_alert30.wav" },
+		{ "sewmo/sewmo_attack1.wav", "sewmo/sewmo_attack2.wav" },
+		{ "sewmo/sewmo_pain1.wav", "sewmo/sewmo_pain2.wav" },
+		{ NULL },
+		{ "sewmo/claw_strike1.wav", "sewmo/claw_strike2.wav", "sewmo/claw_strike3.wav" },
+		{ "sewmo/claw_miss1.wav", "sewmo/claw_miss2.wav" },
+		280,
+		{ "common/null.wav" },
+	},
 };
 
 static int CoF_SoundCount( const char *const *list )
@@ -134,7 +174,7 @@ class CCofMonster : public CBaseMonster
 public:
 	void Spawn( void );
 	void Precache( void );
-	void SetYawSpeed( void ) { pev->yaw_speed = 120; }
+	void SetYawSpeed( void ) { pev->yaw_speed = Info()->yawSpeed ? Info()->yawSpeed : 120; }
 	int Classify( void ) { return CLASS_ALIEN_MONSTER; }
 	void HandleAnimEvent( MonsterEvent_t *pEvent );
 	int IgnoreConditions( void );
@@ -154,8 +194,70 @@ public:
 	void Say( const char *const *list );
 	void Slash( float damage, float punchZ, float push );
 
+	// hl.dll CSewmo (spawnflag 32): waits under the water in "appearidle" and rises when a player comes within
+	// 128 units (InactiveThink 10058b30: "appear", sewmo/out_water.wav, MonsterInit 0.8 s later in ActivateSewmo
+	// 10058600). Driven from Think() with a saved state, so no new think function has to be saved by name.
+	void Think( void );
+	int Save( CSave &save );
+	int Restore( CRestore &restore );
+	static TYPEDESCRIPTION m_SaveData[];
+	int m_iAppear;  // 0 active, 1 waiting under the water, 2 rising
+
 	float m_flNextFlinch;
 };
+
+TYPEDESCRIPTION CCofMonster::m_SaveData[] =
+{
+	DEFINE_FIELD( CCofMonster, m_iAppear, FIELD_INTEGER ),
+};
+
+int CCofMonster::Save( CSave &save )
+{
+	if( !CBaseMonster::Save( save ))
+		return 0;
+	return save.WriteFields( "CCofMonster", this, m_SaveData, ARRAYSIZE( m_SaveData ));
+}
+
+int CCofMonster::Restore( CRestore &restore )
+{
+	if( !CBaseMonster::Restore( restore ))
+		return 0;
+	m_iAppear = 0;
+	// saves from before this field have no block: the optional read rewinds on absence
+	restore.ReadFields( "CCofMonster", this, m_SaveData, ARRAYSIZE( m_SaveData ));
+	return 1;
+}
+
+void CCofMonster::Think( void )
+{
+	if( m_iAppear == 1 )
+	{
+		StudioFrameAdvance( 0.1f );
+		CBaseEntity *pNear = NULL;
+		while(( pNear = UTIL_FindEntityInSphere( pNear, pev->origin, 128 )))
+		{
+			if( pNear->IsPlayer())
+			{
+				pev->sequence = LookupSequence( "appear" );
+				pev->frame = 0;
+				ResetSequenceInfo();
+				EMIT_SOUND_DYN( ENT( pev ), CHAN_BODY, "sewmo/out_water.wav", 1.0f, 0.8f, 0, 100 + RANDOM_LONG( -5, 5 ));
+				m_iAppear = 2;
+				pev->nextthink = gpGlobals->time + 0.8f;
+				return;
+			}
+		}
+		pev->nextthink = gpGlobals->time + 0.1f;
+		return;
+	}
+	if( m_iAppear == 2 )
+	{
+		m_iAppear = 0;
+		MonsterInit();  // sets MonsterThink and the next think
+		return;
+	}
+	CBaseMonster::Think();
+}
 
 const cof_monster_info_t *CCofMonster::Info( void )
 {
@@ -172,6 +274,8 @@ LINK_ENTITY_TO_CLASS( monster_child, CCofMonster )
 LINK_ENTITY_TO_CLASS( monster_baby, CCofMonster )
 LINK_ENTITY_TO_CLASS( monster_crazybitch, CCofMonster )
 LINK_ENTITY_TO_CLASS( monster_bosschainsaw, CCofMonster )
+LINK_ENTITY_TO_CLASS( monster_crab, CCofMonster )
+LINK_ENTITY_TO_CLASS( monster_sewmo, CCofMonster )
 
 void CCofMonster::Say( const char *const *list )
 {
@@ -191,6 +295,9 @@ void CCofMonster::Slash( float damage, float punchZ, float push )
 	const cof_monster_info_t *info = Info();
 	CBaseEntity *pHurt = CheckTraceHullAttack( info->reach, damage, DMG_SLASH );
 	const char *const *list = pHurt ? info->hit : info->miss;
+	// the crab (1002aa40) tells a living target from the world or a machine
+	if( pHurt && info->wall[0] && ( pHurt->Classify() == CLASS_NONE || pHurt->Classify() == CLASS_MACHINE ))
+		list = info->wall;
 	int n = CoF_SoundCount( list );
 
 	if( pHurt && ( pHurt->pev->flags & ( FL_MONSTER | FL_CLIENT )))
@@ -250,12 +357,18 @@ int CCofMonster::IgnoreConditions( void )
 void CCofMonster::Precache( void )
 {
 	const cof_monster_info_t *info = Info();
-	const char *const *lists[] = { info->alert, info->attack, info->pain, info->death, info->hit, info->miss };
+	const char *const *lists[] = { info->alert, info->attack, info->pain, info->death, info->hit, info->miss, info->wall };
 
 	PRECACHE_MODEL( (char *)info->model );
 	for( size_t l = 0; l < ARRAYSIZE( lists ); l++ )
 		for( int i = 0; i < CoF_SoundCount( lists[l] ); i++ )
 			PRECACHE_SOUND( (char *)lists[l][i] );
+	if( FClassnameIs( pev, "monster_sewmo" ))
+	{
+		// Precache 10058e50 also loads the rising and breaking-free sounds
+		PRECACHE_SOUND( "sewmo/out_water.wav" );
+		PRECACHE_SOUND( "sewmo/break_free.wav" );
+	}
 }
 
 void CCofMonster::Spawn( void )
@@ -275,5 +388,15 @@ void CCofMonster::Spawn( void )
 	m_MonsterState = MONSTERSTATE_NONE;
 	m_afCapability = bits_CAP_DOORS_GROUP;
 
+	if( FClassnameIs( pev, "monster_sewmo" ) && FBitSet( pev->spawnflags, 32 ))
+	{
+		// waits in "appearidle", not yet a monster (no MonsterInit: no AI, not damageable), until a player is near
+		pev->sequence = LookupSequence( "appearidle" );
+		pev->frame = 0;
+		ResetSequenceInfo();
+		m_iAppear = 1;
+		pev->nextthink = gpGlobals->time + 0.1f;
+		return;
+	}
 	MonsterInit();
 }

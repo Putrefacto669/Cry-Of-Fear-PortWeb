@@ -1,0 +1,803 @@
+{
+  "checks": {
+    "the magazine opens with E": true,
+    "the call ends with the code note 5247": true,
+    "electric door locked before the keypad": true,
+    "keypad accepts 5247": true,
+    "electric door unlocked": true,
+    "the ladder starts from its top": false,
+    "down the ladder to its bottom": true,
+    "chsw1 asks for c_sewer (landmark swheh1)": true,
+    "c_sewer is not packaged yet: the port stays in c_basement": true,
+    "no JS errors": true
+  },
+  "events": [
+    {
+      "t": 74.1,
+      "what": "kit",
+      "quick": [
+        "weapon_mobile",
+        "weapon_switchblade",
+        "weapon_glock"
+      ],
+      "health": 100
+    },
+    {
+      "t": 74.5,
+      "what": "leg",
+      "name": "A",
+      "points": 2
+    },
+    {
+      "t": 76.5,
+      "what": "arrived",
+      "name": "A",
+      "at": [
+        -2956.1,
+        2922.7,
+        483
+      ]
+    },
+    {
+      "t": 76.6,
+      "what": "leg",
+      "name": "A->B front",
+      "points": 2
+    },
+    {
+      "t": 76.9,
+      "what": "arrived",
+      "name": "A->B front",
+      "at": [
+        -2942.6,
+        2946.3,
+        483
+      ]
+    },
+    {
+      "t": 80,
+      "what": "door",
+      "name": "A->B",
+      "model": "*4",
+      "from": [
+        -2943.3,
+        2949.6,
+        483
+      ],
+      "to": [
+        -2325,
+        1380,
+        483
+      ]
+    },
+    {
+      "t": 80,
+      "what": "leg",
+      "name": "B",
+      "points": 5
+    },
+    {
+      "t": 86,
+      "what": "fight",
+      "crab": "88",
+      "at": [
+        -2284,
+        1381,
+        447
+      ],
+      "dist": 43,
+      "swings": 4,
+      "hBefore": 98,
+      "hp": [
+        14,
+        8,
+        2,
+        10
+      ],
+      "killed": true,
+      "hAfter": 88
+    },
+    {
+      "t": 100.1,
+      "what": "fight",
+      "crab": "90",
+      "at": [
+        -1669,
+        1344,
+        417
+      ],
+      "dist": 42,
+      "swings": 4,
+      "hBefore": 84,
+      "hp": [
+        14,
+        8,
+        2,
+        10
+      ],
+      "killed": true,
+      "hAfter": 76
+    },
+    {
+      "t": 105,
+      "what": "arrived",
+      "name": "B",
+      "at": [
+        -1128,
+        1245.4,
+        453
+      ]
+    },
+    {
+      "t": 106.2,
+      "what": "leg",
+      "name": "B->C front",
+      "points": 2
+    },
+    {
+      "t": 107.6,
+      "what": "arrived",
+      "name": "B->C front",
+      "at": [
+        -1170.5,
+        1216.1,
+        453
+      ]
+    },
+    {
+      "t": 110.5,
+      "what": "door",
+      "name": "B->C",
+      "model": "*7",
+      "from": [
+        -1173.1,
+        1215.6,
+        453
+      ],
+      "to": [
+        -1061,
+        1227,
+        453
+      ]
+    },
+    {
+      "t": 110.6,
+      "what": "leg",
+      "name": "C",
+      "points": 2
+    },
+    {
+      "t": 118.5,
+      "what": "unstick",
+      "leg": "C",
+      "waypoint": 1,
+      "at": [
+        -958.2,
+        1261.3,
+        453
+      ]
+    },
+    {
+      "t": 123,
+      "what": "arrived",
+      "name": "C",
+      "at": [
+        -1062,
+        1275.2,
+        453
+      ]
+    },
+    {
+      "t": 123,
+      "what": "leg",
+      "name": "C->D front",
+      "points": 2
+    },
+    {
+      "t": 127.3,
+      "what": "unstick",
+      "leg": "C->D front",
+      "waypoint": 1,
+      "at": [
+        -879,
+        1304.1,
+        453
+      ]
+    },
+    {
+      "t": 132.5,
+      "what": "arrived",
+      "name": "C->D front",
+      "at": [
+        -1016.3,
+        1299.8,
+        453
+      ]
+    },
+    {
+      "t": 136.4,
+      "what": "door",
+      "name": "C->D",
+      "model": "*44",
+      "from": [
+        -1031.6,
+        1299.9,
+        453
+      ],
+      "to": [
+        1072,
+        1435,
+        453
+      ]
+    },
+    {
+      "t": 136.5,
+      "what": "leg",
+      "name": "D1",
+      "points": 14
+    },
+    {
+      "t": 142.1,
+      "what": "unstick",
+      "leg": "D1",
+      "waypoint": 2,
+      "at": [
+        1315.1,
+        1534.1,
+        582
+      ]
+    },
+    {
+      "t": 154.9,
+      "what": "fight",
+      "crab": "524",
+      "at": [
+        1391,
+        1712,
+        546
+      ],
+      "dist": 54,
+      "swings": 4,
+      "hBefore": 76,
+      "hp": [
+        14,
+        8,
+        2,
+        10
+      ],
+      "killed": true,
+      "hAfter": 68
+    },
+    {
+      "t": 168.9,
+      "what": "fight",
+      "crab": "323",
+      "at": [
+        1782,
+        1763,
+        546
+      ],
+      "dist": 40,
+      "swings": 4,
+      "hBefore": 66,
+      "hp": [
+        14,
+        8,
+        2,
+        10
+      ],
+      "killed": true,
+      "hAfter": 48
+    },
+    {
+      "t": 176.1,
+      "what": "fight",
+      "crab": "620",
+      "at": [
+        1875,
+        1748,
+        545
+      ],
+      "dist": 22,
+      "swings": 4,
+      "hBefore": 42,
+      "hp": [
+        14,
+        8,
+        2,
+        10
+      ],
+      "killed": true,
+      "hAfter": 28
+    },
+    {
+      "t": 184.7,
+      "what": "fight",
+      "crab": "322",
+      "at": [
+        1836,
+        1731,
+        546
+      ],
+      "dist": 38,
+      "swings": 6,
+      "hBefore": 26,
+      "hp": [
+        12,
+        12,
+        12,
+        12,
+        6,
+        10
+      ],
+      "killed": true,
+      "hAfter": 10
+    },
+    {
+      "t": 192.8,
+      "what": "unstick",
+      "leg": "D1",
+      "waypoint": 11,
+      "at": [
+        2021.3,
+        1577.2,
+        582
+      ]
+    },
+    {
+      "t": 201.8,
+      "what": "arrived",
+      "name": "D1",
+      "at": [
+        2155.1,
+        1501.9,
+        582
+      ]
+    },
+    {
+      "t": 204.5,
+      "what": "check",
+      "k": "the magazine opens with E",
+      "v": true
+    },
+    {
+      "t": 246,
+      "what": "check",
+      "k": "the call ends with the code note 5247",
+      "v": true
+    },
+    {
+      "t": 246.8,
+      "what": "leg",
+      "name": "D2",
+      "points": 4
+    },
+    {
+      "t": 256.2,
+      "what": "unstick",
+      "leg": "D2",
+      "waypoint": 3,
+      "at": [
+        1717.2,
+        1447.4,
+        485
+      ]
+    },
+    {
+      "t": 257.3,
+      "what": "arrived",
+      "name": "D2",
+      "at": [
+        1710.6,
+        1442.5,
+        477
+      ]
+    },
+    {
+      "t": 257.3,
+      "what": "leg",
+      "name": "D3",
+      "points": 2
+    },
+    {
+      "t": 257.9,
+      "what": "arrived",
+      "name": "D3",
+      "at": [
+        1685.1,
+        1451.1,
+        464.7
+      ]
+    },
+    {
+      "t": 260.7,
+      "what": "check",
+      "k": "electric door locked before the keypad",
+      "v": true
+    },
+    {
+      "t": 263.1,
+      "what": "check",
+      "k": "keypad accepts 5247",
+      "v": true
+    },
+    {
+      "t": 264.1,
+      "what": "check",
+      "k": "electric door unlocked",
+      "v": true
+    },
+    {
+      "t": 264.2,
+      "what": "leg",
+      "name": "D->E front",
+      "points": 2
+    },
+    {
+      "t": 264.7,
+      "what": "arrived",
+      "name": "D->E front",
+      "at": [
+        1676.9,
+        1433,
+        453
+      ]
+    },
+    {
+      "t": 267.6,
+      "what": "door",
+      "name": "D->E",
+      "model": "*63",
+      "from": [
+        1677.3,
+        1433,
+        453
+      ],
+      "to": [
+        1573,
+        1448,
+        453
+      ]
+    },
+    {
+      "t": 267.7,
+      "what": "leg",
+      "name": "E",
+      "points": 22
+    },
+    {
+      "t": 279.2,
+      "what": "unstick",
+      "leg": "E",
+      "waypoint": 4,
+      "at": [
+        1315.8,
+        1106.8,
+        457
+      ]
+    },
+    {
+      "t": 285.2,
+      "what": "unstick",
+      "leg": "E",
+      "waypoint": 5,
+      "at": [
+        1278,
+        1034,
+        453
+      ]
+    },
+    {
+      "t": 289.6,
+      "what": "unstick",
+      "leg": "E",
+      "waypoint": 6,
+      "at": [
+        1248.4,
+        1042.1,
+        453
+      ]
+    },
+    {
+      "t": 312.9,
+      "what": "unstick",
+      "leg": "E",
+      "waypoint": 14,
+      "at": [
+        1699,
+        453,
+        290
+      ]
+    },
+    {
+      "t": 317.9,
+      "what": "unstick",
+      "leg": "E",
+      "waypoint": 14,
+      "at": [
+        1713.2,
+        453,
+        290
+      ]
+    },
+    {
+      "t": 338.8,
+      "what": "unstick",
+      "leg": "E",
+      "waypoint": 17,
+      "at": [
+        1377.8,
+        -8.7,
+        290
+      ]
+    },
+    {
+      "t": 353.6,
+      "what": "arrived",
+      "name": "E",
+      "at": [
+        912,
+        -232,
+        -64
+      ]
+    },
+    {
+      "t": 355.3,
+      "what": "check",
+      "k": "the ladder starts from its top",
+      "v": false
+    },
+    {
+      "t": 357.5,
+      "what": "ladder",
+      "bottom": [
+        912,
+        -118.9,
+        -64
+      ]
+    },
+    {
+      "t": 357.5,
+      "what": "check",
+      "k": "down the ladder to its bottom",
+      "v": true
+    },
+    {
+      "t": 357.6,
+      "what": "leg",
+      "name": "F",
+      "points": 2
+    },
+    {
+      "t": 362.5,
+      "what": "unstick",
+      "leg": "F",
+      "waypoint": 1,
+      "at": [
+        889.1,
+        -105,
+        -64
+      ]
+    },
+    {
+      "t": 365.8,
+      "what": "arrived",
+      "name": "F",
+      "at": [
+        894.5,
+        -79.8,
+        -64
+      ]
+    },
+    {
+      "t": 369,
+      "what": "check",
+      "k": "chsw1 asks for c_sewer (landmark swheh1)",
+      "v": true
+    },
+    {
+      "t": 369,
+      "what": "check",
+      "k": "c_sewer is not packaged yet: the port stays in c_basement",
+      "v": true
+    },
+    {
+      "t": 369.5,
+      "what": "check",
+      "k": "no JS errors",
+      "v": true
+    }
+  ],
+  "fights": [
+    {
+      "crab": "88",
+      "at": [
+        -2284,
+        1381,
+        447
+      ],
+      "dist": 43,
+      "swings": 4,
+      "hBefore": 98,
+      "hp": [
+        14,
+        8,
+        2,
+        10
+      ],
+      "killed": true,
+      "hAfter": 88
+    },
+    {
+      "crab": "90",
+      "at": [
+        -1669,
+        1344,
+        417
+      ],
+      "dist": 42,
+      "swings": 4,
+      "hBefore": 84,
+      "hp": [
+        14,
+        8,
+        2,
+        10
+      ],
+      "killed": true,
+      "hAfter": 76
+    },
+    {
+      "crab": "524",
+      "at": [
+        1391,
+        1712,
+        546
+      ],
+      "dist": 54,
+      "swings": 4,
+      "hBefore": 76,
+      "hp": [
+        14,
+        8,
+        2,
+        10
+      ],
+      "killed": true,
+      "hAfter": 68
+    },
+    {
+      "crab": "323",
+      "at": [
+        1782,
+        1763,
+        546
+      ],
+      "dist": 40,
+      "swings": 4,
+      "hBefore": 66,
+      "hp": [
+        14,
+        8,
+        2,
+        10
+      ],
+      "killed": true,
+      "hAfter": 48
+    },
+    {
+      "crab": "620",
+      "at": [
+        1875,
+        1748,
+        545
+      ],
+      "dist": 22,
+      "swings": 4,
+      "hBefore": 42,
+      "hp": [
+        14,
+        8,
+        2,
+        10
+      ],
+      "killed": true,
+      "hAfter": 28
+    },
+    {
+      "crab": "322",
+      "at": [
+        1836,
+        1731,
+        546
+      ],
+      "dist": 38,
+      "swings": 6,
+      "hBefore": 26,
+      "hp": [
+        12,
+        12,
+        12,
+        12,
+        6,
+        10
+      ],
+      "killed": true,
+      "hAfter": 10
+    }
+  ],
+  "quick": [
+    "weapon_mobile",
+    "weapon_switchblade",
+    "weapon_glock"
+  ],
+  "fenceScene": [],
+  "magazine": [
+    "COF/HUD NOTE magazine.txt"
+  ],
+  "hintPhone": [
+    "COF/HUD HINT usemobilephone"
+  ],
+  "call": [
+    "COF/HUD SUB 286",
+    "COF/HUD SUB 287",
+    "COF/HUD SUB 288",
+    "COF/HUD SUB 289",
+    "COF/HUD SUB 290",
+    "COF/HUD SUB 291",
+    "COF/HUD SUB 292",
+    "COF/HUD SUB 293",
+    "COF/HUD SUB 294",
+    "COF/HUD SUB 295",
+    "COF/HUD SUB 296",
+    "COF/HUD SUB 313",
+    "COF/HUD CODE 5247 4"
+  ],
+  "lockedTry": [
+    "COF/HUD CENTER The door is locked. There's a keypad next to it."
+  ],
+  "keypad": [
+    "COF/HUD GRANTED"
+  ],
+  "legE": [],
+  "changeLines": [
+    "CHANGE LEVEL: c_sewer swheh1",
+    "Error: changelevel: map c_sewer doesn't exist",
+    "CHANGE LEVEL: c_sewer swheh1",
+    "CHANGE LEVEL: c_sewer swheh1"
+  ],
+  "healthEnd": 10,
+  "crabsKilled": 6,
+  "problems": [
+    "Warning: Unknown command \"bullet_punch_max\"",
+    "Warning: Unknown command \"bullet_punch_divide\"",
+    "Warning: Unknown command \"blast_punch_max\"",
+    "Warning: Unknown command \"blast_punch_divide\"",
+    "WebGL: INVALID_ENUM: getParameter: invalid parameter name",
+    "Note: GL2_ShimInit: missing BufferStorage",
+    "OpenGL Error: GL_INVALID_ENUM while uploading *default [2D]",
+    "UI_ApplyCustomColors: colors.lst not found",
+    "Warning: Unknown command \"s_refgain\"",
+    "Warning: Unknown command \"s_refdelay\"",
+    "Warning: Unknown command \"s_occfactor\"",
+    "Warning: Unknown command \"s_verbwet\"",
+    "Warning: Unknown command \"s_distance\"",
+    "Warning: Unknown command \"r_dynamiclight\"",
+    "Warning: Unknown command \"gl_texturemode\"",
+    "Warning: Unknown command \"sv_voicecodec\"",
+    "Localize_AddToDict( resource/mainui_english.txt ): couldn't open file. Some strings will not be localized!.",
+    "Localize_AddToDict( resource/cryoffear_english.txt ): couldn't open file. Some strings will not be localized!.",
+    "Missing bitmap font: gfx\\vgui\\fonts\\640_Basic Text.tga",
+    "Missing bitmap font: gfx\\vgui\\fonts\\640_Primary Button Text.tga",
+    "Missing bitmap font: gfx\\vgui\\fonts\\640_CommandMenu Text.tga",
+    "Missing bitmap font: gfx\\vgui\\fonts\\640_Scoreboard Text.tga",
+    "Missing bitmap font: gfx\\vgui\\fonts\\640_Scoreboard Title Text.tga",
+    "Missing bitmap font: gfx\\vgui\\fonts\\640_Scoreboard Small Text.tga",
+    "Missing bitmap font: gfx\\vgui\\fonts\\640_Title Font.tga",
+    "Couldn't open file overviews/c_basement.txt. Using default values for overiew mode."
+  ],
+  "jsErrors": [],
+  "done": true,
+  "seconds": 369.499,
+  "chromium": "156.0.8078.4"
+}

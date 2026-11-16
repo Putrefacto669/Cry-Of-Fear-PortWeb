@@ -1,0 +1,160 @@
+{
+  "checks": {},
+  "events": [
+    {
+      "t": 74.4,
+      "what": "kit",
+      "quick": [
+        "weapon_mobile",
+        "weapon_switchblade",
+        "weapon_glock"
+      ],
+      "health": 100
+    },
+    {
+      "t": 76.7,
+      "what": "leg",
+      "name": "A",
+      "points": 3
+    },
+    {
+      "t": 79.6,
+      "what": "arrived",
+      "name": "A",
+      "at": [
+        -2969.3,
+        2926.2,
+        483
+      ]
+    },
+    {
+      "t": 82.7,
+      "what": "door",
+      "name": "A->B",
+      "model": "*4",
+      "from": [
+        -2961.2,
+        2928,
+        483
+      ],
+      "to": [
+        -2325,
+        1380,
+        483
+      ]
+    },
+    {
+      "t": 82.7,
+      "what": "leg",
+      "name": "B",
+      "points": 6
+    },
+    {
+      "t": 91.3,
+      "what": "fight",
+      "crab": "88",
+      "at": [
+        -2284,
+        1381,
+        447
+      ],
+      "dist": 43,
+      "swings": 5,
+      "hBefore": 98,
+      "hp": [
+        14,
+        8,
+        8,
+        2,
+        10
+      ],
+      "killed": true,
+      "hAfter": 84
+    },
+    {
+      "t": 105.8,
+      "what": "fight",
+      "crab": "90",
+      "at": [
+        -1540,
+        1307,
+        417
+      ],
+      "dist": 231,
+      "swings": 4,
+      "hBefore": 84,
+      "hp": [
+        14,
+        8,
+        2,
+        10
+      ],
+      "killed": true,
+      "hAfter": 72
+    },
+    {
+      "t": 116.9,
+      "what": "arrived",
+      "name": "B",
+      "at": [
+        -1174.5,
+        1214.9,
+        453
+      ]
+    }
+  ],
+  "fights": [
+    {
+      "crab": "88",
+      "at": [
+        -2284,
+        1381,
+        447
+      ],
+      "dist": 43,
+      "swings": 5,
+      "hBefore": 98,
+      "hp": [
+        14,
+        8,
+        8,
+        2,
+        10
+      ],
+      "killed": true,
+      "hAfter": 84
+    },
+    {
+      "crab": "90",
+      "at": [
+        -1540,
+        1307,
+        417
+      ],
+      "dist": 231,
+      "swings": 4,
+      "hBefore": 84,
+      "hp": [
+        14,
+        8,
+        2,
+        10
+      ],
+      "killed": true,
+      "hAfter": 72
+    }
+  ],
+  "quick": [
+    "weapon_mobile",
+    "weapon_switchblade",
+    "weapon_glock"
+  ],
+  "failure": "AssertionError [ERR_ASSERTION]: B->C teleport timeout\n    at wait (file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:15:84)\n    at async door (file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:59:2)\n    at async file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:74:2",
+  "lastPos": [
+    -1199.4,
+    1206.4,
+    453
+  ],
+  "seconds": 134.705,
+  "chromium": "156.0.8078.4"
+}

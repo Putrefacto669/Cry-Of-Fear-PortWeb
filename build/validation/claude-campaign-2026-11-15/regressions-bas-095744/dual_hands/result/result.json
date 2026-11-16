@@ -1,0 +1,38 @@
+{
+  "diagnosticOnly": true,
+  "deployment": {
+    "manifest": "34ad93185488",
+    "controller": "http://127.0.0.1:8151/sw.js"
+  },
+  "bagBefore": "[10:06:32] COF/HUD SMSICON 0\n[10:06:32] COF/HUD INV 3 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt inventoryitems/weapons/weapon_glock.txt\n[10:06:32] COF/HUD QUICK weapon_mobile weapon_switchblade weapon_glock\n[10:06:32] COF/HUD OBJECTIVE \n[10:06:32] \"cl_lw\" is \"0\" ( \"1\" )\n[10:06:32] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[10:06:32] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[10:06:32] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1\n[10:06:32] carried 1: weapon_glock\n[10:06:32] carried 1: weapon_switchblade\n[10:06:32] carried 1: weapon_mobile\n[10:06:32] monster monstermaker health 0 dead 0 dist 320\n[10:06:32] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-0.006 secondary=-0.001 playernext=0.494 reload=0 buttons=0 health=100\n[10:06:32] COF/PHONE mode=0 light=0 dual=0 message=0\n[10:06:32] COF/SPPUNCH state angle=0,0,0 velocity=0,0,0 maxclients=1\n[10:06:32] COF/FENCE hands_82 time=11.2153",
+  "blade": "[10:06:33] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-0.471 secondary=-0.001 playernext=0.467 reload=0 buttons=0 health=100\n[10:06:33] COF/PHONE mode=0 light=0 dual=1 message=0\n[10:06:33] COF/SPPUNCH state angle=0,0,0 velocity=0,0,0 maxclients=1\n[10:06:33] COF/FENCE hands_83 time=11.675",
+  "bladeRender": "[10:06:34] COF/HANDSCLIENT on=1 right=1 phoneSeq=0 body=0 serial=2 age=0.9348 draws=17 mirrors=34 masked=143514 maskedview=62628 viewseq=5 viewmodel=models/weapons/switchblade/v_switchblade.mdl\n[10:06:34] COF/FENCE hands_85 time=13.0705",
+  "afterPhoneToggle": "[10:06:35] COF/WEAPON class=weapon_switchblade clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[10:06:35] COF/PHONE mode=1 light=1 dual=1 message=0\n[10:06:35] COF/SPPUNCH state angle=0,0,0 velocity=0,0,0 maxclients=1\n[10:06:35] COF/FENCE hands_88 time=13.8705",
+  "invalid": "[10:06:35] COF/HUD DUALSELECT 0\n[10:06:35] Warning: late precache of inventory/inventory_no.wav\n[10:06:35] COF/FENCE hands_89 time=13.9866",
+  "glock": "[10:06:37] COF/WEAPON class=weapon_glock clip=15 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[10:06:37] COF/PHONE mode=1 light=1 dual=1 message=0\n[10:06:37] COF/SPPUNCH state angle=0,0,0 velocity=0,0,0 maxclients=1\n[10:06:37] COF/FENCE hands_92 time=15.4036",
+  "glockRender": "[10:06:37] COF/HANDSCLIENT on=1 right=2 phoneSeq=5 body=0 serial=5 age=0.9646 draws=42 mirrors=84 masked=380352 maskedview=180516 viewseq=21 viewmodel=models/weapons/glock/v_glock.mdl\n[10:06:37] COF/FENCE hands_93 time=15.5036",
+  "shot": "[10:06:37] COF/WEAPON class=weapon_glock clip=14 ammo=0 primary=0.193 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[10:06:37] COF/PHONE mode=1 light=1 dual=1 message=0\n[10:06:37] COF/SPPUNCH state angle=-2,0,0 velocity=4,0,0 maxclients=1\n[10:06:37] COF/FENCE hands_96 time=16.1709",
+  "shotClip": 14,
+  "restored": "[10:06:41] COF/WEAPON class=weapon_glock clip=14 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[10:06:41] COF/PHONE mode=1 light=1 dual=1 message=0\n[10:06:41] COF/SPPUNCH state angle=-0.000248462,0,0 velocity=-0.000581524,0,0 maxclients=1\n[10:06:41] COF/FENCE hands_98 time=18.4947",
+  "bagAfter": "[10:06:41] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1\n[10:06:41] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1\n[10:06:41] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1\n[10:06:41] carried 1: weapon_glock\n[10:06:41] carried 1: weapon_switchblade\n[10:06:41] carried 1: weapon_mobile\n[10:06:41] monster monstermaker health 0 dead 0 dist 320\n[10:06:41] COF/FENCE hands_100 time=18.5276",
+  "pendingSave": "[10:06:41] COF/SPPUNCH saved angle=-0.000248462,0,0 velocity=-0.000581524,0,0\n[10:06:41] Saving game to save/hands_switch.sav...\n[10:06:41] COF/FENCE hands_101 time=18.6445",
+  "cold": "[10:06:57] COF/WEAPON class=weapon_glock clip=14 ammo=0 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[10:06:57] COF/PHONE mode=0 light=0 dual=1 message=0\n[10:06:57] COF/FENCE hands_105 time=20.9272",
+  "gl": {
+    "lost": false,
+    "error": 0
+  },
+  "beforeReload": "[10:06:58] COF/WEAPON class=weapon_glock clip=14 ammo=15 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[10:06:58] COF/PHONE mode=0 light=0 dual=1 message=0\n[10:06:58] COF/FENCE hands_112 time=21.8444",
+  "dualR": "[10:07:01] COF/WEAPON class=weapon_glock clip=14 ammo=15 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[10:07:01] COF/PHONE mode=0 light=0 dual=1 message=0\n[10:07:01] COF/FENCE hands_113 time=24.3768",
+  "reloadSave": "[10:07:02] Saving game to save/hands_reload.sav...\n[10:07:02] COF/FENCE hands_118 time=25.1606",
+  "reloaded": "[10:07:09] COF/HUD INV 4 inventoryitems/weapons/weapon_mobile.txt inventoryitems/weapons/weapon_switchblade.txt inventoryitems/weapons/weapon_glock.txt inventoryitems/ammo/ammo_glock.txt:14\n[10:07:09] COF/HUD QUICK weapon_mobile weapon_switchblade weapon_glock\n[10:07:09] COF/HUD OBJECTIVE \n[10:07:09] COF/WEAPON class=weapon_glock clip=15 ammo=14 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[10:07:09] COF/PHONE mode=0 light=0 dual=0 message=0\n[10:07:09] COF/FENCE hands_141 time=27.7446",
+  "coldReloadPending": "[10:07:20] COF/WEAPON class=weapon_glock clip=14 ammo=15 primary=-1 secondary=-0.001 playernext=2.41667 reload=1 buttons=0 health=100\n[10:07:20] COF/PHONE mode=0 light=0 dual=0 message=0\n[10:07:20] COF/FENCE hands_144 time=25.2935",
+  "coldReloaded": "[10:07:23] COF/WEAPON class=weapon_glock clip=15 ammo=14 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[10:07:23] COF/PHONE mode=0 light=0 dual=0 message=0\n[10:07:23] COF/FENCE hands_167 time=27.7765",
+  "single": "[10:07:25] COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100\n[10:07:25] COF/PHONE mode=0 light=0 dual=0 message=0\n[10:07:25] COF/FENCE hands_169 time=30.0112",
+  "modules": {
+    "server.wasm": "3ff6fe69064eba8d36f0c55a13f650ace63b3b4062724037085238cf9bda0c08",
+    "client.wasm": "6bdf1b1fc2b239c6f28a11525e68be3d373846e9224ecef4306dd4304cecdb86"
+  },
+  "passed": true,
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

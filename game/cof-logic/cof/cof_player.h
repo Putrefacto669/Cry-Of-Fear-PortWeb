@@ -53,6 +53,9 @@ void CoF_PuzzlesNewGame( void );
 int CoF_GetPuzzleState( char *code, int size );
 void CoF_SetPuzzleState( int password, const char *code );
 bool CoF_PuzzleCommand( CBasePlayer *pPlayer, const char *pcmd );
+// phonecall.cpp: the mobile's number panel (phonenumber) and the phone calls
+bool CoF_PhoneCommand( CBasePlayer *pPlayer, const char *pcmd );
+bool CoF_PhoneInCall( CBaseEntity *pPlayer );
 
 // puzzles.cpp: the camera flash fires the camera_spot_trigger in the frame
 void CoF_CameraFlash( CBasePlayer *pPlayer );

@@ -31,6 +31,10 @@ static cvar_t cofPunchSkill[] = {
  {"sk_cof_punch1","5"},{"sk_cof_punch2","5"},{"sk_cof_punch3","5"},{"sk_cof_punch4","5"}
 };
 static cvar_t cofWeaponDebug={"cof_weapon_debug","0",0};
+// skill.cfg: sk_cof_nightstick1..4 (11 in all four), the damage of MeleeHitThinkNightStick2 (DAT_10226838)
+static cvar_t cofNightstickSkill[] = {
+ {"sk_cof_nightstick1","11"},{"sk_cof_nightstick2","11"},{"sk_cof_nightstick3","11"},{"sk_cof_nightstick4","11"}
+};
 static cvar_t cofGlockSkill[] = {
 	{ "sk_cof_glock1", "13" }, { "sk_cof_glock2", "13" },
 	{ "sk_cof_glock3", "13" }, { "sk_cof_glock4", "13" }
@@ -40,6 +44,7 @@ void CoF_RegisterWeaponSkill( void )
 {
  CVAR_REGISTER(&cofWeaponDebug);
  for(unsigned i=0;i<4;++i)CVAR_REGISTER(&cofPunchSkill[i]);
+ for(unsigned i=0;i<4;++i)CVAR_REGISTER(&cofNightstickSkill[i]);
 	for( unsigned i = 0; i < sizeof(cofGlockSkill) / sizeof(cofGlockSkill[0]); ++i )
 		CVAR_REGISTER( &cofGlockSkill[i] );
 }
@@ -57,6 +62,7 @@ static int CoF_GlockDamage( void )
 #define WEAPON_COF_SYRINGE      18
 #define WEAPON_COF_MOBILE       19
 #define WEAPON_COF_CAMERA       20
+#define WEAPON_COF_NIGHTSTICK   21
 
 #define COF_GLOCK_CLIP          15  // Glock 19 magazine
 #define COF_9MM_MAX             90
@@ -653,7 +659,7 @@ void CCofMobile::Holster( int skiplocal )
 void CCofMobile::PrimaryAttack( void )
 {
 	cof_phone_t *phone = CoF_Phone( m_pPlayer );
-	if( !phone )
+	if( !phone || CoF_PhoneInCall( m_pPlayer ))
 		return;
 
 	phone->flash = !phone->flash;
@@ -711,7 +717,7 @@ void CCofPunchHit::Think()
 static void PhonePunchEvent(CBasePlayer *p);
 void CCofMobile::SecondaryAttack()
 {
- if(m_flNextPrimaryAttack>0 || m_flNextSecondaryAttack>0 || m_fInReload)return;
+ if(m_flNextPrimaryAttack>0 || m_flNextSecondaryAttack>0 || m_fInReload || CoF_PhoneInCall(m_pPlayer))return;
  cof_phone_t *phone=CoF_Phone(m_pPlayer);
  PhonePunchEvent(m_pPlayer);
  Anim(phone && phone->flash?MOBILE_PUNCH_FLASH:MOBILE_PUNCH_SMS,1.0f);
@@ -758,6 +764,13 @@ void CCofMobile::WeaponIdle( void )
 
 	if( m_flTimeWeaponIdle > UTIL_WeaponTimeBase())
 		return;
+	// phonecall.cpp: during a call the phone stays at the ear (raise_idle, 50 frames at 30 fps)
+	if( CoF_PhoneInCall( m_pPlayer ))
+	{
+		SendWeaponAnim( 14, 0 );
+		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + 50.0f / 30.0f;
+		return;
+	}
 	if( phone && !phone->flash )
 		Anim( MOBILE_IDLE_SMS, 101.0f / 15.0f );
 	else
@@ -901,6 +914,15 @@ void CoF_PrecacheWeapons( void )
 	UTIL_PrecacheOtherWeapon( "weapon_syringe" );
 	UTIL_PrecacheOtherWeapon( "weapon_mobile" );
 	UTIL_PrecacheOtherWeapon( "weapon_camera" );
+	// the nightstick (chapter 2) is packed only with the maps that need it (stage_map.py), not in boot:
+	// register it where its view model is there, so its ItemInfo exists before one is picked up
+	int stickLen = 0;
+	byte *stick = LOAD_FILE_FOR_ME( (char *)"models/weapons/nightstick/v_nightstick.mdl", &stickLen );
+	if( stick )
+	{
+		FREE_FILE( stick );
+		UTIL_PrecacheOtherWeapon( "weapon_nightstick" );
+	}
 	UTIL_PrecacheOther( "ammo_glock" );
 
 	// pm_shared.c plays these on the server too (the original's footsteps and bag rustling)
@@ -1008,4 +1030,206 @@ void CCofCamera::WeaponIdle( void )
 	if( m_flTimeWeaponIdle > UTIL_WeaponTimeBase())
 		return;
 	Anim( RANDOM_LONG( 0, 4 ) ? CAMERA_IDLE : CAMERA_FIDGET, RANDOM_FLOAT( 4, 8 ));
+}
+
+/*
+=====================================================================
+weapon_nightstick (hl.dll CNightstick, vtable 101b4b78)
+=====================================================================
+*/
+// Spawn 1005d330, Precache 1005d170, GetItemInfo 1005ccc0, Deploy 1005cba0 (draw 1, "crowbar"),
+// Holster 1005cd20 (holster 2, next attack +0.5), PrimaryAttack 1005d210, WeaponIdle 1005d400 (idle1 0 for
+// the length of its sequence), 1005cc00 (a fidget 6/7/9 with a 1 in 600 chance per frame when idle).
+// PrimaryAttack: the player animation "nightstick_attack", attack1/2/3 (3/4/5) at random, the hit
+// 0.31 s later (CBasePlayer::MeleeHitThinkNightStick2, 100e7140) and the next swing 1 s later.
+// Not reproduced: the sprint and jump sequences 10-14 of 1005cd60 (no port weapon has them yet) and the
+// nightstick as the right hand of weapon_dualweapon (MeleeHitThinkNightStick of CDualWeaponRight).
+enum nightstick_e
+{
+	STICK_IDLE = 0, STICK_DRAW = 1, STICK_HOLSTER = 2, STICK_ATTACK1 = 3, STICK_ATTACK2 = 4, STICK_ATTACK3 = 5,
+	STICK_FIDGET1 = 6, STICK_FIDGET2 = 7, STICK_FIDGET3 = 9
+};
+
+static void NightstickViewKick( CBasePlayer *p, float x, float y, float z );
+
+// MeleeHitThinkNightStick2 (100e7140)
+class CCofNightstickHit : public CPointEntity
+{
+public:
+	void Think();
+	int Save( CSave & ); int Restore( CRestore & ); static TYPEDESCRIPTION m_SaveData[];
+	EHANDLE m_hPlayer;
+};
+LINK_ENTITY_TO_CLASS( cof_nightstick_hit, CCofNightstickHit )
+TYPEDESCRIPTION CCofNightstickHit::m_SaveData[] = { DEFINE_FIELD( CCofNightstickHit, m_hPlayer, FIELD_EHANDLE ) };
+IMPLEMENT_SAVERESTORE( CCofNightstickHit, CPointEntity )
+
+void CCofNightstickHit::Think()
+{
+	CBaseEntity *actor = m_hPlayer;
+	if( actor && actor->IsPlayer() && actor->IsAlive())
+	{
+		CBasePlayer *player = (CBasePlayer *)actor;
+		UTIL_MakeVectors( player->pev->v_angle );
+		Vector start = player->GetGunPosition(), end = start + gpGlobals->v_forward * 32;
+		TraceResult tr;
+		UTIL_TraceLine( start, end, dont_ignore_monsters, player->edict(), &tr );
+		// 100f91b0( -3, -8, 0 ): the view kick of every swing, hit or miss
+		NightstickViewKick( player, -3.0f, -8.0f, 0.0f );
+		if( cofWeaponDebug.value )
+			ALERT( at_console, "COF/NIGHTSTICK kick velocity=%g,%g,%g\n", player->pev->vuser3.x, player->pev->vuser3.y, player->pev->vuser3.z );
+		if( tr.flFraction >= 1.0f )
+		{
+			UTIL_TraceHull( start, end, dont_ignore_monsters, head_hull, player->edict(), &tr );
+			if( tr.flFraction < 1.0f )
+			{
+				CBaseEntity *hit = CBaseEntity::Instance( tr.pHit );
+				if( !hit || hit->IsBSPModel())
+				{
+					Vector mins( -16, -16, -18 ), maxs( 16, 16, 18 );
+					FindHullIntersection( start, tr, (float *)&mins, (float *)&maxs, player->edict());
+				}
+			}
+		}
+		EMIT_SOUND_DYN( player->edict(), CHAN_WEAPON, "weapons/nightstick/nightstick_swing.wav", 1.0f, 0.8f, 0, 100 );
+		if( tr.flFraction < 1.0f )
+		{
+			CBaseEntity *hit = CBaseEntity::Instance( tr.pHit );
+			int level = (int)CVAR_GET_FLOAT( "skill" ); if( level < 1 ) level = 1; if( level > 4 ) level = 4;
+			float damage = CVAR_GET_FLOAT( cofNightstickSkill[level - 1].name );
+			if( hit )
+			{
+				ClearMultiDamage();
+				hit->TraceAttack( player->pev, damage, gpGlobals->v_forward, &tr, 0x04001000 );
+				ApplyMultiDamage( player->pev, player->pev );
+			}
+			if( hit && hit->Classify() != CLASS_NONE && hit->Classify() != CLASS_MACHINE )
+			{
+				UTIL_ScreenShake( player->pev->origin, 5.0f, 0.25f, 0.1f, 2.0f );
+				EMIT_SOUND_DYN( player->edict(), CHAN_WEAPON, RANDOM_LONG( 0, 1 ) == 1 ? "weapons/nightstick/nightstick_hitbody1.wav" : "weapons/nightstick/nightstick_hitbody2.wav", 1.0f, 0.8f, 0, 100 );
+			}
+			else
+			{
+				UTIL_ScreenShake( player->pev->origin, 5.0f, 0.25f, 0.15f, 2.0f );
+				EMIT_SOUND_DYN( player->edict(), CHAN_WEAPON, RANDOM_LONG( 0, 1 ) == 1 ? "weapons/nightstick/nightstick_hitwall1.wav" : "weapons/nightstick/nightstick_hitwall2.wav", 1.0f, 0.8f, 0, 100 );
+			}
+			if( cofWeaponDebug.value )
+				ALERT( at_console, "COF/NIGHTSTICK impact target=%s id=%d damage=%g hitgroup=%d time=%g\n", hit ? STRING( hit->pev->classname ) : "world", hit ? hit->entindex() : 0, damage, tr.iHitgroup, gpGlobals->time );
+		}
+		else if( cofWeaponDebug.value )
+			ALERT( at_console, "COF/NIGHTSTICK miss time=%g\n", gpGlobals->time );
+	}
+	UTIL_Remove( this );
+}
+
+class CCofNightstick : public CCofWeapon
+{
+public:
+	void Spawn( void );
+	void Precache( void );
+	int GetItemInfo( ItemInfo *p );
+	BOOL Deploy( void );
+	void Holster( int skiplocal = 0 );
+	void PrimaryAttack( void );
+	void WeaponIdle( void );
+	void ItemPostFrame( void );
+};
+LINK_ENTITY_TO_CLASS( weapon_nightstick, CCofNightstick )
+
+void CCofNightstick::Spawn( void )
+{
+	Precache();
+	m_iId = WEAPON_COF_NIGHTSTICK;
+	SET_MODEL( ENT( pev ), "models/weapons/nightstick/w_nightstick.mdl" );
+	m_iClip = -1;
+	FallInit();
+}
+
+void CCofNightstick::Precache( void )
+{
+	PRECACHE_MODEL( "models/weapons/nightstick/v_nightstick.mdl" );
+	PRECACHE_MODEL( "models/weapons/nightstick/w_nightstick.mdl" );
+	PRECACHE_SOUND( "weapons/nightstick/nightstick_hitwall1.wav" );
+	PRECACHE_SOUND( "weapons/nightstick/nightstick_hitwall2.wav" );
+	PRECACHE_SOUND( "weapons/nightstick/nightstick_hitbody1.wav" );
+	PRECACHE_SOUND( "weapons/nightstick/nightstick_hitbody2.wav" );
+	PRECACHE_SOUND( "weapons/nightstick/nightstick_swing.wav" );
+}
+
+// 1005ccc0: slot 2, no ammo, weight 1 (the port numbers its CoF weapons from 16)
+int CCofNightstick::GetItemInfo( ItemInfo *p )
+{
+	p->pszName = STRING( pev->classname );
+	p->pszAmmo1 = NULL;
+	p->iMaxAmmo1 = -1;
+	p->pszAmmo2 = NULL;
+	p->iMaxAmmo2 = -1;
+	p->iMaxClip = WEAPON_NOCLIP;
+	p->iSlot = 2;
+	p->iPosition = 0;
+	p->iId = m_iId = WEAPON_COF_NIGHTSTICK;
+	p->iWeight = 1;
+	p->iFlags = 0;
+	return 1;
+}
+
+BOOL CCofNightstick::Deploy( void )
+{
+	return DefaultDeploy( "models/weapons/nightstick/v_nightstick.mdl", "", STICK_DRAW, "crowbar" );
+}
+
+void CCofNightstick::Holster( int skiplocal )
+{
+	SendWeaponAnim( STICK_HOLSTER, 0 );
+	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5f;
+}
+
+void CCofNightstick::PrimaryAttack( void )
+{
+	static const int swings[] = { STICK_ATTACK1, STICK_ATTACK2, STICK_ATTACK3 };
+	SendWeaponAnim( swings[RANDOM_LONG( 0, 2 )], 0 );
+	m_pPlayer->SetAnimation( PLAYER_ATTACK1 );
+	CCofNightstickHit *hit = (CCofNightstickHit *)CBaseEntity::Create( "cof_nightstick_hit", g_vecZero, g_vecZero, NULL );
+	if( hit )
+	{
+		hit->m_hPlayer = m_pPlayer;
+		hit->pev->nextthink = gpGlobals->time + 0.31f;
+	}
+	m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 1.0f;
+	m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + 1.0f;
+	if( cofWeaponDebug.value )
+		ALERT( at_console, "COF/NIGHTSTICK swing seq=%d impact=%g now=%g\n", m_pPlayer->pev->weaponanim, gpGlobals->time + 0.31f, gpGlobals->time );
+}
+
+// 1005d400: idle1 for the length of its sequence (30 frames at 30 fps)
+void CCofNightstick::WeaponIdle( void )
+{
+	if( m_flTimeWeaponIdle > UTIL_WeaponTimeBase() || m_flNextPrimaryAttack > UTIL_WeaponTimeBase() || m_flNextSecondaryAttack > UTIL_WeaponTimeBase())
+		return;
+	Anim( STICK_IDLE, 1.0f );
+}
+
+// 1005cc00: when the timers are done, one frame in 600 starts a fidget (the idle timer is left as it is)
+void CCofNightstick::ItemPostFrame( void )
+{
+	if( m_flNextPrimaryAttack <= UTIL_WeaponTimeBase() && m_flNextSecondaryAttack <= UTIL_WeaponTimeBase() &&
+		m_flTimeWeaponIdle <= UTIL_WeaponTimeBase() && RANDOM_LONG( 0, 599 ) == 50 )
+	{
+		static const int fidgets[] = { STICK_FIDGET1, STICK_FIDGET2, STICK_FIDGET3 };
+		SendWeaponAnim( fidgets[RANDOM_LONG( 0, 2 )], 0 );
+	}
+	CCofWeapon::ItemPostFrame();
+}
+
+static void NightstickViewKick( CBasePlayer *p, float x, float y, float z )
+{
+	// 100f91b0 in single player: the kick goes to the punch velocity the client integrates (vuser3), scaled by 20
+	if( gpGlobals->maxClients <= 1 )
+	{
+		p->pev->vuser3.x -= x * 20.0f;
+		p->pev->vuser3.y += y * 20.0f;
+		p->pev->vuser3.z += z * 20.0f;
+		return;
+	}
+	MESSAGE_BEGIN( MSG_ONE, gmsgCoFPhonePunch, NULL, p->pev ); WRITE_COORD( x ); WRITE_COORD( y ); WRITE_COORD( z ); MESSAGE_END();
 }

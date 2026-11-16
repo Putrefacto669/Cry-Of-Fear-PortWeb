@@ -100,8 +100,17 @@ BOOT_DIRS = ["gfx/shell", "resource", "sprites", "events", "inventoryitems", "tx
              "sound/player/footsteps", "sound/inventory"]
 # Enemigos de game/cof-logic/cof/monsters.cpp: el modelo y los sonidos los pone el código, no el BSP.
 # Se buscan por classname y por la "monstertype" de los monstermaker.
+# Chapter 2 on: weapons picked up in an earlier map (c_basement's nightstick) that each later map must ship.
+# Add every new map of the campaign here as it is staged.
+CARRIED_INTO = {
+    "c_sewer": ["weapon_nightstick"],
+}
 MONSTER_ASSETS = {
     "monster_slower": ["models/slower.mdl", "sound/slower"],
+    # chapter 2's crawling slower (CCrab): its model plays the k_crawl* steps of sound/slower
+    "monster_crab": ["models/slower2.mdl", "sound/slower"],
+    # chapter 2's sewer monster (CSewmo): its sounds and the common/null.wav of its wall hits
+    "monster_sewmo": ["models/sewmo.mdl", "sound/sewmo", "sound/common/null.wav"],
     "monster_slower3": ["models/slower3.mdl", "sound/slower3", "sound/slower"],
     "monster_faster": ["models/faster.mdl", "sound/faster"],
     "monster_child": ["models/children.mdl", "sound/children"],
@@ -117,6 +126,14 @@ MONSTER_ASSETS = {
     "cof_developer_commentary": ["models/developer_commentary.mdl"],
     "cof_hoodie": ["models/costumes/hoodie.mdl", "sound/player/find_note.wav"],
     "item_nightvision": ["models/items/w_nightvision.mdl", "sound/weapons/item_get.wav"],
+    # phonecall.cpp + hud.js: the mobile's number panel (client.dll CPhone) and the calls of cof_phonecall
+    "cof_phonecheck": ["gfx/vgui/640_phone.tga", "sound/phone/tone_send.wav"]
+                      + [f"sound/phone/tone_{d}.wav" for d in ("zero", "one", "two", "three", "four", "five",
+                                                                  "six", "seven", "eight", "nine")],
+    # weapons_cof.cpp CCofNightstick: view model and sounds (w_nightstick comes from the weapon_ rule).
+    # Not in boot: only the maps that place it, and later the maps the player carries it into.
+    "weapon_nightstick": ["models/weapons/nightstick", "sound/weapons/nightstick"],
+    "cof_phonecall": ["sound/phone/phone_ringing.wav", "sound/phone/phone_ringtone.wav", "sound/phone/tone_send.wav"],
 }
 ITEM_FIELD_RE = re.compile(r'"([^"]+)"\s*\{\s*data\s+"([^"]*)"\s*\}')
 
@@ -219,6 +236,17 @@ def map_dependencies(game: Path, bsp: Path) -> tuple[set[str], list[str]]:
                 m = aur and re.search(r'"sprite"\s+"([^"]+)"', aur.read_text(encoding="latin-1"))
                 if m:
                     deps.add(m.group(1).lower())
+    # weapons the player brings from an earlier map whose files are not in boot: the level must ship them too, or
+    # weapons_cof.cpp does not register them (its precache is conditional) and the carried weapon has no model
+    for weapon in CARRIED_INTO.get(bsp.stem.lower(), []):
+        for rel in MONSTER_ASSETS.get(weapon, []):
+            d = game / rel
+            if d.is_dir():
+                deps.update(f.relative_to(game).as_posix() for f in d.iterdir() if f.is_file())
+            else:
+                deps.add(rel)
+        short = weapon[len("weapon_"):]
+        deps.add(f"models/weapons/{short}/w_{short}.mdl")
     # Mapas con el mismo nombre base: .res (lista de recursos) y overview
     for extra in (f"maps/{bsp.stem}.res", f"maps/{bsp.stem}.txt"):
         deps.add(extra)

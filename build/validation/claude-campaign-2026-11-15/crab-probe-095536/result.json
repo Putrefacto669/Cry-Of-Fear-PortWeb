@@ -1,0 +1,96 @@
+{
+  "checks": {
+    "monster_crab spawns": true,
+    "no missing activity": true,
+    "four crabs in the map": true,
+    "body variants of the map (2,1,0,1)": true,
+    "health 20 at skill 1": true,
+    "the crab attacks the player": true,
+    "slash damage 2 (sk_krypande_dmg_one_slash1)": true,
+    "nightstick hits the crab for 11": true,
+    "two hits kill it": true,
+    "fence scene spawns three crabs": true,
+    "living crabs kept by save/load": true,
+    "no crab load errors": true,
+    "no JS errors": true
+  },
+  "noSpawn": [],
+  "noSequence": [],
+  "crabs": [
+    {
+      "id": "88",
+      "origin": [
+        -1910,
+        1394,
+        447
+      ]
+    },
+    {
+      "id": "89",
+      "origin": [
+        -2136,
+        942,
+        447
+      ]
+    },
+    {
+      "id": "90",
+      "origin": [
+        -1169,
+        1225,
+        417
+      ]
+    },
+    {
+      "id": "524",
+      "origin": [
+        1917,
+        1668,
+        546
+      ]
+    }
+  ],
+  "inspect": [
+    "[09:56:50] COF/ENTITY #88 class=monster_crab body=2 solid=3 origin=-1910.0,1394.0,447.0 gate=0 speed=0.0 spawn=0 touch=0 target= frozen=0 stairs=-1 use=1 think=1 toggle=0 next=68.8656 now=68.7766 effects=0 renderfx=0 modelindex=244 model=models/slower2.mdl health=20 dead=0",
+    "[09:56:50] COF/ENTITY #89 class=monster_crab body=1 solid=3 origin=-2136.0,942.0,447.0 gate=0 speed=0.0 spawn=0 touch=0 target= frozen=0 stairs=-1 use=1 think=1 toggle=0 next=68.8656 now=68.8047 effects=0 renderfx=0 modelindex=244 model=models/slower2.mdl health=20 dead=0",
+    "[09:56:50] COF/ENTITY #90 class=monster_crab body=0 solid=3 origin=-1169.0,1225.0,417.0 gate=0 speed=0.0 spawn=0 touch=0 target= frozen=0 stairs=-1 use=1 think=1 toggle=0 next=68.9656 now=68.8656 effects=0 renderfx=0 modelindex=244 model=models/slower2.mdl health=20 dead=0",
+    "[09:56:50] COF/ENTITY #524 class=monster_crab body=1 solid=3 origin=1917.0,1668.0,546.0 gate=0 speed=0.0 spawn=0 touch=0 target= frozen=0 stairs=-1 use=1 think=1 toggle=0 next=69.0656 now=68.9656 effects=0 renderfx=0 modelindex=244 model=models/slower2.mdl health=20 dead=0"
+  ],
+  "bodies": [
+    2,
+    1,
+    0,
+    1
+  ],
+  "health": [
+    20,
+    20,
+    20,
+    20
+  ],
+  "target": {
+    "id": "90",
+    "origin": [
+      -1169,
+      1225,
+      417
+    ]
+  },
+  "healthBefore": 100,
+  "healthAfter": 98,
+  "hurtAfterSeconds": 2.734,
+  "crabMoved": "[09:56:53] COF/ENTITY #90 class=monster_crab body=0 solid=3 origin=-1258.7,1213.7,417.0 gate=0 speed=0.0 spawn=0 touch=0 target= frozen=0 stairs=-1 use=1 think=1 toggle=0 next=71.6868 now=71.5868 effects=0 renderfx=0 modelindex=244 model=models/slower2.mdl health=20 dead=0",
+  "killed": "[09:57:01] COF/ENTITY #90 class=monster_crab body=0 solid=3 origin=-1258.7,1213.7,417.0 gate=0 speed=0.0 spawn=0 touch=0 target= frozen=0 stairs=-1 use=1 think=0 toggle=0 next=0 now=79.6133 effects=0 renderfx=0 modelindex=244 model=models/slower2.mdl health=10 dead=2",
+  "nightstickHits": [
+    "COF/NIGHTSTICK impact target=monster_crab id=90 damage=11 hitgroup=0 time=76.5421",
+    "COF/NIGHTSTICK impact target=monster_crab id=90 damage=11 hitgroup=0 time=78.4678"
+  ],
+  "fenceCrabs": 3,
+  "makerErrors": [],
+  "livingBeforeSave": 6,
+  "livingAfterLoad": 6,
+  "problems": [],
+  "jsErrors": [],
+  "done": true,
+  "chromium": "156.0.8078.4"
+}

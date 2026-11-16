@@ -1,0 +1,80 @@
+{
+  "checks": {
+    "weapon_nightstick spawns": true,
+    "sk_cof_nightstick registered": true,
+    "picked up into the bag": true,
+    "quick select has it": false,
+    "nightstick in the hand": true,
+    "one swing per second while held": true,
+    "every swing has its hit": true,
+    "hit 0.31 s after the swing": true,
+    "view kick on every hit": true,
+    "floor hit lands on the world": false,
+    "still in the hand after load": true,
+    "swings after load": true,
+    "no nightstick load errors": true,
+    "no JS errors": true
+  },
+  "noSpawnFunction": [],
+  "unknownSkill": [],
+  "weaponRow": "COF/LIST weapon_nightstick #286 origin=1085,1701,551 effects=0 renderfx=0 rendermode=0 modelindex=221 model=models/weapons/nightstick/w_nightstick.mdl killme=0",
+  "pickup": [
+    "COF/HUD PICKUP inventoryitems/weapons/weapon_nightstick.txt"
+  ],
+  "active": "weapon_nightstick",
+  "held": {
+    "swings": [
+      "COF/NIGHTSTICK swing seq=5 impact=71.4256 now=71.1156",
+      "COF/NIGHTSTICK swing seq=3 impact=72.4524 now=72.1424",
+      "COF/NIGHTSTICK swing seq=5 impact=73.4765 now=73.1665"
+    ],
+    "hits": [
+      "COF/NIGHTSTICK miss time=71.4256",
+      "COF/NIGHTSTICK miss time=72.4524",
+      "COF/NIGHTSTICK miss time=73.4765"
+    ],
+    "kicks": [
+      "COF/NIGHTSTICK kick velocity=60,-160,0",
+      "COF/NIGHTSTICK kick velocity=60.221,-160.589,0",
+      "COF/NIGHTSTICK kick velocity=60.1937,-160.516,0"
+    ]
+  },
+  "swingGaps": [
+    1.027,
+    1.024
+  ],
+  "hitDelays": [
+    0.31,
+    0.31,
+    0.31
+  ],
+  "firstKick": "COF/NIGHTSTICK kick velocity=60,-160,0",
+  "floor": {
+    "swings": [
+      "COF/NIGHTSTICK swing seq=4 impact=77.8771 now=77.5671"
+    ],
+    "hits": [
+      "COF/NIGHTSTICK miss time=77.8771"
+    ],
+    "kicks": [
+      "COF/NIGHTSTICK kick velocity=60.0002,-160.001,0"
+    ]
+  },
+  "floorSounds": [],
+  "afterLoad": "weapon_nightstick",
+  "afterLoadSwing": {
+    "swings": [
+      "COF/NIGHTSTICK swing seq=3 impact=82.3889 now=82.0789"
+    ],
+    "hits": [
+      "COF/NIGHTSTICK miss time=82.3889"
+    ],
+    "kicks": [
+      "COF/NIGHTSTICK kick velocity=60.0003,-160.001,0"
+    ]
+  },
+  "problems": [],
+  "jsErrors": [],
+  "done": true,
+  "chromium": "156.0.8078.4"
+}

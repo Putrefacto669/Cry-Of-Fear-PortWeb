@@ -1,0 +1,123 @@
+{
+  "checks": {
+    "arrival stairs *3: blocks the way": true,
+    "arrival stairs *3: E says \"I don't need to go back up again.\"": true,
+    "arrival stairs *3: no repeat within checkdelay": true,
+    "locked door *16: E says \"He locked the door. Better find another way.\"": true,
+    "locked door *16: no teleport": true,
+    "destroyed interior *123: blocks the way": true,
+    "destroyed interior *123: E says \"The interior is destroyed. It's not going to work.\"": true,
+    "destroyed interior *123: no repeat within checkdelay": true,
+    "ledge *124: blocks the way": false,
+    "ledge *124: E says \"It's too dark and dangerous to climb up there.\"": true,
+    "ledge *124: no repeat within checkdelay": true,
+    "fallen stairs *87: blocks the way": true,
+    "fallen stairs *87: E says \"The stairs has fallen apart. I can't go up.\"": true,
+    "fallen stairs *87: no repeat within checkdelay": true,
+    "no JS errors": true
+  },
+  "cases": [
+    {
+      "name": "arrival stairs *3",
+      "model": "*3",
+      "firstUse": [
+        "COF/HUD CENTER I don't need to go back up again."
+      ],
+      "secondUse": [],
+      "pushedFrom": [
+        -3223,
+        2906,
+        483
+      ],
+      "pushedTo": [
+        -3236,
+        2906,
+        483
+      ],
+      "enteredBox": false,
+      "reachedBeyond": false,
+      "blocked": true
+    },
+    {
+      "name": "locked door *16",
+      "lines": [
+        "COF/HUD CENTER He locked the door. Better find another way."
+      ],
+      "at0": [
+        -3087.9,
+        2781.3,
+        483
+      ],
+      "at1": [
+        -3071.1,
+        2767.1,
+        483
+      ]
+    },
+    {
+      "name": "destroyed interior *123",
+      "model": "*123",
+      "firstUse": [
+        "COF/HUD CENTER The interior is destroyed. It's not going to work."
+      ],
+      "secondUse": [],
+      "pushedFrom": [
+        1131.4,
+        1758,
+        582
+      ],
+      "pushedTo": [
+        905,
+        1557.2,
+        582
+      ],
+      "enteredBox": false,
+      "reachedBeyond": false,
+      "blocked": true
+    },
+    {
+      "name": "ledge *124",
+      "model": "*124",
+      "firstUse": [
+        "COF/HUD CENTER It's too dark and dangerous to climb up there."
+      ],
+      "secondUse": [],
+      "pushedFrom": [
+        1317.7,
+        1790.2,
+        582
+      ],
+      "pushedTo": [
+        1669,
+        1831,
+        582
+      ],
+      "enteredBox": false,
+      "reachedBeyond": true,
+      "blocked": false
+    },
+    {
+      "name": "fallen stairs *87",
+      "model": "*87",
+      "firstUse": [
+        "COF/HUD CENTER The stairs has fallen apart. I can't go up."
+      ],
+      "secondUse": [],
+      "pushedFrom": [
+        1567.6,
+        576.2,
+        461
+      ],
+      "pushedTo": [
+        1557.7,
+        560,
+        461
+      ],
+      "enteredBox": false,
+      "reachedBeyond": false,
+      "blocked": true
+    }
+  ],
+  "jsErrors": [],
+  "done": true
+}

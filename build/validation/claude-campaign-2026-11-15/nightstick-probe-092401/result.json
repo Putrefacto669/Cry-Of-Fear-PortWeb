@@ -1,0 +1,50 @@
+{
+  "checks": {
+    "weapon_nightstick spawns": true,
+    "sk_cof_nightstick registered": true,
+    "picked up into the bag": true,
+    "quick select has it": true,
+    "nightstick in the hand": true,
+    "one swing per second while held": false,
+    "every swing has its hit": true,
+    "hit 0.31 s after the swing": true,
+    "view kick on every hit": true,
+    "floor hit lands on the world": false,
+    "still in the hand after load": true,
+    "swings after load": false,
+    "no nightstick load errors": true,
+    "no JS errors": true
+  },
+  "noSpawnFunction": [],
+  "unknownSkill": [],
+  "weaponRow": "COF/LIST weapon_nightstick #286 origin=1085,1701,551 effects=0 renderfx=0 rendermode=0 modelindex=221 model=models/weapons/nightstick/w_nightstick.mdl killme=0",
+  "pickup": [
+    "COF/HUD PICKUP inventoryitems/weapons/weapon_nightstick.txt",
+    "COF/HUD INV 1 inventoryitems/weapons/weapon_nightstick.txt",
+    "COF/HUD QUICK weapon_nightstick - -"
+  ],
+  "active": "weapon_nightstick",
+  "held": {
+    "swings": [],
+    "hits": [],
+    "kicks": []
+  },
+  "swingGaps": [],
+  "hitDelays": [],
+  "floor": {
+    "swings": [],
+    "hits": [],
+    "kicks": []
+  },
+  "floorSounds": [],
+  "afterLoad": "weapon_nightstick",
+  "afterLoadSwing": {
+    "swings": [],
+    "hits": [],
+    "kicks": []
+  },
+  "problems": [],
+  "jsErrors": [],
+  "done": true,
+  "chromium": "156.0.8078.4"
+}

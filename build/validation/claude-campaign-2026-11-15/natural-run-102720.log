@@ -1,0 +1,20 @@
+{"t":74.2,"what":"kit","quick":["weapon_mobile","weapon_switchblade","weapon_glock"],"health":100}
+{"t":74.8,"what":"leg","name":"A","points":3}
+{"t":76.8,"what":"arrived","name":"A","at":[-2961.7,2912.9,483]}
+{"t":79.7,"what":"door","name":"A->B","model":"*4","from":[-2958.4,2913.7,483],"to":[-2325,1380,483]}
+{"t":79.8,"what":"leg","name":"B","points":6}
+{"t":86.5,"what":"fight","crab":"88","at":[-2295,1381,447],"dist":30,"swings":4,"hBefore":98,"hp":[14,8,2,10],"killed":true,"hAfter":88}
+{"t":100.9,"what":"fight","crab":"90","at":[-1553,1328,417],"dist":32,"swings":6,"hBefore":86,"hp":[14,8,8,8,2,10],"killed":true,"hAfter":74}
+{"t":105.6,"what":"arrived","name":"B","at":[-1158.7,1253.9,453]}
+AssertionError [ERR_ASSERTION]: B->C teleport timeout
+    at wait (file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:15:84)
+    at async door (file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:58:2)
+    at async file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:73:2 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+{"checks":{},"fights":2,"seconds":123.967,"failure":"AssertionError [ERR_ASSERTION]: B->C teleport timeout\n    at wait (file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:15:84)\n    at async door (file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:58:2)\n    at async file:///root/cof-audits/browser-1.64.1"}

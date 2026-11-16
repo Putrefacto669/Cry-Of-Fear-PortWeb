@@ -194,7 +194,7 @@ static bool CoF_IsRealWeapon( const char *name )
 {
 	return !stricmp( name, "weapon_switchblade" ) || !stricmp( name, "weapon_glock" ) ||
 		!stricmp( name, "weapon_syringe" ) || !stricmp( name, "weapon_mobile" ) ||
-		!stricmp( name, "weapon_camera" );
+		!stricmp( name, "weapon_camera" ) || !stricmp( name, "weapon_nightstick" );
 }
 
 static int CoF_FindItem( cof_player_t *s, const char *name )
@@ -570,6 +570,16 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
 		// turns to the nearest living monster, eyes on its chest
 		CBaseEntity *pNear = NULL, *pBest = NULL;
 		float best = 1e9f;
+		// cof_face x y z: that point (the browser probes steer a walk with it; they move with the normal keys)
+		if( CMD_ARGC() >= 4 && ( isdigit( CMD_ARGV( 1 )[0] ) || CMD_ARGV( 1 )[0] == '-' ))
+		{
+			Vector point( atof( CMD_ARGV( 1 )), atof( CMD_ARGV( 2 )), atof( CMD_ARGV( 3 )));
+			Vector ang = UTIL_VecToAngles( point - ( pPlayer->pev->origin + pPlayer->pev->view_ofs ));
+			ang.x = -ang.x;
+			pPlayer->pev->angles = pPlayer->pev->v_angle = ang;
+			pPlayer->pev->fixangle = TRUE;
+			return true;
+		}
 		// cof_face <targetname|*N>: that entity instead (brushes: the middle of their box)
 		if( CMD_ARGC() >= 2 && ( pBest = CoF_FindDebugTarget( CMD_ARGV( 1 ))))
 		{
@@ -699,12 +709,12 @@ static bool CoF_DebugCommand( CBasePlayer *pPlayer, const char *pcmd )
 	{
 		CBaseEntity *pTarget = FStrEq( arg, "!player" ) ? pPlayer : CoF_FindDebugTarget( arg );
 		if( pTarget )
-			ALERT( at_console, "COF/ENTITY %s class=%s body=%d solid=%d origin=%.1f,%.1f,%.1f gate=%d speed=%.1f spawn=%d touch=%d target=%s frozen=%d stairs=%d use=%d think=%d toggle=%d next=%g now=%g effects=%d renderfx=%d modelindex=%d model=%s\n",
+			ALERT( at_console, "COF/ENTITY %s class=%s body=%d solid=%d origin=%.1f,%.1f,%.1f gate=%d speed=%.1f spawn=%d touch=%d target=%s frozen=%d stairs=%d use=%d think=%d toggle=%d next=%g now=%g effects=%d renderfx=%d modelindex=%d model=%s health=%g dead=%d seq=%d takedamage=%g\n",
 				arg, STRING( pTarget->pev->classname ), pTarget->pev->body, pTarget->pev->solid,
 				pTarget->pev->origin.x, pTarget->pev->origin.y, pTarget->pev->origin.z, pTarget->pev->iuser1, pTarget->pev->maxspeed,
 				pTarget->pev->spawnflags, pTarget->m_pfnTouch != NULL, STRING( pTarget->pev->target ),
 				FBitSet( pTarget->pev->flags, FL_FROZEN ) != 0, pTarget->IsPlayer() ? CoF_OnStairs( (CBasePlayer *)pTarget ) : -1, pTarget->m_pfnUse != NULL, pTarget->m_pfnThink != NULL, pTarget->GetToggleState(), pTarget->pev->nextthink, gpGlobals->time, pTarget->pev->effects,
-				pTarget->pev->renderfx, pTarget->pev->modelindex, FStringNull( pTarget->pev->model ) ? "-" : STRING( pTarget->pev->model ));
+				pTarget->pev->renderfx, pTarget->pev->modelindex, FStringNull( pTarget->pev->model ) ? "-" : STRING( pTarget->pev->model ), pTarget->pev->health, pTarget->pev->deadflag, pTarget->pev->sequence, pTarget->pev->takedamage );
 		else
 			ALERT( at_console, "COF/ENTITY %s missing\n", arg );
 	}
@@ -856,7 +866,7 @@ bool CoF_ClientCommand( CBasePlayer *pPlayer, const char *pcmd )
 		FStrEq( pcmd, "cancelselect" ) || FStrEq( pcmd, "weapontoggle" ) ||
 		FStrEq( pcmd, "+attack3" ) || FStrEq( pcmd, "-attack3" ))
 		;
-	else if( CoF_PadlockCommand( pPlayer, pcmd ) || CoF_PuzzleCommand( pPlayer, pcmd ) || CoF_DebugCommand( pPlayer, pcmd ))
+	else if( CoF_PadlockCommand( pPlayer, pcmd ) || CoF_PuzzleCommand( pPlayer, pcmd ) || CoF_PhoneCommand( pPlayer, pcmd ) || CoF_DebugCommand( pPlayer, pcmd ))
 		;
 	else
 		return false;

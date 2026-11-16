@@ -1,0 +1,50 @@
+{"t":80.2,"what":"kit","quick":["weapon_mobile","weapon_switchblade","weapon_glock"],"health":100}
+{"t":80.8,"what":"leg","name":"A","points":2}
+{"t":82.8,"what":"arrived","name":"A","at":[-2946.3,2923.3,483]}
+{"t":82.9,"what":"leg","name":"A->B front","points":2}
+{"t":83.3,"what":"arrived","name":"A->B front","at":[-2954.8,2944.6,483]}
+{"t":86.3,"what":"door","name":"A->B","model":"*4","from":[-2957.7,2947.7,483],"to":[-2325,1380,483]}
+{"t":86.4,"what":"leg","name":"B","points":5}
+{"t":92.3,"what":"fight","crab":"88","at":[-2284,1381,447],"dist":41,"swings":5,"hBefore":100,"hp":[14,8,2,2,10],"killed":true,"hAfter":88}
+{"t":104.4,"what":"fight","crab":"90","at":[-1700,1349,417],"dist":37,"swings":4,"hBefore":86,"hp":[14,8,2,10],"killed":true,"hAfter":76}
+{"t":109.8,"what":"arrived","name":"B","at":[-1160.8,1231.3,453]}
+{"t":110,"what":"leg","name":"B->C front","points":2}
+{"t":110,"what":"arrived","name":"B->C front","at":[-1141.3,1235.4,453]}
+{"t":112.9,"what":"door","name":"B->C","model":"*7","from":[-1140.7,1235.6,453],"to":[-1061,1227,453]}
+{"t":112.9,"what":"leg","name":"C","points":2}
+{"t":113.7,"what":"arrived","name":"C","at":[-1016.3,1294,453]}
+{"t":113.8,"what":"leg","name":"C->D front","points":2}
+{"t":113.9,"what":"arrived","name":"C->D front","at":[-1008.4,1305.9,453]}
+{"t":116.8,"what":"door","name":"C->D","model":"*44","from":[-1007.9,1306.6,453],"to":[1072,1435,453]}
+{"t":116.8,"what":"leg","name":"D1","points":14}
+{"t":126,"what":"unstick","leg":"D1","waypoint":3,"at":[1270.3,1542.4,582]}
+{"t":131.3,"what":"unstick","leg":"D1","waypoint":4,"at":[1288.9,1603.5,582]}
+{"t":145.1,"what":"fight","crab":"524","at":[1390,1738,546],"dist":35,"swings":4,"hBefore":74,"hp":[14,8,2,10],"killed":true,"hAfter":66}
+{"t":151.1,"what":"unstick","leg":"D1","waypoint":6,"at":[1434.8,1742.2,582]}
+{"t":160.9,"what":"fight","crab":"322","at":[1666,1773,546],"dist":71,"swings":4,"hBefore":66,"hp":[14,8,6,10],"killed":true,"hAfter":50}
+{"t":167.4,"what":"fight","crab":"323","at":[1804,1806,546],"dist":39,"swings":4,"hBefore":46,"hp":[14,8,2,10],"killed":true,"hAfter":36}
+{"t":178.1,"what":"fight","crab":"621","at":[1847,1722,546],"dist":21,"swings":4,"hBefore":34,"hp":[14,8,2,10],"killed":true,"hAfter":24}
+{"t":187.1,"what":"arrived","name":"D1","at":[2170.8,1497.8,582]}
+{"t":189.7,"what":"check","k":"the magazine opens with E","v":true}
+{"t":233,"what":"check","k":"the call ends with the code note 5247","v":true}
+{"t":233.8,"what":"leg","name":"D2","points":4}
+{"t":240.7,"what":"unstick","leg":"D2","waypoint":2,"at":[1804.6,1460,565.9]}
+{"t":245.9,"what":"arrived","name":"D2","at":[1696.1,1455.6,479.9]}
+{"t":246,"what":"leg","name":"D3","points":2}
+{"t":246.3,"what":"arrived","name":"D3","at":[1655,1461.5,453]}
+{"t":249.4,"what":"check","k":"electric door locked before the keypad","v":true}
+{"t":251.7,"what":"check","k":"keypad accepts 5247","v":true}
+{"t":252.7,"what":"check","k":"electric door unlocked","v":true}
+{"t":253,"what":"leg","name":"D->E front","points":2}
+{"t":253.4,"what":"arrived","name":"D->E front","at":[1669.8,1439.9,453]}
+{"t":256.4,"what":"door","name":"D->E","model":"*63","from":[1672.8,1435.8,453],"to":[1573,1448,453]}
+{"t":256.4,"what":"leg","name":"E","points":22}
+{"t":261.9,"what":"unstick","leg":"E","waypoint":1,"at":[1510.1,1284.3,453]}
+{"t":271.9,"what":"unstick","leg":"E","waypoint":2,"at":[1533,1033.6,453]}
+{"t":280.4,"what":"unstick","leg":"E","waypoint":4,"at":[1504,1132.4,453]}
+{"t":284.5,"what":"unstick","leg":"E","waypoint":4,"at":[1504,1121.7,453]}
+{"t":289.6,"what":"unstick","leg":"E","waypoint":4,"at":[1504,1116.3,453]}
+Error: stuck on E at waypoint 4: at 1346.7,1112.7,453 for 1285,1112,457
+    at walk (file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:55:111)
+    at async file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:119:2
+{"checks":{"the magazine opens with E":true,"the call ends with the code note 5247":true,"electric door locked before the keypad":true,"keypad accepts 5247":true,"electric door unlocked":true},"fights":6,"seconds":305.937,"stuck":{"leg":"E","waypoint":4,"target":[1285,1112,457],"at":[1346.7,1112.7,453]},"failure":"Error: stuck on E at waypoint 4: at 1346.7,1112.7,453 for 1285,1112,457\n    at walk (file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:55:111)\n    at async file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:119:2"}

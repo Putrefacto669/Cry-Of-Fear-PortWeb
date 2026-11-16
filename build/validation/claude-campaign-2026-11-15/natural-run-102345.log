@@ -1,0 +1,11 @@
+{"t":74.5,"what":"kit","quick":["weapon_mobile","weapon_switchblade","weapon_glock"],"health":100}
+{"t":75,"what":"leg","name":"A","points":3}
+{"t":77,"what":"arrived","name":"A","at":[-2960.4,2913.1,483]}
+{"t":80.3,"what":"door","name":"A->B","model":"*4","from":[-2947,2917.2,483],"to":[-2325,1380,483]}
+{"t":80.3,"what":"leg","name":"B","points":6}
+{"t":134.8,"what":"fight","crab":"88","at":[-2284,1381,447],"dist":43,"shots":24,"hBefore":98,"aims":[[8,20],[8,20],[8,20],[4,20],[4,20],[4,7],[4,7],[4,7],[4,7],[14,7],[14,7],[14,7],[20,7],[20,7],[20,7],[2,7],[2,7],[2,7],[8,7],[8,7],[8,7],[4,7],[4,7],[4,7]],"hAfter":0}
+{"t":156.3,"what":"fight","crab":"88","at":[-2284,1381,447],"dist":30,"shots":24,"hBefore":0,"aims":[[8,20],[8,20],[8,20],[4,20],[4,20],[4,20],[14,20],[14,20],[14,20],[20,20],[20,20],[20,20],[2,20],[2,20],[2,20],[8,20],[8,20],[8,20],[4,20],[4,20],[4,20],[14,20],[14,20],[14,20]],"hAfter":100}
+Error: stuck on B at waypoint 1: at -3262,2494,393.7 for -1861,1364,473
+    at walk (file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:48:137)
+    at async file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:69:2
+{"checks":{},"fights":2,"seconds":162.596,"stuck":{"leg":"B","waypoint":1,"target":[-1861,1364,473],"at":[-3262,2494,393.7]},"failure":"Error: stuck on B at waypoint 1: at -3262,2494,393.7 for -1861,1364,473\n    at walk (file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:48:137)\n    at async file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:69:2"}

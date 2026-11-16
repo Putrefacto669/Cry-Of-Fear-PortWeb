@@ -1,0 +1,20 @@
+{
+  "checks": {},
+  "before": {
+    "dump": [
+      "[20:50:37] bag 0: weapon_mobile (inventoryitems/weapons/weapon_mobile.txt) count -1",
+      "[20:50:37] bag 1: weapon_switchblade (inventoryitems/weapons/weapon_switchblade.txt) count -1",
+      "[20:50:37] bag 2: weapon_glock (inventoryitems/weapons/weapon_glock.txt) count -1",
+      "[20:50:37] bag 3: weapon_nightstick (inventoryitems/weapons/weapon_nightstick.txt) count -1"
+    ],
+    "weapon": "COF/WEAPON class=weapon_nightstick clip=-1 ammo=-1 primary=-1 secondary=-0.001 playernext=-0.001 reload=0 buttons=0 health=100"
+  },
+  "landmarkSick": [
+    894,
+    -28,
+    -27
+  ],
+  "exitTrigger": "COF/LIST trigger_multiple #318 origin=0,0,0 effects=128 renderfx=0 rendermode=0 modelindex=103 model=*102 killme=0",
+  "failure": "page.waitForEvent: Timeout 60000ms exceeded while waiting for event \"console\"\n=========================== logs ===========================\nwaiting for event \"console\"\n============================================================\n    at cmd (/root/cof-audits/browser-1.64.1/e2e/claude/campaign_sewer_probe.mjs:10:84)\n    at /root/cof-audits/browser-1.64.1/e2e/claude/campaign_sewer_probe.mjs:26:30",
+  "chromium": "156.0.8078.4"
+}

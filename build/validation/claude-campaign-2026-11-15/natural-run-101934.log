@@ -1,0 +1,20 @@
+{"t":74,"what":"kit","quick":["weapon_mobile","weapon_switchblade","weapon_glock"],"health":100}
+{"t":74.6,"what":"leg","name":"A","points":3}
+{"t":78,"what":"arrived","name":"A","at":[-2947.3,2925.1,483]}
+{"t":80.8,"what":"door","name":"A->B","model":"*4","from":[-2938.2,2925.5,483],"to":[-2325,1380,483]}
+{"t":80.9,"what":"leg","name":"B","points":6}
+{"t":94.4,"what":"fight","crab":"88","at":[-2284,1381,447],"dist":41,"shots":16,"hBefore":100,"hAfter":66}
+{"t":106.6,"what":"fight","crab":"88","at":[-2284,1381,447],"dist":44,"shots":16,"hBefore":64,"hAfter":34}
+{"t":119.7,"what":"fight","crab":"88","at":[-2284,1381,447],"dist":38,"shots":16,"hBefore":34,"hAfter":2}
+page.waitForEvent: Timeout 60000ms exceeded while waiting for event "console"
+=========================== logs ===========================
+waiting for event "console"
+============================================================
+    at cmd (/root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:16:84)
+    at fight (/root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:33:19)
+    at async walk (/root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:42:119)
+    at async file:///root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_run.mjs:62:2 {
+  log: [],
+  name: 'TimeoutError'
+}
+{"checks":{},"fights":3,"seconds":184.516,"failure":"page.waitForEvent: Timeout 60000ms exceeded while waiting for event \"console\"\n=========================== logs ===========================\nwaiting for event \"console\"\n============================================================\n    at cmd (/root/cof-audits/browser-1.64.1/e2e/claude/basement_natural_"}

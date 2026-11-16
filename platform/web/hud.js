@@ -944,6 +944,17 @@
                          justify-content:center; color:#162; font:bold clamp(12px, 2.4vh, 22px) "Courier New", monospace; }
       #cof-dialog .keypad .key { position:absolute; cursor:pointer; }
       #cof-dialog .keypad .key:hover { background:rgba(255,255,255,.08); }
+      #cof-dialog .phone { position:relative; aspect-ratio:262 / 562; height:min(86cqh, calc(86cqw * 562 / 262)); }
+      #cof-dialog .phone img { position:absolute; inset:0; width:100%; height:100%; }
+      #cof-dialog .phone .screen { position:absolute; left:${30 / 262 * 100}%; top:${60 / 562 * 100}%;
+                         width:${202 / 262 * 100}%; height:${40 / 562 * 100}%; display:flex; align-items:center;
+                         justify-content:center; color:#ddd; font:bold clamp(12px, 2.6vh, 24px) "Courier New", monospace;
+                         letter-spacing:.08em; overflow:hidden; }
+      #cof-dialog .phone .key { position:absolute; cursor:pointer; border-radius:6px; }
+      #cof-dialog .phone .key:hover { background:rgba(255,140,0,.12); }
+      #cof-dialog .phone .ok { position:absolute; cursor:pointer; border-radius:50%; left:${102 / 262 * 100}%;
+                         top:${230 / 562 * 100}%; width:${56 / 262 * 100}%; height:${56 / 562 * 100}%; }
+      #cof-dialog .phone .ok:hover { background:rgba(255,140,0,.15); }
     `;
     document.head.appendChild(style);
     const sub = document.createElement("div");
@@ -1074,6 +1085,53 @@
     openDialog(pad);
   };
 
+  // The mobile's number panel (client.dll CPhone, gfx/vgui/640_phone.tga, 262x562). The original hint:
+  // "To call a number with your mobile, press *. From here, you can click the numbers or type them with a
+  // keyboard." Each digit plays phone/tone_<digit>.wav; calling sends "phonenumber <digits>" (10049d00),
+  // plays phone/tone_send.wav and closes the panel. Up to 16 digits, like its buffer.
+  const PHONE_KEYS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#"];
+  const PHONE_TONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+  const showPhoneDial = () => {
+    const phone = document.createElement("div");
+    phone.className = "phone";
+    phone.innerHTML = `<img alt=""><div class="screen"></div><div class="ok"></div>`;
+    loadTga(`${VGUI}/640_phone.tga`).then((url) => { phone.querySelector("img").src = url; }).catch(() => {});
+    const screen = phone.querySelector(".screen");
+    let digits = "";
+    const press = (key) => {
+      if (!/^[0-9]$/.test(key) || digits.length >= 16) return;
+      digits += key;
+      screen.textContent = digits;
+      engineCmd(`play phone/tone_${PHONE_TONES[+key]}.wav\n`);
+    };
+    const call = () => {
+      if (!digits) return;
+      engineCmd(`phonenumber ${digits}\n`);
+      engineCmd("play phone/tone_send.wav\n");
+      closeDialog();
+    };
+    PHONE_KEYS.forEach((key, i) => {
+      const cell = document.createElement("div");
+      cell.className = "key";
+      Object.assign(cell.style, {
+        left: pct(15 + (i % 3) * 80, 262), top: pct(300 + Math.floor(i / 3) * 38, 562),
+        width: pct(75, 262), height: pct(36, 562),
+      });
+      cell.addEventListener("click", () => press(key));
+      phone.appendChild(cell);
+    });
+    phone.querySelector(".ok").addEventListener("click", call);
+    const onKey = (e) => {
+      if (!phone.isConnected) { removeEventListener("keydown", onKey, true); return; }
+      if (/^[0-9]$/.test(e.key)) press(e.key);
+      else if (e.key === "Backspace") { digits = digits.slice(0, -1); screen.textContent = digits; }
+      else if (e.key === "Enter") call();
+    };
+    addEventListener("keydown", onKey, true);
+    phone.dataset.phone = "1";
+    openDialog(phone);
+  };
+
   const answer = (ok) => {
     const screen = panel && panel.dialog.querySelector(".screen");
     if (screen) screen.textContent = ok ? "OK" : "----";
@@ -1198,6 +1256,14 @@
       load.then(() => engineCmd(`map ${MENU_MAP}`));
     }
   };
+
+  // "*" with the phone opens its number panel; the server answers PHONEDIAL only with the mobile in the hand
+  addEventListener("keydown", (e) => {
+    if (e.key !== "*" || e.repeat) return;
+    if (!window.CoFRuntimeReady || !currentMapName() || loading.active || menu.visible || pause.open || bag.open) return;
+    if (panel && panel.dialog.classList.contains("on")) return;
+    engineCmd("cof_phonedial\n");
+  }, true);
 
   // the key up of an Esc taken here must not reach the engine either
   let escapeTaken = false;
@@ -1703,12 +1769,18 @@
         case "DENIED":
           answer(cmd === "GRANTED");
           break;
-        case "CODE":
-          // the code note of the original: shown on paper and kept as the objective text
+        case "CODE": {
+          // the code note of the original: shown on paper and kept as the objective text. Its kind
+          // (cof_addcodenote iuser1) picks the label: 4 is gfx/vgui/notes/phonecode.TGA, "Phone code:"
+          const label = args[1] === "4" ? (SPANISH ? "Código del teléfono" : "Phone code") : (SPANISH ? "Código" : "Code");
           if (args[0]) {
-            showNoteText(`${SPANISH ? "Código" : "Code"}: ${args[0]}`);
-            bag.objective = `${bag.objective ? `${bag.objective}\n` : ""}${SPANISH ? "Código" : "Code"}: ${args[0]}`;
+            showNoteText(`${label}: ${args[0]}`);
+            bag.objective = `${bag.objective ? `${bag.objective}\n` : ""}${label}: ${args[0]}`;
           }
+          break;
+        }
+        case "PHONEDIAL":
+          showPhoneDial();
           break;
         case "SAVED":
           rememberSave(rest);

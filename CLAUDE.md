@@ -4,6 +4,28 @@ Guía para Claude Code (y cualquier asistente) que trabaje en este repositorio: 
 cómo se compila y se prueba, qué se hizo hasta ahora y qué trampas ya se conocen. El usuario
 trabaja en español: responder y documentar en español; los comentarios del código van en inglés.
 
+## Campaña: capítulo 2 (`c_basement`, `c_sewer`) — 15/11/2026
+
+Leer `docs/CLAUDE_CAMPAIGN_PROGRESSION_NEXT_MAP_20261115.md` (`c_basement`) y `docs/CLAUDE_CAMPAIGN_C_SEWER_20261115.md`.
+El usuario confirmó que el permiso de Andreas cubre todo el juego.
+
+- **Teléfono:**
+  - `phonecall.cpp`: `cof_phonecheck` y `cof_phonecall`, con el panel «*» de `hud.js`;
+  - `cof_keypad4` (5247 fijo, como el original);
+  - el teclado queda usado una vez (9999).
+- **`weapon_nightstick`** en `weapons_cof.cpp` (`MeleeHitThinkNightStick2`).
+  - Su precarga es condicional: solo empaqueta la porra el mapa que la tiene.
+  - `stage_map.py` `CARRIED_INTO`: **añadir cada mapa nuevo** que la reciba.
+- **`monster_crab` y `monster_sewmo`** en la tabla de `monsters.cpp`.
+  - El sewmo despierta con spawnflag 32 por un estado guardado.
+- **`tools/bsp_walk.py`:** rutas sobre los cascos del BSP, con:
+  - agacharse, saltar, saltar agachado y caer al agua;
+  - los pinceles sólidos y los pasos estrechos.
+- **Pruebas:** recorrido guiado de `c_basement` (11/11) y negativas (15/15); `sewer_sewmo_probe` (13/13).
+- **Depuración:** `cof_face x y z` y `cof_inspect` con `health dead seq takedamage`.
+- **Pendiente en `c_sewer`:** `func_fogfield` y el recorrido completo. `c_sewer2` no existe todavía, así que la salida
+  `chsw55` se queda en `c_sewer`.
+
 ## Escaleras con animación — 14/11/2026
 
 Leer `docs/CLAUDE_ESCALERAS_2026_11_14.md`.

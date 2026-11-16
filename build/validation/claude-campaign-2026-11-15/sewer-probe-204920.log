@@ -1,0 +1,10 @@
+page.waitForEvent: Timeout 60000ms exceeded while waiting for event "console"
+=========================== logs ===========================
+waiting for event "console"
+============================================================
+    at cmd (/root/cof-audits/browser-1.64.1/e2e/claude/campaign_sewer_probe.mjs:10:84)
+    at /root/cof-audits/browser-1.64.1/e2e/claude/campaign_sewer_probe.mjs:26:30 {
+  log: [],
+  name: 'TimeoutError'
+}
+{"checks":{},"landmark":[null,null],"failure":"page.waitForEvent: Timeout 60000ms exceeded while waiting for event \"console\"\n=========================== logs ===========================\nwaiting for event \"console\"\n================================="}
