@@ -9,46 +9,41 @@
     "low resolution lowers the buffer": true,
     "no JS errors": true
   },
-  "perfLine": "COF/PERF display=10Hz every=1 ratio=1.5 vignette=1",
+  "perfLine": "COF/PERF display=15Hz every=1 vignette=1",
   "buffer": {
     "w": 1266,
-    "h": 585,
-    "css": [
-      844,
-      390
-    ],
-    "ratio": 1.5
+    "h": 585
   },
   "every1": {
-    "display": 22,
-    "engine": 22,
+    "display": 43,
+    "engine": 43,
     "ratio": 1
   },
   "every2": {
-    "display": 68,
-    "engine": 34,
+    "display": 82,
+    "engine": 41,
     "ratio": 2
   },
-  "measured": 10,
+  "measured": 15,
   "every": 1,
   "fxOn": {
-    "msPerFrame": 0.614,
+    "msPerFrame": 0.493,
     "size": [
-      1266,
-      585
+      675,
+      312
     ]
   },
   "options": false,
   "fxOff": {
     "msPerFrame": 0,
     "size": [
-      1266,
-      585
+      675,
+      312
     ]
   },
   "bufferLow": {
-    "w": 844,
-    "h": 390
+    "w": 675,
+    "h": 312
   },
   "jsErrors": []
 }

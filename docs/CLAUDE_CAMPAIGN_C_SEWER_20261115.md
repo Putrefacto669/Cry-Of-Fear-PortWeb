@@ -171,9 +171,12 @@ móvil) en la rama de campaña y se publicó un `dist` con:
 
 - `c_basement` y `c_sewer` (paquetes `map_c_basement` 60,8 MB y `map_c_sewer` 22,2 MB; música `basement1`, `basement2`,
   `basements`, `memories1b` y `sewers2`) añadidos a `packs/maps.json`.
-- Servidor (`939288f8…`) y cliente (`cc321362…`) compilados sobre la fusión, con los parches de hlsdk 0002/0003.
+- Servidor (`939288f8…`) y cliente compilados sobre la fusión, con los parches de hlsdk 0002/0003.
 - El botón móvil de marcar número (`dial`, el `*` del teclado), necesario para la llamada de `c_basement`.
-- Manifiesto del Service Worker `bbd2d84ba245`.
+- Manifiesto del Service Worker `9652cec08bdb`. Incluye también `94a339b` de Codex (resolución adaptable y giro
+  táctil), publicado mientras corrían las pruebas: se fusionó y se recompiló el cliente (`01a0c539…`).
+- Pruebas: 18/18 regresiones (15 + 3, la primera pasada se cortó al cerrarse la sesión), 4/4 de campaña y 5/5 de
+  móvil, en `build/validation/release-ch2-2026-11-15`.
 
 `c_sewer` todavía no tiene la niebla (`func_fogfield`) ni el recorrido guiado completo; su salida `chsw55` no cambia
 de nivel porque `c_sewer2` aún no está en el paquete.

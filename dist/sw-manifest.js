@@ -1,5 +1,5 @@
 self.COF_MANIFEST = {
- "version": "bbd2d84ba245",
+ "version": "9652cec08bdb",
  "coi": false,
  "precache": [
   "BingSiteAuth.xml",
@@ -53,15 +53,15 @@ self.COF_MANIFEST = {
   "extras.js": "e3ce2423650a",
   "googlee1f002228312b1b3.html": "fe98df47e40f",
   "gpustats.js": "70aaa1f28265",
-  "hud.js": "eb0abe2c9ad7",
+  "hud.js": "9a5813cbb9f6",
   "index.html": "96201619adf6",
   "launcher/background.jpg": "d385a9ca8c75",
   "launcher/disclaimer.jpg": "1375e3bf3d98",
   "launcher/logo.png": "8d7bb7601333",
   "launcher.js": "fefeda5e9b3f",
-  "loader.js": "b742f2625750",
+  "loader.js": "62edd6a4ef0f",
   "mobile.css": "21f0410bd612",
-  "mobile.js": "a84de4cc0704",
+  "mobile.js": "274da85d89ed",
   "mp3/2aphall1.mp3": "70a02fded189",
   "mp3/ap3hall1.mp3": "23be860ec5a8",
   "mp3/ap3hall1end.mp3": "6da929c405e7",
@@ -109,8 +109,8 @@ self.COF_MANIFEST = {
   "mp3/watercorridor.mp3": "ba8c97aa265b",
   "packs/boot.data": "9056f3572435",
   "packs/boot.js": "b81c3c8b79dd",
-  "packs/engine.data": "82f4ac52443b",
-  "packs/engine.js": "6d4c7bdd0a73",
+  "packs/engine.data": "cc8420af7e53",
+  "packs/engine.js": "106dd72adc4c",
   "packs/extras.data": "8972eb64392e",
   "packs/extras.js": "63f307f5a9a7",
   "packs/map_c_apartment1.data": "8a2ae128e830",
@@ -160,8 +160,8 @@ self.COF_MANIFEST = {
    "gzSize": 22846762
   },
   "packs/engine.data": {
-   "size": 2931718,
-   "gzSize": 981040
+   "size": 2931913,
+   "gzSize": 981139
   },
   "packs/extras.data": {
    "size": 24149424,

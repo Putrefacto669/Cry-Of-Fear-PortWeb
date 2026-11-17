@@ -21,6 +21,7 @@
 #include "pm_defs.h"
 #include <math.h>
 #include <string.h>
+#include <stdlib.h>
 
 /*
 =====================================================================
@@ -501,8 +502,22 @@ void CoF_ClientPhonePunchInit();void CoF_ClientPhonePunchReset();
 void CoF_ClientExtrasReset();
 void CoF_ClientExtrasView(const float *,float);
 void CoF_DecalsVidInit( void );
+// Feed the same accumulated deltas as native Xash touch/mouse input.
+extern "C" void IN_ClientLookEvent( float forwardYaw, float forwardPitch );
+static void CoF_TouchLook( void )
+{
+	if( gEngfuncs.Cmd_Argc() != 3 )
+		return;
+	const float yaw = atof( gEngfuncs.Cmd_Argv( 1 ));
+	const float pitch = atof( gEngfuncs.Cmd_Argv( 2 ));
+	if( !isfinite( yaw ) || !isfinite( pitch ) || fabsf( yaw ) > 180 || fabsf( pitch ) > 180 )
+		return;
+	IN_ClientLookEvent( yaw, pitch );
+}
+
 void CoF_ClientInit( void )
 {
+	gEngfuncs.pfnAddCommand( "cof_touchlook", CoF_TouchLook );
 	CoF_DecalsInit();
 	CoF_ClientExtrasInit();
  CoF_ClothesPreviewInit();CoF_VisualInit();

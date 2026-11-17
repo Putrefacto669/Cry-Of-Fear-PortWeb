@@ -156,6 +156,36 @@
   const canvasPointers = new Set();
   let zonesNeedUpdate = false;
   let touchGeometry = "";
+  let lookPress = null;
+  let lookYaw = 0;
+  let lookPitch = 0;
+  function flushLook() {
+    if (!blocked && !climbing && (lookYaw || lookPitch)) {
+      const limit = angle => Math.max(-180, Math.min(180, angle)).toFixed(5);
+      command(`cof_touchlook ${limit(lookYaw)} ${limit(lookPitch)}`);
+    }
+    lookYaw = lookPitch = 0;
+  }
+  function startLook(event) {
+    if (blocked || climbing || lookPress || event.pointerType === "mouse") return;
+    const box = canvas.getBoundingClientRect();
+    if (!box.width || !box.height || event.clientX < box.left + box.width / 2) return;
+    canvas.setPointerCapture(event.pointerId);
+    lookPress = {id:event.pointerId, x:event.clientX, y:event.clientY, width:box.width, height:box.height};
+  }
+  function moveLook(event) {
+    if (event.pointerId !== lookPress?.id) return;
+    lookYaw -= (event.clientX - lookPress.x) * 120 / lookPress.width;
+    lookPitch += (event.clientY - lookPress.y) * 90 / lookPress.height;
+    lookPress.x = event.clientX;
+    lookPress.y = event.clientY;
+  }
+  function endLook(event) {
+    if (event.pointerId !== lookPress?.id) return;
+    if (event.type === "pointerup") flushLook();
+    else lookYaw = lookPitch = 0;
+    lookPress = null;
+  }
   function changeClimbDirection(next) {
     if (climbDirection === next) return;
     if (climbDirection) command("-" + climbDirection);
@@ -196,18 +226,20 @@
     const x2 = (area.right - view.left) / view.width;
     const y2 = (area.bottom - view.top) / view.height;
     if (climbing) {
-      command("touch_removebutton cof_web_look; touch_removebutton cof_web_joy");
+      command("touch_removebutton cof_web_joy");
       return;
     }
     // Keep native touch coordinates aligned after switching between aspect ratios.
     command(`touch_aspectratio ${view.height / view.width}`);
     // The Xash circle uses TOUCH_FL_CLIENT (4) and TOUCH_FL_STICK (2048).
-    command('touch_addbutton cof_web_look "" "_look" 0.5 0 1 1 0 0 0 0 4');
     command(`touch_addbutton cof_web_joy "" "_joy" ${x1} ${y1} ${x2} ${y2} 0 0 0 0 2052`);
   }
   const clearTouches = () => {
     resetButtons();
     canvasPointers.clear();
+    if (lookPress && canvas.hasPointerCapture(lookPress.id)) canvas.releasePointerCapture(lookPress.id);
+    lookPress = null;
+    lookYaw = lookPitch = 0;
     releaseStick();
     if (configured) {
       command("touch_removebutton cof_web_joy; touch_setclientonly 0; touch_setclientonly 1");
@@ -306,6 +338,7 @@
       Boolean(window.CoFExtras?.clothesOpen) || hud.interactionOpen;
     if (rotation.hidden !== hideRotation) rotation.hidden = hideRotation;
     if (configured && !blocked && zonesNeedUpdate && !canvasPointers.size && !pressed.size) registerTouchZones();
+    flushLook();
     requestAnimationFrame(tick);
   }
   function start() {
@@ -315,12 +348,15 @@
     canvas.addEventListener("pointerdown", event => {
       if (event.pointerType !== "mouse") canvasPointers.add(event.pointerId);
       startStick(event);
+      startLook(event);
     });
     canvas.addEventListener("pointermove", moveStick);
+    canvas.addEventListener("pointermove", moveLook);
     for (const event of ["pointerup", "pointercancel", "lostpointercapture"]) {
       canvas.addEventListener(event, input => {
         canvasPointers.delete(input.pointerId);
         releaseStick(input);
+        endLook(input);
       });
     }
     new ResizeObserver(() => {
@@ -394,5 +430,9 @@
     mapShown = true;
     if (!blocked) registerTouchZones();
   }
-  window.CoFMobile = Object.freeze({get active() { return device === "mobile"; }, prepareScreen, start, onMap, setLadderAvailable, setClimbing});
+  window.CoFMobile = Object.freeze({
+    get active() { return device === "mobile"; },
+    get touchActive() { return canvasPointers.size > 0 || pressed.size > 0; },
+    prepareScreen, start, onMap, setLadderAvailable, setClimbing,
+  });
 })();

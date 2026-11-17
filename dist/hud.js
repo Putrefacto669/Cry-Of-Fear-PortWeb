@@ -1450,12 +1450,12 @@
   // original picture. The engine's brightness stays at 1, the value of the original config.cfg; the
   // world lightmaps no longer go through its gamma table (gl_rsurf.c R_CofBuildLightMap).
   const options = Object.assign({ sensitivity: 3, volume: 0.8, music: 0.8, lightBrightness: 0, rain: false,
-    vignette: true, fpsCap: true, lowRes: false }, readJson(OPTIONS_KEY, {}));
+    vignette: true, fpsCap: true }, readJson(OPTIONS_KEY, {}));
   let optionsApplied = false;
   // Phone-only performance settings (Options shows them in mobile mode). A 120 Hz screen (Pixel 10 Pro XL) made the
   // engine draw up to 120 frames a second: the main loop now runs every Nth display frame for ~60 fps. The vignette
   // is what kept the postfx pass (a full-screen copy and redraw, costly on tile-based phone GPUs) running every
-  // frame. The low resolution draws at 1 pixel per CSS pixel instead of up to 1.5.
+  // frame. The loader owns the mobile resolution profiles.
   let displayRate = 0;
   // the median interval between animation frames: a map load or a slow frame does not drag it down
   // (counting frames in one second right after the load gave 1 Hz in mobile_options.mjs)
@@ -1473,16 +1473,11 @@
   const applyPerformance = async () => {
     if (window.CoFPostFX) CoFPostFX.set({ vignette: options.vignette ? 0.35 : 0 });
     if (!window.CoFMobile?.active) return;
-    const ratio = options.lowRes ? 1 : Math.min(devicePixelRatio, 1.5);
-    if (window.Module && Module.cofRenderPixelRatio !== ratio) {
-      Module.cofRenderPixelRatio = ratio;
-      dispatchEvent(new Event("resize"));
-    }
     if (typeof MainLoop === "undefined" || MainLoop.timingMode !== 1) return;
     displayRate = await measureDisplayRate();
     // 120/144 Hz -> every 2nd frame (60/72 fps); 60 or 90 Hz, or a game already under ~110 fps -> unchanged
     MainLoop.timingValue = options.fpsCap ? Math.max(1, Math.floor(displayRate / 55)) : 1;
-    console.log(`COF/PERF display=${displayRate.toFixed(0)}Hz every=${MainLoop.timingValue} ratio=${ratio} vignette=${options.vignette ? 1 : 0}`);
+    console.log(`COF/PERF display=${displayRate.toFixed(0)}Hz every=${MainLoop.timingValue} vignette=${options.vignette ? 1 : 0}`);
   };
   const applyOptions = () => {
     applyPerformance().catch(() => {});
@@ -1512,6 +1507,8 @@
       #cof-sheet h2 { margin:0 0 .8em; font:clamp(16px, 2.8vh, 26px) Arial, sans-serif; letter-spacing:.08em; color:#eee; }
       #cof-sheet .row { display:flex; align-items:center; justify-content:space-between; gap:1em; margin:.55em 0; }
       #cof-sheet input[type=range] { width:55%; accent-color:#a00; }
+      #cof-option-resolution { min-height:44px; max-width:55%; padding:.3em .5em;
+        font:inherit; color:#eee; background:#161414; border:1px solid #666; }
       #cof-sheet button { all:unset; cursor:pointer; padding:.35em .9em; border:1px solid #444; color:#eee; }
       #cof-sheet button:hover { color:#c00; border-color:#700; }
       #cof-sheet .save { padding:.6em .8em; border:1px solid #333; cursor:pointer; margin:.4em 0; }
@@ -1661,6 +1658,23 @@
     slider(SPANISH ? "Volumen" : "Volume", "volume", 0, 1, 0.05);
     slider(SPANISH ? "Música" : "Music", "music", 0, 1, 0.05);
     slider(SPANISH ? "Brillo" : "Brightness", "lightBrightness", 0, 0.3, 0.01);
+    if (window.CoFMobile?.active && window.CoFMobileResolution) {
+      const resolution = window.CoFMobileResolution;
+      const row = document.createElement("div");
+      row.className = "row";
+      const label = document.createElement("label");
+      label.textContent = SPANISH ? "Resolución del juego" : "Game resolution";
+      label.htmlFor = "cof-option-resolution";
+      const select = document.createElement("select");
+      select.id = label.htmlFor;
+      select.add(new Option(SPANISH ? "Automática" : "Automatic", "auto"));
+      select.add(new Option(SPANISH ? "Rendimiento" : "Performance", "performance"));
+      select.add(new Option(SPANISH ? "Nitidez" : "Sharpness", "sharp"));
+      select.value = resolution.mode;
+      select.addEventListener("change", () => resolution.setMode(select.value));
+      row.append(label, select);
+      body.appendChild(row);
+    }
     {
       // the rain streaks of rain_settings (off by default)
       const row = document.createElement("div");
@@ -1697,7 +1711,6 @@
     if (window.CoFMobile?.active) {
       toggle(SPANISH ? "Limitar a 60 fps" : "Limit to 60 fps", "fpsCap");
       toggle(SPANISH ? "Viñeta" : "Vignette", "vignette");
-      toggle(SPANISH ? "Resolución baja" : "Low resolution", "lowRes");
     }
     const row = document.createElement("div");
     row.className = "row";
