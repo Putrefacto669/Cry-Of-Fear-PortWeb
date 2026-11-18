@@ -124,6 +124,42 @@
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   let flushForUpdate = async () => {};
 
+  // Download progress reported by the Service Worker (sw.js, "cof-progress"): the files it is downloading
+  // now, plus the ones it finished during this visit. Shown on the loading screen and in the status line.
+  const downloads = { done: new Map(), active: new Map(), samples: [] };
+  const spanish = () => !/^(en|fr|de|nl|no|nb|sv)\b/i.test(document.documentElement.lang || navigator.language || "");
+  const megabytes = (bytes) => (bytes / 1048576).toFixed(1).replace(".", spanish() ? "," : ".");
+  const showProgress = (files) => {
+    const now = new Map(files.map((f) => [f.path, f]));
+    for (const [path, f] of downloads.active) if (!now.has(path)) downloads.done.set(path, f.total || f.loaded);
+    downloads.active = now;
+    if (!now.size) {
+      window.CoFHUD?.loadingDetail("");
+      if (/^(Descargando|Downloading) /.test(statusEl.textContent)) setStatus(spanish() ? "Preparando…" : "Preparing…");
+      return;
+    }
+    let loaded = 0, total = 0;
+    for (const size of downloads.done.values()) { loaded += size; total += size; }
+    for (const f of now.values()) { loaded += f.loaded; total += Math.max(f.total, f.loaded); }
+    // speed over the last ~5 s
+    const t = performance.now();
+    downloads.samples.push([t, loaded]);
+    while (downloads.samples.length > 2 && t - downloads.samples[0][0] > 5000) downloads.samples.shift();
+    const [t0, b0] = downloads.samples[0];
+    const rate = t - t0 > 900 ? (loaded - b0) / ((t - t0) / 1000) : 0;
+    const text = spanish()
+      ? `Descargando ${megabytes(loaded)} de ${megabytes(total)} MB${rate ? ` · ${megabytes(rate)} MB/s` : ""}`
+      : `Downloading ${megabytes(loaded)} of ${megabytes(total)} MB${rate ? ` · ${megabytes(rate)} MB/s` : ""}`;
+    window.CoFHUD?.loadingDetail(text);
+    if (!window.CoFRuntimeReady) setStatus(text);
+  };
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.addEventListener("message", (event) => {
+      if (event.data?.type === "cof-progress") showProgress(event.data.files || []);
+    });
+    navigator.serviceWorker.startMessages?.();
+  }
+
   // Service Worker (sw.js): caché por revisión entre visitas. En la primera visita se espera a que
   // controle la página antes de pedir .wasm y .data, así se guardan mientras se descargan (una sola
   // descarga). Una versión nueva no se activa sola con el juego abierto: se ofrece un botón.
@@ -643,9 +679,35 @@
     addEventListener("keydown", skip, true);
   };
 
+  // While the player reads the launcher, the files "Jugar" needs (engine, boot, shared packs, the menu
+  // map) are already downloaded into the Service Worker cache: on a slow connection that is most of the
+  // wait. Only with the worker in control (otherwise the engine would download them a second time), and
+  // not with ?prefetch=0 or the browser's data saver.
+  const warmLauncher = async () => {
+    const sw = navigator.serviceWorker;
+    if (!sw || params.get("sw") === "0" || params.get("prefetch") === "0" || navigator.connection?.saveData) return;
+    await sw.register("sw.js", { updateViaCache: "none" });
+    if (!sw.controller) {
+      await Promise.race([new Promise((r) => sw.addEventListener("controllerchange", r, { once: true })), sleep(10000)]);
+      if (!sw.controller) return;
+    }
+    const manifest = await fetch("packs/maps.json").then((r) => r.json());
+    if (!Array.isArray(manifest)) return; // the preloaded variant has no packs
+    const shared = await fetch("packs/shared.json").then((r) => (r.ok ? r.json() : []));
+    const menu = manifest.includes("c_game_menu1") ? ["packs/map_c_game_menu1.data"] : [];
+    const files = ["xash3d.wasm", "packs/engine.data", "packs/boot.data", ...shared.map((p) => `packs/${p}.data`), ...menu];
+    // one at a time: the first files are the ones the engine needs first
+    for (const file of files) {
+      if (!launcher || launcher.hidden && window.CoFRuntimeReady) return;
+      // sw.js answers 204 once the file is in its cache (at once if it already was)
+      await fetch(file, { headers: { "x-cof-warm": "1" } });
+    }
+  };
+
   if (launcher && !params.has("map")) {
     setStatus(window.CoFLauncher?.t("status") || "En el launcher");
     launcher.hidden = false;
+    warmLauncher().catch((e) => log(`descarga anticipada: ${e.message}`, "err"));
     document.getElementById("play").addEventListener("click", () => {
       window.CoFMobile?.prepareScreen();
       launcher.hidden = true;

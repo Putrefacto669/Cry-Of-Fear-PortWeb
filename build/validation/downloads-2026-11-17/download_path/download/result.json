@@ -1,0 +1,60 @@
+{
+  "scenarios": {
+    "A": {
+      "playVisible": 0.11,
+      "warmSeconds": 11.721,
+      "heavy": {
+        "/xash3d.wasm.gz": 1,
+        "packs/engine.data.gz": 1,
+        "packs/boot.data.gz": 1,
+        "packs/extras.data.gz": 1,
+        "packs/map_c_game_menu1.data.gz": 1
+      },
+      "eventsAfterClick": [],
+      "prefetched": [
+        "640_difficulty.png",
+        "640_difficulty.png",
+        "backgroundtoall.png",
+        "640_inventory.png",
+        "introductions/spanish/spanish_sp.png",
+        "introductions/english/english_sp.png",
+        "backgroundtoall.png",
+        "640_inventory.png",
+        "introductions/spanish/spanish_sp.png",
+        "introductions/english/english_sp.png",
+        "puzzle/padlock_buttons.png",
+        "puzzle/padlock_buttons.png"
+      ],
+      "image": [
+        640,
+        480,
+        "blob:"
+      ]
+    },
+    "D": {
+      "heavy": [],
+      "cached": 55
+    },
+    "B": {
+      "downloads": {
+        "/xash3d.wasm.gz": 1,
+        "packs/engine.data.gz": 1,
+        "packs/boot.data.gz": 1,
+        "packs/extras.data.gz": 1,
+        "packs/map_c_game_menu1.data.gz": 1
+      },
+      "progressSamples": 16,
+      "firstProgress": [
+        "Descargando 3,2 de 32,0 MB",
+        "Descargando 6,6 de 32,0 MB",
+        "Descargando 9,0 de 32,0 MB"
+      ],
+      "lastProgress": [
+        "Descargando 30,7 de 32,0 MB · 7,6 MB/s",
+        "Descargando 31,5 de 32,0 MB · 7,3 MB/s"
+      ]
+    }
+  },
+  "errors": [],
+  "passed": true
+}

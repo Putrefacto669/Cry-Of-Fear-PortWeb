@@ -101,7 +101,14 @@ for m in (stage / "maps").iterdir() if (stage / "maps").is_dir() else []:
 EOF
 
 pack engine "$STAGE/lib" /lib
-pack boot "$STAGE/boot" /rodir
+# Las imágenes de la interfaz (gfx/vgui, solo las lee hud.js) van como PNG sueltos que la página pide al
+# mostrarlas: 9,3 MiB comprimidos menos antes del menú (tools/vgui_png.py). boot se empaqueta desde una
+# copia con enlaces duros sin ellas; stage/boot no cambia.
+rm -rf "$DIST/vgui" "$STAGE/boot-pack"
+python3 "$WEB/../../tools/vgui_png.py" "$STAGE/boot/cryoffear/gfx/vgui" "$DIST/vgui" "$STAGE/vgui-moved.txt"
+cp -al "$STAGE/boot" "$STAGE/boot-pack"
+while IFS= read -r f; do rm -f "$STAGE/boot-pack/cryoffear/gfx/vgui/$f"; done < "$STAGE/vgui-moved.txt"
+pack boot "$STAGE/boot-pack" /rodir
 if [ -d "$STAGE/shared_extras" ]; then
     pack extras "$STAGE/shared_extras" /rodir
     printf '["extras"]\n' > "$DIST/packs/shared.json"
@@ -139,7 +146,9 @@ for p in sorted(dist.rglob("*")):
         if len(packed) < 0.9 * len(data):
             Path(f"{p}.gz").write_bytes(packed)
             gz[rel] = {"size": len(data), "gzSize": len(packed)}
-precache = [f for f in files if not f.endswith((".wasm", ".data", ".mp3")) and f != "xash3d.html"]
+# vgui/: the interface pictures are fetched when shown, not when the worker installs
+precache = [f for f in files if not f.endswith((".wasm", ".data", ".mp3")) and f != "xash3d.html"
+            and not f.startswith("vgui/")]
 version = hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()[:12]
 manifest = {"version": version, "coi": coi, "precache": precache, "files": files, "gz": gz}
 (dist / "sw-manifest.js").write_text("self.COF_MANIFEST = " + json.dumps(manifest, indent=1) + ";\n")

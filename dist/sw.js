@@ -22,7 +22,7 @@
 
 // package.sh replaces the token after calculating the resource graph. Older
 // clients still use updateViaCache=imports: a new URL must bypass their old HTTP entry.
-importScripts("sw-manifest.js?release=9652cec08bdb");
+importScripts("sw-manifest.js?release=c278a1413070");
 
 const M = self.COF_MANIFEST;
 const CACHE = "cof-web-v1"; // esquema de caché, no versión del juego
@@ -93,13 +93,53 @@ const gzipOk = typeof DecompressionStream === "function";
 
 // URLs on a static host may already contain a newer release. Never label those
 // bytes with this worker's old revision, including entries left by older workers.
-const checked = async (res, path) => {
-  if (res.status !== 200) throw new Error(`resource ${path}: ${res.status}`);
-  const bytes = await res.clone().arrayBuffer();
+const verify = async (bytes, path) => {
   const digest = await crypto.subtle.digest("SHA-256", bytes);
   const hash = Array.from(new Uint8Array(digest), b => b.toString(16).padStart(2, "0")).join("");
   if (!hash.startsWith(M.files[path])) throw new Error(`revision mismatch: ${path}`);
+};
+const checked = async (res, path) => {
+  if (res.status !== 200) throw new Error(`resource ${path}: ${res.status}`);
+  await verify(await res.clone().arrayBuffer(), path);
   return res;
+};
+
+// The page cannot see the progress of a download the worker answers only once it is complete (it has
+// to be verified before it is cached and served): on a slow connection the loading screen sat on
+// "Downloading…" for minutes. The worker reports the bytes it has received to the open pages instead.
+const progress = new Map(); // path -> { loaded, total }
+let progressTimer = 0;
+const postProgress = async () => {
+  progressTimer = 0;
+  const files = [...progress].map(([path, p]) => ({ path, loaded: p.loaded, total: p.total }));
+  for (const client of await self.clients.matchAll({ type: "window" })) {
+    client.postMessage({ type: "cof-progress", files });
+  }
+};
+const reportProgress = () => { if (!progressTimer) progressTimer = setTimeout(postProgress, 250); };
+const readCounting = async (res, path, total) => {
+  if (!res.body) return res.arrayBuffer();
+  const entry = { loaded: 0, total };
+  progress.set(path, entry);
+  reportProgress();
+  const parts = [];
+  try {
+    const reader = res.body.getReader();
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      parts.push(value);
+      entry.loaded += value.byteLength;
+      reportProgress();
+    }
+  } finally {
+    progress.delete(path);
+    reportProgress();
+  }
+  const out = new Uint8Array(entry.loaded);
+  let at = 0;
+  for (const part of parts) { out.set(part, at); at += part.byteLength; }
+  return out.buffer;
 };
 
 // la copia .gz en caché -> respuesta con el contenido original, como la esperan file_packager e
@@ -115,6 +155,11 @@ const inflate = (res, path) => {
   });
 };
 
+// One download per file: the launcher starts the heavy files early (loader.js warm()) and the engine asks
+// for the same ones when "Play" is pressed, maybe before they are complete. A second request waits for
+// the first and is then answered from the cache.
+const inflight = new Map();
+
 const cacheFirst = async (path) => {
   const cache = await caches.open(CACHE);
   const packed = gzipOk && M.gz && M.gz[path];
@@ -124,23 +169,47 @@ const cacheFirst = async (path) => {
     try { return await checked(packed ? inflate(hit, path) : hit, path); }
     catch (_) { await cache.delete(key); }
   }
+  if (inflight.has(path)) {
+    // the first request failed: this one downloads on its own
+    if (await inflight.get(path).then(() => true, () => false)) return cacheFirst(path);
+  }
+  const job = download(cache, path, packed, key);
+  inflight.set(path, job);
+  try { return await job; }
+  finally { if (inflight.get(path) === job) inflight.delete(path); }
+};
 
+const download = async (cache, path, packed, key) => {
   const res = await fetchFresh(packed ? `${path}.gz` : path);
   // solo respuestas completas: una 206 o un error no se guardan
   if (res.status !== 200) return packed ? checked(await fetchFresh(path), path) : checked(res, path);
+  const ext = path.slice(path.lastIndexOf("."));
+  const heavy = ext === ".data" || ext === ".wasm";
   if (!packed) {
-    await checked(res, path);
-    await cache.put(key, res.clone());
-    return res;
+    if (!heavy) {
+      await checked(res, path);
+      await cache.put(key, res.clone());
+      return res;
+    }
+    const headers = { "Content-Type": res.headers.get("content-type") || MIME[ext] || "application/octet-stream" };
+    const bytes = await readCounting(res, path, Number(res.headers.get("content-length")) || 0);
+    await verify(bytes, path);
+    await cache.put(key, new Response(bytes, { headers }));
+    return new Response(bytes, { status: 200, headers });
   }
   // se guarda lo recibido y si sigue comprimido (sin Content-Encoding del hosting)
   const stillGzip = !res.headers.get("content-encoding");
-  const stored = new Response(await res.arrayBuffer(), {
+  const stored = new Response(await readCounting(res, path, M.gz[path].gzSize || 0), {
     headers: { "x-cof-encoding": stillGzip ? "gzip" : "identity" },
   });
-  await checked(inflate(stored.clone(), path), path);
-  await cache.put(key, stored.clone());
-  return inflate(stored, path);
+  // decompressed once: verified and served from the same bytes
+  const raw = await inflate(stored.clone(), path).arrayBuffer();
+  await verify(raw, path);
+  await cache.put(key, stored);
+  return new Response(raw, {
+    status: 200,
+    headers: { "Content-Type": MIME[ext] || "application/octet-stream", "Content-Length": String(raw.byteLength) },
+  });
 };
 
 const networkFirst = async (request, path) => {
@@ -168,6 +237,14 @@ self.addEventListener("fetch", (event) => {
 
   if (req.mode === "navigate") {
     event.respondWith(networkFirst(req, "index.html").then(withIsolation));
+  } else if (M.files[path] && req.headers.get("x-cof-warm") === "1") {
+    // loader.js warmLauncher(): only make sure the file is cached; no body for the page
+    event.respondWith((async () => {
+      const packed = gzipOk && M.gz && M.gz[path];
+      const cached = await (await caches.open(CACHE)).match(packed ? `${toKey(path)}&gz` : toKey(path));
+      if (!cached) await cacheFirst(path);
+      return new Response(null, { status: 204 });
+    })());
   } else if (M.files[path]) {
     event.respondWith(cacheFirst(path).then(withIsolation));
   }

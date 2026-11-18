@@ -19,11 +19,15 @@
                      transition:opacity .5s ease; }
       #cof-loading.off { opacity:0; }
       #cof-loading span { color:#bbb; font:clamp(13px, 2vh, 20px) Arial, sans-serif; letter-spacing:.08em; }
+      #cof-loading { flex-direction:column; align-items:flex-end; gap:.45em; }
+      #cof-loading small { color:#888; font:clamp(11px, 1.6vh, 16px) Arial, sans-serif; letter-spacing:.04em; }
+      #cof-loading small:empty { display:none; }
     `;
     document.head.appendChild(style);
     const el = document.createElement("div");
     el.id = "cof-loading";
-    el.innerHTML = `<span>${/^es\b/i.test(navigator.language || "") ? "Cargando…" : "Loading…"}</span>`;
+    el.innerHTML = `<span>${/^es\b/i.test(navigator.language || "") ? "Cargando…" : "Loading…"}</span><small></small>`;
+    const detailEl = el.querySelector("small");
     const attach = () => (document.querySelector("main") || document.body).appendChild(el);
     if (document.querySelector("main")) attach(); else addEventListener("DOMContentLoaded", attach);
     let waiting = true, timer = 0, onDone = null;
@@ -43,6 +47,8 @@
         timer = setTimeout(hide, 30000); // never stuck on black
       },
       ready: hide,
+      // the download progress under "Loading…" (loader.js, from the Service Worker); "" clears it
+      detail(text) { detailEl.textContent = text || ""; },
       get active() { return waiting; },
     };
   })();
@@ -115,11 +121,31 @@
     return cur;
   };
 
+  // Most of gfx/vgui is not in boot.data (tools/vgui_png.py): it is fetched as vgui/<lower case>.png the
+  // first time it is shown. A map pack that brings its own picture still wins (the file system is read first).
+  const vguiUrl = (path) => {
+    const m = /\/gfx\/vgui\/(.+)\.tga$/i.exec(path);
+    return m ? `vgui/${m[1].toLowerCase()}.png` : null;
+  };
+  const fetchPicture = async (url, path) => {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`no existe ${path}`);
+    const src = URL.createObjectURL(await res.blob());
+    cache.set(path, src);
+    return src;
+  };
+
   // Returns a data: URL. TGA type 2, 24/32 bpp, uncompressed; descriptor bit 5 = top origin.
   const loadTga = (path) => {
     if (cache.has(path)) return Promise.resolve(cache.get(path));
     return Promise.resolve().then(() => {
-      const d = FS.readFile(resolveCi(path));
+      let d;
+      try { d = FS.readFile(resolveCi(path)); }
+      catch (e) {
+        const url = vguiUrl(path);
+        if (!url) throw e;
+        return fetchPicture(url, path);
+      }
       const idLen = d[0], imageType = d[2], w = d[12] | (d[13] << 8), h = d[14] | (d[15] << 8);
       const bpp = d[16], desc = d[17];
       if (imageType !== 2 || (bpp !== 24 && bpp !== 32) || !w || !h) throw new Error("TGA no soportado");
@@ -812,6 +838,11 @@
     if (isMenu) {
       // fetch the first chapter in the background while the menu is up
       setTimeout(() => { if (menu.visible && window.CoFPreload) window.CoFPreload(FIRST_MAP).catch(() => {}); }, 4000);
+      // and the pictures shown soon after: the difficulty board, the bag, the chapter's introduction
+      setTimeout(() => {
+        for (const path of [`${VGUI}/640_difficulty.tga`, `${VGUI}/backgroundtoall.TGA`, `${VGUI}/640_inventory.tga`,
+          introPath(0, gameLanguage), introPath(0, "english")]) loadTga(path).catch(() => {});
+      }, 1500);
     }
   };
 
@@ -1739,6 +1770,7 @@
 
   window.CoFHUD = {
     resolvePath: resolveCi,
+    loadingDetail: (text) => loading.detail(text),
     showClothesMenu(open) {
       if(menu.el)menu.el.classList.toggle("on",menu.visible&&!open);
       if(rain.canvas)rain.canvas.style.visibility=open&&menu.visible?'hidden':'';

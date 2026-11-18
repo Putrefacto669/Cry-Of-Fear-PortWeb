@@ -4,6 +4,19 @@ Guía para Claude Code (y cualquier asistente) que trabaje en este repositorio: 
 cómo se compila y se prueba, qué se hizo hasta ahora y qué trampas ya se conocen. El usuario
 trabaja en español: responder y documentar en español; los comentarios del código van en inglés.
 
+## Descargas: progreso, launcher e interfaz bajo demanda — 17/11/2026
+
+Leer `docs/CLAUDE_DESCARGAS_2026_11_17.md`. Hasta el menú se descargaban 42 MB sin ningún progreso visible.
+
+- **`sw.js`:** envía `cof-progress` a las páginas, hace una sola descarga por archivo (`inflight`) y responde 204 a
+  `x-cof-warm: 1`.
+- **`loader.js`:** muestra el progreso en MB en la pantalla de carga; `warmLauncher` descarga el arranque mientras se
+  lee el launcher.
+- **`gfx/vgui`** (solo lo lee `hud.js`) sale de `boot` como `dist/vgui/*.png` (`tools/vgui_png.py`, `package.sh`);
+  `loadTga()` las pide cuando no están en el FS. `boot.data.gz` pasa de 22,8 a 13,4 MB.
+- **Prueba:** `tools/e2e/download_path.mjs`, con un servidor lento (3 MB/s).
+- **Trampa:** `waitForFunction` con un predicado `async` pasa al instante.
+
 ## Campaña: capítulo 2 (`c_basement`, `c_sewer`) — 15/11/2026
 
 Leer `docs/CLAUDE_CAMPAIGN_PROGRESSION_NEXT_MAP_20261115.md` (`c_basement`) y `docs/CLAUDE_CAMPAIGN_C_SEWER_20261115.md`.

@@ -1,0 +1,76 @@
+[21:09:53] Program args: ./this.program -game cryoffear -rodir /rodir -ref gles3compat -dll /lib/server.wasm -clientlib /lib/client.wasm -menulib /lib/menu.wasm -windowed -dev 1 -log +exec cof_web.cfg +snd_webaudio 1 +snd_webaudio_hrtf 0 +map c_start2 
+[21:09:54] execing cof_web.cfg
+CANVAS { x: 0, y: 0, width: 844, height: 390 }
+STICK { x: 120.0234375, y: 245.2734375, width: 97.546875, height: 97.546875 }
+LAYOUT [{"name":"attack","x":750.671875,"y":246.09375,"width":65.90625,"height":65.90625},{"name":"use","x":685.953125,"y":220.765625,"width":40.9375,"height":40.9375},{"name":"reload","x":636.15625,"y":258.203125,"width":40.9375,"height":40.9375},{"name":"jump","x":801.453125,"y":319,"width":32,"height":32},{"name":"duck","x":691.859375,"y":307.34375,"width":40.9375,"height":40.9375},{"name":"sprint","x":624.34375,"y":309.6875,"width":40.9375,"height":40.9375},{"name":"objectives","x":134.78125,"y":13.25,"width":32.359375,"height":32.359375},{"name":"flashlight","x":775.359375,"y":13.25,"width":32.359375,"height":32.359375},{"name":"dial","x":726.109375,"y":13.25,"width":32.359375,"height":32.359375},{"name":"quick1","x":365.0078125,"y":13.25,"width":32.359375,"height":28.15625},{"name":"quick2","x":405.8203125,"y":13.25,"width":32.359375,"height":28.15625},{"name":"quick3","x":446.6171875,"y":13.25,"width":32.359375,"height":28.15625},{"name":"pause","x":36.28125,"y":13.25,"width":32.359375,"height":32.359375},{"name":"inventory","x":85.53125,"y":13.25,"width":32.359375,"height":32.359375}]
+[21:10:03] invnext touch_default/next_weap invnext 0 0.521739 0.12 0.782609 255 255 255 255 0
+[21:10:03] invprev touch_default/prev_weap invprev 0 0.0869565 0.12 0.347826 255 255 255 255 0
+[21:10:03] use touch_default/use +use 0.88 0.434783 1 0.695652 255 255 255 255 0
+[21:10:03] jump touch_default/jump +jump 0.88 0.217391 1 0.478261 255 255 255 255 0
+[21:10:03] attack touch_default/shoot +attack 0.76 0.521739 0.88 0.782609 255 255 255 255 0
+[21:10:03] attack2 touch_default/shoot_alt +attack2 0.76 0.304348 0.88 0.565217 255 255 255 255 0
+[21:10:03] loadquick touch_default/load loadquick 0.76 0 0.84 0.173913 255 255 255 255 16
+[21:10:03] savequick touch_default/save savequick 0.84 0 0.92 0.173913 255 255 255 255 16
+[21:10:03] messagemode touch_default/keyboard messagemode 0.84 0 0.92 0.173913 255 255 255 255 8
+[21:10:03] reload touch_default/reload +reload 0 0.304348 0.12 0.565217 255 255 255 255 0
+[21:10:03] flashlight touch_default/flash_light_filled impulse 100 0.92 0 1 0.173913 255 255 255 255 0
+[21:10:03] scores touch_default/map +showscores 0.76 0 0.84 0.173913 255 255 255 255 8
+[21:10:03] show_numbers touch_default/show_weapons exec touch_default/numbers.cfg 0.44 0.826087 0.52 1 255 255 255 255 0
+[21:10:03] duck touch_default/crouch +duck 0.88 0.73913 1 1 255 255 255 255 0
+[21:10:03] tduck touch_default/tduck ;+duck 0.56 0.826087 0.62 0.956522 255 255 255 255 0
+[21:10:03] edit touch_default/settings touch_enableedit 0.42 0 0.5 0.173913 255 255 255 255 32
+[21:10:03] menu touch_default/menu cancelselect 0 0.826087 0.08 1 255 255 255 255 0
+[21:10:03] spray touch_default/spray impulse 201 0.68 0 0.76 0.173913 255 255 255 255 8
+[21:10:03] voicechat touch_default/microphone +voicerecord 0.78 0.826087 0.86 1 255 255 255 255 8
+[21:10:03] cof_web_joy  _joy 0.142208 0.628906 0.257785 0.879026 0 0 0 0 2052
+[21:10:03] look  _look 0.5 0 1 1 255 255 255 255 0
+[21:10:03] move  _move 0 0 0.5 1 255 255 255 255 0
+[21:10:03] invnext touch_default/next_weap invnext 0 0.521739 0.12 0.782609 255 255 255 255 0
+[21:10:03] invprev touch_default/prev_weap invprev 0 0.0869565 0.12 0.347826 255 255 255 255 0
+[21:10:03] use touch_default/use +use 0.88 0.434783 1 0.695652 255 255 255 255 0
+[21:10:03] jump touch_default/jump +jump 0.88 0.217391 1 0.478261 255 255 255 255 0
+[21:10:03] attack touch_default/shoot +attack 0.76 0.521739 0.88 0.782609 255 255 255 255 0
+[21:10:03] attack2 touch_default/shoot_alt +attack2 0.76 0.304348 0.88 0.565217 255 255 255 255 0
+[21:10:03] loadquick touch_default/load loadquick 0.76 0 0.84 0.173913 255 255 255 255 16
+[21:10:03] savequick touch_default/save savequick 0.84 0 0.92 0.173913 255 255 255 255 16
+[21:10:03] messagemode touch_default/keyboard messagemode 0.84 0 0.92 0.173913 255 255 255 255 8
+[21:10:03] reload touch_default/reload +reload 0 0.304348 0.12 0.565217 255 255 255 255 0
+[21:10:03] flashlight touch_default/flash_light_filled impulse 100 0.92 0 1 0.173913 255 255 255 255 0
+[21:10:03] scores touch_default/map +showscores 0.76 0 0.84 0.173913 255 255 255 255 8
+[21:10:03] show_numbers touch_default/show_weapons exec touch_default/numbers.cfg 0.44 0.826087 0.52 1 255 255 255 255 0
+[21:10:03] duck touch_default/crouch +duck 0.88 0.73913 1 1 255 255 255 255 0
+[21:10:03] tduck touch_default/tduck ;+duck 0.56 0.826087 0.62 0.956522 255 255 255 255 0
+[21:10:03] edit touch_default/settings touch_enableedit 0.42 0 0.5 0.173913 255 255 255 255 32
+[21:10:03] menu touch_default/menu cancelselect 0 0.826087 0.08 1 255 255 255 255 0
+[21:10:03] spray touch_default/spray impulse 201 0.68 0 0.76 0.173913 255 255 255 255 8
+[21:10:03] voicechat touch_default/microphone +voicerecord 0.78 0.826087 0.86 1 255 255 255 255 8
+[21:10:03] cof_web_joy  _joy 0.142208 0.628906 0.257785 0.879026 0 0 0 0 2052
+[21:10:03] COF/FENCE mobile_2 time=7.3006
+MOVING [21:10:04] COF/ENTITY !player class=player body=0 solid=3 origin=2427.4,-891.0,-731.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=8.4006 effects=0 renderfx=0 modelindex=143 model=models/player.mdl health=100 dead=0 seq=0 takedamage=2
+[21:10:04] COF/FENCE mobile_4 time=8.4006
+COMMANDS [
+  'sv_cheats 1\n' +
+    'cof_unfreeze !player\n' +
+    'cof_goto 2428 -880 -731\n' +
+    'cof_fence mobile_1',
+  'touch_list\ncof_fence mobile_2',
+  'viewpos\ncof_fence mobile_3',
+  'cof_inspect !player\ncof_fence mobile_4',
+  'viewpos\ncof_fence mobile_5'
+]
+POSES [21:10:03] org ( 2428.03 -879.969 -702.969 )
+[21:10:03] ang ( 0 90 0 )
+[21:10:03] COF/FENCE mobile_3 time=7.3009 [21:10:04] org ( 2427.4 -890.938 -702.963 )
+[21:10:04] ang ( 0 90 0 )
+[21:10:04] COF/FENCE mobile_5 time=8.4008 [21:10:05] org ( 2427.4 -890.938 -702.969 )
+[21:10:05] ang ( 10.3846 51.6083 0 )
+[21:10:05] COF/FENCE mobile_6 time=9.0006
+ATTACK 15 12
+MULTITOUCH [21:10:06] org ( 2427.4 -890.938 -702.969 )
+[21:10:06] ang ( 10.3846 51.6083 0 )
+[21:10:06] COF/FENCE mobile_10 time=10.3015 [21:10:07] org ( 2399.06 -890.938 -702.969 )
+[21:10:07] ang ( -10.6346 26.0156 0 )
+[21:10:07] COF/FENCE mobile_11 time=10.901 [ '+attack\n', '-attack\n' ]
+PASS cancellation and blur release
+PASS bag opens and closes by touch
+PASS mobile controls
