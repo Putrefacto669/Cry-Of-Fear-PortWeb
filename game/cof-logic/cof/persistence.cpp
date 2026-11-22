@@ -37,6 +37,7 @@ extern void CoF_RegisterFogCallbacks(void);
 extern void CoF_RegisterDynLightCallbacks(void);
 extern void CoF_RegisterTeleportCallbacks(void);
 extern void CoF_RegisterZoomCallbacks(void);
+extern void CoF_RegisterFogFieldCallbacks(void);
 void CoF_RegisterPersistenceCallbacks(void)
 {
  // Explicit initialization before either a new map or a cold save restoration.
@@ -60,5 +61,6 @@ void CoF_RegisterPersistenceCallbacks(void)
  COF_SAVE_THINK(CBasePlayerItem,DestroyItem);
  CoF_RegisterMakerCallbacks();CoF_RegisterSparkCallbacks();CoF_RegisterFogCallbacks();
  CoF_RegisterDynLightCallbacks();CoF_RegisterTeleportCallbacks();CoF_RegisterZoomCallbacks();
+ CoF_RegisterFogFieldCallbacks();
 }
 #endif

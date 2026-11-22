@@ -36,7 +36,8 @@ El usuario confirmó que el permiso de Andreas cubre todo el juego.
   - los pinceles sólidos y los pasos estrechos.
 - **Pruebas:** recorrido guiado de `c_basement` (11/11) y negativas (15/15); `sewer_sewmo_probe` (13/13).
 - **Depuración:** `cof_face x y z` y `cof_inspect` con `health dead seq takedamage`.
-- **Pendiente en `c_sewer`:** `func_fogfield` y el recorrido completo. `c_sewer2` no existe todavía, así que la salida
+- **`func_fogfield`** (`fogfield.cpp`): siembra sprites `mist1..5` cerca del jugador, como `hl.dll`; prueba `sewer_fog_probe.mjs`.
+- **Pendiente en `c_sewer`:** el recorrido completo. `c_sewer2` no existe todavía, así que la salida
   `chsw55` se queda en `c_sewer`.
 
 ## Versión móvil: texturas DXT, diálogo táctil, precarga y opciones — 15/11/2026

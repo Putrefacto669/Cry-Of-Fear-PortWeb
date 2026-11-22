@@ -134,6 +134,8 @@ MONSTER_ASSETS = {
     # Not in boot: only the maps that place it, and later the maps the player carries it into.
     "weapon_nightstick": ["models/weapons/nightstick", "sound/weapons/nightstick"],
     "cof_phonecall": ["sound/phone/phone_ringing.wav", "sound/phone/phone_ringtone.wav", "sound/phone/tone_send.wav"],
+    # the mist puffs (fogfield.cpp)
+    "func_fogfield": [f"sprites/mist{i}.spr" for i in range(1, 6)],
 }
 ITEM_FIELD_RE = re.compile(r'"([^"]+)"\s*\{\s*data\s+"([^"]*)"\s*\}')
 

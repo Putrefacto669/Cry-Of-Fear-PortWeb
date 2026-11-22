@@ -1,0 +1,112 @@
+{
+  "checks": {
+    "func_fogfield spawns": true,
+    "four fog fields": true,
+    "sv_fogradius 384": true,
+    "no mist far from the canal": true,
+    "mist appears in the canal": true,
+    "mist sprites: sprites/mistN.spr, additive (5)": true,
+    "at the fields' height": true,
+    "within the fields' footprint": true,
+    "save/load: no unknown callback": true,
+    "the mist goes on after loading": true,
+    "gone a few seconds after leaving": true,
+    "no page errors": true
+  },
+  "noSpawn": [
+    "Error: No spawn function for \"info_texlights\""
+  ],
+  "fields": [
+    {
+      "o": [
+        1656,
+        1952,
+        -489
+      ],
+      "rendermode": 0,
+      "model": "*49"
+    },
+    {
+      "o": [
+        1728,
+        2652,
+        -489
+      ],
+      "rendermode": 0,
+      "model": "*50"
+    },
+    {
+      "o": [
+        2095,
+        2826,
+        -489
+      ],
+      "rendermode": 0,
+      "model": "*51"
+    },
+    {
+      "o": [
+        3036,
+        2869,
+        -489
+      ],
+      "rendermode": 0,
+      "model": "*52"
+    }
+  ],
+  "radius": "384",
+  "atSpawn": 0,
+  "inCanal": 96,
+  "sample": [
+    {
+      "o": [
+        1721,
+        1982,
+        -482
+      ],
+      "rendermode": 5,
+      "model": "sprites/mist1.spr"
+    },
+    {
+      "o": [
+        1739,
+        2664,
+        -480
+      ],
+      "rendermode": 5,
+      "model": "sprites/mist2.spr"
+    },
+    {
+      "o": [
+        1771,
+        2660,
+        -479
+      ],
+      "rendermode": 5,
+      "model": "sprites/mist5.spr"
+    },
+    {
+      "o": [
+        1748,
+        2587,
+        -483
+      ],
+      "rendermode": 5,
+      "model": "sprites/mist3.spr"
+    },
+    {
+      "o": [
+        1710,
+        2428,
+        -483
+      ],
+      "rendermode": 5,
+      "model": "sprites/mist5.spr"
+    }
+  ],
+  "afterLoad": 121,
+  "saveErrors": [],
+  "away": 0,
+  "errors": [],
+  "passed": true
+}

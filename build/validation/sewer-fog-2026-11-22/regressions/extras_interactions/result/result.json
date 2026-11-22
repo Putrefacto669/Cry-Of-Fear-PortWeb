@@ -1,0 +1,22 @@
+{
+  "diagnosticOnly": true,
+  "modules": {
+    "server.wasm": "ba68ef81765681544c4d507a7cd027854538d691cd82b3a09ac6f8b5fc67d7ca",
+    "client.wasm": "01a0c53956e66a1aca0ef63ad4cd065c3cb1f7368fc95a8a39d869916d88bbcc",
+    "libref_gles3compat.wasm": "8e8b0e19a9721d5cda7a13b53c6146aa267e4a21ef5391728c569578507d2814"
+  },
+  "hrtf": false,
+  "hatchBefore": "[10:48:02] COF/ENTITY *132 class=func_button body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=161 touch=0 target=multitscene frozen=0 stairs=-1 use=1 think=0 toggle=1 next=0 now=18.7234 effects=0 renderfx=0 modelindex=133 model=*132 health=0 dead=0 seq=0 takedamage=0\n[10:48:02] COF/USEAIM hit= class=func_button fraction=0.624607921\n[10:48:02] COF/USEAIM candidate=door_office class=inter_door dot=-0.0106156068\n[10:48:02] COF/USEAIM candidate=gay1 class=func_button dot=-0.0104359509\n[10:48:02] COF/FENCE extra_input_3 time=18.7234",
+  "hatchAfter": "[10:48:03] COF/ENTITY *132 class=func_button body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=161 touch=0 target=multitscene frozen=0 stairs=-1 use=1 think=0 toggle=0 next=-1 now=19.2578 effects=0 renderfx=0 modelindex=133 model=*132 health=0 dead=0 seq=0 takedamage=0\n[10:48:03] COF/ENTITY weapon_glock missing\n[10:48:03] COF/FENCE extra_input_4 time=19.2578",
+  "keyCollected": "[10:48:06] bag 0: apartmentkey (inventoryitems/apartmentkey.txt) count -1\n[10:48:06] COF/FENCE extra_input_6 time=21.9072",
+  "doorAfter": "[10:48:06] COF/ENTITY *66 class=inter_door body=0 solid=4 origin=0.0,0.0,0.0 gate=0 speed=0.0 spawn=0 touch=0 target=3_exit1 frozen=0 stairs=-1 use=0 think=0 toggle=0 next=0 now=22.4571 effects=0 renderfx=0 modelindex=67 model=*66 health=0 dead=0 seq=0 takedamage=0\n[10:48:06] COF/FENCE extra_input_8 time=22.4571",
+  "unlockTime": 22.4571,
+  "bagAfter": "[10:48:06] monster monster_child health 20 dead 0 dist 498\n[10:48:06] monster monstermaker health 0 dead 0 dist 54\n[10:48:06] COF/FENCE extra_input_9 time=22.4574",
+  "presses": [
+    23.6572
+  ],
+  "afterReload": "[10:48:08] COF/ENTITY !player class=player body=0 solid=3 origin=-312.0,480.0,177.0 gate=0 speed=150.0 spawn=0 touch=0 target= frozen=0 stairs=0 use=0 think=0 toggle=0 next=0 now=24.0225 effects=0 renderfx=0 modelindex=328 model=models/player.mdl health=100 dead=0 seq=0 takedamage=2\n[10:48:08] COF/FENCE extra_input_23 time=24.0225",
+  "passed": true,
+  "errors": [],
+  "chromium": "156.0.8078.4"
+}

@@ -1,0 +1,298 @@
+{
+  "checks": {
+    "elecdoor locked at start": true,
+    "wrong code denied at start": true,
+    "door still locked after denied keypad": true,
+    "wrong number: no call": true,
+    "panel opens with *": true,
+    "panel shows the digits": true,
+    "call subtitles 286..296, 313 in order": true,
+    "code note 5247 kind 4": true,
+    "second dial: no second call": true,
+    "door locked after load": true,
+    "wrong code denied after load": true,
+    "keypad granted with 5247 after load": true,
+    "elecdoor unlocked": true,
+    "keypad used once: second 5247 denied": true,
+    "elecdoor stays unlocked": true
+  },
+  "weapon": "COF/WEAPON class=weapon_mobile clip=-1 ammo=-1 primary=-0.06 secondary=-0.001 playernext=0.44 reload=0 buttons=0 health=100",
+  "doorStart": "COF/DOOR elecdoor locked=1 disabled=0 target=bas7_ex1",
+  "keypadWrongStart": [
+    "COF/HUD DENIED"
+  ],
+  "wrongNumber": [],
+  "entrySubtitles": [
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
+  ],
+  "panelScreen": "543214",
+  "ringing": [],
+  "firstSubtitleAfter": "5.9",
+  "call": [
+    [
+      "0.2",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=74.9168 time=74.9168"
+    ],
+    [
+      "2.3",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=76.9221 time=76.9221"
+    ],
+    [
+      "4.4",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=78.9232 time=78.9232"
+    ],
+    [
+      "5.9",
+      "COF/HUD SUB 286"
+    ],
+    [
+      "7.9",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=80.9402 time=80.9402"
+    ],
+    [
+      "10.8",
+      "COF/HUD SUB 287"
+    ],
+    [
+      "13.8",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=82.9402 time=82.9402"
+    ],
+    [
+      "14.7",
+      "COF/HUD SUB 288"
+    ],
+    [
+      "15.7",
+      "COF/HUD SUB 289"
+    ],
+    [
+      "15.9",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=84.9577 time=84.9577"
+    ],
+    [
+      "17.9",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=86.9689 time=86.9689"
+    ],
+    [
+      "18.6",
+      "COF/HUD SUB 290"
+    ],
+    [
+      "20.0",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=88.9789 time=88.9789"
+    ],
+    [
+      "21.2",
+      "COF/HUD SUB 291"
+    ],
+    [
+      "22.3",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=90.9988 time=90.9988"
+    ],
+    [
+      "24.2",
+      "COF/HUD SUB 292"
+    ],
+    [
+      "24.3",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=93.0076 time=93.0076"
+    ],
+    [
+      "25.8",
+      "COF/HUD SUB 293"
+    ],
+    [
+      "26.3",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=95.032 time=95.032"
+    ],
+    [
+      "28.3",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=97.0553 time=97.0553"
+    ],
+    [
+      "30.4",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=99.0809 time=99.0809"
+    ],
+    [
+      "31.4",
+      "COF/HUD SUB 294"
+    ],
+    [
+      "32.4",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=101.081 time=101.081"
+    ],
+    [
+      "34.4",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=103.113 time=103.113"
+    ],
+    [
+      "34.5",
+      "COF/HUD SUB 295"
+    ],
+    [
+      "36.4",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=105.144 time=105.144"
+    ],
+    [
+      "39.0",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=107.166 time=107.166"
+    ],
+    [
+      "39.0",
+      "COF/HUD SUB 296"
+    ],
+    [
+      "41.4",
+      "COF/HUD SUB 313"
+    ],
+    [
+      "41.5",
+      "COF/HANDS active=0 right=0 phoneSeq=0 serial=0 age=109.175 time=109.175"
+    ],
+    [
+      "42.6",
+      "COF/HUD CODE 5247 4"
+    ]
+  ],
+  "subtitles": [
+    286,
+    287,
+    288,
+    289,
+    290,
+    291,
+    292,
+    293,
+    294,
+    295,
+    296,
+    313
+  ],
+  "callSubtitles": [
+    286,
+    287,
+    288,
+    289,
+    290,
+    291,
+    292,
+    293,
+    294,
+    295,
+    296,
+    313
+  ],
+  "codeLine": "COF/HUD CODE 5247 4",
+  "secondDial": [],
+  "keypadIndex": [
+    "614",
+    "606"
+  ],
+  "doorAfterLoad": "COF/DOOR elecdoor locked=1 disabled=0 target=bas7_ex1",
+  "keypadAfter": [
+    "COF/HUD GRANTED"
+  ],
+  "doorEnd": "COF/DOOR elecdoor locked=0 disabled=0 target=bas7_ex1",
+  "keypadReuse": [
+    "COF/HUD DENIED"
+  ],
+  "problems": [
+    "Error: game directory \"cryoffear\" not exist",
+    "Warning: SV_LoadProgs: couldn't get physics API",
+    "Error: Delta_ParseField: unable to find field is_donator",
+    "Warning: Unknown command \"sk_monster_head4\"",
+    "Warning: Unknown command \"sk_monster_chest4\"",
+    "Warning: Unknown command \"sk_monster_stomach4\"",
+    "Warning: Unknown command \"sk_monster_arm4\"",
+    "Warning: Unknown command \"sk_monster_leg4\"",
+    "Warning: Unknown command \"sk_player_head4\"",
+    "Warning: Unknown command \"sk_player_chest4\"",
+    "Warning: Unknown command \"sk_player_stomach4\"",
+    "Warning: Unknown command \"sk_player_arm4\"",
+    "Warning: Unknown command \"sk_player_leg4\"",
+    "Warning: Unknown command \"sk_cof_sledgehammer1\"",
+    "Warning: Unknown command \"sk_cof_sledgehammer2\"",
+    "Warning: Unknown command \"sk_cof_sledgehammer3\"",
+    "Warning: Unknown command \"sk_cof_sledgehammer4\"",
+    "Warning: Unknown command \"sk_cof_2switchblade1\"",
+    "Warning: Unknown command \"sk_cof_2switchblade2\"",
+    "Warning: Unknown command \"sk_cof_2switchblade3\"",
+    "Warning: Unknown command \"sk_cof_2switchblade4\"",
+    "Warning: Unknown command \"sk_cof_switchblade1\"",
+    "Warning: Unknown command \"sk_cof_switchblade2\"",
+    "Warning: Unknown command \"sk_cof_switchblade3\"",
+    "Warning: Unknown command \"sk_cof_switchblade4\"",
+    "Warning: Unknown command \"sk_baby_health1\"",
+    "Warning: Unknown command \"sk_baby_health2\"",
+    "Warning: Unknown command \"sk_baby_health3\"",
+    "Warning: Unknown command \"sk_baby_health4\"",
+    "Warning: Unknown command \"sk_baby_damage1\"",
+    "Warning: Unknown command \"sk_baby_damage2\"",
+    "Warning: Unknown command \"sk_baby_damage3\"",
+    "Warning: Unknown command \"sk_baby_damage4\"",
+    "Warning: Unknown command \"sk_faster_health1\"",
+    "Warning: Unknown command \"sk_faster_health2\"",
+    "Warning: Unknown command \"sk_faster_health3\"",
+    "Warning: Unknown command \"sk_faster_health4\"",
+    "Warning: Unknown command \"sk_faster_dmg_one_slash1\"",
+    "Warning: Unknown command \"sk_faster_dmg_one_slash2\"",
+    "Warning: Unknown command \"sk_faster_dmg_one_slash3\"",
+    "Warning: Unknown command \"sk_faster_dmg_one_slash4\"",
+    "Warning: Unknown command \"sk_faster_dmg_both_slash1\"",
+    "Warning: Unknown command \"sk_faster_dmg_both_slash2\"",
+    "Warning: Unknown command \"sk_faster_dmg_both_slash3\"",
+    "Warning: Unknown command \"sk_faster_dmg_both_slash4\"",
+    "Warning: Unknown command \"sk_krypande_health1\"",
+    "Warning: Unknown command \"sk_krypande_health2\"",
+    "Warning: Unknown command \"sk_krypande_health3\"",
+    "Warning: Unknown command \"sk_krypande_health4\"",
+    "Warning: Unknown command \"sk_krypande_dmg_one_slash1\"",
+    "Warning: Unknown command \"sk_krypande_dmg_one_slash2\"",
+    "Warning: Unknown command \"sk_krypande_dmg_one_slash3\"",
+    "Warning: Unknown command \"sk_krypande_dmg_one_slash4\"",
+    "Warning: Unknown command \"sk_syringe_heal1\"",
+    "Warning: Unknown command \"sk_syringe_heal2\"",
+    "Warning: Unknown command \"sk_syringe_heal3\"",
+    "Warning: Unknown command \"sk_syringe_heal4\"",
+    "Warning: Unknown command \"sk_chainsawboss_health1\"",
+    "Warning: Unknown command \"sk_chainsawboss_health2\"",
+    "Warning: Unknown command \"sk_chainsawboss_health3\"",
+    "Warning: Unknown command \"sk_chainsawboss_health4\"",
+    "Warning: Unknown command \"sk_sewmo_health1\"",
+    "Warning: Unknown command \"sk_sewmo_health2\"",
+    "Warning: Unknown command \"sk_sewmo_health3\"",
+    "Warning: Unknown command \"sk_sewmo_health4\"",
+    "Warning: Unknown command \"sk_sewmo_dmg_one_slash1\"",
+    "Warning: Unknown command \"sk_sewmo_dmg_one_slash2\"",
+    "Warning: Unknown command \"sk_sewmo_dmg_one_slash3\"",
+    "Warning: Unknown command \"sk_sewmo_dmg_one_slash4\"",
+    "Warning: Unknown command \"sk_sewmo_dmg_both_slash1\"",
+    "Warning: Unknown command \"sk_sewmo_dmg_both_slash2\"",
+    "Warning: Unknown command \"sk_sewmo_dmg_both_slash3\"",
+    "Warning: Unknown command \"sk_sewmo_dmg_both_slash4\"",
+    "Warning: Unknown command \"sk_sawrunner_health1\"",
+    "Warning: Unknown command \"sk_sawrunner_health2\"",
+    "Warning: Unknown command \"sk_sawrunner_health3\"",
+    "Warning: Unknown command \"sk_sawrunner_health4\"",
+    "Warning: Unknown command \"sk_sawrunner_dmg_one_slash1\"",
+    "Warning: Unknown command \"sk_sawrunner_dmg_one_slash2\"",
+    "Warning: Unknown command \"sk_sawrunner_dmg_one_slash3\""
+  ],
+  "jsErrors": [],
+  "done": true,
+  "chromium": "156.0.8078.4"
+}

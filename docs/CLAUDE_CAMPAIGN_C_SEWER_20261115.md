@@ -180,3 +180,41 @@ móvil) en la rama de campaña y se publicó un `dist` con:
 
 `c_sewer` todavía no tiene la niebla (`func_fogfield`) ni el recorrido guiado completo; su salida `chsw55` no cambia
 de nivel porque `c_sewer2` aún no está en el paquete.
+
+## 8. `func_fogfield`: la niebla del canal (17–22/11/2026)
+
+**Datos del mapa.** Cuatro volúmenes en `c_sewer`: `*49` (1656, 1952, −489), `*50` (1728, 2652, −489), `*51`
+(2095, 2826, −489) y `*52` (3036, 2869, −489). Todos llevan `targetname fogfield`, `axis -1`, `rendercolor 0 0 0` y
+`spawnflags 2` («Start on» en el FGD). Nada los activa en el mapa.
+
+**Original** (`hl.dll`, Ghidra en solo lectura; volcados en `private-native`, no se suben). No es una niebla del motor:
+el volumen siembra sprites.
+
+| Pieza | Dirección | Comportamiento |
+|---|---|---|
+| `func_fogfield` | `100124f0` | `CFuncFogField`, 0x180 bytes |
+| Spawn | `10011340` | ángulos 0, `MOVETYPE_NONE`, `SOLID_NOT`, `SET_MODEL`, `EF_NODRAW`; spawnflag 2 → encendido; Use = `FogUse` |
+| Encender / apagar | `10012240` / `100121e0` | piensa cada 0,1 s / deja de pensar |
+| `FogUse` | `100101a0` | alterna con `ShouldToggle` |
+| `SpawnThink` | `10011a30` | cada 0,1 s, `max(size.x, size.y) / 170` bocanadas |
+| Bocanada | `1000ff30` | punto al azar en origen ± tamaño/2 (a la altura del origen) y solo si hay un jugador a menos de `sv_fogradius`. Crea `sprites/mist1..5.spr`: aditivo, blanco, escala 1, velocidad 3–7 / 3–7 / 2–5 |
+| `SUB_StartFadeInAndOut` | `1008ac10` | opacidad 2, piensa cada 0,1 s |
+| `SUB_FadeInAndOut` | `1008aaa0` | +3 cada 0,1 s hasta 32, espera 0–2 s, −3 cada 0,1 s; a 7 o menos, se borra a los 0,2 s |
+| `sv_fogradius` | `cvar_t` en `.data` (`10214764`) | `"384"`, `FCVAR_SERVER` |
+
+**Port:** `game/cof-logic/cof/fogfield.cpp`.
+- `func_fogfield` y `cof_mist` (un `CSprite` con su propio desvanecido): el original lo tiene en `CBaseEntity`, con una
+  bandera de un byte en +0x88.
+- Los callbacks están registrados para las partidas guardadas (`persistence.cpp`).
+- Los sprites ya iban en `boot`. `stage_map.py` los declara igualmente para `func_fogfield`.
+
+**Prueba:** `tools/e2e/sewer_fog_probe.mjs`, 12/12 (`fog-probe-103921`):
+- hay cuatro campos y `sv_fogradius` vale 384;
+- en el punto de aparición no hay bruma;
+- en el canal hay 123 sprites `mistN.spr` aditivos, a la altura de los campos y dentro de su huella;
+- al guardar y cargar no aparece ningún callback desconocido y la bruma sigue;
+- al salir del canal desaparece en menos de 6 s.
+
+**Sin comprobar:** el aspecto. Las capturas sin GPU (SwiftShader) no permiten juzgar sprites aditivos con opacidad 32.
+Falta compararlo con el original en una GPU real. Se crean unas 120 entidades a la vez cerca del jugador, como en el
+original.

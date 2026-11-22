@@ -17,7 +17,7 @@
         // web worker
         PACKAGE_PATH = encodeURIComponent(location.pathname.substring(0, location.pathname.lastIndexOf('/')) + '/');
       }
-      var PACKAGE_NAME = '/root/cof-audits/claude-campaign-20261115/release-ch2/packs/engine.data';
+      var PACKAGE_NAME = '/root/cof-audits/claude-campaign-20261115/cand-fog/packs/engine.data';
       var REMOTE_PACKAGE_BASE = 'engine.data';
       var REMOTE_PACKAGE_NAME = Module['locateFile'] ? Module['locateFile'](REMOTE_PACKAGE_BASE, '') : REMOTE_PACKAGE_BASE;
 var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
@@ -143,10 +143,10 @@ Module['FS_createPath']("/", "lib", true, true);
           var files = metadata['files'];
           for (var i = 0; i < files.length; ++i) {
             DataRequest.prototype.requests[files[i].filename].onload();
-          }          Module['removeRunDependency']('datafile_/root/cof-audits/claude-campaign-20261115/release-ch2/packs/engine.data');
+          }          Module['removeRunDependency']('datafile_/root/cof-audits/claude-campaign-20261115/cand-fog/packs/engine.data');
 
       };
-      Module['addRunDependency']('datafile_/root/cof-audits/claude-campaign-20261115/release-ch2/packs/engine.data');
+      Module['addRunDependency']('datafile_/root/cof-audits/claude-campaign-20261115/cand-fog/packs/engine.data');
 
       Module['preloadResults'] ??= {};
 
@@ -166,6 +166,6 @@ Module['FS_createPath']("/", "lib", true, true);
     }
 
     }
-    loadPackage({"files": [{"filename": "/lib/client.wasm", "start": 0, "end": 743231}, {"filename": "/lib/filesystem_stdio.wasm", "start": 743231, "end": 811423}, {"filename": "/lib/libref_gles3compat.wasm", "start": 811423, "end": 1105247}, {"filename": "/lib/menu.wasm", "start": 1105247, "end": 1496663}, {"filename": "/lib/server.wasm", "start": 1496663, "end": 2931913}], "remote_package_size": 2931913});
+    loadPackage({"files": [{"filename": "/lib/client.wasm", "start": 0, "end": 743231}, {"filename": "/lib/filesystem_stdio.wasm", "start": 743231, "end": 811423}, {"filename": "/lib/libref_gles3compat.wasm", "start": 811423, "end": 1105247}, {"filename": "/lib/menu.wasm", "start": 1105247, "end": 1496663}, {"filename": "/lib/server.wasm", "start": 1496663, "end": 2937102}], "remote_package_size": 2937102});
 
   })();
